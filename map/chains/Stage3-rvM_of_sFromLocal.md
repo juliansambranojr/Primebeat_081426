@@ -1,6 +1,6 @@
 # What `Stage3.rvM_of_sFromLocal` rests on
 
-[`Stage3.rvM_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) in `lean_stage3/Stage3/ArgIdentity.lean`, line 1461.
+[`Stage3.rvM_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) in `lean_stage3/Stage3/ArgIdentity.lean`, line 1469.
 
 **Why.** hNT from one remaining bound. With the Stirling half already a theorem (`backlundPhase_holds : StmtBacklundPhase phaseTheta 97 98`, entry 140) and the Jensen count discharged (`localCount_holds : StmtLocalCount zetaLocalCount 15 73`, entry 156), the whole Riemann–von Mangoldt band follows from `StmtSFromLocal` alone.
 

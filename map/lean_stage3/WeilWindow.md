@@ -2,7 +2,7 @@
 
 WeilWindow — the raised-cosine window of entry 302, first two rungs of the detection ladder, crude constants. 2026-09-06.
 
-12 theorems, 3 definitions, 172 lines. Arrows are Lean's own record of what each proof uses.
+12 theorems, 3 definitions, 183 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilTransform`](../lean_stage3/WeilTransform.md)
@@ -96,9 +96,11 @@ The odd-envelope integral `Σ(s) = ∫₋₁¹ x·P(x)·sinh(s x) dx`.
 <a name="WeilWindow-P_nonneg"></a>
 ### `WeilWindow.P_nonneg`
 
-line 52
+line 53
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The raised-cosine window is nonnegative at every real `x`.
 
 **Proves**
 
@@ -124,9 +126,11 @@ line 52
 <a name="WeilWindow-P_le_one"></a>
 ### `WeilWindow.P_le_one`
 
-line 55
+line 57
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The raised-cosine window is at most `1` at every real `x`.
 
 **Proves**
 
@@ -151,9 +155,11 @@ P x ≤ 1
 <a name="WeilWindow-P_one"></a>
 ### `WeilWindow.P_one`
 
-line 60
+line 63
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The raised-cosine window vanishes at the right endpoint `x = 1`.
 
 **Proves**
 
@@ -170,9 +176,11 @@ P 1 = 0
 <a name="WeilWindow-P_neg_one"></a>
 ### `WeilWindow.P_neg_one`
 
-line 65
+line 69
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The raised-cosine window vanishes at the left endpoint `x = −1`.
 
 **Proves**
 
@@ -189,9 +197,11 @@ P (-1) = 0
 <a name="WeilWindow-continuous_P"></a>
 ### `WeilWindow.continuous_P`
 
-line 71
+line 76
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the raised-cosine window is continuous.
 
 **Proves**
 
@@ -214,9 +224,11 @@ Continuous P
 <a name="WeilWindow-continuous_x2P"></a>
 ### `WeilWindow.continuous_x2P`
 
-line 74
+line 80
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the second-moment integrand `x²·P(x)` is continuous.
 
 **Proves**
 
@@ -239,7 +251,7 @@ Continuous fun x : ℝ => x ^ 2 * P x
 <a name="WeilWindow-P_ge_half"></a>
 ### `WeilWindow.P_ge_half`
 
-line 78
+line 84
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -266,9 +278,11 @@ line 78
 <a name="WeilWindow-m2_le"></a>
 ### `WeilWindow.m2_le`
 
-line 98
+line 105
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Upper bound on the second moment of the window: `m₂ ≤ 2/3`.
 
 **Proves**
 
@@ -290,9 +304,11 @@ m2 ≤ 2 / 3
 <a name="WeilWindow-m2_ge"></a>
 ### `WeilWindow.m2_ge`
 
-line 111
+line 119
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Lower bound on the second moment of the window: `1/24 ≤ m₂`.
 
 **Proves**
 
@@ -317,7 +333,7 @@ line 111
 <a name="WeilWindow-mul_sinh_ge"></a>
 ### `WeilWindow.mul_sinh_ge`
 
-line 133
+line 141
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -343,9 +359,11 @@ s * x ^ 2 ≤ x * Real.sinh (s * x)
 <a name="WeilWindow-Sigma_ge_mul"></a>
 ### `WeilWindow.Sigma_ge_mul`
 
-line 140
+line 150
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `s ≥ 0`, the odd-envelope integral is at least `s` times the second moment: `s·m₂ ≤ Σ(s)`.
 
 **Proves**
 
@@ -375,9 +393,11 @@ s * m2 ≤ Sigma s
 <a name="WeilWindow-Sigma_ge"></a>
 ### `WeilWindow.Sigma_ge`
 
-line 152
+line 163
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `s ≥ 0`, the odd-envelope integral satisfies `s/24 ≤ Σ(s)`.
 
 **Proves**
 

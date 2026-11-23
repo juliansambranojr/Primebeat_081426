@@ -2,7 +2,7 @@
 
 WeilOnLine — the on-line background, all heights. Rung 4b, second half, slice B3 of the detection ladder (units 0316–0323). 2026-09-06.
 
-18 theorems, 7 definitions, 330 lines. Arrows are Lean's own record of what each proof uses.
+18 theorems, 7 definitions, 340 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilSeries`](../lean_stage3/WeilSeries.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerOnLine`](../lean_stage3/WeilPowerOnLine.md)
@@ -88,7 +88,7 @@ The conjugate, as a nontrivial zero.
 <a name="WeilOnLine-B"></a>
 ### `WeilOnLine.B`
 
-def · line 103
+def · line 106
 
 One side's bound: `A h γ · π²/6`.
 
@@ -99,7 +99,7 @@ One side's bound: `A h γ · π²/6`.
 <a name="WeilOnLine-lowSet"></a>
 ### `WeilOnLine.lowSet`
 
-def · line 141
+def · line 144
 
 The on-line zeros of height `|t| ≤ 11/10`, as points.
 
@@ -109,7 +109,7 @@ The on-line zeros of height `|t| ≤ 11/10`, as points.
 <a name="WeilOnLine-lowU"></a>
 ### `WeilOnLine.lowU`
 
-def · line 144
+def · line 147
 
 The half-plane `Re z < 3/4`: open, convex, pole-free.
 
@@ -119,7 +119,7 @@ The half-plane `Re z < 3/4`: open, convex, pole-free.
 <a name="WeilOnLine-lowCount"></a>
 ### `WeilOnLine.lowCount`
 
-def · line 187
+def · line 192
 
 The low count. Total multiplicity of the on-line zeros of height `|t| ≤ 11/10`. Carried by name.
 
@@ -130,7 +130,7 @@ The low count. Total multiplicity of the on-line zeros of height `|t| ≤ 11/10`
 <a name="WeilOnLine-onLineBound"></a>
 ### `WeilOnLine.onLineBound`
 
-def · line 225
+def · line 231
 
 The on-line background bound: `2·B h γ + 4h²·lowCount`.
 
@@ -141,7 +141,7 @@ The on-line background bound: `2·B h γ + 4h²·lowCount`.
 <a name="WeilOnLine-OnLine"></a>
 ### `WeilOnLine.OnLine`
 
-abbrev · line 263
+abbrev · line 269
 
 On-line zeros.
 
@@ -241,9 +241,11 @@ line 71
 <a name="WeilOnLine-conjZ_injective"></a>
 ### `WeilOnLine.conjZ_injective`
 
-line 84
+line 85
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Conjugation of nontrivial zeros, `conjZ`, is injective.
 
 **Proves**
 
@@ -263,9 +265,11 @@ Function.Injective conjZ
 <a name="WeilOnLine-weightedTerm_conjZ"></a>
 ### `WeilOnLine.weightedTerm_conjZ`
 
-line 89
+line 92
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `0 < h` and the nontrivial zero `ρ` has real part `1/2`, then the weighted term at the conjugate zero equals the weighted term at `ρ`.
 
 **Proves**
 
@@ -295,7 +299,7 @@ weightedTerm h γ (conjZ ρ) = weightedTerm h γ ρ
 <a name="WeilOnLine-sum_upper_le"></a>
 ### `WeilOnLine.sum_upper_le`
 
-line 106
+line 109
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -334,7 +338,7 @@ line 106
 <a name="WeilOnLine-sum_lower_le"></a>
 ### `WeilOnLine.sum_lower_le`
 
-line 118
+line 121
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -370,9 +374,11 @@ line 118
 <a name="WeilOnLine-lowU_preconnected"></a>
 ### `WeilOnLine.lowU_preconnected`
 
-line 146
+line 150
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The half-plane `lowU`, `Re z < 3/4`, is preconnected.
 
 **Proves**
 
@@ -391,9 +397,11 @@ IsPreconnected lowU
 <a name="WeilOnLine-lowU_analytic"></a>
 ### `WeilOnLine.lowU_analytic`
 
-line 149
+line 154
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The Riemann zeta function is analytic at every point of the half-plane `lowU`.
 
 **Proves**
 
@@ -412,7 +420,7 @@ AnalyticOnNhd ℂ riemannZeta lowU
 <a name="WeilOnLine-lowSet_finite"></a>
 ### `WeilOnLine.lowSet_finite`
 
-line 158
+line 163
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -443,9 +451,11 @@ lowSet.Finite
 <a name="WeilOnLine-lowCount_nonneg"></a>
 ### `WeilOnLine.lowCount_nonneg`
 
-line 189
+line 195
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The low count `lowCount` is nonnegative.
 
 **Proves**
 
@@ -466,7 +476,7 @@ line 189
 <a name="WeilOnLine-sum_low_le"></a>
 ### `WeilOnLine.sum_low_le`
 
-line 193
+line 199
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -501,7 +511,7 @@ line 193
 <a name="WeilOnLine-sum_onLine_le"></a>
 ### `WeilOnLine.sum_onLine_le`
 
-line 228
+line 234
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -537,9 +547,11 @@ line 228
 <a name="WeilOnLine-sum_onLine_subtype_le"></a>
 ### `WeilOnLine.sum_onLine_subtype_le`
 
-line 265
+line 273
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `0 < h` and `11/10 ≤ γ`, then the sum of the weighted terms over any finite set of on-line zeros is at most `onLineBound h γ`.
 
 **Proves**
 
@@ -567,7 +579,7 @@ line 265
 <a name="WeilOnLine-tsum_onLine_le"></a>
 ### `WeilOnLine.tsum_onLine_le`
 
-line 278
+line 286
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -596,7 +608,7 @@ line 278
 <a name="WeilOnLine-summable_onLine"></a>
 ### `WeilOnLine.summable_onLine`
 
-line 286
+line 294
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -627,9 +639,11 @@ Summable (fun ρ : OnLine => weightedTerm h γ ρ.1)
 <a name="WeilOnLine-A_le"></a>
 ### `WeilOnLine.A_le`
 
-line 293
+line 303
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `11/10 ≤ γ`, then the crude constant `A h γ` is at most `88·(γ + 3)⁴·(4h² + cFar / h²)`, the band index of `γ` replaced by `γ`.
 
 **Proves**
 
@@ -657,7 +671,7 @@ A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)
 <a name="WeilOnLine-onLineBound_le"></a>
 ### `WeilOnLine.onLineBound_le`
 
-line 304
+line 314
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

@@ -2,7 +2,7 @@
 
 GlueNum — block E8b of `lean_stage3/design/joints.md`. 2026-11-22. `Glue`'s theorems under the truncated explicit formula, and the formula itself, with their constants as definitions. Each proof is the original with its existence step replaced (`LOOP.md` § 3); the left edge takes `EdgeBound.logDerivZeta_short_segment` where the original called compactness. `Glue.lean` and `GlueFloor.lean` are untouched.
 
-13 theorems, 7 definitions, 1263 lines. Arrows are Lean's own record of what each proof uses.
+13 theorems, 7 definitions, 1270 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`EdgeNum`](../lean_stage3/EdgeNum.md), [`GlueFloor`](../lean_stage3/GlueFloor.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellZeros`](../lean_stage3/CellZeros.md), [`RouteNum`](../lean_stage3/RouteNum.md)
@@ -96,7 +96,7 @@ The band count's constant.
 <a name="Glue-Cpn"></a>
 ### `Glue.Cpn`
 
-def · line 42
+def · line 43
 
 The good-height constant.
 
@@ -107,7 +107,7 @@ The good-height constant.
 <a name="Glue-Chn"></a>
 ### `Glue.Chn`
 
-def · line 51
+def · line 53
 
 The horizontal-edge constant.
 
@@ -118,7 +118,7 @@ The horizontal-edge constant.
 <a name="Glue-Dln"></a>
 ### `Glue.Dln`
 
-def · line 59
+def · line 62
 
 The left-edge constant.
 
@@ -129,7 +129,7 @@ The left-edge constant.
 <a name="Glue-c1n"></a>
 ### `Glue.c1n`
 
-def · line 68
+def · line 72
 
 The explicit formula's three constants.
 
@@ -140,7 +140,7 @@ The explicit formula's three constants.
 <a name="Glue-c3n"></a>
 ### `Glue.c3n`
 
-def · line 69
+def · line 73
 
 - **Is:** `` c3n : ℝ := 13 + ‖deriv riemannZeta 0 / riemannZeta 0‖ / 2 ``
 - **Used by 16:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c3n_nonneg`](#Glue-c3n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`RouteNum.c3n_le`](../lean_stage3/RouteNum.md#RouteNum-c3n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
@@ -148,7 +148,7 @@ def · line 69
 <a name="Glue-c4n"></a>
 ### `Glue.c4n`
 
-def · line 70
+def · line 74
 
 - **Is:** `` c4n : ℝ := 72 * Dln ``
 - **Built from:** [`Glue.Dln`](#Glue-Dln)
@@ -159,9 +159,11 @@ def · line 70
 <a name="Glue-Csn_pos"></a>
 ### `Glue.Csn_pos`
 
-line 36
+line 37
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The band count's constant `Csn` is positive.
 
 **Proves**
 
@@ -182,9 +184,11 @@ line 36
 <a name="Glue-Cpn_pos"></a>
 ### `Glue.Cpn_pos`
 
-line 44
+line 46
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The good-height constant `Cpn` is positive.
 
 **Proves**
 
@@ -208,9 +212,11 @@ line 44
 <a name="Glue-Chn_pos"></a>
 ### `Glue.Chn_pos`
 
-line 53
+line 56
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The horizontal-edge constant `Chn` is positive.
 
 **Proves**
 
@@ -234,9 +240,11 @@ line 53
 <a name="Glue-Dln_pos"></a>
 ### `Glue.Dln_pos`
 
-line 61
+line 65
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The left-edge constant `Dln` is positive.
 
 **Proves**
 
@@ -260,9 +268,11 @@ line 61
 <a name="Glue-c1n_nonneg"></a>
 ### `Glue.c1n_nonneg`
 
-line 72
+line 77
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's first constant `c1n` is nonnegative.
 
 **Proves**
 
@@ -288,9 +298,11 @@ line 72
 <a name="Glue-c3n_nonneg"></a>
 ### `Glue.c3n_nonneg`
 
-line 78
+line 84
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's constant `c3n` is nonnegative.
 
 **Proves**
 
@@ -311,9 +323,11 @@ line 78
 <a name="Glue-c4n_nonneg"></a>
 ### `Glue.c4n_nonneg`
 
-line 82
+line 89
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's constant `c4n` is nonnegative.
 
 **Proves**
 
@@ -338,7 +352,7 @@ line 82
 <a name="Glue-band_order_sum_le_num"></a>
 ### `Glue.band_order_sum_le_num`
 
-line 90
+line 97
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -369,7 +383,7 @@ line 90
 <a name="Glue-zeroPartialSum_swap_num"></a>
 ### `Glue.zeroPartialSum_swap_num`
 
-line 316
+line 323
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -398,7 +412,7 @@ line 316
 <a name="Glue-zeta_logderiv_good_bound_num"></a>
 ### `Glue.zeta_logderiv_good_bound_num`
 
-line 423
+line 430
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -432,7 +446,7 @@ line 423
 <a name="Glue-edge_horizontal_bound_num"></a>
 ### `Glue.edge_horizontal_bound_num`
 
-line 520
+line 527
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -460,7 +474,7 @@ line 520
 <a name="Glue-edge_left_sharp_num"></a>
 ### `Glue.edge_left_sharp_num`
 
-line 621
+line 628
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -494,7 +508,7 @@ line 621
 <a name="Glue-explicit_formula_split_num"></a>
 ### `Glue.explicit_formula_split_num`
 
-line 1004
+line 1011
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

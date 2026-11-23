@@ -1,6 +1,6 @@
 # What `TableDepths.depth_one` rests on
 
-[`TableDepths.depth_one`](../lean_stage3/TableDepths.md#TableDepths-depth_one) in `lean_stage3/Stage3/TableDepths.lean`, line 168.
+[`TableDepths.depth_one`](../lean_stage3/TableDepths.md#TableDepths-depth_one) in `lean_stage3/Stage3/TableDepths.lean`, line 175.
 
 **Why.** Depth one, from row 74.
 

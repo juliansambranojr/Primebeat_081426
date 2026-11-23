@@ -1,6 +1,6 @@
 # What `WeilPowerCompare.compare_suppressed` rests on
 
-[`WeilPowerCompare.compare_suppressed`](../lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_suppressed) in `lean_stage3/Stage3/WeilPowerCompare.lean`, line 294.
+[`WeilPowerCompare.compare_suppressed`](../lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_suppressed) in `lean_stage3/Stage3/WeilPowerCompare.lean`, line 303.
 
 **Why.** Suppression at another off-line zero. For `h` in the range where the quartic error is at most half the rate — which by `rate_neg_of_qerr` already makes the rate negative — the transform at the other zero is an exponentially small multiple of the target's.
 

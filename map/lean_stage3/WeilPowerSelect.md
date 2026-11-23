@@ -2,7 +2,7 @@
 
 WeilPowerSelect — selection of the target. Rung 5, tenth slice, worksheet section 8. 2026-09-06.
 
-7 theorems, 1 definition, 191 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 1 definition, 192 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerCompare`](../lean_stage3/WeilPowerCompare.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -102,9 +102,11 @@ line 80
 <a name="WeilPowerSelect--Sel_pos"></a>
 ### `WeilPowerSelect.δSel_pos`
 
-line 104
+line 105
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `K'`, `lam` and `h` are positive, then the step size `δSel K' lam h` is positive.
 
 **Proves**
 
@@ -129,7 +131,7 @@ line 104
 <a name="WeilPowerSelect-exists_target_step"></a>
 ### `WeilPowerSelect.exists_target_step`
 
-line 112
+line 113
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -162,7 +164,7 @@ line 112
 <a name="WeilPowerSelect-target_bound"></a>
 ### `WeilPowerSelect.target_bound`
 
-line 148
+line 149
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -192,7 +194,7 @@ line 148
 <a name="WeilPowerSelect-target_height_le"></a>
 ### `WeilPowerSelect.target_height_le`
 
-line 159
+line 160
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -215,7 +217,7 @@ T + (k : ℝ) / 2 ≤ T + h / (8 * K' * Real.pi ^ 2 * lam)
 <a name="WeilPowerSelect-target_ge_box"></a>
 ### `WeilPowerSelect.target_ge_box`
 
-line 169
+line 170
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

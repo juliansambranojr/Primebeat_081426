@@ -2,7 +2,7 @@
 
 ThetaPi — the ψ → π transfer at a general abscissa θ. `PsiToPi.schoenfeldWeak_of_psiWeak` is hardwired to exponent `1/2`: `StmtPsiWeak` carries a literal `Real.sqrt t`, and the envelope integral `integral_A_rpow_le` integrates `t^(−1/2)` to `2A·√x`. This file is the same proof with `x^θ` in place of `√x`, for `θ ∈ [1/2, 1)`:
 
-10 theorems, 2 definitions, 329 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 2 definitions, 333 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PsiToPi`](../lean_stage3/PsiToPi.md), [`ThetaPsi`](../lean_stage3/ThetaPsi.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)
@@ -80,9 +80,11 @@ The π-side weak bound at exponent `θ`.
 <a name="Stage3-stmtPsiWeak_iff_theta_half"></a>
 ### `Stage3.stmtPsiWeak_iff_theta_half`
 
-line 50
+line 52
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The ψ-side weak bound `StmtPsiWeak C k x₀` is equivalent to `StmtPsiWeakTheta` at exponent `θ = 1/2` with the same `C`, `k`, `x₀`.
 
 **Proves**
 
@@ -101,9 +103,11 @@ StmtPsiWeak C k x₀ ↔ StmtPsiWeakTheta (1/2) C k x₀
 <a name="Stage3-stmtSchoenfeldWeak_iff_theta_half"></a>
 ### `Stage3.stmtSchoenfeldWeak_iff_theta_half`
 
-line 56
+line 60
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The π-side weak bound `StmtSchoenfeldWeak C k x₀ pi li` is equivalent to `StmtSchoenfeldWeakTheta` at exponent `θ = 1/2` with the same data.
 
 **Proves**
 
@@ -123,7 +127,7 @@ StmtSchoenfeldWeak C k x₀ pi li ↔ StmtSchoenfeldWeakTheta (1/2) C k x₀ pi 
 <a name="Stage3-sqrt_le_rpow_theta"></a>
 ### `Stage3.sqrt_le_rpow_theta`
 
-line 64
+line 68
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -150,7 +154,7 @@ Real.sqrt x ≤ x ^ θ
 <a name="Stage3-integral_A_rpow_theta_le"></a>
 ### `Stage3.integral_A_rpow_theta_le`
 
-line 71
+line 75
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -178,7 +182,7 @@ line 71
 <a name="Stage3-theta_err_of_psi_theta"></a>
 ### `Stage3.theta_err_of_psi_theta`
 
-line 88
+line 92
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -208,7 +212,7 @@ line 88
 <a name="Stage3-rpow_theta_sub_one_mul"></a>
 ### `Stage3.rpow_theta_sub_one_mul`
 
-line 101
+line 105
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -233,7 +237,7 @@ t ^ (θ - 1) * (t * Real.log t ^ 2) = t ^ θ * Real.log t ^ 2
 <a name="Stage3-schoenfeldWeakTheta_of_psiWeakTheta"></a>
 ### `Stage3.schoenfeldWeakTheta_of_psiWeakTheta`
 
-line 111
+line 115
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -274,7 +278,7 @@ StmtSchoenfeldWeakTheta θ (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x => (Na
 <a name="Stage3-schoenfeldWeak_of_psiWeak_half"></a>
 ### `Stage3.schoenfeldWeak_of_psiWeak_half`
 
-line 266
+line 270
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -308,7 +312,7 @@ StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x => (Nat.primeC
 <a name="Stage3-schoenfeldWeakTheta_of_zeroFree"></a>
 ### `Stage3.schoenfeldWeakTheta_of_zeroFree`
 
-line 280
+line 284
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -343,7 +347,7 @@ line 280
 <a name="Stage3-schoenfeldWeak_of_RH_half"></a>
 ### `Stage3.schoenfeldWeak_of_RH_half`
 
-line 293
+line 297
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

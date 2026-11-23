@@ -1,6 +1,6 @@
 # What `Stage3.schoenfeldWeak_of_psiWeak_half` rests on
 
-[`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half) in `lean_stage3/Stage3/ThetaPi.lean`, line 266.
+[`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half) in `lean_stage3/Stage3/ThetaPi.lean`, line 270.
 
 **Why.** `PsiToPi.schoenfeldWeak_of_psiWeak` recovered through the dial.
 

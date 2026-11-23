@@ -2,7 +2,7 @@
 
 Stirling — the phase construction: θ as the digamma integral. Entry 132 made the continuous phase part of the Stirling half's discharge. This module constructs it. The classical θ(T) is `Im log Γ(1/4 + iT/2) − (T/2)·log π` along the continuous branch, and the continuous branch IS the integral of the derivative:
 
-17 theorems, 4 definitions, 1009 lines. Arrows are Lean's own record of what each proof uses.
+17 theorems, 4 definitions, 1011 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`RvMCrude`](../lean_stage3/RvMCrude.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md)
@@ -377,9 +377,11 @@ line 558
 <a name="Stage3-phasePoint_eq"></a>
 ### `Stage3.phasePoint_eq`
 
-line 616
+line 618
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The phase integrand at `t` is the real part of the digamma function at the quarter-line point `zq t`.
 
 **Proves**
 
@@ -403,7 +405,7 @@ phasePoint t = (Complex.digamma (zq t)).re
 <a name="Stage3-normSq_add_zq"></a>
 ### `Stage3.normSq_add_zq`
 
-line 621
+line 623
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -431,7 +433,7 @@ line 621
 <a name="Stage3-add_zq_ne_zero"></a>
 ### `Stage3.add_zq_ne_zero`
 
-line 630
+line 632
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -460,7 +462,7 @@ line 630
 <a name="Stage3-a_term_le"></a>
 ### `Stage3.a_term_le`
 
-line 640
+line 642
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -492,7 +494,7 @@ line 640
 <a name="Stage3-re_digamma_sub_log_le"></a>
 ### `Stage3.re_digamma_sub_log_le`
 
-line 697
+line 699
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -524,7 +526,7 @@ line 697
 <a name="Stage3-stmtDigammaLog_holds"></a>
 ### `Stage3.stmtDigammaLog_holds`
 
-line 899
+line 901
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -553,7 +555,7 @@ StmtDigammaLog 97
 <a name="Stage3-backlundPhase_holds"></a>
 ### `Stage3.backlundPhase_holds`
 
-line 923
+line 925
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

@@ -2,7 +2,7 @@
 
 LandauTaylor — the derivatives of `Phi` on `Re s > 1`, from the primes: iteratedDeriv k Phi s = ∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy.
 
-6 theorems, 1 definition, 182 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 1 definition, 192 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauChebyshev`](../lean_stage3/LandauChebyshev.md), [`LandauKernel`](../lean_stage3/LandauKernel.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md)
@@ -96,9 +96,11 @@ line 45
 <a name="LandauTaylor-bound_integrable"></a>
 ### `LandauTaylor.bound_integrable`
 
-line 70
+line 72
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `a > 0`, the dominating function `8·((log y)^k·y^(−a−1) + (log y)^(k+1)·y^(−a−1))` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -123,9 +125,11 @@ IntegrableOn (fun y : ℝ => 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (
 <a name="LandauTaylor-mellinLog_integrable"></a>
 ### `LandauTaylor.mellinLog_integrable`
 
-line 76
+line 80
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1` and every `k`, the integrand of `mellinLog k s`, `G(y)·(−log y)^k·y^(−s−1)`, is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -154,9 +158,11 @@ IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ 
 <a name="LandauTaylor-mellinLog_hasDerivAt"></a>
 ### `LandauTaylor.mellinLog_hasDerivAt`
 
-line 98
+line 104
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1` and every `k`, the function `mellinLog k` has complex derivative `mellinLog (k+1) s` at `s`.
 
 **Proves**
 
@@ -186,9 +192,11 @@ HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s
 <a name="LandauTaylor-iteratedDeriv_Phi"></a>
 ### `LandauTaylor.iteratedDeriv_Phi`
 
-line 140
+line 148
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the `k`-th derivative of `Phi` at `s` equals `mellinLog k s`, the integral `∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy`.
 
 **Proves**
 
@@ -217,9 +225,11 @@ iteratedDeriv k LandauMellinG.Phi s = mellinLog k s
 <a name="LandauTaylor-mellinLog_real"></a>
 ### `LandauTaylor.mellinLog_real`
 
-line 155
+line 165
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At a real point `σ`, `mellinLog k σ` equals `(−1)^k` times the real integral `∫₁^∞ G(y)·(log y)^k·y^(−σ−1) dy`.
 
 **Proves**
 

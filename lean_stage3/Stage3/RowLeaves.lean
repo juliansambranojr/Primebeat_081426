@@ -28,6 +28,7 @@ open Set Filter Topology
 
 noncomputable section
 
+/-- Helper: `t ↦ 1/(log t)²` is continuous on `(1, ∞)`. -/
 theorem continuousOn_inv_log_sq_Ioi :
     ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Ioi 1) := by
   intro t ht
@@ -84,6 +85,7 @@ theorem hasDerivAt_Li_two_rpow {x : ℝ} (hx : 0 < x) :
   rw [heq] at hcomp
   exact hcomp
 
+/-- Helper: the row integrand `t ↦ exp (log 2 · t)/t` is continuous on `(0, ∞)`. -/
 theorem continuousOn_exp_div : ContinuousOn (fun t : ℝ => Real.exp (Real.log 2 * t) / t)
     (Ioi 0) := by
   intro t ht
@@ -92,6 +94,8 @@ theorem continuousOn_exp_div : ContinuousOn (fun t : ℝ => Real.exp (Real.log 2
   exact ((Real.continuous_exp.comp (continuous_const.mul continuous_id)).continuousAt).div
     continuousAt_id ht0
 
+/-- For `x > 0`, the row function `u ↦ 2/log 2 + ∫ t in 1..u, exp (log 2 · t)/t` has
+derivative `exp (log 2 · x)/x` at `x`. -/
 theorem hasDerivAt_rowIntegral {x : ℝ} (hx : 0 < x) :
     HasDerivAt (fun u : ℝ => 2 / Real.log 2
         + ∫ t in (1 : ℝ)..u, Real.exp (Real.log 2 * t) / t)

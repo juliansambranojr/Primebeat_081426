@@ -2,7 +2,7 @@
 
 WeilPower — the m-th power window's transform in closed form. Rung 5, second slice, first module of the switched window (units 0326–0328). 2026-09-06.
 
-24 theorems, 6 definitions, 304 lines. Arrows are Lean's own record of what each proof uses.
+24 theorems, 6 definitions, 324 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilLobe`](../lean_stage3/WeilLobe.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilOddPower`](../lean_stage3/WeilOddPower.md)
@@ -102,7 +102,7 @@ The half-angle cosine `c(x) = cos(πx/2)`; `P = c²`.
 <a name="WeilPower-f1"></a>
 ### `WeilPower.f1`
 
-def · line 88
+def · line 97
 
 The derivative of `c^{k+1}`.
 
@@ -113,7 +113,7 @@ The derivative of `c^{k+1}`.
 <a name="WeilPower-f2"></a>
 ### `WeilPower.f2`
 
-def · line 92
+def · line 101
 
 The second derivative of `c^{k+2}`.
 
@@ -124,7 +124,7 @@ The second derivative of `c^{k+2}`.
 <a name="WeilPower-K"></a>
 ### `WeilPower.K`
 
-def · line 132
+def · line 147
 
 The envelope's transform, `∫₋₁¹ P(x)^m e^{wx} dx`.
 
@@ -135,7 +135,7 @@ The envelope's transform, `∫₋₁¹ P(x)^m e^{wx} dx`.
 <a name="WeilPower-Q"></a>
 ### `WeilPower.Q`
 
-def · line 220
+def · line 236
 
 `w·∏_{j<m}(w² + π²(j+1)²)`, the denominator of the closed form.
 
@@ -145,7 +145,7 @@ def · line 220
 <a name="WeilPower-cK"></a>
 ### `WeilPower.cK`
 
-def · line 224
+def · line 240
 
 `2·π^{2m}·(2m)!/4^m`, the numerator's constant.
 
@@ -157,9 +157,11 @@ def · line 224
 <a name="WeilPower-P_eq_c_sq"></a>
 ### `WeilPower.P_eq_c_sq`
 
-line 52
+line 53
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The raised-cosine window is the square of the half-angle cosine: `P x = c x ^ 2`.
 
 **Proves**
 
@@ -182,9 +184,11 @@ P x = c x ^ 2
 <a name="WeilPower-P_pow"></a>
 ### `WeilPower.P_pow`
 
-line 54
+line 56
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The `m`-th power of the window is the `2m`-th power of the half-angle cosine.
 
 **Proves**
 
@@ -212,9 +216,11 @@ P x ^ m = c x ^ (2 * m)
 <a name="WeilPower-c_one"></a>
 ### `WeilPower.c_one`
 
-line 57
+line 60
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The half-angle cosine vanishes at the right endpoint: `c 1 = 0`.
 
 **Proves**
 
@@ -235,9 +241,11 @@ c 1 = 0
 <a name="WeilPower-c_neg_one"></a>
 ### `WeilPower.c_neg_one`
 
-line 60
+line 64
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The half-angle cosine vanishes at the left endpoint: `c (-1) = 0`.
 
 **Proves**
 
@@ -258,9 +266,11 @@ c (-1) = 0
 <a name="WeilPower-continuous_c"></a>
 ### `WeilPower.continuous_c`
 
-line 64
+line 69
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the half-angle cosine `c` is continuous.
 
 **Proves**
 
@@ -281,9 +291,11 @@ Continuous c
 <a name="WeilPower-c_pow_one"></a>
 ### `WeilPower.c_pow_one`
 
-line 69
+line 75
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `n ≠ 0`, the `n`-th power of the half-angle cosine vanishes at `1`.
 
 **Proves**
 
@@ -309,9 +321,11 @@ c 1 ^ n = 0
 <a name="WeilPower-c_pow_neg_one"></a>
 ### `WeilPower.c_pow_neg_one`
 
-line 72
+line 79
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `n ≠ 0`, the `n`-th power of the half-angle cosine vanishes at `-1`.
 
 **Proves**
 
@@ -337,9 +351,11 @@ c (-1) ^ n = 0
 <a name="WeilPower-hasDerivAt_c"></a>
 ### `WeilPower.hasDerivAt_c`
 
-line 75
+line 83
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The half-angle cosine `c` has derivative `-(π/2)·sin(πx/2)` at every real `x`.
 
 **Proves**
 
@@ -363,9 +379,11 @@ HasDerivAt c (-(Real.pi / 2) * Real.sin (Real.pi * x / 2)) x
 <a name="WeilPower-hasDerivAt_s"></a>
 ### `WeilPower.hasDerivAt_s`
 
-line 81
+line 90
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The half-angle sine `sin(πy/2)` has derivative `(π/2)·c x` at every real `x`.
 
 **Proves**
 
@@ -388,9 +406,11 @@ HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y / 2)) (Real.pi / 2 * c x) x
 <a name="WeilPower-hasDerivAt_f"></a>
 ### `WeilPower.hasDerivAt_f`
 
-line 95
+line 105
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The power `c^{k+1}` of the half-angle cosine has derivative `f1 k x` at every real `x`.
 
 **Proves**
 
@@ -418,9 +438,11 @@ HasDerivAt (fun y : ℝ => c y ^ (k + 1)) (f1 k x) x
 <a name="WeilPower-hasDerivAt_f1"></a>
 ### `WeilPower.hasDerivAt_f1`
 
-line 103
+line 114
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The first derivative `f1 (k+1)` of `c^{k+2}` has derivative `f2 k x` at every real `x`.
 
 **Proves**
 
@@ -449,9 +471,11 @@ HasDerivAt (f1 (k + 1)) (f2 k x) x
 <a name="WeilPower-continuous_f1"></a>
 ### `WeilPower.continuous_f1`
 
-line 116
+line 128
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the first derivative `f1 k` of `c^{k+1}` is continuous.
 
 **Proves**
 
@@ -479,9 +503,11 @@ Continuous (f1 k)
 <a name="WeilPower-continuous_f2"></a>
 ### `WeilPower.continuous_f2`
 
-line 120
+line 133
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the second derivative `f2 k` of `c^{k+2}` is continuous.
 
 **Proves**
 
@@ -508,9 +534,11 @@ Continuous (f2 k)
 <a name="WeilPower-f1_one"></a>
 ### `WeilPower.f1_one`
 
-line 125
+line 139
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The derivative `f1 (k+1)` of `c^{k+2}` vanishes at the right endpoint `1`.
 
 **Proves**
 
@@ -537,9 +565,11 @@ f1 (k + 1) 1 = 0
 <a name="WeilPower-f1_neg_one"></a>
 ### `WeilPower.f1_neg_one`
 
-line 128
+line 143
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The derivative `f1 (k+1)` of `c^{k+2}` vanishes at the left endpoint `-1`.
 
 **Proves**
 
@@ -566,9 +596,11 @@ f1 (k + 1) (-1) = 0
 <a name="WeilPower-hasDerivAt_E"></a>
 ### `WeilPower.hasDerivAt_E`
 
-line 135
+line 151
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For complex `w`, the map `y ↦ e^{wy}` on the reals has derivative `w·e^{wx}` at `x`.
 
 **Proves**
 
@@ -591,7 +623,7 @@ HasDerivAt (fun y : ℝ => Complex.exp (w * (y : ℂ))) (w * Complex.exp (w * (x
 <a name="WeilPower-ibp_twice"></a>
 ### `WeilPower.ibp_twice`
 
-line 143
+line 159
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -631,7 +663,7 @@ w ^ 2 * ∫ x in (-1 : ℝ)..1, ((c x ^ (k + 2) : ℝ) : ℂ) * Complex.exp (w *
 <a name="WeilPower-K_succ"></a>
 ### `WeilPower.K_succ`
 
-line 185
+line 201
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -665,9 +697,11 @@ K (m + 1) w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2) = ((m : ℂ) +
 <a name="WeilPower-Q_succ"></a>
 ### `WeilPower.Q_succ`
 
-line 226
+line 243
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The denominator's step: `Q (m+1) w = Q m w · (w² + π²(m+1)²)`.
 
 **Proves**
 
@@ -691,9 +725,11 @@ Q (m + 1) w = Q m w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2)
 <a name="WeilPower-cK_succ"></a>
 ### `WeilPower.cK_succ`
 
-line 232
+line 250
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The numerator constant's step: `cK (m+1) = (m+1)(2m+1)π²/2 · cK m`.
 
 **Proves**
 
@@ -716,9 +752,11 @@ cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK m
 <a name="WeilPower-K_zero_mul"></a>
 ### `WeilPower.K_zero_mul`
 
-line 243
+line 262
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The base case of the closed form: `K 0 w · w = 2·sinh w` at every complex `w`.
 
 **Proves**
 
@@ -743,7 +781,7 @@ K 0 w * w = 2 * Complex.sinh w
 <a name="WeilPower-K_mul_Q"></a>
 ### `WeilPower.K_mul_Q`
 
-line 255
+line 274
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -777,7 +815,7 @@ K m w * Q m w = (cK m : ℂ) * Complex.sinh w
 <a name="WeilPower-cK_one"></a>
 ### `WeilPower.cK_one`
 
-line 275
+line 294
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -800,9 +838,11 @@ cK 1 = Real.pi ^ 2
 <a name="WeilPower-K_one_mul"></a>
 ### `WeilPower.K_one_mul`
 
-line 280
+line 300
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The closed form at `m = 1`: `K 1 w · w(w² + π²) = π²·sinh w` at every complex `w`.
 
 **Proves**
 

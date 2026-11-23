@@ -2,7 +2,7 @@
 
 # Von Koch converse — roadmap B1, COMPLETE (∃ C x₀, ∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)³) → RiemannHypothesis
 
-21 theorems, 4 definitions, 654 lines. Arrows are Lean's own record of what each proof uses.
+21 theorems, 4 definitions, 662 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LineBound`](../lean_stage3/LineBound.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)
@@ -116,7 +116,7 @@ The truncated error, as a function on `(0,∞)`: `E` on `(1,∞)`, zero below.
 <a name="VonKoch-region"></a>
 ### `VonKoch.region`
 
-def · line 354
+def · line 357
 
 The working region: past the critical line, minus the pole.
 
@@ -128,9 +128,11 @@ The working region: past the critical line, minus the pole.
 <a name="VonKoch-measurable_psi-"></a>
 ### `VonKoch.measurable_psi'`
 
-line 40
+line 41
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: the Chebyshev function `ψ` is measurable as a function of a real variable.
 
 **Proves**
 
@@ -147,9 +149,11 @@ Measurable (fun t : ℝ ↦ ψ t)
 <a name="VonKoch-Etr_measurable"></a>
 ### `VonKoch.Etr_measurable`
 
-line 47
+line 49
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: the truncated error `Etr` is measurable.
 
 **Proves**
 
@@ -170,7 +174,7 @@ Measurable Etr
 <a name="VonKoch-E_le_linear"></a>
 ### `VonKoch.E_le_linear`
 
-line 52
+line 54
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -198,7 +202,7 @@ line 52
 <a name="VonKoch-E_integral_eq_mellin"></a>
 ### `VonKoch.E_integral_eq_mellin`
 
-line 60
+line 62
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -226,7 +230,7 @@ line 60
 <a name="VonKoch-Etr_locallyIntegrable"></a>
 ### `VonKoch.Etr_locallyIntegrable`
 
-line 80
+line 82
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -255,7 +259,7 @@ MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0)
 <a name="VonKoch-F_differentiableAt"></a>
 ### `VonKoch.F_differentiableAt`
 
-line 118
+line 120
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -290,7 +294,7 @@ DifferentiableAt ℂ F s
 <a name="VonKoch-sum_Icc_vonMangoldt"></a>
 ### `VonKoch.sum_Icc_vonMangoldt`
 
-line 196
+line 198
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -315,7 +319,7 @@ line 196
 <a name="VonKoch-psi_partial_bigO"></a>
 ### `VonKoch.psi_partial_bigO`
 
-line 203
+line 205
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -338,7 +342,7 @@ line 203
 <a name="VonKoch-measurable_psi"></a>
 ### `VonKoch.measurable_psi`
 
-line 217
+line 219
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -359,9 +363,11 @@ Measurable (fun t : ℝ ↦ ψ t)
 <a name="VonKoch-integrable_psi_cpow"></a>
 ### `VonKoch.integrable_psi_cpow`
 
-line 224
+line 227
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the function `ψ t · t^(−(s+1))` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -384,7 +390,7 @@ IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))) (Se
 <a name="VonKoch-F_eq_neg_logDeriv"></a>
 ### `VonKoch.F_eq_neg_logDeriv`
 
-line 262
+line 265
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -417,9 +423,11 @@ F s = -deriv riemannZeta s / riemannZeta s
 <a name="VonKoch-isOpen_region"></a>
 ### `VonKoch.isOpen_region`
 
-line 356
+line 360
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is open.
 
 **Proves**
 
@@ -440,9 +448,11 @@ IsOpen region
 <a name="VonKoch-preconnected_region"></a>
 ### `VonKoch.preconnected_region`
 
-line 363
+line 368
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is preconnected.
 
 **Proves**
 
@@ -462,9 +472,11 @@ IsPreconnected region
 <a name="VonKoch-zeta_analyticOnNhd"></a>
 ### `VonKoch.zeta_analyticOnNhd`
 
-line 416
+line 422
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The Riemann zeta function is analytic on the working region.
 
 **Proves**
 
@@ -486,9 +498,11 @@ AnalyticOnNhd ℂ riemannZeta region
 <a name="VonKoch-F_analyticOnNhd"></a>
 ### `VonKoch.F_analyticOnNhd`
 
-line 420
+line 428
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `|ψ t − t| ≤ C·√t·(log t)³` for all `t ≥ x₀`, then the completed object `F` is analytic on the working region.
 
 **Proves**
 
@@ -514,7 +528,7 @@ AnalyticOnNhd ℂ F region
 <a name="VonKoch-F_mul_zeta_add_deriv_eqOn_zero"></a>
 ### `VonKoch.F_mul_zeta_add_deriv_eqOn_zero`
 
-line 427
+line 435
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -547,7 +561,7 @@ Set.EqOn (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s) 0 region
 <a name="VonKoch-F_eq_neg_logDeriv_ext"></a>
 ### `VonKoch.F_eq_neg_logDeriv_ext`
 
-line 445
+line 453
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -579,7 +593,7 @@ F s = -deriv riemannZeta s / riemannZeta s
 <a name="VonKoch-no_zero_right_of_half"></a>
 ### `VonKoch.no_zero_right_of_half`
 
-line 460
+line 468
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -614,7 +628,7 @@ riemannZeta ρ ≠ 0
 <a name="VonKoch-RH_of_no_zero_right_of_half"></a>
 ### `VonKoch.RH_of_no_zero_right_of_half`
 
-line 550
+line 558
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -640,7 +654,7 @@ RiemannHypothesis
 <a name="VonKoch-RH_of_psiWeak"></a>
 ### `VonKoch.RH_of_psiWeak`
 
-line 632
+line 640
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -668,7 +682,7 @@ RiemannHypothesis
 <a name="VonKoch-RH_iff_psiWeak"></a>
 ### `VonKoch.RH_iff_psiWeak`
 
-line 641
+line 649
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

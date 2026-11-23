@@ -2,7 +2,7 @@
 
 LandauKernel — the kernel's integral: for `a > 0`, `∫₁^∞ (log y)^k · y^(−a−1) dy = k!/a^(k+1)`. Block 4a of `lean_stage3/design/landau.md`. 2026-11-22.
 
-6 theorems, 0 definitions, 166 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 0 definitions, 174 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointDialGate`](../lean_stage3/JointDialGate.md), [`LandauTail`](../lean_stage3/LandauTail.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)
@@ -50,9 +50,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauKernel-log_pow_le"></a>
 ### `LandauKernel.log_pow_le`
 
-line 33
+line 34
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `a > 0`, `n` a natural and `y ≥ 1`: `(log y)^n ≤ y^(a/2) / (a/(2(n+1)))^n`.
 
 **Proves**
 
@@ -77,7 +79,7 @@ Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n
 <a name="LandauKernel-kernel_le"></a>
 ### `LandauKernel.kernel_le`
 
-line 56
+line 57
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -106,9 +108,11 @@ Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (n + 1))) ^ n
 <a name="LandauKernel-log_pow_integrable"></a>
 ### `LandauKernel.log_pow_integrable`
 
-line 66
+line 69
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `a > 0` and every natural `n`, the kernel `(log y)^n · y^(−a−1)` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -136,9 +140,11 @@ IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1)
 <a name="LandauKernel-tendsto_log_pow_mul"></a>
 ### `LandauKernel.tendsto_log_pow_mul`
 
-line 84
+line 88
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `a > 0` and every natural `n`, `(log y)^n · y^(−a)` tends to `0` as `y → ∞`.
 
 **Proves**
 
@@ -162,9 +168,11 @@ Tendsto (fun y : ℝ => Real.log y ^ n * y ^ (-a)) atTop (𝓝 0)
 <a name="LandauKernel-hasDerivAt_prim"></a>
 ### `LandauKernel.hasDerivAt_prim`
 
-line 102
+line 108
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `a > 0` and `y > 0`, the primitive `−(log t)^(k+1)·t^(−a)/a` has derivative `(log y)^(k+1)·y^(−a−1) − ((k+1)/a)·(log y)^k·y^(−a−1)` at `y`.
 
 **Proves**
 
@@ -187,9 +195,11 @@ HasDerivAt (fun t : ℝ => -(Real.log t ^ (k + 1) * t ^ (-a)) / a) (Real.log y ^
 <a name="LandauKernel-log_pow_integral"></a>
 ### `LandauKernel.log_pow_integral`
 
-line 118
+line 126
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The kernel's integral: for `a > 0` and every natural `k`, `∫₁^∞ (log y)^k · y^(−a−1) dy = k!/a^(k+1)`.
 
 **Proves**
 

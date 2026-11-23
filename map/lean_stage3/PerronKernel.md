@@ -2,7 +2,7 @@
 
 # Slice 1a — the truncated Perron kernel bound (hEF's entry point) COMPLETE, 2026-08-29: every branch proved, no sorry. `perron_kernel_truncated` sits at `[propext, Classical.choice, Quot.sound]`. (Build order: entry 257; ledger: CONTEXT.md § hEF, roadmap D. This was hEF's load-bearing unknown — the piece both MediumPNT and StrongPNT were designed to avoid.)
 
-31 theorems, 2 definitions, 2365 lines. Arrows are Lean's own record of what each proof uses.
+31 theorems, 2 definitions, 2366 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ContourShift`](../lean_stage3/ContourShift.md)
@@ -711,9 +711,11 @@ line 1082
 <a name="PerronKernel-vonMangoldt_rpow_summable"></a>
 ### `PerronKernel.vonMangoldt_rpow_summable`
 
-line 1090
+line 1091
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `c > 1`, the series of `Λ(n)·n^(−c)` over the natural numbers is summable.
 
 **Proves**
 
@@ -739,7 +741,7 @@ Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c))
 <a name="PerronKernel-far_terms_sum"></a>
 ### `PerronKernel.far_terms_sum`
 
-line 1098
+line 1099
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -769,7 +771,7 @@ line 1098
 <a name="PerronKernel-abs_sub_one_le_two_abs_log"></a>
 ### `PerronKernel.abs_sub_one_le_two_abs_log`
 
-line 1238
+line 1239
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -795,7 +797,7 @@ line 1238
 <a name="PerronKernel-near_diagonal_sum"></a>
 ### `PerronKernel.near_diagonal_sum`
 
-line 1261
+line 1262
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -823,7 +825,7 @@ line 1261
 <a name="PerronKernel-perronI_one_norm"></a>
 ### `PerronKernel.perronI_one_norm`
 
-line 1560
+line 1561
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -853,7 +855,7 @@ line 1560
 <a name="PerronKernel-kernel_sum_bound"></a>
 ### `PerronKernel.kernel_sum_bound`
 
-line 1595
+line 1596
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -887,7 +889,7 @@ line 1595
 <a name="PerronKernel-delta_sum_close"></a>
 ### `PerronKernel.delta_sum_close`
 
-line 1895
+line 1896
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -914,7 +916,7 @@ line 1895
 <a name="PerronKernel-kernel_diff_summable"></a>
 ### `PerronKernel.kernel_diff_summable`
 
-line 2012
+line 2013
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -946,7 +948,7 @@ Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x
 <a name="PerronKernel-perron_to_psi"></a>
 ### `PerronKernel.perron_to_psi`
 
-line 2071
+line 2072
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -980,7 +982,7 @@ line 2071
 <a name="PerronKernel-tsum_vonMangoldt_div_cpow"></a>
 ### `PerronKernel.tsum_vonMangoldt_div_cpow`
 
-line 2120
+line 2121
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1006,7 +1008,7 @@ line 2120
 <a name="PerronKernel-perron_sum_eq_integral"></a>
 ### `PerronKernel.perron_sum_eq_integral`
 
-line 2171
+line 2172
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1037,7 +1039,7 @@ line 2171
 <a name="PerronKernel-explicit_formula_perron"></a>
 ### `PerronKernel.explicit_formula_perron`
 
-line 2340
+line 2341
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

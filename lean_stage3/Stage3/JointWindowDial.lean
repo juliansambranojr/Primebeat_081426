@@ -30,17 +30,23 @@ namespace JointWindowDial
 
 noncomputable section
 
+/-- For `0 < θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives the zero-free half-plane
+`StmtZeroFreeRight θ`: ζ has no zero with real part above `θ`. -/
 theorem zeroFreeRight_of_window {θ δ C : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1)
     (hδ : 0 < δ) (hW : LandauWindow.WindowBound θ δ C) :
     Stage3.StmtZeroFreeRight θ :=
   fun s hs _ => LandauCriterion.stmtLandauWindow θ δ C hθ0 hθ1 hδ hW s hs
 
+/-- For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with
+`|ψ(t) − t| ≤ C'·t^θ·log³ t` for all `t ≥ x₀`. -/
 theorem psiWeakTheta_of_window {θ δ C : ℝ} (hθlo : 1 / 2 ≤ θ) (hθ1 : θ < 1)
     (hδ : 0 < δ) (hW : LandauWindow.WindowBound θ δ C) :
     ∃ C' > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t →
       |Chebyshev.psi t - t| ≤ C' * t ^ θ * Real.log t ^ 3 :=
   Stage3.psi_weak_of_theta (zeroFreeRight_of_window (by linarith) hθ1 hδ hW) hθlo hθ1
 
+/-- For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with
+`|π(x) − Li(x)| ≤ C'·x^θ·log² x` for all `x ≥ x₀`. -/
 theorem schoenfeldWeakTheta_of_window {θ δ C : ℝ} (hθlo : 1 / 2 ≤ θ)
     (hθ1 : θ < 1) (hδ : 0 < δ) (hW : LandauWindow.WindowBound θ δ C) :
     ∃ C' > 0, ∃ x₀ : ℝ, Stage3.StmtSchoenfeldWeakTheta θ C' 2 x₀

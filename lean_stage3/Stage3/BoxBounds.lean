@@ -27,6 +27,7 @@ open Complex Set ZetaGrowth
 
 noncomputable section
 
+/-- Helper: for `c ≥ 0`, if `(Re z)² + (Im z)² ≤ c²` then `‖z‖ ≤ c`. -/
 theorem norm_le_of_sq {z : ℂ} {c : ℝ} (hc : 0 ≤ c) (h : z.re ^ 2 + z.im ^ 2 ≤ c ^ 2) :
     ‖z‖ ≤ c := by
   rw [Complex.norm_def]

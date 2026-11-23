@@ -1,6 +1,6 @@
 # What `Stage3.zeroFreeRight_one_of_chebyshev` rests on
 
-[`Stage3.zeroFreeRight_one_of_chebyshev`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_one_of_chebyshev) in `lean_stage3/Stage3/ThetaConverse.lean`, line 401.
+[`Stage3.zeroFreeRight_one_of_chebyshev`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_one_of_chebyshev) in `lean_stage3/Stage3/ThetaConverse.lean`, line 406.
 
 **Why.** The primes are a subset of the numbers, so `ψ(x) ≤ c·x` (`Chebyshev.psi_le_const_mul_self`, `c = log 4 + 4`), so the count's fluctuation is at most `x`, so no zero has real part above `1`. The Euler-product wall as a corollary of the converse: this is the `θ = 1`, `k = 0` instance, with `C = log 4 + 5` and floor `1`; the hypothesis is genuinely opened at `θ = 1` since the region `{re > 1}` is convex.
 

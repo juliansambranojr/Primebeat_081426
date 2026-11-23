@@ -2,7 +2,7 @@
 
 TableDepths — block E11 of `lean_stage3/design/joints.md`. 2026-11-22. `TableRoute.cell_ne_zero_of_RH` is depth six. The same route and gate at any depth, from one numeric check at one row, and the instances that fall inside the computed table.
 
-14 theorems, 0 definitions, 313 lines. Arrows are Lean's own record of what each proof uses.
+14 theorems, 0 definitions, 320 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`TableRoute`](../lean_stage3/TableRoute.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -75,9 +75,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="TableDepths-sq_le_gen"></a>
 ### `TableDepths.sq_le_gen`
 
-line 27
+line 28
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `6 ≤ r₀ ≤ r`, then `r² ≤ r₀²·2^((r−r₀)/2)`.
 
 **Proves**
 
@@ -99,9 +101,11 @@ r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2)
 <a name="TableDepths-gate_ineq_gen"></a>
 ### `TableDepths.gate_ineq_gen`
 
-line 62
+line 66
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The gate's gap at every row `r ≥ r₀ ≥ 6` from its value at `r₀`: if `414·(2·3^(d+1))·r₀²·2^(−(r₀−(d+1))/2) ≤ a` and `a·log 2 < (log 2)^d`, then `414·(log 2·r)·2^(−(r−(d+1))/2) < (log 2)^d / (2·r·3^(d+1))`.
 
 **Proves**
 
@@ -128,7 +132,7 @@ line 62
 <a name="TableDepths-cell_ne_zero_gen"></a>
 ### `TableDepths.cell_ne_zero_gen`
 
-line 92
+line 96
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -176,9 +180,11 @@ Construction.tableFrom TableRoute.rowN r d ≠ 0
 <a name="TableDepths-two_rpow_neg_nat"></a>
 ### `TableDepths.two_rpow_neg_nat`
 
-line 152
+line 157
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the real power `2^(−n)` equals `1/2^n` for a natural number `n`.
 
 **Proves**
 
@@ -205,9 +211,11 @@ line 152
 <a name="TableDepths-two_rpow_neg_nat_half"></a>
 ### `TableDepths.two_rpow_neg_nat_half`
 
-line 155
+line 161
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `2^(−n + 1/2) ≤ 1.4143/2^n` for a natural number `n`.
 
 **Proves**
 
@@ -231,9 +239,11 @@ line 155
 <a name="TableDepths-pow_lower"></a>
 ### `TableDepths.pow_lower`
 
-line 164
+line 171
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `0.6931^k ≤ (log 2)^k` for every natural number `k`.
 
 **Proves**
 
@@ -261,7 +271,7 @@ line 164
 <a name="TableDepths-depth_one"></a>
 ### `TableDepths.depth_one`
 
-line 168
+line 175
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -291,7 +301,7 @@ Construction.tableFrom TableRoute.rowN r 1 ≠ 0
 <a name="TableDepths-depth_two"></a>
 ### `TableDepths.depth_two`
 
-line 180
+line 187
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -321,7 +331,7 @@ Construction.tableFrom TableRoute.rowN r 2 ≠ 0
 <a name="TableDepths-depth_three"></a>
 ### `TableDepths.depth_three`
 
-line 195
+line 202
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -351,7 +361,7 @@ Construction.tableFrom TableRoute.rowN r 3 ≠ 0
 <a name="TableDepths-depth_four"></a>
 ### `TableDepths.depth_four`
 
-line 210
+line 217
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -381,7 +391,7 @@ Construction.tableFrom TableRoute.rowN r 4 ≠ 0
 <a name="TableDepths-depth_five"></a>
 ### `TableDepths.depth_five`
 
-line 225
+line 232
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -411,7 +421,7 @@ Construction.tableFrom TableRoute.rowN r 5 ≠ 0
 <a name="TableDepths-depth_six"></a>
 ### `TableDepths.depth_six`
 
-line 240
+line 247
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -441,7 +451,7 @@ Construction.tableFrom TableRoute.rowN r 6 ≠ 0
 <a name="TableDepths-depth_seven"></a>
 ### `TableDepths.depth_seven`
 
-line 260
+line 267
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -471,7 +481,7 @@ Construction.tableFrom TableRoute.rowN r 7 ≠ 0
 <a name="TableDepths-depth_eight"></a>
 ### `TableDepths.depth_eight`
 
-line 280
+line 287
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

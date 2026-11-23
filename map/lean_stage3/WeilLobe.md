@@ -2,7 +2,7 @@
 
 WeilLobe — the 2γ lobe bounded above. Rung 4a of the detection ladder (units 0316–0318). 2026-09-06.
 
-17 theorems, 3 definitions, 256 lines. Arrows are Lean's own record of what each proof uses.
+17 theorems, 3 definitions, 267 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilTransform`](../lean_stage3/WeilTransform.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilBackground`](../lean_stage3/WeilBackground.md), [`WeilPower`](../lean_stage3/WeilPower.md)
@@ -127,9 +127,11 @@ P x = (1 + Real.cos (Real.pi * x)) / 2
 <a name="WeilLobe-q_eq"></a>
 ### `WeilLobe.q_eq`
 
-line 58
+line 59
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The product of `x` with the window `P x` equals the envelope `q x`.
 
 **Proves**
 
@@ -154,9 +156,11 @@ x * P x = q x
 <a name="WeilLobe-hasDerivAt_cos_pi"></a>
 ### `WeilLobe.hasDerivAt_cos_pi`
 
-line 61
+line 63
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the function `y ↦ cos (π·y)` has derivative `-sin (π·x)·π` at every real `x`.
 
 **Proves**
 
@@ -178,9 +182,11 @@ HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Re
 <a name="WeilLobe-hasDerivAt_sin_pi"></a>
 ### `WeilLobe.hasDerivAt_sin_pi`
 
-line 66
+line 69
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the function `y ↦ sin (π·y)` has derivative `cos (π·x)·π` at every real `x`.
 
 **Proves**
 
@@ -201,9 +207,11 @@ HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Rea
 <a name="WeilLobe-hasDerivAt_q"></a>
 ### `WeilLobe.hasDerivAt_q`
 
-line 71
+line 75
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The envelope `q` has derivative `q1 x` at every real `x`.
 
 **Proves**
 
@@ -228,9 +236,11 @@ HasDerivAt q (q1 x) x
 <a name="WeilLobe-hasDerivAt_q1"></a>
 ### `WeilLobe.hasDerivAt_q1`
 
-line 77
+line 82
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The first derivative `q1` of the envelope has derivative `q2 x` at every real `x`.
 
 **Proves**
 
@@ -256,9 +266,11 @@ HasDerivAt q1 (q2 x) x
 <a name="WeilLobe-q_one"></a>
 ### `WeilLobe.q_one`
 
-line 86
+line 92
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The envelope `q` vanishes at the right end `1`.
 
 **Proves**
 
@@ -277,9 +289,11 @@ q 1 = 0
 <a name="WeilLobe-q_neg_one"></a>
 ### `WeilLobe.q_neg_one`
 
-line 89
+line 96
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The envelope `q` vanishes at the left end `-1`.
 
 **Proves**
 
@@ -298,9 +312,11 @@ q (-1) = 0
 <a name="WeilLobe-q1_one"></a>
 ### `WeilLobe.q1_one`
 
-line 92
+line 100
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The first derivative `q1` of the envelope vanishes at the right end `1`.
 
 **Proves**
 
@@ -319,9 +335,11 @@ q1 1 = 0
 <a name="WeilLobe-q1_neg_one"></a>
 ### `WeilLobe.q1_neg_one`
 
-line 95
+line 104
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The first derivative `q1` of the envelope vanishes at the left end `-1`.
 
 **Proves**
 
@@ -340,9 +358,11 @@ q1 (-1) = 0
 <a name="WeilLobe-continuous_q1"></a>
 ### `WeilLobe.continuous_q1`
 
-line 99
+line 109
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the first derivative `q1` of the envelope is continuous.
 
 **Proves**
 
@@ -361,9 +381,11 @@ Continuous q1
 <a name="WeilLobe-continuous_q2"></a>
 ### `WeilLobe.continuous_q2`
 
-line 103
+line 114
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the second derivative `q2` of the envelope is continuous.
 
 **Proves**
 
@@ -382,7 +404,7 @@ Continuous q2
 <a name="WeilLobe-q2_bound"></a>
 ### `WeilLobe.q2_bound`
 
-line 107
+line 118
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -409,7 +431,7 @@ line 107
 <a name="WeilLobe-norm_sinh_le"></a>
 ### `WeilLobe.norm_sinh_le`
 
-line 126
+line 137
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -435,7 +457,7 @@ line 126
 <a name="WeilLobe-SigmaC_eq_ibp"></a>
 ### `WeilLobe.SigmaC_eq_ibp`
 
-line 136
+line 147
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -475,7 +497,7 @@ SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.
 <a name="WeilLobe-SigmaC_bound"></a>
 ### `WeilLobe.SigmaC_bound`
 
-line 187
+line 198
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -510,7 +532,7 @@ line 187
 <a name="WeilLobe-lobe_bound"></a>
 ### `WeilLobe.lobe_bound`
 
-line 219
+line 230
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

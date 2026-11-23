@@ -8,30 +8,30 @@ A local variable sharing a definition's name, a same-named theorem in another na
 
 | in | the text names | line |
 |---|---|---|
-| [`Chain.ceiling_base`](lean/Chain.md#Chain-ceiling_base) | `Chain.h` | `lean/Chain.lean:512` |
+| [`Chain.ceiling_base`](lean/Chain.md#Chain-ceiling_base) | `Chain.h` | `lean/Chain.lean:513` |
 | [`TransferOp.mode_ne_zero`](lean/TransferOp.md#TransferOp-mode_ne_zero) | `Chain.h` | `lean/TransferOp.lean:70` |
 | [`TransferOp.eigenvalue_zero_iff_lattice`](lean/TransferOp.md#TransferOp-eigenvalue_zero_iff_lattice) | `Chain.h` | `lean/TransferOp.lean:105` |
 | [`Transform.torus_shift`](lean/Transform.md#Transform-torus_shift) | `Transform.Torus` | `lean/Transform.lean:268` |
 | [`Transform.torus_period`](lean/Transform.md#Transform-torus_period) | `Transform.Torus` | `lean/Transform.lean:274` |
-| [`Slice4.zetaE_ne_zero_of_RH`](lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:409` |
-| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.finalBoundConst_le` | `lean_stage3/Stage3/LineBound.lean:531` |
-| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:531` |
-| [`RHPull.holo_logDerivZeta_of_RH`](lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:1036` |
+| [`Slice4.zetaE_ne_zero_of_RH`](lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:414` |
+| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.finalBoundConst_le` | `lean_stage3/Stage3/LineBound.lean:536` |
+| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:536` |
+| [`RHPull.holo_logDerivZeta_of_RH`](lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:1041` |
 | [`WeilPowerAssembly.phiW_contDiff_one`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-phiW_contDiff_one) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:107` |
 | [`WeilPowerAssembly.isTest_phiWC`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-isTest_phiWC) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:260` |
-| [`WeilPowerBands.termW_nonneg`](lean_stage3/WeilPowerBands.md#WeilPowerBands-termW_nonneg) | `WeilTiles.online_term_nonneg` | `lean_stage3/Stage3/WeilPowerBands.lean:60` |
-| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:71` |
-| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:71` |
-| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:111` |
-| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:111` |
-| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:137` |
-| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:137` |
-| [`WeilPowerBands.tsum_upper_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:147` |
+| [`WeilPowerBands.termW_nonneg`](lean_stage3/WeilPowerBands.md#WeilPowerBands-termW_nonneg) | `WeilTiles.online_term_nonneg` | `lean_stage3/Stage3/WeilPowerBands.lean:62` |
+| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:75` |
+| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:75` |
+| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:115` |
+| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:115` |
+| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:144` |
+| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:144` |
+| [`WeilPowerBands.tsum_upper_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:154` |
 | [`WeilPowerBridge.term_le_at_zero`](lean_stage3/WeilPowerBridge.md#WeilPowerBridge-term_le_at_zero) | `WeilOddPower.q` | `lean_stage3/Stage3/WeilPowerBridge.lean:154` |
-| [`WeilPowerOnLine.sum_upper_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_upper_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:70` |
-| [`WeilPowerOnLine.sum_lower_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:81` |
-| [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:104` |
-| [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:139` |
+| [`WeilPowerOnLine.sum_upper_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_upper_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:72` |
+| [`WeilPowerOnLine.sum_lower_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:83` |
+| [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
+| [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
 ## Uses Lean records that the text does not show (473)
 

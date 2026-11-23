@@ -1,6 +1,6 @@
 # What `Stage3.schoenfeldWeak_of_RH_half` rests on
 
-[`Stage3.schoenfeldWeak_of_RH_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_RH_half) in `lean_stage3/Stage3/ThetaPi.lean`, line 293.
+[`Stage3.schoenfeldWeak_of_RH_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_RH_half) in `lean_stage3/Stage3/ThetaPi.lean`, line 297.
 
 **Why.** The same under RH at `θ = 1/2`: `|π − Li| ≤ C·√x·(log x)²`.
 

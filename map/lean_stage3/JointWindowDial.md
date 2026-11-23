@@ -2,7 +2,7 @@
 
 JointWindowDial — joint 1 of `SECTIONS.md`: the Landau window onto the dial. Block 1 of `lean_stage3/design/joints.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 66 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 72 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauCriterion`](../lean_stage3/LandauCriterion.md), [`ThetaPi`](../lean_stage3/ThetaPi.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointDialGate`](../lean_stage3/JointDialGate.md)
@@ -41,9 +41,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="JointWindowDial-zeroFreeRight_of_window"></a>
 ### `JointWindowDial.zeroFreeRight_of_window`
 
-line 33
+line 35
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `0 < θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives the zero-free half-plane `StmtZeroFreeRight θ`: ζ has no zero with real part above `θ`.
 
 **Proves**
 
@@ -72,9 +74,11 @@ Stage3.StmtZeroFreeRight θ
 <a name="JointWindowDial-psiWeakTheta_of_window"></a>
 ### `JointWindowDial.psiWeakTheta_of_window`
 
-line 38
+line 42
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with `|ψ(t) − t| ≤ C'·t^θ·log³ t` for all `t ≥ x₀`.
 
 **Proves**
 
@@ -101,9 +105,11 @@ line 38
 <a name="JointWindowDial-schoenfeldWeakTheta_of_window"></a>
 ### `JointWindowDial.schoenfeldWeakTheta_of_window`
 
-line 44
+line 50
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with `|π(x) − Li(x)| ≤ C'·x^θ·log² x` for all `x ≥ x₀`.
 
 **Proves**
 

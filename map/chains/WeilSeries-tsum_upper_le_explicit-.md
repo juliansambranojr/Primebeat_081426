@@ -1,6 +1,6 @@
 # What `WeilSeries.tsum_upper_le_explicit'` rests on
 
-[`WeilSeries.tsum_upper_le_explicit'`](../lean_stage3/WeilSeries.md#WeilSeries-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilSeries.lean`, line 294.
+[`WeilSeries.tsum_upper_le_explicit'`](../lean_stage3/WeilSeries.md#WeilSeries-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilSeries.lean`, line 301.
 
 **Why.** Upper on-line background, in `γ` and `h` alone: `≤ 88·(γ+3)⁴·(4h² + cFar/h²)·π²/6`.
 

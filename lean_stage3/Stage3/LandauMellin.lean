@@ -65,6 +65,8 @@ private lemma rampK_eq_indicator (s : ℂ) {n : ℕ} (hn : 1 ≤ n) {y : ℝ} (h
     rw [rampK, max_eq_right hneg]
     simp
 
+/-- Helper: for `Re s > 1` and `n ≥ 1`, the two-power function `t^(−s)/n − t^(−s−1)` is
+integrable on `(n, ∞)`. -/
 private lemma two_powers_integrableOn {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     IntegrableOn (fun t : ℝ => (1 / (n : ℂ)) * (t : ℂ) ^ (-s) - (t : ℂ) ^ (-s - 1))
       (Ioi (n : ℝ)) := by
@@ -75,6 +77,7 @@ private lemma two_powers_integrableOn {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 
     integrableOn_Ioi_cpow_of_lt (by simp; linarith) hn0
   exact (h1.const_mul _).sub h2
 
+/-- For `Re s > 1` and `n ≥ 1`, the ramp kernel `rampK s n` is integrable on `(1, ∞)`. -/
 theorem rampK_integrable {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     IntegrableOn (rampK s n) (Ioi 1) := by
   have h := ((two_powers_integrableOn hs hn).integrable_indicator measurableSet_Ioi).integrableOn
@@ -82,6 +85,8 @@ theorem rampK_integrable {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
   refine h.congr_fun (fun y hy => ?_) measurableSet_Ioi
   exact (rampK_eq_indicator s hn hy).symm
 
+/-- For `Re s > 1` and `n ≥ 1`, the integral of the ramp kernel `rampK s n` over `(1, ∞)` is
+`n^(−s)/(s(s−1))`. -/
 theorem rampK_integral {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     ∫ y in Ioi (1 : ℝ), rampK s n y = (n : ℂ) ^ (-s) / (s * (s - 1)) := by
   have hn0 : (0 : ℝ) < n := by exact_mod_cast hn
@@ -119,6 +124,8 @@ theorem rampK_integral {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
   field_simp
   try ring
 
+/-- For `Re s > 1` and `n ≥ 1`, the integral of the norm of the ramp kernel over `(1, ∞)` is
+`n^(−σ)/(σ(σ−1))` with `σ = Re s`. -/
 theorem rampK_integral_norm {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     ∫ y in Ioi (1 : ℝ), ‖rampK s n y‖ = (n : ℝ) ^ (-s.re) / (s.re * (s.re - 1)) := by
   have hn0 : (0 : ℝ) ≤ n := by positivity
@@ -145,6 +152,7 @@ theorem rampK_integral_norm {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     rfl
   exact_mod_cast hC
 
+/-- The ramp sum at `y` equals the infinite sum over all `n` of `Λ(n)·max(y/n − 1, 0)`. -/
 theorem rampSum_eq_tsum (y : ℝ) :
     LandauWindow.rampSum y = ∑' n : ℕ, Λ n * max (y / n - 1) 0 := by
   rw [LandauWindow.rampSum]
@@ -161,6 +169,8 @@ theorem rampSum_eq_tsum (y : ℝ) :
     rw [sub_nonpos, div_le_one hn0]; exact hy.le
   rw [max_eq_right this, mul_zero]
 
+/-- The Mellin transform of the ramp sum: for `Re s > 1`, the integral over `(1, ∞)` of
+`rampSum(y)·y^(−s−1)` equals `−ζ'(s)/ζ(s)/(s(s−1))`. -/
 theorem mellin_rampSum {s : ℂ} (hs : 1 < s.re) :
     ∫ y in Ioi (1 : ℝ), (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)
       = -deriv riemannZeta s / riemannZeta s / (s * (s - 1)) := by

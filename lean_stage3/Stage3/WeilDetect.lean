@@ -148,6 +148,8 @@ theorem zeroForm_nonneg_of_RH (hRH : RiemannHypothesis) {G : ℝ → ℂ}
   · rw [tsum_eq_zero_of_not_summable hs]
     simp
 
+/-- Under the Riemann hypothesis, Weil positivity on the zero side, `StmtWeilPositive L`, holds
+for every support `L`. -/
 theorem weilPositive_of_RH (hRH : RiemannHypothesis) (L : ℝ) : StmtWeilPositive L :=
   fun _ hG => zeroForm_nonneg_of_RH hRH hG.1
 

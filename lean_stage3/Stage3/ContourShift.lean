@@ -42,11 +42,13 @@ open Complex Topology
 `1/(180·log T + 1060)`. -/
 noncomputable def zeroGap (T : ℝ) : ℝ := 1 / (180 * Real.log T + 1060)
 
+/-- For `T ≥ 2`, the ordinate gap `zeroGap T` is positive. -/
 theorem zeroGap_pos {T : ℝ} (hT : 2 ≤ T) : 0 < zeroGap T := by
   rw [zeroGap]
   have h1 : (0:ℝ) < Real.log T := Real.log_pos (by linarith)
   positivity
 
+/-- For `T ≥ 2`, the ordinate gap `zeroGap T` is at most `9/10`. -/
 theorem zeroGap_le {T : ℝ} (hT : 2 ≤ T) : zeroGap T ≤ 9/10 := by
   rw [zeroGap]
   have h1 : (0:ℝ) < Real.log T := Real.log_pos (by linarith)

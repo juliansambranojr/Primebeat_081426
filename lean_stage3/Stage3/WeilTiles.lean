@@ -43,6 +43,7 @@ def centre (k : ℕ) : ℝ := 2 + 9 / 5 * k
 /-- Band index of a height `t`; meaningful for `t ≥ 11/10`. -/
 def idx (t : ℝ) : ℕ := ⌊(t - 11 / 10) / (9 / 5)⌋₊
 
+/-- Helper: every band centre satisfies `2 ≤ centre k`. -/
 theorem two_le_centre (k : ℕ) : 2 ≤ centre k := by
   unfold centre
   have : (0 : ℝ) ≤ k := Nat.cast_nonneg k
@@ -69,6 +70,8 @@ theorem online_term_nonneg {h : ℝ} (hh : 0 < h) (γ : ℝ) {ρ : ℂ} (hρ : �
   rw [online_term_eq hh γ hρ, Complex.ofReal_re]
   positivity
 
+/-- For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted term
+`weightedTerm h γ ρ` is nonnegative. -/
 theorem weightedTerm_nonneg {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : Kadiri.NontrivialZeros)
     (hρ : (ρ : ℂ).re = 1 / 2) : 0 ≤ weightedTerm h γ ρ := by
   unfold weightedTerm
@@ -105,6 +108,8 @@ theorem sum_by_bands {h γ : ℝ} (S : Finset Kadiri.NontrivialZeros)
     subst hρk
     exact hM ρ hρS
 
+/-- Helper: if every `M k` is nonnegative, then each band series term
+`M k · (15·log (centre k) + 73)` is nonnegative. -/
 theorem bandSeries_nonneg (M : ℕ → ℝ) (hM0 : ∀ k, 0 ≤ M k) (k : ℕ) :
     0 ≤ M k * (15 * Real.log (centre k) + 73) := by
   apply mul_nonneg (hM0 k)

@@ -2,7 +2,7 @@
 
 # Zeta growth on the strip `re > −1` (S3a — the load-bearing unknown of S3) Second-order Euler–Maclaurin: one integration by parts past PNT+'s `riemannZeta0`. The antiderivative `emA x = ({x} − {x}²)/2` of `⌊x⌋ + 1/2 − x` vanishes at every integer, so the per-interval boundary terms die and the new tail converges absolutely on `re s > −1`.
 
-18 theorems, 3 definitions, 829 lines. Arrows are Lean's own record of what each proof uses.
+18 theorems, 3 definitions, 834 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxBounds`](../lean_stage3/BoxBounds.md), [`EdgeBound`](../lean_stage3/EdgeBound.md), [`WobbleCount`](../lean_stage3/WobbleCount.md)
@@ -90,7 +90,7 @@ The Euler–Maclaurin antiderivative: `({x} − {x}²)/2`.
 <a name="ZetaGrowth-zeta1"></a>
 ### `ZetaGrowth.zeta1`
 
-def · line 283
+def · line 286
 
 The continued Euler–Maclaurin form: every piece converges absolutely on `re s > −1`.
 
@@ -101,7 +101,7 @@ The continued Euler–Maclaurin form: every piece converges absolutely on `re s 
 <a name="ZetaGrowth-stripRegion"></a>
 ### `ZetaGrowth.stripRegion`
 
-def · line 386
+def · line 389
 
 The strip on which the continued form lives.
 
@@ -113,9 +113,11 @@ The strip on which the continued form lives.
 <a name="ZetaGrowth-emA_nonneg"></a>
 ### `ZetaGrowth.emA_nonneg`
 
-line 24
+line 25
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The Euler–Maclaurin antiderivative `emA` is nonnegative at every real `x`.
 
 **Proves**
 
@@ -140,9 +142,11 @@ line 24
 <a name="ZetaGrowth-emA_le"></a>
 ### `ZetaGrowth.emA_le`
 
-line 30
+line 32
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The Euler–Maclaurin antiderivative `emA` is at most `1/8` at every real `x`.
 
 **Proves**
 
@@ -167,9 +171,11 @@ emA x ≤ 1/8
 <a name="ZetaGrowth-emA_natCast"></a>
 ### `ZetaGrowth.emA_natCast`
 
-line 34
+line 37
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The Euler–Maclaurin antiderivative `emA` vanishes at every natural number.
 
 **Proves**
 
@@ -192,7 +198,7 @@ emA n = 0
 <a name="ZetaGrowth-emA_eq_poly"></a>
 ### `ZetaGrowth.emA_eq_poly`
 
-line 40
+line 43
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -222,7 +228,7 @@ emA x = ((x - n) - (x - n)^2)/2
 <a name="ZetaGrowth-integrable_emA_tail"></a>
 ### `ZetaGrowth.integrable_emA_tail`
 
-line 58
+line 61
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -253,7 +259,7 @@ IntegrableOn (fun x : ℝ ↦ (emA x : ℂ) * (x : ℂ) ^ (-(s+2))) (Ioi (N:ℝ)
 <a name="ZetaGrowth-interval_ibp"></a>
 ### `ZetaGrowth.interval_ibp`
 
-line 97
+line 100
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -283,7 +289,7 @@ line 97
 <a name="ZetaGrowth-tail_ibp"></a>
 ### `ZetaGrowth.tail_ibp`
 
-line 211
+line 214
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -314,7 +320,7 @@ line 211
 <a name="ZetaGrowth-zeta1_eq_zeta"></a>
 ### `ZetaGrowth.zeta1_eq_zeta`
 
-line 289
+line 292
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -348,7 +354,7 @@ zeta1 N s = riemannZeta s
 <a name="ZetaGrowth-tail_differentiableAt"></a>
 ### `ZetaGrowth.tail_differentiableAt`
 
-line 312
+line 315
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -379,9 +385,11 @@ DifferentiableAt ℂ (fun w : ℂ ↦ ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:�
 <a name="ZetaGrowth-isOpen_stripRegion"></a>
 ### `ZetaGrowth.isOpen_stripRegion`
 
-line 388
+line 392
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The strip region `{s | −1 < Re s ∧ s ≠ 1}` is open.
 
 **Proves**
 
@@ -401,9 +409,11 @@ IsOpen stripRegion
 <a name="ZetaGrowth-preconnected_stripRegion"></a>
 ### `ZetaGrowth.preconnected_stripRegion`
 
-line 395
+line 400
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The strip region `{s | −1 < Re s ∧ s ≠ 1}` is preconnected.
 
 **Proves**
 
@@ -422,7 +432,7 @@ IsPreconnected stripRegion
 <a name="ZetaGrowth-zeta1_analyticOnNhd"></a>
 ### `ZetaGrowth.zeta1_analyticOnNhd`
 
-line 449
+line 454
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -454,7 +464,7 @@ AnalyticOnNhd ℂ (zeta1 N) stripRegion
 <a name="ZetaGrowth-zeta1_eq_zeta_strip"></a>
 ### `ZetaGrowth.zeta1_eq_zeta_strip`
 
-line 489
+line 494
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -487,7 +497,7 @@ Set.EqOn (zeta1 N) riemannZeta stripRegion
 <a name="ZetaGrowth-tail_norm_le"></a>
 ### `ZetaGrowth.tail_norm_le`
 
-line 519
+line 524
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -520,7 +530,7 @@ line 519
 <a name="ZetaGrowth-sum_norm_le"></a>
 ### `ZetaGrowth.sum_norm_le`
 
-line 570
+line 575
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -546,7 +556,7 @@ line 570
 <a name="ZetaGrowth-zeta_growth_strip"></a>
 ### `ZetaGrowth.zeta_growth_strip`
 
-line 599
+line 604
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -580,7 +590,7 @@ line 599
 <a name="ZetaGrowth-sq_mul_zeta_analytic"></a>
 ### `ZetaGrowth.sq_mul_zeta_analytic`
 
-line 719
+line 724
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -609,7 +619,7 @@ AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s
 <a name="ZetaGrowth-sq_zeta_band_bound"></a>
 ### `ZetaGrowth.sq_zeta_band_bound`
 
-line 730
+line 735
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

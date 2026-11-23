@@ -2,7 +2,7 @@
 
 WeilTransform — the transform of the tuned window in closed form. Rung 3 of the detection ladder (units 0316, 0317). 2026-09-06.
 
-9 theorems, 4 definitions, 238 lines. Arrows are Lean's own record of what each proof uses.
+9 theorems, 4 definitions, 241 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilWindow`](../lean_stage3/WeilWindow.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilLobe`](../lean_stage3/WeilLobe.md)
@@ -104,9 +104,11 @@ Its transform, `∫₋ₕʰ G(u)·e^{zu} du`.
 <a name="WeilTransform-P_even"></a>
 ### `WeilTransform.P_even`
 
-line 61
+line 62
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The window `P` is even: `P (-x) = P x`.
 
 **Proves**
 
@@ -130,9 +132,11 @@ P (-x) = P x
 <a name="WeilTransform-xP_odd"></a>
 ### `WeilTransform.xP_odd`
 
-line 65
+line 67
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The envelope `x·P x` is odd: its value at `-x` is the negative of its value at `x`.
 
 **Proves**
 
@@ -157,9 +161,11 @@ line 65
 <a name="WeilTransform-continuous_xP"></a>
 ### `WeilTransform.continuous_xP`
 
-line 68
+line 71
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the envelope `x ↦ x·P x` is continuous.
 
 **Proves**
 
@@ -180,7 +186,7 @@ Continuous fun x : ℝ => x * P x
 <a name="WeilTransform-SigmaC_ofReal"></a>
 ### `WeilTransform.SigmaC_ofReal`
 
-line 72
+line 75
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -209,7 +215,7 @@ SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)
 <a name="WeilTransform-SigmaC_I_mul"></a>
 ### `WeilTransform.SigmaC_I_mul`
 
-line 80
+line 83
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -239,7 +245,7 @@ SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)
 <a name="WeilTransform-odd_integral_exp"></a>
 ### `WeilTransform.odd_integral_exp`
 
-line 94
+line 97
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -268,7 +274,7 @@ line 94
 <a name="WeilTransform-ghat_eq"></a>
 ### `WeilTransform.ghat_eq`
 
-line 144
+line 147
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -306,7 +312,7 @@ ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) * (h : ℂ
 <a name="WeilTransform-ghat_ofReal_I"></a>
 ### `WeilTransform.ghat_ofReal_I`
 
-line 195
+line 198
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -339,7 +345,7 @@ ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((Psi (h * (t 
 <a name="WeilTransform-ghat_offline"></a>
 ### `WeilTransform.ghat_offline`
 
-line 208
+line 211
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

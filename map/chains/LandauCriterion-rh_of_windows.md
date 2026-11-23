@@ -1,6 +1,8 @@
 # What `LandauCriterion.rh_of_windows` rests on
 
-[`LandauCriterion.rh_of_windows`](../lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) in `lean_stage3/Stage3/LandauCriterion.lean`, line 219.
+[`LandauCriterion.rh_of_windows`](../lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) in `lean_stage3/Stage3/LandauCriterion.lean`, line 230.
+
+**Why.** Conditional: if for every `θ` in `(1/2, 1)` there are `δ > 0` and `C` with the window bound `WindowBound θ δ C`, then `RiemannHypothesis` holds. The window bound is a hypothesis of this statement.
 
 **Proves**
 

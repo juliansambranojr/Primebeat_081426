@@ -58,13 +58,16 @@ def G (h γ : ℝ) (u : ℝ) : ℝ := (u / h) * P (u / h) * Real.cos (γ * u)
 def ghat (h γ : ℝ) (z : ℂ) : ℂ :=
   ∫ u in (-h)..h, ((G h γ u : ℝ) : ℂ) * Complex.exp (z * (u : ℂ))
 
+/-- The window `P` is even: `P (-x) = P x`. -/
 theorem P_even (x : ℝ) : P (-x) = P x := by
   unfold P
   rw [show Real.pi * (-x) / 2 = -(Real.pi * x / 2) by ring, Real.cos_neg]
 
+/-- The envelope `x·P x` is odd: its value at `-x` is the negative of its value at `x`. -/
 theorem xP_odd (x : ℝ) : (-x) * P (-x) = -(x * P x) := by
   rw [P_even]; ring
 
+/-- Helper: the envelope `x ↦ x·P x` is continuous. -/
 theorem continuous_xP : Continuous fun x : ℝ => x * P x :=
   continuous_id.mul continuous_P
 

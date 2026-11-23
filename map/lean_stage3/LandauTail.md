@@ -2,7 +2,7 @@
 
 LandauTail — the kernel off the window: the integral of `(log y)^k·y^(−a−1)` over `(1, Y]` and over `(Z, ∞)`, each bounded by a shift of the exponent. Block 4b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 126 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 131 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauKernel`](../lean_stage3/LandauKernel.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md)
@@ -39,9 +39,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauTail-kernel_nonneg"></a>
 ### `LandauTail.kernel_nonneg`
 
-line 30
+line 31
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the kernel `(log y)^k·y^(−a−1)` is nonnegative almost everywhere on `(1, ∞)`.
 
 **Proves**
 
@@ -64,9 +66,11 @@ line 30
 <a name="LandauTail-lower_tail_le"></a>
 ### `LandauTail.lower_tail_le`
 
-line 36
+line 39
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `a > 0`, `b > 0` and `Y ≥ 1`, the integral of the kernel `(log y)^k·y^(−a−1)` over `(1, Y]` is at most `Y^b · k!/(a+b)^(k+1)`.
 
 **Proves**
 
@@ -94,9 +98,11 @@ line 36
 <a name="LandauTail-upper_tail_le"></a>
 ### `LandauTail.upper_tail_le`
 
-line 71
+line 76
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `0 < b < a` and `Z ≥ 1`, the integral of the kernel `(log y)^k·y^(−a−1)` over `(Z, ∞)` is at most `Z^(−b) · k!/(a−b)^(k+1)`.
 
 **Proves**
 

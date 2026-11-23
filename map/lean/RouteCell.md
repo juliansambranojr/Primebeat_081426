@@ -2,7 +2,7 @@
 
 RouteCell — block E9 of `lean_stage3/design/joints.md`, the table tree's half. The gate (`Interpolant.tableFrom_ne_zero_of_relErr_liRow`) at depth six, on the statement the other tree's explicit-formula route proves under RH.
 
-1 theorem, 0 definitions, 62 lines. Arrows are Lean's own record of what each proof uses.
+1 theorem, 0 definitions, 65 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Interpolant`](../lean/Interpolant.md)  
 **Imported by:** nothing
@@ -33,9 +33,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="RouteCell-cell_ne_zero_of_route"></a>
 ### `RouteCell.cell_ne_zero_of_route`
 
-line 28
+line 31
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `80 ≤ r`, the integer rows `N (r - k)` for `k ≤ 7` equal the backward differences of `f`, and `f` sits within relative error `ρ < (log 2)^6/(2·r·3^7)` of the main term on the window of `8` rows ending at `r`, then the table cell `tableFrom N r 6` at depth six is nonzero.
 
 **Proves**
 

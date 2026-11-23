@@ -103,12 +103,15 @@ noncomputable section
 this is `s(s−1)Λ(s)`; at `0` and `1` it is `1`. -/
 def xi (s : ℂ) : ℂ := s * (s - 1) * completedRiemannZeta₀ s + 1
 
+/-- The completion `xi` is differentiable on all of `ℂ`. -/
 theorem differentiable_xi : Differentiable ℂ xi :=
   ((differentiable_id.mul (differentiable_id.sub_const 1)).mul
     differentiable_completedZeta₀).add_const 1
 
+/-- The completion `xi` takes the value `1` at `s = 0`. -/
 theorem xi_zero : xi 0 = 1 := by simp [xi]
 
+/-- The completion `xi` takes the value `1` at `s = 1`. -/
 theorem xi_one : xi 1 = 1 := by simp [xi]
 
 /-- Off the two former poles, `xi` is the classical `s(s−1)Λ(s)`. -/
@@ -444,6 +447,7 @@ upstream's `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`
 plus the identification of `xi`'s divisor support with
 `zeroes_rect univ (Ioo 0 T)`. -/
 
+/-- The completion `xi` is analytic at every point of `ℂ`. -/
 theorem xi_analyticAt (s : ℂ) : AnalyticAt ℂ xi s :=
   (analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi) s (Set.mem_univ s)
 
@@ -465,6 +469,7 @@ theorem xi_meromorphicOrderAt_ne_top (p : ℂ) : meromorphicOrderAt xi p ≠ ⊤
   rw [xi_zero] at this
   exact one_ne_zero this
 
+/-- The logarithmic derivative of `xi` is meromorphic at every point of `ℂ`. -/
 theorem logDeriv_xi_meromorphicAt (s : ℂ) : MeromorphicAt (logDeriv xi) s := by
   have hd : AnalyticAt ℂ (deriv xi) s :=
     ((analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi).deriv) s (Set.mem_univ s)
@@ -892,6 +897,7 @@ theorem gammaR_eq_exp_mul (s : ℂ) :
   congr 1
   ring
 
+/-- For `Re s > 0`, the archimedean factor `Γℝ` is complex differentiable at `s`. -/
 theorem differentiableAt_gammaR {s : ℂ} (h0 : 0 < s.re) :
     DifferentiableAt ℂ Gammaℝ s := by
   have h : Gammaℝ = fun s =>
@@ -1305,10 +1311,12 @@ theorem logDeriv_gammaR_analyticAt {z : ℂ} (hz : 0 < z.re) :
   rw [hrw]
   exact hderiv.div hΓ (Gammaℝ_ne_zero_of_re_pos hz)
 
+/-- For `Re z > 0`, the logarithmic derivative of `Γℝ` is continuous at `z`. -/
 theorem logDeriv_gammaR_continuousAt {z : ℂ} (hz : 0 < z.re) :
     ContinuousAt (logDeriv Gammaℝ) z :=
   (logDeriv_gammaR_analyticAt hz).continuousAt
 
+/-- The logarithmic derivative of `Γℝ` is holomorphic on the right half-plane `Re s > 0`. -/
 theorem logDeriv_gammaR_holo :
     HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 < s.re} :=
   fun z hz => (logDeriv_gammaR_analyticAt hz).differentiableAt.differentiableWithinAt
@@ -1484,6 +1492,8 @@ theorem logDeriv_zeta_analyticAt {z : ℂ} (hz1 : z ≠ 1)
   rw [hrw]
   exact hderiv.div (analyticAt_riemannZeta hz1) hzζ
 
+/-- For `z ≠ 1` with `ζ(z) ≠ 0`, the logarithmic derivative of `riemannZeta` is continuous
+at `z`. -/
 theorem logDeriv_zeta_continuousAt {z : ℂ} (hz1 : z ≠ 1)
     (hzζ : riemannZeta z ≠ 0) : ContinuousAt (logDeriv riemannZeta) z :=
   (logDeriv_zeta_analyticAt hz1 hzζ).continuousAt

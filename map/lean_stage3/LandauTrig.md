@@ -2,7 +2,7 @@
 
 LandauTrig — a real exponential sum is large somewhere in every long block. Block 6 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-6 theorems, 0 definitions, 229 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 0 definitions, 242 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)
@@ -42,9 +42,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauTrig-norm_geom_Ico_le"></a>
 ### `LandauTrig.norm_geom_Ico_le`
 
-line 42
+line 44
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `w` has modulus one and `w ≠ 1`, then the geometric sum of `w^n` over a block of `N` consecutive `n` starting at `a` has norm at most `2/‖w - 1‖`.
 
 **Proves**
 
@@ -67,7 +69,7 @@ line 42
 <a name="LandauTrig-re_mul_geom_ge"></a>
 ### `LandauTrig.re_mul_geom_ge`
 
-line 51
+line 53
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -98,9 +100,11 @@ line 51
 <a name="LandauTrig-sum_block_ge"></a>
 ### `LandauTrig.sum_block_ge`
 
-line 60
+line 65
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T n = Σ_j c_j·z_j^n` real-valued with every `z_j` of modulus one and the coefficient at `z_j = 1` of nonnegative real part, the sum of `T` over any block of consecutive `n` is at least `-Σ_j ‖c_j‖·(2/‖z_j - 1‖)`.
 
 **Proves**
 
@@ -129,9 +133,11 @@ line 60
 <a name="LandauTrig-abs_le_sum_norm"></a>
 ### `LandauTrig.abs_le_sum_norm`
 
-line 83
+line 90
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T n = Σ_j c_j·z_j^n` real-valued with every `z_j` of modulus one, `|T n|` is at most `Σ_j ‖c_j‖` for every `n`.
 
 **Proves**
 
@@ -157,9 +163,11 @@ line 83
 <a name="LandauTrig-sum_sq_block_ge"></a>
 ### `LandauTrig.sum_sq_block_ge`
 
-line 91
+line 101
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T n = Σ_j c_j·z_j^n` real-valued with the `z_j` of modulus one and distinct, the sum of `T²` over a block of `N` consecutive `n` is at least `N·Σ_j ‖c_j‖²` minus the off-diagonal sum `Σ_{j ≠ l} ‖c_j‖·‖c_l‖·(2/‖z_j·conj z_l - 1‖)`.
 
 **Proves**
 
@@ -188,9 +196,11 @@ line 91
 <a name="LandauTrig-exists_large_in_block"></a>
 ### `LandauTrig.exists_large_in_block`
 
-line 158
+line 171
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T n = Σ_j c_j·z_j^n` real-valued with the `z_j` of modulus one and distinct, the coefficient at `z_j = 1` of nonnegative real part and some `c_j ≠ 0`, there are `τ > 0` and `N₀` such that every block of `N ≥ N₀` consecutive `n` holds an `n` with `τ ≤ T n`.
 
 **Proves**
 

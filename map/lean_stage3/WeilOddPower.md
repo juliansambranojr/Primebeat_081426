@@ -2,7 +2,7 @@
 
 WeilOddPower — the odd envelope `sin(πx)·P(x)^m` and its transform in closed form; the switched window and its transform. Rung 5, third slice. 2026-09-06.
 
-11 theorems, 6 definitions, 245 lines. Arrows are Lean's own record of what each proof uses.
+11 theorems, 6 definitions, 250 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPower`](../lean_stage3/WeilPower.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerBounds`](../lean_stage3/WeilPowerBounds.md)
@@ -75,7 +75,7 @@ The odd envelope `sin(πx)·P(x)^m`.
 <a name="WeilOddPower-S"></a>
 ### `WeilOddPower.S`
 
-def · line 78
+def · line 80
 
 The odd envelope's transform, `∫₋₁¹ q m x · e^{wx} dx`.
 
@@ -86,7 +86,7 @@ The odd envelope's transform, `∫₋₁¹ q m x · e^{wx} dx`.
 <a name="WeilOddPower-QS"></a>
 ### `WeilOddPower.QS`
 
-def · line 133
+def · line 135
 
 `∏_{j=1}^{m+1}(w² + π²j²)`: the odd transform's denominator.
 
@@ -96,7 +96,7 @@ def · line 133
 <a name="WeilOddPower-cS"></a>
 ### `WeilOddPower.cS`
 
-def · line 137
+def · line 139
 
 `2·π^{2m+1}·(2m+1)!/4^m`: the odd transform's constant.
 
@@ -106,7 +106,7 @@ def · line 137
 <a name="WeilOddPower-W"></a>
 ### `WeilOddPower.W`
 
-def · line 177
+def · line 182
 
 The switched window: `sin(πu/h)·P(u/h)^m·cos(γu)`, read on `[−h, h]`.
 
@@ -117,7 +117,7 @@ The switched window: `sin(πu/h)·P(u/h)^m·cos(γu)`, read on `[−h, h]`.
 <a name="WeilOddPower-what"></a>
 ### `WeilOddPower.what`
 
-def · line 180
+def · line 185
 
 Its transform, `∫₋ₕʰ W(u)·e^{zu} du`.
 
@@ -130,9 +130,11 @@ Its transform, `∫₋ₕʰ W(u)·e^{zu} du`.
 <a name="WeilOddPower-q_odd"></a>
 ### `WeilOddPower.q_odd`
 
-line 48
+line 49
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The envelope `q m` is odd: `q m (-x) = -q m x`.
 
 **Proves**
 
@@ -160,9 +162,11 @@ q m (-x) = -q m x
 <a name="WeilOddPower-continuous_q"></a>
 ### `WeilOddPower.continuous_q`
 
-line 53
+line 55
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the odd envelope `q m` is continuous.
 
 **Proves**
 
@@ -190,7 +194,7 @@ Continuous (q m)
 <a name="WeilOddPower-sin_pi_mul"></a>
 ### `WeilOddPower.sin_pi_mul`
 
-line 60
+line 62
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -217,7 +221,7 @@ Real.sin (Real.pi * x) = 2 * Real.sin (Real.pi * x / 2) * c x
 <a name="WeilOddPower-q_eq"></a>
 ### `WeilOddPower.q_eq`
 
-line 68
+line 70
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -250,7 +254,7 @@ q m x = -(2 / (((m : ℝ) + 1) * Real.pi)) * f1 (2 * m + 1) x
 <a name="WeilOddPower-ibp_once"></a>
 ### `WeilOddPower.ibp_once`
 
-line 82
+line 84
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -284,7 +288,7 @@ line 82
 <a name="WeilOddPower-S_eq"></a>
 ### `WeilOddPower.S_eq`
 
-line 109
+line 111
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -318,9 +322,11 @@ S m w = 2 * w * K (m + 1) w / (((m : ℂ) + 1) * (Real.pi : ℂ))
 <a name="WeilOddPower-Q_succ_eq"></a>
 ### `WeilOddPower.Q_succ_eq`
 
-line 139
+line 143
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The even transform's denominator at `m+1` is `w` times the odd transform's denominator: `Q (m+1) w = w · QS m w`.
 
 **Proves**
 
@@ -344,9 +350,11 @@ Q (m + 1) w = w * QS m w
 <a name="WeilOddPower-cS_eq"></a>
 ### `WeilOddPower.cS_eq`
 
-line 142
+line 147
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The odd transform's constant against the even one's: `cS m · (m+1)π = 2 · cK (m+1)`.
 
 **Proves**
 
@@ -369,7 +377,7 @@ cS m * (((m : ℝ) + 1) * Real.pi) = 2 * cK (m + 1)
 <a name="WeilOddPower-S_mul_QS"></a>
 ### `WeilOddPower.S_mul_QS`
 
-line 154
+line 159
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -406,7 +414,7 @@ S m w * QS m w = (cS m : ℂ) * Complex.sinh w
 <a name="WeilOddPower-S_zero_mul"></a>
 ### `WeilOddPower.S_zero_mul`
 
-line 166
+line 171
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -435,7 +443,7 @@ S 0 w * (w ^ 2 + (Real.pi : ℂ) ^ 2) = 2 * (Real.pi : ℂ) * Complex.sinh w
 <a name="WeilOddPower-what_eq"></a>
 ### `WeilOddPower.what_eq`
 
-line 185
+line 190
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

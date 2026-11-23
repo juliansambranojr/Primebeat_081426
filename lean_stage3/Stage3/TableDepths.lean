@@ -24,6 +24,7 @@ open Finset
 
 noncomputable section
 
+/-- If `6 ≤ r₀ ≤ r`, then `r² ≤ r₀²·2^((r−r₀)/2)`. -/
 theorem sq_le_gen {r₀ r : ℝ} (h6 : 6 ≤ r₀) (hr : r₀ ≤ r) :
     r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2) := by
   have hL := Real.log_two_gt_d9
@@ -59,6 +60,9 @@ theorem sq_le_gen {r₀ r : ℝ} (h6 : 6 ≤ r₀) (hr : r₀ ≤ r) :
     linarith
   linarith
 
+/-- The gate's gap at every row `r ≥ r₀ ≥ 6` from its value at `r₀`: if
+`414·(2·3^(d+1))·r₀²·2^(−(r₀−(d+1))/2) ≤ a` and `a·log 2 < (log 2)^d`, then
+`414·(log 2·r)·2^(−(r−(d+1))/2) < (log 2)^d / (2·r·3^(d+1))`. -/
 theorem gate_ineq_gen (d : ℕ) {r₀ r a : ℝ} (h6 : 6 ≤ r₀) (hr : r₀ ≤ r)
     (hA : 414 * (2 * 3 ^ (d + 1)) * (r₀ ^ 2 * (2:ℝ) ^ (-((r₀ - ((d:ℝ) + 1)) / 2))) ≤ a)
     (ha : a * Real.log 2 < Real.log 2 ^ d) :
@@ -149,9 +153,11 @@ theorem cell_ne_zero_gen (hRH : RiemannHypothesis) (d : ℕ) {r₀ a : ℝ} (hd 
   · linarith
   · nlinarith
 
+/-- Helper: the real power `2^(−n)` equals `1/2^n` for a natural number `n`. -/
 theorem two_rpow_neg_nat (n : ℕ) : (2:ℝ) ^ (-(n:ℝ)) = 1 / (2:ℝ) ^ n := by
   rw [Real.rpow_neg (by norm_num), Real.rpow_natCast, one_div]
 
+/-- Helper: `2^(−n + 1/2) ≤ 1.4143/2^n` for a natural number `n`. -/
 theorem two_rpow_neg_nat_half (n : ℕ) : (2:ℝ) ^ (-(n:ℝ) + 1 / 2) ≤ 1.4143 / (2:ℝ) ^ n := by
   rw [Real.rpow_add (by norm_num), two_rpow_neg_nat, ← Real.sqrt_eq_rpow]
   have hs : Real.sqrt 2 ≤ 1.4143 := by
@@ -161,6 +167,7 @@ theorem two_rpow_neg_nat_half (n : ℕ) : (2:ℝ) ^ (-(n:ℝ) + 1 / 2) ≤ 1.414
   rw [div_mul_eq_mul_div, one_mul]
   exact div_le_div_of_nonneg_right hs hp.le
 
+/-- Helper: `0.6931^k ≤ (log 2)^k` for every natural number `k`. -/
 theorem pow_lower (k : ℕ) : (0.6931:ℝ) ^ k ≤ Real.log 2 ^ k :=
   pow_le_pow_left₀ (by norm_num) (by linarith [Real.log_two_gt_d9]) k
 

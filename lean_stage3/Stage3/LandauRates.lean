@@ -27,6 +27,9 @@ noncomputable section
 
 open Filter Topology
 
+/-- The inequality between the rates of the two tails. If `0 < δ ≤ 1` and `0 ≤ λ ≤ δ²/240`,
+then `4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ)`, and both `log(1+δ/3) − λ` and
+`λ − log(1−δ/12)` are positive. -/
 theorem key_ineq {δ lam : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1) (hl0 : 0 ≤ lam)
     (hl : lam ≤ δ ^ 2 / 240) :
     4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam)
@@ -61,6 +64,8 @@ theorem key_ineq {δ lam : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1) (hl0 : 0 ≤ l
     nlinarith
   · nlinarith
 
+/-- The choice of the real centre. If `0 ≤ θ < Re ρ₀ < 1` and `0 < δ`, there is a real
+`σ₀ > 1` with `‖σ₀ − ρ₀‖ < σ₀ − θ` and `‖σ₀ − ρ₀‖ ≤ (σ₀ − 1)(1 + δ²/240)`. -/
 theorem exists_centre {ρ₀ : ℂ} {θ δ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < ρ₀.re)
     (h1 : ρ₀.re < 1) (hδ : 0 < δ) :
     ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ
@@ -90,6 +95,7 @@ theorem exists_centre {ρ₀ : ℂ} {θ δ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < 
     rw [hwre, hwim, abs_neg, abs_of_pos (by linarith : 0 < M + 2 - ρ₀.re)] at h
     nlinarith
 
+/-- If `0 ≤ q < 1` and `0 < ε`, there is a `K` such that `c·q^k < ε` for every `k ≥ K`. -/
 theorem exists_pow_small {q c ε : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hε : 0 < ε) :
     ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε := by
   have h := (tendsto_pow_atTop_nhds_zero_of_lt_one hq0 hq1).const_mul c

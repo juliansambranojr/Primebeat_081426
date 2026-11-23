@@ -2,7 +2,7 @@
 
 LandauPoleSub — finitely many simple poles subtracted on an open set, and what that gives for the Taylor coefficients. Nothing here is about `ζ`. Block 3b1 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 158 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 166 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md)
@@ -35,9 +35,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauPoleSub-iteratedDeriv_inv_sub"></a>
 ### `LandauPoleSub.iteratedDeriv_inv_sub`
 
-line 35
+line 36
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The `k`-th derivative of `s ↦ (s − q)⁻¹` at `c` is `(−1)^k·k!·(c − q)^(−1−k)`.
 
 **Proves**
 
@@ -59,9 +61,11 @@ iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ)
 <a name="LandauPoleSub-exists_differentiableOn_sub_poles"></a>
 ### `LandauPoleSub.exists_differentiableOn_sub_poles`
 
-line 41
+line 45
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `f` is differentiable at every point of `U` off the finite set `P`, and near each `p ∈ P` has the local form `f = h + A p/(s − p)` with `h` analytic at `p`, then there is a `g` differentiable on `U` with `g = f − Σ_{q ∈ P} A q/(s − q)` off `P`.
 
 **Proves**
 
@@ -83,9 +87,11 @@ line 41
 <a name="LandauPoleSub-taylor_coeff_sub_poles"></a>
 ### `LandauPoleSub.taylor_coeff_sub_poles`
 
-line 104
+line 112
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If the closed ball of radius `R > 0` about `c` lies in the open set `U`, `c ∉ P`, and `g` is differentiable on `U` with `g = f − Σ_{q ∈ P} A q/(s − q)` off `P`, then there is a `C` such that for every `k` the `k`-th derivative of `f` at `c` is within `k!·C/R^k` of `Σ_{q ∈ P} A q·(−1)^k·k!·(c − q)^(−1−k)`.
 
 **Proves**
 

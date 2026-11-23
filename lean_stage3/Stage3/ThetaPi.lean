@@ -47,12 +47,16 @@ def StmtPsiWeakTheta (θ C : ℝ) (k : ℕ) (x₀ : ℝ) : Prop :=
 def StmtSchoenfeldWeakTheta (θ C : ℝ) (k : ℕ) (x₀ : ℝ) (pi li : ℝ → ℝ) : Prop :=
   ∀ x : ℝ, x₀ ≤ x → |pi x - li x| ≤ C * x ^ θ * Real.log x ^ k
 
+/-- The ψ-side weak bound `StmtPsiWeak C k x₀` is equivalent to `StmtPsiWeakTheta`
+at exponent `θ = 1/2` with the same `C`, `k`, `x₀`. -/
 theorem stmtPsiWeak_iff_theta_half {C : ℝ} {k : ℕ} {x₀ : ℝ} :
     StmtPsiWeak C k x₀ ↔ StmtPsiWeakTheta (1/2) C k x₀ := by
   unfold StmtPsiWeak StmtPsiWeakTheta
   refine forall_congr' fun t => imp_congr_right fun _ => ?_
   rw [Real.sqrt_eq_rpow]
 
+/-- The π-side weak bound `StmtSchoenfeldWeak C k x₀ pi li` is equivalent to
+`StmtSchoenfeldWeakTheta` at exponent `θ = 1/2` with the same data. -/
 theorem stmtSchoenfeldWeak_iff_theta_half {C : ℝ} {k : ℕ} {x₀ : ℝ} {pi li : ℝ → ℝ} :
     StmtSchoenfeldWeak C k x₀ pi li ↔ StmtSchoenfeldWeakTheta (1/2) C k x₀ pi li := by
   unfold StmtSchoenfeldWeak StmtSchoenfeldWeakTheta

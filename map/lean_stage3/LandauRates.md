@@ -2,7 +2,7 @@
 
 LandauRates — the scalar inequalities of the assembly. Block 7c of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 114 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 120 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauCriterion`](../lean_stage3/LandauCriterion.md)
@@ -35,9 +35,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauRates-key_ineq"></a>
 ### `LandauRates.key_ineq`
 
-line 30
+line 33
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The inequality between the rates of the two tails. If `0 < δ ≤ 1` and `0 ≤ λ ≤ δ²/240`, then `4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ)`, and both `log(1+δ/3) − λ` and `λ − log(1−δ/12)` are positive.
 
 **Proves**
 
@@ -61,9 +63,11 @@ line 30
 <a name="LandauRates-exists_centre"></a>
 ### `LandauRates.exists_centre`
 
-line 64
+line 69
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The choice of the real centre. If `0 ≤ θ < Re ρ₀ < 1` and `0 < δ`, there is a real `σ₀ > 1` with `‖σ₀ − ρ₀‖ < σ₀ − θ` and `‖σ₀ − ρ₀‖ ≤ (σ₀ − 1)(1 + δ²/240)`.
 
 **Proves**
 
@@ -87,9 +91,11 @@ line 64
 <a name="LandauRates-exists_pow_small"></a>
 ### `LandauRates.exists_pow_small`
 
-line 93
+line 99
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `0 ≤ q < 1` and `0 < ε`, there is a `K` such that `c·q^k < ε` for every `k ≥ K`.
 
 **Proves**
 

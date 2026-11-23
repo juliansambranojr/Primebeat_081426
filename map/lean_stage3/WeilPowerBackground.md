@@ -2,7 +2,7 @@
 
 WeilPowerBackground — the switched window as a test function of the explicit formula, every term of the zero form as minus a square, and the on-line terms bounded. Rung 5, fifth slice. 2026-09-06.
 
-16 theorems, 3 definitions, 265 lines. Arrows are Lean's own record of what each proof uses.
+16 theorems, 3 definitions, 270 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilDetect`](../lean_stage3/WeilDetect.md), [`WeilPowerBounds`](../lean_stage3/WeilPowerBounds.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerBands`](../lean_stage3/WeilPowerBands.md)
@@ -103,7 +103,7 @@ The complex-valued test function WeilDetect reads.
 <a name="WeilPowerBackground-PsiW"></a>
 ### `WeilPowerBackground.PsiW`
 
-def · line 122
+def · line 125
 
 `PsiW m t = ∫₋₁¹ q m x · sin(tx) dx`: the transform on the line, real.
 
@@ -116,9 +116,11 @@ def · line 122
 <a name="WeilPowerBackground-phiWC_real"></a>
 ### `WeilPowerBackground.phiWC_real`
 
-line 54
+line 55
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The complex-valued test function `phiWC h γ m` has zero imaginary part at every `u`.
 
 **Proves**
 
@@ -143,7 +145,7 @@ line 54
 <a name="WeilPowerBackground-laplace_phiW"></a>
 ### `WeilPowerBackground.laplace_phiW`
 
-line 59
+line 60
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -175,7 +177,7 @@ laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2)
 <a name="WeilPowerBackground-S_eq_sinh"></a>
 ### `WeilPowerBackground.S_eq_sinh`
 
-line 81
+line 82
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -208,7 +210,7 @@ S m w = ∫ x in (-1 : ℝ)..1, ((q m x : ℝ) : ℂ) * Complex.sinh (w * (x : �
 <a name="WeilPowerBackground-S_neg"></a>
 ### `WeilPowerBackground.S_neg`
 
-line 87
+line 88
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -240,7 +242,7 @@ S m (-w) = -S m w
 <a name="WeilPowerBackground-what_neg"></a>
 ### `WeilPowerBackground.what_neg`
 
-line 95
+line 96
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -275,7 +277,7 @@ what h γ m (-z) = -what h γ m z
 <a name="WeilPowerBackground-term_eq_neg_sq"></a>
 ### `WeilPowerBackground.term_eq_neg_sq`
 
-line 106
+line 107
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -309,9 +311,11 @@ laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = -(what h γ 
 <a name="WeilPowerBackground-term_re_eq"></a>
 ### `WeilPowerBackground.term_re_eq`
 
-line 115
+line 118
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `h > 0`, the real part of the zero-form term at `ρ` is `(Im ŵ)² − (Re ŵ)²`, where `ŵ` is the window's transform `what h γ m` at `ρ − 1/2`.
 
 **Proves**
 
@@ -339,7 +343,7 @@ line 115
 <a name="WeilPowerBackground-S_I_mul"></a>
 ### `WeilPowerBackground.S_I_mul`
 
-line 125
+line 128
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -372,7 +376,7 @@ S m (Complex.I * (t : ℂ)) = Complex.I * (PsiW m t : ℂ)
 <a name="WeilPowerBackground-what_I"></a>
 ### `WeilPowerBackground.what_I`
 
-line 138
+line 141
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -407,7 +411,7 @@ what h γ m (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((PsiW m (h 
 <a name="WeilPowerBackground-online_term_eq"></a>
 ### `WeilPowerBackground.online_term_eq`
 
-line 150
+line 153
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -445,9 +449,11 @@ laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = (((h / 2) ^ 
 <a name="WeilPowerBackground-online_term_nonneg"></a>
 ### `WeilPowerBackground.online_term_nonneg`
 
-line 164
+line 169
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `h > 0` and `ρ` with real part `1/2`, the real part of the zero-form term at `ρ` is nonnegative.
 
 **Proves**
 
@@ -477,7 +483,7 @@ line 164
 <a name="WeilPowerBackground-abs_q_le_one"></a>
 ### `WeilPowerBackground.abs_q_le_one`
 
-line 170
+line 175
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -510,7 +516,7 @@ line 170
 <a name="WeilPowerBackground-PsiW_le_two"></a>
 ### `WeilPowerBackground.PsiW_le_two`
 
-line 181
+line 186
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -542,7 +548,7 @@ line 181
 <a name="WeilPowerBackground-online_term_le_near"></a>
 ### `WeilPowerBackground.online_term_le_near`
 
-line 196
+line 201
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -578,7 +584,7 @@ line 196
 <a name="WeilPowerBackground-PsiW_le_far"></a>
 ### `WeilPowerBackground.PsiW_le_far`
 
-line 215
+line 220
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -610,7 +616,7 @@ line 215
 <a name="WeilPowerBackground-online_term_le_far"></a>
 ### `WeilPowerBackground.online_term_le_far`
 
-line 223
+line 228
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

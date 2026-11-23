@@ -2,7 +2,7 @@
 
 CellModes — block T1 of `lean_stage3/design/joints.md`, second part. 2026-11-22.
 
-3 theorems, 0 definitions, 100 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 102 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellZeros`](../lean_stage3/CellZeros.md), [`Superposition`](../lean_stage3/TablePort_Superposition.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AliasClass`](../lean_stage3/AliasClass.md), [`CellBdiff`](../lean_stage3/CellBdiff.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)
@@ -46,9 +46,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="CellModes-mode_two_int"></a>
 ### `CellModes.mode_two_int`
 
-line 34
+line 35
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At an integer `r`, the base-2 mode of exponent `ρ` is the integer power `(2^ρ)^r`.
 
 **Proves**
 
@@ -76,9 +78,11 @@ Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r
 <a name="CellModes-sym_two"></a>
 ### `CellModes.sym_two`
 
-line 42
+line 44
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The base-2 symbol at `ρ` is `1 − (2^ρ)⁻¹`.
 
 **Proves**
 
@@ -105,7 +109,7 @@ Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹
 <a name="CellModes-cell_eq_modeSum"></a>
 ### `CellModes.cell_eq_modeSum`
 
-line 48
+line 50
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

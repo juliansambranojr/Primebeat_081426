@@ -1,6 +1,6 @@
 # What `Stage3.RH_of_psiWeakTheta_half` rests on
 
-[`Stage3.RH_of_psiWeakTheta_half`](../lean_stage3/ThetaConverse.md#Stage3-RH_of_psiWeakTheta_half) in `lean_stage3/Stage3/ThetaConverse.lean`, line 389.
+[`Stage3.RH_of_psiWeakTheta_half`](../lean_stage3/ThetaConverse.md#Stage3-RH_of_psiWeakTheta_half) in `lean_stage3/Stage3/ThetaConverse.lean`, line 394.
 
 **Why.** The weld at `θ = 1/2`: `VonKoch.RH_of_psiWeak`'s statement through the dial, via `Abscissa`'s `StmtZeroFreeRight (1/2)` and V5's reflection.
 

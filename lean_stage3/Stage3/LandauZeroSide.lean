@@ -51,6 +51,10 @@ private lemma exists_gap (F : Finset ℂ) (c : ℂ) (r R₃ : ℝ) (hr : r < R�
     push Not at hcon
     exact h ⟨ρ, Finset.mem_filter.mpr ⟨hρ, hcon⟩⟩
 
+/-- The zeros' lower bound on the primes' integral. For a zero `ρ₀` of `riemannZeta` and a
+real `σ₀ > 1` with `‖σ₀ − ρ₀‖ < σ₀`, there are `r, R, τ, C₁, N₀` with
+`σ₀ − 1 < r ≤ ‖σ₀ − ρ₀‖`, `r < R`, `τ > 0`, `C₁ ≥ 0`, such that every run of at least `N₀`
+consecutive naturals contains a `k` with `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!`. -/
 theorem zero_side {ρ₀ : ℂ} (hz : riemannZeta ρ₀ = 0)
     {σ₀ : ℝ} (hσ : 1 < σ₀) (hS2 : ‖(σ₀ : ℂ) - ρ₀‖ < σ₀) :
     ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧

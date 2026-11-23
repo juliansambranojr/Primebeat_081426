@@ -2,7 +2,7 @@
 
 JointSymbol — joint 9a of `SECTIONS.md`: the table of `G` along the doublings and the symbol, on the transform side. Block 9a of `lean_stage3/design/joints.md`. 2026-11-22.
 
-6 theorems, 2 definitions, 203 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 2 definitions, 216 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -64,9 +64,11 @@ def · line 45
 <a name="JointSymbol-mellin_shift"></a>
 ### `JointSymbol.mellin_shift`
 
-line 47
+line 50
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `f` vanishes on `y ≤ 1` and `f(y)·y^(−s−1)` is integrable on `(1, ∞)`, then `f(y/2)·y^(−s−1)` is integrable there and its integral is `2^(−s)` times that of `f(y)·y^(−s−1)`.
 
 **Proves**
 
@@ -88,7 +90,7 @@ IntegrableOn (fun y : ℝ => f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧ ∫ y
 <a name="JointSymbol-mellin_dd"></a>
 ### `JointSymbol.mellin_dd`
 
-line 105
+line 108
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -118,9 +120,11 @@ line 105
 <a name="JointSymbol-mellin_dd_iter_aux"></a>
 ### `JointSymbol.mellin_dd_iter_aux`
 
-line 120
+line 126
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `f` vanishes on `y ≤ 1` and `f(y)·y^(−s−1)` is integrable on `(1, ∞)`, then the depth-`d` difference `dd^[d] f` has both properties and its transform over `(1, ∞)` is `(1 − 2^(−s))^d` times the transform of `f`.
 
 **Proves**
 
@@ -147,9 +151,11 @@ line 120
 <a name="JointSymbol-mellin_dd_iter"></a>
 ### `JointSymbol.mellin_dd_iter`
 
-line 136
+line 144
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1` and depth `d`, the transform of the depth-`d` difference of the cut row: `∫₁^∞ (dd^[d] cutG)(y)·y^(−s−1) dy = (1 − 2^(−s))^d · Phi s`.
 
 **Proves**
 
@@ -177,9 +183,11 @@ line 136
 <a name="JointSymbol-dd_iter_rule"></a>
 ### `JointSymbol.dd_iter_rule`
 
-line 153
+line 163
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The table's rule: the depth-`d+1` difference at `y` is the depth-`d` difference at `y` minus the depth-`d` difference at `y/2`.
 
 **Proves**
 
@@ -202,9 +210,11 @@ line 153
 <a name="JointSymbol-symPhi_principal_part"></a>
 ### `JointSymbol.symPhi_principal_part`
 
-line 158
+line 171
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For a zero `ρ` of `riemannZeta` with `ρ ≠ 0` and `ρ ≠ 1`, and any depth `d`: near `ρ` and off it, `(1 − 2^(−s))^d · Phi s` is a function analytic at `ρ` plus `(1 − 2^(−ρ))^d · A/(s − ρ)`, where `A = m/(ρ(1−ρ))` and `m` is the order of the zero.
 
 **Proves**
 

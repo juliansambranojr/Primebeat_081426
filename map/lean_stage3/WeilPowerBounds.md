@@ -2,7 +2,7 @@
 
 WeilPowerBounds — bounds on the odd transform read off its polynomial. Rung 5, fourth slice. 2026-09-06.
 
-19 theorems, 1 definition, 250 lines. Arrows are Lean's own record of what each proof uses.
+19 theorems, 1 definition, 256 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilOddPower`](../lean_stage3/WeilOddPower.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerBackground`](../lean_stage3/WeilPowerBackground.md), [`WeilPowerBridge`](../lean_stage3/WeilPowerBridge.md), [`WeilPowerGauss`](../lean_stage3/WeilPowerGauss.md)
@@ -87,7 +87,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="WeilPowerBounds-Ps"></a>
 ### `WeilPowerBounds.Ps`
 
-def · line 163
+def · line 167
 
 The real product `∏_{j=1}^{m+1}(s² + π²j²)`.
 
@@ -153,9 +153,11 @@ w.re ^ 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖
 <a name="WeilPowerBounds-QS_factor"></a>
 ### `WeilPowerBounds.QS_factor`
 
-line 57
+line 58
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The product `QS m w` written as `∏_{j<m+1} (w² + (π(j+1))²)`, each `π(j+1)` a real cast.
 
 **Proves**
 
@@ -180,7 +182,7 @@ QS m w = ∏ j ∈ Finset.range (m + 1), (w ^ 2 + ((Real.pi * ((j : ℝ) + 1) : 
 <a name="WeilPowerBounds-norm_QS_ge"></a>
 ### `WeilPowerBounds.norm_QS_ge`
 
-line 66
+line 67
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -211,9 +213,11 @@ line 66
 <a name="WeilPowerBounds-QS_ne_zero"></a>
 ### `WeilPowerBounds.QS_ne_zero`
 
-line 73
+line 75
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `Re w ≠ 0`, then the product `QS m w` is nonzero.
 
 **Proves**
 
@@ -242,9 +246,11 @@ QS m w ≠ 0
 <a name="WeilPowerBounds-cS_pos"></a>
 ### `WeilPowerBounds.cS_pos`
 
-line 80
+line 83
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The constant `cS m` of the closed form is positive.
 
 **Proves**
 
@@ -271,7 +277,7 @@ line 80
 <a name="WeilPowerBounds-S_eq_div-"></a>
 ### `WeilPowerBounds.S_eq_div'`
 
-line 85
+line 88
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -302,9 +308,11 @@ S m w = (cS m : ℂ) * Complex.sinh w / QS m w
 <a name="WeilPowerBounds-S_eq_div"></a>
 ### `WeilPowerBounds.S_eq_div`
 
-line 90
+line 94
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `Re w ≠ 0`, then the odd transform is the quotient `S m w = cS m · sinh w / QS m w`.
 
 **Proves**
 
@@ -328,7 +336,7 @@ S m w = (cS m : ℂ) * Complex.sinh w / QS m w
 <a name="WeilPowerBounds-norm_S_le-"></a>
 ### `WeilPowerBounds.norm_S_le'`
 
-line 95
+line 99
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -360,7 +368,7 @@ line 95
 <a name="WeilPowerBounds-norm_S_le"></a>
 ### `WeilPowerBounds.norm_S_le`
 
-line 104
+line 108
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -388,7 +396,7 @@ line 104
 <a name="WeilPowerBounds-norm_factor_ge_far"></a>
 ### `WeilPowerBounds.norm_factor_ge_far`
 
-line 109
+line 113
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -413,7 +421,7 @@ w.im ^ 2 / 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖
 <a name="WeilPowerBounds-norm_QS_ge_far"></a>
 ### `WeilPowerBounds.norm_QS_ge_far`
 
-line 121
+line 125
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -443,7 +451,7 @@ line 121
 <a name="WeilPowerBounds-norm_S_le_far"></a>
 ### `WeilPowerBounds.norm_S_le_far`
 
-line 142
+line 146
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -477,9 +485,11 @@ line 142
 <a name="WeilPowerBounds-Ps_pos"></a>
 ### `WeilPowerBounds.Ps_pos`
 
-line 166
+line 171
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real product `Ps m s` is positive for every real `s`.
 
 **Proves**
 
@@ -504,9 +514,11 @@ line 166
 <a name="WeilPowerBounds-QS_ofReal"></a>
 ### `WeilPowerBounds.QS_ofReal`
 
-line 172
+line 178
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At a real point `s` the product `QS m s` is the cast of the real product `Ps m s`.
 
 **Proves**
 
@@ -530,7 +542,7 @@ QS m (s : ℂ) = ((Ps m s : ℝ) : ℂ)
 <a name="WeilPowerBounds-S_real_eq"></a>
 ### `WeilPowerBounds.S_real_eq`
 
-line 178
+line 184
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -564,7 +576,7 @@ S m (s : ℂ) = ((cS m * Real.sinh s / Ps m s : ℝ) : ℂ)
 <a name="WeilPowerBounds-Ps_le"></a>
 ### `WeilPowerBounds.Ps_le`
 
-line 188
+line 194
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -592,7 +604,7 @@ Ps m s ≤ (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ^ (m + 1)
 <a name="WeilPowerBounds-sinh_ge"></a>
 ### `WeilPowerBounds.sinh_ge`
 
-line 203
+line 209
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -617,7 +629,7 @@ Real.exp s / 4 ≤ Real.sinh s
 <a name="WeilPowerBounds-S_real_ge"></a>
 ### `WeilPowerBounds.S_real_ge`
 
-line 217
+line 223
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

@@ -33,6 +33,7 @@ noncomputable section
 
 open Complex Filter Topology
 
+/-- If `s ≠ 0`, `s ≠ 1` and `ζ s ≠ 0`, then `Phi` is complex differentiable at `s`. -/
 theorem differentiableAt_Phi {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1)
     (hz : riemannZeta s ≠ 0) : DifferentiableAt ℂ LandauMellinG.Phi s := by
   have hd : DifferentiableAt ℂ (deriv riemannZeta) s :=
@@ -51,6 +52,8 @@ theorem differentiableAt_Phi {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1)
     ((differentiableAt_const (1 + (Real.eulerMascheroniConstant : ℂ))).div hD hs1)
   exact h
 
+/-- At a zero `ρ` of `ζ` with `ρ ≠ 0` and `ρ ≠ 1`, of order `m`, there is a function `h`
+analytic at `ρ` such that `Phi s = h s + m/(ρ(1−ρ))/(s−ρ)` for `s` near `ρ`, `s ≠ ρ`. -/
 theorem Phi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1) (hz : riemannZeta ρ = 0) :
     ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s
       = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) := by
@@ -118,6 +121,7 @@ theorem Phi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1) (hz : riem
     field_simp
     try ring
 
+/-- There is a function `h` analytic at `1` with `Phi s = h s` for `s` near `1`, `s ≠ 1`. -/
 theorem Phi_regular_at_one :
     ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s := by
   set N : ℂ → ℂ := fun s => -1 - deriv riemannZeta₁ s / riemannZeta₁ s

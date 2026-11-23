@@ -101,6 +101,7 @@ theorem exists_step_le {f : ℕ → ℝ} {B δ : ℝ}
 /-- The step size, `K'π²λ/h`. -/
 def δSel (K' lam h : ℝ) : ℝ := K' * Real.pi ^ 2 * lam / h
 
+/-- If `K'`, `lam` and `h` are positive, then the step size `δSel K' lam h` is positive. -/
 theorem δSel_pos {K' lam h : ℝ} (hK' : 0 < K') (hlam : 0 < lam) (hh : 0 < h) :
     0 < δSel K' lam h := by
   unfold δSel

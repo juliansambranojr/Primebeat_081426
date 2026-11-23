@@ -1,6 +1,6 @@
 # What `RHPull.smoothedChebyshev_sub_main_norm_le` rests on
 
-[`RHPull.smoothedChebyshev_sub_main_norm_le`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) in `lean_stage3/Stage3/LineBound.lean`, line 1423.
+[`RHPull.smoothedChebyshev_sub_main_norm_le`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) in `lean_stage3/Stage3/LineBound.lean`, line 1429.
 
 **Why.** THE ASSEMBLY — every contour piece summed at the RH abscissa. `pull_at_RH_abscissa` splits the smoothed Chebyshev into five pieces plus the main term; the triangle inequality and the four bounds close it. `B₁` and `B₉` come from PNT+'s `I1Bound` / `I9Bound`, which are `σ₁`-independent.
 

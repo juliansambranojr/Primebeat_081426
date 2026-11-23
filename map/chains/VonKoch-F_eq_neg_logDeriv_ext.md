@@ -1,6 +1,6 @@
 # What `VonKoch.F_eq_neg_logDeriv_ext` rests on
 
-[`VonKoch.F_eq_neg_logDeriv_ext`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv_ext) in `lean_stage3/Stage3/VonKochScaffold.lean`, line 445.
+[`VonKoch.F_eq_neg_logDeriv_ext`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv_ext) in `lean_stage3/Stage3/VonKochScaffold.lean`, line 453.
 
 **Why.** V3 — agreement extends to the punctured half-plane. From `F·ζ + ζ′ ≡ 0` on the region: divide by `ζ` where it does not vanish.
 

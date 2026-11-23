@@ -2,7 +2,7 @@
 
 WeilPowerSigma — the tail sum to order `1/m`: `σ(m) = Σ_{j≥m+2} 1/(π²j²)` bracketed sharply enough that `u m = (m+1)²σ(m)` is `(m+½)/π²` plus a correction of size `1/m`. Rung 5, thirteenth slice; worksheet § 13 block 13c. 2026-09-06.
 
-10 theorems, 1 definition, 256 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 1 definition, 257 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerPhase`](../lean_stage3/WeilPowerPhase.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerGeomGen`](../lean_stage3/WeilPowerGeomGen.md)
@@ -240,9 +240,11 @@ line 154
 <a name="WeilPowerSigma-u_def"></a>
 ### `WeilPowerSigma.u_def`
 
-line 189
+line 190
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The normalized tail sum unfolded: `u m = (m+1)²·sigma m`.
 
 **Proves**
 
@@ -267,7 +269,7 @@ u m = ((m : ℝ) + 1) ^ 2 * sigma m
 <a name="WeilPowerSigma-r_pos"></a>
 ### `WeilPowerSigma.r_pos`
 
-line 192
+line 193
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -300,7 +302,7 @@ line 192
 <a name="WeilPowerSigma-r_le"></a>
 ### `WeilPowerSigma.r_le`
 
-line 208
+line 209
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -333,7 +335,7 @@ u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 
 <a name="WeilPowerSigma-u_mono"></a>
 ### `WeilPowerSigma.u_mono`
 
-line 223
+line 224
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

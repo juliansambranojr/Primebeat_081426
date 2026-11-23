@@ -2,7 +2,7 @@
 
 LandauChebyshev — the bound on `G` of Chebyshev's order: `G y ≤ 8y` and `|G(y)| ≤ 8y(1 + log y)` for `y ≥ 1`. Block 5b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-5 theorems, 0 definitions, 118 lines. Arrows are Lean's own record of what each proof uses.
+5 theorems, 0 definitions, 123 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauCrude`](../lean_stage3/LandauCrude.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)
@@ -43,9 +43,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauChebyshev-rampSum_le_log"></a>
 ### `LandauChebyshev.rampSum_le_log`
 
-line 33
+line 34
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the ramp sum satisfies `rampSum y ≤ y·(log y + (log 4 + 4))`.
 
 **Proves**
 
@@ -68,9 +70,11 @@ LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))
 <a name="LandauChebyshev-log_four_lt_two"></a>
 ### `LandauChebyshev.log_four_lt_two`
 
-line 70
+line 72
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `log 4 < 2`.
 
 **Proves**
 
@@ -87,9 +91,11 @@ Real.log 4 < 2
 <a name="LandauChebyshev-G_le"></a>
 ### `LandauChebyshev.G_le`
 
-line 76
+line 79
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `G y ≤ 8·y`.
 
 **Proves**
 
@@ -118,9 +124,11 @@ LandauWindow.G y ≤ 8 * y
 <a name="LandauChebyshev-neg_le_G"></a>
 ### `LandauChebyshev.neg_le_G`
 
-line 84
+line 88
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `−(y·log y) ≤ G y`.
 
 **Proves**
 
@@ -147,9 +155,11 @@ line 84
 <a name="LandauChebyshev-abs_G_le_log"></a>
 ### `LandauChebyshev.abs_G_le_log`
 
-line 93
+line 98
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `|G y| ≤ 8·y·(1 + log y)`.
 
 **Proves**
 

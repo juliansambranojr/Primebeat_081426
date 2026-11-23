@@ -1,6 +1,6 @@
 # What `Stage3.stmtPsiWeak_of_RH_half` rests on
 
-[`Stage3.stmtPsiWeak_of_RH_half`](../lean_stage3/ThetaPsi.md#Stage3-stmtPsiWeak_of_RH_half) in `lean_stage3/Stage3/ThetaPsi.lean`, line 618.
+[`Stage3.stmtPsiWeak_of_RH_half`](../lean_stage3/ThetaPsi.md#Stage3-stmtPsiWeak_of_RH_half) in `lean_stage3/Stage3/ThetaPsi.lean`, line 624.
 
 **Why.** `StmtPsiWeak` at `k = 3` from RH, through the `θ`-dial. Same statement as `RHPull.stmtPsiWeak_of_RH`.
 

@@ -2,7 +2,7 @@
 
 # The contour shift — slices 2, 3, 4 (hEF's build order, entry 257) Written as the slice map for the contour shift, with named `sorry`s so the obligations were real Lean statements before proof. S2 and S4 are proved here; S3 is proved downstream (`EdgeBound`, `Glue`) and its placeholder is gone. Sorry-free since 2026-09-01.
 
-28 theorems, 1 definition, 1430 lines. Arrows are Lean's own record of what each proof uses.
+28 theorems, 1 definition, 1432 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`PerronKernel`](../lean_stage3/PerronKernel.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
@@ -167,9 +167,11 @@ The ordinate gap the pigeonhole delivers: crude-explicit, `1/(180·log T + 1060)
 <a name="ContourShift-zeroGap_pos"></a>
 ### `ContourShift.zeroGap_pos`
 
-line 45
+line 46
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T ≥ 2`, the ordinate gap `zeroGap T` is positive.
 
 **Proves**
 
@@ -194,9 +196,11 @@ line 45
 <a name="ContourShift-zeroGap_le"></a>
 ### `ContourShift.zeroGap_le`
 
-line 50
+line 52
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T ≥ 2`, the ordinate gap `zeroGap T` is at most `9/10`.
 
 **Proves**
 
@@ -221,7 +225,7 @@ zeroGap T ≤ 9/10
 <a name="ContourShift-zeta_analyticAt"></a>
 ### `ContourShift.zeta_analyticAt`
 
-line 57
+line 59
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -262,7 +266,7 @@ AnalyticAt ℂ riemannZeta ρ
 <a name="ContourShift-one_le_zeta_order"></a>
 ### `ContourShift.one_le_zeta_order`
 
-line 64
+line 66
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -292,7 +296,7 @@ line 64
 <a name="ContourShift-partner_zero"></a>
 ### `ContourShift.partner_zero`
 
-line 103
+line 105
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -319,7 +323,7 @@ line 103
 <a name="ContourShift-mem_zetaWindow"></a>
 ### `ContourShift.mem_zetaWindow`
 
-line 133
+line 135
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -353,7 +357,7 @@ line 133
 <a name="ContourShift-goodT_exists"></a>
 ### `ContourShift.goodT_exists`
 
-line 151
+line 153
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -391,7 +395,7 @@ line 151
 <a name="ContourShift-borderIntegrable_sum_poles"></a>
 ### `ContourShift.borderIntegrable_sum_poles`
 
-line 339
+line 341
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -417,7 +421,7 @@ RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w
 <a name="ContourShift-rectangleIntegral_sum_poles"></a>
 ### `ContourShift.rectangleIntegral_sum_poles`
 
-line 354
+line 356
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -446,7 +450,7 @@ RectangleIntegral' (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w = ∑ p ∈ P, A p
 <a name="ContourShift-residue_rectangle_multi"></a>
 ### `ContourShift.residue_rectangle_multi`
 
-line 387
+line 389
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -478,7 +482,7 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 <a name="ContourShift-residue_rectangle_of_local"></a>
 ### `ContourShift.residue_rectangle_of_local`
 
-line 416
+line 418
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -509,7 +513,7 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 <a name="ContourShift-analyticAt_dslope"></a>
 ### `ContourShift.analyticAt_dslope`
 
-line 498
+line 500
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -535,7 +539,7 @@ AnalyticAt ℂ (dslope f p) p
 <a name="ContourShift-div_sub_eq_dslope"></a>
 ### `ContourShift.div_sub_eq_dslope`
 
-line 504
+line 506
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -561,7 +565,7 @@ f s / (s - p) = f p / (s - p) + dslope f p s
 <a name="ContourShift-zeta_local_data"></a>
 ### `ContourShift.zeta_local_data`
 
-line 517
+line 519
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -594,7 +598,7 @@ line 517
 <a name="ContourShift-zeta_order_ne_top"></a>
 ### `ContourShift.zeta_order_ne_top`
 
-line 591
+line 593
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -626,7 +630,7 @@ analyticOrderAt riemannZeta ρ ≠ ⊤
 <a name="ContourShift-zeta_local_data_zero"></a>
 ### `ContourShift.zeta_local_data_zero`
 
-line 614
+line 616
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -658,7 +662,7 @@ line 614
 <a name="ContourShift-zeta_local_data_one"></a>
 ### `ContourShift.zeta_local_data_one`
 
-line 639
+line 641
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -685,7 +689,7 @@ line 639
 <a name="ContourShift-zeta_local_data_origin"></a>
 ### `ContourShift.zeta_local_data_origin`
 
-line 712
+line 714
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -714,7 +718,7 @@ line 712
 <a name="ContourShift-zeta_ne_zero_of_re_mem"></a>
 ### `ContourShift.zeta_ne_zero_of_re_mem`
 
-line 741
+line 743
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -749,7 +753,7 @@ riemannZeta w ≠ 0
 <a name="ContourShift-sq_mul_zeta_analyticAt_one"></a>
 ### `ContourShift.sq_mul_zeta_analyticAt_one`
 
-line 801
+line 803
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -771,7 +775,7 @@ AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1
 <a name="ContourShift-zeta_meromorphicOn"></a>
 ### `ContourShift.zeta_meromorphicOn`
 
-line 856
+line 858
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -799,7 +803,7 @@ MeromorphicOn riemannZeta U
 <a name="ContourShift-zeta_zeros_rectangle_finite"></a>
 ### `ContourShift.zeta_zeros_rectangle_finite`
 
-line 864
+line 866
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -837,7 +841,7 @@ line 864
 <a name="ContourShift-order_bridge"></a>
 ### `ContourShift.order_bridge`
 
-line 887
+line 889
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -865,7 +869,7 @@ line 887
 <a name="ContourShift-zeroPartialSum_eq_sum"></a>
 ### `ContourShift.zeroPartialSum_eq_sum`
 
-line 905
+line 907
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -896,7 +900,7 @@ Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : 
 <a name="ContourShift-analyticAt_conj_conj"></a>
 ### `ContourShift.analyticAt_conj_conj`
 
-line 939
+line 941
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -921,7 +925,7 @@ AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) ((starRin
 <a name="ContourShift-zeta_order_conj"></a>
 ### `ContourShift.zeta_order_conj`
 
-line 968
+line 970
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -953,7 +957,7 @@ analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riema
 <a name="ContourShift-zeta_order_reflect"></a>
 ### `ContourShift.zeta_order_reflect`
 
-line 1026
+line 1028
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -986,7 +990,7 @@ analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt r
 <a name="ContourShift-residue_identity"></a>
 ### `ContourShift.residue_identity`
 
-line 1217
+line 1219
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

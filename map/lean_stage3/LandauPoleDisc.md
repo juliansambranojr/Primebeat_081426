@@ -2,7 +2,7 @@
 
 LandauPoleDisc — the derivatives of `Phi` at a regular point, from the zeros of `ζ` in a disc around it. Block 3b2 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-1 theorem, 0 definitions, 114 lines. Arrows are Lean's own record of what each proof uses.
+1 theorem, 0 definitions, 118 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`LandauPoleSub`](../lean_stage3/LandauPoleSub.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)
@@ -35,9 +35,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauPoleDisc-Phi_taylor_on_disc"></a>
 ### `LandauPoleDisc.Phi_taylor_on_disc`
 
-line 36
+line 40
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `0 < R < R₂`, a closed disc of radius `R₂` about `c` inside `Re s > 0`, `c ≠ 1` and `ζ c ≠ 0`: there are a finite set `P`, exactly the zeros `ρ ≠ 1` of ζ in the open disc, and a `C` such that for every `k` the `k`-th derivative of `Phi` at `c` is within `k!·C/R^k` of `Σ_{ρ ∈ P} m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)`, with `m_ρ` the order of the zero.
 
 **Proves**
 

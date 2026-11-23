@@ -1,6 +1,8 @@
 # What `WeilPower.K_one_mul` rests on
 
-[`WeilPower.K_one_mul`](../lean_stage3/WeilPower.md#WeilPower-K_one_mul) in `lean_stage3/Stage3/WeilPower.lean`, line 280.
+[`WeilPower.K_one_mul`](../lean_stage3/WeilPower.md#WeilPower-K_one_mul) in `lean_stage3/Stage3/WeilPower.lean`, line 300.
+
+**Why.** The closed form at `m = 1`: `K 1 w · w(w² + π²) = π²·sinh w` at every complex `w`.
 
 **Proves**
 

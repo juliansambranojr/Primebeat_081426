@@ -2,7 +2,7 @@
 
 # Elephant.lean — the one object, derived from nothing Standalone. This file imports Mathlib and imports no module of this development. It defines
 
-29 theorems, 7 definitions, 665 lines. Arrows are Lean's own record of what each proof uses.
+29 theorems, 7 definitions, 667 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** nothing
@@ -94,7 +94,7 @@ The table is a difference of prime counts. `Δ^d` applied to `n ↦ π(bⁿ)` is
 <a name="Elephant-bdiff"></a>
 ### `Elephant.bdiff`
 
-def · line 230
+def · line 232
 
 A backward difference on a row indexed by `ℤ`.
 
@@ -104,7 +104,7 @@ A backward difference on a row indexed by `ℤ`.
 <a name="Elephant-mode"></a>
 ### `Elephant.mode`
 
-def · line 233
+def · line 235
 
 The mode `r ↦ b ^ (r ρ)`.
 
@@ -114,7 +114,7 @@ The mode `r ↦ b ^ (r ρ)`.
 <a name="Elephant-IsModeRow"></a>
 ### `Elephant.IsModeRow`
 
-def · line 283
+def · line 285
 
 The explicit-formula hypothesis, named and visible. A row is a mode row when its values on the `b`-ladder are a finite superposition of `b^(rρ)`. This is NOT satisfiable by `π` with a finite index set — `π` is a step function, and the explicit formula is an infinite sum with a main term. Trying to discharge it is what showed that. It is kept because it is the correct shape of the bridge and because `coupling_coeff` below reaches the same base law by a route that needs no such hypothesis.
 
@@ -125,7 +125,7 @@ The explicit-formula hypothesis, named and visible. A row is a mode row when its
 <a name="Elephant-primeRowZ"></a>
 ### `Elephant.primeRowZ`
 
-def · line 288
+def · line 290
 
 The prime-counting row on the `b`-ladder, `r ↦ π(b^r)`.
 
@@ -135,7 +135,7 @@ The prime-counting row on the `b`-ladder, `r ↦ π(b^r)`.
 <a name="Elephant-primeIndicator"></a>
 ### `Elephant.primeIndicator`
 
-def · line 451
+def · line 453
 
 The prime indicator, whose partial sums are `π`.
 
@@ -394,9 +394,11 @@ line 168
 <a name="Elephant-primeTable_eq_stencil"></a>
 ### `Elephant.primeTable_eq_stencil`
 
-line 181
+line 183
 
 **Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
+**Why.** The `d`-fold forward difference of the prime row `n ↦ π(bⁿ)` at `r` equals the alternating binomial stencil `∑ k ≤ d, (−1)^(d−k)·C(d,k)·π(b^(r+k))`.
 
 **Proves**
 
@@ -418,7 +420,7 @@ line 181
 <a name="Elephant-sym_ne_zero_on_critical_line"></a>
 ### `Elephant.sym_ne_zero_on_critical_line`
 
-line 194
+line 196
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -446,7 +448,7 @@ Sym b ((1 : ℂ)/2 + γ * Complex.I) ≠ 0
 <a name="Elephant-zeta_zero_weight_band"></a>
 ### `Elephant.zeta_zero_weight_band`
 
-line 209
+line 211
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -476,7 +478,7 @@ line 209
 <a name="Elephant-bdiff_mode"></a>
 ### `Elephant.bdiff_mode`
 
-line 236
+line 238
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -508,7 +510,7 @@ bdiff (mode b ρ) r = Sym b ρ * mode b ρ r
 <a name="Elephant-bdiff_iter_mode"></a>
 ### `Elephant.bdiff_iter_mode`
 
-line 245
+line 247
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -538,7 +540,7 @@ line 245
 <a name="Elephant-bdiff_iter_modeSum"></a>
 ### `Elephant.bdiff_iter_modeSum`
 
-line 259
+line 261
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -572,7 +574,7 @@ line 259
 <a name="Elephant-primeTable_eq_sym_weighted"></a>
 ### `Elephant.primeTable_eq_sym_weighted`
 
-line 296
+line 298
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -602,7 +604,7 @@ line 296
 <a name="Elephant-logDeriv_zeta_coeffs"></a>
 ### `Elephant.logDeriv_zeta_coeffs`
 
-line 313
+line 315
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -627,7 +629,7 @@ LSeries (fun n => (vonMangoldt n : ℂ)) s = -deriv riemannZeta s / riemannZeta 
 <a name="Elephant-filter_couples_iff_isPrimePow"></a>
 ### `Elephant.filter_couples_iff_isPrimePow`
 
-line 328
+line 330
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -650,7 +652,7 @@ vonMangoldt (b ^ k) ≠ 0 ↔ IsPrimePow b
 <a name="Elephant-coupling_coeff"></a>
 ### `Elephant.coupling_coeff`
 
-line 348
+line 350
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -674,7 +676,7 @@ line 348
 <a name="Elephant-natCast_mul_cpow"></a>
 ### `Elephant.natCast_mul_cpow`
 
-line 386
+line 388
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -701,7 +703,7 @@ line 386
 <a name="Elephant-cpow_neg_mul_lseries"></a>
 ### `Elephant.cpow_neg_mul_lseries`
 
-line 401
+line 403
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -730,7 +732,7 @@ line 401
 <a name="Elephant-sym_mul_lseries"></a>
 ### `Elephant.sym_mul_lseries`
 
-line 431
+line 433
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -761,7 +763,7 @@ Sym ((b : ℕ) : ℝ) s * LSeries a s = LSeries a s - LSeries (fun m => if b ∣
 <a name="Elephant-sym_mul_logDeriv_zeta"></a>
 ### `Elephant.sym_mul_logDeriv_zeta`
 
-line 441
+line 443
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -790,7 +792,7 @@ Sym (b : ℝ) s * (-deriv riemannZeta s / riemannZeta s) = LSeries (fun n => (vo
 <a name="Elephant-sum_primeIndicator"></a>
 ### `Elephant.sum_primeIndicator`
 
-line 454
+line 456
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -817,7 +819,7 @@ line 454
 <a name="Elephant-sum_shift"></a>
 ### `Elephant.sum_shift`
 
-line 461
+line 463
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -844,7 +846,7 @@ line 461
 <a name="Elephant-summatory_sym"></a>
 ### `Elephant.summatory_sym`
 
-line 485
+line 487
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -873,7 +875,7 @@ line 485
 <a name="Elephant-primeCount_backward_diff"></a>
 ### `Elephant.primeCount_backward_diff`
 
-line 493
+line 495
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -902,7 +904,7 @@ line 493
 <a name="Elephant-zeta_ne_zero_of_re_eq_zero"></a>
 ### `Elephant.zeta_ne_zero_of_re_eq_zero`
 
-line 507
+line 509
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -927,7 +929,7 @@ riemannZeta ρ ≠ 0
 <a name="Elephant-filter_ne_zero_at_zeta_zero"></a>
 ### `Elephant.filter_ne_zero_at_zeta_zero`
 
-line 534
+line 536
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

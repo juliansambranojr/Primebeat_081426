@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · a description on every theorem that had none
+
+    DONE        a docstring above each of the 325 theorems the map listed
+                with no description, in the three Lean trees; the three
+                ported copies in `Stage3/TablePort` given the same lines
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The second of the
+                items. Written by four workers from the statements; each
+                says what its theorem states and no more
+    DEPENDS     the three trees build; `check_port.py`, `check_weld.py`,
+                `theorem_index.py`, `lean_map.py --check`
+    OUT         any change to a statement or a proof
+    OUTCOME     463 lines added, no existing line changed; three trees
+                build; the index reads 0 theorems with no docstring claim
+
 ### 2026-11-22 · joints T2 and T3: `Stage3/PiZeros.lean` (block T2) and `Stage3/CellRows.lean` (block T3a)
 
     DONE        T2. `pi_eq_zero_sum`: for `x ≥ 2` and any height, the count

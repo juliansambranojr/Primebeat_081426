@@ -186,6 +186,7 @@ theorem sigma_ge_amgm (m : ℕ) :
 /-- The normalized tail sum `u m = (m+1)²σ(m)`, the exponent's shape at `λ = 1`. -/
 def u (m : ℕ) : ℝ := ((m : ℝ) + 1) ^ 2 * sigma m
 
+/-- The normalized tail sum unfolded: `u m = (m+1)²·sigma m`. -/
 theorem u_def (m : ℕ) : u m = ((m : ℝ) + 1) ^ 2 * sigma m := rfl
 
 /-- **The correction is positive**, at least `1/(2π²(m+2)²)`. -/

@@ -1,6 +1,6 @@
 # What `WeilOffLine.offline_term_le_explicit` rests on
 
-[`WeilOffLine.offline_term_le_explicit`](../lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) in `lean_stage3/Stage3/WeilOffLine.lean`, line 119.
+[`WeilOffLine.offline_term_le_explicit`](../lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) in `lean_stage3/Stage3/WeilOffLine.lean`, line 120.
 
 **Why.** The same with unit 0319's lobe bound in place of the lobe: for `γ > 0`, if `(2π + π²)·cosh(εh)/(2γh)² ≤ Σ(εh)` then `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2(2π + π²)·cosh(εh)/(2γh)²)`.
 

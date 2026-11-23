@@ -54,6 +54,7 @@ theorem norm_factor_ge (w : ℂ) (a : ℝ) : w.re ^ 2 ≤ ‖w ^ 2 + (a : ℂ) ^
     _ ≤ ‖w - Complex.I * (a : ℂ)‖ * ‖w + Complex.I * (a : ℂ)‖ :=
         mul_le_mul h1 h2 (abs_nonneg _) (norm_nonneg _)
 
+/-- The product `QS m w` written as `∏_{j<m+1} (w² + (π(j+1))²)`, each `π(j+1)` a real cast. -/
 theorem QS_factor (m : ℕ) (w : ℂ) :
     QS m w = ∏ j ∈ Finset.range (m + 1), (w ^ 2 + ((Real.pi * ((j : ℝ) + 1) : ℝ) : ℂ) ^ 2) := by
   unfold QS
@@ -70,6 +71,7 @@ theorem norm_QS_ge (m : ℕ) (w : ℂ) : (w.re ^ 2) ^ (m + 1) ≤ ‖QS m w‖ :
     _ ≤ ∏ j ∈ Finset.range (m + 1), ‖w ^ 2 + ((Real.pi * ((j : ℝ) + 1) : ℝ) : ℂ) ^ 2‖ :=
         Finset.prod_le_prod (fun _ _ => sq_nonneg _) (fun j _ => norm_factor_ge w _)
 
+/-- If `Re w ≠ 0`, then the product `QS m w` is nonzero. -/
 theorem QS_ne_zero {m : ℕ} {w : ℂ} (hw : w.re ≠ 0) : QS m w ≠ 0 := by
   intro h0
   have h := norm_QS_ge m w
@@ -77,6 +79,7 @@ theorem QS_ne_zero {m : ℕ} {w : ℂ} (hw : w.re ≠ 0) : QS m w ≠ 0 := by
   have : 0 < (w.re ^ 2) ^ (m + 1) := by positivity
   linarith
 
+/-- The constant `cS m` of the closed form is positive. -/
 theorem cS_pos (m : ℕ) : 0 < cS m := by
   unfold cS
   positivity
@@ -87,6 +90,7 @@ theorem S_eq_div' {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
   rw [eq_div_iff hne]
   exact S_mul_QS m w
 
+/-- If `Re w ≠ 0`, then the odd transform is the quotient `S m w = cS m · sinh w / QS m w`. -/
 theorem S_eq_div {m : ℕ} {w : ℂ} (hw : w.re ≠ 0) :
     S m w = (cS m : ℂ) * Complex.sinh w / QS m w :=
   S_eq_div' (QS_ne_zero hw)
@@ -163,12 +167,14 @@ theorem norm_S_le_far {m : ℕ} {w : ℂ}
 def Ps (m : ℕ) (s : ℝ) : ℝ :=
   ∏ j ∈ Finset.range (m + 1), (s ^ 2 + Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2)
 
+/-- The real product `Ps m s` is positive for every real `s`. -/
 theorem Ps_pos (m : ℕ) (s : ℝ) : 0 < Ps m s := by
   unfold Ps
   apply Finset.prod_pos
   intro j _
   positivity
 
+/-- At a real point `s` the product `QS m s` is the cast of the real product `Ps m s`. -/
 theorem QS_ofReal (m : ℕ) (s : ℝ) : QS m (s : ℂ) = ((Ps m s : ℝ) : ℂ) := by
   unfold QS Ps
   push_cast

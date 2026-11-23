@@ -126,17 +126,17 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `composite_cell_20_6` | The inverse of the deep zero. | propext | **UNTAGGED** |
-| `share_add` | The two shares add to one, at every cell of any pair of rows that partition the rungs. | ℂ floor | **UNTAGGED** |
-| `share_mirror` | Passing to the composite table is `x ↦ 1 − x` on shares. | ℂ floor | **UNTAGGED** |
+| `share_add` | The two shares add to one, at every cell of any pair of rows that partition the rungs. | ℂ floor | `PINS.md` |
+| `share_mirror` | Passing to the composite table is `x ↦ 1 − x` on shares. | ℂ floor | `PINS.md`, `SECTIONS.md` |
 | `share_eq_iff_half` | The two shares are equal exactly at one half. | ℂ floor | **UNTAGGED** |
-| `deep_zero_share` | At the deep zero the prime share is zero. | ℂ floor | **UNTAGGED** |
-| `deep_zero_inverse_share` | At the deep zero the composite share is one. | ℂ floor | **UNTAGGED** |
-| `deep_zero_on_outer_circle` | The deep zero is on the outer circle, where the zeros of the table's own symbol are. | ℂ floor | **UNTAGGED** |
-| `deep_zero_inverse_on_inner_circle` | Its inverse is on the inner circle. | ℂ floor | **UNTAGGED** |
-| `share_pair_product` | At every cell the two images multiply to `b^(−1)`. | ℂ floor | **UNTAGGED** |
-| `share_on_middle_circle_iff` | The middle circle is share one half. | ℂ floor | **UNTAGGED** |
-| `share_in_band` | The band of shares. | ℂ floor | **UNTAGGED** |
-| `band_in_annulus` | The band between the circles. | ℂ floor | **UNTAGGED** |
+| `deep_zero_share` | At the deep zero the prime share is zero. | ℂ floor | `PINS.md` |
+| `deep_zero_inverse_share` | At the deep zero the composite share is one. | ℂ floor | `PINS.md` |
+| `deep_zero_on_outer_circle` | The deep zero is on the outer circle, where the zeros of the table's own symbol are. | ℂ floor | `PINS.md`, `SECTIONS.md` |
+| `deep_zero_inverse_on_inner_circle` | Its inverse is on the inner circle. | ℂ floor | `PINS.md`, `SECTIONS.md` |
+| `share_pair_product` | At every cell the two images multiply to `b^(−1)`. | ℂ floor | `PINS.md`, `SECTIONS.md` |
+| `share_on_middle_circle_iff` | The middle circle is share one half. | ℂ floor | `PINS.md`, `SECTIONS.md` |
+| `share_in_band` | The band of shares. | ℂ floor | `PINS.md` |
+| `band_in_annulus` | The band between the circles. | ℂ floor | `PINS.md` |
 | `deep_cell_15_6` | A differenced cell can be negative: (15,6) is `−112`, computed. | **none** | **UNTAGGED** |
 | `share_15_6_neg` | So its share is below the band. | ℂ floor | **UNTAGGED** |
 
@@ -153,7 +153,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `sym_eq_zero_iff` | The lattice. | ℂ floor | **UNTAGGED** |
 | `lattice_step` | The step. | ℂ floor | `lab_notebook_2.md` |
 | `sym_tprod_eq_zeta` | The definition is not an analogy. | ℂ floor | `lab_notebook_2.md` |
-| `primeTable_eq_stencil` |  | ℂ floor | **UNTAGGED** |
+| `primeTable_eq_stencil` | The `d`-fold forward difference of the prime row `n ↦ π(bⁿ)` at `r` equals the alternating binomial stencil `∑ k ≤ d, (−1)^(d−k)·C(d,k)·π(b^(r+k))`. | ℂ floor | **UNTAGGED** |
 | `sym_ne_zero_on_critical_line` | The filter and ζ's nontrivial zeros never collide. | ℂ floor | **UNTAGGED** |
 | `zeta_zero_weight_band` | The band, at a zeta zero on the critical line, to every depth. | ℂ floor | **UNTAGGED** |
 | `bdiff_mode` | One difference multiplies a mode by `Sym`. | ℂ floor | **UNTAGGED** |
@@ -232,13 +232,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `f2x_contDiffOn` |  | ℂ floor | **UNTAGGED** |
-| `f2x_continuousOn` |  | ℂ floor | **UNTAGGED** |
-| `F_hasDerivAt` |  | ℂ floor | **UNTAGGED** |
-| `F_contDiffOn` |  | ℂ floor | **UNTAGGED** |
-| `liRow_contDiff` |  | ℂ floor | **UNTAGGED** |
-| `liRow_eq` |  | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
-| `liRow_hasDerivAt` |  | ℂ floor | **UNTAGGED** |
+| `f2x_contDiffOn` | Helper: the integrand `f2x` (`2^x/x`) is smooth on the positive half-line. | ℂ floor | **UNTAGGED** |
+| `f2x_continuousOn` | Helper: the integrand `f2x` is continuous on the positive half-line. | ℂ floor | **UNTAGGED** |
+| `F_hasDerivAt` | For `x > 0`, the antiderivative `F` has derivative `f2x x` at `x`. | ℂ floor | **UNTAGGED** |
+| `F_contDiffOn` | The antiderivative `F` is smooth on the positive half-line. | ℂ floor | **UNTAGGED** |
+| `liRow_contDiff` | The interpolant `liRow` is smooth on the whole real line. | ℂ floor | **UNTAGGED** |
+| `liRow_eq` | For `x ≥ 1/2`, the interpolant equals the antiderivative: `liRow x = 2/log 2 + ∫ t in 1..x, f2x t`. | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
+| `liRow_hasDerivAt` | For `x > 1/2`, the interpolant `liRow` has derivative `f2x x` at `x`. | ℂ floor | **UNTAGGED** |
 | `tableFrom_ne_zero_of_relErr_liRow` | The gate with nothing assumed about the main term. | ℂ floor | `NOTEPAD.md`, `SECTIONS.md` |
 
 ## Isogeny (9)
@@ -356,7 +356,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `backward_difference_pow` | The same step inside ℤ, where the table lives: `(1 − b⁻¹)·b^(r) = (b−1)·b^(r−1)`. | propext | `lab_notebook_2.md` |
 | `tableFrom_of_geometric` | The collapse. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_add_window` | Linearity, localised. | propext | `lab_notebook_2.md` |
-| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `CONTEXT.md`, `NOTEPAD.md`, `README.md` +5 |
+| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `CONTEXT.md`, `NOTEPAD.md`, `PINS.md` +6 |
 | `composite_of_prime_zero` | I5, the pole. | propext, Quot.sound | `lab_notebook_2.md` |
 | `coeff_eq_one_iff_base_two` | The corollary. | propext, Quot.sound | `lab_notebook_2.md` |
 | `total_eq_pow_iff_base_two` | The corollary, in the identity's own terms. | propext, Quot.sound | `lab_notebook_2.md` |
@@ -406,7 +406,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `cell_ne_zero_of_route` |  | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
+| `cell_ne_zero_of_route` | If `80 ≤ r`, the integer rows `N (r - k)` for `k ≤ 7` equal the backward differences of `f`, and `f` sits within relative error `ρ < (log 2)^6/(2·r·3^ | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
 
 ## Schoenfeld (2)
 
@@ -488,7 +488,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `inversion_fixes_circle` | The functional equation is inversion in the critical circle, as a theorem. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `rpow_left_inj` | For `b > 1` the real power is injective in the exponent. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `zmap_ne_zero` | The image of `s` under the `z`-map is never zero. | ℂ floor | `lab_notebook_2.md` |
-| `on_critical_line_iff_norm` | The critical line is exactly the fixed circle. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+| `on_critical_line_iff_norm` | The critical line is exactly the fixed circle. | ℂ floor | `NOTEPAD.md`, `PINS.md`, `lab_notebook_2.md` |
 | `on_critical_line_iff_inversion_fixed` | RH's condition, as a fixed point of the inversion. | ℂ floor | `lab_notebook_2.md` |
 | `riemannHypothesis_iff_zeros_inversion_fixed` | The Riemann hypothesis, restated on the torus. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `norm_zmap_zero_line` | `Re s = 0` lands on the unit circle. | ℂ floor | `lab_notebook_2.md` |
@@ -537,7 +537,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. | **none** | `lab_notebook_2.md` |
 | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
 | `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
-| `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `lab_notebook_2.md` |
+| `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `PINS.md`, `lab_notebook_2.md` |
 | `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `CONTEXT.md`, `README.md`, `SECTIONS.md` +2 |
 | `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | `lab_notebook_2.md` |
 | `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |

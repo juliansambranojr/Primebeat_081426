@@ -1,6 +1,6 @@
 # What `Stage3.I37_power_form_theta` rests on
 
-[`Stage3.I37_power_form_theta`](../lean_stage3/ThetaPull.md#Stage3-I37_power_form_theta) in `lean_stage3/Stage3/ThetaPull.lean`, line 179.
+[`Stage3.I37_power_form_theta`](../lean_stage3/ThetaPull.md#Stage3-I37_power_form_theta) in `lean_stage3/Stage3/ThetaPull.lean`, line 182.
 
 **Why.** The vertical segment in `X^θ log²X` form. `RHPull.I37_sqrt_form` with `X^θ` where it had `√X`.
 

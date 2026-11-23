@@ -2,7 +2,7 @@
 
 WeilPowerGauss — the odd transform in the Gaussian regime, through Euler's product for `sinh`. Rung 5, sixth slice. 2026-09-06.
 
-25 theorems, 4 definitions, 565 lines. Arrows are Lean's own record of what each proof uses.
+25 theorems, 4 definitions, 577 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerBounds`](../lean_stage3/WeilPowerBounds.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerCompare`](../lean_stage3/WeilPowerCompare.md), [`WeilPowerSharp`](../lean_stage3/WeilPowerSharp.md)
@@ -132,7 +132,7 @@ def · line 84
 <a name="WeilPowerGauss-T"></a>
 ### `WeilPowerGauss.T`
 
-def · line 164
+def · line 169
 
 The tail of Euler's product from `m+1` to `n`.
 
@@ -143,7 +143,7 @@ The tail of Euler's product from `m+1` to `n`.
 <a name="WeilPowerGauss-Tr"></a>
 ### `WeilPowerGauss.Tr`
 
-def · line 444
+def · line 455
 
 The tail at real `s` is a real product.
 
@@ -182,9 +182,11 @@ Tendsto (fun n : ℕ => w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 (Comple
 <a name="WeilPowerGauss-D_pos"></a>
 ### `WeilPowerGauss.D_pos`
 
-line 86
+line 87
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The product `D m` is positive.
 
 **Proves**
 
@@ -207,9 +209,11 @@ line 86
 <a name="WeilPowerGauss-D_eq"></a>
 ### `WeilPowerGauss.D_eq`
 
-line 92
+line 94
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The product `D m` in closed form: `D m = π^(2(m+1))·((m+1)!)²`.
 
 **Proves**
 
@@ -232,7 +236,7 @@ D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ 2
 <a name="WeilPowerGauss-QS_eq_D_mul"></a>
 ### `WeilPowerGauss.QS_eq_D_mul`
 
-line 102
+line 104
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -260,7 +264,7 @@ QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j
 <a name="WeilPowerGauss-cprime_eq"></a>
 ### `WeilPowerGauss.cprime_eq`
 
-line 115
+line 117
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -290,9 +294,11 @@ cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * ((m : ℝ) + 
 <a name="WeilPowerGauss-cprime_le"></a>
 ### `WeilPowerGauss.cprime_le`
 
-line 138
+line 141
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The constant `cS m / D m` is at most `4/(π(m+1))`.
 
 **Proves**
 
@@ -318,9 +324,11 @@ cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))
 <a name="WeilPowerGauss-cprime_ge"></a>
 ### `WeilPowerGauss.cprime_ge`
 
-line 148
+line 152
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The constant `cS m / D m` is at least `4/(π(m+1)(2m+3))`.
 
 **Proves**
 
@@ -346,9 +354,11 @@ line 148
 <a name="WeilPowerGauss-cprime_pos"></a>
 ### `WeilPowerGauss.cprime_pos`
 
-line 160
+line 165
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The constant `cS m / D m` is positive.
 
 **Proves**
 
@@ -381,7 +391,7 @@ line 160
 <a name="WeilPowerGauss-tendsto_S"></a>
 ### `WeilPowerGauss.tendsto_S`
 
-line 167
+line 172
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -422,7 +432,7 @@ Tendsto (fun n : ℕ => ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S
 <a name="WeilPowerGauss-norm_one_add_le"></a>
 ### `WeilPowerGauss.norm_one_add_le`
 
-line 187
+line 192
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -447,7 +457,7 @@ line 187
 <a name="WeilPowerGauss-exp_le_one_add"></a>
 ### `WeilPowerGauss.exp_le_one_add`
 
-line 212
+line 217
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -474,7 +484,7 @@ Real.exp (x - x ^ 2) ≤ 1 + x
 <a name="WeilPowerGauss-sum_inv_sq_le"></a>
 ### `WeilPowerGauss.sum_inv_sq_le`
 
-line 237
+line 242
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -501,7 +511,7 @@ line 237
 <a name="WeilPowerGauss-sum_inv_sq_ge"></a>
 ### `WeilPowerGauss.sum_inv_sq_ge`
 
-line 266
+line 271
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -527,7 +537,7 @@ line 266
 <a name="WeilPowerGauss-sum_inv_pow4_le"></a>
 ### `WeilPowerGauss.sum_inv_pow4_le`
 
-line 286
+line 291
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -558,7 +568,7 @@ line 286
 <a name="WeilPowerGauss-norm_x_le"></a>
 ### `WeilPowerGauss.norm_x_le`
 
-line 312
+line 317
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -586,9 +596,11 @@ line 312
 <a name="WeilPowerGauss-x_re"></a>
 ### `WeilPowerGauss.x_re`
 
-line 327
+line 333
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the real part of a factor's argument `w²/(π²(j+1)²)` is `Re(w²)/(π²(j+1)²)`.
 
 **Proves**
 
@@ -610,9 +622,11 @@ line 327
 <a name="WeilPowerGauss-x_norm"></a>
 ### `WeilPowerGauss.x_norm`
 
-line 333
+line 340
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the norm of a factor's argument `w²/(π²(j+1)²)` is `‖w‖²/(π²(j+1)²)`.
 
 **Proves**
 
@@ -635,7 +649,7 @@ line 333
 <a name="WeilPowerGauss-norm_T_le"></a>
 ### `WeilPowerGauss.norm_T_le`
 
-line 340
+line 347
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -672,9 +686,11 @@ line 340
 <a name="WeilPowerGauss-norm_T_le_pos"></a>
 ### `WeilPowerGauss.norm_T_le_pos`
 
-line 366
+line 375
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `‖w‖² ≤ π²(m+2)²/2` and `0 ≤ Re(w²)`, then the tail product `T m w n` has norm at most `exp(Re(w²)/(π²(m+1)) + ‖w‖⁴/(π⁴(m+1)³))` for every `n`.
 
 **Proves**
 
@@ -704,9 +720,11 @@ line 366
 <a name="WeilPowerGauss-norm_T_le_neg"></a>
 ### `WeilPowerGauss.norm_T_le_neg`
 
-line 382
+line 393
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `‖w‖² ≤ π²(m+2)²/2`, `Re(w²) ≤ 0` and `2m+3 ≤ n`, then the tail product `T m w n` has norm at most `exp(Re(w²)·(m+2)/(π²(2m+3)²) + ‖w‖⁴/(π⁴(m+1)³))`.
 
 **Proves**
 
@@ -736,7 +754,7 @@ line 382
 <a name="WeilPowerGauss-norm_S_le_gauss_pos"></a>
 ### `WeilPowerGauss.norm_S_le_gauss_pos`
 
-line 411
+line 422
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -772,7 +790,7 @@ line 411
 <a name="WeilPowerGauss-norm_S_le_gauss_neg"></a>
 ### `WeilPowerGauss.norm_S_le_gauss_neg`
 
-line 427
+line 438
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -808,9 +826,11 @@ line 427
 <a name="WeilPowerGauss-T_ofReal"></a>
 ### `WeilPowerGauss.T_ofReal`
 
-line 447
+line 459
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At a real point `s` the tail product `T m s n` is the cast of the real tail `Tr m s n`.
 
 **Proves**
 
@@ -838,7 +858,7 @@ T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)
 <a name="WeilPowerGauss-Tr_ge"></a>
 ### `WeilPowerGauss.Tr_ge`
 
-line 453
+line 465
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -871,7 +891,7 @@ Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2) - s 
 <a name="WeilPowerGauss-S_real_ge_gauss"></a>
 ### `WeilPowerGauss.S_real_ge_gauss`
 
-line 515
+line 527
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

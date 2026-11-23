@@ -2,7 +2,7 @@
 
 WeilBridge — the bridge to primes: the zero side of Weil's form at a test function of Stage 3's class equals the prime side, proved against zeta23's explicit formula. The third tree, `lean_bridge/`. 2026-11-22. The statement is unit 0379's; the choice of a third tree is Julian's of the same day.
 
-16 theorems, 9 definitions, 269 lines. Arrows are Lean's own record of what each proof uses.
+16 theorems, 9 definitions, 278 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Bridge`](../lean_bridge/Bridge.md)
@@ -113,7 +113,7 @@ zeta23's `literatureRHS`, written out.
 <a name="Bridge-ft"></a>
 ### `Bridge.ft`
 
-def · line 209
+def · line 216
 
 The transform `∫ k(u) e^{izu} du`; zeta23's `paperFT`.
 
@@ -123,7 +123,7 @@ The transform `∫ k(u) e^{izu} du`; zeta23's `paperFT`.
 <a name="Bridge-kOfM"></a>
 ### `Bridge.kOfM`
 
-def · line 213
+def · line 220
 
 `k = F ⋆ F̃` in Mathlib's convolution; zeta23's `weilTest` at `F = tiltF G`.
 
@@ -134,7 +134,7 @@ def · line 213
 <a name="Bridge-primeSideM"></a>
 ### `Bridge.primeSideM`
 
-def · line 218
+def · line 225
 
 The prime side: the pole terms, minus the prime sum, plus the archimedean integral.
 
@@ -145,7 +145,7 @@ The prime side: the pole terms, minus the prime sum, plus the archimedean integr
 <a name="Bridge-StmtWeilBridge"></a>
 ### `Bridge.StmtWeilBridge`
 
-def · line 226
+def · line 233
 
 The bridge, as a statement.
 
@@ -158,9 +158,11 @@ The bridge, as a statement.
 <a name="Bridge-primeSide_eq"></a>
 ### `Bridge.primeSide_eq`
 
-line 76
+line 77
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The prime side written out here equals zeta23's `literatureRHS`.
 
 **Proves**
 
@@ -183,9 +185,11 @@ primeSide k = literatureRHS k
 <a name="Bridge-tiltF_im"></a>
 ### `Bridge.tiltF_im`
 
-line 78
+line 80
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `G` is real-valued, then the tilted function `tiltF G` is real-valued.
 
 **Proves**
 
@@ -209,9 +213,11 @@ line 78
 <a name="Bridge-contDiff_tiltF"></a>
 ### `Bridge.contDiff_tiltF`
 
-line 83
+line 86
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `G` is `C¹`, then the tilted function `tiltF G` is `C¹`.
 
 **Proves**
 
@@ -235,9 +241,11 @@ ContDiff ℝ 1 (tiltF G)
 <a name="Bridge-hasCompactSupport_tiltF"></a>
 ### `Bridge.hasCompactSupport_tiltF`
 
-line 88
+line 92
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `G` has compact support, then the tilted function `tiltF G` has compact support.
 
 **Proves**
 
@@ -262,7 +270,7 @@ HasCompactSupport (tiltF G)
 <a name="Bridge-laplace_neg_eq"></a>
 ### `Bridge.laplace_neg_eq`
 
-line 95
+line 99
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -290,7 +298,7 @@ laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)
 <a name="Bridge-laplace_reflect_eq"></a>
 ### `Bridge.laplace_reflect_eq`
 
-line 108
+line 112
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -318,7 +326,7 @@ laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)
 <a name="Bridge-conj_paperFT_conj"></a>
 ### `Bridge.conj_paperFT_conj`
 
-line 121
+line 125
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -344,7 +352,7 @@ conj (paperFT F (conj z)) = paperFT F (-z)
 <a name="Bridge-contDiff_two_convolution"></a>
 ### `Bridge.contDiff_two_convolution`
 
-line 138
+line 142
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -372,9 +380,11 @@ ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)
 <a name="Bridge-contDiff_tilde"></a>
 ### `Bridge.contDiff_tilde`
 
-line 159
+line 164
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `g` is `C¹`, then its conjugate reflection `tilde g` is `C¹`.
 
 **Proves**
 
@@ -395,9 +405,11 @@ ContDiff ℝ 1 (tilde g)
 <a name="Bridge-contDiff_kOf"></a>
 ### `Bridge.contDiff_kOf`
 
-line 163
+line 169
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `G` is `C¹` with compact support, then the Weil test function `kOf G` is `C²`.
 
 **Proves**
 
@@ -428,9 +440,11 @@ ContDiff ℝ 2 (kOf G)
 <a name="Bridge-hasCompactSupport_kOf"></a>
 ### `Bridge.hasCompactSupport_kOf`
 
-line 169
+line 176
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `G` has compact support, then the Weil test function `kOf G` has compact support.
 
 **Proves**
 
@@ -457,7 +471,7 @@ HasCompactSupport (kOf G)
 <a name="Bridge-paperFT_kOf"></a>
 ### `Bridge.paperFT_kOf`
 
-line 174
+line 181
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -496,7 +510,7 @@ paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - ρ))
 <a name="Bridge-weil_bridge"></a>
 ### `Bridge.weil_bridge`
 
-line 185
+line 192
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -528,9 +542,11 @@ Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1} =
 <a name="Bridge-kOfM_eq"></a>
 ### `Bridge.kOfM_eq`
 
-line 236
+line 244
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The Weil test function in Mathlib's convolution, `kOfM G`, equals `kOf G`.
 
 **Proves**
 
@@ -553,9 +569,11 @@ kOfM G = kOf G
 <a name="Bridge-primeSideM_eq"></a>
 ### `Bridge.primeSideM_eq`
 
-line 238
+line 247
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The prime side written against Mathlib alone, `primeSideM k`, equals `primeSide k`.
 
 **Proves**
 
@@ -578,7 +596,7 @@ primeSideM k = primeSide k
 <a name="Bridge-stmtWeilBridge_holds"></a>
 ### `Bridge.stmtWeilBridge_holds`
 
-line 241
+line 250
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

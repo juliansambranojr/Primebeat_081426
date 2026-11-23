@@ -21,16 +21,19 @@ open Complex MeasureTheory Set intervalIntegral
 /-- The Euler–Maclaurin antiderivative: `({x} − {x}²)/2`. -/
 noncomputable def emA (x : ℝ) : ℝ := (Int.fract x - Int.fract x ^ 2) / 2
 
+/-- The Euler–Maclaurin antiderivative `emA` is nonnegative at every real `x`. -/
 theorem emA_nonneg (x : ℝ) : 0 ≤ emA x := by
   rw [emA]
   have h1 := Int.fract_nonneg x
   have h2 := (Int.fract_lt_one x).le
   nlinarith
 
+/-- The Euler–Maclaurin antiderivative `emA` is at most `1/8` at every real `x`. -/
 theorem emA_le (x : ℝ) : emA x ≤ 1/8 := by
   rw [emA]
   nlinarith [sq_nonneg (Int.fract x - 1/2)]
 
+/-- The Euler–Maclaurin antiderivative `emA` vanishes at every natural number. -/
 theorem emA_natCast (n : ℕ) : emA n = 0 := by
   rw [emA]
   simp
@@ -385,6 +388,7 @@ theorem tail_differentiableAt {N : ℕ} (Npos : 0 < N) {z : ℂ} (hz : -1 < z.re
 /-- The strip on which the continued form lives. -/
 def stripRegion : Set ℂ := {s : ℂ | -1 < s.re ∧ s ≠ 1}
 
+/-- The strip region `{s | −1 < Re s ∧ s ≠ 1}` is open. -/
 theorem isOpen_stripRegion : IsOpen stripRegion := by
   have h : stripRegion = {s : ℂ | -1 < s.re} ∩ {(1:ℂ)}ᶜ := by
     ext s
@@ -392,6 +396,7 @@ theorem isOpen_stripRegion : IsOpen stripRegion := by
   rw [h]
   exact (isOpen_lt continuous_const Complex.continuous_re).inter isOpen_compl_singleton
 
+/-- The strip region `{s | −1 < Re s ∧ s ≠ 1}` is preconnected. -/
 theorem preconnected_stripRegion : IsPreconnected stripRegion := by
   have hA : IsPreconnected {s : ℂ | -1 < s.re ∧ 0 < s.im} := by
     rw [Set.setOf_and]

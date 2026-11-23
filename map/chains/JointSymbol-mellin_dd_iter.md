@@ -1,6 +1,8 @@
 # What `JointSymbol.mellin_dd_iter` rests on
 
-[`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter) in `lean_stage3/Stage3/JointSymbol.lean`, line 136.
+[`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter) in `lean_stage3/Stage3/JointSymbol.lean`, line 144.
+
+**Why.** For `Re s > 1` and depth `d`, the transform of the depth-`d` difference of the cut row: `∫₁^∞ (dd^[d] cutG)(y)·y^(−s−1) dy = (1 − 2^(−s))^d · Phi s`.
 
 **Proves**
 

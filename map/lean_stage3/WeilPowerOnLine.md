@@ -2,7 +2,7 @@
 
 WeilPowerOnLine — the switched window's on-line background, all heights. Rung 5, eighth slice. 2026-09-06.
 
-11 theorems, 2 definitions, 228 lines. Arrows are Lean's own record of what each proof uses.
+11 theorems, 2 definitions, 232 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`WeilPowerBands`](../lean_stage3/WeilPowerBands.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md)
@@ -64,7 +64,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="WeilPowerOnLine-B"></a>
 ### `WeilPowerOnLine.B`
 
-def · line 67
+def · line 69
 
 One side's bound: `A h γ m · π²/6`.
 
@@ -75,7 +75,7 @@ One side's bound: `A h γ m · π²/6`.
 <a name="WeilPowerOnLine-onLineBound"></a>
 ### `WeilPowerOnLine.onLineBound`
 
-def · line 136
+def · line 138
 
 The on-line background bound: `2·B h γ m + 4h²·lowCount`.
 
@@ -153,9 +153,11 @@ termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ
 <a name="WeilPowerOnLine-weightedTermW_conjZ"></a>
 ### `WeilPowerOnLine.weightedTermW_conjZ`
 
-line 56
+line 58
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted on-line term at the conjugate zero `conjZ ρ` equals the weighted on-line term at `ρ`.
 
 **Proves**
 
@@ -186,7 +188,7 @@ weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ
 <a name="WeilPowerOnLine-sum_upper_le"></a>
 ### `WeilPowerOnLine.sum_upper_le`
 
-line 70
+line 72
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -226,7 +228,7 @@ line 70
 <a name="WeilPowerOnLine-sum_lower_le"></a>
 ### `WeilPowerOnLine.sum_lower_le`
 
-line 81
+line 83
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -263,7 +265,7 @@ line 81
 <a name="WeilPowerOnLine-sum_low_le"></a>
 ### `WeilPowerOnLine.sum_low_le`
 
-line 104
+line 106
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -299,7 +301,7 @@ line 104
 <a name="WeilPowerOnLine-sum_onLine_le"></a>
 ### `WeilPowerOnLine.sum_onLine_le`
 
-line 139
+line 141
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -336,9 +338,11 @@ line 139
 <a name="WeilPowerOnLine-sum_onLine_subtype_le"></a>
 ### `WeilPowerOnLine.sum_onLine_subtype_le`
 
-line 173
+line 177
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and `γ ≥ 11/10`, the sum of the weighted on-line terms over any finite set of on-line zeros is at most `onLineBound h γ m`.
 
 **Proves**
 
@@ -367,7 +371,7 @@ line 173
 <a name="WeilPowerOnLine-tsum_onLine_le"></a>
 ### `WeilPowerOnLine.tsum_onLine_le`
 
-line 186
+line 190
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -397,7 +401,7 @@ line 186
 <a name="WeilPowerOnLine-summable_onLine"></a>
 ### `WeilPowerOnLine.summable_onLine`
 
-line 194
+line 198
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -429,7 +433,7 @@ Summable (fun ρ : OnLine => weightedTermW h γ m ρ.1)
 <a name="WeilPowerOnLine-onLineBound_le"></a>
 ### `WeilPowerOnLine.onLineBound_le`
 
-line 202
+line 206
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

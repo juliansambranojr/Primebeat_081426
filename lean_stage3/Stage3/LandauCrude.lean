@@ -28,6 +28,7 @@ noncomputable section
 
 open scoped ArithmeticFunction.vonMangoldt
 
+/-- The ramp sum is nonnegative at every real `y`. -/
 theorem rampSum_nonneg (y : ℝ) : 0 ≤ LandauWindow.rampSum y := by
   rw [LandauWindow.rampSum]
   exact Finset.sum_nonneg fun n _ =>
@@ -44,6 +45,7 @@ private lemma sum_inv_le (N : ℕ) :
   rw [← hc]
   exact h
 
+/-- For `y ≥ 1`, the ramp sum satisfies `rampSum y ≤ y·log y·(1 + log y)`. -/
 theorem rampSum_le {y : ℝ} (hy : 1 ≤ y) :
     LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y) := by
   have hy0 : 0 < y := by linarith
@@ -80,6 +82,7 @@ theorem rampSum_le {y : ℝ} (hy : 1 ≤ y) :
         mul_le_mul_of_nonneg_left (le_trans (sum_inv_le _) (by linarith))
           (mul_nonneg hy0.le hL)
 
+/-- For `y ≥ 1`, the function `G` satisfies `|G y| ≤ 2·y·(1 + log y)²`. -/
 theorem abs_G_le {y : ℝ} (hy : 1 ≤ y) :
     |LandauWindow.G y| ≤ 2 * y * (1 + Real.log y) ^ 2 := by
   have hy0 : 0 < y := by linarith

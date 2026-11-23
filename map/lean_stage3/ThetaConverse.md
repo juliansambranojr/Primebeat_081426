@@ -2,7 +2,7 @@
 
 ThetaConverse — the Landau converse of the θ-dial. 2026-09-01. `ThetaPsi.psi_weak_of_theta` and `ThetaPi.schoenfeldWeakTheta_of_zeroFree` run one way: a zero-free half-plane `re s > θ` gives `|ψ − x| ≤ C·x^θ·log^k x`. This file runs the other way:
 
-14 theorems, 1 definition, 446 lines. Arrows are Lean's own record of what each proof uses.
+14 theorems, 1 definition, 451 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ThetaPi`](../lean_stage3/ThetaPi.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -79,9 +79,11 @@ The working region at abscissa `θ`: right of `θ`, minus the pole. `VonKoch.reg
 <a name="Stage3-region-_half"></a>
 ### `Stage3.regionθ_half`
 
-line 51
+line 52
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At `θ = 1/2` the working region `regionθ` is `VonKoch.region`.
 
 **Proves**
 
@@ -98,9 +100,11 @@ regionθ (1/2) = VonKoch.region
 <a name="Stage3-isOpen_region-"></a>
 ### `Stage3.isOpen_regionθ`
 
-line 53
+line 55
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For every `θ`, the working region `regionθ θ` is open.
 
 **Proves**
 
@@ -125,7 +129,7 @@ IsOpen (regionθ θ)
 <a name="Stage3-preconnected_region-"></a>
 ### `Stage3.preconnected_regionθ`
 
-line 65
+line 67
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -153,9 +157,11 @@ IsPreconnected (regionθ θ)
 <a name="Stage3-zeta_analyticOnNhd_region-"></a>
 ### `Stage3.zeta_analyticOnNhd_regionθ`
 
-line 131
+line 134
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For every `θ`, `ζ` is analytic on the working region `regionθ θ`.
 
 **Proves**
 
@@ -181,7 +187,7 @@ AnalyticOnNhd ℂ ζ (regionθ θ)
 <a name="Stage3-log_pow_isBigO_rpow"></a>
 ### `Stage3.log_pow_isBigO_rpow`
 
-line 139
+line 142
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -207,7 +213,7 @@ line 139
 <a name="Stage3-F_differentiableAt_theta"></a>
 ### `Stage3.F_differentiableAt_theta`
 
-line 161
+line 164
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -243,9 +249,11 @@ DifferentiableAt ℂ VonKoch.F s
 <a name="Stage3-F_analyticOnNhd_theta"></a>
 ### `Stage3.F_analyticOnNhd_theta`
 
-line 227
+line 232
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Given the bound `StmtPsiWeakTheta θ C k x₀` on the error of `ψ`, the function `VonKoch.F` is analytic on the working region `regionθ θ`.
 
 **Proves**
 
@@ -271,7 +279,7 @@ AnalyticOnNhd ℂ VonKoch.F (regionθ θ)
 <a name="Stage3-anchor_mem_region-"></a>
 ### `Stage3.anchor_mem_regionθ`
 
-line 242
+line 247
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -299,7 +307,7 @@ line 242
 <a name="Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta"></a>
 ### `Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`
 
-line 253
+line 258
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -332,7 +340,7 @@ Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ)
 <a name="Stage3-no_zero_right_of_theta"></a>
 ### `Stage3.no_zero_right_of_theta`
 
-line 280
+line 285
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -370,7 +378,7 @@ line 280
 <a name="Stage3-zeroFreeRight_of_psiWeakTheta"></a>
 ### `Stage3.zeroFreeRight_of_psiWeakTheta`
 
-line 374
+line 379
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -401,7 +409,7 @@ StmtZeroFreeRight θ
 <a name="Stage3-zeroFreeRight_iff_psiWeakTheta"></a>
 ### `Stage3.zeroFreeRight_iff_psiWeakTheta`
 
-line 382
+line 387
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -430,7 +438,7 @@ StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀
 <a name="Stage3-RH_of_psiWeakTheta_half"></a>
 ### `Stage3.RH_of_psiWeakTheta_half`
 
-line 389
+line 394
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -458,7 +466,7 @@ RiemannHypothesis
 <a name="Stage3-zeroFreeRight_one_of_chebyshev"></a>
 ### `Stage3.zeroFreeRight_one_of_chebyshev`
 
-line 401
+line 406
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

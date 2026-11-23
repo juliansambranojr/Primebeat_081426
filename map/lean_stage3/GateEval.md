@@ -2,7 +2,7 @@
 
 GateEval — block E9 of `lean_stage3/design/joints.md`. 2026-11-22. The table gate's own inequality, evaluated on the explicit-formula route at the floor `x₀ = 2^36` and depth six.
 
-5 theorems, 0 definitions, 195 lines. Arrows are Lean's own record of what each proof uses.
+5 theorems, 0 definitions, 202 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`RouteNum`](../lean_stage3/RouteNum.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TableRoute`](../lean_stage3/TableRoute.md)
@@ -44,9 +44,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="GateEval-floor_bound"></a>
 ### `GateEval.floor_bound`
 
-line 30
+line 33
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the arithmetic of `routeConst` at the floor `2^36`. If `c1 ≤ 88216610000`, `c3 ≤ 15`, `c4 ≤ 6468930000` and `24.95 ≤ ℓ`, then the expression with `ℓ` in place of the logarithm of the floor is at most `414`.
 
 **Proves**
 
@@ -70,9 +72,11 @@ line 30
 <a name="GateEval-routeConst_le"></a>
 ### `GateEval.routeConst_le`
 
-line 56
+line 60
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The route constant at the floor `2^36` is at most `414`.
 
 **Proves**
 
@@ -99,9 +103,11 @@ Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414
 <a name="GateEval-sq_le_two_rpow"></a>
 ### `GateEval.sq_le_two_rpow`
 
-line 77
+line 82
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: if `80 ≤ r`, then `r² ≤ 6400·2^((r - 80)/2)`.
 
 **Proves**
 
@@ -122,9 +128,11 @@ r ^ 2 ≤ 6400 * (2:ℝ) ^ ((r - 80) / 2)
 <a name="GateEval-gate_ineq"></a>
 ### `GateEval.gate_ineq`
 
-line 99
+line 106
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The gate's inequality at depth six: if `80 ≤ r`, then `414·(log 2·r)·2^(-((r - 7)/2)) < (log 2)^6/(2·r·3^7)`.
 
 **Proves**
 
@@ -147,7 +155,7 @@ line 99
 <a name="GateEval-gate_hyp_of_RH"></a>
 ### `GateEval.gate_hyp_of_RH`
 
-line 145
+line 152
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

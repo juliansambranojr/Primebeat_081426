@@ -178,6 +178,8 @@ theorem sym_tprod_eq_zeta {s : ℂ} (hs : 1 < s.re) :
 dyadic prime difference table, for `b = 2`. -/
 noncomputable def primeRow (b : ℕ) : ℕ → ℤ := fun n => (Nat.primeCounting (b ^ n) : ℤ)
 
+/-- The `d`-fold forward difference of the prime row `n ↦ π(bⁿ)` at `r` equals the
+alternating binomial stencil `∑ k ≤ d, (−1)^(d−k)·C(d,k)·π(b^(r+k))`. -/
 theorem primeTable_eq_stencil (b : ℕ) (d r : ℕ) :
     ((fwdDiff (1 : ℕ))^[d] (primeRow b)) r
       = ∑ k ∈ Finset.range (d + 1),

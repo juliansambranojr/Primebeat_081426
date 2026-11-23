@@ -2,7 +2,7 @@
 
 LandauPoleLocal — `Phi` near a zero of `ζ` and near `1`. Block 3a of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 167 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 171 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointSymbol`](../lean_stage3/JointSymbol.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md)
@@ -40,9 +40,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauPoleLocal-differentiableAt_Phi"></a>
 ### `LandauPoleLocal.differentiableAt_Phi`
 
-line 36
+line 37
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `s ≠ 0`, `s ≠ 1` and `ζ s ≠ 0`, then `Phi` is complex differentiable at `s`.
 
 **Proves**
 
@@ -69,9 +71,11 @@ DifferentiableAt ℂ LandauMellinG.Phi s
 <a name="LandauPoleLocal-Phi_principal_part"></a>
 ### `LandauPoleLocal.Phi_principal_part`
 
-line 54
+line 57
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** At a zero `ρ` of `ζ` with `ρ ≠ 0` and `ρ ≠ 1`, of order `m`, there is a function `h` analytic at `ρ` such that `Phi s = h s + m/(ρ(1−ρ))/(s−ρ)` for `s` near `ρ`, `s ≠ ρ`.
 
 **Proves**
 
@@ -101,9 +105,11 @@ line 54
 <a name="LandauPoleLocal-Phi_regular_at_one"></a>
 ### `LandauPoleLocal.Phi_regular_at_one`
 
-line 121
+line 125
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** There is a function `h` analytic at `1` with `Phi s = h s` for `s` near `1`, `s ≠ 1`.
 
 **Proves**
 

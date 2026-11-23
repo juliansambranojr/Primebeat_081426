@@ -27,12 +27,15 @@ noncomputable section
 
 open MeasureTheory Set Filter
 
+/-- Helper: the kernel `(log y)^k·y^(−a−1)` is nonnegative almost everywhere on `(1, ∞)`. -/
 private lemma kernel_nonneg (a : ℝ) (k : ℕ) :
     0 ≤ᵐ[volume.restrict (Ioi (1 : ℝ))] fun y : ℝ => Real.log y ^ k * y ^ (-a - 1) := by
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
   have hy1 : 1 ≤ y := (mem_Ioi.mp hy).le
   exact mul_nonneg (pow_nonneg (Real.log_nonneg hy1) k) (Real.rpow_nonneg (by linarith) _)
 
+/-- For `a > 0`, `b > 0` and `Y ≥ 1`, the integral of the kernel `(log y)^k·y^(−a−1)`
+over `(1, Y]` is at most `Y^b · k!/(a+b)^(k+1)`. -/
 theorem lower_tail_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (k : ℕ) {Y : ℝ} (hY : 1 ≤ Y) :
     ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1)
       ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1)) := by
@@ -68,6 +71,8 @@ theorem lower_tail_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (k : ℕ) {Y : ℝ} 
     _ = Y ^ b * (k.factorial / (a + b) ^ (k + 1)) := by
         rw [integral_const_mul, LandauKernel.log_pow_integral hab k]
 
+/-- For `0 < b < a` and `Z ≥ 1`, the integral of the kernel `(log y)^k·y^(−a−1)`
+over `(Z, ∞)` is at most `Z^(−b) · k!/(a−b)^(k+1)`. -/
 theorem upper_tail_le {a b : ℝ} (hb : 0 < b) (hba : b < a) (k : ℕ) {Z : ℝ} (hZ : 1 ≤ Z) :
     ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1)
       ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1)) := by

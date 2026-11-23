@@ -2,7 +2,7 @@
 
 Interpolant — the smooth interpolant of the main term, constructed. Block C1 of `lean_stage3/design/joints.md`. 2026-11-22.
 
-8 theorems, 2 definitions, 150 lines. Arrows are Lean's own record of what each proof uses.
+8 theorems, 2 definitions, 158 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`RelativeLi`](../lean/RelativeLi.md)  
 **Imported by:** [`RouteCell`](../lean/RouteCell.md)
@@ -77,9 +77,11 @@ The interpolant: `F` cut off smoothly below one half.
 <a name="Interpolant-f2x_contDiffOn"></a>
 ### `Interpolant.f2x_contDiffOn`
 
-line 37
+line 38
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the integrand `f2x` (`2^x/x`) is smooth on the positive half-line.
 
 **Proves**
 
@@ -99,9 +101,11 @@ ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0)
 <a name="Interpolant-f2x_continuousOn"></a>
 ### `Interpolant.f2x_continuousOn`
 
-line 45
+line 47
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the integrand `f2x` is continuous on the positive half-line.
 
 **Proves**
 
@@ -122,9 +126,11 @@ ContinuousOn Expansion.f2x (Ioi 0)
 <a name="Interpolant-F_hasDerivAt"></a>
 ### `Interpolant.F_hasDerivAt`
 
-line 48
+line 51
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x > 0`, the antiderivative `F` has derivative `f2x x` at `x`.
 
 **Proves**
 
@@ -150,9 +156,11 @@ HasDerivAt F (Expansion.f2x x) x
 <a name="Interpolant-F_contDiffOn"></a>
 ### `Interpolant.F_contDiffOn`
 
-line 64
+line 68
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The antiderivative `F` is smooth on the positive half-line.
 
 **Proves**
 
@@ -176,9 +184,11 @@ ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0)
 <a name="Interpolant-liRow_contDiff"></a>
 ### `Interpolant.liRow_contDiff`
 
-line 69
+line 74
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The interpolant `liRow` is smooth on the whole real line.
 
 **Proves**
 
@@ -201,9 +211,11 @@ ContDiff ℝ (⊤ : ℕ∞) liRow
 <a name="Interpolant-liRow_eq"></a>
 ### `Interpolant.liRow_eq`
 
-line 87
+line 94
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x ≥ 1/2`, the interpolant equals the antiderivative: `liRow x = 2/log 2 + ∫ t in 1..x, f2x t`.
 
 **Proves**
 
@@ -230,9 +242,11 @@ liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t
 <a name="Interpolant-liRow_hasDerivAt"></a>
 ### `Interpolant.liRow_hasDerivAt`
 
-line 93
+line 101
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x > 1/2`, the interpolant `liRow` has derivative `f2x x` at `x`.
 
 **Proves**
 
@@ -260,7 +274,7 @@ HasDerivAt liRow (Expansion.f2x x) x
 <a name="Interpolant-tableFrom_ne_zero_of_relErr_liRow"></a>
 ### `Interpolant.tableFrom_ne_zero_of_relErr_liRow`
 
-line 103
+line 111
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

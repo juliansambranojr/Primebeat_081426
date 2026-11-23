@@ -2,7 +2,7 @@
 
 JensenCount — `StmtLocalCount` discharged: the Backlund-style local zero count for `ζ`, with explicit constants.
 
-17 theorems, 3 definitions, 538 lines. Arrows are Lean's own record of what each proof uses.
+17 theorems, 3 definitions, 552 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCrude`](../lean_stage3/ArgCrude.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md)
@@ -115,7 +115,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="Stage3-zetaWindow"></a>
 ### `Stage3.zetaWindow`
 
-def · line 259
+def · line 260
 
 The window. `ζ`'s zeros in the closed disk of radius `7/4` about `2 + iT`. On the critical line this disk covers `|γ - T| ≤ √(13/16)` ≈ `0.901`, an interval of positive length — which is what radius `3/2` fails to do, being tangent to the line and so catching only `γ = T`.
 
@@ -125,7 +125,7 @@ The window. `ζ`'s zeros in the closed disk of radius `7/4` about `2 + iT`. On t
 <a name="Stage3-jensenF"></a>
 ### `Stage3.jensenF`
 
-def · line 269
+def · line 271
 
 The normalised local model. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)`; the closed unit ball maps onto `|s - (2+iT)| ≤ 2`.
 
@@ -135,7 +135,7 @@ The normalised local model. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)`; the closed u
 <a name="Stage3-zetaLocalCount"></a>
 ### `Stage3.zetaLocalCount`
 
-def · line 441
+def · line 453
 
 The count function. Total zero order of `ζ` in `|s - (2+iT)| ≤ 7/4`.
 
@@ -148,9 +148,11 @@ The count function. Total zero order of `ζ` in `|s - (2+iT)| ≤ 7/4`.
 <a name="Stage3-zeta_centre_lower"></a>
 ### `Stage3.zeta_centre_lower`
 
-line 75
+line 76
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For every real `T`, the norm of `ζ` at the centre `2 + iT` is at least `1/3`.
 
 **Proves**
 
@@ -173,7 +175,7 @@ line 75
 <a name="Stage3-zeta_disk_upper"></a>
 ### `Stage3.zeta_disk_upper`
 
-line 123
+line 124
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -200,7 +202,7 @@ line 123
 <a name="Stage3-zeta_centre_ne_zero"></a>
 ### `Stage3.zeta_centre_ne_zero`
 
-line 197
+line 198
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -233,7 +235,7 @@ line 197
 <a name="Stage3-pole_away"></a>
 ### `Stage3.pole_away`
 
-line 205
+line 206
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -259,7 +261,7 @@ line 205
 <a name="Stage3-pole_away_centre"></a>
 ### `Stage3.pole_away_centre`
 
-line 218
+line 219
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -287,7 +289,7 @@ v ≠ 1
 <a name="Stage3-zetaWindowTwo_finite"></a>
 ### `Stage3.zetaWindowTwo_finite`
 
-line 232
+line 233
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -316,9 +318,11 @@ line 232
 <a name="Stage3-zetaWindow_finite"></a>
 ### `Stage3.zetaWindow_finite`
 
-line 262
+line 264
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the window of zeros of `ζ` within `7/4` of `2 + iT` is finite.
 
 **Proves**
 
@@ -351,9 +355,11 @@ line 262
 <a name="Stage3-zeta_comp_analytic"></a>
 ### `Stage3.zeta_comp_analytic`
 
-line 272
+line 275
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖w‖ ≤ 11/10`, the map `z ↦ ζ (2z + (2 + iT))` is analytic at `w`.
 
 **Proves**
 
@@ -378,9 +384,11 @@ AnalyticAt ℂ (fun z : ℂ => ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w
 <a name="Stage3-jensenF_analytic"></a>
 ### `Stage3.jensenF_analytic`
 
-line 277
+line 282
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the normalised local model `jensenF T` is analytic on a neighbourhood of the closed unit ball.
 
 **Proves**
 
@@ -407,9 +415,11 @@ AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)
 <a name="Stage3-jensenF_zero_eq_one"></a>
 ### `Stage3.jensenF_zero_eq_one`
 
-line 284
+line 290
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The normalised local model takes the value `1` at the origin: `jensenF T 0 = 1`.
 
 **Proves**
 
@@ -436,9 +446,11 @@ jensenF T 0 = 1
 <a name="Stage3-jensenF_zeros_finite"></a>
 ### `Stage3.jensenF_zeros_finite`
 
-line 288
+line 296
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the zero set `SetOfZeros 1 (jensenF T)` of the normalised local model at radius `1` is finite.
 
 **Proves**
 
@@ -466,9 +478,11 @@ line 288
 <a name="Stage3-jensenF_bound"></a>
 ### `Stage3.jensenF_bound`
 
-line 306
+line 316
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖z‖ ≤ 15/16`, the normalised local model satisfies `‖jensenF T z‖ ≤ 84 T`.
 
 **Proves**
 
@@ -497,7 +511,7 @@ line 306
 <a name="Stage3-analyticOrderNatAt_fun_comp_affine"></a>
 ### `Stage3.analyticOrderNatAt_fun_comp_affine`
 
-line 324
+line 334
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -529,9 +543,11 @@ analyticOrderNatAt (fun w : ℂ => g (a * w + b)) z = analyticOrderNatAt g (a * 
 <a name="Stage3-jensenF_order"></a>
 ### `Stage3.jensenF_order`
 
-line 336
+line 348
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖w‖ ≤ 11/10`, the analytic order of `jensenF T` at `w` equals the analytic order of `ζ` at `2w + (2 + iT)`.
 
 **Proves**
 
@@ -559,7 +575,7 @@ analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I
 <a name="Stage3-zeta_local_zero_count"></a>
 ### `Stage3.zeta_local_zero_count`
 
-line 354
+line 366
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -601,9 +617,11 @@ line 354
 <a name="Stage3-zetaLocalCount_eq"></a>
 ### `Stage3.zetaLocalCount_eq`
 
-line 444
+line 458
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the count function `zetaLocalCount T` equals the sum of the analytic orders of `ζ` over the finite window of zeros within `7/4` of `2 + iT`.
 
 **Proves**
 
@@ -626,7 +644,7 @@ zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNat
 <a name="Stage3-localCount_holds"></a>
 ### `Stage3.localCount_holds`
 
-line 455
+line 469
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

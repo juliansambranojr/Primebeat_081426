@@ -1,6 +1,6 @@
 # What `Stage3.I37_sqrt_log3_half` rests on
 
-[`Stage3.I37_sqrt_log3_half`](../lean_stage3/ThetaPull.md#Stage3-I37_sqrt_log3_half) in `lean_stage3/Stage3/ThetaPull.lean`, line 309.
+[`Stage3.I37_sqrt_log3_half`](../lean_stage3/ThetaPull.md#Stage3-I37_sqrt_log3_half) in `lean_stage3/Stage3/ThetaPull.lean`, line 312.
 
 **Why.** `I37_sqrt_log3` recovered. Under RH, at `θ = 1/2`, the general bound is `RHPull.I37_sqrt_log3`'s statement — `σθ (1/2) X` is `σRH X` by `rfl`, and `X^(1/2) = √X`.
 

@@ -2,7 +2,7 @@
 
 WeilBackground — the window as a test function of the explicit formula, and the on-line terms of the zero side. Rung 4b, first half, of the detection ladder (units 0316–0319). 2026-09-06.
 
-7 theorems, 2 definitions, 217 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 2 definitions, 218 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilDetect`](../lean_stage3/WeilDetect.md), [`WeilLobe`](../lean_stage3/WeilLobe.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilOffLine`](../lean_stage3/WeilOffLine.md)
@@ -84,9 +84,11 @@ The complex-valued test function WeilDetect reads.
 <a name="WeilBackground-phiC_real"></a>
 ### `WeilBackground.phiC_real`
 
-line 57
+line 58
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The complex-valued test function `phiC h γ` has zero imaginary part at every `u`.
 
 **Proves**
 
@@ -110,7 +112,7 @@ line 57
 <a name="WeilBackground-laplace_phi"></a>
 ### `WeilBackground.laplace_phi`
 
-line 62
+line 63
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -142,7 +144,7 @@ laplace (phiC h γ) z = ghat h γ (-z - 1 / 2)
 <a name="WeilBackground-Psi_bound"></a>
 ### `WeilBackground.Psi_bound`
 
-line 85
+line 86
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -174,7 +176,7 @@ line 85
 <a name="WeilBackground-Psi_le_two"></a>
 ### `WeilBackground.Psi_le_two`
 
-line 103
+line 104
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -206,7 +208,7 @@ line 103
 <a name="WeilBackground-online_term_eq"></a>
 ### `WeilBackground.online_term_eq`
 
-line 125
+line 126
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -245,7 +247,7 @@ laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h / 2) ^ 2 * (W
 <a name="WeilBackground-online_term_le_near"></a>
 ### `WeilBackground.online_term_le_near`
 
-line 149
+line 150
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -280,7 +282,7 @@ line 149
 <a name="WeilBackground-online_term_le_far"></a>
 ### `WeilBackground.online_term_le_far`
 
-line 168
+line 169
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

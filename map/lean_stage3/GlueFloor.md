@@ -2,7 +2,7 @@
 
 GlueFloor — block E2 of `lean_stage3/design/joints.md`. 2026-11-22. `Glue.edge_left_bound` proves the left edge of the explicit formula's contour is at most `72·D·log²x·x^(−1/4)` and then rounds that to `C·log x` (unit 0408: that rounding is the whole of `c₂`). Three copies with a different last line each (`LOOP.md` § 3); `Glue.lean` is untouched.
 
-6 theorems, 2 definitions, 834 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 2 definitions, 839 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueNum`](../lean_stage3/GlueNum.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md), [`PiToPsi`](../lean_stage3/PiToPsi.md)
@@ -76,7 +76,7 @@ The truncated explicit formula with the left edge as its own term.
 <a name="Stage3-floorConstSplit"></a>
 ### `Stage3.floorConstSplit`
 
-def · line 655
+def · line 658
 
 The constant of the assembly at floor `x₀`, left edge at its own size.
 
@@ -153,9 +153,11 @@ line 408
 <a name="Stage3-stmtEF_split"></a>
 ### `Stage3.stmtEF_split`
 
-line 650
+line 653
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** There are nonnegative constants `c₁`, `c₃`, `c₄` for which the truncated explicit formula with the left edge as its own term, `StmtExplicitFormulaSplit c₁ c₃ c₄ 16`, holds from `x = 16` on.
 
 **Proves**
 
@@ -176,9 +178,11 @@ line 650
 <a name="Stage3-floorConstSplit_nonneg"></a>
 ### `Stage3.floorConstSplit_nonneg`
 
-line 658
+line 663
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `c₁`, `c₃`, `c₄`, `b₁`, `b₂`, `b₃`, `W` are nonnegative and `x₀ ≥ 16`, then the assembly constant `floorConstSplit` at floor `x₀` is nonnegative.
 
 **Proves**
 
@@ -215,7 +219,7 @@ line 658
 <a name="Stage3-psiWeak_floor_split"></a>
 ### `Stage3.psiWeak_floor_split`
 
-line 672
+line 677
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -262,7 +266,7 @@ StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀
 <a name="Stage3-schoenfeldWeak_floor_split_of_RH"></a>
 ### `Stage3.schoenfeldWeak_floor_split_of_RH`
 
-line 806
+line 811
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

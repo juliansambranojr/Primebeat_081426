@@ -81,11 +81,14 @@ theorem conj_mem (ρ : Kadiri.NontrivialZeros) :
 def conjZ (ρ : Kadiri.NontrivialZeros) : Kadiri.NontrivialZeros :=
   ⟨(starRingEnd ℂ) (ρ : ℂ), conj_mem ρ⟩
 
+/-- Conjugation of nontrivial zeros, `conjZ`, is injective. -/
 theorem conjZ_injective : Function.Injective conjZ := by
   intro a b hab
   have h : (starRingEnd ℂ) (a : ℂ) = (starRingEnd ℂ) (b : ℂ) := congrArg Subtype.val hab
   exact Subtype.ext ((starRingEnd ℂ).injective h)
 
+/-- If `0 < h` and the nontrivial zero `ρ` has real part `1/2`, then the weighted term at the
+conjugate zero equals the weighted term at `ρ`. -/
 theorem weightedTerm_conjZ {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : Kadiri.NontrivialZeros)
     (hρ : (ρ : ℂ).re = 1 / 2) : weightedTerm h γ (conjZ ρ) = weightedTerm h γ ρ := by
   have hne : (ρ : ℂ) ≠ 1 := by
@@ -143,9 +146,11 @@ def lowSet : Set ℂ := {ρ : ℂ | riemannZeta ρ = 0 ∧ ρ.re = 1 / 2 ∧ |ρ
 /-- The half-plane `Re z < 3/4`: open, convex, pole-free. -/
 def lowU : Set ℂ := {z : ℂ | z.re < 3 / 4}
 
+/-- The half-plane `lowU`, `Re z < 3/4`, is preconnected. -/
 theorem lowU_preconnected : IsPreconnected lowU :=
   (convex_halfSpace_re_lt (r := 3 / 4)).isPreconnected
 
+/-- The Riemann zeta function is analytic at every point of the half-plane `lowU`. -/
 theorem lowU_analytic : AnalyticOnNhd ℂ riemannZeta lowU := by
   intro z hz
   apply analyticAt_riemannZeta
@@ -186,6 +191,7 @@ theorem lowSet_finite : lowSet.Finite := by
 `|t| ≤ 11/10`. Carried by name. -/
 def lowCount : ℝ := ∑ ρ ∈ lowSet_finite.toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ)
 
+/-- The low count `lowCount` is nonnegative. -/
 theorem lowCount_nonneg : 0 ≤ lowCount :=
   Finset.sum_nonneg (fun _ _ => Nat.cast_nonneg _)
 
@@ -262,6 +268,8 @@ theorem sum_onLine_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ)
 /-- On-line zeros. -/
 abbrev OnLine : Type := {ρ : Kadiri.NontrivialZeros // (ρ : ℂ).re = 1 / 2}
 
+/-- If `0 < h` and `11/10 ≤ γ`, then the sum of the weighted terms over any finite set of
+on-line zeros is at most `onLineBound h γ`. -/
 theorem sum_onLine_subtype_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (s : Finset OnLine) :
     ∑ ρ ∈ s, weightedTerm h γ ρ.1 ≤ onLineBound h γ := by
   have hinj : ∀ a ∈ s, ∀ b ∈ s, (a : Kadiri.NontrivialZeros) = b → a = b :=
@@ -290,6 +298,8 @@ theorem summable_onLine {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) :
     exact weightedTerm_nonneg hh γ ρ.1 ρ.2
   · exact sum_onLine_subtype_le hh hγ
 
+/-- If `11/10 ≤ γ`, then the crude constant `A h γ` is at most
+`88·(γ + 3)⁴·(4h² + cFar / h²)`, the band index of `γ` replaced by `γ`. -/
 theorem A_le {h γ : ℝ} (hγ : 11 / 10 ≤ γ) :
     A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2) := by
   unfold A

@@ -2,7 +2,7 @@
 
 WeilOffLine — every term of the zero form is minus a square, and the sign of an off-line zero's own term. Rung 5, first slice of the detection ladder (units 0316–0325). 2026-09-06.
 
-7 theorems, 1 definition, 152 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 1 definition, 153 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilBackground`](../lean_stage3/WeilBackground.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -186,9 +186,11 @@ line 73
 <a name="WeilOffLine-offPt_sub_half"></a>
 ### `WeilOffLine.offPt_sub_half`
 
-line 82
+line 83
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the off-line point minus one half is `offPt ε γ − 1/2 = ε + iγ`.
 
 **Proves**
 
@@ -211,7 +213,7 @@ offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)
 <a name="WeilOffLine-offline_term_le"></a>
 ### `WeilOffLine.offline_term_le`
 
-line 88
+line 89
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -245,7 +247,7 @@ line 88
 <a name="WeilOffLine-offline_term_le_explicit"></a>
 ### `WeilOffLine.offline_term_le_explicit`
 
-line 119
+line 120
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

@@ -2,7 +2,7 @@
 
 BoxBounds — blocks E7a and E7b of `lean_stage3/design/joints.md`. 2026-11-22. Two of the quantities the explicit-formula route took from existence statements, as numerals.
 
-6 theorems, 0 definitions, 211 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 0 definitions, 212 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LowCount`](../lean_stage3/LowCount.md)
@@ -52,9 +52,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="BoxBounds-norm_le_of_sq"></a>
 ### `BoxBounds.norm_le_of_sq`
 
-line 30
+line 31
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `c ≥ 0`, if `(Re z)² + (Im z)² ≤ c²` then `‖z‖ ≤ c`.
 
 **Proves**
 
@@ -78,7 +80,7 @@ line 30
 <a name="BoxBounds-sq_zeta_box"></a>
 ### `BoxBounds.sq_zeta_box`
 
-line 40
+line 41
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -111,7 +113,7 @@ line 40
 <a name="BoxBounds-sq_zeta_band_explicit"></a>
 ### `BoxBounds.sq_zeta_band_explicit`
 
-line 90
+line 91
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -144,7 +146,7 @@ line 90
 <a name="BoxBounds-norm_zeta_three_halves_le"></a>
 ### `BoxBounds.norm_zeta_three_halves_le`
 
-line 122
+line 123
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -165,7 +167,7 @@ line 122
 <a name="BoxBounds-one_le_norm_zeta_three"></a>
 ### `BoxBounds.one_le_norm_zeta_three`
 
-line 165
+line 166
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -186,7 +188,7 @@ line 165
 <a name="BoxBounds-zeta_ratio_ge"></a>
 ### `BoxBounds.zeta_ratio_ge`
 
-line 184
+line 185
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

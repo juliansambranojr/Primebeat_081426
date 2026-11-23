@@ -37,24 +37,28 @@ noncomputable section
 def stencil (d : ℕ) (a : ℤ → ℂ) (r : ℤ) : ℂ :=
   ∑ j ∈ range (d + 1), (-1 : ℂ) ^ j * (d.choose j : ℂ) * a (r - j)
 
+/-- The stencil of a sum of two rows is the sum of their stencils. -/
 theorem stencil_add (d : ℕ) (a b : ℤ → ℂ) (r : ℤ) :
     stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r := by
   unfold stencil
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl (fun j _ => by ring)
 
+/-- The stencil of a difference of two rows is the difference of their stencils. -/
 theorem stencil_sub (d : ℕ) (a b : ℤ → ℂ) (r : ℤ) :
     stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r := by
   unfold stencil
   rw [← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl (fun j _ => by ring)
 
+/-- The stencil of a row multiplied by a constant `c` is `c` times the stencil of the row. -/
 theorem stencil_const_mul (d : ℕ) (c : ℂ) (a : ℤ → ℂ) (r : ℤ) :
     stencil d (fun n => c * a n) r = c * stencil d a r := by
   unfold stencil
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl (fun j _ => by ring)
 
+/-- The stencil of a finite sum of rows is the sum of the stencils of the rows. -/
 theorem stencil_sum {ι : Type*} (d : ℕ) (s : Finset ι) (f : ι → ℤ → ℂ) (r : ℤ) :
     stencil d (fun n => ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i) r := by
   unfold stencil
@@ -75,6 +79,8 @@ theorem stencil_mode {w : ℂ} (hw : w ≠ 0) (d : ℕ) (r : ℤ) :
   congr 1
   ring
 
+/-- If the row entry at `r - j` has norm at most `B j` for each `j ≤ d`, then the norm of the
+stencil at `r` is at most `Σ_{j ≤ d} C(d,j)·B j`. -/
 theorem norm_stencil_le (d : ℕ) (a : ℤ → ℂ) (r : ℤ) (B : ℕ → ℝ)
     (h : ∀ j ∈ range (d + 1), ‖a (r - j)‖ ≤ B j) :
     ‖stencil d a r‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * B j := by
@@ -84,6 +90,7 @@ theorem norm_stencil_le (d : ℕ) (a : ℤ → ℂ) (r : ℤ) (B : ℕ → ℝ)
     Complex.norm_natCast]
   exact mul_le_mul_of_nonneg_left (h j hj) (Nat.cast_nonneg _)
 
+/-- For an integer `n` and complex `ρ`, the real number `2^n` raised to `ρ` equals `(2^ρ)^n`. -/
 theorem cpow_two_zpow (n : ℤ) (ρ : ℂ) :
     (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n := by
   have hpos : (0:ℝ) < (2:ℝ) ^ n := zpow_pos (by norm_num) n
@@ -97,6 +104,7 @@ theorem cpow_two_zpow (n : ℤ) (ρ : ℂ) :
   push_cast
   ring
 
+/-- Helper: the complex power `2^ρ` is nonzero for every complex `ρ`. -/
 theorem two_cpow_ne_zero (ρ : ℂ) : (2:ℂ) ^ ρ ≠ 0 := by
   rw [Complex.cpow_def_of_ne_zero (by norm_num : (2:ℂ) ≠ 0)]
   exact Complex.exp_ne_zero _

@@ -73,18 +73,22 @@ def primeSide (k : ℝ → ℂ) : ℂ :=
   + (1 / (2 * π) : ℂ) * ∫ r : ℝ, paperFT k r
       * (((Complex.digamma (1 / 4 + I * r / 2)).re - Real.log π : ℝ) : ℂ)
 
+/-- The prime side written out here equals zeta23's `literatureRHS`. -/
 theorem primeSide_eq (k : ℝ → ℂ) : primeSide k = literatureRHS k := rfl
 
+/-- If `G` is real-valued, then the tilted function `tiltF G` is real-valued. -/
 theorem tiltF_im {G : ℝ → ℂ} (hG : ∀ u, (G u).im = 0) (u : ℝ) : (tiltF G u).im = 0 := by
   unfold tiltF
   rw [Complex.mul_im, hG u, Complex.ofReal_im]
   ring
 
+/-- If `G` is `C¹`, then the tilted function `tiltF G` is `C¹`. -/
 theorem contDiff_tiltF {G : ℝ → ℂ} (hG : ContDiff ℝ 1 G) : ContDiff ℝ 1 (tiltF G) := by
   unfold tiltF
   exact hG.mul (Complex.ofRealCLM.contDiff.comp
     (Real.contDiff_exp.comp (contDiff_id.div_const 2)))
 
+/-- If `G` has compact support, then the tilted function `tiltF G` has compact support. -/
 theorem hasCompactSupport_tiltF {G : ℝ → ℂ} (hG : HasCompactSupport G) :
     HasCompactSupport (tiltF G) := by
   have h : tiltF G = G * fun u : ℝ => ((Real.exp (u / 2) : ℝ) : ℂ) := rfl
@@ -156,16 +160,19 @@ theorem contDiff_two_convolution {f h : ℝ → ℂ} (hf : ContDiff ℝ 1 f) (hf
   · rw [hderiv]
     exact hc1
 
+/-- If `g` is `C¹`, then its conjugate reflection `tilde g` is `C¹`. -/
 theorem contDiff_tilde {g : ℝ → ℂ} (hg : ContDiff ℝ 1 g) : ContDiff ℝ 1 (tilde g) := by
   unfold tilde
   exact Complex.conjCLE.contDiff.comp (hg.comp contDiff_neg)
 
+/-- If `G` is `C¹` with compact support, then the Weil test function `kOf G` is `C²`. -/
 theorem contDiff_kOf {G : ℝ → ℂ} (hG : ContDiff ℝ 1 G) (hGs : HasCompactSupport G) :
     ContDiff ℝ 2 (kOf G) := by
   unfold kOf weilTest
   exact contDiff_two_convolution (contDiff_tiltF hG) (hasCompactSupport_tiltF hGs)
     (contDiff_tilde (contDiff_tiltF hG)) (hasCompactSupport_tilde (hasCompactSupport_tiltF hGs))
 
+/-- If `G` has compact support, then the Weil test function `kOf G` has compact support. -/
 theorem hasCompactSupport_kOf {G : ℝ → ℂ} (hGs : HasCompactSupport G) :
     HasCompactSupport (kOf G) :=
   weilTest_hasCompactSupport (hasCompactSupport_tiltF hGs) (hasCompactSupport_tiltF hGs)
@@ -233,8 +240,10 @@ def StmtWeilBridge : Prop :=
           * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))
         = primeSideM (kOfM G)
 
+/-- The Weil test function in Mathlib's convolution, `kOfM G`, equals `kOf G`. -/
 theorem kOfM_eq (G : ℝ → ℂ) : kOfM G = kOf G := rfl
 
+/-- The prime side written against Mathlib alone, `primeSideM k`, equals `primeSide k`. -/
 theorem primeSideM_eq (k : ℝ → ℂ) : primeSideM k = primeSide k := rfl
 
 /-- **The bridge holds.** -/

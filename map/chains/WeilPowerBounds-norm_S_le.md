@@ -1,6 +1,6 @@
 # What `WeilPowerBounds.norm_S_le` rests on
 
-[`WeilPowerBounds.norm_S_le`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_S_le) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 104.
+[`WeilPowerBounds.norm_S_le`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_S_le) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 108.
 
 **Why.** Upper bound. `‖S m w‖ ≤ cS m · cosh(Re w) / ‖QS m w‖` for `Re w ≠ 0`.
 

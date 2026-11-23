@@ -2,7 +2,7 @@
 
 LandauZeroSide — the zeros' reading of the Taylor coefficients of `Phi`, from below. Block 7b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-2 theorems, 0 definitions, 301 lines. Arrows are Lean's own record of what each proof uses.
+2 theorems, 0 definitions, 305 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md), [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md), [`LandauTrig`](../lean_stage3/LandauTrig.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauCriterion`](../lean_stage3/LandauCriterion.md)
@@ -69,9 +69,11 @@ line 38
 <a name="LandauZeroSide-zero_side"></a>
 ### `LandauZeroSide.zero_side`
 
-line 54
+line 58
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The zeros' lower bound on the primes' integral. For a zero `ρ₀` of `riemannZeta` and a real `σ₀ > 1` with `‖σ₀ − ρ₀‖ < σ₀`, there are `r, R, τ, C₁, N₀` with `σ₀ − 1 < r ≤ ‖σ₀ − ρ₀‖`, `r < R`, `τ > 0`, `C₁ ≥ 0`, such that every run of at least `N₀` consecutive naturals contains a `k` with `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!`.
 
 **Proves**
 

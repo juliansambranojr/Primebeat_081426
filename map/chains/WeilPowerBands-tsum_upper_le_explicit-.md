@@ -1,6 +1,6 @@
 # What `WeilPowerBands.tsum_upper_le_explicit'` rests on
 
-[`WeilPowerBands.tsum_upper_le_explicit'`](../lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilPowerBands.lean`, line 468.
+[`WeilPowerBands.tsum_upper_le_explicit'`](../lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilPowerBands.lean`, line 482.
 
 **Why.** Upper on-line background, in `γ`, `h` and `m` alone: `≤ 88·(γ + r + 2)⁴·(4h² + cFarM m/h²)·π²/6`.
 

@@ -2,7 +2,7 @@
 
 ThetaPull — the vertical segment `I₃₇` at a general abscissa `θ`. WHAT THIS PORTS. `RHPull` (`LineBound.lean:1085` onward) bounds the vertical segment of the Perron contour at `σRH X = 1/2 + 1/log X`:
 
-10 theorems, 0 definitions, 341 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 0 definitions, 344 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ThetaLine`](../lean_stage3/ThetaLine.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ThetaPsi`](../lean_stage3/ThetaPsi.md)
@@ -65,9 +65,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="Stage3-half_lt_--"></a>
 ### `Stage3.half_lt_σθ`
 
-line 51
+line 52
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `1/2 ≤ θ` and `0 < log X`, then the abscissa `σθ θ X = θ + 1/log X` exceeds `1/2`.
 
 **Proves**
 
@@ -92,7 +94,7 @@ line 51
 <a name="Stage3-four_le_log_of_theta"></a>
 ### `Stage3.four_le_log_of_theta`
 
-line 57
+line 58
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -129,7 +131,7 @@ line 57
 <a name="Stage3-kernel_le_theta"></a>
 ### `Stage3.kernel_le_theta`
 
-line 65
+line 66
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -159,9 +161,11 @@ line 65
 <a name="Stage3-norm_line_ge_theta"></a>
 ### `Stage3.norm_line_ge_theta`
 
-line 75
+line 78
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `1/2 ≤ θ` and `0 < log X`, then the point `σθ θ X + i·t` of the line has norm at least `(1 + |t|)/3`.
 
 **Proves**
 
@@ -188,7 +192,7 @@ line 75
 <a name="Stage3-integrand_norm_le_theta"></a>
 ### `Stage3.integrand_norm_le_theta`
 
-line 88
+line 91
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -225,7 +229,7 @@ line 88
 <a name="Stage3-I37_norm_le_decay_theta"></a>
 ### `Stage3.I37_norm_le_decay_theta`
 
-line 116
+line 119
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -266,7 +270,7 @@ line 116
 <a name="Stage3-I37_power_form_theta"></a>
 ### `Stage3.I37_power_form_theta`
 
-line 179
+line 182
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -304,7 +308,7 @@ line 179
 <a name="Stage3-I37_norm_le_epsfree_theta"></a>
 ### `Stage3.I37_norm_le_epsfree_theta`
 
-line 203
+line 206
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -344,7 +348,7 @@ line 203
 <a name="Stage3-I37_power_log3_theta"></a>
 ### `Stage3.I37_power_log3_theta`
 
-line 263
+line 266
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -384,7 +388,7 @@ line 263
 <a name="Stage3-I37_sqrt_log3_half"></a>
 ### `Stage3.I37_sqrt_log3_half`
 
-line 309
+line 312
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

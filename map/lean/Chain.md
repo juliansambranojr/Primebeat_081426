@@ -2,7 +2,7 @@
 
 The Euler Factor Chain, as a chain. Companion to papers/Euler-Factor-Chain.md.
 
-32 theorems, 14 definitions, 713 lines. Arrows are Lean's own record of what each proof uses.
+32 theorems, 14 definitions, 714 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Construction`](../lean/Construction.md), [`EulerFactorChain`](../lean/EulerFactorChain.md)  
 **Imported by:** [`JointLadder`](../lean/JointLadder.md), [`Measured`](../lean/Measured.md), [`NyquistPeak`](../lean/NyquistPeak.md), [`Superposition`](../lean/Superposition.md), [`TransferOp`](../lean/TransferOp.md), [`Transform`](../lean/Transform.md)
@@ -954,9 +954,11 @@ Function.Periodic f (2 * Real.pi / Real.log 1)
 <a name="Chain-sq_rpow_half"></a>
 ### `Chain.sq_rpow_half`
 
-line 474
+line 475
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `b > 0`, the square of `b^(−1/2)` is `b^(−1)`.
 
 **Proves**
 
@@ -978,7 +980,7 @@ line 474
 <a name="Chain-gain_sq_at_floor"></a>
 ### `Chain.gain_sq_at_floor`
 
-line 480
+line 481
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1010,7 +1012,7 @@ line 480
 <a name="Chain-gain_sq_at_ceiling"></a>
 ### `Chain.gain_sq_at_ceiling`
 
-line 488
+line 489
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1043,7 +1045,7 @@ line 488
 <a name="Chain-C2_floor_attained"></a>
 ### `Chain.C2_floor_attained`
 
-line 497
+line 498
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1070,7 +1072,7 @@ line 497
 <a name="Chain-C2_ceiling_attained"></a>
 ### `Chain.C2_ceiling_attained`
 
-line 503
+line 504
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1098,7 +1100,7 @@ line 503
 <a name="Chain-ceiling_base"></a>
 ### `Chain.ceiling_base`
 
-line 512
+line 513
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1126,7 +1128,7 @@ line 512
 <a name="Chain-ceiling_dominates_floor"></a>
 ### `Chain.ceiling_dominates_floor`
 
-line 523
+line 524
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1149,7 +1151,7 @@ line 523
 <a name="Chain-joint_gain_periodic_of_commensurate"></a>
 ### `Chain.joint_gain_periodic_of_commensurate`
 
-line 545
+line 546
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1183,7 +1185,7 @@ Function.Periodic (fun γ : ℝ => ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2 * �
 <a name="Chain-second_ladder_winds_densely"></a>
 ### `Chain.second_ladder_winds_densely`
 
-line 566
+line 567
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

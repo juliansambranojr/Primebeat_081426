@@ -2,7 +2,7 @@
 
 # S3 — the edge bound (FinalBound rescale + gap-eating) The Landau partial fraction transported from PNT+'s normalized `FinalBound` (unit ball) to the ball at `3/2 + iT′`, for `g = (s−1)²·ζ` (entire; the pole cleared, one extra order-1 zero at `1`). Inputs: `ZetaGrowth.sq_zeta_band_bound` (the B), PNT+'s `ZetaFixedLowerBound` (the f(0)), `ContourShift`'s good heights, fences, and reflection-order (the eating).
 
-15 theorems, 2 definitions, 835 lines. Arrows are Lean's own record of what each proof uses.
+15 theorems, 2 definitions, 838 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Glue`](../lean_stage3/Glue.md), [`LowCount`](../lean_stage3/LowCount.md)
@@ -138,9 +138,11 @@ def · line 24
 <a name="EdgeBound-gz_analytic"></a>
 ### `EdgeBound.gz_analytic`
 
-line 26
+line 27
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The function `gz = (s−1)²·ζ` is analytic at every complex point `s`.
 
 **Proves**
 
@@ -169,9 +171,11 @@ AnalyticAt ℂ gz s
 <a name="EdgeBound-c0_im"></a>
 ### `EdgeBound.c0_im`
 
-line 28
+line 30
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The imaginary part of the ball center `c0 T'` is `T'`.
 
 **Proves**
 
@@ -202,9 +206,11 @@ line 28
 <a name="EdgeBound-c0_re"></a>
 ### `EdgeBound.c0_re`
 
-line 32
+line 35
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real part of the ball center `c0 T'` is `3/2`.
 
 **Proves**
 
@@ -236,7 +242,7 @@ line 32
 <a name="EdgeBound-gz_lower"></a>
 ### `EdgeBound.gz_lower`
 
-line 37
+line 40
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -267,7 +273,7 @@ line 37
 <a name="EdgeBound-zeta_ratio_pos"></a>
 ### `EdgeBound.zeta_ratio_pos`
 
-line 61
+line 64
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -291,7 +297,7 @@ line 61
 <a name="EdgeBound-gz_c0_ne"></a>
 ### `EdgeBound.gz_c0_ne`
 
-line 70
+line 73
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -322,7 +328,7 @@ gz (c0 T') ≠ 0
 <a name="EdgeBound-gz_zero_cases"></a>
 ### `EdgeBound.gz_zero_cases`
 
-line 77
+line 80
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -351,7 +357,7 @@ w = 1 ∨ riemannZeta w = 0
 <a name="EdgeBound-gz_zeros_ball_finite"></a>
 ### `EdgeBound.gz_zeros_ball_finite`
 
-line 87
+line 90
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -399,7 +405,7 @@ line 87
 <a name="EdgeBound-gz_partial_fraction"></a>
 ### `EdgeBound.gz_partial_fraction`
 
-line 128
+line 131
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -431,7 +437,7 @@ line 128
 <a name="EdgeBound-gz_order_eq"></a>
 ### `EdgeBound.gz_order_eq`
 
-line 365
+line 368
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -462,7 +468,7 @@ analyticOrderNatAt gz w = analyticOrderNatAt riemannZeta w
 <a name="EdgeBound-ball_zero_shape"></a>
 ### `EdgeBound.ball_zero_shape`
 
-line 386
+line 389
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -502,7 +508,7 @@ riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25
 <a name="EdgeBound-ball_order_sum_le"></a>
 ### `EdgeBound.ball_order_sum_le`
 
-line 417
+line 420
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -535,7 +541,7 @@ line 417
 <a name="EdgeBound-gz_logderiv"></a>
 ### `EdgeBound.gz_logderiv`
 
-line 680
+line 683
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -565,7 +571,7 @@ deriv gz u / gz u = 2/(u - 1) + deriv riemannZeta u / riemannZeta u
 <a name="EdgeBound-deriv_zeta_conj"></a>
 ### `EdgeBound.deriv_zeta_conj`
 
-line 702
+line 705
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -596,7 +602,7 @@ deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s
 <a name="EdgeBound-edge_bound_core"></a>
 ### `EdgeBound.edge_bound_core`
 
-line 717
+line 720
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

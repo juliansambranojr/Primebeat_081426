@@ -2,7 +2,7 @@
 
 LandauMellin — the Mellin transform of the ramp sum on `Re s > 1`. Block 2 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-7 theorems, 1 definition, 223 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 1 definition, 233 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauWindow`](../lean_stage3/LandauWindow.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md)
@@ -87,9 +87,11 @@ rampK s n y = (Ioi (n : ℝ)).indicator (fun t : ℝ => (1 / (n : ℂ)) * (t : �
 <a name="LandauMellin-two_powers_integrableOn"></a>
 ### `LandauMellin.two_powers_integrableOn`
 
-line 68
+line 70
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `Re s > 1` and `n ≥ 1`, the two-power function `t^(−s)/n − t^(−s−1)` is integrable on `(n, ∞)`.
 
 **Proves**
 
@@ -111,9 +113,11 @@ IntegrableOn (fun t : ℝ => (1 / (n : ℂ)) * (t : ℂ) ^ (-s) - (t : ℂ) ^ (-
 <a name="LandauMellin-rampK_integrable"></a>
 ### `LandauMellin.rampK_integrable`
 
-line 78
+line 81
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 1` and `n ≥ 1`, the ramp kernel `rampK s n` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -140,9 +144,11 @@ IntegrableOn (rampK s n) (Ioi 1)
 <a name="LandauMellin-rampK_integral"></a>
 ### `LandauMellin.rampK_integral`
 
-line 85
+line 90
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 1` and `n ≥ 1`, the integral of the ramp kernel `rampK s n` over `(1, ∞)` is `n^(−s)/(s(s−1))`.
 
 **Proves**
 
@@ -169,9 +175,11 @@ line 85
 <a name="LandauMellin-rampK_integral_norm"></a>
 ### `LandauMellin.rampK_integral_norm`
 
-line 122
+line 129
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 1` and `n ≥ 1`, the integral of the norm of the ramp kernel over `(1, ∞)` is `n^(−σ)/(σ(σ−1))` with `σ = Re s`.
 
 **Proves**
 
@@ -197,9 +205,11 @@ line 122
 <a name="LandauMellin-rampSum_eq_tsum"></a>
 ### `LandauMellin.rampSum_eq_tsum`
 
-line 148
+line 156
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The ramp sum at `y` equals the infinite sum over all `n` of `Λ(n)·max(y/n − 1, 0)`.
 
 **Proves**
 
@@ -222,9 +232,11 @@ LandauWindow.rampSum y = ∑' n : ℕ, Λ n * max (y / n - 1) 0
 <a name="LandauMellin-mellin_rampSum"></a>
 ### `LandauMellin.mellin_rampSum`
 
-line 164
+line 174
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The Mellin transform of the ramp sum: for `Re s > 1`, the integral over `(1, ∞)` of `rampSum(y)·y^(−s−1)` equals `−ζ'(s)/ζ(s)/(s(s−1))`.
 
 **Proves**
 

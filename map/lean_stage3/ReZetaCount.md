@@ -2,7 +2,7 @@
 
 ReZetaCount — block H2 of `lean_stage3/design/hnt.md`, "The count: zeros of Re ζ on the segment, and Re ζ > 0 on the line Re s = 2".
 
-15 theorems, 4 definitions, 475 lines. Arrows are Lean's own record of what each proof uses.
+15 theorems, 4 definitions, 480 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`JensenCount`](../lean_stage3/JensenCount.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgCount`](../lean_stage3/ArgCount.md)
@@ -103,7 +103,7 @@ The zeros of `x ↦ Re ζ(x + iT)` on the open segment `(1/2, 2)`.
 <a name="ReZetaCount-reZeros"></a>
 ### `ReZetaCount.reZeros`
 
-def · line 378
+def · line 381
 
 The zeros of `Re ζ` on the segment, as a `Finset`.
 
@@ -284,9 +284,11 @@ G T 0 ≠ 0
 <a name="ReZetaCount-F_zero_eq_one"></a>
 ### `ReZetaCount.F_zero_eq_one`
 
-line 193
+line 194
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The normalised model `F T` takes the value `1` at the centre `0`.
 
 **Proves**
 
@@ -315,7 +317,7 @@ F T 0 = 1
 <a name="ReZetaCount-arg_ne_one"></a>
 ### `ReZetaCount.arg_ne_one`
 
-line 196
+line 197
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -342,9 +344,11 @@ line 196
 <a name="ReZetaCount-F_analytic"></a>
 ### `ReZetaCount.F_analytic`
 
-line 214
+line 217
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `2 ≤ T`, then the normalised model `F T` is analytic at every point of the closed unit disk.
 
 **Proves**
 
@@ -372,7 +376,7 @@ AnalyticOnNhd ℂ (F T) (Metric.closedBall (0 : ℂ) 1)
 <a name="ReZetaCount-F_bound"></a>
 ### `ReZetaCount.F_bound`
 
-line 233
+line 236
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -406,7 +410,7 @@ line 233
 <a name="ReZetaCount-F_zeros_finite"></a>
 ### `ReZetaCount.F_zeros_finite`
 
-line 274
+line 277
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -440,7 +444,7 @@ line 274
 <a name="ReZetaCount-F_count_le"></a>
 ### `ReZetaCount.F_count_le`
 
-line 312
+line 315
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -471,7 +475,7 @@ line 312
 <a name="ReZetaCount-reZeroSet_finite"></a>
 ### `ReZetaCount.reZeroSet_finite`
 
-line 350
+line 353
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -504,9 +508,11 @@ line 350
 <a name="ReZetaCount-mem_reZeros"></a>
 ### `ReZetaCount.mem_reZeros`
 
-line 380
+line 385
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `2 ≤ T`, then `x` belongs to the finite set `reZeros` exactly when `x` lies in the open segment `(1/2, 2)` and `Re ζ(x + iT) = 0`.
 
 **Proves**
 
@@ -534,7 +540,7 @@ x ∈ reZeros hT ↔ x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T
 <a name="ReZetaCount-card_reZeros_le"></a>
 ### `ReZetaCount.card_reZeros_le`
 
-line 386
+line 391
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

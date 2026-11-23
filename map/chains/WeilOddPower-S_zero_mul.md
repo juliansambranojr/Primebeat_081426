@@ -1,6 +1,6 @@
 # What `WeilOddPower.S_zero_mul` rests on
 
-[`WeilOddPower.S_zero_mul`](../lean_stage3/WeilOddPower.md#WeilOddPower-S_zero_mul) in `lean_stage3/Stage3/WeilOddPower.lean`, line 166.
+[`WeilOddPower.S_zero_mul`](../lean_stage3/WeilOddPower.md#WeilOddPower-S_zero_mul) in `lean_stage3/Stage3/WeilOddPower.lean`, line 171.
 
 **Why.** At `m = 0`: `S 0 w · (w² + π²) = 2π·sinh w`, the elementary integral of `sin(πx)e^{wx}`.
 

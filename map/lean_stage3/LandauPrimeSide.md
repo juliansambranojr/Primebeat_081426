@@ -2,7 +2,7 @@
 
 LandauPrimeSide — the primes' reading of the Taylor coefficients of `Phi`, bounded from above by a window bound on `G`. Block 7a of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 1 definition, 184 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 1 definition, 190 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauTail`](../lean_stage3/LandauTail.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)
@@ -58,9 +58,11 @@ def · line 39
 <a name="LandauPrimeSide-Ik_integrable"></a>
 ### `LandauPrimeSide.Ik_integrable`
 
-line 42
+line 44
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For real `σ > 1` and every natural `k`, the integrand `G(y)·(log y)^k·y^(−σ−1)` of `Ik` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -86,9 +88,11 @@ IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) 
 <a name="LandauPrimeSide-iteratedDeriv_Phi_eq_Ik"></a>
 ### `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`
 
-line 60
+line 63
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For real `σ > 1`, the `k`-th derivative of `Phi` at `σ` is `(−1)^k · Ik σ k`.
 
 **Proves**
 
@@ -117,9 +121,11 @@ iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ
 <a name="LandauPrimeSide-Ik_le"></a>
 ### `LandauPrimeSide.Ik_le`
 
-line 65
+line 71
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The upper bound on the primes' integral. For `σ > 1`, `θ < σ`, `C ≥ 0`, `Y ≥ 1`, `δ ≥ 0`, a window bound `G y ≤ C·y^θ` on `[Y, Y^(1+δ)]`, and shifts `b > 0`, `0 < b' < σ − 1`: `Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.
 
 **Proves**
 

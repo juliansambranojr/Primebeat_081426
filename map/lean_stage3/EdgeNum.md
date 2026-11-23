@@ -2,7 +2,7 @@
 
 EdgeNum — block E8a of `lean_stage3/design/joints.md`. 2026-11-22. `EdgeBound`'s three edge theorems with their constants as definitions. Each proof is the original with its existence step replaced: the band bound is `BoxBounds.sq_zeta_band_explicit` in place of `sq_zeta_band_bound`, and each `refine ⟨<expression>, _, ?_⟩` is the definition unfolding to that expression (`LOOP.md` § 3). `EdgeBound.lean` is untouched.
 
-6 theorems, 3 definitions, 716 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 3 definitions, 719 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LowEdge`](../lean_stage3/LowEdge.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueNum`](../lean_stage3/GlueNum.md)
@@ -68,7 +68,7 @@ The partial fraction's constant.
 <a name="EdgeBound-C2n"></a>
 ### `EdgeBound.C2n`
 
-def · line 300
+def · line 301
 
 The ball count's constant.
 
@@ -79,7 +79,7 @@ The ball count's constant.
 <a name="EdgeBound-Cen"></a>
 ### `EdgeBound.Cen`
 
-def · line 583
+def · line 585
 
 The edge constant.
 
@@ -92,9 +92,11 @@ The edge constant.
 <a name="EdgeBound-C1n_pos"></a>
 ### `EdgeBound.C1n_pos`
 
-line 35
+line 36
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The partial fraction's constant `C1n` is positive.
 
 **Proves**
 
@@ -116,7 +118,7 @@ line 35
 <a name="EdgeBound-gz_partial_fraction_num"></a>
 ### `EdgeBound.gz_partial_fraction_num`
 
-line 54
+line 55
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -148,9 +150,11 @@ line 54
 <a name="EdgeBound-C2n_pos"></a>
 ### `EdgeBound.C2n_pos`
 
-line 305
+line 307
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The ball count's constant `C2n` is positive.
 
 **Proves**
 
@@ -172,7 +176,7 @@ line 305
 <a name="EdgeBound-ball_order_sum_le_num"></a>
 ### `EdgeBound.ball_order_sum_le_num`
 
-line 317
+line 319
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -205,9 +209,11 @@ line 317
 <a name="EdgeBound-Cen_pos"></a>
 ### `EdgeBound.Cen_pos`
 
-line 585
+line 588
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The edge constant `Cen` is positive.
 
 **Proves**
 
@@ -235,7 +241,7 @@ line 585
 <a name="EdgeBound-edge_bound_core_num"></a>
 ### `EdgeBound.edge_bound_core_num`
 
-line 597
+line 600
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

@@ -2,7 +2,7 @@
 
 WeilDetect — the zero side of Weil's form on bounded support, and the bounded-height detection statement. 2026-09-06, the first attempt at entry 297's rung-to-strip arrow, in the shape entry 303 §(d) drafted and did not add.
 
-5 theorems, 6 definitions, 171 lines. Arrows are Lean's own record of what each proof uses.
+5 theorems, 6 definitions, 173 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxFinite`](../lean_stage3/BoxFinite.md), [`WeilBackground`](../lean_stage3/WeilBackground.md), [`WeilBridgeLeaf`](../lean_stage3/WeilBridgeLeaf.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`WeilPowerBackground`](../lean_stage3/WeilPowerBackground.md)
@@ -223,9 +223,11 @@ line 130
 <a name="WeilDetect-weilPositive_of_RH"></a>
 ### `WeilDetect.weilPositive_of_RH`
 
-line 151
+line 153
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Under the Riemann hypothesis, Weil positivity on the zero side, `StmtWeilPositive L`, holds for every support `L`.
 
 **Proves**
 

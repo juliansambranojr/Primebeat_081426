@@ -2,7 +2,7 @@
 
 LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 239 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 250 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauRates`](../lean_stage3/LandauRates.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md)
@@ -44,9 +44,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauCriterion-contradiction"></a>
 ### `LandauCriterion.contradiction`
 
-line 37
+line 42
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The two bounds on the primes' integral `Ik σ₀ k / k!` cannot both hold. Given `σ₀ > 1`, `0 < δ ≤ 1`, `C ≥ 0`, `σ₀ − 1 < r ≤ (σ₀ − 1)(1 + δ²/240)`, `r < σ₀ − θ`, `r < R`, `τ > 0`, the lower bound `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!` for some `k` in every run of at least `N₀` consecutive naturals, and windows `[Y, Y^(1+δ)]` at arbitrarily large `Y` on which `G y ≤ C·y^θ`, the conclusion is `False`.
 
 **Proves**
 
@@ -83,9 +85,11 @@ False
 <a name="LandauCriterion-stmtLandauWindow"></a>
 ### `LandauCriterion.stmtLandauWindow`
 
-line 194
+line 202
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The Landau window criterion holds: for `0 < θ < 1`, `δ > 0` and any `C`, if `G y ≤ C·y^θ` on a window `[Y, Y^(1+δ)]` for arbitrarily large `Y`, then `riemannZeta` has no zero with real part above `θ`.
 
 **Proves**
 
@@ -111,9 +115,11 @@ LandauWindow.StmtLandauWindow
 <a name="LandauCriterion-rh_of_windows"></a>
 ### `LandauCriterion.rh_of_windows`
 
-line 219
+line 230
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Conditional: if for every `θ` in `(1/2, 1)` there are `δ > 0` and `C` with the window bound `WindowBound θ δ C`, then `RiemannHypothesis` holds. The window bound is a hypothesis of this statement.
 
 **Proves**
 

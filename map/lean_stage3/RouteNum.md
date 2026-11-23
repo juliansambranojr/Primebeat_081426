@@ -2,7 +2,7 @@
 
 RouteNum — block E8c of `lean_stage3/design/joints.md`. 2026-11-22. The explicit-formula route at the gate with its three constants named, and a numeral above each constant in the chain.
 
-14 theorems, 1 definition, 286 lines. Arrows are Lean's own record of what each proof uses.
+14 theorems, 1 definition, 297 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`GlueNum`](../lean_stage3/GlueNum.md), [`RouteGate`](../lean_stage3/RouteGate.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GateEval`](../lean_stage3/GateEval.md)
@@ -92,7 +92,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="Stage3-routeConst"></a>
 ### `Stage3.routeConst`
 
-def · line 201
+def · line 212
 
 The route's constant on the `π` side, at floor `x₀`.
 
@@ -105,9 +105,11 @@ The route's constant on the `π` side, at floor `x₀`.
 <a name="RouteNum-inv_log_two_le"></a>
 ### `RouteNum.inv_log_two_le`
 
-line 33
+line 34
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `1 / log 2 ≤ 1.4428`.
 
 **Proves**
 
@@ -128,9 +130,11 @@ line 33
 <a name="RouteNum-C1n_le"></a>
 ### `RouteNum.C1n_le`
 
-line 38
+line 40
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The partial fraction's constant `C1n` is at most `1909224`.
 
 **Proves**
 
@@ -151,9 +155,11 @@ EdgeBound.C1n ≤ 1909224
 <a name="RouteNum-C2n_le"></a>
 ### `RouteNum.C2n_le`
 
-line 95
+line 98
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The ball count's constant `C2n` is at most `2167`.
 
 **Proves**
 
@@ -176,9 +182,11 @@ EdgeBound.C2n ≤ 2167
 <a name="RouteNum-Cen_le"></a>
 ### `RouteNum.Cen_le`
 
-line 115
+line 119
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The edge constant `Cen` is at most `1911393`.
 
 **Proves**
 
@@ -204,9 +212,11 @@ EdgeBound.Cen ≤ 1911393
 <a name="RouteNum-Cpn_le"></a>
 ### `RouteNum.Cpn_le`
 
-line 123
+line 128
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The good-height constant `Cpn` is at most `6534550000`.
 
 **Proves**
 
@@ -231,9 +241,11 @@ Glue.Cpn ≤ 6534550000
 <a name="RouteNum-Chn_le"></a>
 ### `RouteNum.Chn_le`
 
-line 139
+line 145
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The horizontal-edge constant `Chn` is at most `44108300000`.
 
 **Proves**
 
@@ -256,9 +268,11 @@ Glue.Chn ≤ 44108300000
 <a name="RouteNum-Csn_le"></a>
 ### `RouteNum.Csn_le`
 
-line 144
+line 151
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The band count's constant `Csn` is at most `1136`.
 
 **Proves**
 
@@ -279,9 +293,11 @@ Glue.Csn ≤ 1136
 <a name="RouteNum-Dln_le"></a>
 ### `RouteNum.Dln_le`
 
-line 153
+line 161
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The left-edge constant `Dln` is at most `89846200`.
 
 **Proves**
 
@@ -305,9 +321,11 @@ Glue.Dln ≤ 89846200
 <a name="RouteNum-c1n_le"></a>
 ### `RouteNum.c1n_le`
 
-line 163
+line 172
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's first constant `c1n` is at most `88216610000`.
 
 **Proves**
 
@@ -331,9 +349,11 @@ Glue.c1n ≤ 88216610000
 <a name="RouteNum-c3n_le"></a>
 ### `RouteNum.c3n_le`
 
-line 169
+line 179
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's constant `c3n` is at most `15`.
 
 **Proves**
 
@@ -354,9 +374,11 @@ Glue.c3n ≤ 15
 <a name="RouteNum-c4n_le"></a>
 ### `RouteNum.c4n_le`
 
-line 180
+line 191
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The explicit formula's constant `c4n` is at most `6468930000`.
 
 **Proves**
 
@@ -379,7 +401,7 @@ Glue.c4n ≤ 6468930000
 <a name="Stage3-stmtEF_split_num"></a>
 ### `Stage3.stmtEF_split_num`
 
-line 197
+line 208
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -404,7 +426,7 @@ StmtExplicitFormulaSplit Glue.c1n Glue.c3n Glue.c4n 16
 <a name="Stage3-schoenfeldWeak_route_num"></a>
 ### `Stage3.schoenfeldWeak_route_num`
 
-line 205
+line 216
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -444,7 +466,7 @@ StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x => (Nat.primeCo
 <a name="RouteNum-relErrWindow_route_num"></a>
 ### `RouteNum.relErrWindow_route_num`
 
-line 230
+line 241
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

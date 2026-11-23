@@ -1,6 +1,6 @@
 # What `WeilPowerBounds.S_real_ge` rests on
 
-[`WeilPowerBounds.S_real_ge`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_real_ge) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 217.
+[`WeilPowerBounds.S_real_ge`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_real_ge) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 223.
 
 **Why.** Lower bound at the target. For `1 ≤ s`, `cS m · e^s / (4·(s² + π²(m+1)²)^{m+1}) ≤ Re (S m s)`.
 

@@ -2,7 +2,7 @@
 
 WeilSeries — the band series made explicit. Rung 4b, second half, slice B2 of the detection ladder (units 0316–0322). 2026-09-06.
 
-18 theorems, 3 definitions, 322 lines. Arrows are Lean's own record of what each proof uses.
+18 theorems, 3 definitions, 329 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilTiles`](../lean_stage3/WeilTiles.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`WeilPowerBands`](../lean_stage3/WeilPowerBands.md)
@@ -105,7 +105,7 @@ The far constant `(2π+π²)²·(10/9)⁴`.
 <a name="WeilSeries-M"></a>
 ### `WeilSeries.M`
 
-def · line 51
+def · line 52
 
 The dominating band series.
 
@@ -116,7 +116,7 @@ The dominating band series.
 <a name="WeilSeries-A"></a>
 ### `WeilSeries.A`
 
-def · line 141
+def · line 143
 
 The crude constant: `M k·(15·log (centre k) + 73) ≤ A/(k+1)³`.
 
@@ -129,9 +129,11 @@ The crude constant: `M k·(15·log (centre k) + 73) ≤ A/(k+1)³`.
 <a name="WeilSeries-cFar_nonneg"></a>
 ### `WeilSeries.cFar_nonneg`
 
-line 46
+line 47
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The far constant `cFar` is nonnegative.
 
 **Proves**
 
@@ -152,9 +154,11 @@ line 46
 <a name="WeilSeries-M_nonneg"></a>
 ### `WeilSeries.M_nonneg`
 
-line 55
+line 57
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The dominating band series `M h γ k` is nonnegative at every band `k`.
 
 **Proves**
 
@@ -184,7 +188,7 @@ line 55
 <a name="WeilSeries-two_le_of_one_lt"></a>
 ### `WeilSeries.two_le_of_one_lt`
 
-line 62
+line 64
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -212,7 +216,7 @@ line 62
 <a name="WeilSeries-dist_ge"></a>
 ### `WeilSeries.dist_ge`
 
-line 71
+line 73
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -245,7 +249,7 @@ line 71
 <a name="WeilSeries-term_le_M"></a>
 ### `WeilSeries.term_le_M`
 
-line 89
+line 91
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -284,9 +288,11 @@ line 89
 <a name="WeilSeries-four_h_add_nonneg"></a>
 ### `WeilSeries.four_h_add_nonneg`
 
-line 143
+line 146
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the factor `4h² + cFar/h²` of the crude constant is nonnegative for every `h`.
 
 **Proves**
 
@@ -314,9 +320,11 @@ line 143
 <a name="WeilSeries-A_nonneg"></a>
 ### `WeilSeries.A_nonneg`
 
-line 148
+line 152
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The crude constant `A h γ` is nonnegative.
 
 **Proves**
 
@@ -343,7 +351,7 @@ line 148
 <a name="WeilSeries-weight_le"></a>
 ### `WeilSeries.weight_le`
 
-line 153
+line 157
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -373,9 +381,11 @@ line 153
 <a name="WeilSeries-weight_nonneg"></a>
 ### `WeilSeries.weight_nonneg`
 
-line 161
+line 166
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The band weight `15·log (centre k) + 73` is nonnegative at every band `k`.
 
 **Proves**
 
@@ -401,7 +411,7 @@ line 161
 <a name="WeilSeries-bandTerm_le_A"></a>
 ### `WeilSeries.bandTerm_le_A`
 
-line 166
+line 171
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -438,9 +448,11 @@ M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ / ((k : ℝ) + 1) ^ 3
 <a name="WeilSeries-summable_shift3"></a>
 ### `WeilSeries.summable_shift3`
 
-line 221
+line 227
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the shifted series `Σ 1/(k+1)³` over the naturals is summable.
 
 **Proves**
 
@@ -458,9 +470,11 @@ Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 3)
 <a name="WeilSeries-summable_shift2"></a>
 ### `WeilSeries.summable_shift2`
 
-line 229
+line 236
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the shifted series `Σ 1/(k+1)²` over the naturals is summable.
 
 **Proves**
 
@@ -478,7 +492,7 @@ Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 2)
 <a name="WeilSeries-bandSeries_summable"></a>
 ### `WeilSeries.bandSeries_summable`
 
-line 238
+line 245
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -514,7 +528,7 @@ Summable (fun k : ℕ => M h γ k * (15 * Real.log (centre k) + 73))
 <a name="WeilSeries-tsum_shift2"></a>
 ### `WeilSeries.tsum_shift2`
 
-line 247
+line 254
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -536,7 +550,7 @@ line 247
 <a name="WeilSeries-bandSeries_le"></a>
 ### `WeilSeries.bandSeries_le`
 
-line 260
+line 267
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -570,7 +584,7 @@ line 260
 <a name="WeilSeries-idx_le"></a>
 ### `WeilSeries.idx_le`
 
-line 275
+line 282
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -599,7 +613,7 @@ line 275
 <a name="WeilSeries-tsum_upper_le_explicit"></a>
 ### `WeilSeries.tsum_upper_le_explicit`
 
-line 285
+line 292
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -635,7 +649,7 @@ line 285
 <a name="WeilSeries-tsum_upper_le_explicit-"></a>
 ### `WeilSeries.tsum_upper_le_explicit'`
 
-line 294
+line 301
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

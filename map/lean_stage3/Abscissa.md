@@ -2,7 +2,7 @@
 
 Abscissa — the contour's abscissa as a parameter, with RH as one instance. WHY THIS FILE EXISTS. `lean_stage3/Stage3/LineBound.lean:1091` defines
 
-11 theorems, 2 definitions, 413 lines. Arrows are Lean's own record of what each proof uses.
+11 theorems, 2 definitions, 414 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LineBound`](../lean_stage3/LineBound.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ThetaLine`](../lean_stage3/ThetaLine.md)
@@ -74,7 +74,7 @@ The parameterised abscissa. `σθ θ X = θ + 1/log X`. The existing `RHPull.σR
 <a name="Stage3-StmtZeroFreeRight"></a>
 ### `Stage3.StmtZeroFreeRight`
 
-def · line 112
+def · line 113
 
 A zero-free half-plane at `θ`. This is the whole content the contour pull requires: nothing vanishes strictly to the right of `θ`, the pole at `s = 1` excepted. RH is the case `θ = 1/2`.
 
@@ -111,9 +111,11 @@ line 102
 <a name="Stage3---_re"></a>
 ### `Stage3.σθ_re`
 
-line 104
+line 105
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The point `σθ θ X + i·t` on the abscissa's vertical line has real part `σθ θ X`.
 
 **Proves**
 
@@ -137,7 +139,7 @@ line 104
 <a name="Stage3-zeta_ne_zero_right_of"></a>
 ### `Stage3.zeta_ne_zero_right_of`
 
-line 118
+line 119
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -168,7 +170,7 @@ line 118
 <a name="Stage3-zeroFreeRight_of_RH"></a>
 ### `Stage3.zeroFreeRight_of_RH`
 
-line 125
+line 126
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -201,7 +203,7 @@ StmtZeroFreeRight (1/2)
 <a name="Stage3-zeroFreeRight_mono"></a>
 ### `Stage3.zeroFreeRight_mono`
 
-line 133
+line 134
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -227,7 +229,7 @@ StmtZeroFreeRight θ'
 <a name="Stage3-rpow_--"></a>
 ### `Stage3.rpow_σθ`
 
-line 144
+line 145
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -258,7 +260,7 @@ X ^ (σθ θ X) = Real.exp 1 * X ^ θ
 <a name="Stage3-rpow_--_half"></a>
 ### `Stage3.rpow_σθ_half`
 
-line 154
+line 155
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -286,7 +288,7 @@ X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X
 <a name="Stage3-abscissa_gives_power"></a>
 ### `Stage3.abscissa_gives_power`
 
-line 164
+line 165
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -315,7 +317,7 @@ K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ
 <a name="Stage3-zeroFreeRight_one"></a>
 ### `Stage3.zeroFreeRight_one`
 
-line 174
+line 175
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -336,7 +338,7 @@ StmtZeroFreeRight 1
 <a name="Stage3-logDerivZeta_crude_theta"></a>
 ### `Stage3.logDerivZeta_crude_theta`
 
-line 186
+line 187
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -381,7 +383,7 @@ line 186
 <a name="Stage3-logDerivZeta_crude_half"></a>
 ### `Stage3.logDerivZeta_crude_half`
 
-line 368
+line 369
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

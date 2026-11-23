@@ -55,6 +55,7 @@ def sigmaN (m n : ℕ) : ℝ := ∑ j ∈ Finset.Ico (m + 1) n, hterm j
 /-- The full tail sum `σ = Σ_{j ≥ m+1} 1/(π²(j+1)²)`. -/
 def sigma (m : ℕ) : ℝ := ∑' k : ℕ, hterm (k + (m + 1))
 
+/-- The tail-sum summands `1/(π²(j+1)²)` are summable over `j`. -/
 theorem summable_hterm : Summable hterm := by
   have h1 : Summable (fun n : ℕ => 1 / (n : ℝ) ^ 2) := Real.summable_one_div_nat_pow.mpr one_lt_two
   have h2 : Summable (fun n : ℕ => 1 / ((n + 1 : ℕ) : ℝ) ^ 2) := (summable_nat_add_iff 1).mpr h1
@@ -65,9 +66,11 @@ theorem summable_hterm : Summable hterm := by
   push_cast
   field_simp
 
+/-- The summands shifted by `m + 1`, `k ↦ hterm (k + (m + 1))`, are summable. -/
 theorem summable_shift (m : ℕ) : Summable (fun k : ℕ => hterm (k + (m + 1))) :=
   (summable_nat_add_iff (m + 1)).mpr summable_hterm
 
+/-- The partial tail sum `σ_n` equals `1/π²` times the sum of `1/(j+1)²` over `m+1 ≤ j < n`. -/
 theorem sigmaN_eq (m n : ℕ) :
     sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 := by
   unfold sigmaN hterm
@@ -76,6 +79,7 @@ theorem sigmaN_eq (m n : ℕ) :
   intro j _
   field_simp
 
+/-- The partial tail sums `σ_n` converge to the full tail sum `σ` as `n → ∞`. -/
 theorem sigmaN_tendsto (m : ℕ) : Tendsto (fun n => sigmaN m n) atTop (𝓝 (sigma m)) := by
   unfold sigma
   have h := (summable_shift m).tendsto_sum_tsum_nat.comp (tendsto_sub_atTop_nat (m + 1))
@@ -86,6 +90,7 @@ theorem sigmaN_tendsto (m : ℕ) : Tendsto (fun n => sigmaN m n) atTop (𝓝 (si
   intro k _
   rw [add_comm]
 
+/-- Upper bound on the full tail sum: `σ ≤ 1/(π²(m+1))`. -/
 theorem sigma_le (m : ℕ) : sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1)) := by
   apply le_of_tendsto (sigmaN_tendsto m)
   filter_upwards with n
@@ -96,6 +101,7 @@ theorem sigma_le (m : ℕ) : sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1)) := 
       ≤ 1 / Real.pi ^ 2 * (1 / ((m : ℝ) + 1)) := mul_le_mul_of_nonneg_left h (by positivity)
     _ = _ := by field_simp
 
+/-- Lower bound on the full tail sum: `1/(π²(m+2)) ≤ σ`. -/
 theorem sigma_ge (m : ℕ) : 1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m := by
   have h0 : Tendsto (fun n : ℕ => 1 / ((n : ℝ) + 1)) atTop (𝓝 0) :=
     tendsto_one_div_add_atTop_nhds_zero_nat
@@ -113,13 +119,16 @@ theorem sigma_ge (m : ℕ) : 1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m := 
 /-- `x_j = w²/(π²(j+1)²)`, so that `g w j = 1 + x w j`. -/
 def x (w : ℂ) (j : ℕ) : ℂ := w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)
 
+/-- The product factor `g w j` is `1 + x w j`, by definition. -/
 theorem g_eq (w : ℂ) (j : ℕ) : g w j = 1 + x w j := rfl
 
+/-- `x w j` is `w²` times the tail-sum summand `hterm j`, cast to `ℂ`. -/
 theorem x_eq_mul (w : ℂ) (j : ℕ) : x w j = w ^ 2 * ((hterm j : ℝ) : ℂ) := by
   unfold x hterm
   push_cast
   ring
 
+/-- If `‖w‖² ≤ π²(m+2)²/2` and `m + 1 ≤ j`, then the product factor `g w j` is nonzero. -/
 theorem g_ne_zero {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
     {j : ℕ} (hj : m + 1 ≤ j) : g w j ≠ 0 := by
   rw [g_eq]
@@ -129,6 +138,8 @@ theorem g_ne_zero {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((
   rw [this, norm_neg, norm_one] at hx
   norm_num at hx
 
+/-- If `‖w‖² ≤ π²(m+2)²/2`, the tail product `T m w n` is the exponential of the sum of
+`log (g w j)` over `m+1 ≤ j < n`. -/
 theorem T_eq_exp {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (n : ℕ) :
     T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (g w j)) := by
   rw [Complex.exp_sum]
@@ -141,6 +152,7 @@ theorem T_eq_exp {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m
 def delta (m : ℕ) (w : ℂ) (n : ℕ) : ℂ :=
   ∑ j ∈ Finset.Ico (m + 1) n, (Complex.log (g w j) - x w j)
 
+/-- If `‖w‖² ≤ π²(m+2)²/2` and `m + 1 ≤ j`, then `‖log (g w j) − x w j‖ ≤ ‖x w j‖²`. -/
 theorem norm_log_sub_le {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
     {j : ℕ} (hj : m + 1 ≤ j) :
     ‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2 := by
@@ -160,10 +172,12 @@ theorem norm_log_sub_le {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 
 /-- The quartic error `q = ‖w‖⁴/(π⁴(m+1)³)`. -/
 def q (m : ℕ) (w : ℂ) : ℝ := ‖w‖ ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)
 
+/-- The quartic error `q m w` is nonnegative. -/
 theorem q_nonneg (m : ℕ) (w : ℂ) : 0 ≤ q m w := by
   unfold q
   positivity
 
+/-- If `‖w‖² ≤ π²(m+2)²/2`, the exponent remainder satisfies `‖δ_n‖ ≤ q` for every `n`. -/
 theorem norm_delta_le {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (n : ℕ) :
     ‖delta m w n‖ ≤ q m w := by
   unfold delta q
@@ -204,6 +218,7 @@ theorem T_eq_mul {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m
   rw [this]
   ring
 
+/-- If `‖w‖² ≤ π²(m+2)²/2` and `q ≤ 1`, then `‖exp(δ_n) − 1‖ ≤ 2q` for every `n`. -/
 theorem norm_exp_delta_sub_one_le {m : ℕ} {w : ℂ}
     (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hq : q m w ≤ 1) (n : ℕ) :
     ‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w := by
@@ -214,6 +229,7 @@ theorem norm_exp_delta_sub_one_le {m : ℕ} {w : ℂ}
 /-- The principal part `P = exp(w² σ)`. -/
 def P (m : ℕ) (w : ℂ) : ℂ := Complex.exp (w ^ 2 * ((sigma m : ℝ) : ℂ))
 
+/-- The exponentials `exp(w² σ_n)` converge to the principal part `P = exp(w² σ)` as `n → ∞`. -/
 theorem P_tendsto (m : ℕ) (w : ℂ) :
     Tendsto (fun n => Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) atTop (𝓝 (P m w)) := by
   unfold P
@@ -242,6 +258,8 @@ theorem norm_S_sub_le {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
   exact (mul_comm _ _).le.trans
     (mul_le_mul_of_nonneg_right (norm_exp_delta_sub_one_le hsmall hq n) (norm_nonneg _))
 
+/-- The squared norm of the principal term `c·w·P`, `c = cS m / D m`, equals
+`c² ‖w‖² exp(2 Re(w²) σ)`. -/
 theorem norm_A_sq (m : ℕ) (w : ℂ) :
     ‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2
       = (cS m / D m) ^ 2 * ‖w‖ ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) := by

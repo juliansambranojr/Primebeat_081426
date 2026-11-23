@@ -2,7 +2,7 @@
 
 LandauCrude — a crude bound on `G`: `|G(y)| ≤ 2y(1 + log y)²` for `y ≥ 1`. Block 5 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-4 theorems, 0 definitions, 114 lines. Arrows are Lean's own record of what each proof uses.
+4 theorems, 0 definitions, 117 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauWindow`](../lean_stage3/LandauWindow.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauChebyshev`](../lean_stage3/LandauChebyshev.md)
@@ -37,9 +37,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="LandauCrude-rampSum_nonneg"></a>
 ### `LandauCrude.rampSum_nonneg`
 
-line 31
+line 32
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The ramp sum is nonnegative at every real `y`.
 
 **Proves**
 
@@ -63,7 +65,7 @@ line 31
 <a name="LandauCrude-sum_inv_le"></a>
 ### `LandauCrude.sum_inv_le`
 
-line 37
+line 38
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -88,9 +90,11 @@ line 37
 <a name="LandauCrude-rampSum_le"></a>
 ### `LandauCrude.rampSum_le`
 
-line 47
+line 49
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `y ≥ 1`, the ramp sum satisfies `rampSum y ≤ y·log y·(1 + log y)`.
 
 **Proves**
 
@@ -115,9 +119,11 @@ LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y)
 <a name="LandauCrude-abs_G_le"></a>
 ### `LandauCrude.abs_G_le`
 
-line 83
+line 86
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `|G y| ≤ 2·y·(1 + log y)²`.
 
 **Proves**
 

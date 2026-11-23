@@ -2,7 +2,7 @@
 
 This file has no header comment.
 
-70 theorems, 2 definitions, 2494 lines. Arrows are Lean's own record of what each proof uses.
+70 theorems, 2 definitions, 2500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Abscissa`](../lean_stage3/Abscissa.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)
@@ -278,7 +278,7 @@ The pole absorbed. `zetaE s = (s-1)·ζ s`, with the removable singularity at `s
 <a name="RHPull--RH"></a>
 ### `RHPull.σRH`
 
-def · line 1091
+def · line 1096
 
 The abscissa.
 
@@ -486,9 +486,11 @@ line 354
 <a name="Slice4-zetaE_eq"></a>
 ### `Slice4.zetaE_eq`
 
-line 371
+line 372
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Away from `s = 1`, `zetaE s = (s − 1)·ζ s`.
 
 **Proves**
 
@@ -516,9 +518,11 @@ zetaE s = (s - 1) * ζ s
 <a name="Slice4-zetaE_one"></a>
 ### `Slice4.zetaE_one`
 
-line 374
+line 376
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** At the filled-in point, `zetaE 1 = 1`.
 
 **Proves**
 
@@ -538,9 +542,11 @@ zetaE 1 = 1
 <a name="Slice4-zetaE_differentiableAt_of_ne"></a>
 ### `Slice4.zetaE_differentiableAt_of_ne`
 
-line 376
+line 379
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: `zetaE` is complex differentiable at every `s ≠ 1`.
 
 **Proves**
 
@@ -565,9 +571,11 @@ DifferentiableAt ℂ zetaE s
 <a name="Slice4-zetaE_differentiable"></a>
 ### `Slice4.zetaE_differentiable`
 
-line 384
+line 388
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** `zetaE` is complex differentiable everywhere, including at `s = 1`.
 
 **Proves**
 
@@ -589,7 +597,7 @@ Differentiable ℂ zetaE
 <a name="Slice4-logDeriv_zetaE"></a>
 ### `Slice4.logDeriv_zetaE`
 
-line 394
+line 398
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -620,9 +628,11 @@ deriv zetaE s / zetaE s = 1 / (s - 1) + deriv ζ s / ζ s
 <a name="Slice4-zetaE_ne_zero_of_RH"></a>
 ### `Slice4.zetaE_ne_zero_of_RH`
 
-line 409
+line 414
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Under RH, `zetaE s ≠ 0` for every `s` with `1/2 < Re s`.
 
 **Proves**
 
@@ -648,7 +658,7 @@ zetaE s ≠ 0
 <a name="Slice4-zetaE_disk_upper"></a>
 ### `Slice4.zetaE_disk_upper`
 
-line 418
+line 423
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -680,7 +690,7 @@ line 418
 <a name="Slice4-log_1300_le"></a>
 ### `Slice4.log_1300_le`
 
-line 493
+line 498
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -702,7 +712,7 @@ Real.log 1300 ≤ 7.28
 <a name="Slice4-finalBoundConst_le"></a>
 ### `Slice4.finalBoundConst_le`
 
-line 503
+line 508
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -723,7 +733,7 @@ line 503
 <a name="Slice4-logDerivZeta_compact"></a>
 ### `Slice4.logDerivZeta_compact`
 
-line 531
+line 536
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -763,7 +773,7 @@ line 531
 <a name="Slice4b-logDerivZeta_norm_neg"></a>
 ### `Slice4b.logDerivZeta_norm_neg`
 
-line 789
+line 794
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -791,7 +801,7 @@ line 789
 <a name="Slice4b-logDerivZeta_line"></a>
 ### `Slice4b.logDerivZeta_line`
 
-line 801
+line 806
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -822,7 +832,7 @@ line 801
 <a name="Slice8-schoenfeldWeak_of_psiWeak_three"></a>
 ### `Slice8.schoenfeldWeak_of_psiWeak_three`
 
-line 848
+line 853
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -851,7 +861,7 @@ Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x => (Nat.prime
 <a name="Slice5-pseries_tail_le"></a>
 ### `Slice5.pseries_tail_le`
 
-line 879
+line 884
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -876,7 +886,7 @@ line 879
 <a name="Slice5-pseries_le"></a>
 ### `Slice5.pseries_le`
 
-line 902
+line 907
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -903,7 +913,7 @@ line 902
 <a name="Slice5-vonMangoldt_term_le"></a>
 ### `Slice5.vonMangoldt_term_le`
 
-line 918
+line 923
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -929,7 +939,7 @@ line 918
 <a name="Slice5-norm_logDerivZeta_of_one_lt_re"></a>
 ### `Slice5.norm_logDerivZeta_of_one_lt_re`
 
-line 948
+line 953
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -957,7 +967,7 @@ line 948
 <a name="Slice5-norm_logDerivZeta_sigma0"></a>
 ### `Slice5.norm_logDerivZeta_sigma0`
 
-line 991
+line 996
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -982,7 +992,7 @@ line 991
 <a name="RHPull-zeta_ne_zero_of_RH"></a>
 ### `RHPull.zeta_ne_zero_of_RH`
 
-line 1031
+line 1036
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1012,7 +1022,7 @@ line 1031
 <a name="RHPull-holo_logDerivZeta_of_RH"></a>
 ### `RHPull.holo_logDerivZeta_of_RH`
 
-line 1036
+line 1041
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1040,7 +1050,7 @@ HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (
 <a name="RHPull-pull_at_RH_abscissa"></a>
 ### `RHPull.pull_at_RH_abscissa`
 
-line 1056
+line 1061
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1079,9 +1089,11 @@ SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε 
 <a name="RHPull--RH_re"></a>
 ### `RHPull.σRH_re`
 
-line 1093
+line 1099
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the point `σRH X + i·t` has real part `σRH X`.
 
 **Proves**
 
@@ -1105,7 +1117,7 @@ line 1093
 <a name="RHPull-integrand_norm_le"></a>
 ### `RHPull.integrand_norm_le`
 
-line 1099
+line 1105
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1141,7 +1153,7 @@ line 1099
 <a name="RHPull-I37_norm_le"></a>
 ### `RHPull.I37_norm_le`
 
-line 1131
+line 1137
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1176,7 +1188,7 @@ line 1131
 <a name="RHPull-integrand_norm_le_horiz"></a>
 ### `RHPull.integrand_norm_le_horiz`
 
-line 1181
+line 1187
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1211,7 +1223,7 @@ line 1181
 <a name="RHPull-horiz_length"></a>
 ### `RHPull.horiz_length`
 
-line 1238
+line 1244
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1239,7 +1251,7 @@ line 1238
 <a name="RHPull-I8_norm_le"></a>
 ### `RHPull.I8_norm_le`
 
-line 1242
+line 1248
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1275,7 +1287,7 @@ line 1242
 <a name="RHPull-integrand_norm_le_horiz_neg"></a>
 ### `RHPull.integrand_norm_le_horiz_neg`
 
-line 1303
+line 1309
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1311,7 +1323,7 @@ line 1303
 <a name="RHPull-I2_norm_le"></a>
 ### `RHPull.I2_norm_le`
 
-line 1363
+line 1369
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1347,7 +1359,7 @@ line 1363
 <a name="RHPull-smoothedChebyshev_sub_main_norm_le"></a>
 ### `RHPull.smoothedChebyshev_sub_main_norm_le`
 
-line 1423
+line 1429
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1394,7 +1406,7 @@ line 1423
 <a name="RHPull-norm_sq_line"></a>
 ### `RHPull.norm_sq_line`
 
-line 1484
+line 1490
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1422,7 +1434,7 @@ line 1484
 <a name="RHPull-half_lt_-RH"></a>
 ### `RHPull.half_lt_σRH`
 
-line 1490
+line 1496
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1452,7 +1464,7 @@ line 1490
 <a name="RHPull-kernel_le"></a>
 ### `RHPull.kernel_le`
 
-line 1496
+line 1502
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1481,7 +1493,7 @@ line 1496
 <a name="RHPull-integral_kernel_le"></a>
 ### `RHPull.integral_kernel_le`
 
-line 1507
+line 1513
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1507,7 +1519,7 @@ line 1507
 <a name="RHPull-I37_norm_le_decay"></a>
 ### `RHPull.I37_norm_le_decay`
 
-line 1523
+line 1529
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1545,7 +1557,7 @@ line 1523
 <a name="RHPull-rpow_-RH"></a>
 ### `RHPull.rpow_σRH`
 
-line 1589
+line 1595
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1574,7 +1586,7 @@ X ^ (σRH X) = Real.exp 1 * Real.sqrt X
 <a name="RHPull-I37_sqrt_form"></a>
 ### `RHPull.I37_sqrt_form`
 
-line 1601
+line 1607
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1611,7 +1623,7 @@ line 1601
 <a name="RHPull-smoothedChebyshev_sqrt_bound"></a>
 ### `RHPull.smoothedChebyshev_sqrt_bound`
 
-line 1629
+line 1635
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1658,7 +1670,7 @@ line 1629
 <a name="RHPull-kernel_modulus_le"></a>
 ### `RHPull.kernel_modulus_le`
 
-line 1689
+line 1695
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1685,7 +1697,7 @@ line 1689
 <a name="RHPull-mellin_bump_bounded"></a>
 ### `RHPull.mellin_bump_bounded`
 
-line 1723
+line 1729
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1714,7 +1726,7 @@ line 1723
 <a name="RHPull-mellin_smooth1_le"></a>
 ### `RHPull.mellin_smooth1_le`
 
-line 1776
+line 1782
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1748,7 +1760,7 @@ line 1776
 <a name="RHPull-norm_line_ge"></a>
 ### `RHPull.norm_line_ge`
 
-line 1799
+line 1805
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1778,7 +1790,7 @@ line 1799
 <a name="RHPull-integral_shift_inv"></a>
 ### `RHPull.integral_shift_inv`
 
-line 1809
+line 1815
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1803,7 +1815,7 @@ line 1809
 <a name="RHPull-integral_abs_kernel"></a>
 ### `RHPull.integral_abs_kernel`
 
-line 1831
+line 1837
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1831,7 +1843,7 @@ line 1831
 <a name="RHPull-I37_norm_le_epsfree"></a>
 ### `RHPull.I37_norm_le_epsfree`
 
-line 1873
+line 1879
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1868,7 +1880,7 @@ line 1873
 <a name="RHPull-I37_sqrt_log3"></a>
 ### `RHPull.I37_sqrt_log3`
 
-line 1935
+line 1941
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1904,7 +1916,7 @@ line 1935
 <a name="RHPull-psi_sub_self_le"></a>
 ### `RHPull.psi_sub_self_le`
 
-line 1983
+line 1989
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1933,7 +1945,7 @@ line 1983
 <a name="RHPull-eps_choice_ok"></a>
 ### `RHPull.eps_choice_ok`
 
-line 2015
+line 2021
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1958,7 +1970,7 @@ c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3
 <a name="RHPull-psi_weak_at"></a>
 ### `RHPull.psi_weak_at`
 
-line 2035
+line 2041
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1987,7 +1999,7 @@ line 2035
 <a name="RHPull-bump_exists"></a>
 ### `RHPull.bump_exists`
 
-line 2058
+line 2064
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2009,7 +2021,7 @@ line 2058
 <a name="RHPull-norm_ge_height"></a>
 ### `RHPull.norm_ge_height`
 
-line 2073
+line 2079
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2036,7 +2048,7 @@ T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖
 <a name="RHPull-mellin_horiz_le"></a>
 ### `RHPull.mellin_horiz_le`
 
-line 2080
+line 2086
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2072,7 +2084,7 @@ line 2080
 <a name="RHPull-inv_sqrt_mul_self"></a>
 ### `RHPull.inv_sqrt_mul_self`
 
-line 2105
+line 2111
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2098,7 +2110,7 @@ line 2105
 <a name="RHPull-instantiation_arithmetic"></a>
 ### `RHPull.instantiation_arithmetic`
 
-line 2118
+line 2124
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2127,7 +2139,7 @@ c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3 �
 <a name="RHPull-horiz_small"></a>
 ### `RHPull.horiz_small`
 
-line 2152
+line 2158
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2155,7 +2167,7 @@ line 2152
 <a name="RHPull-mellin_main_const"></a>
 ### `RHPull.mellin_main_const`
 
-line 2202
+line 2208
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2183,7 +2195,7 @@ line 2202
 <a name="RHPull-contour_at_instantiation"></a>
 ### `RHPull.contour_at_instantiation`
 
-line 2232
+line 2238
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2232,7 +2244,7 @@ line 2232
 <a name="RHPull-norm_ge_height_neg"></a>
 ### `RHPull.norm_ge_height_neg`
 
-line 2292
+line 2298
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2259,7 +2271,7 @@ T ≤ ‖((σ : ℂ)) - (T : ℂ) * I‖
 <a name="RHPull-mellin_horiz_le_neg"></a>
 ### `RHPull.mellin_horiz_le_neg`
 
-line 2302
+line 2308
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2295,7 +2307,7 @@ line 2302
 <a name="RHPull-mellin_vert_le"></a>
 ### `RHPull.mellin_vert_le`
 
-line 2319
+line 2325
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2332,7 +2344,7 @@ line 2319
 <a name="RHPull-rpow_one_add"></a>
 ### `RHPull.rpow_one_add`
 
-line 2345
+line 2351
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -2359,7 +2371,7 @@ X ^ (1 + 1 / Real.log X) = Real.exp 1 * X
 <a name="RHPull-psi_weak_of_RH"></a>
 ### `RHPull.psi_weak_of_RH`
 
-line 2357
+line 2363
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -2400,7 +2412,7 @@ line 2357
 <a name="RHPull-stmtPsiWeak_of_RH"></a>
 ### `RHPull.stmtPsiWeak_of_RH`
 
-line 2485
+line 2491
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

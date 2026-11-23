@@ -2,7 +2,7 @@
 
 ArgIdentity — StmtArgIdentity discharged, and the contour machinery the remaining bound will need.
 
-53 theorems, 4 definitions, 1746 lines. Arrows are Lean's own record of what each proof uses.
+53 theorems, 4 definitions, 1756 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCrude`](../lean_stage3/ArgCrude.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`Stirling`](../lean_stage3/Stirling.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgLegs`](../lean_stage3/ArgLegs.md)
@@ -202,7 +202,7 @@ The entire completion: `xi s = s(s−1)Λ₀(s) + 1`. Away from `{0,1}` this is 
 <a name="Stage3-elemLD"></a>
 ### `Stage3.elemLD`
 
-def · line 1200
+def · line 1206
 
 The elementary factor's logarithmic derivative.
 
@@ -212,7 +212,7 @@ The elementary factor's logarithmic derivative.
 <a name="Stage3-argS"></a>
 ### `Stage3.argS`
 
-def · line 1437
+def · line 1445
 
 `S(T)`, defined as the residual of the count against the phase main term.
 
@@ -223,7 +223,7 @@ def · line 1437
 <a name="Stage3-zetaArgContour"></a>
 ### `Stage3.zetaArgContour`
 
-def · line 1493
+def · line 1503
 
 The `ζ`-part of the folded functional, normalised: the classical `S(T)` as an argument variation.
 
@@ -235,9 +235,11 @@ The `ζ`-part of the folded functional, normalised: the classical `S(T)` as an a
 <a name="Stage3-differentiable_xi"></a>
 ### `Stage3.differentiable_xi`
 
-line 106
+line 107
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The completion `xi` is differentiable on all of `ℂ`.
 
 **Proves**
 
@@ -261,9 +263,11 @@ Differentiable ℂ xi
 <a name="Stage3-xi_zero"></a>
 ### `Stage3.xi_zero`
 
-line 110
+line 112
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The completion `xi` takes the value `1` at `s = 0`.
 
 **Proves**
 
@@ -282,9 +286,11 @@ xi 0 = 1
 <a name="Stage3-xi_one"></a>
 ### `Stage3.xi_one`
 
-line 112
+line 115
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The completion `xi` takes the value `1` at `s = 1`.
 
 **Proves**
 
@@ -303,7 +309,7 @@ xi 1 = 1
 <a name="Stage3-xi_eq_completed"></a>
 ### `Stage3.xi_eq_completed`
 
-line 115
+line 118
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -331,7 +337,7 @@ xi s = s * (s - 1) * completedRiemannZeta s
 <a name="Stage3-xi_one_sub"></a>
 ### `Stage3.xi_one_sub`
 
-line 123
+line 126
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -359,7 +365,7 @@ xi (1 - s) = xi s
 <a name="Stage3-gammaR_conj"></a>
 ### `Stage3.gammaR_conj`
 
-line 134
+line 137
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -385,7 +391,7 @@ Gammaℝ (conj s) = conj (Gammaℝ s)
 <a name="Stage3-completed_eq_gammaR_mul_zeta"></a>
 ### `Stage3.completed_eq_gammaR_mul_zeta`
 
-line 155
+line 158
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -410,7 +416,7 @@ completedRiemannZeta s = Gammaℝ s * riemannZeta s
 <a name="Stage3-completedZeta-_conj"></a>
 ### `Stage3.completedZeta₀_conj`
 
-line 170
+line 173
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -438,7 +444,7 @@ completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s)
 <a name="Stage3-xi_conj"></a>
 ### `Stage3.xi_conj`
 
-line 241
+line 244
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -467,7 +473,7 @@ xi (conj s) = conj (xi s)
 <a name="Stage3-zeta_re_neg_of_real_mem_Ioo"></a>
 ### `Stage3.zeta_re_neg_of_real_mem_Ioo`
 
-line 251
+line 254
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -493,7 +499,7 @@ line 251
 <a name="Stage3-zeta_ne_zero_of_real_mem_Ioo"></a>
 ### `Stage3.zeta_ne_zero_of_real_mem_Ioo`
 
-line 297
+line 300
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -521,7 +527,7 @@ riemannZeta (σ : ℂ) ≠ 0
 <a name="Stage3-completed_eq_gammaR_mul_zeta-"></a>
 ### `Stage3.completed_eq_gammaR_mul_zeta'`
 
-line 308
+line 311
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -546,7 +552,7 @@ completedRiemannZeta s = Gammaℝ s * riemannZeta s
 <a name="Stage3-xi_eq_prod"></a>
 ### `Stage3.xi_eq_prod`
 
-line 317
+line 320
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -581,7 +587,7 @@ xi s = s * (s - 1) * Gammaℝ s * riemannZeta s
 <a name="Stage3-xi_ne_zero_of_one_le_re"></a>
 ### `Stage3.xi_ne_zero_of_one_le_re`
 
-line 325
+line 328
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -613,7 +619,7 @@ xi s ≠ 0
 <a name="Stage3-xi_ne_zero_of_re_nonpos"></a>
 ### `Stage3.xi_ne_zero_of_re_nonpos`
 
-line 335
+line 338
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -644,7 +650,7 @@ xi s ≠ 0
 <a name="Stage3-xi_ne_zero_of_real"></a>
 ### `Stage3.xi_ne_zero_of_real`
 
-line 344
+line 347
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -677,7 +683,7 @@ xi (σ : ℂ) ≠ 0
 <a name="Stage3-xi_eq_zero_iff"></a>
 ### `Stage3.xi_eq_zero_iff`
 
-line 363
+line 366
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -705,7 +711,7 @@ xi s = 0 ↔ riemannZeta s = 0 ∧ 0 < s.re ∧ s.re < 1
 <a name="Stage3-meromorphicOrderAt_xi_eq_zeta"></a>
 ### `Stage3.meromorphicOrderAt_xi_eq_zeta`
 
-line 392
+line 395
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -737,9 +743,11 @@ meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ
 <a name="Stage3-xi_analyticAt"></a>
 ### `Stage3.xi_analyticAt`
 
-line 447
+line 451
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The completion `xi` is analytic at every point of `ℂ`.
 
 **Proves**
 
@@ -768,7 +776,7 @@ AnalyticAt ℂ xi s
 <a name="Stage3-xi_meromorphicOrderAt_ne_top"></a>
 ### `Stage3.xi_meromorphicOrderAt_ne_top`
 
-line 452
+line 456
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -800,9 +808,11 @@ meromorphicOrderAt xi p ≠ ⊤
 <a name="Stage3-logDeriv_xi_meromorphicAt"></a>
 ### `Stage3.logDeriv_xi_meromorphicAt`
 
-line 468
+line 473
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The logarithmic derivative of `xi` is meromorphic at every point of `ℂ`.
 
 **Proves**
 
@@ -828,7 +838,7 @@ MeromorphicAt (logDeriv xi) s
 <a name="Stage3-N_eq_sum"></a>
 ### `Stage3.N_eq_sum`
 
-line 475
+line 480
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -853,7 +863,7 @@ riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).
 <a name="Stage3-xi_divisor_support_eq"></a>
 ### `Stage3.xi_divisor_support_eq`
 
-line 495
+line 500
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -888,7 +898,7 @@ line 495
 <a name="Stage3-rectangleIntegral_logDeriv_xi_eq_N"></a>
 ### `Stage3.rectangleIntegral_logDeriv_xi_eq_N`
 
-line 581
+line 586
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -923,7 +933,7 @@ RectangleIntegral' (logDeriv xi) (-1 : ℂ) (2 + Complex.I * T) = ((riemannZeta.
 <a name="Stage3-logDeriv_xi_one_sub"></a>
 ### `Stage3.logDeriv_xi_one_sub`
 
-line 669
+line 674
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -953,7 +963,7 @@ logDeriv xi (1 - s) = -logDeriv xi s
 <a name="Stage3-logDeriv_xi_conj"></a>
 ### `Stage3.logDeriv_xi_conj`
 
-line 685
+line 690
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -982,7 +992,7 @@ logDeriv xi (conj s) = conj (logDeriv xi s)
 <a name="Stage3-logDeriv_xi_continuousAt"></a>
 ### `Stage3.logDeriv_xi_continuousAt`
 
-line 696
+line 701
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1012,7 +1022,7 @@ ContinuousAt (logDeriv xi) p
 <a name="Stage3-xi_ne_zero_on_good_top"></a>
 ### `Stage3.xi_ne_zero_on_good_top`
 
-line 704
+line 709
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1043,7 +1053,7 @@ xi ((x : ℂ) + T * Complex.I) ≠ 0
 <a name="Stage3-pi_mul_N_eq"></a>
 ### `Stage3.pi_mul_N_eq`
 
-line 717
+line 722
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1078,7 +1088,7 @@ Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (t : ℂ) * C
 <a name="Stage3-logDeriv_congr_of_eventuallyEq"></a>
 ### `Stage3.logDeriv_congr_of_eventuallyEq`
 
-line 880
+line 885
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1103,7 +1113,7 @@ logDeriv f x = logDeriv g x
 <a name="Stage3-gammaR_eq_exp_mul"></a>
 ### `Stage3.gammaR_eq_exp_mul`
 
-line 885
+line 890
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1129,9 +1139,11 @@ Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s 
 <a name="Stage3-differentiableAt_gammaR"></a>
 ### `Stage3.differentiableAt_gammaR`
 
-line 895
+line 901
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 0`, the archimedean factor `Γℝ` is complex differentiable at `s`.
 
 **Proves**
 
@@ -1155,7 +1167,7 @@ DifferentiableAt ℂ Gammaℝ s
 <a name="Stage3-logDeriv_gammaR"></a>
 ### `Stage3.logDeriv_gammaR`
 
-line 915
+line 921
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1182,7 +1194,7 @@ logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamma (s / 2) / 
 <a name="Stage3-logDeriv_xi_split"></a>
 ### `Stage3.logDeriv_xi_split`
 
-line 974
+line 980
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1215,7 +1227,7 @@ logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDeriv riemannZeta
 <a name="Stage3-intervalIntegral_re"></a>
 ### `Stage3.intervalIntegral_re`
 
-line 1030
+line 1036
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1240,7 +1252,7 @@ line 1030
 <a name="Stage3-intervalIntegral_im"></a>
 ### `Stage3.intervalIntegral_im`
 
-line 1042
+line 1048
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1263,7 +1275,7 @@ line 1042
 <a name="Stage3-logDeriv_gammaR_conj"></a>
 ### `Stage3.logDeriv_gammaR_conj`
 
-line 1055
+line 1061
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1290,7 +1302,7 @@ logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s)
 <a name="Stage3-logDeriv_gammaR_im_eq_zero"></a>
 ### `Stage3.logDeriv_gammaR_im_eq_zero`
 
-line 1067
+line 1073
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1317,7 +1329,7 @@ line 1067
 <a name="Stage3-integral_inv_vertical"></a>
 ### `Stage3.integral_inv_vertical`
 
-line 1076
+line 1082
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1343,7 +1355,7 @@ line 1076
 <a name="Stage3-integral_inv_horizontal"></a>
 ### `Stage3.integral_inv_horizontal`
 
-line 1125
+line 1131
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1369,7 +1381,7 @@ line 1125
 <a name="Stage3-arg_sum_eq_pi"></a>
 ### `Stage3.arg_sum_eq_pi`
 
-line 1166
+line 1172
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1394,7 +1406,7 @@ Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) : ℝ) + T * Co
 <a name="Stage3-elem_fold_eq_pi"></a>
 ### `Stage3.elem_fold_eq_pi`
 
-line 1205
+line 1211
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1425,7 +1437,7 @@ line 1205
 <a name="Stage3-logDeriv_gammaR_analyticAt"></a>
 ### `Stage3.logDeriv_gammaR_analyticAt`
 
-line 1296
+line 1302
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1453,9 +1465,11 @@ AnalyticAt ℂ (logDeriv Gammaℝ) z
 <a name="Stage3-logDeriv_gammaR_continuousAt"></a>
 ### `Stage3.logDeriv_gammaR_continuousAt`
 
-line 1308
+line 1315
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re z > 0`, the logarithmic derivative of `Γℝ` is continuous at `z`.
 
 **Proves**
 
@@ -1479,9 +1493,11 @@ ContinuousAt (logDeriv Gammaℝ) z
 <a name="Stage3-logDeriv_gammaR_holo"></a>
 ### `Stage3.logDeriv_gammaR_holo`
 
-line 1312
+line 1320
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The logarithmic derivative of `Γℝ` is holomorphic on the right half-plane `Re s > 0`.
 
 **Proves**
 
@@ -1500,7 +1516,7 @@ HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 < s.re}
 <a name="Stage3-logDeriv_gammaR_comp_continuous"></a>
 ### `Stage3.logDeriv_gammaR_comp_continuous`
 
-line 1318
+line 1326
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -1529,7 +1545,7 @@ Continuous fun x : ℝ => logDeriv Gammaℝ (g x)
 <a name="Stage3-gammaR_fold_eq_phaseTheta"></a>
 ### `Stage3.gammaR_fold_eq_phaseTheta`
 
-line 1331
+line 1339
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1566,7 +1582,7 @@ line 1331
 <a name="Stage3-stmtArgIdentity_holds"></a>
 ### `Stage3.stmtArgIdentity_holds`
 
-line 1441
+line 1449
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1592,7 +1608,7 @@ StmtArgIdentity phaseTheta argS
 <a name="Stage3-backlundArg_of_sFromLocal"></a>
 ### `Stage3.backlundArg_of_sFromLocal`
 
-line 1450
+line 1458
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1622,7 +1638,7 @@ StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)
 <a name="Stage3-rvM_of_sFromLocal"></a>
 ### `Stage3.rvM_of_sFromLocal`
 
-line 1461
+line 1469
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1655,7 +1671,7 @@ riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a * 73 + b))
 <a name="Stage3-logDeriv_zeta_analyticAt"></a>
 ### `Stage3.logDeriv_zeta_analyticAt`
 
-line 1476
+line 1484
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -1681,9 +1697,11 @@ AnalyticAt ℂ (logDeriv riemannZeta) z
 <a name="Stage3-logDeriv_zeta_continuousAt"></a>
 ### `Stage3.logDeriv_zeta_continuousAt`
 
-line 1487
+line 1497
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `z ≠ 1` with `ζ(z) ≠ 0`, the logarithmic derivative of `riemannZeta` is continuous at `z`.
 
 **Proves**
 
@@ -1709,7 +1727,7 @@ ContinuousAt (logDeriv riemannZeta) z
 <a name="Stage3-argS_eq_zetaArgContour"></a>
 ### `Stage3.argS_eq_zetaArgContour`
 
-line 1501
+line 1511
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

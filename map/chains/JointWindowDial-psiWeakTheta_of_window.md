@@ -1,6 +1,8 @@
 # What `JointWindowDial.psiWeakTheta_of_window` rests on
 
-[`JointWindowDial.psiWeakTheta_of_window`](../lean_stage3/JointWindowDial.md#JointWindowDial-psiWeakTheta_of_window) in `lean_stage3/Stage3/JointWindowDial.lean`, line 38.
+[`JointWindowDial.psiWeakTheta_of_window`](../lean_stage3/JointWindowDial.md#JointWindowDial-psiWeakTheta_of_window) in `lean_stage3/Stage3/JointWindowDial.lean`, line 42.
+
+**Why.** For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with `|ψ(t) − t| ≤ C'·t^θ·log³ t` for all `t ≥ x₀`.
 
 **Proves**
 

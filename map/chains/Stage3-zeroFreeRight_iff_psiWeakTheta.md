@@ -1,6 +1,6 @@
 # What `Stage3.zeroFreeRight_iff_psiWeakTheta` rests on
 
-[`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) in `lean_stage3/Stage3/ThetaConverse.lean`, line 382.
+[`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) in `lean_stage3/Stage3/ThetaConverse.lean`, line 387.
 
 **Why.** The abscissa of ψ's error is the supremum of the zeros' real parts. For `θ ∈ [1/2, 1)`: a zero-free half-plane at `θ` holds iff ψ has a `C·t^θ·log³ t` bound. Forward is `ThetaPsi.psi_weak_of_theta` (which is where `[1/2, 1)` is needed); the converse is this file, and holds for every `θ`.
 

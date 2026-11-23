@@ -2,7 +2,7 @@
 
 WeilPowerCompare — the comparison at another off-line zero. Rung 5, ninth slice, worksheet section 7. 2026-09-06.
 
-21 theorems, 8 definitions, 341 lines. Arrows are Lean's own record of what each proof uses.
+21 theorems, 8 definitions, 350 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerGauss`](../lean_stage3/WeilPowerGauss.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`WeilPowerSelect`](../lean_stage3/WeilPowerSelect.md)
@@ -104,7 +104,7 @@ The quartic error coefficient `1/(π⁴(m+1)³)`.
 <a name="WeilPowerCompare-Eup"></a>
 ### `WeilPowerCompare.Eup`
 
-def · line 116
+def · line 119
 
 The upper exponent, both signs of `Re(w²)` in one expression: `max _ 0` picks the strong coefficient where `Re(w²) ≥ 0` and the weak one elsewhere.
 
@@ -115,7 +115,7 @@ The upper exponent, both signs of `Re(w²)` in one expression: `max _ 0` picks t
 <a name="WeilPowerCompare-Elow"></a>
 ### `WeilPowerCompare.Elow`
 
-def · line 120
+def · line 123
 
 The lower exponent at the target, on the real axis.
 
@@ -126,7 +126,7 @@ The lower exponent at the target, on the real axis.
 <a name="WeilPowerCompare-wOf"></a>
 ### `WeilPowerCompare.wOf`
 
-def · line 206
+def · line 209
 
 The point the window reads at a zero of real-part offset `ε` and height offset `Δ`: `w = (ε + iΔ)h`.
 
@@ -136,7 +136,7 @@ The point the window reads at a zero of real-part offset `ε` and height offset 
 <a name="WeilPowerCompare-rate"></a>
 ### `WeilPowerCompare.rate`
 
-def · line 232
+def · line 241
 
 The quadratic rate of the exponent difference, per unit `h²`.
 
@@ -147,7 +147,7 @@ The quadratic rate of the exponent difference, per unit `h²`.
 <a name="WeilPowerCompare-qerr"></a>
 ### `WeilPowerCompare.qerr`
 
-def · line 236
+def · line 245
 
 The quartic error of the exponent difference, per unit `h⁴`.
 
@@ -160,9 +160,11 @@ The quartic error of the exponent difference, per unit `h⁴`.
 <a name="WeilPowerCompare-cP_pos"></a>
 ### `WeilPowerCompare.cP_pos`
 
-line 90
+line 91
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The strong Gaussian coefficient `cP m` is positive.
 
 **Proves**
 
@@ -183,9 +185,11 @@ line 90
 <a name="WeilPowerCompare-cE_pos"></a>
 ### `WeilPowerCompare.cE_pos`
 
-line 95
+line 97
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The weak Gaussian coefficient `cE m` is positive.
 
 **Proves**
 
@@ -208,9 +212,11 @@ line 95
 <a name="WeilPowerCompare-cQ_pos"></a>
 ### `WeilPowerCompare.cQ_pos`
 
-line 101
+line 104
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The quartic error coefficient `cQ m` is positive.
 
 **Proves**
 
@@ -233,7 +239,7 @@ line 101
 <a name="WeilPowerCompare-cE_le_cP"></a>
 ### `WeilPowerCompare.cE_le_cP`
 
-line 107
+line 110
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -258,7 +264,7 @@ cE m ≤ cP m
 <a name="WeilPowerCompare-norm_S_le_gauss"></a>
 ### `WeilPowerCompare.norm_S_le_gauss`
 
-line 123
+line 126
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -291,7 +297,7 @@ line 123
 <a name="WeilPowerCompare-S_real_ge_low"></a>
 ### `WeilPowerCompare.S_real_ge_low`
 
-line 150
+line 153
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -324,7 +330,7 @@ line 150
 <a name="WeilPowerCompare-S_real_pos"></a>
 ### `WeilPowerCompare.S_real_pos`
 
-line 166
+line 169
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -356,7 +362,7 @@ line 166
 <a name="WeilPowerCompare-compare_le"></a>
 ### `WeilPowerCompare.compare_le`
 
-line 179
+line 182
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -389,9 +395,11 @@ line 179
 <a name="WeilPowerCompare-wOf_re"></a>
 ### `WeilPowerCompare.wOf_re`
 
-line 208
+line 212
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real part of the point `wOf ε Δ h = (ε + iΔ)h` is `ε·h`.
 
 **Proves**
 
@@ -416,9 +424,11 @@ line 208
 <a name="WeilPowerCompare-wOf_im"></a>
 ### `WeilPowerCompare.wOf_im`
 
-line 211
+line 216
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The imaginary part of the point `wOf ε Δ h = (ε + iΔ)h` is `Δ·h`.
 
 **Proves**
 
@@ -442,9 +452,11 @@ line 211
 <a name="WeilPowerCompare-wOf_sq_re"></a>
 ### `WeilPowerCompare.wOf_sq_re`
 
-line 214
+line 220
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real part of the square of `wOf ε Δ h` is `(ε² − Δ²)·h²`.
 
 **Proves**
 
@@ -470,9 +482,11 @@ line 214
 <a name="WeilPowerCompare-norm_wOf_sq"></a>
 ### `WeilPowerCompare.norm_wOf_sq`
 
-line 218
+line 225
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The squared norm of `wOf ε Δ h` is `(ε² + Δ²)·h²`.
 
 **Proves**
 
@@ -499,9 +513,11 @@ line 218
 <a name="WeilPowerCompare-norm_wOf_pow4"></a>
 ### `WeilPowerCompare.norm_wOf_pow4`
 
-line 222
+line 230
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The fourth power of the norm of `wOf ε Δ h` is `((ε² + Δ²)·h²)²`.
 
 **Proves**
 
@@ -526,9 +542,11 @@ line 222
 <a name="WeilPowerCompare-QS_ne_zero_wOf"></a>
 ### `WeilPowerCompare.QS_ne_zero_wOf`
 
-line 225
+line 234
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `ε ≠ 0` and `h ≠ 0`, then `QS m` is nonzero at the point `wOf ε Δ h`.
 
 **Proves**
 
@@ -555,7 +573,7 @@ QS m (wOf ε Δ h) ≠ 0
 <a name="WeilPowerCompare-exponent_eq"></a>
 ### `WeilPowerCompare.exponent_eq`
 
-line 240
+line 249
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -588,7 +606,7 @@ Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qerr m ε' �
 <a name="WeilPowerCompare-rate_eq_of_le"></a>
 ### `WeilPowerCompare.rate_eq_of_le`
 
-line 253
+line 262
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -618,7 +636,7 @@ rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))
 <a name="WeilPowerCompare-rate_neg_of_le"></a>
 ### `WeilPowerCompare.rate_neg_of_le`
 
-line 261
+line 270
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -650,7 +668,7 @@ rate m ε' Δ ε < 0
 <a name="WeilPowerCompare-rate_neg_of_ge"></a>
 ### `WeilPowerCompare.rate_neg_of_ge`
 
-line 270
+line 279
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -677,7 +695,7 @@ rate m ε' Δ ε < 0
 <a name="WeilPowerCompare-qerr_pos"></a>
 ### `WeilPowerCompare.qerr_pos`
 
-line 277
+line 286
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -709,7 +727,7 @@ line 277
 <a name="WeilPowerCompare-rate_neg_of_qerr"></a>
 ### `WeilPowerCompare.rate_neg_of_qerr`
 
-line 284
+line 293
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -738,7 +756,7 @@ rate m ε' Δ ε < 0
 <a name="WeilPowerCompare-compare_suppressed"></a>
 ### `WeilPowerCompare.compare_suppressed`
 
-line 294
+line 303
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

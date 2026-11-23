@@ -33,6 +33,10 @@ noncomputable section
 
 open Filter Topology Metric
 
+/-- For `0 < R < R₂`, a closed disc of radius `R₂` about `c` inside `Re s > 0`, `c ≠ 1` and
+`ζ c ≠ 0`: there are a finite set `P`, exactly the zeros `ρ ≠ 1` of ζ in the open disc, and a
+`C` such that for every `k` the `k`-th derivative of `Phi` at `c` is within `k!·C/R^k` of
+`Σ_{ρ ∈ P} m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)`, with `m_ρ` the order of the zero. -/
 theorem Phi_taylor_on_disc {c : ℂ} {R R₂ : ℝ} (hR : 0 < R) (hRR : R < R₂)
     (hpos : closedBall c R₂ ⊆ {s : ℂ | 0 < s.re}) (hc1 : c ≠ 1)
     (hcz : riemannZeta c ≠ 0) :

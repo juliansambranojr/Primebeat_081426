@@ -2,7 +2,7 @@
 
 WeilTiles — the heights tiled by bands. Rung 4b, second half, slice B1 of the detection ladder (units 0316–0321). 2026-09-06.
 
-8 theorems, 3 definitions, 170 lines. Arrows are Lean's own record of what each proof uses.
+8 theorems, 3 definitions, 175 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilBands`](../lean_stage3/WeilBands.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilSeries`](../lean_stage3/WeilSeries.md)
@@ -80,7 +80,7 @@ Band index of a height `t`; meaningful for `t ≥ 11/10`.
 <a name="WeilTiles-Upper"></a>
 ### `WeilTiles.Upper`
 
-abbrev · line 126
+abbrev · line 131
 
 On-line zeros of height at least `11/10`.
 
@@ -92,9 +92,11 @@ On-line zeros of height at least `11/10`.
 <a name="WeilTiles-two_le_centre"></a>
 ### `WeilTiles.two_le_centre`
 
-line 46
+line 47
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: every band centre satisfies `2 ≤ centre k`.
 
 **Proves**
 
@@ -121,7 +123,7 @@ line 46
 <a name="WeilTiles-idx_spec"></a>
 ### `WeilTiles.idx_spec`
 
-line 52
+line 53
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -150,7 +152,7 @@ line 52
 <a name="WeilTiles-online_term_nonneg"></a>
 ### `WeilTiles.online_term_nonneg`
 
-line 67
+line 68
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -183,9 +185,11 @@ line 67
 <a name="WeilTiles-weightedTerm_nonneg"></a>
 ### `WeilTiles.weightedTerm_nonneg`
 
-line 72
+line 75
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted term `weightedTerm h γ ρ` is nonnegative.
 
 **Proves**
 
@@ -217,7 +221,7 @@ line 72
 <a name="WeilTiles-sum_by_bands"></a>
 ### `WeilTiles.sum_by_bands`
 
-line 81
+line 84
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -252,9 +256,11 @@ line 81
 <a name="WeilTiles-bandSeries_nonneg"></a>
 ### `WeilTiles.bandSeries_nonneg`
 
-line 108
+line 113
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: if every `M k` is nonnegative, then each band series term `M k · (15·log (centre k) + 73)` is nonnegative.
 
 **Proves**
 
@@ -284,7 +290,7 @@ line 108
 <a name="WeilTiles-sum_le_bandSeries"></a>
 ### `WeilTiles.sum_le_bandSeries`
 
-line 115
+line 120
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -320,7 +326,7 @@ line 115
 <a name="WeilTiles-tsum_upper_le"></a>
 ### `WeilTiles.tsum_upper_le`
 
-line 132
+line 137
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

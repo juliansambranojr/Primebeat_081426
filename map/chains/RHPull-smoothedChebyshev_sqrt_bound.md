@@ -1,6 +1,6 @@
 # What `RHPull.smoothedChebyshev_sqrt_bound` rests on
 
-[`RHPull.smoothedChebyshev_sqrt_bound`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sqrt_bound) in `lean_stage3/Stage3/LineBound.lean`, line 1629.
+[`RHPull.smoothedChebyshev_sqrt_bound`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sqrt_bound) in `lean_stage3/Stage3/LineBound.lean`, line 1635.
 
 **Why.** THE CAPSTONE — the smoothed Chebyshev error in `√X log²X` form. Every contour piece bounded at the RH abscissa, with the vertical segment carrying the `√X` through `X^σ₁ = e·√X` and the horizontals killed by the Mellin factor's `T⁻²` once `T ≥ √X`. No explicit formula, no zero sum.
 

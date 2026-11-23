@@ -79,6 +79,7 @@ theorem term_re_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : ℂ) :
 /-- The off-line point the tuned window reads: `ρ = 1/2 + ε + iγ`. -/
 def offPt (ε γ : ℝ) : ℂ := 1 / 2 + (ε : ℂ) + Complex.I * (γ : ℂ)
 
+/-- Helper: the off-line point minus one half is `offPt ε γ − 1/2 = ε + iγ`. -/
 theorem offPt_sub_half (ε γ : ℝ) : offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ) := by
   unfold offPt; ring
 

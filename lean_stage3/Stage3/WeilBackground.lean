@@ -54,6 +54,7 @@ def phi (h γ : ℝ) (u : ℝ) : ℝ :=
 /-- The complex-valued test function WeilDetect reads. -/
 def phiC (h γ : ℝ) : ℝ → ℂ := fun u => ((phi h γ u : ℝ) : ℂ)
 
+/-- The complex-valued test function `phiC h γ` has zero imaginary part at every `u`. -/
 theorem phiC_real (h γ : ℝ) (u : ℝ) : (phiC h γ u).im = 0 := by
   unfold phiC; simp
 

@@ -2,7 +2,7 @@
 
 RouteGate — block E6 of `lean_stage3/design/joints.md`. 2026-11-22. The explicit-formula route at the gate's statement (unit 0411) with two of its leaves substituted: `W = 0` (unit 0414) and the main term written as the formula the table tree's interpolant has at the rows (unit 0413).
 
-1 theorem, 0 definitions, 70 lines. Arrows are Lean's own record of what each proof uses.
+1 theorem, 0 definitions, 73 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`JointFloorGate`](../lean_stage3/JointFloorGate.md), [`RealSegment`](../lean_stage3/RealSegment.md), [`RowLeaves`](../lean_stage3/RowLeaves.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`RouteNum`](../lean_stage3/RouteNum.md)
@@ -35,9 +35,11 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="RouteGate-relErrWindow_route"></a>
 ### `RouteGate.relErrWindow_route`
 
-line 33
+line 36
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Assuming RH, there are constants `c₁ c₃ c₄ ≥ 0` such that for every `x₀ ≥ 16` and all `r`, `n` with `x₀² ≤ 2^(r−n)`, the rows of `π` meet `StmtRelErrWindow` against the main term `2/log 2 + ∫ t in 1..m, exp (log 2·t)/t`, with the `floorConstSplit` bound at `W = 0`.
 
 **Proves**
 

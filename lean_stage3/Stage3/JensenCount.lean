@@ -72,6 +72,7 @@ open Complex Filter Set MeasureTheory
 
 local notation "ζ" => riemannZeta
 
+/-- For every real `T`, the norm of `ζ` at the centre `2 + iT` is at least `1/3`. -/
 theorem zeta_centre_lower (T : ℝ) : (1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖ := by
   have hsre : (2 + Complex.I * (T : ℂ)).re = 2 := by
     simp only [Complex.add_re, Complex.re_ofNat, Complex.mul_re, Complex.I_re,
@@ -259,6 +260,7 @@ tangent to the line and so catching only `γ = T`. -/
 def zetaWindow (T : ℝ) : Set ℂ :=
   {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 7 / 4}
 
+/-- For `T ≥ 2`, the window of zeros of `ζ` within `7/4` of `2 + iT` is finite. -/
 theorem zetaWindow_finite {T : ℝ} (hT : 2 ≤ T) : (zetaWindow T).Finite := by
   refine Set.Finite.subset (zetaWindowTwo_finite hT) ?_
   intro z hz
@@ -269,11 +271,14 @@ closed unit ball maps onto `|s - (2+iT)| ≤ 2`. -/
 def jensenF (T : ℝ) : ℂ → ℂ :=
   fun z => ζ (2 * z + (2 + Complex.I * (T : ℂ))) / ζ (2 + Complex.I * (T : ℂ))
 
+/-- For `T ≥ 2` and `‖w‖ ≤ 11/10`, the map `z ↦ ζ (2z + (2 + iT))` is analytic at `w`. -/
 theorem zeta_comp_analytic {T : ℝ} (hT : 2 ≤ T) {w : ℂ} (hw : ‖w‖ ≤ 11 / 10) :
     AnalyticAt ℂ (fun z : ℂ => ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w := by
   refine AnalyticAt.fun_comp (analyticAt_riemannZeta (pole_away hT hw)) ?_
   exact (analyticAt_const.fun_mul analyticAt_id).fun_add analyticAt_const
 
+/-- For `T ≥ 2`, the normalised local model `jensenF T` is analytic on a neighbourhood
+of the closed unit ball. -/
 theorem jensenF_analytic {T : ℝ} (hT : 2 ≤ T) :
     AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1) := by
   intro z hz
@@ -281,10 +286,13 @@ theorem jensenF_analytic {T : ℝ} (hT : 2 ≤ T) :
   have h := zeta_comp_analytic hT (show ‖z‖ ≤ 11 / 10 by linarith)
   exact h.div_const
 
+/-- The normalised local model takes the value `1` at the origin: `jensenF T 0 = 1`. -/
 theorem jensenF_zero_eq_one (T : ℝ) : jensenF T 0 = 1 := by
   simp only [jensenF, mul_zero, zero_add]
   exact div_self (zeta_centre_ne_zero T)
 
+/-- For `T ≥ 2`, the zero set `SetOfZeros 1 (jensenF T)` of the normalised local
+model at radius `1` is finite. -/
 theorem jensenF_zeros_finite {T : ℝ} (hT : 2 ≤ T) : (SetOfZeros 1 (jensenF T)).Finite := by
   have hinj : Function.Injective (fun z : ℂ => 2 * z + (2 + Complex.I * (T : ℂ))) := by
     intro a b hab
@@ -303,6 +311,8 @@ theorem jensenF_zeros_finite {T : ℝ} (hT : 2 ≤ T) : (SetOfZeros 1 (jensenF T
   simp only [Complex.norm_ofNat]
   linarith
 
+/-- For `T ≥ 2` and `‖z‖ ≤ 15/16`, the normalised local model satisfies
+`‖jensenF T z‖ ≤ 84 T`. -/
 theorem jensenF_bound {T : ℝ} (hT : 2 ≤ T) {z : ℂ} (hz : ‖z‖ ≤ 15 / 16) :
     ‖jensenF T z‖ ≤ 84 * T := by
   have hnum : ‖ζ (2 * z + (2 + Complex.I * (T : ℂ)))‖ ≤ 28 * T := by
@@ -333,6 +343,8 @@ theorem analyticOrderNatAt_fun_comp_affine (g : ℂ → ℂ) {a : ℂ} (b z : �
     analyticOrderAt_comp_of_deriv_ne_zero hg (by rw [hd]; exact ha)
   simp only [analyticOrderNatAt, ← asComp, Function.comp_def]
 
+/-- For `T ≥ 2` and `‖w‖ ≤ 11/10`, the analytic order of `jensenF T` at `w` equals
+the analytic order of `ζ` at `2w + (2 + iT)`. -/
 theorem jensenF_order {T : ℝ} (hT : 2 ≤ T) {w : ℂ} (hw : ‖w‖ ≤ 11 / 10) :
     analyticOrderNatAt (jensenF T) w
       = analyticOrderNatAt ζ (2 * w + (2 + Complex.I * (T : ℂ))) := by
@@ -441,6 +453,8 @@ open Classical in
 def zetaLocalCount (T : ℝ) : ℝ :=
   if h : (zetaWindow T).Finite then ∑ ρ ∈ h.toFinset, (analyticOrderNatAt ζ ρ : ℝ) else 0
 
+/-- For `T ≥ 2`, the count function `zetaLocalCount T` equals the sum of the analytic
+orders of `ζ` over the finite window of zeros within `7/4` of `2 + iT`. -/
 theorem zetaLocalCount_eq {T : ℝ} (hT : 2 ≤ T) :
     zetaLocalCount T
       = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) := by
