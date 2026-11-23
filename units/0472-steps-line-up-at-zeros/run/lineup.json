@@ -1,0 +1,58 @@
+{
+ "gamma_lo": 10.0,
+ "gamma_hi": 60.0,
+ "gamma_step": 0.005,
+ "zeros_in_window": 12,
+ "window": 1.0,
+ "near": 0.5,
+ "rows": [
+  {
+   "N": 100,
+   "logN": 4.6052,
+   "zeros_found": 12,
+   "max_dev": 0.1271,
+   "mean_dev": 0.0424,
+   "median_peak_height": 2.8273,
+   "background_median": 1.6199,
+   "tall_maxima": 20,
+   "stray_tall_maxima": 8,
+   "stray_against_all_zeros": 7
+  },
+  {
+   "N": 1000,
+   "logN": 6.9078,
+   "zeros_found": 12,
+   "max_dev": 0.0562,
+   "mean_dev": 0.0229,
+   "median_peak_height": 5.0284,
+   "background_median": 1.7477,
+   "tall_maxima": 14,
+   "stray_tall_maxima": 2,
+   "stray_against_all_zeros": 1
+  },
+  {
+   "N": 10000,
+   "logN": 9.2103,
+   "zeros_found": 12,
+   "max_dev": 0.0153,
+   "mean_dev": 0.0039,
+   "median_peak_height": 7.3767,
+   "background_median": 1.566,
+   "tall_maxima": 13,
+   "stray_tall_maxima": 1,
+   "stray_against_all_zeros": 0
+  },
+  {
+   "N": 100000,
+   "logN": 11.5129,
+   "zeros_found": 12,
+   "max_dev": 0.0302,
+   "mean_dev": 0.0079,
+   "median_peak_height": 9.715,
+   "background_median": 1.4125,
+   "tall_maxima": 13,
+   "stray_tall_maxima": 1,
+   "stray_against_all_zeros": 0
+  }
+ ]
+}
