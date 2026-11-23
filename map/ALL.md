@@ -1068,8 +1068,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`FiniteOffLine.mem_ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem | reads ζ | `FiniteOffLine` | ρ ∈ ZF T ↔ \|(ρ : ℂ).im\| &lt; T |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
 | [`MirrorArea.mirror_area`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_area) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b |
+| [`SpiralLink.mirror_mem`](./lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) | theorem | reads ζ | `SpiralLink` | (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros |
+| [`SpiralLink.mirror_pair_area`](./lean_stage3/SpiralLink.md#SpiralLink-mirror_pair_area) | theorem | reads ζ | `SpiralLink` | ‖(b : ℂ) ^ (ρ : ℂ)‖ * ‖(b : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = b |
 | [`MirrorArea.mirror_side`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_side) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖ |
 | [`StencilWeil.mirror_symbol_on_line`](./lean_stage3/StencilWeil.md#StencilWeil-mirror_symbol_on_line) | theorem | shape | `StencilWeil` | (1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ))) = ((‖1 - (2 : ℂ) ^ (-ρ)‖ ^ 2 : ℝ) : ℂ) |
+| [`SpiralLink.mirrorZ`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) | def | reads ζ | `SpiralLink` | NontrivialZeros |
+| [`SpiralLink.mirrorZ_eq_iff`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_eq_iff) | theorem | reads ζ | `SpiralLink` | mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 |
+| [`SpiralLink.mirrorZ_im`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_im) | theorem | reads ζ | `SpiralLink` | ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im |
+| [`SpiralLink.mirrorZ_re`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) | theorem | reads ζ | `SpiralLink` | ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re |
 | [`Nonvanishing.Mlow`](./lean/Nonvanishing.md#Nonvanishing-Mlow) | def | shape | `Nonvanishing` | ℝ |
 | [`PiRemainder.Mlow`](./lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def | reads ζ | `PiRemainder` | ℝ |
 | [`Chain.mode`](./lean/Chain.md#Chain-mode) | def | shape | `Chain` | ℂ → ℂ |
@@ -1248,6 +1254,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`NyquistPeak.nyquist_boundaryBase`](./lean/NyquistPeak.md#NyquistPeak-nyquist_boundaryBase) | theorem | shape | `NyquistPeak` | Nyquist.nyquist (boundaryBase γ) = γ |
 | [`Nyquist.nyquist_no_go`](./lean/Nyquist.md#Nyquist-nyquist_no_go) | theorem | shape | `Nyquist` | ∃ γ', \|γ'\| &lt; \|γ\| ∧ Aliases b γ γ' |
 | [`WeilTransform.odd_integral_exp`](./lean_stage3/WeilTransform.md#WeilTransform-odd_integral_exp) | theorem | shape | `WeilTransform` | (∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))) = ∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) |
+| [`SpiralLink.off_line_is_two`](./lean_stage3/SpiralLink.md#SpiralLink-off_line_is_two) | theorem | reads ζ | `SpiralLink` | mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ¬ isHermitianHandshake ((mirrorZ ρ : NontrivialZeros) : ℂ).re |
 | [`ClosedLoopJoin.off_line_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero) | theorem | shape | `ClosedLoopJoin` | restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 &lt; b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b &lt; max ‖(b : ℂ) ^ (ρ : ℂ)‖ ‖(b : ℂ) ^ (1 - (ρ : ℂ))‖ |
 | [`WeilOffLine.offline_term_le`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) … |
 | [`WeilOffLine.offline_term_le_explicit`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε *… |
@@ -1275,6 +1282,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronKernel.one_sub_two_neg_rpow`](./lean_stage3/PerronKernel.md#PerronKernel-one_sub_two_neg_rpow) | theorem | shape | `PerronKernel` | δ / 5 ≤ 1 - (2:ℝ) ^ (-δ) |
 | [`PerronTwo.one_sub_two_neg_rpow'`](./lean_stage3/PerronTwo.md#PerronTwo-one_sub_two_neg_rpow-) | theorem | shape | `PerronTwo` | δ / 5 ≤ 1 - (2:ℝ) ^ (-δ) |
 | [`LeftSmooth.one_sub_wL`](./lean_stage3/LeftSmooth.md#LeftSmooth-one_sub_wL) | theorem | shape | `LeftSmooth` | 1 - wL t = sL t |
+| [`SpiralLink.OneAtEachHeight`](./lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight) | def | counting | `SpiralLink` | Prop |
 | [`WeilOnLine.OnLine`](./lean_stage3/WeilOnLine.md#WeilOnLine-OnLine) | abbrev | reads ζ | `WeilOnLine` | Type |
 | [`WeilBackground.online_term_eq`](./lean_stage3/WeilBackground.md#WeilBackground-online_term_eq) | theorem | shape | `WeilBackground` | laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h / 2) ^ 2 * (WeilTransform.Psi (h * (ρ.im + γ)) + WeilTransform.Psi (h * (ρ.im - γ))) ^ 2 : ℝ) : ℂ) |
 | [`WeilPowerBackground.online_term_eq`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-online_term_eq) | theorem | shape | `WeilPowerBackground` | laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = (((h / 2) ^ 2 * (PsiW m (h * (ρ.im + γ)) + PsiW m (h * (ρ.im - γ))) ^ 2 : ℝ) : ℂ) |
@@ -1554,9 +1562,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellResidual.RH_iff_cells`](./lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | theorem | reads ζ | `CellResidual` | RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
 | [`ClosedLoopJoin.rh_iff_force_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 |
 | [`ClosedLoopJoin.rh_iff_handshake`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re |
+| [`SpiralLink.rh_iff_one_at_each_height`](./lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) | theorem | reads ζ | `SpiralLink` | RiemannHypothesis ↔ OneAtEachHeight |
 | [`VonKoch.RH_iff_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ |
 | [`ClosedLoopJoin.rh_iff_re_half`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 |
 | [`PiToPsi.RH_iff_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | theorem | reads ζ | `PiToPsi` | RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
+| [`SpiralLink.rh_iff_spiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-rh_iff_spiralLink) | theorem | reads ζ | `SpiralLink` | RiemannHypothesis ↔ SpiralLink |
 | [`FilterAccum.rh_of_finite_accumulation`](./lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) | theorem | reads ζ | `FilterAccum` | RiemannHypothesis |
 | [`VonKoch.RH_of_no_zero_right_of_half`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_no_zero_right_of_half) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis |
 | [`VonKoch.RH_of_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_psiWeak) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis |
@@ -1703,6 +1713,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`ExplicitTwo.smooth_side_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) | theorem | reads ζ | `ExplicitTwo` | ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (… |
 | [`RHPull.smoothedChebyshev_sqrt_bound`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sqrt_bound) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (22200 * Real.exp 1 * C / ε) * Real.sqrt X * (Real.log X) ^ 2 + (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84… |
 | [`RHPull.smoothedChebyshev_sub_main_norm_le`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (1 / (2 * Real.pi)) * (2 * T) * (11100 * (Real.log X) ^ 2 * M₃₇ * X ^ (σRH X)) + (1 / (2 * Real.pi)) * (1 / 2) * ((19… |
+| [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
+| [`SpiralLink.spiralLink_iff_one`](./lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) | theorem | reads ζ | `SpiralLink` | SpiralLink ↔ OneAtEachHeight |
 | [`Crossover.spread_is_non_monotone`](./lean/Crossover.md#Crossover-spread_is_non_monotone) | theorem | shape | `Crossover` | (0.0591885 : ℝ) &lt; 0.3026405 ∧ (0.0219312 : ℝ) &lt; 0.3026405 |
 | [`Crossover.spread_prime`](./lean/Crossover.md#Crossover-spread_prime) | def | shape | `Crossover` | List ℝ |
 | [`Crossover.spread_smooth`](./lean/Crossover.md#Crossover-spread_smooth) | def | shape | `Crossover` | List ℝ |

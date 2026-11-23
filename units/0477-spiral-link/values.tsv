@@ -1,0 +1,18 @@
+key	value	source
+module_lines	170	wc -l lean_stage3/Stage3/SpiralLink.lean
+theorems_proved	9	grep -c ^theorem lean_stage3/Stage3/SpiralLink.lean
+defs	3	mirrorZ, SpiralLink, OneAtEachHeight
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SpiralLink.lean
+pins	5	mirrorZ_eq_iff, off_line_is_two, rh_iff_spiralLink, rh_iff_one_at_each_height, spiralLink_iff_one
+errors_first	1	the first lake build Stage3.SpiralLink here: a membership goal not unfolded before a rewrite
+builds	2	the builds here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8863	lake build (full Stage3), Build completed successfully
+jobs_module	8761	run/build.log, lake build Stage3.SpiralLink
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j2	the spiral link, stated
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_join	476	unit 0476, the join
+statements	2	SpiralLink, OneAtEachHeight

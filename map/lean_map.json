@@ -22638,7 +22638,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
-     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two"
     ]
    },
    {
@@ -22817,7 +22819,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
-     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two"
     ]
    },
    {
@@ -22913,7 +22916,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
-     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake"
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ]
    },
    {
@@ -22968,7 +22972,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ]
    }
   ]
  },
@@ -53035,6 +53041,379 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SpiralLink.lean",
+  "module": "Stage3.SpiralLink",
+  "stem": "SpiralLink",
+  "header": "SpiralLink — block J2 of `lean_stage3/design/closedloop.md`. 2026-11-23. The link of Julian's paper, §6.3 (\"The Phasor Mechanism\"), stated in Lean:",
+  "imports": [
+   "Stage3.ClosedLoopJoin",
+   "Stage3.WeilOnLine"
+  ],
+  "opens": [
+   "ClosedLoopJoin",
+   "Kadiri"
+  ],
+  "namespaces": [
+   "SpiralLink"
+  ],
+  "lines": 171,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopJoin.lean",
+   "lean_stage3/Stage3/WeilOnLine.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mirror_mem",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirror_mem",
+    "line": 43,
+    "why": "The mirror point `1 − conj ρ` of a nontrivial zero is a nontrivial zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_mem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conj_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conj_mem"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mirrorZ",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirrorZ",
+    "line": 71,
+    "why": "The mirror of a zero, as a zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "NontrivialZeros",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_mem"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirrorZ_im",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirrorZ_im",
+    "line": 75,
+    "why": "The mirror of a zero is at the same height.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirrorZ_re",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirrorZ_re",
+    "line": 80,
+    "why": "The mirror of a zero has its real part reflected in one half.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirrorZ_eq_iff",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirrorZ_eq_iff",
+    "line": 86,
+    "why": "A zero is its own mirror exactly on the line.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirror_pair_area",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.mirror_pair_area",
+    "line": 101,
+    "why": "The pair keeps pace. At any base, the size of a zero's mode times the size of its mirror's mode is the base.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(b : ℂ) ^ (ρ : ℂ)‖ * ‖(b : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = b",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "off_line_is_two",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.off_line_is_two",
+    "line": 109,
+    "why": "Off the line a zero is two. A nontrivial zero off the line has a mirror that is a different zero at the same height, and the handshake fails at both.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2"
+    ],
+    "proves": "mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ¬ isHermitianHandshake ((mirrorZ ρ : NontrivialZeros) : ℂ).re",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "SpiralLink",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.SpiralLink",
+    "line": 122,
+    "why": "The spiral link (Julian's paper, §6.3): the walk closes only where the closed loop is at rest. The Hermitian handshake holds at every nontrivial zero of zeta.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "OneAtEachHeight",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.OneAtEachHeight",
+    "line": 126,
+    "why": "There is one zero. No two nontrivial zeros share a height.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_spiralLink",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.rh_iff_spiralLink",
+    "line": 130,
+    "why": "The Riemann hypothesis is the spiral link.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ SpiralLink",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_one_at_each_height",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.rh_iff_one_at_each_height",
+    "line": 134,
+    "why": "The Riemann hypothesis is that there is one zero at each height.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ OneAtEachHeight",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_one",
+    "ns": "SpiralLink",
+    "full": "SpiralLink.spiralLink_iff_one",
+    "line": 147,
+    "why": "The spiral link and \"one zero at each height\" are the same statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink ↔ OneAtEachHeight",
+    "file": "lean_stage3/Stage3/SpiralLink.lean",
+    "id": "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SquareMean.lean",
   "module": "Stage3.SquareMean",
   "stem": "SquareMean",
@@ -64275,6 +64654,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_mem",
      "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ"
     ]
    },
@@ -82001,11 +82381,12 @@
    "Stage3.CountModes",
    "Stage3.CountReduction",
    "Stage3.CountEuler",
-   "Stage3.ClosedLoopJoin"
+   "Stage3.ClosedLoopJoin",
+   "Stage3.SpiralLink"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 180,
+  "lines": 181,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -82093,6 +82474,7 @@
    "lean_stage3/Stage3/RouteNum.lean",
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
+   "lean_stage3/Stage3/SpiralLink.lean",
    "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",
    "lean_stage3/Stage3/StencilWeil.lean",

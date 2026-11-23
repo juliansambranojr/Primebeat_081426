@@ -5,7 +5,7 @@ WeilOnLine — the on-line background, all heights. Rung 4b, second half, slice 
 18 theorems, 7 definitions, 340 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilSeries`](../lean_stage3/WeilSeries.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerOnLine`](../lean_stage3/WeilPowerOnLine.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SpiralLink`](../lean_stage3/SpiralLink.md), [`WeilPowerOnLine`](../lean_stage3/WeilPowerOnLine.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
 
 ## The picture
 
@@ -30,11 +30,12 @@ flowchart LR
   n16["<b>A_le</b><br/>A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)"]:::shp
   n17["<b>onLineBound_le ■</b><br/>onLineBound h γ ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h …"]:::thm
   x0(["<b>WeilBackground</b><br/>online_term_eq<br/>online_term_le_near"]):::ext
-  x1(["<b>WeilPowerOnLine</b><br/>sum_low_le<br/>sum_lower_le"]):::ext
-  x2(["<b>ZeroSummable</b><br/>card_shell_le"]):::ext
-  x3(["<b>WeilSeries</b><br/>6 theorems"]):::ext
-  x4(["<b>WeilTiles</b><br/>sum_le_bandSeries<br/>weightedTerm_nonneg"]):::ext
-  x5(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
+  x1(["<b>SpiralLink</b><br/>mirror_mem"]):::ext
+  x2(["<b>WeilPowerOnLine</b><br/>sum_low_le<br/>sum_lower_le"]):::ext
+  x3(["<b>ZeroSummable</b><br/>card_shell_le"]):::ext
+  x4(["<b>WeilSeries</b><br/>6 theorems"]):::ext
+  x5(["<b>WeilTiles</b><br/>sum_le_bandSeries<br/>weightedTerm_nonneg"]):::ext
+  x6(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
   n0 --> n1
   n1 --> n4
   n11 --> n12
@@ -51,17 +52,18 @@ flowchart LR
   n8 --> n9
   n9 --> n10
   n9 --> n11
-  n3 -.-> x1
+  n2 -.-> x1
   n3 -.-> x2
-  n9 -.-> x1
+  n3 -.-> x3
+  n9 -.-> x2
   x0 -.-> n1
   x0 -.-> n11
-  x3 -.-> n16
-  x3 -.-> n5
-  x4 -.-> n14
-  x4 -.-> n15
+  x4 -.-> n16
   x4 -.-> n5
-  x5 -.-> n11
+  x5 -.-> n14
+  x5 -.-> n15
+  x5 -.-> n5
+  x6 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -236,8 +238,9 @@ line 71
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SpiralLink.mirror_mem`](../lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) (SpiralLink) — `` (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros ``
   - [`WeilOnLine.conjZ`](#WeilOnLine-conjZ) — def
 
 <a name="WeilOnLine-conjZ_injective"></a>

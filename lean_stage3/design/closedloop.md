@@ -32,3 +32,28 @@ restated word for word.
 
 **Not here.** A statement that the force is zero or the handshake holds at a
 zero of zeta. By the last two theorems that is RH in these terms.
+
+## J2 The spiral link, stated — `Stage3/SpiralLink.lean`
+
+Julian's paper, §6.3: "the spiral can only converge at σ = 1/2". The walk
+closing is a zero of zeta. The sentence, in Lean:
+
+    SpiralLink : ∀ ρ : NontrivialZeros, isHermitianHandshake (Re ρ)
+
+and Julian's other form of it, "there is just one zero":
+
+    OneAtEachHeight : ∀ ρ ρ' : NontrivialZeros, Im ρ = Im ρ' → ρ = ρ'
+
+The mirror of a zero, `mirrorZ ρ = 1 − conj ρ`, is a zero (the functional
+equation, `riemannZeta_one_sub`, and `WeilOnLine.conj_mem`), at the same
+height, with real part `1 − Re ρ`. `mirrorZ_eq_iff`: it is `ρ` itself exactly
+when `Re ρ = 1/2`. `mirror_pair_area`: the two modes' sizes multiply to the
+base. `off_line_is_two`: an off-line zero has a different zero at its own
+height, and the handshake fails at both.
+
+- `rh_iff_spiralLink`, `rh_iff_one_at_each_height`, `spiralLink_iff_one`.
+
+**Not here.** A proof of `SpiralLink` or `OneAtEachHeight`. Each is RH in
+these terms. The paper's reason, that the integers force the offset `0.5` at
+every doubling (`ignition_energy_is_half`), is not yet a Lean argument that
+reaches the zeros.

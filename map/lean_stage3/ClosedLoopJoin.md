@@ -7,7 +7,7 @@ ClosedLoopJoin — block J1 of `lean_stage3/design/closedloop.md`: the join betw
 11 theorems, 4 definitions, 220 lines. 
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`MirrorArea`](../lean_stage3/MirrorArea.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)
 
 ## The picture
 
@@ -23,10 +23,11 @@ flowchart LR
   n7["<b>off_line_zero ■</b><br/>restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).r…"]:::shp
   n8["<b>rh_iff_re_half</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2"]:::thm
   n9["<b>rh_iff_force_zero ■</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ…"]:::thm
-  n10["<b>rh_iff_handshake ■</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake …"]:::thm
+  n10["<b>rh_iff_handshake</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake …"]:::thm
   x0(["<b>StencilWeil</b><br/>restoringForce_eq<br/>restoringForce_eq_zero_iff"]):::ext
-  x1(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
-  x2(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x1(["<b>SpiralLink</b><br/>off_line_is_two<br/>rh_iff_one_at_each_height<br/>rh_iff_spiralLink"]):::ext
+  x2(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
+  x3(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -37,10 +38,13 @@ flowchart LR
   n6 --> n7
   n8 --> n10
   n8 --> n9
+  n10 -.-> x1
+  n5 -.-> x1
+  n8 -.-> x1
   x0 -.-> n1
   x0 -.-> n7
-  x1 -.-> n7
-  x2 -.-> n8
+  x2 -.-> n7
+  x3 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -95,7 +99,7 @@ The Hermitian handshake. Restated from Part VIII.
 
 - **Is:** `` isHermitianHandshake (σ : ℝ) : Prop := ∀ p : ℕ, Nat.Prime p → p > 3 → primeWeight p σ = primeWeight p (1 - σ) ``
 - **Built from:** [`ClosedLoopJoin.primeWeight`](#ClosedLoopJoin-primeWeight)
-- **Used by 5:** [`ClosedLoopJoin.handshake_iff_half`](#ClosedLoopJoin-handshake_iff_half), [`ClosedLoopJoin.handshake_iff_sides`](#ClosedLoopJoin-handshake_iff_sides), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction)
+- **Used by 7:** [`ClosedLoopJoin.handshake_iff_half`](#ClosedLoopJoin-handshake_iff_half), [`ClosedLoopJoin.handshake_iff_sides`](#ClosedLoopJoin-handshake_iff_sides), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink), [`SpiralLink.off_line_is_two`](../lean_stage3/SpiralLink.md#SpiralLink-off_line_is_two)
 
 ## Theorems
 
@@ -264,10 +268,11 @@ isHermitianHandshake σ ↔ σ = 1 / 2
 
 **Definitions its proof touches:** [`ClosedLoopJoin.isHermitianHandshake`](#ClosedLoopJoin-isHermitianHandshake), [`ClosedLoopJoin.primeWeight`](#ClosedLoopJoin-primeWeight)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
   - [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction) — `` restoringForce σ ≠ 0 ∧ ¬ isHermitianHandshake σ ``
+  - [`SpiralLink.off_line_is_two`](../lean_stage3/SpiralLink.md#SpiralLink-off_line_is_two) (SpiralLink) — `` mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ¬ isHermitianHandshake ((mirrorZ ρ : Nontriv… ``
 
 <a name="ClosedLoopJoin-structural_contradiction"></a>
 ### `ClosedLoopJoin.structural_contradiction`
@@ -349,10 +354,11 @@ RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2
 
   - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
   - [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
+  - [`SpiralLink.rh_iff_one_at_each_height`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) (SpiralLink) — `` RiemannHypothesis ↔ OneAtEachHeight ``
 
 <a name="ClosedLoopJoin-rh_iff_force_zero"></a>
 ### `ClosedLoopJoin.rh_iff_force_zero`
@@ -400,5 +406,7 @@ RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).
 
 **Definitions its proof touches:** [`ClosedLoopJoin.isHermitianHandshake`](#ClosedLoopJoin-isHermitianHandshake)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`SpiralLink.rh_iff_spiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_spiralLink) (SpiralLink) — `` RiemannHypothesis ↔ SpiralLink ``
 

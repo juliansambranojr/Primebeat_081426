@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J2 of `design/closedloop.md`: `Stage3/SpiralLink.lean`
+
+    DONE        `SpiralLink`: the handshake at every zero, the paper's "the
+                spiral can only converge at σ = 1/2", as a Lean proposition.
+                `OneAtEachHeight`: no two zeros share a height. `mirrorZ`,
+                `mirrorZ_eq_iff`, `off_line_is_two`: an off-line zero is two
+                zeros at one height. `rh_iff_spiralLink`,
+                `rh_iff_one_at_each_height`, `spiralLink_iff_one`; one unit
+    ASSUMED     Julian, 2026-11-23: "State that link in lean". Stated, and
+                shown equal to "there is just one zero" and to RH. Written
+                and built here
+    DEPENDS     `ClosedLoopJoin.rh_iff_handshake`, `WeilOnLine.conj_mem`,
+                Mathlib `riemannZeta_one_sub`
+    OUT         a proof of either proposition; the map
+    OUTCOME     proved as stated, unit 0477
+
 ### 2026-11-23 · block J1 of `design/closedloop.md`: `Stage3/ClosedLoopJoin.lean`
 
     DONE        `force_join`: the closed loop's restoring force and the
