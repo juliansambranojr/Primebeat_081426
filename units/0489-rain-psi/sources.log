@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-23T11:53:45Z
+# unit: 0489-rain-psi
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41556
+  You don't know when exactly but at some point  you can see the rain is coming
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41839
+  theorem rain_psi (ρ₀ : NontrivialZeros) {θ : ℝ} (hθ : θ < (ρ₀ : ℂ).re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41841
+  ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x| :=
+
+# 4 found, 0 missing

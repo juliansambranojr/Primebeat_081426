@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0490: the composite table has no signs: every composite up to N counted once under its least prime, each part the table's count at the scale N/p (`CompositeSplit.composites_no_signs`). No bound is derived from it.
+- [open]   2026-11-23  Unit 0489: at a zero, for every exponent below its real part, the staircase leaves the bound at points beyond any start (`RateBelow.rain_psi`); the proof does not say where.
 - [open]   2026-11-23  Unit 0488: the band of the deep zero joined to the chain: every zero lands strictly inside the band, a zero and its mirror multiply to one half as a cell's two shares do, and the spiral link is every zero on the middle circle (`BandJoin.spiralLink_iff_middle`).
 - [open]   2026-11-23  Unit 0487: away from the zeros the turned steps to a cutoff, less their smooth term, grow at most as the cutoff to the largest real part of a zero below the height less the real part of the point (`StepsRate.rate_upper`). The lower half of the rate is not stated.
 - [open]   2026-11-23  Unit 0486: the staircase read at N, N/2, …, N/N adds up to the logarithms of the integers up to N, at every N (`SelfBound.self_bound`); the residuals across the scales are tied by a quantity with no prime in it. A bound at one scale needs the Möbius signs.

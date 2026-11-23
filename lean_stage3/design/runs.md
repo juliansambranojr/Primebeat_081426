@@ -156,3 +156,55 @@ of real part at most `Θ ≥ Re s`:
 The rate the run read is at most the largest real part less the weight tried.
 That it is no less is the lower half: some zero of the largest real part must
 be seen in the sum and not cancelled by the others. Not stated here.
+
+## R9 The rain comes — `Stage3/RateBelow.lean` (staircase) and `Stage3/StepsBelow.lean` (turned steps)
+
+Julian, 2026-11-23: the zero need not be shown uncancelled at a given cutoff;
+it is inferred from the trajectory. The pole fixes what the cutoffs do again
+and again.
+
+**Staircase.** `ThetaConverse.no_zero_right_of_theta`: a bound
+`|ψ(x) − x| ≤ C·x^θ·log^k x` from `x₀` on leaves no zero right of `θ`. Read
+the other way: at a zero `ρ₀` and any `θ < Re ρ₀`, for every `C`, `k`, `x₀`
+there is `x ≥ x₀` with `|ψ(x) − x| > C·x^θ·log^k x`. `RateBelow.rain_psi`.
+
+**Turned steps.** `a_n = Λ(n)·n^(−s)`, `σ = Re s > 0`,
+`B(x) = Σ_{n≤x} a_n·(x − n)`, so `B(N) = N·S(N,s)`. For `Re w > 1 − σ`:
+
+    Σ a_n·n^(−w) = −ζ'/ζ(s+w) = w(w+1)·∫_1^∞ B(x)·x^(−w−2) dx.
+
+The smooth term: `K(1) = N^(1−s)/((1−s)(2−s)) + O(1)`; its part of the
+integral is `1/((1−s)(2−s)(w−(1−s)))`, a pole at `w = 1 − s` only. If
+`‖S(N,s) − K(1)‖ ≤ C·N^δ` from `N₀` on, `δ ≥ 0`, then
+`B(x) − x^(2−s)/((1−s)(2−s)) = O(x^(1+δ))` and the rest of the integral is
+analytic on `Re w > δ` (`mellin_differentiableAt_of_isBigO_rpow`, as V1 of
+`ThetaConverse`). Then `−ζ'/ζ(s+w)/(w(w+1))` less the pole at `1 − s` extends
+analytically to `Re w > δ`, by the identity theorem as V3. A zero `ρ₀` with
+`Re ρ₀ − σ > δ`, `ρ₀ ≠ s`, gives a pole at `w = ρ₀ − s` (V4,
+`StepsPole.steps_pole`). Contradiction.
+
+- `StepsBelow.rain_steps`: at a zero `ρ₀`, a point `s` with `0 < Re s`,
+  `ρ₀ ≠ s`, and `0 ≤ δ < Re ρ₀ − Re s`: for every `C`, `N₀` there is
+  `N ≥ N₀` with `‖S(N,s) − K(1)‖ > C·N^δ`.
+
+## R10 The composite table has no signs — `Stage3/CompositeSplit.lean`
+
+Julian, 2026-11-23: look at the composite table for the open link.
+`lean/PairIdentity.lean`: the prime cell and the composite cell add to a power
+of two, so the two residuals are the same with the sign changed.
+
+Every term `⌊N/d⌋` of the sieve counts composites, the multiples of `d`, and
+the Pascal signs correct the repeats. Each `n ≥ 2` has exactly one least prime.
+`n` has least prime `p` exactly when `n = p·m` with `m ≤ N/p` and no prime
+below `p` dividing `m`. A composite `n ≤ N` has least prime at most `√N`.
+
+    rough N p = #{m ≤ N/p : no prime below p divides m}
+    #{composites ≤ N} + #{primes ≤ √N} = Σ_{p ≤ √N} rough N p.
+
+Every term is a count. `rough N p` is the table at the scale `N/p` sieved by
+the primes below `p`. The open step in this form: the residual at `N` is tied
+to the residuals of the same counts at the scales `N/p`, all with one sign.
+Not derived here: a bound from that tie.
+
+- `card_least_prime`, `composites_by_least_prime`, `composite_part`,
+  `composites_no_signs`.

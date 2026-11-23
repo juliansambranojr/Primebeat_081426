@@ -22,6 +22,33 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R10 of `design/runs.md`: `Stage3/CompositeSplit.lean`
+
+    DONE        `composites_by_least_prime`: every composite up to `N` once,
+                under its least prime, no signs. `card_least_prime`: a
+                prime's part is the table's count at the scale `N/p`.
+                `composites_no_signs`: the composites as a sum of counts; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Have you looked at the composite table
+                for the answer?" Written and built here
+    DEPENDS     `SieveExact.smallPrimes`, Mathlib `Nat.minFac`
+    OUT         a bound on the residual from the tie across the scales
+    OUTCOME     proved, unit 0490
+
+### 2026-11-23 · block R9 of `design/runs.md`: `Stage3/RateBelow.lean`, `Stage3/StepsBelow.lean`
+
+    DONE        `rain_psi`: at a zero, for every exponent below its real
+                part, the staircase leaves the bound at points beyond any
+                start. `rain_steps`: the same for the turned steps to a
+                cutoff; one unit each
+    ASSUMED     Julian, 2026-11-23: "at some point  you can see the rain is
+                coming". The staircase from `no_zero_right_of_theta`, written
+                and built here. The turned steps by an Opus worker
+    DEPENDS     `Stage3.no_zero_right_of_theta`, `StepsPole.steps_pole`,
+                `StepsPeak.S`
+    OUT         where the rise happens
+    OUTCOME     `rain_psi` proved, unit 0489; `rain_steps` pending
+
 ### 2026-11-23 · block J5 of `design/closedloop.md`: `Stage3/BandJoin.lean`
 
     DONE        `zero_image`, `zero_in_band`: every zero lands strictly inside

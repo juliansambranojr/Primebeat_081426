@@ -23979,6 +23979,233 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CompositeSplit.lean",
+  "module": "Stage3.CompositeSplit",
+  "stem": "CompositeSplit",
+  "header": "CompositeSplit — block R10 of `lean_stage3/design/runs.md`. 2026-11-23. The composite table has no signs. The sieve's sum counts a composite once for every set of small primes dividing it and corrects with the Pascal signs. Each composite has exactly one least prime. Counted under its least prime, every composite is counted once, and every part is a positive count. The part of a prime `p` is the same table at the scale `N/p`: the numbers up to `N/p` that no prime below `p` divides.",
+  "imports": [
+   "Stage3.SieveExact",
+   "Stage3.StepsRate"
+  ],
+  "opens": [
+   "Classical",
+   "Finset",
+   "SieveExact"
+  ],
+  "namespaces": [
+   "CompositeSplit"
+  ],
+  "lines": 152,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SieveExact.lean",
+   "lean_stage3/Stage3/StepsRate.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "rough",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.rough",
+    "line": 32,
+    "why": "The numbers from `1` to `N/p` that no prime below `p` divides: the table at the scale `N/p`, sieved by the primes below `p`.",
+    "sorry": false,
+    "needs": [
+     "N p : ℕ"
+    ],
+    "proves": "ℕ",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "least_prime_fiber",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.least_prime_fiber",
+    "line": 37,
+    "why": "The numbers from `2` to `N` whose least prime is `p` are `p` times the numbers up to `N/p` that no prime below `p` divides.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hp : p.Prime"
+    ],
+    "proves": "(Icc 2 N).filter (fun n => n.minFac = p) = ((Icc 1 (N / p)).filter (fun m => ∀ q : ℕ, q.Prime → q < p → ¬ q ∣ m)).image (fun m => p * m)",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.least_prime_fiber",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_least_prime",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.card_least_prime",
+    "line": 71,
+    "why": "The part of a prime. The count of the numbers from `2` to `N` with least prime `p` is the table's count at the scale `N/p`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hp : p.Prime"
+    ],
+    "proves": "((Icc 2 N).filter (fun n => n.minFac = p)).card = rough N p",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.least_prime_fiber",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.least_prime_fiber",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "minFac_mem_smallPrimes",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.minFac_mem_smallPrimes",
+    "line": 77,
+    "why": "A composite up to `N` has its least prime among the primes up to `√N`.",
+    "sorry": false,
+    "needs": [
+     "h2 : 2 ≤ n",
+     "hN : n ≤ N",
+     "hc : ¬ n.Prime"
+    ],
+    "proves": "n.minFac ∈ smallPrimes N",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.minFac_mem_smallPrimes",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_by_least_prime"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "composites_by_least_prime",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.composites_by_least_prime",
+    "line": 87,
+    "why": "Every composite once, under its least prime. No signs.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "((Icc 2 N).filter (fun n => ¬ n.Prime)).card = ∑ p ∈ smallPrimes N, ((Icc 2 N).filter (fun n => ¬ n.Prime ∧ n.minFac = p)).card",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_by_least_prime",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.minFac_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.minFac_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "composite_part",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.composite_part",
+    "line": 100,
+    "why": "A prime's part of the composites, with the prime itself put back, is the table's count at the scale `N/p`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hp : p.Prime",
+     "hpN : p ≤ N"
+    ],
+    "proves": "((Icc 2 N).filter (fun n => ¬ n.Prime ∧ n.minFac = p)).card + 1 = rough N p",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "composites_no_signs",
+    "ns": "CompositeSplit",
+    "full": "CompositeSplit.composites_no_signs",
+    "line": 126,
+    "why": "The composite table, no signs. The composites up to `N`, with one for each prime up to `√N`, are the sum over those primes of the table's count at the scale `N/p`. Every term is a count.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "((Icc 2 N).filter (fun n => ¬ n.Prime)).card + (smallPrimes N).card = ∑ p ∈ smallPrimes N, rough N p",
+    "file": "lean_stage3/Stage3/CompositeSplit.lean",
+    "id": "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_by_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_by_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ContourShift.lean",
   "module": "Stage3.ContourShift",
   "stem": "ContourShift",
@@ -53173,6 +53400,63 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/RateBelow.lean",
+  "module": "Stage3.RateBelow",
+  "stem": "RateBelow",
+  "header": "RateBelow — block R9 of `lean_stage3/design/runs.md`, the staircase. 2026-11-23.",
+  "imports": [
+   "Stage3.ThetaConverse",
+   "Stage3.StepsRate"
+  ],
+  "opens": [
+   "Kadiri"
+  ],
+  "namespaces": [
+   "RateBelow"
+  ],
+  "lines": 39,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/StepsRate.lean",
+   "lean_stage3/Stage3/ThetaConverse.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "rain_psi",
+    "ns": "RateBelow",
+    "full": "RateBelow.rain_psi",
+    "line": 24,
+    "why": "The rain comes. At a zero `ρ₀`, for every exponent `θ` below its real part, the staircase exceeds `C·x^θ·log^k x` at points beyond any `x₀`.",
+    "sorry": false,
+    "needs": [
+     "ρ₀ : NontrivialZeros",
+     "hθ : θ < (ρ₀ : ℂ).re",
+     "C : ℝ",
+     "k : ℕ",
+     "x₀ : ℝ"
+    ],
+    "proves": "∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x|",
+    "file": "lean_stage3/Stage3/RateBelow.lean",
+    "id": "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ThetaConverse.lean::Stage3.no_zero_right_of_theta",
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ThetaConverse.lean::Stage3.no_zero_right_of_theta",
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ReZetaCount.lean",
   "module": "Stage3.ReZetaCount",
   "stem": "ReZetaCount",
@@ -55223,6 +55507,9 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_by_least_prime",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.minFac_mem_smallPrimes",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.netRounding_centered",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.two_mem_smallPrimes",
@@ -63166,6 +63453,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_of_psiWeakTheta"
     ]
    },
@@ -63531,6 +63819,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_analyticOnNhd_theta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_differentiableAt_theta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta",
@@ -86494,11 +86783,13 @@
    "Stage3.HalfSieve",
    "Stage3.SelfBound",
    "Stage3.StepsRate",
-   "Stage3.BandJoin"
+   "Stage3.BandJoin",
+   "Stage3.RateBelow",
+   "Stage3.CompositeSplit"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 192,
+  "lines": 194,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -86522,6 +86813,7 @@
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ClosedLoopChain.lean",
    "lean_stage3/Stage3/ClosedLoopJoin.lean",
+   "lean_stage3/Stage3/CompositeSplit.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",
@@ -86584,6 +86876,7 @@
    "lean_stage3/Stage3/PiToPsi.lean",
    "lean_stage3/Stage3/PiZeros.lean",
    "lean_stage3/Stage3/PsiToPi.lean",
+   "lean_stage3/Stage3/RateBelow.lean",
    "lean_stage3/Stage3/ReZetaCount.lean",
    "lean_stage3/Stage3/RealSegment.lean",
    "lean_stage3/Stage3/RouteGate.lean",

@@ -181,6 +181,8 @@ import Stage3.HalfSieve
 import Stage3.SelfBound
 import Stage3.StepsRate
 import Stage3.BandJoin
+import Stage3.RateBelow
+import Stage3.CompositeSplit
 
 namespace Stage3
 
