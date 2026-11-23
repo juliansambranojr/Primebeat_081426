@@ -51835,6 +51835,9 @@
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.Li_two_rpow",
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li",
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li_two_rpow",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeakTheta_of_psiWeakTheta",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeakTheta_of_zeroFree",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeak_of_RH_half",
@@ -54136,7 +54139,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
-     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq"
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
     ]
    },
    {
@@ -54566,7 +54571,10 @@
     "used_by": [
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
-     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split"
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
     ]
    },
    {
@@ -54772,6 +54780,187 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
     ],
     "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SieveResidual.lean",
+  "module": "Stage3.SieveResidual",
+  "stem": "SieveResidual",
+  "header": "SieveResidual — block R3 of `lean_stage3/design/runs.md`. 2026-11-23. The roundings of the sieve and the residual of the table are tied exactly.",
+  "imports": [
+   "Stage3.SieveExact",
+   "Stage3.PiZeros"
+  ],
+  "opens": [
+   "SieveExact"
+  ],
+  "namespaces": [
+   "SieveResidual"
+  ],
+  "lines": 86,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/PiZeros.lean",
+   "lean_stage3/Stage3/SieveExact.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "smoothNet",
+    "ns": "SieveResidual",
+    "full": "SieveResidual.smoothNet",
+    "line": 34,
+    "why": "The smooth part of the net rounding: the closed product, less the unit, less the smooth count at `N`, plus the smooth count at `√N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SieveResidual.lean",
+    "id": "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cast_netRounding",
+    "ns": "SieveResidual",
+    "full": "SieveResidual.cast_netRounding",
+    "line": 40,
+    "why": "The net rounding, as a real number, is the product less the count the sieve produces.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ))",
+    "file": "lean_stage3/Stage3/SieveResidual.lean",
+    "id": "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "net_wobble",
+    "ns": "SieveResidual",
+    "full": "SieveResidual.net_wobble",
+    "line": 50,
+    "why": "The roundings' wobble is the table's residual, at the row less at its square root. For `N ≥ 2`, the net rounding less its smooth part is minus the residual of the count at `N` less the residual at `√N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "((netRounding N : ℚ) : ℝ) - smoothNet N = -(((Nat.primeCounting N : ℝ) - Stage3.Li (N : ℝ)) - ((Nat.primeCounting (Nat.sqrt N) : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)))",
+    "file": "lean_stage3/Stage3/SieveResidual.lean",
+    "id": "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqrt_two_pow",
+    "ns": "SieveResidual",
+    "full": "SieveResidual.sqrt_two_pow",
+    "line": 59,
+    "why": "The square root of an even power of two is the power of half the exponent.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ"
+    ],
+    "proves": "Nat.sqrt (2 ^ (2 * m)) = 2 ^ m",
+    "file": "lean_stage3/Stage3/SieveResidual.lean",
+    "id": "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.sqrt_two_pow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "net_wobble_rows",
+    "ns": "SieveResidual",
+    "full": "SieveResidual.net_wobble_rows",
+    "line": 66,
+    "why": "The row and its half. At the doubling of an even row `2m`, the net rounding less its smooth part is minus the residual of the table at row `2m` less the residual at row `m`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ",
+     "hm : 1 ≤ m"
+    ],
+    "proves": "((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) = -(((Nat.primeCounting (2 ^ (2 * m)) : ℝ) - Stage3.Li (((2 ^ (2 * m) : ℕ) : ℝ))) - ((Nat.primeCounting (2 ^ m) : ℝ) - Stage3.Li (((2 ^ m : ℕ) : ℝ))))",
+    "file": "lean_stage3/Stage3/SieveResidual.lean",
+    "id": "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.sqrt_two_pow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.sqrt_two_pow"
+    ],
+    "layer": "shape",
     "used_by": []
    }
   ]
@@ -84136,11 +84325,12 @@
    "Stage3.ClosedLoopChain",
    "Stage3.OneChain",
    "Stage3.RunTheorems",
-   "Stage3.SieveExact"
+   "Stage3.SieveExact",
+   "Stage3.SieveResidual"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 185,
+  "lines": 186,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -84232,6 +84422,7 @@
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
    "lean_stage3/Stage3/SieveExact.lean",
+   "lean_stage3/Stage3/SieveResidual.lean",
    "lean_stage3/Stage3/SpiralLink.lean",
    "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",

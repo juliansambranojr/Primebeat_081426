@@ -28,3 +28,15 @@ and a part that is a size.
 `π(x) − π(√x) + 1 = Σ_{d | P(√x)} μ(d)·⌊x/d⌋` for every `x`. The sizes of
 units 0472 to 0475 that are of the strength of the Riemann hypothesis stay
 measurements.
+
+## R3 The roundings and the residual — `Stage3/SieveResidual.lean`
+
+The net rounding is of the order of the count (unit 0475, corrected), so
+"the roundings cancel to square-root size" is false for the sieve's sum. Its
+true form: take from the net rounding its own smooth part
+`smoothNet N = N·Π(1 − 1/p) − 1 − Li N + Li √N`. Then, exactly,
+
+    netRounding N − smoothNet N = −((π N − Li N) − (π √N − Li √N)).
+
+- `net_wobble (hN : 2 ≤ N)`, and `net_wobble_rows (hm : 1 ≤ m)` at `N = 2^(2m)`
+  with `√N = 2^m`: the residual at row `2m` less the residual at row `m`.

@@ -1,0 +1,20 @@
+key	value	source
+module_lines	85	wc -l lean_stage3/Stage3/SieveResidual.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/SieveResidual.lean
+defs	0	grep -c ^def; smoothNet is a noncomputable def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SieveResidual.lean
+pins	2	net_wobble, net_wobble_rows
+errors_first	0	the first lake build Stage3.SieveResidual here
+builds	1	the build here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8868	lake build (full Stage3), Build completed successfully
+jobs_module	8792	run/build.log, lake build Stage3.SieveResidual
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r3	the roundings and the residual
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_sieve	481	unit 0481
+unit_run	475	unit 0475
+floor_N	2	net_wobble: 2 ≤ N
+first_m	1	net_wobble_rows: 1 ≤ m

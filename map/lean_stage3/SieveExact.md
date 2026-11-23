@@ -7,7 +7,7 @@
 18 theorems, 5 definitions, 287 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SieveResidual`](../lean_stage3/SieveResidual.md)
 
 ## The picture
 
@@ -30,7 +30,8 @@ flowchart LR
   n14["<b>smoothPart_eq_prod</b><br/>smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))"]:::cnt
   n15["<b>abs_netRounding_le ■</b><br/>|netRounding N| ≤ roundingMass N"]:::cnt
   n16["<b>roundingMass_nonneg ■</b><br/>0 ≤ roundingMass N"]:::cnt
-  n17["<b>netRounding_eq ■</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
+  n17["<b>netRounding_eq</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
+  x0(["<b>SieveResidual</b><br/>cast_netRounding"]):::ext
   n0 --> n4
   n1 --> n2
   n12 --> n13
@@ -45,6 +46,7 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n9 --> n10
+  n17 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -67,7 +69,7 @@ def · line 30
 The primes up to the square root of `N`.
 
 - **Is:** `` smallPrimes (N : ℕ) : Finset ℕ := (Finset.range (Nat.sqrt N + 1)).filter Nat.Prime ``
-- **Used by 15:** [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq)
+- **Used by 17:** [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq), [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding), [`SieveResidual.smoothNet`](../lean_stage3/SieveResidual.md#SieveResidual-smoothNet)
 
 <a name="SieveExact-survivors"></a>
 ### `SieveExact.survivors`
@@ -100,7 +102,7 @@ The net of the roundings, with their signs.
 
 - **Is:** `` netRounding (N : ℕ) : ℚ := ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) ``
 - **Built from:** [`SieveExact.smallPrimes`](#SieveExact-smallPrimes)
-- **Used by 3:** [`SieveExact.abs_netRounding_le`](#SieveExact-abs_netRounding_le), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.sieve_split`](#SieveExact-sieve_split)
+- **Used by 6:** [`SieveExact.abs_netRounding_le`](#SieveExact-abs_netRounding_le), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding), [`SieveResidual.net_wobble`](../lean_stage3/SieveResidual.md#SieveResidual-net_wobble), [`SieveResidual.net_wobble_rows`](../lean_stage3/SieveResidual.md#SieveResidual-net_wobble_rows)
 
 <a name="SieveExact-roundingMass"></a>
 ### `SieveExact.roundingMass`
@@ -611,5 +613,7 @@ netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + 
 
 **Definitions its proof touches:** [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.smallPrimes`](#SieveExact-smallPrimes), [`SieveExact.survivors`](#SieveExact-survivors)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding) (SieveResidual) — `` ((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ)) ``
 

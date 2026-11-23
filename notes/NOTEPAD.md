@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  R3 PROVED (unit 0482, `SieveResidual.net_wobble`, `net_wobble_rows`): the sieve's net rounding less its smooth part is exactly minus (the residual of the count at N less the residual at sqrt N); on the ladder, the table's residual at row 2m less at row m. The roundings' wobble and the table's residual are one wobble, read at the row and at its half.
 - [open]   2026-11-23  Correction to unit 0475: against the count itself the sieve's net rounding does not shrink. From `SieveExact.netRounding_eq` (unit 0481): 2.2% of the count at row 18, 5.6% at 26, 8.1% at 40, 9.0% at 50; 89,287 times sqrt(N) at row 50. The roundings are a part of the count, of its own order. The falling share in 0475 was of the mass, on the cut-off sum.
 - [open]   2026-11-23  R2 PROVED (unit 0481, `SieveExact`): the half carries the row at every row. pi(N) from the primes up to sqrt N, exactly, for every N >= 2; by levels, each a binomial coefficient of terms; the count is N prod(1 - 1/p) less the net of the roundings. What unit 0475 computed on 15 rows, with nothing computed. Next: the size of the net rounding.
 - [open]   2026-11-23  R1 PROVED (unit 0480, `RunTheorems`): the exact cores of runs 0473 and 0474 as theorems at every row. `mode_fold`: 2^(rho + 2 pi i k/log 2) = 2^rho. `two_mode_beat`, `zero_pair_beat`: two modes together carry a term turning at the difference of their heights. Next: the sieve's exact sum (unit 0475) for every row.

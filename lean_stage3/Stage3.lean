@@ -174,6 +174,7 @@ import Stage3.ClosedLoopChain
 import Stage3.OneChain
 import Stage3.RunTheorems
 import Stage3.SieveExact
+import Stage3.SieveResidual
 
 namespace Stage3
 

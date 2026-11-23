@@ -5,7 +5,7 @@ PiZeros — block T2 of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 in 
 15 theorems, 5 definitions, 333 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellResidual`](../lean_stage3/CellResidual.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiRemainder`](../lean_stage3/PiRemainder.md), [`SieveResidual`](../lean_stage3/SieveResidual.md)
 
 ## The picture
 

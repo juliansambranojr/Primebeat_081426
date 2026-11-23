@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R3 of `design/runs.md`: `Stage3/SieveResidual.lean`
+
+    DONE        `net_wobble`: for `N ≥ 2`, the sieve's net rounding less its
+                smooth part is minus the residual of the count at `N` less
+                the residual at `√N`. `net_wobble_rows`: at row `2m`, the
+                table's residual at row `2m` less at row `m`; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". Item 2 in the form the numbers allow: the net
+                rounding is of the order of the count (unit 0475, corrected);
+                its wobble is the table's residual. Written and built here
+    DEPENDS     `SieveExact.netRounding_eq`, `Stage3.Li`
+    OUT         the size of the residual at the two rows
+    OUTCOME     proved, unit 0482
+
 ### 2026-11-23 · block R2 of `design/runs.md`: `Stage3/SieveExact.lean`
 
     DONE        `pi_by_sieve`, `row_by_sieve`: the count of primes up to `N`

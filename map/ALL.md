@@ -210,6 +210,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZeroSummable.card_shell_le`](./lean_stage3/ZeroSummable.md#ZeroSummable-card_shell_le) | theorem | reads ζ | `ZeroSummable` | (F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) |
 | [`SieveExact.card_survivors`](./lean_stage3/SieveExact.md#SieveExact-card_survivors) | theorem | counting | `SieveExact` | (survivors N).card + Nat.primeCounting (Nat.sqrt N) = 1 + Nat.primeCounting N |
 | [`ZeroSquares.card_zeros_le`](./lean_stage3/ZeroSquares.md#ZeroSquares-card_zeros_le) | theorem | reads ζ | `ZeroSquares` | Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ u in (σ - δ)..(1 + δ), ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 |
+| [`SieveResidual.cast_netRounding`](./lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding) | theorem | counting | `SieveResidual` | ((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ)) |
 | [`WeilPowerCompare.cE`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE) | def | shape | `WeilPowerCompare` | ℝ |
 | [`WeilPowerCompare.cE_le_cP`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE_le_cP) | theorem | shape | `WeilPowerCompare` | cE m ≤ cP m |
 | [`WeilPowerCompare.cE_pos`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE_pos) | theorem | shape | `WeilPowerCompare` | 0 &lt; cE m |
@@ -1128,6 +1129,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.neg_below_zero`](./lean/Zeros.md#Zeros-neg_below_zero) | theorem | counting | `Zeros` | Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d |
 | [`LandauChebyshev.neg_le_G`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-neg_le_G) | theorem | shape | `LandauChebyshev` | -(y * Real.log y) ≤ LandauWindow.G y |
 | [`Propagation.neg_one_pow`](./lean/Propagation.md#Propagation-neg_one_pow) | theorem | counting | `Propagation` | ((-1 : ℤ)) ^ m = 1 ∨ ((-1 : ℤ)) ^ m = -1 |
+| [`SieveResidual.net_wobble`](./lean_stage3/SieveResidual.md#SieveResidual-net_wobble) | theorem | shape | `SieveResidual` | ((netRounding N : ℚ) : ℝ) - smoothNet N = -(((Nat.primeCounting N : ℝ) - Stage3.Li (N : ℝ)) - ((Nat.primeCounting (Nat.sqrt N) : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ))) |
+| [`SieveResidual.net_wobble_rows`](./lean_stage3/SieveResidual.md#SieveResidual-net_wobble_rows) | theorem | shape | `SieveResidual` | ((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) = -(((Nat.primeCounting (2 ^ (2 * m)) : ℝ) - Stage3.Li (((2 ^ (2 * m) : ℕ) : ℝ))) - ((Nat.primeCounting (2 ^ m) : ℝ) - Stage3.Li (((2 ^ … |
 | [`SieveExact.netRounding`](./lean_stage3/SieveExact.md#SieveExact-netRounding) | def | counting | `SieveExact` | ℚ |
 | [`SieveExact.netRounding_eq`](./lean_stage3/SieveExact.md#SieveExact-netRounding_eq) | theorem | counting | `SieveExact` | netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) |
 | [`CountEuler.Nn`](./lean_stage3/CountEuler.md#CountEuler-Nn) | def | counting | `CountEuler` | ℂ |
@@ -1756,6 +1759,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ExplicitTwo.smooth_side_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) | theorem | reads ζ | `ExplicitTwo` | ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (… |
 | [`RHPull.smoothedChebyshev_sqrt_bound`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sqrt_bound) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (22200 * Real.exp 1 * C / ε) * Real.sqrt X * (Real.log X) ^ 2 + (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84… |
 | [`RHPull.smoothedChebyshev_sub_main_norm_le`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (1 / (2 * Real.pi)) * (2 * T) * (11100 * (Real.log X) ^ 2 * M₃₇ * X ^ (σRH X)) + (1 / (2 * Real.pi)) * (1 / 2) * ((19… |
+| [`SieveResidual.smoothNet`](./lean_stage3/SieveResidual.md#SieveResidual-smoothNet) | def | shape | `SieveResidual` | ℝ |
 | [`SieveExact.smoothPart`](./lean_stage3/SieveExact.md#SieveExact-smoothPart) | def | counting | `SieveExact` | ℚ |
 | [`SieveExact.smoothPart_eq_prod`](./lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) | theorem | counting | `SieveExact` | smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) |
 | [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
@@ -1787,6 +1791,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.sqrt_le_rpow_theta`](./lean_stage3/ThetaPi.md#Stage3-sqrt_le_rpow_theta) | theorem | shape | `ThetaPi` | Real.sqrt x ≤ x ^ θ |
 | [`CountReduction.sqrt_pow_le`](./lean_stage3/CountReduction.md#CountReduction-sqrt_pow_le) | theorem | shape | `CountReduction` | Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e) |
 | [`FilterLadder.sqrt_split`](./lean_stage3/FilterLadder.md#FilterLadder-sqrt_split) | theorem | shape | `FilterLadder` | Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j) |
+| [`SieveResidual.sqrt_two_pow`](./lean_stage3/SieveResidual.md#SieveResidual-sqrt_two_pow) | theorem | counting | `SieveResidual` | Nat.sqrt (2 ^ (2 * m)) = 2 ^ m |
 | [`MirrorArea.square_iff`](./lean_stage3/MirrorArea.md#MirrorArea-square_iff) | theorem | shape | `MirrorArea` | (‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2 |
 | [`ZeroSquares.square_lower`](./lean_stage3/ZeroSquares.md#ZeroSquares-square_lower) | theorem | reads ζ | `ZeroSquares` | Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u |
 | [`NyquistPeak.stationary_maximum`](./lean/NyquistPeak.md#NyquistPeak-stationary_maximum) | theorem | shape | `NyquistPeak` | HasDerivAt (gain d) 0 Real.pi ∧ (∀ θ : ℝ, gain d θ ≤ gain d Real.pi) ∧ (∀ θ : ℝ, \|Real.sin (θ / 2)\| ≠ 1 → gain d θ &lt; gain d Real.pi) |
