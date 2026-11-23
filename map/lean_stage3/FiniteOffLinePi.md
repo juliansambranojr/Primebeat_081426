@@ -5,7 +5,7 @@ FiniteOffLinePi — block J10e of `lean_stage3/design/joints.md`. 2026-11-23. Th
 13 theorems, 3 definitions, 631 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md), [`LadderFading`](../lean_stage3/LadderFading.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
 
 ## The picture
 
@@ -27,11 +27,12 @@ flowchart LR
   x0(["<b>AttainedPi</b><br/>fin_bound<br/>norm_ipart_le_of_le<br/>norm_log_piMode_le"]):::ext
   x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
   x2(["<b>CellZeros</b><br/>cpow_two_zpow"]):::ext
-  x3(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
-  x4(["<b>PiRemainder</b><br/>4 theorems"]):::ext
-  x5(["<b>CellModes</b><br/>mode_two_int"]):::ext
-  x6(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x7(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x3(["<b>FilterLadder</b><br/>filtered_modes_small_sq<br/>formula_row"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
+  x5(["<b>PiRemainder</b><br/>4 theorems"]):::ext
+  x6(["<b>CellModes</b><br/>mode_two_int"]):::ext
+  x7(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x8(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n11
   n0 --> n3
   n1 --> n2
@@ -52,18 +53,20 @@ flowchart LR
   n5 -.-> x0
   n6 -.-> x0
   n7 -.-> x0
+  n7 -.-> x3
   n8 -.-> x0
+  n8 -.-> x3
   n9 -.-> x0
   x1 -.-> n11
   x1 -.-> n2
   x2 -.-> n7
-  x3 -.-> n12
-  x3 -.-> n8
-  x3 -.-> n9
-  x4 -.-> n11
-  x5 -.-> n12
+  x4 -.-> n12
+  x4 -.-> n8
+  x4 -.-> n9
+  x5 -.-> n11
   x6 -.-> n12
   x7 -.-> n12
+  x8 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -97,7 +100,7 @@ def · line 250
 The order of a zero, as a real number.
 
 - **Is:** `` ordR (ρ : NontrivialZeros) : ℝ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
-- **Used by 8:** [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small), [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`FiniteOffLinePi.norm_order_mul`](#FiniteOffLinePi-norm_order_mul), [`FiniteOffLinePi.ordR_nonneg`](#FiniteOffLinePi-ordR_nonneg), [`FiniteOffLinePi.rowBound`](#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
+- **Used by 9:** [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small), [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FiniteOffLinePi.norm_order_mul`](#FiniteOffLinePi-norm_order_mul), [`FiniteOffLinePi.ordR_nonneg`](#FiniteOffLinePi-ordR_nonneg), [`FiniteOffLinePi.rowBound`](#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
 
 <a name="FiniteOffLinePi-rowBound"></a>
 ### `FiniteOffLinePi.rowBound`
@@ -350,9 +353,10 @@ line 244
 
   - [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) (CellZeros) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-ordR_nonneg"></a>
@@ -380,9 +384,10 @@ line 253
 
   - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) (FiniteOffLine) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-norm_order_mul"></a>

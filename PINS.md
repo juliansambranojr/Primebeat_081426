@@ -22,6 +22,75 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks S2, S3 of `design/stencil.md`: `Stage3/FilterAttained.lean`, `Stage3/FilterAccum.lean`
+
+    DONE        `FilterAttained.filter_attained_false`: under the ladder bound
+                on `ψ`, no filter `q`, `a·deg q < b`, and line `σ > 1/2` has
+                its largest rate `|z^b·q(1/z)^a|` attained by a zero above
+                `2^(σb)·‖q‖_W^a`. `attained_psi`: the largest real part
+                attained, on the ladder of `ψ`; one unit.
+                `FilterAccum.finite_accumulation_false`: the modes right of
+                `σ` accumulating at finitely many points, with a zero right
+                of `σ` off those points, contradict the bound; one unit
+    ASSUMED     Julian, 2026-11-23: "So try, it's possible". The design as
+                corrected by an independent review. Written by Opus workers;
+                read and built here
+    DEPENDS     `FilterLadder.filtered_modes_small_sq`,
+                `LadderMean.mean_extract`, `ZeroSummable.summable_order_div`,
+                `AliasClass.re_order_div_pos`
+    OUT         the accumulation set that separates the modes from the
+                origin; the residue route; the count in place of `ψ`
+    OUTCOME     proved: `FilterAttained` unit 0467, `FilterAccum` unit 0468
+
+### 2026-11-23 · block S1 of `design/stencil.md`: `Stage3/FilterLadder.lean`
+
+    DONE        `filtered_modes_small`: if `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for
+                `k ≥ 1`, then for every polynomial `q`, every `σ > 1/2`, and
+                `m·deg q < n`, the zeros with `Re ρ ≥ σ` below height `2^n`,
+                each weighted by `q(2^(−ρ))^m`, sum to at most
+                `A·n⁴·2^(nσ)·‖q‖_W^m`; one unit
+    ASSUMED     Julian, 2026-11-23: "So try, it's possible". A paper
+                derivation of one sitting; the build is its first check.
+                Written by an Opus worker; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`,
+                `PiRemainder.zinv_le_log`, `PiZeros.zeroPartialSum_eq_sum`
+    OUT         blocks S2, S3; the count in place of `ψ`; the screening
+                arrangement
+    OUTCOME     proved, unit 0466; the factor is `n²`, the constant free of `σ`
+
+### 2026-11-23 · block G3 of `design/floor.md`: `Stage3/FixedRowTwo.lean`
+
+    DONE        `cell_fixed_row_two` for `r ≥ d + 1`, `pi_fixed_row_two` for
+                `x ≥ 2`, `table_cell_fixed_row_two` for `r ≥ d + 2`: T3 at a
+                fixed row at every row where the cell's identity holds; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Ok do it". The fixed-row theorems
+                restated on the formula from `x = 2`. Written by an Opus
+                worker; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`,
+                `CellFixedRow.tendsto_log_sq_div`, `PiZeros.pi_eq_zero_sum`,
+                `table_cell_eq_zero_sum`, `PiRemainder.integrable_efRem`
+    OUT         joint 10; numerals above the constants
+    OUTCOME     proved, unit 0465
+
+### 2026-11-23 · blocks G1, G2 of `design/floor.md`: `Stage3/PerronTwo.lean`, `Stage3/ExplicitTwo.lean`
+
+    DONE        `PerronTwo.explicit_formula_perron_two`: Perron's formula for
+                `2 ≤ x`, `2 ≤ T`, error `700·x·log²(xT)/T + 18·log x`; one
+                unit. `ExplicitTwo.explicit_formula_all_two`: the explicit
+                formula for `2 ≤ x`, every `T ≥ 2`, error
+                `c1t·x·log²(xT)/T + c3t·log x + Bleft2·x^(−1/4)`; one unit
+    ASSUMED     Julian, 2026-11-23: "The explicit formula below x = 16 is
+                still not in the tree". A parallel chain in new files; no
+                proved file edited, no existing constant changed. Written by
+                Opus workers; read and built here
+    DEPENDS     `Stage3/PerronKernel.lean`, `ContourShift.residue_rectangle_of_local`,
+                `Glue.zeta_logderiv_good_bound_num`,
+                `Slice5.norm_logDerivZeta_of_one_lt_re`,
+                `LeftKernel.kernel_bound`, `LeftSmooth.logDeriv_sum`
+    OUT         numerals above `c1t`, `c3t`; the cells at the lowest rows
+    OUTCOME     proved: `PerronTwo` unit 0463, `ExplicitTwo` unit 0464
+
 ### 2026-11-23 · block F4 of `design/leftedge.md`: `Stage3/PiFixedRow.lean`
 
     DONE        `pi_fixed_row`: for `16 ≤ x`, every tolerance, from some

@@ -1,0 +1,22 @@
+key	value	source
+module_lines	1137	wc -l lean_stage3/Stage3/ExplicitTwo.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/ExplicitTwo.lean
+defs	0	grep -c ^def; Cht, c1t, c3t, Bleft2 are noncomputable defs
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ExplicitTwo.lean
+pins	5	residue_identity_two, edge_horizontal_bound_two, explicit_formula_left_two, left_edge_bound_two, explicit_formula_all_two
+errors_first	3	the worker's fourth build, the first that failed, as it reported
+builds	6	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8854	lake build (full Stage3), Build completed successfully
+jobs_module	8741	run/build.log, lake build Stage3.ExplicitTwo
+loop_version	22	lean_stage3/LOOP.md version line
+design	floor.md#g2	the contour from 2
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_new	2	the hypotheses 2 ≤ x, 2 ≤ T
+floor_old	16	LeftSmooth.explicit_formula_all, 16 ≤ x
+edge_factor	4	Bleft2 = 4 * Bleft
+logderiv_cap	6	logDeriv_re_ge_two
+cpn_floor	360	Cpn_ge
+noncomputable_defs	4	Cht, c1t, c3t, Bleft2

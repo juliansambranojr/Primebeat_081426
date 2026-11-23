@@ -1,0 +1,20 @@
+key	value	source
+module_lines	560	wc -l lean_stage3/Stage3/FilterLadder.lean
+theorems_proved	21	grep -c ^theorem lean_stage3/Stage3/FilterLadder.lean
+defs	7	Wb, Wn, posPoly, ladder, Kf, wz, Afl
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FilterLadder.lean
+pins	4	Wn_pow_le, filter_mode, filtered_modes_small_sq, filtered_modes_small
+errors_first	1	the worker's first build, as it reported
+builds	9	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8856	lake build (full Stage3), Build completed successfully
+jobs_module	8802	run/build.log, lake build Stage3.FilterLadder
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s1	the filtered ladder
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+row_power	2	filtered_modes_small_sq: the factor (n:ℝ)^2
+design_power	4	design/stencil.md S1, the factor written there
+unit_formula_all	460	unit 0460, the formula above the square
+unit_formula_two	464	unit 0464, the formula from the first doubling

@@ -18,32 +18,35 @@ flowchart LR
   n4["<b>Cen_pos</b><br/>0 ＜ Cen"]:::thm
   n5["<b>edge_bound_core_num</b><br/>∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → ri…"]:::thm
   x0(["<b>EdgeBound</b><br/>10 theorems"]):::ext
-  x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
-  x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x3(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
-  x4(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
-  x5(["<b>GlueNum</b><br/>4 theorems"]):::ext
-  x6(["<b>RouteNum</b><br/>Cpn_le"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>Cpn_ge"]):::ext
+  x2(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
+  x3(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x4(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x6(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x7(["<b>RouteNum</b><br/>Cpn_le"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
   n2 --> n4
   n2 --> n5
   n3 --> n5
-  n4 -.-> x4
+  n0 -.-> x1
+  n2 -.-> x1
   n4 -.-> x5
   n4 -.-> x6
-  n5 -.-> x4
+  n4 -.-> x7
   n5 -.-> x5
+  n5 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3
   x0 -.-> n5
-  x1 -.-> n1
   x2 -.-> n1
-  x2 -.-> n3
-  x3 -.-> n2
+  x3 -.-> n1
   x3 -.-> n3
+  x4 -.-> n2
+  x4 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -88,7 +91,7 @@ The edge constant.
 
 - **Is:** `` Cen : ℝ := C1n + C2n + 1 / Real.log 2 ``
 - **Built from:** [`EdgeBound.C1n`](#EdgeBound-C1n), [`EdgeBound.C2n`](#EdgeBound-C2n)
-- **Used by 12:** [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos), [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num), [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any), [`Glue.Cpn`](../lean_stage3/GlueNum.md#Glue-Cpn), [`Glue.Cpn_pos`](../lean_stage3/GlueNum.md#Glue-Cpn_pos), [`Glue.Dln`](../lean_stage3/GlueNum.md#Glue-Dln), [`Glue.Dln_pos`](../lean_stage3/GlueNum.md#Glue-Dln_pos), [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Cen_le`](../lean_stage3/RouteNum.md#RouteNum-Cen_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le)
+- **Used by 13:** [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos), [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num), [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any), [`ExplicitTwo.Cpn_ge`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cpn_ge), [`Glue.Cpn`](../lean_stage3/GlueNum.md#Glue-Cpn), [`Glue.Cpn_pos`](../lean_stage3/GlueNum.md#Glue-Cpn_pos), [`Glue.Dln`](../lean_stage3/GlueNum.md#Glue-Dln), [`Glue.Dln_pos`](../lean_stage3/GlueNum.md#Glue-Dln_pos), [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Cen_le`](../lean_stage3/RouteNum.md#RouteNum-Cen_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le)
 
 ## Theorems
 
@@ -113,10 +116,11 @@ line 36
 
   - [`EdgeBound.zeta_ratio_pos`](../lean_stage3/EdgeBound.md#EdgeBound-zeta_ratio_pos) (EdgeBound) — `` (0:ℝ) < ‖riemannZeta 3 / riemannZeta (3/2)‖ ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos) — `` 0 < Cen ``
   - [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num) — `` ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZeta u ≠ 0 → ∀ δ : ℝ, 0 < δ → δ ≤ 1 → (∀ w ∈ (gz_zeros_ball_finite t (by norm_num… ``
+  - [`ExplicitTwo.Cpn_ge`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cpn_ge) (ExplicitTwo) — `` (360:ℝ) ≤ Glue.Cpn ``
 
 <a name="EdgeBound-gz_partial_fraction_num"></a>
 ### `EdgeBound.gz_partial_fraction_num`
@@ -171,10 +175,11 @@ line 307
 
   - [`ContourShift.zeta_zeros_rectangle_finite`](../lean_stage3/ContourShift.md#ContourShift-zeta_zeros_rectangle_finite) (ContourShift) — `` {ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos) — `` 0 < Cen ``
   - [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num) — `` ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZeta u ≠ 0 → ∀ δ : ℝ, 0 < δ → δ ≤ 1 → (∀ w ∈ (gz_zeros_ball_finite t (by norm_num… ``
+  - [`ExplicitTwo.Cpn_ge`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cpn_ge) (ExplicitTwo) — `` (360:ℝ) ≤ Glue.Cpn ``
 
 <a name="EdgeBound-ball_order_sum_le_num"></a>
 ### `EdgeBound.ball_order_sum_le_num`

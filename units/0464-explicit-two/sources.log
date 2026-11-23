@@ -1,0 +1,77 @@
+# check_prose_source.py  2026-11-23T05:16:18Z
+# unit: 0464-explicit-two
+# sources searched: 428
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28984
+  The explicit formula below x = 16 is still not in the tree
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29598
+  theorem residue_identity_two {x T T' : ℝ} (hx : 1 < x) (hT : 2 ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29004
+  (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'|) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29006
+  (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29008
+  (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T')
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29009
+  = (x : ℂ) - deriv riemannZeta 0 / riemannZeta 0
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26869
+  - Stage3.zeroPartialSum x T' :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29617
+  theorem edge_horizontal_bound_two :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29618
+  ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32775
+  (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32776
+  ContourShift.zeroGap T ≤ |ρ.im - T'|) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29621
+  ‖HIntegral (Glue.Gf x) (-1/4) (1 + 1/Real.log x) y‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a5c79bcd52ea40491.jsonl:2834
+  ≤ Cht * x * Real.log T ^ 2 / T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29624
+  theorem explicit_formula_left_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27473
+  ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29627
+  ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0861cd161253f2a1.jsonl:780
+  + ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29640
+  theorem left_edge_bound_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a5c79bcd52ea40491.jsonl:3424
+  ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29642
+  theorem explicit_formula_all_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29627
+  ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x
+
+# 24 found, 0 missing

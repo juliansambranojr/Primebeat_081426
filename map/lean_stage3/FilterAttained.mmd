@@ -1,0 +1,46 @@
+flowchart LR
+  n0["<b>xi_pow</b><br/>xi q a b ρ ^ k = (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ (a * k) * ((2:…"]:::thm
+  n1["<b>summable_S</b><br/>Summable ((S σ).indicator fun ρ =＞ ‖LadderMean.coef ρ‖)"]:::thm
+  n2["<b>finite_part_le</b><br/>‖∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros =＞…"]:::thm
+  n3["<b>norm_tailT_le</b><br/>‖tailT q a b σ M k ρ‖ ≤ (S σ).indicator (fun ρ =＞ ‖LadderMean.co…"]:::thm
+  n4["<b>tendsto_tailT</b><br/>Tendsto (fun k : ℕ =＞ ∑' ρ, tailT q a b σ M k ρ) atTop (𝓝 0)"]:::thm
+  n5["<b>tsum_split</b><br/>∑' ρ, (S σ).indicator (fun ρ =＞ LadderMean.coef ρ * ratio q a b …"]:::thm
+  n6["<b>tendsto_full</b><br/>Tendsto (fun k : ℕ =＞ ∑' ρ, (S σ).indicator (fun ρ =＞ LadderMean…"]:::thm
+  n7["<b>filter_attained_false</b><br/>False"]:::thm
+  n8["<b>attained_psi ■</b><br/>RiemannHypothesis"]:::thm
+  x0(["<b>ZeroSummable</b><br/>summable_norm_coef"]):::ext
+  x1(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x3(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x4(["<b>LadderMean</b><br/>mean_extract"]):::ext
+  x5(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
+  x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  n0 --> n2
+  n1 --> n4
+  n1 --> n5
+  n1 --> n7
+  n2 --> n6
+  n3 --> n4
+  n3 --> n5
+  n4 --> n6
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n7 -.-> x5
+  x0 -.-> n1
+  x1 -.-> n2
+  x1 -.-> n6
+  x1 -.-> n7
+  x2 -.-> n4
+  x2 -.-> n8
+  x3 -.-> n7
+  x4 -.-> n7
+  x6 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

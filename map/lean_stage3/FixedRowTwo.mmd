@@ -1,0 +1,67 @@
+flowchart LR
+  n0["<b>c1t_nonneg</b><br/>0 ≤ ExplicitTwo.c1t"]:::thm
+  n1["<b>c3t_nonneg</b><br/>0 ≤ ExplicitTwo.c3t"]:::thm
+  n2["<b>Bleft2_nonneg</b><br/>0 ≤ ExplicitTwo.Bleft2"]:::thm
+  n3["<b>cell_eq_zero_sum_two</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
+  n4["<b>cell_zero_sum_finset_two</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
+  n5["<b>cell_fixed_row_two ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d …"]:::thm
+  n6["<b>Api2_nonneg</b><br/>0 ≤ Api2"]:::thm
+  n7["<b>norm_integrand_two_le</b><br/>‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) …"]:::thm
+  n8["<b>norm_integral_two_le</b><br/>‖∫ t in (2:ℝ)..x, efRem T t * wt t‖ ≤ (x - 2) * (9 / 4 * Explici…"]:::thm
+  n9["<b>norm_tr_efRem_le_height_two</b><br/>‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t…"]:::thm
+  n10["<b>tr_efRem_fixed_two</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖PiZeros.tr (PiZeros.…"]:::thm
+  n11["<b>pi_fixed_row_two ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting…"]:::thm
+  n12["<b>table_cell_fixed_row_two ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tab…"]:::thm
+  x0(["<b>ExplicitTwo</b><br/>Cht_pos<br/>explicit_formula_all_two"]):::ext
+  x1(["<b>GlueNum</b><br/>Csn_pos"]):::ext
+  x2(["<b>FilterLadder</b><br/>Kf_nonneg<br/>formula_row"]):::ext
+  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
+  x4(["<b>CellZeros</b><br/>5 theorems"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x6(["<b>PerronTwo</b><br/>inv_log_le_of_two_le"]):::ext
+  x7(["<b>PiZeros</b><br/>pi_eq_zero_sum<br/>table_cell_eq_zero_sum"]):::ext
+  n0 --> n7
+  n0 --> n9
+  n1 --> n5
+  n1 --> n6
+  n1 --> n7
+  n1 --> n9
+  n10 --> n11
+  n10 --> n12
+  n2 --> n5
+  n2 --> n6
+  n2 --> n7
+  n2 --> n9
+  n3 --> n4
+  n4 --> n5
+  n6 --> n12
+  n6 --> n9
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
+  n0 -.-> x2
+  n1 -.-> x2
+  n2 -.-> x2
+  x0 -.-> n0
+  x0 -.-> n3
+  x0 -.-> n7
+  x0 -.-> n9
+  x1 -.-> n0
+  x3 -.-> n10
+  x3 -.-> n2
+  x3 -.-> n5
+  x4 -.-> n12
+  x4 -.-> n3
+  x5 -.-> n4
+  x6 -.-> n7
+  x6 -.-> n9
+  x7 -.-> n11
+  x7 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

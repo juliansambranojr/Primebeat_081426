@@ -6,32 +6,35 @@ flowchart LR
   n4["<b>Cen_pos</b><br/>0 ＜ Cen"]:::thm
   n5["<b>edge_bound_core_num</b><br/>∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → ri…"]:::thm
   x0(["<b>EdgeBound</b><br/>10 theorems"]):::ext
-  x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
-  x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x3(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
-  x4(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
-  x5(["<b>GlueNum</b><br/>4 theorems"]):::ext
-  x6(["<b>RouteNum</b><br/>Cpn_le"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>Cpn_ge"]):::ext
+  x2(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
+  x3(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x4(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x6(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x7(["<b>RouteNum</b><br/>Cpn_le"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
   n2 --> n4
   n2 --> n5
   n3 --> n5
-  n4 -.-> x4
+  n0 -.-> x1
+  n2 -.-> x1
   n4 -.-> x5
   n4 -.-> x6
-  n5 -.-> x4
+  n4 -.-> x7
   n5 -.-> x5
+  n5 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3
   x0 -.-> n5
-  x1 -.-> n1
   x2 -.-> n1
-  x2 -.-> n3
-  x3 -.-> n2
+  x3 -.-> n1
   x3 -.-> n3
+  x4 -.-> n2
+  x4 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

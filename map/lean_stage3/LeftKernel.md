@@ -21,7 +21,8 @@ flowchart LR
   n5["<b>vmTerm_nonneg</b><br/>0 ≤ vmTerm n"]:::shp
   n6["<b>vmTerm_summable ■</b><br/>Summable vmTerm"]:::thm
   n7["<b>series_side</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
-  x0(["<b>LeftSmooth</b><br/>5 theorems"]):::ext
+  x0(["<b>ExplicitTwo</b><br/>series_side_two<br/>smooth_side_two"]):::ext
+  x1(["<b>LeftSmooth</b><br/>5 theorems"]):::ext
   n0 --> n2
   n0 --> n3
   n0 --> n7
@@ -31,10 +32,14 @@ flowchart LR
   n3 --> n4
   n4 --> n7
   n5 --> n7
+  n0 -.-> x0
   n2 -.-> x0
-  n3 -.-> x0
+  n2 -.-> x1
+  n3 -.-> x1
   n4 -.-> x0
-  n7 -.-> x0
+  n4 -.-> x1
+  n5 -.-> x0
+  n7 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -57,7 +62,7 @@ def · line 177
 The `n`-th term of the von Mangoldt series at `5/4`: `Λ(n)·n^(−5/4)`.
 
 - **Is:** `` vmTerm (n : ℕ) : ℝ := ArithmeticFunction.vonMangoldt n * (n:ℝ) ^ (-(5:ℝ)/4) ``
-- **Used by 4:** [`LeftKernel.Bser`](#LeftKernel-Bser), [`LeftKernel.series_side`](#LeftKernel-series_side), [`LeftKernel.vmTerm_nonneg`](#LeftKernel-vmTerm_nonneg), [`LeftKernel.vmTerm_summable`](#LeftKernel-vmTerm_summable)
+- **Used by 5:** [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two), [`LeftKernel.Bser`](#LeftKernel-Bser), [`LeftKernel.series_side`](#LeftKernel-series_side), [`LeftKernel.vmTerm_nonneg`](#LeftKernel-vmTerm_nonneg), [`LeftKernel.vmTerm_summable`](#LeftKernel-vmTerm_summable)
 
 <a name="LeftKernel-Bser"></a>
 ### `LeftKernel.Bser`
@@ -68,7 +73,7 @@ The series-side constant: `((1 + 4π)/log 16)·Σ' n, Λ(n)·n^(−5/4)`.
 
 - **Is:** `` Bser : ℝ := ((1 + 4 * Real.pi) / Real.log 16) * ∑' n : ℕ, vmTerm n ``
 - **Built from:** [`LeftKernel.vmTerm`](#LeftKernel-vmTerm)
-- **Used by 3:** [`LeftKernel.series_side`](#LeftKernel-series_side), [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft), [`LeftSmooth.left_edge_bound`](../lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound)
+- **Used by 5:** [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two), [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two), [`LeftKernel.series_side`](#LeftKernel-series_side), [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft), [`LeftSmooth.left_edge_bound`](../lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound)
 
 ## Theorems
 
@@ -94,8 +99,9 @@ line 28 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
   - [`LeftKernel.norm_cpow_tI`](#LeftKernel-norm_cpow_tI) — `` ‖(y:ℂ) ^ ((t:ℂ) * Complex.I)‖ = 1 ``
   - [`LeftKernel.osc_by_parts`](#LeftKernel-osc_by_parts) — `` ‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y ``
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
@@ -151,8 +157,9 @@ line 38 · arrows read from text
   - [`LeftKernel.cpow_tI`](#LeftKernel-cpow_tI) — `` (y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I)) ``
   - [`LeftKernel.norm_exp_tI`](#LeftKernel-norm_exp_tI) — `` ‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1 ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
   - [`LeftSmooth.digamma_piece`](../lean_stage3/LeftSmooth.md#LeftSmooth-digamma_piece) (LeftSmooth) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
 
@@ -214,8 +221,10 @@ line 101 · arrows read from text
 
   - [`LeftKernel.osc_by_parts`](#LeftKernel-osc_by_parts) — `` ‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y ``
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
   - [`LeftSmooth.smooth_side`](../lean_stage3/LeftSmooth.md#LeftSmooth-smooth_side) (LeftSmooth) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
@@ -242,8 +251,9 @@ line 181 · arrows read from text
 
 **Definitions its proof touches:** [`LeftKernel.vmTerm`](#LeftKernel-vmTerm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
 
 <a name="LeftKernel-vmTerm_summable"></a>

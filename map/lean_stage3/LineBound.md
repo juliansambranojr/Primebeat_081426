@@ -5,7 +5,7 @@ This file has no header comment.
 70 theorems, 2 definitions, 2500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Abscissa`](../lean_stage3/Abscissa.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Abscissa`](../lean_stage3/Abscissa.md), [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)
 
 ## The picture
 
@@ -49,7 +49,8 @@ flowchart LR
   x3(["<b>diagram 2</b><br/>7 theorems"]):::ext
   x4(["<b>ThetaPsi</b><br/>integrand_norm_le_horiz_neg_theta"]):::ext
   x5(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
-  x6(["<b>diagram 3</b><br/>contour_at_instantiation<br/>mellin_vert_le"]):::ext
+  x6(["<b>ExplicitTwo</b><br/>logDeriv_re_ge_two"]):::ext
+  x7(["<b>diagram 3</b><br/>contour_at_instantiation<br/>mellin_vert_le"]):::ext
   n0 --> n25
   n0 --> n3
   n10 --> n16
@@ -90,10 +91,11 @@ flowchart LR
   n17 -.-> x4
   n2 -.-> x0
   n2 -.-> x1
+  n23 -.-> x6
   n25 -.-> x0
   n27 -.-> x3
-  n27 -.-> x6
-  n28 -.-> x6
+  n27 -.-> x7
+  n28 -.-> x7
   n29 -.-> x3
   n3 -.-> x3
   n7 -.-> x1
@@ -960,8 +962,9 @@ line 953
   - [`Slice5.pseries_le`](#Slice5-pseries_le) — `` ∑' (n : ℕ), ((n : ℝ)) ^ (-1 - b) ≤ 1 + 1 / b ``
   - [`Slice5.vonMangoldt_term_le`](#Slice5-vonMangoldt_term_le) — `` ‖LSeries.term (fun k : ℕ => ((vonMangoldt k : ℝ) : ℂ)) ((1 + 2 * b : ℝ) : ℂ) n‖ ≤ (1 / b) * ((n : ℝ)) ^ (-1 - b) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.logDeriv_re_ge_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-logDeriv_re_ge_two) (ExplicitTwo) — `` ‖deriv riemannZeta u / riemannZeta u‖ ≤ 6 ``
   - [`Slice5.norm_logDerivZeta_sigma0`](#Slice5-norm_logDerivZeta_sigma0) — `` ‖deriv ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ)) / ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ))‖ ≤ 2 * L + 4 * L ^ 2 ``
 
 <a name="Slice5-norm_logDerivZeta_sigma0"></a>

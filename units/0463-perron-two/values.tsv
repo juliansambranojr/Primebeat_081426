@@ -1,0 +1,24 @@
+key	value	source
+module_lines	1157	wc -l lean_stage3/Stage3/PerronTwo.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/PerronTwo.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/PerronTwo.lean
+pins	4	far_terms_sum_two, near_diagonal_sum_two, kernel_sum_bound_two, explicit_formula_perron_two
+errors_first	0	the worker's first build, as it reported
+builds	3	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8853	lake build (full Stage3), Build completed successfully
+jobs_module	8670	run/build.log, lake build Stage3.PerronTwo
+loop_version	22	lean_stage3/LOOP.md version line
+design	floor.md#g1	Perron's formula from 2
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_new	2	the hypotheses 2 ≤ x, 2 ≤ T
+floor_old	16	PerronKernel.explicit_formula_perron, 16 ≤ x
+main_const	700	explicit_formula_perron_two
+log_const	18	explicit_formula_perron_two
+main_const_old	600	PerronKernel.explicit_formula_perron
+log_const_old	13	PerronKernel.explicit_formula_perron
+abscissa_cap_num	5	c ≤ 5/2 for x ≥ 2
+abscissa_cap_den	2	c ≤ 5/2 for x ≥ 2

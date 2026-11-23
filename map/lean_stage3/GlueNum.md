@@ -25,18 +25,20 @@ flowchart LR
   n11["<b>edge_left_sharp_num</b><br/>∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1…"]:::thm
   n12["<b>explicit_formula_split_num</b><br/>∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (…"]:::thm
   x0(["<b>ExplicitLeft</b><br/>Aleft_pos<br/>explicit_formula_left"]):::ext
-  x1(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>err_le"]):::ext
-  x3(["<b>PiFixedRow</b><br/>Api_nonneg<br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
-  x4(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
-  x5(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x6(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
-  x7(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x8(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x9(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x10(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x11(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x12(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>5 theorems"]):::ext
+  x2(["<b>FixedRowTwo</b><br/>c1t_nonneg"]):::ext
+  x3(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>err_le"]):::ext
+  x5(["<b>PiFixedRow</b><br/>Api_nonneg<br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
+  x6(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
+  x7(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
+  x8(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
+  x9(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x10(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x11(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x12(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x13(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x14(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -52,38 +54,43 @@ flowchart LR
   n8 --> n12
   n9 --> n10
   n0 -.-> x0
+  n0 -.-> x1
+  n0 -.-> x2
+  n1 -.-> x1
   n10 -.-> x0
-  n12 -.-> x12
-  n12 -.-> x4
-  n12 -.-> x5
+  n12 -.-> x14
+  n12 -.-> x6
+  n12 -.-> x7
   n2 -.-> x0
   n3 -.-> x0
-  n4 -.-> x2
-  n4 -.-> x3
   n4 -.-> x4
   n4 -.-> x5
-  n5 -.-> x2
-  n5 -.-> x3
+  n4 -.-> x6
+  n4 -.-> x7
   n5 -.-> x4
   n5 -.-> x5
   n5 -.-> x6
-  n6 -.-> x2
+  n5 -.-> x7
+  n5 -.-> x8
   n6 -.-> x4
-  n6 -.-> x5
+  n6 -.-> x6
+  n6 -.-> x7
+  n7 -.-> x1
   n8 -.-> x0
-  x1 -.-> n1
-  x1 -.-> n11
-  x1 -.-> n3
-  x1 -.-> n9
-  x10 -.-> n11
-  x11 -.-> n12
-  x7 -.-> n11
-  x7 -.-> n12
-  x7 -.-> n7
-  x7 -.-> n8
-  x7 -.-> n9
-  x8 -.-> n7
+  n9 -.-> x1
+  x10 -.-> n7
+  x11 -.-> n11
+  x11 -.-> n9
+  x12 -.-> n11
+  x13 -.-> n12
+  x3 -.-> n1
+  x3 -.-> n11
+  x3 -.-> n3
+  x3 -.-> n9
   x9 -.-> n11
+  x9 -.-> n12
+  x9 -.-> n7
+  x9 -.-> n8
   x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -107,7 +114,7 @@ def · line 34
 The band count's constant.
 
 - **Is:** `` Csn : ℝ := 8 * (15 + 88 / Real.log 2) ``
-- **Used by 9:** [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`Glue.Csn_pos`](#Glue-Csn_pos), [`Glue.band_order_sum_le_num`](#Glue-band_order_sum_le_num), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num), [`RouteNum.Csn_le`](../lean_stage3/RouteNum.md#RouteNum-Csn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
+- **Used by 12:** [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t), [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two), [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two), [`Glue.Csn_pos`](#Glue-Csn_pos), [`Glue.band_order_sum_le_num`](#Glue-band_order_sum_le_num), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num), [`RouteNum.Csn_le`](../lean_stage3/RouteNum.md#RouteNum-Csn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
 
 <a name="Glue-Cpn"></a>
 ### `Glue.Cpn`
@@ -118,7 +125,7 @@ The good-height constant.
 
 - **Is:** `` Cpn : ℝ := EdgeBound.Cen * 2 * (180 + 1060 / Real.log 2) ``
 - **Built from:** [`EdgeBound.Cen`](../lean_stage3/EdgeNum.md#EdgeBound-Cen)
-- **Used by 7:** [`Glue.Chn`](#Glue-Chn), [`Glue.Chn_pos`](#Glue-Chn_pos), [`Glue.Cpn_pos`](#Glue-Cpn_pos), [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num), [`Glue.zeta_logderiv_good_bound_num`](#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Chn_le`](../lean_stage3/RouteNum.md#RouteNum-Chn_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le)
+- **Used by 11:** [`ExplicitTwo.Cht`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht), [`ExplicitTwo.Cpn_ge`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cpn_ge), [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two), [`ExplicitTwo.logDeriv_good_ext`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-logDeriv_good_ext), [`Glue.Chn`](#Glue-Chn), [`Glue.Chn_pos`](#Glue-Chn_pos), [`Glue.Cpn_pos`](#Glue-Cpn_pos), [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num), [`Glue.zeta_logderiv_good_bound_num`](#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Chn_le`](../lean_stage3/RouteNum.md#RouteNum-Chn_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le)
 
 <a name="Glue-Chn"></a>
 ### `Glue.Chn`
@@ -191,9 +198,12 @@ line 37
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (4 that use it)
+**Feeds** (7 that use it)
 
   - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
+  - [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) (ExplicitTwo) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIn… ``
+  - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
+  - [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) (FixedRowTwo) — `` 0 ≤ ExplicitTwo.c1t ``
   - [`Glue.c1n_nonneg`](#Glue-c1n_nonneg) — `` 0 ≤ c1n ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
   - [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
@@ -221,8 +231,10 @@ line 46
 
 **Definitions its proof touches:** [`EdgeBound.Cen`](../lean_stage3/EdgeNum.md#EdgeBound-Cen)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitTwo.Cht_pos`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht_pos) (ExplicitTwo) — `` 0 < Cht ``
+  - [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T… ``
   - [`Glue.Chn_pos`](#Glue-Chn_pos) — `` 0 < Chn ``
   - [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = … ``
 
@@ -407,8 +419,9 @@ line 97
 
 **Definitions its proof touches:** [`Stage3.zetaWindow`](../lean_stage3/JensenCount.md#Stage3-zetaWindow)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
   - [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
 
 <a name="Glue-zeroPartialSum_swap_num"></a>
@@ -471,8 +484,9 @@ line 430
 
 **Definitions its proof touches:** [`EdgeBound.c0`](../lean_stage3/EdgeBound.md#EdgeBound-c0), [`EdgeBound.gz`](../lean_stage3/EdgeBound.md#EdgeBound-gz), [`EdgeBound.Cen`](../lean_stage3/EdgeNum.md#EdgeBound-Cen)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.logDeriv_good_ext`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-logDeriv_good_ext) (ExplicitTwo) — `` ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/… ``
   - [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = … ``
 
 <a name="Glue-edge_horizontal_bound_num"></a>

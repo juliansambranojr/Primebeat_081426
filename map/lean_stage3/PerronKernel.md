@@ -5,7 +5,7 @@
 31 theorems, 2 definitions, 2366 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ContourShift`](../lean_stage3/ContourShift.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`PerronTwo`](../lean_stage3/PerronTwo.md)
 
 ## The picture
 
@@ -43,7 +43,8 @@ flowchart LR
   n27["<b>perron_to_psi</b><br/>‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangol…"]:::thm
   n28["<b>tsum_vonMangoldt_div_cpow</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ)…"]:::thm
   n29["<b>perron_sum_eq_integral</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n…"]:::thm
-  x0(["<b>diagram 2</b><br/>explicit_formula_perron"]):::ext
+  x0(["<b>PerronTwo</b><br/>6 theorems"]):::ext
+  x1(["<b>diagram 2</b><br/>explicit_formula_perron"]):::ext
   n0 --> n3
   n0 --> n5
   n0 --> n8
@@ -85,8 +86,15 @@ flowchart LR
   n8 --> n13
   n8 --> n9
   n9 --> n15
-  n27 -.-> x0
-  n29 -.-> x0
+  n15 -.-> x0
+  n16 -.-> x0
+  n18 -.-> x0
+  n19 -.-> x0
+  n21 -.-> x0
+  n23 -.-> x0
+  n27 -.-> x1
+  n28 -.-> x0
+  n29 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -134,7 +142,7 @@ def · line 46
 The truncated Perron integral `(2πi)⁻¹ ∫_{c-iT}^{c+iT} y^s/s ds`, parametrised on the vertical segment.
 
 - **Is:** `` perronI (y c T : ℝ) : ℂ := (2 * Real.pi * Complex.I)⁻¹ * ∫ t in (-T)..T, (y : ℂ) ^ ((c : ℂ) + Complex.I * t) / ((c : ℂ) + Complex.I * t) * Complex.I ``
-- **Used by 14:** [`PerronKernel.explicit_formula_perron`](#PerronKernel-explicit_formula_perron), [`PerronKernel.kernel_diff_summable`](#PerronKernel-kernel_diff_summable), [`PerronKernel.kernel_sum_bound`](#PerronKernel-kernel_sum_bound), [`PerronKernel.perronI_eq_VIntegral'`](#PerronKernel-perronI_eq_VIntegral-), [`PerronKernel.perronI_one_norm`](#PerronKernel-perronI_one_norm), [`PerronKernel.perron_kernel_coarse`](#PerronKernel-perron_kernel_coarse), [`PerronKernel.perron_kernel_coarse_gt`](#PerronKernel-perron_kernel_coarse_gt), [`PerronKernel.perron_kernel_coarse_lt`](#PerronKernel-perron_kernel_coarse_lt), [`PerronKernel.perron_kernel_decay`](#PerronKernel-perron_kernel_decay), [`PerronKernel.perron_kernel_decay_gt`](#PerronKernel-perron_kernel_decay_gt), [`PerronKernel.perron_kernel_decay_lt`](#PerronKernel-perron_kernel_decay_lt), [`PerronKernel.perron_kernel_truncated`](#PerronKernel-perron_kernel_truncated), [`PerronKernel.perron_sum_eq_integral`](#PerronKernel-perron_sum_eq_integral), [`PerronKernel.perron_to_psi`](#PerronKernel-perron_to_psi)
+- **Used by 18:** [`PerronKernel.explicit_formula_perron`](#PerronKernel-explicit_formula_perron), [`PerronKernel.kernel_diff_summable`](#PerronKernel-kernel_diff_summable), [`PerronKernel.kernel_sum_bound`](#PerronKernel-kernel_sum_bound), [`PerronKernel.perronI_eq_VIntegral'`](#PerronKernel-perronI_eq_VIntegral-), [`PerronKernel.perronI_one_norm`](#PerronKernel-perronI_one_norm), [`PerronKernel.perron_kernel_coarse`](#PerronKernel-perron_kernel_coarse), [`PerronKernel.perron_kernel_coarse_gt`](#PerronKernel-perron_kernel_coarse_gt), [`PerronKernel.perron_kernel_coarse_lt`](#PerronKernel-perron_kernel_coarse_lt), [`PerronKernel.perron_kernel_decay`](#PerronKernel-perron_kernel_decay), [`PerronKernel.perron_kernel_decay_gt`](#PerronKernel-perron_kernel_decay_gt), [`PerronKernel.perron_kernel_decay_lt`](#PerronKernel-perron_kernel_decay_lt), [`PerronKernel.perron_kernel_truncated`](#PerronKernel-perron_kernel_truncated), [`PerronKernel.perron_sum_eq_integral`](#PerronKernel-perron_sum_eq_integral), [`PerronKernel.perron_to_psi`](#PerronKernel-perron_to_psi), [`PerronTwo.kernel_diff_summable_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_diff_summable_two), [`PerronTwo.kernel_sum_bound_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_sum_bound_two), [`PerronTwo.perron_sum_eq_integral_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_sum_eq_integral_two), [`PerronTwo.perron_to_psi_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_to_psi_two)
 
 <a name="PerronKernel-perron-"></a>
 ### `PerronKernel.perronδ`
@@ -625,10 +633,12 @@ line 930
   - [`PerronKernel.perron_kernel_coarse`](#PerronKernel-perron_kernel_coarse) — `` ‖perronI y c T - perronδ y‖ ≤ y ^ c ``
   - [`PerronKernel.perron_kernel_decay`](#PerronKernel-perron_kernel_decay) — `` ‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|) ``
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`PerronKernel.kernel_diff_summable`](#PerronKernel-kernel_diff_summable) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
   - [`PerronKernel.kernel_sum_bound`](#PerronKernel-kernel_sum_bound) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 … ``
+  - [`PerronTwo.kernel_diff_summable_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_diff_summable_two) (PerronTwo) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
+  - [`PerronTwo.kernel_sum_bound_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_sum_bound_two) (PerronTwo) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 … ``
 
 <a name="PerronKernel-one_sub_two_neg_rpow"></a>
 ### `PerronKernel.one_sub_two_neg_rpow`
@@ -652,9 +662,10 @@ line 950
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`PerronKernel.far_terms_sum`](#PerronKernel-far_terms_sum) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
+  - [`PerronTwo.one_sub_two_neg_rpow'`](../lean_stage3/PerronTwo.md#PerronTwo-one_sub_two_neg_rpow-) (PerronTwo) — `` δ / 5 ≤ 1 - (2:ℝ) ^ (-δ) ``
 
 <a name="PerronKernel-vonMangoldt_rpow_partial"></a>
 ### `PerronKernel.vonMangoldt_rpow_partial`
@@ -706,9 +717,10 @@ line 1082
 
   - [`PerronKernel.vonMangoldt_rpow_partial`](#PerronKernel-vonMangoldt_rpow_partial) — `` ∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 * (Real.log 4 + 4) / (1 - (2:ℝ) ^ (1 - c)) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`PerronKernel.far_terms_sum`](#PerronKernel-far_terms_sum) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
+  - [`PerronTwo.far_terms_sum_two`](../lean_stage3/PerronTwo.md#PerronTwo-far_terms_sum_two) (PerronTwo) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
 
 <a name="PerronKernel-vonMangoldt_rpow_summable"></a>
 ### `PerronKernel.vonMangoldt_rpow_summable`
@@ -733,12 +745,16 @@ Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c))
 
   - [`PerronKernel.vonMangoldt_rpow_partial`](#PerronKernel-vonMangoldt_rpow_partial) — `` ∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 * (Real.log 4 + 4) / (1 - (2:ℝ) ^ (1 - c)) ``
 
-**Feeds** (4 that use it)
+**Feeds** (8 that use it)
 
   - [`PerronKernel.far_terms_sum`](#PerronKernel-far_terms_sum) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
   - [`PerronKernel.kernel_diff_summable`](#PerronKernel-kernel_diff_summable) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
   - [`PerronKernel.kernel_sum_bound`](#PerronKernel-kernel_sum_bound) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 … ``
   - [`PerronKernel.perron_sum_eq_integral`](#PerronKernel-perron_sum_eq_integral) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv r… ``
+  - [`PerronTwo.far_terms_sum_two`](../lean_stage3/PerronTwo.md#PerronTwo-far_terms_sum_two) (PerronTwo) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
+  - [`PerronTwo.kernel_diff_summable_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_diff_summable_two) (PerronTwo) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
+  - [`PerronTwo.kernel_sum_bound_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_sum_bound_two) (PerronTwo) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 … ``
+  - [`PerronTwo.perron_sum_eq_integral_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_sum_eq_integral_two) (PerronTwo) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv r… ``
 
 <a name="PerronKernel-far_terms_sum"></a>
 ### `PerronKernel.far_terms_sum`
@@ -792,9 +808,10 @@ line 1239
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`PerronKernel.near_diagonal_sum`](#PerronKernel-near_diagonal_sum) — `` (∑' n : ℕ, if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|)) else 0) ≤ 1… ``
+  - [`PerronTwo.near_diagonal_sum_two`](../lean_stage3/PerronTwo.md#PerronTwo-near_diagonal_sum_two) (PerronTwo) — `` (∑' n : ℕ, if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|)) else 0) ≤ 1… ``
 
 <a name="PerronKernel-near_diagonal_sum"></a>
 ### `PerronKernel.near_diagonal_sum`
@@ -849,10 +866,12 @@ line 1561
 
   - [`PerronKernel.seg_inv_integral`](#PerronKernel-seg_inv_integral) — `` (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I) = 2 * Real.arctan (T / c) * Complex.I ``
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`PerronKernel.kernel_diff_summable`](#PerronKernel-kernel_diff_summable) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
   - [`PerronKernel.kernel_sum_bound`](#PerronKernel-kernel_sum_bound) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 … ``
+  - [`PerronTwo.kernel_diff_summable_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_diff_summable_two) (PerronTwo) — `` Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) ``
+  - [`PerronTwo.kernel_sum_bound_two`](../lean_stage3/PerronTwo.md#PerronTwo-kernel_sum_bound_two) (PerronTwo) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 … ``
 
 <a name="PerronKernel-kernel_sum_bound"></a>
 ### `PerronKernel.kernel_sum_bound`
@@ -1003,9 +1022,10 @@ line 2121
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`PerronKernel.perron_sum_eq_integral`](#PerronKernel-perron_sum_eq_integral) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv r… ``
+  - [`PerronTwo.perron_sum_eq_integral_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_sum_eq_integral_two) (PerronTwo) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv r… ``
 
 <a name="PerronKernel-perron_sum_eq_integral"></a>
 ### `PerronKernel.perron_sum_eq_integral`

@@ -1,0 +1,60 @@
+flowchart LR
+  n0["<b>residue_identity_two</b><br/>RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemann…"]:::thm
+  n1["<b>zeroPartialSum_swap_two</b><br/>∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zero…"]:::thm
+  n2["<b>logDeriv_re_ge_two</b><br/>‖deriv riemannZeta u / riemannZeta u‖ ≤ 6"]:::thm
+  n3["<b>Cpn_ge</b><br/>(360:ℝ) ≤ Glue.Cpn"]:::thm
+  n4["<b>logDeriv_good_ext</b><br/>∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta…"]:::thm
+  n5["<b>Cht_pos</b><br/>0 ＜ Cht"]:::thm
+  n6["<b>edge_horizontal_bound_two</b><br/>∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, r…"]:::thm
+  n7["<b>explicit_formula_left_two</b><br/>∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) +…"]:::thm
+  n8["<b>series_side_two</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  n9["<b>smooth_side_two</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co…"]:::thm
+  n10["<b>left_edge_bound_two</b><br/>‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4)"]:::thm
+  n11["<b>explicit_formula_all_two</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1…"]:::thm
+  x0(["<b>ContourShift</b><br/>10 theorems"]):::ext
+  x1(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x2(["<b>LineBound</b><br/>norm_logDerivZeta_of_one_lt_re"]):::ext
+  x3(["<b>EdgeNum</b><br/>C1n_pos<br/>C2n_pos"]):::ext
+  x4(["<b>FixedRowTwo</b><br/>4 theorems"]):::ext
+  x5(["<b>PerronTwo</b><br/>explicit_formula_perron_two<br/>inv_log_le_of_two_le"]):::ext
+  x6(["<b>LeftKernel</b><br/>4 theorems"]):::ext
+  x7(["<b>LeftSmooth</b><br/>19 theorems"]):::ext
+  x8(["<b>FilterLadder</b><br/>formula_row"]):::ext
+  n0 --> n7
+  n1 --> n7
+  n10 --> n11
+  n2 --> n4
+  n3 --> n4
+  n4 --> n6
+  n5 --> n7
+  n6 --> n7
+  n7 --> n11
+  n8 --> n10
+  n9 --> n10
+  n11 -.-> x4
+  n11 -.-> x8
+  n5 -.-> x4
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n7
+  x1 -.-> n1
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n7
+  x2 -.-> n2
+  x3 -.-> n3
+  x5 -.-> n6
+  x5 -.-> n7
+  x6 -.-> n8
+  x6 -.-> n9
+  x7 -.-> n10
+  x7 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

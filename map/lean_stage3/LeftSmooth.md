@@ -7,7 +7,7 @@ LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-1
 40 theorems, 11 definitions, 913 lines. 
 
 **Imports:** [`LeftKernel`](../lean_stage3/LeftKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellFixedRow`](../lean_stage3/CellFixedRow.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellFixedRow`](../lean_stage3/CellFixedRow.md), [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md)
 
 ## The picture
 
@@ -46,7 +46,8 @@ flowchart LR
   n28["<b>digamma_piece</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.diga…"]:::shp
   n29["<b>continuous_tanPiece</b><br/>Continuous tanPiece"]:::shp
   x0(["<b>LeftKernel</b><br/>norm_cpow_tI<br/>osc_by_parts"]):::ext
-  x1(["<b>diagram 2</b><br/>6 theorems"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>left_edge_bound_two<br/>smooth_side_two"]):::ext
+  x2(["<b>diagram 2</b><br/>6 theorems"]):::ext
   n0 --> n1
   n0 --> n23
   n1 --> n28
@@ -88,18 +89,30 @@ flowchart LR
   n9 --> n21
   n9 --> n28
   n11 -.-> x1
+  n11 -.-> x2
   n13 -.-> x1
+  n13 -.-> x2
   n17 -.-> x1
+  n17 -.-> x2
   n18 -.-> x1
+  n18 -.-> x2
   n23 -.-> x1
-  n24 -.-> x1
+  n23 -.-> x2
+  n24 -.-> x2
   n27 -.-> x1
+  n27 -.-> x2
   n28 -.-> x1
+  n28 -.-> x2
   n29 -.-> x1
+  n29 -.-> x2
   n4 -.-> x1
+  n4 -.-> x2
   n5 -.-> x1
+  n5 -.-> x2
   n6 -.-> x1
+  n6 -.-> x2
   n9 -.-> x1
+  n9 -.-> x2
   x0 -.-> n1
   x0 -.-> n23
   x0 -.-> n28
@@ -127,12 +140,13 @@ flowchart LR
   n7["<b>wL_ne_one</b><br/>wL t ≠ 1"]:::shp
   n8["<b>left_edge_bound</b><br/>‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4)"]:::thm
   n9["<b>explicit_formula_all</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Gl…"]:::thm
-  x0(["<b>diagram 1</b><br/>13 theorems"]):::ext
-  x1(["<b>LeftKernel</b><br/>kernel_bound<br/>series_side"]):::ext
-  x2(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
-  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
-  x4(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
-  x5(["<b>PiFixedRow</b><br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
+  x0(["<b>ExplicitTwo</b><br/>left_edge_bound_two<br/>smooth_side_two"]):::ext
+  x1(["<b>diagram 1</b><br/>13 theorems"]):::ext
+  x2(["<b>LeftKernel</b><br/>kernel_bound<br/>series_side"]):::ext
+  x3(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
+  x4(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x6(["<b>PiFixedRow</b><br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n8
@@ -142,19 +156,26 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
-  n8 -.-> x3
-  n9 -.-> x3
-  n9 -.-> x5
-  x0 -.-> n1
-  x0 -.-> n2
-  x0 -.-> n4
-  x0 -.-> n5
-  x0 -.-> n7
-  x0 -.-> n8
+  n0 -.-> x0
+  n1 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x4
+  n9 -.-> x4
+  n9 -.-> x6
+  x1 -.-> n1
   x1 -.-> n2
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n7
   x1 -.-> n8
-  x2 -.-> n3
-  x4 -.-> n9
+  x2 -.-> n2
+  x2 -.-> n8
+  x3 -.-> n3
+  x5 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -177,7 +198,7 @@ def · line 173
 The smooth factor of the functional equation, as a function of `w = 1 − s`: `G(w) = log 2π − ψ(w) + (π/2)·tan(πw/2)`, with `ψ` the digamma function.
 
 - **Is:** `` Gs (w : ℂ) : ℂ := Complex.log (2 * (Real.pi:ℂ)) - Complex.digamma w + ((Real.pi:ℂ) / 2) * Complex.tan ((Real.pi:ℂ) * w / 2) ``
-- **Used by 2:** [`LeftSmooth.logDeriv_sum`](#LeftSmooth-logDeriv_sum), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
+- **Used by 3:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.logDeriv_sum`](#LeftSmooth-logDeriv_sum), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
 
 <a name="LeftSmooth-sL"></a>
 ### `LeftSmooth.sL`
@@ -187,7 +208,7 @@ def · line 260
 The point `s = −1/4 + it` of the left line.
 
 - **Is:** `` sL (t : ℝ) : ℂ := ((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I ``
-- **Used by 16:** [`LeftSmooth.continuous_sL`](#LeftSmooth-continuous_sL), [`LeftSmooth.cpow_sL`](#LeftSmooth-cpow_sL), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.hasDerivAt_sL`](#LeftSmooth-hasDerivAt_sL), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.norm_sL_ge`](#LeftSmooth-norm_sL_ge), [`LeftSmooth.norm_sL_sq`](#LeftSmooth-norm_sL_sq), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.one_sub_wL`](#LeftSmooth-one_sub_wL), [`LeftSmooth.sL_ne`](#LeftSmooth-sL_ne), [`LeftSmooth.sL_ne_one`](#LeftSmooth-sL_ne_one), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece), [`LeftSmooth.tanPiece'`](#LeftSmooth-tanPiece-), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece), [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne)
+- **Used by 18:** [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two), [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.continuous_sL`](#LeftSmooth-continuous_sL), [`LeftSmooth.cpow_sL`](#LeftSmooth-cpow_sL), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.hasDerivAt_sL`](#LeftSmooth-hasDerivAt_sL), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.norm_sL_ge`](#LeftSmooth-norm_sL_ge), [`LeftSmooth.norm_sL_sq`](#LeftSmooth-norm_sL_sq), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.one_sub_wL`](#LeftSmooth-one_sub_wL), [`LeftSmooth.sL_ne`](#LeftSmooth-sL_ne), [`LeftSmooth.sL_ne_one`](#LeftSmooth-sL_ne_one), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece), [`LeftSmooth.tanPiece'`](#LeftSmooth-tanPiece-), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece), [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne)
 
 <a name="LeftSmooth-wL"></a>
 ### `LeftSmooth.wL`
@@ -197,7 +218,7 @@ def · line 263
 The reflected point `w = 5/4 − it = 1 − s`.
 
 - **Is:** `` wL (t : ℝ) : ℂ := (5/4 : ℂ) - (t:ℂ) * Complex.I ``
-- **Used by 22:** [`LeftSmooth.arg_wL`](#LeftSmooth-arg_wL), [`LeftSmooth.continuous_digamma_wL`](#LeftSmooth-continuous_digamma_wL), [`LeftSmooth.continuous_tanPiece'`](#LeftSmooth-continuous_tanPiece-), [`LeftSmooth.continuous_tan_wL`](#LeftSmooth-continuous_tan_wL), [`LeftSmooth.continuous_wL`](#LeftSmooth-continuous_wL), [`LeftSmooth.cos_wL_ne`](#LeftSmooth-cos_wL_ne), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece), [`LeftSmooth.hasDerivAt_wL`](#LeftSmooth-hasDerivAt_wL), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.norm_cos_wL`](#LeftSmooth-norm_cos_wL), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.norm_tan_wL`](#LeftSmooth-norm_tan_wL), [`LeftSmooth.one_sub_wL`](#LeftSmooth-one_sub_wL), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece), [`LeftSmooth.tanPiece'`](#LeftSmooth-tanPiece-), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece), [`LeftSmooth.wL_ne_one`](#LeftSmooth-wL_ne_one), [`LeftSmooth.wL_re`](#LeftSmooth-wL_re), [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne), [`LeftSmooth.zeta_wL_ne`](#LeftSmooth-zeta_wL_ne)
+- **Used by 24:** [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two), [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.arg_wL`](#LeftSmooth-arg_wL), [`LeftSmooth.continuous_digamma_wL`](#LeftSmooth-continuous_digamma_wL), [`LeftSmooth.continuous_tanPiece'`](#LeftSmooth-continuous_tanPiece-), [`LeftSmooth.continuous_tan_wL`](#LeftSmooth-continuous_tan_wL), [`LeftSmooth.continuous_wL`](#LeftSmooth-continuous_wL), [`LeftSmooth.cos_wL_ne`](#LeftSmooth-cos_wL_ne), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece), [`LeftSmooth.hasDerivAt_wL`](#LeftSmooth-hasDerivAt_wL), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.norm_cos_wL`](#LeftSmooth-norm_cos_wL), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.norm_tan_wL`](#LeftSmooth-norm_tan_wL), [`LeftSmooth.one_sub_wL`](#LeftSmooth-one_sub_wL), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece), [`LeftSmooth.tanPiece'`](#LeftSmooth-tanPiece-), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece), [`LeftSmooth.wL_ne_one`](#LeftSmooth-wL_ne_one), [`LeftSmooth.wL_re`](#LeftSmooth-wL_re), [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne), [`LeftSmooth.zeta_wL_ne`](#LeftSmooth-zeta_wL_ne)
 
 <a name="LeftSmooth-kc"></a>
 ### `LeftSmooth.kc`
@@ -207,7 +228,7 @@ def · line 303
 The cosine constant `κ = |cos(5π/8)|`.
 
 - **Is:** `` kc : ℝ := |Real.cos (5 * Real.pi / 8)| ``
-- **Used by 7:** [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.kc_pos`](#LeftSmooth-kc_pos), [`LeftSmooth.norm_cos_wL`](#LeftSmooth-norm_cos_wL), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.norm_tan_wL`](#LeftSmooth-norm_tan_wL), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece)
+- **Used by 8:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.kc_pos`](#LeftSmooth-kc_pos), [`LeftSmooth.norm_cos_wL`](#LeftSmooth-norm_cos_wL), [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le), [`LeftSmooth.norm_tan_wL`](#LeftSmooth-norm_tan_wL), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece)
 
 <a name="LeftSmooth-tanPiece"></a>
 ### `LeftSmooth.tanPiece`
@@ -218,7 +239,7 @@ The tangent piece `tan(πw/2)/s` along the line.
 
 - **Is:** `` tanPiece (t : ℝ) : ℂ := Complex.tan ((Real.pi:ℂ) * wL t / 2) * (sL t)⁻¹ ``
 - **Built from:** [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.wL`](#LeftSmooth-wL)
-- **Used by 4:** [`LeftSmooth.continuous_tanPiece`](#LeftSmooth-continuous_tanPiece), [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece)
+- **Used by 5:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.continuous_tanPiece`](#LeftSmooth-continuous_tanPiece), [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side), [`LeftSmooth.tan_piece`](#LeftSmooth-tan_piece)
 
 <a name="LeftSmooth-tanPiece-"></a>
 ### `LeftSmooth.tanPiece'`
@@ -239,7 +260,7 @@ def · line 519
 The digamma-series weight `1/((n+1)(n+5/4))`.
 
 - **Is:** `` dgTerm (n : ℕ) : ℝ := 1 / (((n:ℝ) + 1) * ((n:ℝ) + 5/4)) ``
-- **Used by 6:** [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.Nsm_nonneg`](#LeftSmooth-Nsm_nonneg), [`LeftSmooth.dgTerm_nonneg`](#LeftSmooth-dgTerm_nonneg), [`LeftSmooth.dgTerm_summable`](#LeftSmooth-dgTerm_summable), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
+- **Used by 7:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.Nsm_nonneg`](#LeftSmooth-Nsm_nonneg), [`LeftSmooth.dgTerm_nonneg`](#LeftSmooth-dgTerm_nonneg), [`LeftSmooth.dgTerm_summable`](#LeftSmooth-dgTerm_summable), [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
 
 <a name="LeftSmooth-c0"></a>
 ### `LeftSmooth.c0`
@@ -249,7 +270,7 @@ def · line 672
 The constant of the smooth factor's flat part: `log 2π + γ`.
 
 - **Is:** `` c0 : ℂ := Complex.log (2 * (Real.pi:ℂ)) + (Real.eulerMascheroniConstant:ℂ) ``
-- **Used by 2:** [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
+- **Used by 3:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
 
 <a name="LeftSmooth-Nsm"></a>
 ### `LeftSmooth.Nsm`
@@ -260,7 +281,7 @@ The numerator of the smooth-side constant: `‖log 2π + γ‖·(1+4π) + (Σ' 1
 
 - **Is:** `` Nsm : ℝ := ‖c0‖ * (1 + 4 * Real.pi) + (∑' n : ℕ, dgTerm n) * (2 + Real.pi) + Real.pi / 2 * ((8 + 2 * Real.pi ^ 2 + 4 * Real.pi) / kc) ``
 - **Built from:** [`LeftSmooth.c0`](#LeftSmooth-c0), [`LeftSmooth.dgTerm`](#LeftSmooth-dgTerm), [`LeftSmooth.kc`](#LeftSmooth-kc)
-- **Used by 3:** [`LeftSmooth.Bsm`](#LeftSmooth-Bsm), [`LeftSmooth.Nsm_nonneg`](#LeftSmooth-Nsm_nonneg), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
+- **Used by 4:** [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.Bsm`](#LeftSmooth-Bsm), [`LeftSmooth.Nsm_nonneg`](#LeftSmooth-Nsm_nonneg), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
 
 <a name="LeftSmooth-Bsm"></a>
 ### `LeftSmooth.Bsm`
@@ -271,7 +292,7 @@ The smooth-side constant `Bsm = Nsm / log 16`, free of `x` and `T`.
 
 - **Is:** `` Bsm : ℝ := Nsm / Real.log 16 ``
 - **Built from:** [`LeftSmooth.Nsm`](#LeftSmooth-Nsm)
-- **Used by 3:** [`LeftSmooth.Bleft`](#LeftSmooth-Bleft), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
+- **Used by 5:** [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two), [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two), [`LeftSmooth.Bleft`](#LeftSmooth-Bleft), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side)
 
 <a name="LeftSmooth-Bleft"></a>
 ### `LeftSmooth.Bleft`
@@ -282,7 +303,7 @@ The left-edge constant `Bleft = Bsm + Bser`.
 
 - **Is:** `` Bleft : ℝ := Bsm + LeftKernel.Bser ``
 - **Built from:** [`LeftKernel.Bser`](../lean_stage3/LeftKernel.md#LeftKernel-Bser), [`LeftSmooth.Bsm`](#LeftSmooth-Bsm)
-- **Used by 9:** [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`PiFixedRow.Api`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height)
+- **Used by 11:** [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2), [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two), [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`PiFixedRow.Api`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height)
 
 ## Theorems
 
@@ -416,8 +437,9 @@ riemannZeta (1 - w) ≠ 0 ∧ deriv riemannZeta (1 - w) / riemannZeta (1 - w) + 
 
 **Definitions its proof touches:** [`LeftSmooth.Gs`](#LeftSmooth-Gs)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne) — `` riemannZeta (sL t) ≠ 0 ``
 
@@ -444,8 +466,9 @@ line 266 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.zeta_sL_ne`](#LeftSmooth-zeta_sL_ne) — `` riemannZeta (sL t) ≠ 0 ``
@@ -473,8 +496,9 @@ line 272 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.continuous_digamma_wL`](#LeftSmooth-continuous_digamma_wL) — `` Continuous fun t : ℝ => Complex.digamma (wL t) ``
   - [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
@@ -566,8 +590,10 @@ sL t ≠ 0
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL)
 
-**Feeds** (5 that use it)
+**Feeds** (7 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.continuous_tanPiece'`](#LeftSmooth-continuous_tanPiece-) — `` Continuous tanPiece' ``
   - [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
   - [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece) — `` HasDerivAt tanPiece (tanPiece' t) t ``
@@ -621,8 +647,9 @@ line 306 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.kc`](#LeftSmooth-kc)
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.Nsm_nonneg`](#LeftSmooth-Nsm_nonneg) — `` 0 ≤ Nsm ``
   - [`LeftSmooth.cos_wL_ne`](#LeftSmooth-cos_wL_ne) — `` Complex.cos ((Real.pi:ℂ) * wL t / 2) ≠ 0 ``
   - [`LeftSmooth.norm_tanPiece'_le`](#LeftSmooth-norm_tanPiece-_le) — `` ‖tanPiece' t‖ ≤ 2 * Real.pi * (1 / (kc ^ 2 + t ^ 2)) + (1 / kc) * (1 / ((1/4:ℝ) ^ 2 + t ^ 2)) ``
@@ -687,8 +714,9 @@ Complex.cos ((Real.pi:ℂ) * wL t / 2) ≠ 0
 
 **Definitions its proof touches:** [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.continuous_tanPiece'`](#LeftSmooth-continuous_tanPiece-) — `` Continuous tanPiece' ``
   - [`LeftSmooth.continuous_tan_wL`](#LeftSmooth-continuous_tan_wL) — `` Continuous fun t : ℝ => Complex.tan ((Real.pi:ℂ) * wL t / 2) ``
   - [`LeftSmooth.hasDerivAt_tanPiece`](#LeftSmooth-hasDerivAt_tanPiece) — `` HasDerivAt tanPiece (tanPiece' t) t ``
@@ -803,8 +831,9 @@ Continuous sL
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-continuous_wL"></a>
@@ -826,8 +855,9 @@ Continuous wL
 
 **Definitions its proof touches:** [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.continuous_tanPiece'`](#LeftSmooth-continuous_tanPiece-) — `` Continuous tanPiece' ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
@@ -978,8 +1008,9 @@ line 451 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.kc`](#LeftSmooth-kc), [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece), [`LeftSmooth.tanPiece'`](#LeftSmooth-tanPiece-), [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftSmooth-dgTerm_nonneg"></a>
@@ -1079,8 +1110,9 @@ Continuous fun t : ℝ => (y:ℂ) ^ ((t:ℂ) * Complex.I)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.digamma_piece`](#LeftSmooth-digamma_piece) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
@@ -1116,8 +1148,9 @@ line 553 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.dgTerm`](#LeftSmooth-dgTerm), [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftSmooth-continuous_tanPiece"></a>
@@ -1141,8 +1174,9 @@ Continuous tanPiece
 
 **Definitions its proof touches:** [`LeftSmooth.tanPiece`](#LeftSmooth-tanPiece)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftSmooth-cpow_sL"></a>
@@ -1169,8 +1203,9 @@ line 665 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftSmooth-Nsm_nonneg"></a>
@@ -1195,8 +1230,9 @@ line 681 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.Nsm`](#LeftSmooth-Nsm), [`LeftSmooth.dgTerm`](#LeftSmooth-dgTerm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) (ExplicitTwo) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
   - [`LeftSmooth.smooth_side`](#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftSmooth-smooth_side"></a>
@@ -1266,8 +1302,9 @@ Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t)
 
   - [`ContourShift.zeta_analyticAt`](../lean_stage3/ContourShift.md#ContourShift-zeta_analyticAt) (ContourShift) — `` AnalyticAt ℂ riemannZeta ρ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-zeta_sL_ne"></a>
@@ -1298,8 +1335,9 @@ riemannZeta (sL t) ≠ 0
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-zeta_wL_ne"></a>
@@ -1327,8 +1365,9 @@ riemannZeta (wL t) ≠ 0
 
 **Definitions its proof touches:** [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-sL_ne_one"></a>
@@ -1354,8 +1393,9 @@ sL t ≠ 1
 
 **Definitions its proof touches:** [`LeftSmooth.sL`](#LeftSmooth-sL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-wL_ne_one"></a>
@@ -1383,8 +1423,9 @@ wL t ≠ 1
 
 **Definitions its proof touches:** [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) (ExplicitTwo) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
   - [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-left_edge_bound"></a>
