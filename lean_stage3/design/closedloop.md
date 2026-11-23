@@ -57,3 +57,25 @@ height, and the handshake fails at both.
 these terms. The paper's reason, that the integers force the offset `0.5` at
 every doubling (`ignition_energy_is_half`), is not yet a Lean argument that
 reaches the zeros.
+
+## J3 The rest of the closed loop, joined — `Stage3/ClosedLoopChain.lean`
+
+Parts I, III, IV, V, VI of the closed loop restated word for word, each with
+its join to the table.
+
+- **Part I, the Holy Family.** `J + M = 1`, `M = 2·J` give `J = 1/3`,
+  `M = 2/3`, midpoint `1/2`. JOIN: `holyFamily_is_mirror_pair`, `M = 1 − J`:
+  the two are a point and its mirror. `holyFamily_pair_area`,
+  `b^J·b^M = b`: the area of `MirrorArea.mirror_area`. `holyFamily_force`:
+  the restoring force is `5/6` at both.
+- **Part III, the doubling.** `Midpoint n = 2^n − 1/2`, offset `1/2` at every
+  doubling. JOIN: `row_at_midpoint`: for `n ≥ 2` the count of primes up to
+  `Midpoint n` is `π(2^n)`, the table's row.
+- **Parts IV, V.** `boundary_is_two`, `midpoint_base_is_unique`,
+  `sextic_lattice`, as in the closed loop.
+- **Part VI, the Prime Beat.** JOIN: `primeBeatTerm_eq_im`: a prime's term is
+  minus the imaginary part of its step `p^(−(1/2+it))`. `generalized_weight`:
+  its weight at `σ` is the handshake's `primeWeight`.
+
+With J1 and J2 every Part of the closed loop from I to XI has its statements
+in Stage 3 and a theorem tying it to the table, its mirror, or the zeros.

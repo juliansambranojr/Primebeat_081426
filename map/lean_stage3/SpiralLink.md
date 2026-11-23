@@ -7,7 +7,7 @@ SpiralLink — block J2 of `lean_stage3/design/closedloop.md`. 2026-11-23. The l
 9 theorems, 3 definitions, 171 lines. 
 
 **Imports:** [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md)
 
 ## The picture
 

@@ -170,6 +170,7 @@ import Stage3.CountReduction
 import Stage3.CountEuler
 import Stage3.ClosedLoopJoin
 import Stage3.SpiralLink
+import Stage3.ClosedLoopChain
 
 namespace Stage3
 

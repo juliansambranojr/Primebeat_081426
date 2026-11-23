@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-23T10:02:43Z
+# unit: 0478-closed-loop-chain
+# sources searched: 438
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35904
+  Join the part to the tree.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36077
+  theorem holyFamily_is_mirror_pair (hf : HolyFamily) : hf.M = 1 - hf.J :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36082
+  theorem holyFamily_pair_area (hf : HolyFamily) {b : ℝ} (hb : 0 < b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36088
+  theorem holyFamily_force (hf : HolyFamily) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36089
+  restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36126
+  theorem row_at_midpoint {n : ℕ} (hn : 2 ≤ n) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36127
+  Nat.primeCounting ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = Nat.primeCounting (2 ^ n) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36185
+  theorem primeBeatTerm_eq_im (t : ℝ) {p : ℕ} (hp : 0 < p) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36187
+  = -(((p : ℝ) : ℂ) ^ (-((1 / 2 : ℂ) + (t : ℂ) * Complex.I))).im :=
+
+# 10 found, 0 missing

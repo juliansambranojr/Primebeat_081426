@@ -24,10 +24,11 @@ flowchart LR
   n8["<b>rh_iff_re_half</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2"]:::thm
   n9["<b>rh_iff_force_zero ■</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ…"]:::thm
   n10["<b>rh_iff_handshake</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake …"]:::thm
-  x0(["<b>StencilWeil</b><br/>restoringForce_eq<br/>restoringForce_eq_zero_iff"]):::ext
-  x1(["<b>SpiralLink</b><br/>off_line_is_two<br/>rh_iff_one_at_each_height<br/>rh_iff_spiralLink"]):::ext
-  x2(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
-  x3(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x0(["<b>ClosedLoopChain</b><br/>holyFamily_force"]):::ext
+  x1(["<b>StencilWeil</b><br/>restoringForce_eq<br/>restoringForce_eq_zero_iff"]):::ext
+  x2(["<b>SpiralLink</b><br/>off_line_is_two<br/>rh_iff_one_at_each_height<br/>rh_iff_spiralLink"]):::ext
+  x3(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
+  x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -38,13 +39,14 @@ flowchart LR
   n6 --> n7
   n8 --> n10
   n8 --> n9
-  n10 -.-> x1
-  n5 -.-> x1
-  n8 -.-> x1
-  x0 -.-> n1
-  x0 -.-> n7
-  x2 -.-> n7
-  x3 -.-> n8
+  n0 -.-> x0
+  n10 -.-> x2
+  n5 -.-> x2
+  n8 -.-> x2
+  x1 -.-> n1
+  x1 -.-> n7
+  x3 -.-> n7
+  x4 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -78,7 +80,7 @@ The closed loop's restoring force. Restated from Part VII.
 
 - **Is:** `` restoringForce (σ : ℝ) : ℝ := |(2.5 : ℝ) - 5 * ((1 / 2 : ℝ) + epsilon σ)| ``
 - **Built from:** [`ClosedLoopJoin.epsilon`](#ClosedLoopJoin-epsilon)
-- **Used by 6:** [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.force_eq_zero_iff`](#ClosedLoopJoin-force_eq_zero_iff), [`ClosedLoopJoin.force_join`](#ClosedLoopJoin-force_join), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction)
+- **Used by 7:** [`ClosedLoopChain.holyFamily_force`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force), [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.force_eq_zero_iff`](#ClosedLoopJoin-force_eq_zero_iff), [`ClosedLoopJoin.force_join`](#ClosedLoopJoin-force_join), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction)
 
 <a name="ClosedLoopJoin-primeWeight"></a>
 ### `ClosedLoopJoin.primeWeight`
@@ -88,7 +90,7 @@ def · line 54
 The scaling weight of a prime. Restated from Part VIII.
 
 - **Is:** `` primeWeight (p : ℕ) (σ : ℝ) : ℝ := (p : ℝ) ^ (-σ) ``
-- **Used by 4:** [`ClosedLoopJoin.handshake_iff_half`](#ClosedLoopJoin-handshake_iff_half), [`ClosedLoopJoin.handshake_iff_sides`](#ClosedLoopJoin-handshake_iff_sides), [`ClosedLoopJoin.isHermitianHandshake`](#ClosedLoopJoin-isHermitianHandshake), [`ClosedLoopJoin.primeWeight_eq_inv_side`](#ClosedLoopJoin-primeWeight_eq_inv_side)
+- **Used by 5:** [`ClosedLoopChain.generalized_weight`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalized_weight), [`ClosedLoopJoin.handshake_iff_half`](#ClosedLoopJoin-handshake_iff_half), [`ClosedLoopJoin.handshake_iff_sides`](#ClosedLoopJoin-handshake_iff_sides), [`ClosedLoopJoin.isHermitianHandshake`](#ClosedLoopJoin-isHermitianHandshake), [`ClosedLoopJoin.primeWeight_eq_inv_side`](#ClosedLoopJoin-primeWeight_eq_inv_side)
 
 <a name="ClosedLoopJoin-isHermitianHandshake"></a>
 ### `ClosedLoopJoin.isHermitianHandshake`
@@ -126,8 +128,9 @@ restoringForce σ = 5 * |σ - 1 / 2|
 
 **Definitions its proof touches:** [`ClosedLoopJoin.epsilon`](#ClosedLoopJoin-epsilon), [`ClosedLoopJoin.restoringForce`](#ClosedLoopJoin-restoringForce)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ClosedLoopChain.holyFamily_force`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force) (ClosedLoopChain) — `` restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 ``
   - [`ClosedLoopJoin.force_eq_zero_iff`](#ClosedLoopJoin-force_eq_zero_iff) — `` restoringForce σ = 0 ↔ σ = 1 / 2 ``
   - [`ClosedLoopJoin.force_join`](#ClosedLoopJoin-force_join) — `` StencilWeil.restoringForce b ρ = 2 * Real.log b / 5 * restoringForce ρ.re ``
 

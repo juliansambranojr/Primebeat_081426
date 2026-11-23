@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J3 of `design/closedloop.md`: `Stage3/ClosedLoopChain.lean`
+
+    DONE        the closed loop's Parts I, III, IV, V, VI restated and joined:
+                `holyFamily_is_mirror_pair`, `holyFamily_pair_area`,
+                `holyFamily_force`; `row_at_midpoint`: the table's row read at
+                the doubling's midpoint; `primeBeatTerm_eq_im`: the Beat is
+                the imaginary part of the walk; one unit
+    ASSUMED     Julian, 2026-11-23: "Join the part to the tree." "The point of
+                the lean files is to show that all the theorems connect to
+                each other." Written and built here
+    DEPENDS     `ClosedLoopJoin.force_eq`, `ClosedLoopJoin.primeWeight`
+    OUT         a proof of `SpiralLink.SpiralLink`; the map
+    OUTCOME     proved, unit 0478
+
 ### 2026-11-23 · block J2 of `design/closedloop.md`: `Stage3/SpiralLink.lean`
 
     DONE        `SpiralLink`: the handshake at every zero, the paper's "the

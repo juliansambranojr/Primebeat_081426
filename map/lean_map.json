@@ -22503,6 +22503,584 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ClosedLoopChain.lean",
+  "module": "Stage3.ClosedLoopChain",
+  "stem": "ClosedLoopChain",
+  "header": "ClosedLoopChain — block J3 of `lean_stage3/design/closedloop.md`. 2026-11-23. The rest of Julian's closed loop (`lean_primebeat/PrimeBeat/primebeat_closed_loop.lean`, Parts I, III, IV, V, VI) restated word for word in Stage 3 and joined, link by link, to the table and its mirror. Unit 0476 joined Parts VII, VIII, XI.",
+  "imports": [
+   "Stage3.SpiralLink"
+  ],
+  "opens": [
+   "ClosedLoopJoin"
+  ],
+  "namespaces": [
+   "ClosedLoopChain"
+  ],
+  "lines": 213,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SpiralLink.lean"
+  ],
+  "decls": [
+   {
+    "kind": "structure",
+    "name": "HolyFamily",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.HolyFamily",
+    "line": 38,
+    "why": "Support and condition: two parts of one whole, the second twice the first. Restated from the closed loop, Part I.",
+    "sorry": false,
+    "needs": [],
+    "proves": "",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "derive_joseph",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.derive_joseph",
+    "line": 45,
+    "why": "The support is one third.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "hf.J = 1 / 3",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "derive_mary",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.derive_mary",
+    "line": 51,
+    "why": "The condition is two thirds.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "hf.M = 2 / 3",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "derive_critical_line",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.derive_critical_line",
+    "line": 56,
+    "why": "The critical line is the midpoint of the two.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "(hf.J + hf.M) / 2 = 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holyFamily_is_mirror_pair",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.holyFamily_is_mirror_pair",
+    "line": 61,
+    "why": "JOIN. The two members of the Holy Family are a point and its mirror: the condition is one less the support.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "hf.M = 1 - hf.J",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holyFamily_pair_area",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.holyFamily_pair_area",
+    "line": 66,
+    "why": "JOIN. At any base the sizes at the support and at the condition multiply to the base: the area of the tree's mirror (`MirrorArea.mirror_area`).",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "hb : 0 < b"
+    ],
+    "proves": "b ^ hf.J * b ^ hf.M = b",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holyFamily_force",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.holyFamily_force",
+    "line": 72,
+    "why": "JOIN. The restoring force is the same at the support and at the condition: both are one sixth from one half.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "Midpoint",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.Midpoint",
+    "line": 80,
+    "why": "The midpoint of each doubling. Restated from the closed loop, Part III.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℕ → ℚ",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "structural_ignition",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.structural_ignition",
+    "line": 85,
+    "why": "The midpoint of the `n`-th doubling is `2^n − 1/2`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Midpoint n = (2 ^ n : ℚ) - 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ignition_energy_is_half",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.ignition_energy_is_half",
+    "line": 93,
+    "why": "The offset from the integer below is one half at every doubling.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "floor_midpoint",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.floor_midpoint",
+    "line": 98,
+    "why": "The integer part of the midpoint of the `n`-th doubling is `2^n − 1`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "row_at_midpoint",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.row_at_midpoint",
+    "line": 110,
+    "why": "JOIN. From the second doubling on, the count of primes up to the midpoint is the table's row: the count of primes up to `2^n`.",
+    "sorry": false,
+    "needs": [
+     "hn : 2 ≤ n"
+    ],
+    "proves": "Nat.primeCounting ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = Nat.primeCounting (2 ^ n)",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "boundary_is_two",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.boundary_is_two",
+    "line": 124,
+    "why": "The boundary constant is two.",
+    "sorry": false,
+    "needs": [
+     "A B C : ℝ",
+     "hA : A ≠ 0",
+     "h_base : A = B - C",
+     "h_extended : A = (B - C) * (B - 1)"
+    ],
+    "proves": "B = 2",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.boundary_is_two",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "midpoint_base_is_unique",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.midpoint_base_is_unique",
+    "line": 132,
+    "why": "The base of the midpoint recurrence is two.",
+    "sorry": false,
+    "needs": [
+     "B : ℚ",
+     "h : B * (1 / 2 : ℚ) + 1 / 2 = B - 1 / 2"
+    ],
+    "proves": "B = 2",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.midpoint_base_is_unique",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "sextic_lattice",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.sextic_lattice",
+    "line": 138,
+    "why": "A prime above three is one or five modulo six.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "hp : Nat.Prime p",
+     "hp_gt_3 : p > 3"
+    ],
+    "proves": "p % 6 = 1 ∨ p % 6 = 5",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.sextic_lattice",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "primeBeatTerm",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.primeBeatTerm",
+    "line": 155,
+    "why": "One prime's term of the Prime Beat. Restated from Part VI.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "p : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeat",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm_eq_im"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "primeBeat",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.primeBeat",
+    "line": 159,
+    "why": "The Prime Beat over the lattice primes up to `N`. Restated from Part VI.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeat",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalized_at_half"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "generalizedPrimeBeat",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.generalizedPrimeBeat",
+    "line": 163,
+    "why": "The Prime Beat at a general weight. Restated from Part VI.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "σ : ℝ",
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalizedPrimeBeat",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalized_at_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "primeBeatTerm_eq_im",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.primeBeatTerm_eq_im",
+    "line": 169,
+    "why": "JOIN. A prime's term of the Prime Beat is minus the imaginary part of the prime's step `p^(−(1/2 + it))`: the Beat is the imaginary part of the walk.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "hp : 0 < p"
+    ],
+    "proves": "primeBeatTerm t p = -(((p : ℝ) : ℂ) ^ (-((1 / 2 : ℂ) + (t : ℂ) * Complex.I))).im",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm_eq_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeatTerm"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "generalized_weight",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.generalized_weight",
+    "line": 187,
+    "why": "JOIN. The weight of a prime in the general Beat is the handshake's weight.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "σ : ℝ"
+    ],
+    "proves": "(p : ℝ) ^ (-σ) = primeWeight p σ",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalized_weight",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "generalized_at_half",
+    "ns": "ClosedLoopChain",
+    "full": "ClosedLoopChain.generalized_at_half",
+    "line": 190,
+    "why": "The general Beat at one half is the Prime Beat.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "generalizedPrimeBeat N (1 / 2) t = primeBeat N t",
+    "file": "lean_stage3/Stage3/ClosedLoopChain.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalized_at_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalizedPrimeBeat",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeat"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalizedPrimeBeat",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.primeBeat"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ClosedLoopJoin.lean",
   "module": "Stage3.ClosedLoopJoin",
   "stem": "ClosedLoopJoin",
@@ -22575,6 +23153,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
@@ -22604,6 +23183,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.generalized_weight",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
@@ -22669,6 +23249,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join"
     ]
@@ -82382,11 +82963,12 @@
    "Stage3.CountReduction",
    "Stage3.CountEuler",
    "Stage3.ClosedLoopJoin",
-   "Stage3.SpiralLink"
+   "Stage3.SpiralLink",
+   "Stage3.ClosedLoopChain"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 181,
+  "lines": 182,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -82407,6 +82989,7 @@
    "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
    "lean_stage3/Stage3/ClosedLoopJoin.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountEuler.lean",

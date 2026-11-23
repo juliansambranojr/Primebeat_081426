@@ -141,6 +141,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauTaylor.bound_integrable`](./lean_stage3/LandauTaylor.md#LandauTaylor-bound_integrable) | theorem | shape | `LandauTaylor` | IntegrableOn (fun y : ℝ =&gt; 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1))) (Ioi 1) |
 | [`SeedPerturbation.boundary_can_move`](./lean/SeedPerturbation.md#SeedPerturbation-boundary_can_move) | theorem | counting | `SeedPerturbation` | tableFrom e r d ≠ 0 |
 | [`NyquistPeak.boundary_is_smooth_stationary_maximum`](./lean/NyquistPeak.md#NyquistPeak-boundary_is_smooth_stationary_maximum) | theorem | shape | `NyquistPeak` | Nyquist.nyquist (boundaryBase γ) = γ ∧ HasDerivAt (fun b : ℝ =&gt; gain d (γ * Real.log b)) 0 (boundaryBase γ) ∧ (∀ b : ℝ, gain d (γ * Real.log b) ≤ gain d (γ * Real.log (boundaryBase γ))) ∧ (∀ b : ℝ, \|R… |
+| [`ClosedLoopChain.boundary_is_two`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-boundary_is_two) | theorem | counting | `ClosedLoopChain` | B = 2 |
 | [`NyquistPeak.boundaryBase`](./lean/NyquistPeak.md#NyquistPeak-boundaryBase) | def | shape | `NyquistPeak` | ℝ |
 | [`NyquistPeak.boundaryBase_pos`](./lean/NyquistPeak.md#NyquistPeak-boundaryBase_pos) | theorem | shape | `NyquistPeak` | 0 &lt; boundaryBase γ |
 | [`WeilDetect.box_empty_of_positive_of_detect`](./lean_stage3/WeilDetect.md#WeilDetect-box_empty_of_positive_of_detect) | theorem | reads ζ | `WeilDetect` | OffLineBox ε T = ∅ |
@@ -411,6 +412,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`MainTerm.deriv_bdiffR`](./lean/MainTerm.md#MainTerm-deriv_bdiffR) | theorem | shape | `MainTerm` | deriv (bdiffR g) = bdiffR (deriv g) |
 | [`NyquistPeak.deriv_gain_pi`](./lean/NyquistPeak.md#NyquistPeak-deriv_gain_pi) | theorem | shape | `NyquistPeak` | deriv (gain d) Real.pi = 0 |
 | [`EdgeBound.deriv_zeta_conj`](./lean_stage3/EdgeBound.md#EdgeBound-deriv_zeta_conj) | theorem | reads ζ | `EdgeBound` | deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s) |
+| [`ClosedLoopChain.derive_critical_line`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_critical_line) | theorem | counting | `ClosedLoopChain` | (hf.J + hf.M) / 2 = 1 / 2 |
+| [`ClosedLoopChain.derive_joseph`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_joseph) | theorem | counting | `ClosedLoopChain` | hf.J = 1 / 3 |
+| [`ClosedLoopChain.derive_mary`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_mary) | theorem | counting | `ClosedLoopChain` | hf.M = 2 / 3 |
 | [`WeilPowerAssembly.detect_gap_exists`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-detect_gap_exists) | theorem | reads ζ | `WeilPowerAssembly` | ∃ L : ℝ, StmtDetectGap ε T δ L |
 | [`LeftSmooth.dgTerm`](./lean_stage3/LeftSmooth.md#LeftSmooth-dgTerm) | def | counting | `LeftSmooth` | ℝ |
 | [`LeftSmooth.dgTerm_nonneg`](./lean_stage3/LeftSmooth.md#LeftSmooth-dgTerm_nonneg) | theorem | counting | `LeftSmooth` | 0 ≤ dgTerm n |
@@ -589,6 +593,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`FilterAttained.finite_part_le`](./lean_stage3/FilterAttained.md#FilterAttained-finite_part_le) | theorem | reads ζ | `FilterAttained` | ‖∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros =&gt; σ ≤ (ρ : ℂ).re), LadderMean.coef ρ * ratio q a b M ρ ^ k‖ ≤ FilterLadder.Afl C * (b:ℝ) ^ 2 * (k:ℝ) ^ 2 * ((2:ℝ) ^ (σ * b) * FilterLadde… |
 | [`Stage3.floor_arith`](./lean_stage3/AssemblyFloor.md#Stage3-floor_arith) | theorem | shape | `AssemblyFloor` | A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 |
 | [`GateEval.floor_bound`](./lean_stage3/GateEval.md#GateEval-floor_bound) | theorem | shape | `GateEval` | 3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / ℓ ^ 2 + 18 * c1 / ((2:ℝ) ^ (36:ℕ) * (2:ℝ) ^ (18:ℕ)) + c3 / ((2:ℝ) ^ (18:ℕ) * ℓ) + c4 * (1 / (2:ℝ) ^ (9:ℕ)) / (2:ℝ) ^ (18:ℕ)) + 13 ≤ 414 |
+| [`ClosedLoopChain.floor_midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-floor_midpoint) | theorem | counting | `ClosedLoopChain` | ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1 |
 | [`Stage3.floorConst`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst) | def | shape | `AssemblyFloor` | ℝ |
 | [`Stage3.floorConst_nonneg`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst_nonneg) | theorem | shape | `AssemblyFloor` | 0 ≤ floorConst c₁ c₂ b₁ b₂ b₃ W x₀ |
 | [`Stage3.floorConstSplit`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def | shape | `GlueFloor` | ℝ |
@@ -637,6 +642,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`GateEval.gate_ineq`](./lean_stage3/GateEval.md#GateEval-gate_ineq) | theorem | shape | `GateEval` | 414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - 7) / 2)) &lt; Real.log 2 ^ 6 / (2 * r * 3 ^ 7) |
 | [`TableDepths.gate_ineq_gen`](./lean_stage3/TableDepths.md#TableDepths-gate_ineq_gen) | theorem | shape | `TableDepths` | 414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - ((d:ℝ) + 1)) / 2)) &lt; Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) |
 | [`CountEuler.Gc`](./lean_stage3/CountEuler.md#CountEuler-Gc) | def | shape | `CountEuler` | ℂ |
+| [`ClosedLoopChain.generalized_at_half`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalized_at_half) | theorem | shape | `ClosedLoopChain` | generalizedPrimeBeat N (1 / 2) t = primeBeat N t |
+| [`ClosedLoopChain.generalized_weight`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalized_weight) | theorem | counting | `ClosedLoopChain` | (p : ℝ) ^ (-σ) = primeWeight p σ |
+| [`ClosedLoopChain.generalizedPrimeBeat`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalizedPrimeBeat) | def | shape | `ClosedLoopChain` | ℝ |
 | [`Transform.generators_indep`](./lean/Transform.md#Transform-generators_indep) | theorem | shape | `Transform` | a = 0 ∧ c = 0 |
 | [`Transform.gens`](./lean/Transform.md#Transform-gens) | def | shape | `Transform` | Fin 2 → ℂ |
 | [`Transform.gens_linearIndependent`](./lean/Transform.md#Transform-gens_linearIndependent) | theorem | shape | `Transform` | LinearIndependent ℝ (gens b) |
@@ -719,6 +727,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`Expansion.hD_of_window`](./lean/Expansion.md#Expansion-hD_of_window) | theorem | shape | `Expansion` | ∀ y ∈ Icc ((r : ℝ) - (d + 1)) r, Nonvanishing.Mlow r d ≤ iteratedDeriv (d + 1) G y |
 | [`RHPull.holo_logDerivZeta_of_RH`](./lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | theorem | reads ζ | `LineBound` | HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) |
 | [`Stage3.holo_logDerivZeta_theta`](./lean_stage3/ThetaPsi.md#Stage3-holo_logDerivZeta_theta) | theorem | reads ζ | `ThetaPsi` | HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) |
+| [`ClosedLoopChain.HolyFamily`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-HolyFamily) | structure | counting | `ClosedLoopChain` | — |
+| [`ClosedLoopChain.holyFamily_force`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force) | theorem | counting | `ClosedLoopChain` | restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 |
+| [`ClosedLoopChain.holyFamily_is_mirror_pair`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_is_mirror_pair) | theorem | counting | `ClosedLoopChain` | hf.M = 1 - hf.J |
+| [`ClosedLoopChain.holyFamily_pair_area`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_pair_area) | theorem | shape | `ClosedLoopChain` | b ^ hf.J * b ^ hf.M = b |
 | [`PerronKernel.horiz_bound`](./lean_stage3/PerronKernel.md#PerronKernel-horiz_bound) | theorem | shape | `PerronKernel` | ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I) / ((σ : ℂ) + (T' : ℂ) * Complex.I)‖ ≤ max (y ^ a) (y ^ b) / (\|T'\| * \|Real.log y\|) |
 | [`RHPull.horiz_length`](./lean_stage3/LineBound.md#RHPull-horiz_length) | theorem | shape | `LineBound` | (1 + 1 / Real.log X) - σRH X = 1 / 2 |
 | [`Stage3.horiz_length_theta`](./lean_stage3/ThetaPsi.md#Stage3-horiz_length_theta) | theorem | shape | `ThetaPsi` | (1 + 1 / Real.log X) - σθ θ X = 1 - θ |
@@ -744,6 +756,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilTiles.idx`](./lean_stage3/WeilTiles.md#WeilTiles-idx) | def | shape | `WeilTiles` | ℕ |
 | [`WeilSeries.idx_le`](./lean_stage3/WeilSeries.md#WeilSeries-idx_le) | theorem | shape | `WeilSeries` | (idx γ : ℝ) ≤ γ |
 | [`WeilTiles.idx_spec`](./lean_stage3/WeilTiles.md#WeilTiles-idx_spec) | theorem | shape | `WeilTiles` | \|t - centre (idx t)\| ≤ 9 / 10 |
+| [`ClosedLoopChain.ignition_energy_is_half`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-ignition_energy_is_half) | theorem | counting | `ClosedLoopChain` | Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 |
 | [`LandauPrimeSide.Ik`](./lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik) | def | shape | `LandauPrimeSide` | ℝ |
 | [`LandauPrimeSide.Ik_integrable`](./lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik_integrable) | theorem | reads ζ | `LandauPrimeSide` | IntegrableOn (fun y : ℝ =&gt; LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1) |
 | [`LandauPrimeSide.Ik_le`](./lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik_le) | theorem | reads ζ | `LandauPrimeSide` | Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ - 1 - b') ^ (k + 1))) |
@@ -1067,6 +1080,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
 | [`FiniteOffLine.mem_ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem | reads ζ | `FiniteOffLine` | ρ ∈ ZF T ↔ \|(ρ : ℂ).im\| &lt; T |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
+| [`ClosedLoopChain.Midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-Midpoint) | def | counting | `ClosedLoopChain` | ℕ → ℚ |
+| [`ClosedLoopChain.midpoint_base_is_unique`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-midpoint_base_is_unique) | theorem | counting | `ClosedLoopChain` | B = 2 |
 | [`MirrorArea.mirror_area`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_area) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b |
 | [`SpiralLink.mirror_mem`](./lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) | theorem | reads ζ | `SpiralLink` | (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros |
 | [`SpiralLink.mirror_pair_area`](./lean_stage3/SpiralLink.md#SpiralLink-mirror_pair_area) | theorem | reads ζ | `SpiralLink` | ‖(b : ℂ) ^ (ρ : ℂ)‖ * ‖(b : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = b |
@@ -1408,6 +1423,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Measured.predicted_rank_11a1`](./lean/Measured.md#Measured-predicted_rank_11a1) | def | shape | `Measured` | ℝ |
 | [`Measured.predicted_rank_37a1`](./lean/Measured.md#Measured-predicted_rank_37a1) | def | shape | `Measured` | ℝ |
 | [`Measured.predicted_rank_389a1`](./lean/Measured.md#Measured-predicted_rank_389a1) | def | shape | `Measured` | ℝ |
+| [`ClosedLoopChain.primeBeat`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-primeBeat) | def | shape | `ClosedLoopChain` | ℝ |
+| [`ClosedLoopChain.primeBeatTerm`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-primeBeatTerm) | def | shape | `ClosedLoopChain` | ℝ |
+| [`ClosedLoopChain.primeBeatTerm_eq_im`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-primeBeatTerm_eq_im) | theorem | shape | `ClosedLoopChain` | primeBeatTerm t p = -(((p : ℝ) : ℂ) ^ (-((1 / 2 : ℂ) + (t : ℂ) * Complex.I))).im |
 | [`Elephant.primeCount_backward_diff`](./lean/Elephant.md#Elephant-primeCount_backward_diff) | theorem | shape | `Elephant` | ∑ m ∈ Finset.range (b ^ (r + 1) + 1), (primeIndicator m - (if b ∣ m then primeIndicator (m / b) else 0)) = (Nat.primeCounting (b ^ (r + 1)) : ℂ) - (Nat.primeCounting (b ^ r) : ℂ) |
 | [`Zeros.primeFactors_eq_of_meets`](./lean/ZerosStencil.md#Zeros-primeFactors_eq_of_meets) | theorem | counting | `ZerosStencil` | b.primeFactors = c.primeFactors |
 | [`Elephant.primeIndicator`](./lean/Elephant.md#Elephant-primeIndicator) | def | shape | `Elephant` | ℕ → ℂ |
@@ -1583,6 +1601,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CountModes.riemannZeta_ne_zero_of_Ioo`](./lean_stage3/CountModes.md#CountModes-riemannZeta_ne_zero_of_Ioo) | theorem | reads ζ | `CountModes` | riemannZeta (b : ℂ) ≠ 0 |
 | [`Stage3.routeConst`](./lean_stage3/RouteNum.md#Stage3-routeConst) | def | reads ζ | `RouteNum` | ℝ |
 | [`GateEval.routeConst_le`](./lean_stage3/GateEval.md#GateEval-routeConst_le) | theorem | reads ζ | `GateEval` | Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414 |
+| [`ClosedLoopChain.row_at_midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-row_at_midpoint) | theorem | counting | `ClosedLoopChain` | Nat.primeCounting ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = Nat.primeCounting (2 ^ n) |
 | [`FiniteOffLinePi.row_bound`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) | theorem | reads ζ | `FiniteOffLinePi` | ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r |
 | [`Isogeny.row_three_eq_triple`](./lean/Isogeny.md#Isogeny-row_three_eq_triple) | theorem | counting | `Isogeny` | rowN Q 3 r = rowN Q 1 (3 * r) + rowN Q 1 (3 * r + 1) + rowN Q 1 (3 * r + 2) |
 | [`Isogeny.row_two_eq_pair`](./lean/Isogeny.md#Isogeny-row_two_eq_pair) | theorem | counting | `Isogeny` | rowN Q 2 r = rowN Q 1 (2 * r) + rowN Q 1 (2 * r + 1) |
@@ -1661,6 +1680,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LeftKernel.series_side`](./lean_stage3/LeftKernel.md#LeftKernel-series_side) | theorem | reads ζ | `LeftKernel` | ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ … |
 | [`ExplicitTwo.series_side_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) | theorem | reads ζ | `ExplicitTwo` | ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ … |
 | [`CountEuler.setIntegral_lor_le`](./lean_stage3/CountEuler.md#CountEuler-setIntegral_lor_le) | theorem | shape | `CountEuler` | ∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / \|w.im\| |
+| [`ClosedLoopChain.sextic_lattice`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-sextic_lattice) | theorem | counting | `ClosedLoopChain` | p % 6 = 1 ∨ p % 6 = 5 |
 | [`DeepZeroBand.share`](./lean/DeepZeroBand.md#DeepZeroBand-share) | def | shape | `DeepZeroBand` | ℝ |
 | [`DeepZeroBand.share_15_6_neg`](./lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg) | theorem | shape | `DeepZeroBand` | share Zeros.dyadicRow 15 6 8 &lt; 0 |
 | [`DeepZeroBand.share_add`](./lean/DeepZeroBand.md#DeepZeroBand-share_add) | theorem | shape | `DeepZeroBand` | share P r d e + share C r d e = 1 |
@@ -1826,6 +1846,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaGrowth.stripRegion`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-stripRegion) | def | shape | `ZetaGrowth` | Set ℂ |
 | [`ZeroSquares.strips_le`](./lean_stage3/ZeroSquares.md#ZeroSquares-strips_le) | theorem | reads ζ | `ZeroSquares` | ∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u ≤ 3 * innerI X 1 T u |
 | [`ClosedLoopJoin.structural_contradiction`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-structural_contradiction) | theorem | shape | `ClosedLoopJoin` | restoringForce σ ≠ 0 ∧ ¬ isHermitianHandshake σ |
+| [`ClosedLoopChain.structural_ignition`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-structural_ignition) | theorem | counting | `ClosedLoopChain` | Midpoint n = (2 ^ n : ℚ) - 1 / 2 |
 | [`CountModes.sub_ofReal_ne_zero`](./lean_stage3/CountModes.md#CountModes-sub_ofReal_ne_zero) | theorem | shape | `CountModes` | w - (s : ℂ) ≠ 0 |
 | [`MollifiedMean.sum_b_sq_eq`](./lean_stage3/MollifiedMean.md#MollifiedMean-sum_b_sq_eq) | theorem | shape | `MollifiedMean` | ∑ n ∈ Icc 1 Y, b X N n ^ 2 * w n = ∑ n ∈ Icc X Y, (Mollified.coef X N n : ℝ) ^ 2 * w n |
 | [`LandauTrig.sum_block_ge`](./lean_stage3/LandauTrig.md#LandauTrig-sum_block_ge) | theorem | shape | `LandauTrig` | -(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n |

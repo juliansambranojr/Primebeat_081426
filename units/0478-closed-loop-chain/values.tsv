@@ -1,0 +1,22 @@
+key	value	source
+module_lines	212	wc -l lean_stage3/Stage3/ClosedLoopChain.lean
+theorems_proved	16	grep -c ^theorem lean_stage3/Stage3/ClosedLoopChain.lean
+defs	1	Midpoint; HolyFamily is a structure; primeBeatTerm, primeBeat and generalizedPrimeBeat are noncomputable defs
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ClosedLoopChain.lean
+pins	5	holyFamily_is_mirror_pair, holyFamily_pair_area, holyFamily_force, row_at_midpoint, primeBeatTerm_eq_im
+errors_first	4	the first lake build Stage3.ClosedLoopChain here
+builds	3	the builds here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8864	lake build (full Stage3), Build completed successfully
+jobs_module	8762	run/build.log, lake build Stage3.ClosedLoopChain
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j3	the rest of the closed loop, joined
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_join	476	unit 0476
+unit_link	477	unit 0477
+first_row	2	row_at_midpoint: 2 ≤ n
+force_num	5	holyFamily_force: 5/6
+force_den	6	holyFamily_force: 5/6
+prime_floor	3	primeBeat: lattice primes p > 3

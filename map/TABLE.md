@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>29 theorems counting,<br/>in 8 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>42 theorems counting,<br/>in 9 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>826 theorems shape,<br/>in 111 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>829 theorems shape,<br/>in 112 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -94,8 +94,8 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 133 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1077 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Counting** (green), 146 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1080 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 687 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
@@ -103,7 +103,7 @@ A file sits in the highest layer any of its theorems reaches; its box says how m
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 29 | 826 | 666 |
+| `lean_stage3/` | 42 | 829 | 666 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -283,6 +283,24 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 - [`Zeros.base_of_meets_two`](./lean/ZerosStencil.md#Zeros-base_of_meets_two) — `` ∃ i, b = 2 ^ i `` Only powers of two reach a dyadic window. If any positive power of `b` equals a power of 2, then `b` is itself a power of 2. So the ladders meeting base 2 are exactly `2, 4, 8, 16, …` and no others -- which is the general form of `window_exclusive_of_prime_ex
 - [`Zeros.factorization_proportional`](./lean/ZerosStencil.md#Zeros-factorization_proportional) — `` n * b.factorization p = m * c.factorization p `` Two ladders that meet have proportional exponents. If some power of `b` equals some power of `c`, then at every prime the two exponents stand in the ratio `m : n`. This is the "shared lineage" of `Commensurate-Ladders.md` § A2 in exact form -- not that `b` an
 - [`Zeros.primeFactors_eq_of_meets`](./lean/ZerosStencil.md#Zeros-primeFactors_eq_of_meets) — `` b.primeFactors = c.primeFactors `` And they are built from the same primes. Proportionality with both exponents nonzero forces the supports to agree, so ladders that meet are made of one prime set. Bases 2 and 3 meet nowhere above `x = 1` for exactly this reason -- there is no common ancestor 
+
+### [`ClosedLoopChain`](./lean_stage3/ClosedLoopChain.md) — 13
+
+ClosedLoopChain — block J3 of `lean_stage3/design/closedloop.md`. 2026-11-23. The rest of Julian's closed loop (`lean_primebeat/PrimeBeat/primebeat_closed_loop.lean`, Parts I, III, IV, V, VI) restated word for word in Stage 3 and joined, link by link, to the table and its mirror. Unit 0476 joined Parts VII, VIII, XI.
+
+- [`ClosedLoopChain.derive_joseph`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_joseph) — `` hf.J = 1 / 3 `` The support is one third.
+- [`ClosedLoopChain.derive_mary`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_mary) — `` hf.M = 2 / 3 `` The condition is two thirds.
+- [`ClosedLoopChain.derive_critical_line`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_critical_line) — `` (hf.J + hf.M) / 2 = 1 / 2 `` The critical line is the midpoint of the two.
+- [`ClosedLoopChain.holyFamily_is_mirror_pair`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_is_mirror_pair) — `` hf.M = 1 - hf.J `` JOIN. The two members of the Holy Family are a point and its mirror: the condition is one less the support.
+- [`ClosedLoopChain.holyFamily_force`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force) — `` restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 `` JOIN. The restoring force is the same at the support and at the condition: both are one sixth from one half.
+- [`ClosedLoopChain.structural_ignition`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-structural_ignition) — `` Midpoint n = (2 ^ n : ℚ) - 1 / 2 `` The midpoint of the `n`-th doubling is `2^n − 1/2`.
+- [`ClosedLoopChain.ignition_energy_is_half`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-ignition_energy_is_half) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 `` The offset from the integer below is one half at every doubling.
+- [`ClosedLoopChain.floor_midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-floor_midpoint) — `` ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1 `` The integer part of the midpoint of the `n`-th doubling is `2^n − 1`.
+- [`ClosedLoopChain.row_at_midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-row_at_midpoint) — `` Nat.primeCounting ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = Nat.primeCounting (2 ^ n) `` JOIN. From the second doubling on, the count of primes up to the midpoint is the table's row: the count of primes up to `2^n`.
+- [`ClosedLoopChain.boundary_is_two`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-boundary_is_two) — `` B = 2 `` The boundary constant is two.
+- [`ClosedLoopChain.midpoint_base_is_unique`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-midpoint_base_is_unique) — `` B = 2 `` The base of the midpoint recurrence is two.
+- [`ClosedLoopChain.sextic_lattice`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-sextic_lattice) — `` p % 6 = 1 ∨ p % 6 = 5 `` A prime above three is one or five modulo six.
+- [`ClosedLoopChain.generalized_weight`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalized_weight) — `` (p : ℝ) ^ (-σ) = primeWeight p σ `` JOIN. The weight of a prime in the general Beat is the handshake's weight.
 
 ### [`ClosedLoopJoin`](./lean_stage3/ClosedLoopJoin.md) — 2
 
