@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J6 of `design/closedloop.md`: `Stage3/ShareLink.lean`
+
+    DONE        `share_is_re`: the real part of a zero is the share of the
+                total its mode takes, on the multiplying scale.
+                `pair_shares_add`: a zero's share and its mirror's add to
+                one. `meet_sqrt_iff`: the mode is the square root of the
+                total exactly at one half. `swap_flips_residual`,
+                `spiralLink_iff_meet`; one unit
+    ASSUMED     Julian, 2026-11-23: "flip the table inside out and it becomes
+                a line". Written and built here
+    DEPENDS     `SpiralLink.mirrorZ_re`, `ClosedLoopJoin.rh_iff_re_half`
+    OUT         that the zeros' mirror is the table's swap
+    OUTCOME     proved, unit 0494
+
 ### 2026-11-23 · block R11 of `design/runs.md`: `Stage3/Compression.lean`
 
     DONE        `unique_new_prime`: a number up to `N` has at most one prime

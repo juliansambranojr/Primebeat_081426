@@ -23914,6 +23914,7 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ]
    },
@@ -55634,6 +55635,251 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ShareLink.lean",
+  "module": "Stage3.ShareLink",
+  "stem": "ShareLink",
+  "header": "ShareLink — block J6 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table flipped inside out. A cell's total `T` splits two ways. The primes and the composites split it by adding: `P + C = T`. A zero and its mirror split it by multiplying: their modes have sizes `T^β` and `T^(1−β)`, whose product is `T`. On the multiplying side the table is one line, the exponent from `0` to `1`, and the real part of a zero is the share of the total its mode takes there. The two meet in the middle exactly at one half, where…",
+  "imports": [
+   "Stage3.BandJoin"
+  ],
+  "opens": [
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "ShareLink"
+  ],
+  "lines": 114,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/BandJoin.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mode_size",
+    "ns": "ShareLink",
+    "full": "ShareLink.mode_size",
+    "line": 32,
+    "why": "A zero's mode. At the total `T` the mode of a zero has size `T` to the zero's real part.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(T : ℂ) ^ (ρ : ℂ)‖ = T ^ (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_sqrt_iff",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_is_re",
+    "ns": "ShareLink",
+    "full": "ShareLink.share_is_re",
+    "line": 38,
+    "why": "The real part is a share. On the multiplying scale, the share of the total `T` that a zero's mode takes is the zero's real part.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ = (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pair_shares_add",
+    "ns": "ShareLink",
+    "full": "ShareLink.pair_shares_add",
+    "line": 45,
+    "why": "The pair splits the total. The shares of a zero and of its mirror add to one, as the prime share and the composite share of a cell do.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ + Real.logb T ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = 1",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "add_shares_add",
+    "ns": "ShareLink",
+    "full": "ShareLink.add_shares_add",
+    "line": 52,
+    "why": "The adding split. Two parts of a total have shares that add to one.",
+    "sorry": false,
+    "needs": [
+     "hT : T ≠ 0",
+     "h : P + C = T"
+    ],
+    "proves": "P / T + C / T = 1",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.add_shares_add",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "meet_iff",
+    "ns": "ShareLink",
+    "full": "ShareLink.meet_iff",
+    "line": 57,
+    "why": "Meeting in the middle. A zero's mode and its mirror's are the same size exactly when the zero's real part is one half.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "meet_sqrt_iff",
+    "ns": "ShareLink",
+    "full": "ShareLink.meet_sqrt_iff",
+    "line": 71,
+    "why": "The middle is the square root. A zero's mode is the square root of the total exactly when the zero's real part is one half.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_sqrt_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "swap_flips_residual",
+    "ns": "ShareLink",
+    "full": "ShareLink.swap_flips_residual",
+    "line": 85,
+    "why": "The swap moves no mode. If the prime cell is a smooth part plus a residual, the composite cell is the rest of the total less the same residual.",
+    "sorry": false,
+    "needs": [
+     "hP : P = S + R",
+     "h : P + C = T"
+    ],
+    "proves": "C = (T - S) - R",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.swap_flips_residual",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_meet",
+    "ns": "ShareLink",
+    "full": "ShareLink.spiralLink_iff_meet",
+    "line": 91,
+    "why": "The loop, as the meeting. The spiral link holds exactly when every zero's mode and its mirror's are the same size at base two.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖",
+    "file": "lean_stage3/Stage3/ShareLink.lean",
+    "id": "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SieveExact.lean",
   "module": "Stage3.SieveExact",
   "stem": "SieveExact",
@@ -56599,6 +56845,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
@@ -56661,6 +56910,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two"
@@ -56795,6 +57046,7 @@
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
      "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
     ]
@@ -56847,7 +57099,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
-     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
     ]
    },
    {
@@ -88769,11 +89022,12 @@
    "Stage3.RateBelow",
    "Stage3.CompositeSplit",
    "Stage3.Compression",
-   "Stage3.StepsBelow"
+   "Stage3.StepsBelow",
+   "Stage3.ShareLink"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 196,
+  "lines": 197,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -88870,6 +89124,7 @@
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
    "lean_stage3/Stage3/SelfBound.lean",
+   "lean_stage3/Stage3/ShareLink.lean",
    "lean_stage3/Stage3/SieveExact.lean",
    "lean_stage3/Stage3/SieveResidual.lean",
    "lean_stage3/Stage3/SpiralLink.lean",

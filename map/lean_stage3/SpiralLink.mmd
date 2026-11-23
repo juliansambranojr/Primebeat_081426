@@ -10,8 +10,9 @@ flowchart LR
   n8["<b>spiralLink_iff_one</b><br/>SpiralLink ↔ OneAtEachHeight"]:::thm
   x0(["<b>WeilOnLine</b><br/>conj_mem"]):::ext
   x1(["<b>BandJoin</b><br/>spiralLink_iff_middle<br/>zero_pair"]):::ext
-  x2(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
-  x3(["<b>OneChain</b><br/>one_chain"]):::ext
+  x2(["<b>ShareLink</b><br/>meet_iff<br/>pair_shares_add<br/>spiralLink_iff_meet"]):::ext
+  x3(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
+  x4(["<b>OneChain</b><br/>one_chain"]):::ext
   n1 --> n3
   n1 --> n5
   n1 --> n7
@@ -22,13 +23,15 @@ flowchart LR
   n3 --> n7
   n7 --> n8
   n2 -.-> x1
+  n2 -.-> x2
   n6 -.-> x1
-  n6 -.-> x3
-  n8 -.-> x3
+  n6 -.-> x2
+  n6 -.-> x4
+  n8 -.-> x4
   x0 -.-> n0
-  x2 -.-> n5
-  x2 -.-> n6
-  x2 -.-> n7
+  x3 -.-> n5
+  x3 -.-> n6
+  x3 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

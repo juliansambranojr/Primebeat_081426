@@ -185,6 +185,7 @@ import Stage3.RateBelow
 import Stage3.CompositeSplit
 import Stage3.Compression
 import Stage3.StepsBelow
+import Stage3.ShareLink
 
 namespace Stage3
 

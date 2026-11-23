@@ -31,6 +31,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.abs_theta_sub_le_linear`](./lean_stage3/PsiToPi.md#Stage3-abs_theta_sub_le_linear) | theorem | shape | `PsiToPi` | \|θ t - t\| ≤ (1 + Real.log 4) * t |
 | [`PiFixedRow.abs_wd_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-abs_wd_le) | theorem | shape | `PiFixedRow` | \|wd t\| ≤ 4 |
 | [`Stage3.abscissa_gives_power`](./lean_stage3/Abscissa.md#Stage3-abscissa_gives_power) | theorem | shape | `Abscissa` | K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ |
+| [`ShareLink.add_shares_add`](./lean_stage3/ShareLink.md#ShareLink-add_shares_add) | theorem | counting | `ShareLink` | P / T + C / T = 1 |
 | [`Stage3.add_zq_ne_zero`](./lean_stage3/Stirling.md#Stage3-add_zq_ne_zero) | theorem | shape | `Stirling` | (n : ℂ) + zq t ≠ 0 |
 | [`FilterLadder.Afl`](./lean_stage3/FilterLadder.md#FilterLadder-Afl) | def | reads ζ | `FilterLadder` | ℝ |
 | [`Measured.agreement_elliptic`](./lean/Measured.md#Measured-agreement_elliptic) | theorem | shape | `Measured` | measured_elliptic_max_dev &lt; 1e-15 |
@@ -1114,6 +1115,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Construction.measured_zeros`](./lean/Construction.md#Construction-measured_zeros) | def | counting | `Construction` | List (ℕ × ℕ) |
 | [`Zeros.measured_zeros`](./lean/Zeros.md#Zeros-measured_zeros) | def | counting | `Zeros` | List (ℕ × ℕ) |
 | [`Zeros.measured_zeros_all_vanish`](./lean/Zeros.md#Zeros-measured_zeros_all_vanish) | theorem | counting | `Zeros` | ∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ) c.2 = 0 |
+| [`ShareLink.meet_iff`](./lean_stage3/ShareLink.md#ShareLink-meet_iff) | theorem | reads ζ | `ShareLink` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = 1 / 2 |
+| [`ShareLink.meet_sqrt_iff`](./lean_stage3/ShareLink.md#ShareLink-meet_sqrt_iff) | theorem | shape | `ShareLink` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2 |
 | [`RHPull.mellin_bump_bounded`](./lean_stage3/LineBound.md#RHPull-mellin_bump_bounded) | theorem | shape | `LineBound` | ∃ B &gt; 0, ∀ w : ℂ, 0 &lt; w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B |
 | [`JointSymbol.mellin_dd`](./lean_stage3/JointSymbol.md#JointSymbol-mellin_dd) | theorem | shape | `JointSymbol` | (∀ y : ℝ, y ≤ 1 → dd f y = 0) ∧ IntegrableOn (fun y : ℝ =&gt; dd f y * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧ ∫ y in Ioi (1 : ℝ), dd f y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ) ^ (-s)) * ∫ y in Ioi (1 : ℝ), f y * (y … |
 | [`JointSymbol.mellin_dd_iter`](./lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter) | theorem | reads ζ | `JointSymbol` | ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s |
@@ -1163,6 +1166,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TransferOp.mode_ne_zero`](./lean/TransferOp.md#TransferOp-mode_ne_zero) | theorem | shape | `TransferOp` | mode b ρ ≠ 0 |
 | [`TransferOp.mode_ne_zero'`](./lean/TransferOp.md#TransferOp-mode_ne_zero-) | theorem | shape | `TransferOp` | mode b ρ r ≠ 0 |
 | [`TransferOp.mode_pow`](./lean/TransferOp.md#TransferOp-mode_pow) | theorem | shape | `TransferOp` | (bdiffL ^ N) (mode b ρ) = (Sym b ρ) ^ N • mode b ρ |
+| [`ShareLink.mode_size`](./lean_stage3/ShareLink.md#ShareLink-mode_size) | theorem | shape | `ShareLink` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = T ^ (ρ : ℂ).re |
 | [`CellModes.mode_two_int`](./lean_stage3/CellModes.md#CellModes-mode_two_int) | theorem | shape | `CellModes` | Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r |
 | [`Superposition.modeSum`](./lean/Superposition.md#Superposition-modeSum) | def | shape | `Superposition` | ℂ → ℂ |
 | [`WeilWindow.mul_sinh_ge`](./lean_stage3/WeilWindow.md#WeilWindow-mul_sinh_ge) | theorem | shape | `WeilWindow` | s * x ^ 2 ≤ x * Real.sinh (s * x) |
@@ -1424,6 +1428,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerPhase.P_tendsto`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-P_tendsto) | theorem | shape | `WeilPowerPhase` | Tendsto (fun n =&gt; Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) atTop (𝓝 (P m w)) |
 | [`Transform.pair_collapses_iff_critical`](./lean/Transform.md#Transform-pair_collapses_iff_critical) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2 |
 | [`PairIdentity.pair_identity`](./lean/PairIdentity.md#PairIdentity-pair_identity) | theorem | counting | `PairIdentity` | tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e |
+| [`ShareLink.pair_shares_add`](./lean_stage3/ShareLink.md#ShareLink-pair_shares_add) | theorem | reads ζ | `ShareLink` | Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ + Real.logb T ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = 1 |
 | [`Zeros.pair_shares_diagonal`](./lean/Zeros.md#Zeros-pair_shares_diagonal) | theorem | counting | `Zeros` | (r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ) |
 | [`ZeroCells.pairIdentity_all_vanish`](./lean/ZeroCells.md#ZeroCells-pairIdentity_all_vanish) | theorem | counting | `ZeroCells` | ∀ c ∈ PairIdentity.zero_cells, Construction.tableFrom Zeros.dyadicRow (c.1 : ℤ) c.2 = 0 |
 | [`ZeroCells.pairIdentity_eq`](./lean/ZeroCells.md#ZeroCells-pairIdentity_eq) | theorem | counting | `ZeroCells` | PairIdentity.zero_cells = Zeros.measured_zeros |
@@ -1797,6 +1802,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DeepZeroBand.share_add`](./lean/DeepZeroBand.md#DeepZeroBand-share_add) | theorem | shape | `DeepZeroBand` | share P r d e + share C r d e = 1 |
 | [`DeepZeroBand.share_eq_iff_half`](./lean/DeepZeroBand.md#DeepZeroBand-share_eq_iff_half) | theorem | shape | `DeepZeroBand` | share P r d e = share C r d e ↔ share P r d e = 1 / 2 |
 | [`DeepZeroBand.share_in_band`](./lean/DeepZeroBand.md#DeepZeroBand-share_in_band) | theorem | shape | `DeepZeroBand` | 0 ≤ (P : ℝ) / 2 ^ e ∧ (P : ℝ) / 2 ^ e ≤ 1 |
+| [`ShareLink.share_is_re`](./lean_stage3/ShareLink.md#ShareLink-share_is_re) | theorem | shape | `ShareLink` | Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ = (ρ : ℂ).re |
 | [`DeepZeroBand.share_mirror`](./lean/DeepZeroBand.md#DeepZeroBand-share_mirror) | theorem | shape | `DeepZeroBand` | share C r d e = 1 - share P r d e |
 | [`DeepZeroBand.share_on_middle_circle_iff`](./lean/DeepZeroBand.md#DeepZeroBand-share_on_middle_circle_iff) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-(x : ℂ))‖ = b ^ (-(1 : ℝ) / 2) ↔ x = 1 / 2 |
 | [`BandJoin.share_pair`](./lean_stage3/BandJoin.md#BandJoin-share_pair) | theorem | shape | `BandJoin` | bandR (P / tot) * bandR (C / tot) = 1 / 2 |
@@ -1857,6 +1863,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SieveExact.smoothPart_eq_prod`](./lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) | theorem | counting | `SieveExact` | smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) |
 | [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
 | [`OneChain.spiralLink_iff_cells`](./lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ |
+| [`ShareLink.spiralLink_iff_meet`](./lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) | theorem | reads ζ | `ShareLink` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ |
 | [`BandJoin.spiralLink_iff_middle`](./lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) | theorem | reads ζ | `BandJoin` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) |
 | [`SpiralLink.spiralLink_iff_one`](./lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) | theorem | reads ζ | `SpiralLink` | SpiralLink ↔ OneAtEachHeight |
 | [`HalfSieve.spiralLink_iff_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) | theorem | reads ζ | `HalfSieve` | SpiralLink.SpiralLink ↔ WobbleSqrt |
@@ -2059,6 +2066,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Elephant.summatory_sym`](./lean/Elephant.md#Elephant-summatory_sym) | theorem | shape | `Elephant` | ∑ m ∈ Finset.range (x + 1), (a m - (if b ∣ m then a (m / b) else 0)) = (∑ m ∈ Finset.range (x + 1), a m) - ∑ k ∈ Finset.range (x / b + 1), a k |
 | [`SieveExact.survivors`](./lean_stage3/SieveExact.md#SieveExact-survivors) | def | counting | `SieveExact` | Finset ℕ |
 | [`SieveExact.survivors_eq`](./lean_stage3/SieveExact.md#SieveExact-survivors_eq) | theorem | counting | `SieveExact` | survivors N = insert 1 ((Finset.Icc 1 N).filter (fun n =&gt; Nat.Prime n ∧ Nat.sqrt N &lt; n)) |
+| [`ShareLink.swap_flips_residual`](./lean_stage3/ShareLink.md#ShareLink-swap_flips_residual) | theorem | counting | `ShareLink` | C = (T - S) - R |
 | [`Chain.Sym`](./lean/Chain.md#Chain-Sym) | def | shape | `Chain` | ℂ |
 | [`Elephant.Sym`](./lean/Elephant.md#Elephant-Sym) | def | shape | `Elephant` | ℂ |
 | [`EulerFactorChain.sym`](./lean/EulerFactorChain.md#EulerFactorChain-sym) | def | shape | `EulerFactorChain` | ℂ |

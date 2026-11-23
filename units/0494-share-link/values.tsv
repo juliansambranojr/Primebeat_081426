@@ -1,0 +1,17 @@
+key	value	source
+module_lines	113	wc -l lean_stage3/Stage3/ShareLink.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/ShareLink.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ShareLink.lean
+pins	4	share_is_re, pair_shares_add, meet_sqrt_iff, spiralLink_iff_meet
+errors_first	0	the first lake build Stage3.ShareLink here
+builds	1	the build here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8879	lake build (full Stage3), Build completed successfully
+jobs_module	8841	run/build.log, lake build Stage3.ShareLink
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j6	the table inside out
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_band	488	unit 0488

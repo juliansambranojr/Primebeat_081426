@@ -7,7 +7,7 @@ BandJoin — block J5 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ban
 12 theorems, 1 definition, 134 lines. 
 
 **Imports:** [`HalfSieve`](../lean_stage3/HalfSieve.md), [`StepsRate`](../lean_stage3/StepsRate.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ShareLink`](../lean_stage3/ShareLink.md)
 
 ## The picture
 

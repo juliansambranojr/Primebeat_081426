@@ -119,4 +119,29 @@ carries a share and the real part of a zero alike:
 The share of a cell and the real part of a zero are still two numbers. The
 join is that the band, its mirror and its middle are the same for both.
 
+## J6 The table inside out — `Stage3/ShareLink.lean`
+
+Julian, 2026-11-23: flip the table inside out and it becomes a line, half
+prime table and half composite, meeting in the middle. His paper *Silenced
+Difference Tables and the Prime-Composite Butterfly* (`lean_primebeat/notebook`)
+holds the partition identity and the regime that is neither prime nor composite.
+
+A cell's total `T` splits by adding, `P + C = T`, and by multiplying:
+`‖T^ρ‖ = T^β`, `‖T^(mirror ρ)‖ = T^(1−β)`, product `T`
+(`SpiralLink.mirror_pair_area`). On the multiplying scale the share of a mode
+is `logb T ‖T^ρ‖ = β`. This is the identification J5 left open: the real part
+of a zero is a share of the total.
+
+- `mode_size`, `share_is_re`, `pair_shares_add`, `add_shares_add`.
+- `meet_iff`, `meet_sqrt_iff`: the pair is the same size exactly at one half,
+  where each is `√T`.
+- `swap_flips_residual`: the table's swap changes the sign of the residual and
+  moves no mode.
+- `spiralLink_iff_meet`.
+
+The need, in this form: the zeros' mirror is the table's swap. The swap fixes
+every mode; the zeros' mirror keeps the height and reflects the real part. On
+the adding side the split is uneven (the prime share of a rung is near
+`1/(r·log 2)`). Nothing here forces the multiplying split to be even.
+
 **Not here.** `SpiralLink` with no hypothesis.
