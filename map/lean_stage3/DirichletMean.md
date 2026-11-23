@@ -5,7 +5,7 @@ DirichletMean — block C1 of `lean_stage3/design/carlson.md`. 2026-11-23. An el
 13 theorems, 0 definitions, 350 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DirichletMeanW`](../lean_stage3/DirichletMeanW.md)
 
 ## The picture
 
@@ -24,6 +24,7 @@ flowchart LR
   n10["<b>dirichlet_mean_value_window</b><br/>∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex…"]:::shp
   n11["<b>dirichlet_mean_value</b><br/>∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Compl…"]:::shp
   n12["<b>dirichlet_mean_value_sigma ■</b><br/>∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : …"]:::shp
+  x0(["<b>DirichletMeanW</b><br/>dirichlet_mean_value_weighted"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n11
@@ -36,6 +37,10 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
+  n2 -.-> x0
+  n3 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -130,9 +135,10 @@ line 73
 
   - [`DirichletMean.sq_norm_sum_eq`](#DirichletMean-sq_norm_sum_eq) — `` ((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * Complex.exp (C… ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DirichletMean.dirichlet_mean_value_window`](#DirichletMean-dirichlet_mean_value_window) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a … ``
+  - [`DirichletMeanW.dirichlet_mean_value_weighted`](../lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) (DirichletMeanW) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real… ``
 
 <a name="DirichletMean-norm_integral_exp_le"></a>
 ### `DirichletMean.norm_integral_exp_le`
@@ -156,9 +162,10 @@ line 89
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DirichletMean.dirichlet_mean_value_window`](#DirichletMean-dirichlet_mean_value_window) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a … ``
+  - [`DirichletMeanW.dirichlet_mean_value_weighted`](../lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) (DirichletMeanW) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real… ``
 
 <a name="DirichletMean-log_gap"></a>
 ### `DirichletMean.log_gap`
@@ -265,9 +272,10 @@ line 159
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DirichletMean.sum_inv_dist_le`](#DirichletMean-sum_inv_dist_le) — `` ∑ n ∈ Icc 1 N, (if m = n then 0 else |(m : ℝ) - n|⁻¹) ≤ 2 * (1 + Real.log N) ``
+  - [`DirichletMeanW.dirichlet_mean_value_weighted`](../lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) (DirichletMeanW) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real… ``
 
 <a name="DirichletMean-sum_inv_dist_le"></a>
 ### `DirichletMean.sum_inv_dist_le`
@@ -293,9 +301,10 @@ line 166
   - [`DirichletMean.sum_inv_Icc_le`](#DirichletMean-sum_inv_Icc_le) — `` ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ≤ 1 + Real.log N ``
   - [`DirichletMean.sum_inv_le_harmonic`](#DirichletMean-sum_inv_le_harmonic) — `` ∑ n ∈ s, ((g n : ℕ) : ℝ)⁻¹ ≤ ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DirichletMean.dirichlet_mean_value_window`](#DirichletMean-dirichlet_mean_value_window) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a … ``
+  - [`DirichletMeanW.dirichlet_mean_value_weighted`](../lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) (DirichletMeanW) — `` ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real… ``
 
 <a name="DirichletMean-sum_mul_mul_le"></a>
 ### `DirichletMean.sum_mul_mul_le`

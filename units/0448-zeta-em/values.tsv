@@ -1,0 +1,17 @@
+key	value	source
+module_lines	515	wc -l lean_stage3/Stage3/ZetaEM.lean
+theorems_proved	20	grep -c ^theorem lean_stage3/Stage3/ZetaEM.lean
+defs	7	emInt, emCoef, emTerm, emBoundary, emRem, bernBound, emConst
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ZetaEM.lean
+pins	3	zeta_eq_em, norm_remainder_le, norm_zeta_sub_partial_le
+errors_first	1	the worker's first lake build Stage3.ZetaEM, as it reported
+builds	3	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8840	lake build (full Stage3), Build completed successfully
+jobs_module	8675	run/build.log, lake build Stage3.ZetaEM
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c3	zeta as a finite sum to any order
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+order_min	2	norm_zeta_sub_partial_le, the hypothesis on k

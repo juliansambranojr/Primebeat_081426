@@ -31,6 +31,18 @@ Diagonal `T·Σ|a_n|²`. Off the diagonal `|∫ e^(−itθ)| ≤ 2/|θ|`,
 `|log m − log n| ≥ |m − n|/N`, harmonic sum. Elementary; the sharper form
 without the logarithm is not needed.
 
+### C1b The same with each term charged its own index — being built (decision: unit 0449)
+
+C1 charges the length `N` to every term. In C4 the sum has length `N·X` and
+coefficients that decay, and the uniform charge gives `N·X^(2−2u)`, above `T`
+at every `u`. Wanted:
+
+    ∫ |Σ_{n ≤ N} a_n·n^(−it)|² dt ≤ Σ |a_n|²·((T₂ − T₁) + c·n·(1 + log N)).
+
+Weighted Schur test with weights `1/n`: the row cost of `m` is
+`m·Σ_{n ≠ m} K(m,n)/n ≤ 6m(1 + log N)`, from
+`log(larger) − log(smaller) ≥ (larger − smaller)/larger`.
+
 ### C2 The mollified finite sum — PROVED (unit 0447: `Mollified.prod_eq_sum`, `coef_eq_zero`, `sum_coef_sq_le`, `sum_coef_sq_weighted_le`)
 
 `P_N(s) = Σ_{n ≤ N} n^(−s)`. `P_N·M_X = Σ_n c_n·n^(−s)`,
@@ -42,7 +54,12 @@ is allowed and `c_n = [n = 1]`. For all `n`, `|c_n| ≤ #{d | n, d < X}`, and
 by `1/lcm = gcd/(d₁d₂)` and summing over the gcd. No multiplicativity of the
 divisor function is used.
 
-### C3 ζ as a finite sum to any order
+### C2b The coefficients weighted upward — inside C4's file
+
+`Σ_{n ≤ Y} c_n²·n^(1−2u) ≤ C·(1 + log X)³·(1 + log Y)·Y^(max(2−2u, 0))`, by dyadic
+blocks and `Mollified.sum_coef_sq_le`. This is what C1b's `n`-term meets.
+
+### C3 ζ as a finite sum to any order — PROVED (unit 0448: `ZetaEM.zeta_eq_em`, `norm_remainder_le`, `norm_zeta_sub_partial_le`), every order by induction
 
 For `Re s ≥ 1/2`, `|Im s| ≤ T` and `N ≥ T^(1+ε)`:
 
