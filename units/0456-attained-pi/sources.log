@@ -1,0 +1,65 @@
+# check_prose_source.py  2026-11-23T02:23:06Z
+# unit: 0456-attained-pi
+# sources searched: 420
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25972
+  theorem attained_off_line_pi (ρ₀ : Kadiri.NontrivialZeros)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25973
+  (hmax : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re) (C : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25974
+  (hrows : ∀ᶠ r : ℕ in Filter.atTop,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23637
+  |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)|
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20228
+  ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1689
+  theorem fin_bound {Θ θ₁ C M ε : ℝ} (hΘ : 1 / 2 < Θ) (hθ₁ : 1 / 2 ≤ θ₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1690
+  (hmax : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≤ Θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1691
+  (hM : ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, Θ ≤ (ρ : ℂ).re) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1693
+  (hband : ∀ F : Finset NontrivialZeros, (∀ ρ ∈ F, θ₁ < (ρ : ℂ).re ∧ (ρ : ℂ).re < Θ) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1694
+  ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ ε)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:430
+  (hrow : |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)|
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20228
+  ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1698
+  ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1699
+  ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1994
+  theorem band_small {Θ : ℝ} (hΘ : 1 / 2 < Θ) {ε : ℝ} (hε : 0 < ε) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1995
+  ∃ η : ℝ, 0 < η ∧ η ≤ (Θ - 1 / 2) / 2 ∧ ∀ F : Finset NontrivialZeros,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1996
+  (∀ ρ ∈ F, Θ - η < (ρ : ℂ).re ∧ (ρ : ℂ).re < Θ) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1997
+  ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ ε :=
+
+# 20 found, 0 missing

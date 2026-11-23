@@ -5,7 +5,7 @@ LadderMean — block J10c of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 4 theorems, 2 definitions, 230 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LadderFading`](../lean_stage3/LadderFading.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)
 
 ## The picture
 
@@ -14,13 +14,15 @@ flowchart LR
   n0["<b>geom_mean_norm_le</b><br/>‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1"]:::shp
   n1["<b>geom_mean_tendsto_zero</b><br/>Tendsto (fun N : ℕ =＞ ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) at…"]:::shp
   n2["<b>mean_extract</b><br/>∑' i, (if w i = w k then C i else 0) = 0"]:::shp
-  n3["<b>line_not_fading_summable ■</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Ka…"]:::thm
+  n3["<b>line_not_fading_summable</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Ka…"]:::thm
   x0(["<b>AliasClass</b><br/>re_order_div_pos<br/>zero_re_pos"]):::ext
   x1(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   x2(["<b>LadderFading</b><br/>one_sub_inv_ne_zero"]):::ext
+  x3(["<b>AttainedPi</b><br/>attained_off_line_pi"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
+  n3 -.-> x3
   x0 -.-> n3
   x1 -.-> n3
   x2 -.-> n3
@@ -46,7 +48,7 @@ def · line 122
 The coefficient a zero carries in the cell: its multiplicity over the zero.
 
 - **Is:** `` coef (ρ : Kadiri.NontrivialZeros) : ℂ := (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ``
-- **Used by 3:** [`LadderMean.line_not_fading_summable`](#LadderMean-line_not_fading_summable), [`ZeroSummable.norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-norm_coef), [`ZeroSummable.summable_norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef)
+- **Used by 12:** [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi), [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`AttainedPi.norm_tailTerm_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le), [`AttainedPi.norm_term`](../lean_stage3/AttainedPi.md#AttainedPi-norm_term), [`AttainedPi.summable_line`](../lean_stage3/AttainedPi.md#AttainedPi-summable_line), [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail), [`AttainedPi.term`](../lean_stage3/AttainedPi.md#AttainedPi-term), [`AttainedPi.tsum_split`](../lean_stage3/AttainedPi.md#AttainedPi-tsum_split), [`LadderMean.line_not_fading_summable`](#LadderMean-line_not_fading_summable), [`ZeroSummable.norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-norm_coef), [`ZeroSummable.summable_norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef)
 
 <a name="LadderMean-zOf"></a>
 ### `LadderMean.zOf`
@@ -181,5 +183,7 @@ line 132
 
 **Definitions its proof touches:** [`LadderMean.zOf`](#LadderMean-zOf)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
 

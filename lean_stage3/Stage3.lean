@@ -153,6 +153,7 @@ import Stage3.SquareMean
 import Stage3.ZeroSquares
 import Stage3.ZeroDensity
 import Stage3.ZeroSummable
+import Stage3.AttainedPi
 
 namespace Stage3
 

@@ -94,7 +94,7 @@ This stands in for Littlewood's lemma; no logarithm of `f` appears.
 `(1 + ε + a)(2 − 2u)` are below one on `u ≥ σ − r` for small `a`, `ε`. Then
 dyadic blocks in `T` give `Σ_{Re ρ ≥ σ} m(ρ)/|ρ| < ∞`.
 
-### C7 Joint 10 when the largest real part is attained
+### C7 Joint 10 when the largest real part is attained — PROVED on the count (unit 0456: `AttainedPi.attained_off_line_pi`)
 
 With C6, `LadderMean.line_not_fading_summable` and the splitting of unit 0431:
 the top line is a summable sum of modes; the zeros with real part within `η`

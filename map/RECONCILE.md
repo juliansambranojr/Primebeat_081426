@@ -34,7 +34,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (504)
+## Uses Lean records that the text does not show (533)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -119,6 +119,35 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.rvM_of_sFromLocal`](lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) | [`Stage3.phaseTheta`](lean_stage3/Stirling.md#Stage3-phaseTheta) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtExplicitFormulaPoly`](lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
+| [`AttainedPi.norm_ipart_le_of_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_ipart_le_of_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) | [`FiniteOffLinePi.norm_integrand`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) | theorem |
+| [`AttainedPi.norm_log_ipart_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_ipart_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_log_piMode_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_log_piMode_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) | [`FiniteOffLinePi.piMode_eq`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) | theorem |
+| [`AttainedPi.slack_isLittleO`](lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO) | [`PiRemainder.Arem`](lean_stage3/PiRemainder.md#PiRemainder-Arem) | def |
+| [`AttainedPi.slack_isLittleO`](lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.cpow_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.norm_order_mul`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ordR_nonneg`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.piMode_eq`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.rpow_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rpow_doubling) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.sqrt_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-sqrt_doubling) | theorem |
+| [`AttainedPi.band_small`](lean_stage3/AttainedPi.md#AttainedPi-band_small) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_eventually`](lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_eventually`](lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
+| [`AttainedPi.norm_term`](lean_stage3/AttainedPi.md#AttainedPi-norm_term) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.norm_tailTerm_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
+| [`AttainedPi.norm_tailTerm_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`AttainedPi.summable_line`](lean_stage3/AttainedPi.md#AttainedPi-summable_line) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.tsum_split`](lean_stage3/AttainedPi.md#AttainedPi-tsum_split) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`AttainedPi.lineSet`](lean_stage3/AttainedPi.md#AttainedPi-lineSet) | def |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`LadderMean.coef`](lean_stage3/LadderMean.md#LadderMean-coef) | def |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.tailTerm`](lean_stage3/AttainedPi.md#AttainedPi-tailTerm) | def |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
 | [`CellBdiff.stencil_eq_bdiff_iter`](lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter) | [`CellBdiff.bdZ`](lean_stage3/CellBdiff.md#CellBdiff-bdZ) | def |
 | [`CellBdiff.cell_eq_modeSum_bdiff`](lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) | [`CellZeros.stencil`](lean_stage3/CellZeros.md#CellZeros-stencil) | def |
 | [`CellResidual.cellResid`](lean_stage3/CellResidual.md#CellResidual-cellResid) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |

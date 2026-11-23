@@ -5,7 +5,7 @@ FiniteOffLinePi — block J10e of `lean_stage3/design/joints.md`. 2026-11-23. Th
 13 theorems, 3 definitions, 631 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md), [`LadderFading`](../lean_stage3/LadderFading.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md)
 
 ## The picture
 
@@ -24,13 +24,14 @@ flowchart LR
   n10["<b>rowBound_isLittleO</b><br/>(fun r : ℕ =＞ rowBound F S β C r) =o[atTop] fun r : ℕ =＞ ((2:ℝ) …"]:::thm
   n11["<b>row_bound</b><br/>‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ :…"]:::thm
   n12["<b>finite_off_line_pi ■</b><br/>RiemannHypothesis"]:::thm
-  x0(["<b>PiZeros</b><br/>4 theorems"]):::ext
-  x1(["<b>CellZeros</b><br/>cpow_two_zpow"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
-  x3(["<b>PiRemainder</b><br/>4 theorems"]):::ext
-  x4(["<b>CellModes</b><br/>mode_two_int"]):::ext
-  x5(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x0(["<b>AttainedPi</b><br/>fin_bound<br/>norm_ipart_le_of_le<br/>norm_log_piMode_le"]):::ext
+  x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
+  x2(["<b>CellZeros</b><br/>cpow_two_zpow"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
+  x4(["<b>PiRemainder</b><br/>4 theorems"]):::ext
+  x5(["<b>CellModes</b><br/>mode_two_int"]):::ext
+  x6(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x7(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n11
   n0 --> n3
   n1 --> n2
@@ -46,16 +47,23 @@ flowchart LR
   n7 --> n11
   n8 --> n11
   n9 --> n11
-  x0 -.-> n11
-  x0 -.-> n2
-  x1 -.-> n7
-  x2 -.-> n12
-  x2 -.-> n8
-  x2 -.-> n9
-  x3 -.-> n11
-  x4 -.-> n12
+  n0 -.-> x0
+  n1 -.-> x0
+  n5 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
+  n9 -.-> x0
+  x1 -.-> n11
+  x1 -.-> n2
+  x2 -.-> n7
+  x3 -.-> n12
+  x3 -.-> n8
+  x3 -.-> n9
+  x4 -.-> n11
   x5 -.-> n12
   x6 -.-> n12
+  x7 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -79,7 +87,7 @@ The integral in one zero's part of the count.
 
 - **Is:** `` ipart (ρ : ℂ) (x : ℝ) : ℂ := ∫ t in (2:ℝ)..x, (t : ℂ) ^ ρ / ρ * wt t ``
 - **Built from:** [`PiZeros.wt`](../lean_stage3/PiZeros.md#PiZeros-wt)
-- **Used by 4:** [`FiniteOffLinePi.norm_ipart_le`](#FiniteOffLinePi-norm_ipart_le), [`FiniteOffLinePi.norm_piMode_le`](#FiniteOffLinePi-norm_piMode_le), [`FiniteOffLinePi.piMode_eq`](#FiniteOffLinePi-piMode_eq), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
+- **Used by 8:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_ipart_le_of_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le), [`AttainedPi.norm_log_ipart_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_ipart_le), [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le), [`FiniteOffLinePi.norm_ipart_le`](#FiniteOffLinePi-norm_ipart_le), [`FiniteOffLinePi.norm_piMode_le`](#FiniteOffLinePi-norm_piMode_le), [`FiniteOffLinePi.piMode_eq`](#FiniteOffLinePi-piMode_eq), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
 
 <a name="FiniteOffLinePi-ordR"></a>
 ### `FiniteOffLinePi.ordR`
@@ -89,7 +97,7 @@ def · line 250
 The order of a zero, as a real number.
 
 - **Is:** `` ordR (ρ : NontrivialZeros) : ℝ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
-- **Used by 5:** [`FiniteOffLinePi.norm_order_mul`](#FiniteOffLinePi-norm_order_mul), [`FiniteOffLinePi.ordR_nonneg`](#FiniteOffLinePi-ordR_nonneg), [`FiniteOffLinePi.rowBound`](#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
+- **Used by 8:** [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small), [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`FiniteOffLinePi.norm_order_mul`](#FiniteOffLinePi-norm_order_mul), [`FiniteOffLinePi.ordR_nonneg`](#FiniteOffLinePi-ordR_nonneg), [`FiniteOffLinePi.rowBound`](#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound)
 
 <a name="FiniteOffLinePi-rowBound"></a>
 ### `FiniteOffLinePi.rowBound`
@@ -128,8 +136,10 @@ piMode ρ x = (x : ℂ) ^ ρ / ρ / (Real.log x : ℂ) + ipart ρ x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) (AttainedPi) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (x ^ ρ.re + 3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
   - [`FiniteOffLinePi.norm_piMode_le`](#FiniteOffLinePi-norm_piMode_le) — `` ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * ((1 + 4 / ρ.re) * x ^ ρ.re + 3 * Real.sqrt x) ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
@@ -157,8 +167,9 @@ line 57
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.norm_ipart_le_of_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) (AttainedPi) — `` ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ c / (c * Real.log x ^ 2)) ``
   - [`FiniteOffLinePi.norm_ipart_le`](#FiniteOffLinePi-norm_ipart_le) — `` ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ ρ.re / (ρ.re * Real.log x ^ 2)) ``
 
 <a name="FiniteOffLinePi-norm_ipart_le"></a>
@@ -283,8 +294,9 @@ Real.sqrt ((2:ℝ) ^ r) = Real.sqrt 2 ^ r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-rpow_doubling"></a>
@@ -309,8 +321,9 @@ line 238
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-cpow_doubling"></a>
@@ -337,8 +350,9 @@ line 244
 
   - [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) (CellZeros) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-ordR_nonneg"></a>
@@ -366,8 +380,9 @@ line 253
 
   - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) (FiniteOffLine) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-norm_order_mul"></a>
@@ -396,8 +411,9 @@ line 256
 
   - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) (FiniteOffLine) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](#FiniteOffLinePi-row_bound) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="FiniteOffLinePi-rowBound_isLittleO"></a>

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  C7 PROVED (unit 0456, `AttainedPi.attained_off_line_pi`): if some zero has the largest real part and |pi(2^r) - Li(2^r)| <= C r^2 sqrt2^r from some row on, then RH; any number of zeros off the line. Second of unit 0431's three cases, on the integer count. Opus worker, built and read here. Open: the largest real part not attained.
 - [open]   2026-11-23  C6b PROVED (unit 0455, `ZeroSummable.summable_order_div`, `summable_norm_coef`): for sigma > 1/2 the order over the size is summable over the zeros with Re >= sigma; the summability hypothesis of unit 0432 is now a theorem. Opus worker, built and read here. Next: C7, joint 10 on the count when the largest real part is attained (being built).
 - [open]   2026-11-23  C6 PROVED (unit 0454, `ZeroDensity.zero_density`): for 1/2 < sigma <= 1 there are theta < 1, C, T0 with #Z <= C T^theta for every finite set of zeros with sigma <= Re < 1, 2 <= Im <= T-2, T >= T0; theta = 1 - 5 d^2, d = (sigma-1/2)/4. No hypothesis. The input unit 0431 named as missing. Opus worker, built and read here. Next: summability, then C7.
 - [open]   2026-11-23  C5 PROVED (unit 0453, `ZeroSquares.card_zeros_le`): for a finite set Z of zeros with sigma <= Re < 1, 2 <= Im <= T-2: pi d^2 #Z <= 3 (15 log T + 73) times the integral of |zeta M_X - 1|^2 over [sigma-d, 1+d] x [1,T]. Uses unit 0452 and the tree's local zero count. Opus worker, built and read here. Next: C6, the exponent.

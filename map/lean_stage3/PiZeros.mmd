@@ -15,11 +15,12 @@ flowchart LR
   n13["<b>stencilR_cast</b><br/>((Nonvanishing.stencilR n g r : ℝ) : ℂ) = CellZeros.stencil n (f…"]:::shp
   n14["<b>table_cell_eq_zero_sum ■</b><br/>((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonva…"]:::thm
   x0(["<b>PsiToPi</b><br/>continuousOn_inv_mul_log_sq<br/>integral_A_rpow_le<br/>pi_sub_Li_eq"]):::ext
-  x1(["<b>FiniteOffLinePi</b><br/>norm_ipart_le<br/>row_bound"]):::ext
-  x2(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
-  x3(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x4(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x5(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x1(["<b>AttainedPi</b><br/>fin_bound<br/>norm_ipart_le_of_le"]):::ext
+  x2(["<b>FiniteOffLinePi</b><br/>norm_ipart_le<br/>row_bound"]):::ext
+  x3(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x5(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x6(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -36,19 +37,23 @@ flowchart LR
   n9 --> n14
   n1 -.-> x1
   n1 -.-> x2
+  n1 -.-> x3
   n10 -.-> x1
-  n6 -.-> x2
-  n7 -.-> x2
+  n10 -.-> x2
+  n6 -.-> x3
+  n7 -.-> x3
   n8 -.-> x1
   n8 -.-> x2
+  n8 -.-> x3
   n9 -.-> x1
+  n9 -.-> x2
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
-  x3 -.-> n6
-  x4 -.-> n12
-  x4 -.-> n14
+  x4 -.-> n6
+  x5 -.-> n12
   x5 -.-> n14
+  x6 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

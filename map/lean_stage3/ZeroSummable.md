@@ -5,7 +5,7 @@ ZeroSummable — block C6b of `lean_stage3/design/carlson.md`. 2026-11-23. The z
 14 theorems, 1 definition, 402 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`ZeroDensity`](../lean_stage3/ZeroDensity.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md)
 
 ## The picture
 
@@ -22,15 +22,16 @@ flowchart LR
   n8["<b>summable_shell</b><br/>Summable fun j : ℕ =＞ K * (((j : ℝ) + 1) * r ^ j)"]:::shp
   n9["<b>dyadic_index</b><br/>(2 : ℝ) ^ (Nat.log 2 ⌊x⌋₊) ≤ x ∧ x ＜ 2 ^ (Nat.log 2 ⌊x⌋₊ + 1)"]:::shp
   n10["<b>sum_le_const</b><br/>∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re)…"]:::thm
-  n11["<b>summable_order_div ■</b><br/>Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri…"]:::thm
+  n11["<b>summable_order_div</b><br/>Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri…"]:::thm
   n12["<b>norm_coef</b><br/>‖LadderMean.coef ρ‖ = w ρ"]:::thm
-  n13["<b>summable_norm_coef ■</b><br/>Summable fun ρ : S =＞ ‖LadderMean.coef ρ‖"]:::thm
+  n13["<b>summable_norm_coef</b><br/>Summable fun ρ : S =＞ ‖LadderMean.coef ρ‖"]:::thm
   x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
   x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   x2(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
   x3(["<b>ZeroSquares</b><br/>window_mem"]):::ext
   x4(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
   x5(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  x6(["<b>AttainedPi</b><br/>4 theorems"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n13
@@ -47,6 +48,9 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n10
+  n10 -.-> x6
+  n11 -.-> x6
+  n13 -.-> x6
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n12
@@ -78,7 +82,7 @@ def · line 48
 The weight of a nontrivial zero: its order over its modulus.
 
 - **Is:** `` w (ρ : NontrivialZeros) : ℝ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ ``
-- **Used by 6:** [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
+- **Used by 8:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
 
 ## Theorems
 
@@ -418,8 +422,9 @@ line 278
 
 **Definitions its proof touches:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) (AttainedPi) — `` ∀ᶠ r : ℕ in atTop, ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef) — `` Summable fun ρ : S => ‖LadderMean.coef ρ‖ ``
   - [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) :… ``
 
@@ -449,7 +454,9 @@ Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.Nontrivia
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small) (AttainedPi) — `` ∃ η : ℝ, 0 < η ∧ η ≤ (Θ - 1 / 2) / 2 ∧ ∀ F : Finset NontrivialZeros, (∀ ρ ∈ F, Θ - η < (ρ : ℂ).re ∧ (ρ : ℂ).re < Θ) → ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ … ``
 
 <a name="ZeroSummable-norm_coef"></a>
 ### `ZeroSummable.norm_coef`
@@ -511,5 +518,8 @@ Summable fun ρ : S => ‖LadderMean.coef ρ‖
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
+  - [`AttainedPi.summable_line`](../lean_stage3/AttainedPi.md#AttainedPi-summable_line) (AttainedPi) — `` Summable ((lineSet Θ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
 

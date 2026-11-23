@@ -1,32 +1,35 @@
 flowchart LR
   rh{{"<b>RiemannHypothesis</b><br/>a reading of the table, not settled"}}:::bad
-  p0["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
-  t0["<b>finite_off_line</b>"]:::thm
+  p0["Kadiri.NontrivialZeros<br/>∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re<br/>ℝ<br/>∀ᶠ r : ℕ in Filter.atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊…"]:::bad
+  t0["<b>attained_off_line_pi</b>"]:::thm
   p0 --> t0 --> rh
-  p1["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
-  t1["<b>finite_off_line_pi</b>"]:::thm
+  p1["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
+  t1["<b>finite_off_line</b>"]:::thm
   p1 --> t1 --> rh
-  p2["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
-  t2["<b>rh_of_windows</b>"]:::thm
+  p2["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
+  t2["<b>finite_off_line_pi</b>"]:::thm
   p2 --> t2 --> rh
-  p3["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
-  t3["<b>rh_of_zeroFree_half</b>"]:::thm
+  p3["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t3["<b>rh_of_windows</b>"]:::thm
   p3 --> t3 --> rh
-  p4["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
-  t4["<b>rh_of_window</b>"]:::thm
+  p4["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t4["<b>rh_of_zeroFree_half</b>"]:::thm
   p4 --> t4 --> rh
-  p5["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
-  t5["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p5["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t5["<b>rh_of_window</b>"]:::thm
   p5 --> t5 --> rh
-  p6["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t6["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p6["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t6["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p6 --> t6 --> rh
-  p7["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t7["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p7["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t7["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p7 --> t7 --> rh
-  p8["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t8["<b>RH_of_psiWeak</b>"]:::thm
+  p8["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t8["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p8 --> t8 --> rh
+  p9["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t9["<b>RH_of_psiWeak</b>"]:::thm
+  p9 --> t9 --> rh
   e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e0
   e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_

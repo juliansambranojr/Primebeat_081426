@@ -23,20 +23,21 @@ flowchart LR
   n9["<b>cell_zero_sum_finset</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
   n10["<b>err_le</b><br/>∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r …"]:::thm
   n11["<b>finite_off_line ■</b><br/>RiemannHypothesis"]:::thm
-  x0(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi<br/>norm_order_mul<br/>ordR_nonneg"]):::ext
-  x1(["<b>PiRemainder</b><br/>5 theorems"]):::ext
-  x2(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
-  x3(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
-  x4(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x5(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x6(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
-  x7(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x8(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x9(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x10(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x11(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x12(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x13(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x0(["<b>AttainedPi</b><br/>tendsto_tail"]):::ext
+  x1(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi<br/>norm_order_mul<br/>ordR_nonneg"]):::ext
+  x2(["<b>PiRemainder</b><br/>5 theorems"]):::ext
+  x3(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
+  x4(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
+  x5(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x6(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x7(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x8(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
+  x9(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x10(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x11(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x12(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x13(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x14(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -56,23 +57,24 @@ flowchart LR
   n0 -.-> x0
   n0 -.-> x1
   n0 -.-> x2
-  n1 -.-> x1
-  n1 -.-> x3
-  n10 -.-> x9
-  n2 -.-> x0
+  n0 -.-> x3
+  n1 -.-> x2
+  n1 -.-> x4
+  n10 -.-> x10
   n2 -.-> x1
   n2 -.-> x2
-  n6 -.-> x1
-  n9 -.-> x9
-  x10 -.-> n10
-  x11 -.-> n11
+  n2 -.-> x3
+  n6 -.-> x2
+  n9 -.-> x10
+  x11 -.-> n10
   x12 -.-> n11
   x13 -.-> n11
-  x4 -.-> n4
-  x5 -.-> n6
+  x14 -.-> n11
+  x5 -.-> n4
   x6 -.-> n6
   x7 -.-> n6
-  x8 -.-> n9
+  x8 -.-> n6
+  x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -95,7 +97,7 @@ def · line 47
 The zeros below a height, as a finite set.
 
 - **Is:** `` ZF (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite T).toFinset ``
-- **Used by 22:** [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum), [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.inv_norm_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le), [`PiRemainder.sum_order_inv_le`](../lean_stage3/PiRemainder.md#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-two_le_Mlow), [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv), [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log), [`PiRemainder.zinv_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_nonneg), [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum), [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum), [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const)
+- **Used by 28:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_tailTerm_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le), [`AttainedPi.tailTerm`](../lean_stage3/AttainedPi.md#AttainedPi-tailTerm), [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail), [`AttainedPi.topRow`](../lean_stage3/AttainedPi.md#AttainedPi-topRow), [`AttainedPi.tsum_split`](../lean_stage3/AttainedPi.md#AttainedPi-tsum_split), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum), [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.inv_norm_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le), [`PiRemainder.sum_order_inv_le`](../lean_stage3/PiRemainder.md#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-two_le_Mlow), [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv), [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log), [`PiRemainder.zinv_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_nonneg), [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum), [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum), [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const)
 
 <a name="FiniteOffLine-onLineInv"></a>
 ### `FiniteOffLine.onLineInv`
@@ -138,8 +140,9 @@ line 50
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (8 that use it)
+**Feeds** (9 that use it)
 
+  - [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) (AttainedPi) — `` Tendsto (fun r : ℕ => ∑' ρ, tailTerm Θ r ρ) atTop (𝓝 0) ``
   - [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line) — `` RiemannHypothesis ``
   - [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2… ``
   - [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``

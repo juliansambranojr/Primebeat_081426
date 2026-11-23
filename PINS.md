@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C7 of `design/carlson.md`: `Stage3/AttainedPi.lean`
+
+    DONE        `attained_off_line_pi`: one zero has the largest real part,
+                and `|π(2^r) − Li(2^r)| ≤ C·r²·√2^r` from some row on; then
+                RH. Any number of zeros off the line; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". The
+                second of unit 0431's three cases. Written by an Opus worker;
+                read and built here
+    DEPENDS     `ZeroSummable.summable_norm_coef`, `sum_le_const`,
+                `LadderMean.line_not_fading_summable`,
+                `PiZeros.pi_eq_zero_sum`, `PiRemainder.norm_tr_efRem_le_of`
+    OUT         the case where the largest real part is not attained
+    OUTCOME     proved, unit 0456
+
 ### 2026-11-23 · block C6b of `design/carlson.md`: `Stage3/ZeroSummable.lean`
 
     DONE        `summable_order_div`: for `σ > 1/2` the order over the size is
