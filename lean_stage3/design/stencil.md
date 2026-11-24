@@ -210,3 +210,47 @@ with `r_j → 0` has `M = 1` once the ball is free. So S6 holds S4. A cone at
 
 **Not here.** A mode that every approach from `Ω` meets tangentially to the
 other modes. A limit set that separates the modes from `0`. H.
+
+## S7 The wall — on paper, no Lean target yet
+
+Julian, 2026-11-24: "Let's do the wall and loop". The arrangement: the limit
+set of the modes right of `σ` cuts `0` off from every mode. Example: no zero
+reaches `Θ`, and the angles `γ·log 2 (mod 2π)` of the zeros near `Θ` are
+dense, so `K σ` holds the circle `|u| = R`, `R = 2^(−Θ)`, and `Ω` is the
+disc `|u| < R`.
+
+**The reduction (proved pieces).** `G` and `F` have the same power series at
+`0`. Its coefficients are the power sums `P_k = Σ'_{β≥σ} w_ρ·z_ρ^k`,
+`z_ρ = 2^ρ` (`ResidueRoute.G_eq_F`, `P_bound`). Under H, `|P_k| ≤ A·k²·2^(kσ)`.
+So the wall case is the moment problem: a summable family `w_ρ` on the
+points `z_ρ` (`|z_ρ| < 2^Θ`, sup not reached), whose power sums grow like
+`2^(kσ)` with `σ < Θ`. Nothing beyond this is used by S4 to S6, and on the
+wall nothing beyond it is available to them: `Ω` is the inner disc, where
+`F = G` already says only this.
+
+**Summability and the sign of the weights do not close it.** The uniform
+measure on a circle `|z| = s` has `∫ z^k = 0` for every `k ≥ 1`. It is
+positive, and its power sums are as small as can be. Wolff's series give
+atomic families with complex weights whose power sums all vanish. Whether an
+atomic family with weights of positive real part can have power sums
+`O(k²·2^(kσ))` with an atom outside `|z| = 2^σ` is not settled here. Either
+way, the wall needs a property of the zeros of ζ beyond their count, the
+summability of `m/ρ` and the sign of `Re(m/ρ)`. Unit 0431 says the same.
+
+**What the zeros have that a measure on a circle does not.**
+- The conjugate pairs: `w_ρ̄ = conj w_ρ`, `z_ρ̄ = conj z_ρ`, so every `P_k` is
+  real.
+- The weights `m(ρ)/ρ`: tied to the height, `|w_ρ| ≈ m/|γ|`. A wall needs
+  the angles `γ·log 2` spread, and the weights fall as `γ` grows.
+- The density bound `ZeroDensity.zero_density`: few zeros near `Θ`.
+- The monotone ψ under the ladder: `ψ(2^(k+1)) − ψ(2^k) ≥ 0`.
+
+None of these has been turned into a bound against the wall. The first
+candidate to try is the weights' fall with height: the atoms at angle near
+`φ` with `|z| > 2^(σ+δ)` would have to cancel in every power sum, against
+weights fixed by their heights.
+
+**Not a block yet.** No statement here is ready for Lean. The next step is
+one derivation on paper: either a bound that uses one of the four facts
+above, or an atomic example showing that the four together still allow the
+wall.
