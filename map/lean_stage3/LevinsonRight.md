@@ -7,7 +7,7 @@ LevinsonRight — block S11 of `lean_stage3/design/stencil.md`, steps 2–4. 202
 7 theorems, 0 definitions, 331 lines. 
 
 **Imports:** [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`Littlewood`](../lean_stage3/Littlewood.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md)
 
 ## The picture
 

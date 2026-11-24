@@ -121,7 +121,7 @@ def · line 137
 def · line 445
 
 - **Is:** `` edgeH (f : ℂ → ℂ) (b y σ : ℝ) : ℝ := (∫ x in σ..b, logDeriv f (↑x + ↑y * I)).im ``
-- **Used by 4:** [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free)
+- **Used by 6:** [`LevinsonMollEdge.edge_le_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-edge_le_gen), [`LevinsonMollEdge.horizontal_terms_le`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-horizontal_terms_le), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free)
 
 ## Theorems
 

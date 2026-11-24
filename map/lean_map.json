@@ -18548,7 +18548,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.horizontal_leg_le",
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen"
     ]
    },
    {
@@ -46093,7 +46094,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt"
     ]
    },
    {
@@ -46154,7 +46156,8 @@
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46182,7 +46185,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46211,7 +46215,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46240,7 +46245,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46267,7 +46273,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46295,7 +46302,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen"
     ]
    },
    {
@@ -46605,6 +46613,800 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+  "module": "Stage3.LevinsonMollEdge",
+  "stem": "LevinsonMollEdge",
+  "header": "LevinsonMollEdge — block S11 of `lean_stage3/design/stencil.md`, the mollifier's edge terms. 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonRight",
+   "Stage3.LevinsonEdge"
+  ],
+  "opens": [
+   "Complex",
+   "Interval",
+   "Littlewood",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LevinsonMollEdge"
+  ],
+  "lines": 907,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonEdge.lean",
+   "lean_stage3/Stage3/LevinsonRight.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "molli",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.molli",
+    "line": 80,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tailDelta",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.tailDelta",
+    "line": 85,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "B X : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "molli_norm_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.molli_norm_le",
+    "line": 89,
+    "why": "The mollifier right of `Re = 0`. `‖ψ s‖ ≤ M B`.",
+    "sorry": false,
+    "needs": [
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hs : 0 ≤ s.re"
+    ],
+    "proves": "‖molli M β s‖ ≤ M * B",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "molli_sub_one_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.molli_sub_one_le",
+    "line": 108,
+    "why": "The mollifier's tail on `Re = X`. `‖ψ s − 1‖ ≤ M B / 2^X`.",
+    "sorry": false,
+    "needs": [
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hM : 1 ≤ M",
+     "hs : s.re = X",
+     "hX : 0 ≤ X"
+    ],
+    "proves": "‖molli M β s - 1‖ ≤ M * B / (2 : ℝ) ^ X",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "molli_differentiable",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.molli_differentiable",
+    "line": 136,
+    "why": "The mollifier is entire.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "β : ℕ → ℂ"
+    ],
+    "proves": "Differentiable ℂ (molli M β)",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_G_sub_one_le_X",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.norm_G_sub_one_le_X",
+    "line": 148,
+    "why": "The Dirichlet tail of `ζ + c ζ'` on `Re s = X ≥ 3`. `‖G(s) − 1‖ ≤ 8 / 2^X`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hX : 3 ≤ X",
+     "hs : s.re = X"
+    ],
+    "proves": "‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ 8 / (2 : ℝ) ^ X",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.deriv_zeta_eq_LSeries"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.deriv_zeta_eq_LSeries"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "f_sub_one_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.f_sub_one_le",
+    "line": 226,
+    "why": "`G ψ` on `Re = X`. `‖G s · ψ s − 1‖ ≤ tailDelta M B X`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hX : 3 ≤ X",
+     "hs : s.re = X"
+    ],
+    "proves": "‖(riemannZeta s + c * deriv riemannZeta s) * molli M β s - 1‖ ≤ tailDelta M B X",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tailDelta_le_half",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.tailDelta_le_half",
+    "line": 249,
+    "why": "`δ(X) ≤ 1/2` once `32 M B ≤ 2^X`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M",
+     "hB : 1 ≤ B",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X"
+    ],
+    "proves": "tailDelta M B X ≤ 1 / 2",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_norm_abs_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.log_norm_abs_le",
+    "line": 267,
+    "why": "`|log ‖z‖| ≤ 2δ` when `‖z − 1‖ ≤ δ ≤ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hz : ‖z - 1‖ ≤ δ",
+     "hδ : δ ≤ 1 / 2"
+    ],
+    "proves": "|Real.log ‖z‖| ≤ 2 * δ",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.log_norm_abs_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_line_comp",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.hasDerivAt_line_comp",
+    "line": 291,
+    "why": "The line `Re s = X` as a path, and its derivative `i`.",
+    "sorry": false,
+    "needs": [
+     "hf : DifferentiableAt ℂ f (↑X + ↑t * I)"
+    ],
+    "proves": "HasDerivAt (fun y : ℝ => f (↑X + ↑y * I)) (deriv f (↑X + ↑t * I) * I) t",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.hasDerivAt_line_comp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "f_analyticAt",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.f_analyticAt",
+    "line": 304,
+    "why": "`G ψ` is analytic away from the pole.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hw : w ≠ 1"
+    ],
+    "proves": "AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) w",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_log_term_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.right_log_term_le",
+    "line": 309,
+    "why": "Term (a), the log term. `−∫_a^b log ‖f(X + it)‖ dt ≤ (b − a) · 2 δ(X)`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hab : a ≤ b"
+    ],
+    "proves": "-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I)) * molli M β (↑X + ↑t * I)‖) ≤ (b - a) * (2 * tailDelta M B X)",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.log_norm_abs_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.log_norm_abs_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_term_le_of_pos",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.arg_term_le_of_pos",
+    "line": 334,
+    "why": "The argument term, generic. For `f` analytic on `Re s = X` with `Re f > 0` there: `|Re ∫_a^b logDeriv f (X + it) dt| ≤ π`; the proof of `LevinsonSize.right_edge_le` at `X`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hfa : ∀ t : ℝ, AnalyticAt ℂ f (↑X + ↑t * I)",
+     "hpos : ∀ t : ℝ, 0 < (f (↑X + ↑t * I)).re"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_arg_term_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.right_arg_term_le",
+    "line": 383,
+    "why": "Term (b), the argument term. `|Re ∫_a^b logDeriv f (X + it) dt| ≤ π`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hab : a ≤ b"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_terms_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.right_terms_le",
+    "line": 410,
+    "why": "Target 1, the two right-edge terms of `levinson_right`. For `X ≥ 3` with `2^X ≥ 32 M B`: the log term is at most `(b − a) · ε(X)`, `ε(X) = 2 tailDelta M B X → 0`, and the argument term at most `(X − σ₀) π`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hσX : σ₀ ≤ X",
+     "hab : a ≤ b"
+    ],
+    "proves": "-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I)) * molli M β (↑X + ↑t * I)‖) + (X - σ₀) * (∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re ≤ (b - a) * (2 * tailDelta M B X) + (X - σ₀) * Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_norm_le_sixteenth",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.zeta_norm_le_sixteenth",
+    "line": 427,
+    "why": "`ζ` right of `Re = 1/16`, above `Im = 1`. `‖ζ u‖ ≤ 2 + 16‖u‖`; the proof of `LevinsonEdge.zeta_norm_le` with the margin `1/16`.",
+    "sorry": false,
+    "needs": [
+     "hre : 1 / 16 ≤ u.re",
+     "him : 1 ≤ u.im"
+    ],
+    "proves": "‖riemannZeta u‖ ≤ 2 + 16 * ‖u‖",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_norm_le_sixteenth",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "disc_facts_X",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.disc_facts_X",
+    "line": 475,
+    "why": "Coordinates on the disc about `X + iT`.",
+    "sorry": false,
+    "needs": [
+     "hX : 0 ≤ X",
+     "hT : 0 ≤ T",
+     "hu : ‖u - (↑X + ↑T * I)‖ ≤ d"
+    ],
+    "proves": "X - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + X + T",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.deriv_zeta_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_disc_X",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.zeta_disc_X",
+    "line": 497,
+    "why": "`ζ` on the disc of radius `X − 1/16` about `X + iT`. `‖ζ u‖ ≤ 33 T` for `1 ≤ X`, `2X ≤ T`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hu : ‖u - (↑X + ↑T * I)‖ ≤ X - 1 / 16"
+    ],
+    "proves": "‖riemannZeta u‖ ≤ 33 * T",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_norm_le_sixteenth"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_norm_le_sixteenth"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.G_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.deriv_zeta_disc_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_zeta_disc_X",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.deriv_zeta_disc_X",
+    "line": 505,
+    "why": "`ζ'` on the disc of radius `X − 1/8` about `X + iT`. Cauchy's estimate on the circle of radius `1/16`: `‖ζ' w‖ ≤ 16 · 33 T = 528 T`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hw : ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8"
+    ],
+    "proves": "‖deriv riemannZeta w‖ ≤ 528 * T",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.deriv_zeta_disc_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.G_disc_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_disc_X",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.G_disc_X",
+    "line": 534,
+    "why": "`G` on the disc of radius `X − 1/8` about `X + iT`. `‖ζ w + c ζ' w‖ ≤ 561 T`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hw : ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8"
+    ],
+    "proves": "‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 561 * T",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.G_disc_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.deriv_zeta_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.deriv_zeta_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "real_zero_count_gen",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.real_zero_count_gen",
+    "line": 552,
+    "why": "The Jensen count, general radii. `LevinsonEdge.real_zero_count` with `5/6`, `7/8` replaced by any `0 < r < R < 1`: the real zeros of `Re g` in `[−r, r]` lie in a `Finset` of size at most `log (M/m) / log (R/r)`.",
+    "sorry": false,
+    "needs": [
+     "hr0 : 0 < r",
+     "hrR : r < R",
+     "hR1 : R < 1",
+     "hd : DifferentiableOn ℂ g (Metric.ball (0 : ℂ) (11 / 10))",
+     "hm : 0 < m",
+     "h0 : m ≤ (g 0).re",
+     "hM : ∀ z : ℂ, ‖z‖ ≤ R → ‖g z‖ ≤ M"
+    ],
+    "proves": "∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m)",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_le_gen",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.edge_le_gen",
+    "line": 661,
+    "why": "The edge, with the growth as a hypothesis. For `1 ≤ X`, `2X ≤ T`, `F` analytic off `1`, `Re F(X + iT) ≥ 1/2`, `‖F‖ ≤ Mf` on `‖w − (X + iT)‖ ≤ X − 1/8`, `1/4 ≤ σ ≤ X` and `F ≠ 0` on `[σ, X] + iT`: `|edgeH F X T σ| ≤ π ((8X − 1) log (2 Mf) + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hFa : ∀ w : ℂ, w ≠ 1 → AnalyticAt ℂ F w",
+     "h0 : 1 / 2 ≤ (F (↑X + ↑T * I)).re",
+     "hM : ∀ w : ℂ, ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8 → ‖F w‖ ≤ Mf",
+     "hσ : 1 / 4 ≤ σ",
+     "hσX : σ ≤ X",
+     "hne : ∀ x ∈ Set.Icc σ X, F (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1)",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizontal_terms_le",
+    "ns": "LevinsonMollEdge",
+    "full": "LevinsonMollEdge.horizontal_terms_le",
+    "line": 805,
+    "why": "Target 2, the horizontal edge terms of `levinson_right`. For `X ≥ 3` with `2^X ≥ 32 M B`, `1/4 ≤ σ₀ ≤ X`, `2X ≤ T`, and `f = G ψ` nonzero on `[σ₀, X] + iT`: `|∫_{σ₀}^X edgeH f X T σ dσ| ≤ (X − σ₀) π ((8X − 1)(log T + log M + log B + 8) + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hσ₀ : 1 / 4 ≤ σ₀",
+     "hσX : σ₀ ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hne : ∀ x ∈ Set.Icc σ₀ X, (riemannZeta (↑x + ↑T * I) + c * deriv riemannZeta (↑x + ↑T * I)) * molli M β (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Real.log M + Real.log B + 8) + 1))",
+    "file": "lean_stage3/Stage3/LevinsonMollEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.G_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.G_disc_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.disc_facts_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -46920,6 +47722,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
     ]
    },
@@ -47307,6 +48110,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral"
     ]
@@ -51008,6 +51812,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
@@ -96730,11 +97536,12 @@
    "Stage3.LevinsonSize",
    "Stage3.LevinsonEdge",
    "Stage3.LevinsonCount",
-   "Stage3.LevinsonRight"
+   "Stage3.LevinsonRight",
+   "Stage3.LevinsonMollEdge"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 220,
+  "lines": 221,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -96816,6 +97623,7 @@
    "lean_stage3/Stage3/LevinsonCount.lean",
    "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
+   "lean_stage3/Stage3/LevinsonMollEdge.lean",
    "lean_stage3/Stage3/LevinsonRight.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",

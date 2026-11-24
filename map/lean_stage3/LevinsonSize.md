@@ -24,13 +24,14 @@ flowchart LR
   n8["<b>gamma_part_eq_count</b><br/>(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Real.pi * (rie…"]:::thm
   n9["<b>gamma_part_count_le ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   n10["<b>gamma_part_count_le_gt_two</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
-  x0(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
-  x1(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x2(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x3(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x4(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x5(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x6(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x0(["<b>LevinsonMollEdge</b><br/>norm_G_sub_one_le_X"]):::ext
+  x1(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
+  x2(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
+  x3(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x4(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x5(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x6(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x7(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -39,19 +40,20 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n8 --> n9
-  n1 -.-> x0
-  n10 -.-> x2
-  n5 -.-> x2
-  x1 -.-> n5
-  x1 -.-> n7
-  x3 -.-> n6
-  x3 -.-> n7
+  n0 -.-> x0
+  n1 -.-> x1
+  n10 -.-> x3
+  n5 -.-> x3
+  x2 -.-> n5
+  x2 -.-> n7
   x4 -.-> n6
   x4 -.-> n7
   x5 -.-> n6
   x5 -.-> n7
-  x6 -.-> n10
-  x6 -.-> n9
+  x6 -.-> n6
+  x6 -.-> n7
+  x7 -.-> n10
+  x7 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -87,8 +89,9 @@ deriv riemannZeta s = -LSeries (LSeries.logMul 1) s
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LevinsonMollEdge.norm_G_sub_one_le_X`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-norm_G_sub_one_le_X) (LevinsonMollEdge) — `` ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ 8 / (2 : ℝ) ^ X ``
   - [`LevinsonSize.norm_G_sub_one_le`](#LevinsonSize-norm_G_sub_one_le) — `` ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1 ``
 
 <a name="LevinsonSize-norm_G_sub_one_le"></a>
