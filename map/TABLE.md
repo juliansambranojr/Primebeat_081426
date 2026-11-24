@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>124 theorems counting,<br/>in 27 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>127 theorems counting,<br/>in 28 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>916 theorems shape,<br/>in 127 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>922 theorems shape,<br/>in 128 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>725 theorems reads ζ,<br/>in 114 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>731 theorems reads ζ,<br/>in 115 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 228 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1167 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 746 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 231 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1173 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 752 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 124 | 916 | 725 |
+| `lean_stage3/` | 127 | 922 | 731 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -441,6 +441,14 @@ Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ru
 - [`Readings.paper_mid_values`](./lean_stage3/Readings.md#Readings-paper_mid_values) — `` paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2 `` The regime `[2, 3]` has midpoint five halves, and `[4, 7]` eleven halves.
 - [`Readings.paper_first_mid`](./lean_stage3/Readings.md#Readings-paper_first_mid) — `` 2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1 `` The first regime. The paper's `[0, 1]` with midpoint one half does not obey the recurrence into `[2, 3]`: twice one half plus one half is not five halves.
 - [`Readings.offset_fixed`](./lean_stage3/Readings.md#Readings-offset_fixed) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 `` The offset is fixed. At every doubling the midpoint stands one half above the integer below; the statement has no zero in it.
+
+### [`ResidueRoute`](./lean_stage3/ResidueRoute.md) — 3
+
+ResidueRoute — block S4 of `lean_stage3/design/stencil.md`. 2026-11-24. The residue route, from the section "After the independent check". Under the ladder bound `H`, `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, fix `1/2 < σ₀ < Θ ≤ 1` with `Θ` an upper bound for the real parts of the zeros. The tail-rate exponent `θ' < 1` of `CountReduction.tail_rate` at `σ₀` gives `E = max σ₀ (Θ − (1 − θ')) < Θ`. For every `σ ≥ E` (the design's `σ ∈ (Θ − 5δ², Θ)`):
+
+- [`ResidueRoute.isClosed_K`](./lean_stage3/ResidueRoute.md#ResidueRoute-isClosed_K) — `` IsClosed (K σ) `` `K` is closed.
+- [`ResidueRoute.um_mem_K`](./lean_stage3/ResidueRoute.md#ResidueRoute-um_mem_K) — `` um ρ ∈ K σ `` The mode of a zero right of `σ` lies in `K`.
+- [`ResidueRoute.fibre_term`](./lean_stage3/ResidueRoute.md#ResidueRoute-fibre_term) — `` a * (c / (z * a)) = c * z⁻¹ `` An identity for the fibre term: `a·(c/(z·a)) = c·z⁻¹`.
 
 ### [`Saddle`](./lean_stage3/Saddle.md) — 3
 

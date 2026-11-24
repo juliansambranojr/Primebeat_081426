@@ -1,0 +1,64 @@
+flowchart LR
+  n0["<b>isClosed_K</b><br/>IsClosed (K σ)"]:::cnt
+  n1["<b>um_mem_K</b><br/>um ρ ∈ K σ"]:::cnt
+  n2["<b>um_eq</b><br/>um ρ = ((2:ℂ) ^ (ρ : ℂ))⁻¹"]:::shp
+  n3["<b>norm_um</b><br/>‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re)"]:::shp
+  n4["<b>mode_ne_zero</b><br/>(2:ℂ) ^ (ρ : ℂ) ≠ 0"]:::shp
+  n5["<b>one_sub_eq</b><br/>1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u)"]:::shp
+  n6["<b>norm_sub_le</b><br/>‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖"]:::shp
+  n7["<b>K_subset</b><br/>K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖}"]:::shp
+  n8["<b>summable_coef</b><br/>Summable fun ρ : FilterAttained.S σ =＞ ‖LadderMean.coef ρ.1‖"]:::thm
+  n9["<b>differentiableAt_F</b><br/>DifferentiableAt ℂ (F σ) v"]:::thm
+  n10["<b>P_bound</b><br/>∃ θ' Ct : ℝ, θ' ＜ 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ'…"]:::thm
+  n11["<b>differentiableAt_G</b><br/>DifferentiableAt ℂ (G σ) v"]:::thm
+  n12["<b>G_eq_F</b><br/>G σ u = F σ u"]:::thm
+  n13["<b>fibre_term</b><br/>a * (c / (z * a)) = c * z⁻¹"]:::cnt
+  n14["<b>isolated_boundary_mode_false ■</b><br/>∃ E : ℝ, σ₀ ≤ E ∧ E ＜ Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.Nontriv…"]:::thm
+  x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x1(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x2(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
+  x3(["<b>CountReduction</b><br/>tail_rate"]):::ext
+  x4(["<b>FilterAttained</b><br/>4 theorems"]):::ext
+  x5(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  n0 --> n14
+  n0 --> n9
+  n1 --> n14
+  n1 --> n9
+  n10 --> n14
+  n11 --> n14
+  n12 --> n14
+  n13 --> n14
+  n2 --> n14
+  n2 --> n5
+  n3 --> n14
+  n4 --> n14
+  n4 --> n5
+  n5 --> n14
+  n5 --> n6
+  n6 --> n14
+  n6 --> n9
+  n7 --> n14
+  n8 --> n12
+  n8 --> n14
+  n8 --> n9
+  n9 --> n14
+  x0 -.-> n10
+  x0 -.-> n3
+  x0 -.-> n7
+  x1 -.-> n10
+  x1 -.-> n12
+  x1 -.-> n4
+  x1 -.-> n6
+  x2 -.-> n10
+  x2 -.-> n8
+  x3 -.-> n10
+  x4 -.-> n10
+  x5 -.-> n14
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
