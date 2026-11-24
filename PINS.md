@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S10 of `design/stencil.md`, step 4a: `Stage3/Littlewood.lean`
+
+    DONE        `littlewood_rect`: for f analytic near a rectangle
+                [a,b]×[c,d], nonzero on its edges, 2π·Σ order·(Re ρ − a) over
+                its zeros equals ∫_c^d log‖f(a+it)‖ − ∫_c^d log‖f(b+it)‖ plus the
+                two horizontal terms, written with no branch of arg; one unit
+    ASSUMED     Julian, 2026-11-24: "Go" (step 4a). Built as the first brick
+                of 4d (Levinson): 4b–4c only reach Bohr–Landau, which
+                `zero_density` already gives (unit 0513)
+    DEPENDS     PNT+ `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`,
+                `divisor_support_rectangle_finite`; Mathlib Fubini
+    OUT         4b, 4c (covered by `zero_density`); Levinson's lemma and the
+                mean value left of the line (4d)
+
 ### 2026-11-24 · block S10 of `design/stencil.md`, step 3: `Stage3/LineCount.lean`
 
     DONE        `rh_iff_line_count` (RH ↔ for every T the zeros on the line
