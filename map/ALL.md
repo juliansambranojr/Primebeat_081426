@@ -330,6 +330,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.conj_paperFT_conj`](./lean_bridge/WeilBridge.md#Bridge-conj_paperFT_conj) | theorem | shape | `WeilBridge` | conj (paperFT F (conj z)) = paperFT F (-z) |
 | [`WeilOnLine.conjZ`](./lean_stage3/WeilOnLine.md#WeilOnLine-conjZ) | def | reads ζ | `WeilOnLine` | Kadiri.NontrivialZeros |
 | [`WeilOnLine.conjZ_injective`](./lean_stage3/WeilOnLine.md#WeilOnLine-conjZ_injective) | theorem | reads ζ | `WeilOnLine` | Function.Injective conjZ |
+| [`WindowsOfRH.const_eq_zero`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero) | theorem | reads ζ | `WindowsOfRH` | c = 0 |
 | [`GeneratorPeak.const_of_eq`](./lean/GeneratorPeak.md#GeneratorPeak-const_of_eq) | theorem | shape | `GeneratorPeak` | score R P α β i = score R P α β j |
 | [`ZeroCells.construction_all_vanish`](./lean/ZeroCells.md#ZeroCells-construction_all_vanish) | theorem | counting | `ZeroCells` | ∀ c ∈ Construction.measured_zeros, Construction.tableFrom Zeros.dyadicRow (c.1 : ℤ) c.2 = 0 |
 | [`ZeroCells.construction_eq`](./lean/ZeroCells.md#ZeroCells-construction_eq) | theorem | counting | `ZeroCells` | Construction.measured_zeros = Zeros.measured_zeros |
@@ -865,6 +866,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.integral_A_rpow_le`](./lean_stage3/PsiToPi.md#Stage3-integral_A_rpow_le) | theorem | shape | `PsiToPi` | (∫ t in a..x, A * t ^ (-(1 : ℝ) / 2)) ≤ 2 * A * Real.sqrt x |
 | [`Stage3.integral_A_rpow_theta_le`](./lean_stage3/ThetaPi.md#Stage3-integral_A_rpow_theta_le) | theorem | shape | `ThetaPi` | (∫ t in a..x, A * t ^ (θ - 1)) ≤ 2 * A * x ^ θ |
 | [`RHPull.integral_abs_kernel`](./lean_stage3/LineBound.md#RHPull-integral_abs_kernel) | theorem | shape | `LineBound` | ∫ t in (-T)..T, (1 + \|t\|)⁻¹ = 2 * Real.log (1 + T) |
+| [`WindowsOfRH.integral_cpow_neg`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-integral_cpow_neg) | theorem | shape | `WindowsOfRH` | ∫ y in Set.Ioi (1 : ℝ), (y : ℂ) ^ (-(σ : ℂ)) = 1 / ((σ : ℂ) - 1) |
 | [`CountModes.integral_exp_neg_mul`](./lean_stage3/CountModes.md#CountModes-integral_exp_neg_mul) | theorem | shape | `CountModes` | ∫ s in Set.Ioi (0:ℝ), Real.exp (-k * s) = 1 / k |
 | [`CountModes.integral_inner`](./lean_stage3/CountModes.md#CountModes-integral_inner) | theorem | shape | `CountModes` | ∫ s in Set.Ioi (0:ℝ), Complex.exp ((w - s) * v) = Complex.exp ((v:ℂ) * w) / (v:ℂ) |
 | [`Stage3.integral_inv_horizontal`](./lean_stage3/ArgIdentity.md#Stage3-integral_inv_horizontal) | theorem | shape | `ArgIdentity` | (∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (((b : ℂ) - d) + T * Complex.I) - Complex.log (((a : ℂ) - d) + T * Complex.I) |
@@ -1202,6 +1204,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellModes.mode_two_int`](./lean_stage3/CellModes.md#CellModes-mode_two_int) | theorem | shape | `CellModes` | Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r |
 | [`Superposition.modeSum`](./lean/Superposition.md#Superposition-modeSum) | def | shape | `Superposition` | ℂ → ℂ |
 | [`NoHoles.moebius_floor_inversion`](./lean_stage3/NoHoles.md#NoHoles-moebius_floor_inversion) | theorem | counting | `NoHoles` | ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N |
+| [`WindowsOfRH.mul_cpow_eq`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-mul_cpow_eq) | theorem | shape | `WindowsOfRH` | (y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ)) |
 | [`WeilWindow.mul_sinh_ge`](./lean_stage3/WeilWindow.md#WeilWindow-mul_sinh_ge) | theorem | shape | `WeilWindow` | s * x ^ 2 ≤ x * Real.sinh (s * x) |
 | [`NoHoles.multiples_eq_image`](./lean_stage3/NoHoles.md#NoHoles-multiples_eq_image) | theorem | counting | `NoHoles` | (Icc 1 N).filter (fun m =&gt; k ∣ m) = (Icc 1 (N / k)).image (fun j =&gt; k * j) |
 | [`Stage3.N_abs_le`](./lean_stage3/ZeroSum.md#Stage3-N_abs_le) | theorem | reads ζ | `ZeroSum` | \|riemannZeta.N T\| ≤ T / (2 * Real.pi) * (Real.log T + 3) + riemannZeta.RvM b₁ b₂ b₃ T + 7 / 8 |
@@ -1521,6 +1524,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBackground.phi`](./lean_stage3/WeilBackground.md#WeilBackground-phi) | def | shape | `WeilBackground` | ℝ |
 | [`LandauPoleLocal.Phi_principal_part`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) | theorem | reads ζ | `LandauPoleLocal` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) |
 | [`LandauPoleLocal.Phi_regular_at_one`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_regular_at_one) | theorem | reads ζ | `LandauPoleLocal` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s |
+| [`WindowsOfRH.phi_sub_pole_le`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-phi_sub_pole_le) | theorem | reads ζ | `WindowsOfRH` | ‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α) |
 | [`LandauPoleDisc.Phi_taylor_on_disc`](./lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc) | theorem | reads ζ | `LandauPoleDisc` | ∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧ ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c - ∑ ρ ∈ P, (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) * (… |
 | [`WeilBackground.phiC`](./lean_stage3/WeilBackground.md#WeilBackground-phiC) | def | shape | `WeilBackground` | ℝ → ℂ |
 | [`WeilBackground.phiC_real`](./lean_stage3/WeilBackground.md#WeilBackground-phiC_real) | theorem | shape | `WeilBackground` | (phiC h γ u).im = 0 |
@@ -1655,6 +1659,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauMellin.rampK_integral`](./lean_stage3/LandauMellin.md#LandauMellin-rampK_integral) | theorem | shape | `LandauMellin` | ∫ y in Ioi (1 : ℝ), rampK s n y = (n : ℂ) ^ (-s) / (s * (s - 1)) |
 | [`LandauMellin.rampK_integral_norm`](./lean_stage3/LandauMellin.md#LandauMellin-rampK_integral_norm) | theorem | shape | `LandauMellin` | ∫ y in Ioi (1 : ℝ), ‖rampK s n y‖ = (n : ℝ) ^ (-s.re) / (s.re * (s.re - 1)) |
 | [`LandauWindow.rampSum`](./lean_stage3/LandauWindow.md#LandauWindow-rampSum) | def | shape | `LandauWindow` | ℝ |
+| [`WindowsOfRH.rampSum_eq_integral`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-rampSum_eq_integral) | theorem | shape | `WindowsOfRH` | LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2 |
+| [`WindowsOfRH.rampSum_eq_mertens`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-rampSum_eq_mertens) | theorem | shape | `WindowsOfRH` | LandauWindow.rampSum y = y * ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) - ψ y |
 | [`LandauMellin.rampSum_eq_tsum`](./lean_stage3/LandauMellin.md#LandauMellin-rampSum_eq_tsum) | theorem | shape | `LandauMellin` | LandauWindow.rampSum y = ∑' n : ℕ, Λ n * max (y / n - 1) 0 |
 | [`LandauCrude.rampSum_le`](./lean_stage3/LandauCrude.md#LandauCrude-rampSum_le) | theorem | shape | `LandauCrude` | LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y) |
 | [`LandauChebyshev.rampSum_le_log`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-rampSum_le_log) | theorem | reads ζ | `LandauChebyshev` | LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4)) |
@@ -2117,6 +2123,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOnLine.sum_upper_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_upper_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ |
 | [`WeilPowerOnLine.sum_upper_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_upper_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m |
 | [`WeilPowerShell.sum_uSh_eq`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-sum_uSh_eq) | theorem | shape | `WeilPowerShell` | ∑ h ∈ Finset.Ico a b, coef e' D e * Complex.exp (zOf e' D e * ((WeilPowerGeomGen.uLam lam h : ℝ) : ℂ)) = ∑ h ∈ Finset.Ico a b, coef e' D e * Complex.exp (zOf e' D e * ((uSh lam h : ℝ) : ℂ)) |
+| [`WindowsOfRH.sum_vonMangoldt_div`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-sum_vonMangoldt_div) | theorem | counting | `WindowsOfRH` | ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) = ψ y / y + ∫ t in Set.Ioc 1 y, ψ t / t ^ 2 |
 | [`WeilPowerPhase.summable_hterm`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-summable_hterm) | theorem | shape | `WeilPowerPhase` | Summable hterm |
 | [`CountReduction.summable_J`](./lean_stage3/CountReduction.md#CountReduction-summable_J) | theorem | reads ζ | `CountReduction` | Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} =&gt; ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖ |
 | [`AttainedPi.summable_line`](./lean_stage3/AttainedPi.md#AttainedPi-summable_line) | theorem | reads ζ | `AttainedPi` | Summable ((lineSet Θ).indicator fun ρ =&gt; ‖LadderMean.coef ρ‖) |

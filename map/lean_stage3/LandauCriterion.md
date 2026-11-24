@@ -5,7 +5,7 @@ LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage
 3 theorems, 0 definitions, 250 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauRates`](../lean_stage3/LandauRates.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 

@@ -5,7 +5,7 @@ JointDialGate — joints 3, 4, 5 of `SECTIONS.md`: the dial onto the table's gat
 5 theorems, 1 definition, 165 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`JointWindowDial`](../lean_stage3/JointWindowDial.md), [`LandauKernel`](../lean_stage3/LandauKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 

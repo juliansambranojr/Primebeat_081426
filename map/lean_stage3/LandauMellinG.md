@@ -5,7 +5,7 @@ LandauMellinG — the Mellin transform of `G` on `Re s > 1`. Block 2b of `lean_s
 10 theorems, 2 definitions, 280 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauMellin`](../lean_stage3/LandauMellin.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 
@@ -24,6 +24,7 @@ flowchart LR
   x0(["<b>LandauMellin</b><br/>mellin_rampSum"]):::ext
   x1(["<b>JointSymbol</b><br/>mellin_dd_iter"]):::ext
   x2(["<b>LandauTaylor</b><br/>iteratedDeriv_Phi<br/>mellinLog_integrable"]):::ext
+  x3(["<b>WindowsOfRH</b><br/>phi_sub_pole_le"]):::ext
   n0 --> n1
   n1 --> n8
   n1 --> n9
@@ -38,8 +39,10 @@ flowchart LR
   n7 --> n9
   n8 -.-> x1
   n8 -.-> x2
+  n8 -.-> x3
   n9 -.-> x1
   n9 -.-> x2
+  n9 -.-> x3
   x0 -.-> n1
   x0 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -64,7 +67,7 @@ def · line 43
 The Mellin transform of `G`: the `Φ` of the worksheet.
 
 - **Is:** `` Phi (s : ℂ) : ℂ := -deriv riemannZeta s / riemannZeta s / (s * (s - 1)) - 1 / (s - 1) ^ 2 + (1 + (Real.eulerMascheroniConstant : ℂ)) / (s - 1) ``
-- **Used by 10:** [`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter), [`JointSymbol.symPhi_principal_part`](../lean_stage3/JointSymbol.md#JointSymbol-symPhi_principal_part), [`LandauMellinG.mellin_G`](#LandauMellinG-mellin_G), [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc), [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part), [`LandauPoleLocal.Phi_regular_at_one`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_regular_at_one), [`LandauPoleLocal.differentiableAt_Phi`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi), [`LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-iteratedDeriv_Phi_eq_Ik), [`LandauTaylor.iteratedDeriv_Phi`](../lean_stage3/LandauTaylor.md#LandauTaylor-iteratedDeriv_Phi), [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side)
+- **Used by 12:** [`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter), [`JointSymbol.symPhi_principal_part`](../lean_stage3/JointSymbol.md#JointSymbol-symPhi_principal_part), [`LandauMellinG.mellin_G`](#LandauMellinG-mellin_G), [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc), [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part), [`LandauPoleLocal.Phi_regular_at_one`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_regular_at_one), [`LandauPoleLocal.differentiableAt_Phi`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi), [`LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-iteratedDeriv_Phi_eq_Ik), [`LandauTaylor.iteratedDeriv_Phi`](../lean_stage3/LandauTaylor.md#LandauTaylor-iteratedDeriv_Phi), [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side), [`WindowsOfRH.const_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero), [`WindowsOfRH.phi_sub_pole_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-phi_sub_pole_le)
 
 <a name="LandauMellinG-logPrim"></a>
 ### `LandauMellinG.logPrim`
@@ -333,10 +336,11 @@ IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (I
 
 **Definitions its proof touches:** [`LandauWindow.rampSum`](../lean_stage3/LandauWindow.md#LandauWindow-rampSum)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter) (JointSymbol) — `` ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s ``
   - [`LandauTaylor.mellinLog_integrable`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_integrable) (LandauTaylor) — `` IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1) ``
+  - [`WindowsOfRH.phi_sub_pole_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-phi_sub_pole_le) (WindowsOfRH) — `` ‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α) ``
 
 <a name="LandauMellinG-mellin_G"></a>
 ### `LandauMellinG.mellin_G`
@@ -369,8 +373,9 @@ line 244
 
 **Definitions its proof touches:** [`LandauWindow.rampSum`](../lean_stage3/LandauWindow.md#LandauWindow-rampSum)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`JointSymbol.mellin_dd_iter`](../lean_stage3/JointSymbol.md#JointSymbol-mellin_dd_iter) (JointSymbol) — `` ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s ``
   - [`LandauTaylor.iteratedDeriv_Phi`](../lean_stage3/LandauTaylor.md#LandauTaylor-iteratedDeriv_Phi) (LandauTaylor) — `` iteratedDeriv k LandauMellinG.Phi s = mellinLog k s ``
+  - [`WindowsOfRH.phi_sub_pole_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-phi_sub_pole_le) (WindowsOfRH) — `` ‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α) ``
 
