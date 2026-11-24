@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-24  `Stage3.Target` fixed (Target.lean): the window bound on G at every theta in (1/2,1), upper side, on windows for arbitrarily large Y; `rh_of_target` gives RiemannHypothesis. Target is proved nowhere. Julian: the target is not to move. WindowsOfRH holds S2 and S4 of RH => Target.
 - [open]   2026-11-24  R15 PROVED (unit 0506, `Doubling`): the residuals at all scales of N, alternating, add to within 4 log N + 5 at every N (no holes and the doubling). The induction toward sqrt N from smaller scales loses the count of scales; it needs the alternating residuals to cancel among themselves. Not proved.
 - [open]   2026-11-24  R14 PROVED (unit 0505, `PerfectFit`): Julian's perfect fit for the counts. At every N, the sum over k of mu(k) times floor(N/k) is exactly 1. The same signs against the log-factorials are the staircase; their absorbing within sqrt N is the open step.
 - [open]   2026-11-24  Unit 0504 (run, EXPLORATORY): the integers' errors, Möbius-signed, stay at 0.25 of sqrt N from 10^4 to 10^7, while their sizes sum to 1.37 N (4319 sqrt N at 10^7). The signs cancel the no-holes errors down inside the square root at every size measured. No proof that they must.

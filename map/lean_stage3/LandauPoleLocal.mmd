@@ -5,10 +5,12 @@ flowchart LR
   x0(["<b>ContourShift</b><br/>one_le_zeta_order<br/>zeta_analyticAt<br/>zeta_order_ne_top"]):::ext
   x1(["<b>LandauPoleDisc</b><br/>Phi_taylor_on_disc"]):::ext
   x2(["<b>JointSymbol</b><br/>symPhi_principal_part"]):::ext
+  x3(["<b>WindowsOfRH</b><br/>const_eq_zero"]):::ext
   n0 -.-> x1
   n1 -.-> x1
   n1 -.-> x2
   n2 -.-> x1
+  n2 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

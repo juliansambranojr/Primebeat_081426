@@ -40557,7 +40557,9 @@
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Target.lean::Stage3.rh_of_target"
+    ]
    }
   ]
  },
@@ -41226,7 +41228,9 @@
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.differentiableAt_Phi",
      "lean_stage3/Stage3/LandauPrimeSide.lean::LandauPrimeSide.iteratedDeriv_Phi_eq_Ik",
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.iteratedDeriv_Phi",
-     "lean_stage3/Stage3/LandauZeroSide.lean::LandauZeroSide.zero_side"
+     "lean_stage3/Stage3/LandauZeroSide.lean::LandauZeroSide.zero_side",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
     ]
    },
    {
@@ -41517,7 +41521,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/JointSymbol.lean::JointSymbol.mellin_dd_iter",
-     "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_integrable"
+     "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_integrable",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
     ]
    },
    {
@@ -41560,7 +41565,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/JointSymbol.lean::JointSymbol.mellin_dd_iter",
-     "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.iteratedDeriv_Phi"
+     "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.iteratedDeriv_Phi",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
     ]
    }
   ]
@@ -41752,7 +41758,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LandauPoleDisc.lean::LandauPoleDisc.Phi_taylor_on_disc"
+     "lean_stage3/Stage3/LandauPoleDisc.lean::LandauPoleDisc.Phi_taylor_on_disc",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero"
     ]
    }
   ]
@@ -42781,7 +42788,9 @@
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.G_mellin_integrable",
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.mellin_G",
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.rampSum_mellin_integrable",
-     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G"
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_mertens"
     ]
    },
    {
@@ -42829,7 +42838,9 @@
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_hasDerivAt",
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_integrable",
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_real",
-     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound"
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
     ]
    },
    {
@@ -42864,7 +42875,8 @@
      "lean_stage3/Stage3/LandauCriterion.lean::LandauCriterion.stmtLandauWindow",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.StmtLandauWindow",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window",
-     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.zeroFree_half_of_window"
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.zeroFree_half_of_window",
+     "lean_stage3/Stage3/Target.lean::Stage3.Target"
     ]
    },
    {
@@ -67444,6 +67456,80 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Target.lean",
+  "module": "Stage3.Target",
+  "stem": "Target",
+  "header": "Target — the one open statement of the chain, fixed. 2026-11-24. Julian, 2026-11-24: the target is not to move. It is the window bound on `G` (`LandauWindow.WindowBound`, the ramp sum of the von Mangoldt function less its main terms) at every `θ` in `(1/2, 1)`: upper side only, on windows `[Y, Y^(1+δ)]` for arbitrarily large `Y`. Proved, it gives Mathlib's `RiemannHypothesis` by `LandauCriterion.rh_of_windows`.",
+  "imports": [
+   "Stage3.LandauCriterion"
+  ],
+  "opens": [],
+  "namespaces": [
+   "Stage3"
+  ],
+  "lines": 35,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LandauCriterion.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Target",
+    "ns": "Stage3",
+    "full": "Stage3.Target",
+    "line": 23,
+    "why": "The target. For every `θ` in `(1/2, 1)` there are `δ > 0` and `C` with `G y ≤ C·y^θ` on windows `[Y, Y^(1+δ)]` for arbitrarily large `Y`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/Target.lean",
+    "id": "lean_stage3/Stage3/Target.lean::Stage3.Target",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Target.lean::Stage3.rh_of_target"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_of_target",
+    "ns": "Stage3",
+    "full": "Stage3.rh_of_target",
+    "line": 27,
+    "why": "The target gives the Riemann hypothesis.",
+    "sorry": false,
+    "needs": [
+     "h : Target"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/Target.lean",
+    "id": "lean_stage3/Stage3/Target.lean::Stage3.rh_of_target",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauCriterion.lean::LandauCriterion.rh_of_windows",
+     "lean_stage3/Stage3/Target.lean::Stage3.Target"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauCriterion.lean::LandauCriterion.rh_of_windows",
+     "lean_stage3/Stage3/Target.lean::Stage3.Target"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ThetaConverse.lean",
   "module": "Stage3.ThetaConverse",
   "stem": "ThetaConverse",
@@ -87679,6 +87765,243 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/WindowsOfRH.lean",
+  "module": "Stage3.WindowsOfRH",
+  "stem": "WindowsOfRH",
+  "header": "WindowsOfRH — block R16 of `lean_stage3/design/runs.md`. 2026-11-24. The reverse of `LandauCriterion.rh_of_windows`, built in steps. This file holds steps S2 and S4 of the design.",
+  "imports": [
+   "Stage3.LandauCriterion",
+   "Stage3.LandauPoleLocal",
+   "Stage3.LandauMellinG",
+   "Stage3.JointDialGate",
+   "Stage3.Saddle"
+  ],
+  "opens": [
+   "ArithmeticFunction.vonMangoldt",
+   "Chebyshev",
+   "Filter",
+   "Finset",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "WindowsOfRH"
+  ],
+  "lines": 260,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/JointDialGate.lean",
+   "lean_stage3/Stage3/LandauCriterion.lean",
+   "lean_stage3/Stage3/LandauMellinG.lean",
+   "lean_stage3/Stage3/LandauPoleLocal.lean",
+   "lean_stage3/Stage3/Saddle.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "rampSum_eq_mertens",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.rampSum_eq_mertens",
+    "line": 38,
+    "why": "The ramp sum through the Mertens sum. For `y ≥ 1`, `rampSum y = y·Σ_{n≤y} Λ(n)/n − ψ(y)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 ≤ y"
+    ],
+    "proves": "LandauWindow.rampSum y = y * ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) - ψ y",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_mertens",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rampSum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rampSum"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_vonMangoldt_div",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.sum_vonMangoldt_div",
+    "line": 67,
+    "why": "Abel summation. For `y ≥ 1`, `Σ_{n≤y} Λ(n)/n = ψ(y)/y + ∫_{(1,y]} ψ(t)/t²`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 ≤ y"
+    ],
+    "proves": "∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) = ψ y / y + ∫ t in Set.Ioc 1 y, ψ t / t ^ 2",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.sum_vonMangoldt_div",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rampSum_eq_integral",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.rampSum_eq_integral",
+    "line": 103,
+    "why": "S2. For `y ≥ 1`, `rampSum y = y·∫_{(1,y]} ψ(t)/t²`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 ≤ y"
+    ],
+    "proves": "LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rampSum",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_mertens",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.sum_vonMangoldt_div"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rampSum",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_mertens",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.sum_vonMangoldt_div"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_cpow_neg",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.integral_cpow_neg",
+    "line": 113,
+    "why": "The power integral `∫_{(1,∞)} y^(−σ) = 1/(σ − 1)` for real `σ > 1`, in `ℂ`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 < σ"
+    ],
+    "proves": "∫ y in Set.Ioi (1 : ℝ), (y : ℂ) ^ (-(σ : ℂ)) = 1 / ((σ : ℂ) - 1)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.integral_cpow_neg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_cpow_eq",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.mul_cpow_eq",
+    "line": 127,
+    "why": "On `(1, ∞)`, `y·y^(−σ−1) = y^(−σ)` in `ℂ`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y",
+     "σ : ℝ"
+    ],
+    "proves": "(y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ))",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_sub_pole_le",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.phi_sub_pole_le",
+    "line": 136,
+    "why": "The Mellin transform less its pole. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α`, `α < 1`, then for `σ > 1`, `‖Phi σ − c/(σ − 1)‖ ≤ K/(σ − α)`.",
+    "sorry": false,
+    "needs": [
+     "hα : α < 1",
+     "hG : ∀ y ∈ Set.Ioi (1 : ℝ), LandauWindow.G y = c * y + r y",
+     "hr : ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ α",
+     "hσ : 1 < σ"
+    ],
+    "proves": "‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.G_mellin_integrable",
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.mellin_G",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.integral_cpow_neg",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.G_mellin_integrable",
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.mellin_G",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.integral_cpow_neg",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "const_eq_zero",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.const_eq_zero",
+    "line": 183,
+    "why": "S4. The constant is zero. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α` and `α < 1`, then `c = 0`: `Phi` is regular at `1`, so it has no pole `c/(s − 1)` there.",
+    "sorry": false,
+    "needs": [
+     "hα : α < 1",
+     "hK : 0 ≤ K",
+     "hG : ∀ y ∈ Set.Ioi (1 : ℝ), LandauWindow.G y = c * y + r y",
+     "hr : ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ α"
+    ],
+    "proves": "c = 0",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
+     "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_regular_at_one",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
+     "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_regular_at_one",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/WobbleCount.lean",
   "module": "Stage3.WobbleCount",
   "stem": "WobbleCount",
@@ -91384,11 +91707,13 @@
    "Stage3.SieveIdem",
    "Stage3.NoHoles",
    "Stage3.PerfectFit",
-   "Stage3.Doubling"
+   "Stage3.Doubling",
+   "Stage3.Target",
+   "Stage3.WindowsOfRH"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 205,
+  "lines": 207,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -91506,6 +91831,7 @@
    "lean_stage3/Stage3/Stirling.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",
+   "lean_stage3/Stage3/Target.lean",
    "lean_stage3/Stage3/ThetaConverse.lean",
    "lean_stage3/Stage3/ThetaLine.lean",
    "lean_stage3/Stage3/ThetaPi.lean",
@@ -91545,6 +91871,7 @@
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
    "lean_stage3/Stage3/WholeChain.lean",
+   "lean_stage3/Stage3/WindowsOfRH.lean",
    "lean_stage3/Stage3/WobbleCount.lean",
    "lean_stage3/Stage3/ZeroDensity.lean",
    "lean_stage3/Stage3/ZeroSquares.lean",
