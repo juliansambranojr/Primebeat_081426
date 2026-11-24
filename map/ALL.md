@@ -473,7 +473,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`TableDepths.depth_two`](./lean_stage3/TableDepths.md#TableDepths-depth_two) | theorem | reads ζ | `TableDepths` | Construction.tableFrom TableRoute.rowN r 2 ≠ 0 |
 | [`NyquistPeak.depth_zero_vacuous`](./lean/NyquistPeak.md#NyquistPeak-depth_zero_vacuous) | theorem | shape | `NyquistPeak` | gain 0 θ = 1 |
 | [`MainTerm.deriv_bdiffR`](./lean/MainTerm.md#MainTerm-deriv_bdiffR) | theorem | shape | `MainTerm` | deriv (bdiffR g) = bdiffR (deriv g) |
+| [`LevinsonLine.deriv_completedZeta_eq`](./lean_stage3/LevinsonLine.md#LevinsonLine-deriv_completedZeta_eq) | theorem | reads ζ | `LevinsonLine` | deriv completedRiemannZeta s = deriv Gammaℝ s * riemannZeta s + Gammaℝ s * deriv riemannZeta s |
 | [`NyquistPeak.deriv_gain_pi`](./lean/NyquistPeak.md#NyquistPeak-deriv_gain_pi) | theorem | shape | `NyquistPeak` | deriv (gain d) Real.pi = 0 |
+| [`LevinsonLine.deriv_xi_line_im`](./lean_stage3/LevinsonLine.md#LevinsonLine-deriv_xi_line_im) | theorem | reads ζ | `LevinsonLine` | (deriv completedRiemannZeta (1/2 + t * I)).re = 0 |
 | [`EdgeBound.deriv_zeta_conj`](./lean_stage3/EdgeBound.md#EdgeBound-deriv_zeta_conj) | theorem | reads ζ | `EdgeBound` | deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s) |
 | [`ClosedLoopChain.derive_critical_line`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_critical_line) | theorem | counting | `ClosedLoopChain` | (hf.J + hf.M) / 2 = 1 / 2 |
 | [`ClosedLoopChain.derive_joseph`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_joseph) | theorem | counting | `ClosedLoopChain` | hf.J = 1 / 3 |
@@ -491,6 +493,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ResidueRoute.differentiableAt_F`](./lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_F) | theorem | reads ζ | `ResidueRoute` | DifferentiableAt ℂ (F σ) v |
 | [`ResidueRoute.differentiableAt_G`](./lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_G) | theorem | reads ζ | `ResidueRoute` | DifferentiableAt ℂ (G σ) v |
 | [`Stage3.differentiableAt_gammaR`](./lean_stage3/ArgIdentity.md#Stage3-differentiableAt_gammaR) | theorem | shape | `ArgIdentity` | DifferentiableAt ℂ Gammaℝ s |
+| [`LevinsonLine.differentiableAt_Gammaℝ`](./lean_stage3/LevinsonLine.md#LevinsonLine-differentiableAt_Gamma-) | theorem | counting | `LevinsonLine` | DifferentiableAt ℂ Gammaℝ s |
 | [`LandauPoleLocal.differentiableAt_Phi`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi) | theorem | reads ζ | `LandauPoleLocal` | DifferentiableAt ℂ LandauMellinG.Phi s |
 | [`ZeroSquares.differentiableOn_f`](./lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f) | theorem | reads ζ | `ZeroSquares` | DifferentiableOn ℂ (MollifiedMean.f X) ({(1:ℂ)}ᶜ : Set ℂ) |
 | [`LeftSmooth.digamma_piece`](./lean_stage3/LeftSmooth.md#LeftSmooth-digamma_piece) | theorem | shape | `LeftSmooth` | ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * ((2 + Real.pi) / Real.log y) |
@@ -1049,6 +1052,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiToPsi.Li_mul_log_sub_integral`](./lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral) | theorem | shape | `PiToPsi` | Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x |
 | [`PiToPsi.Li_two`](./lean_stage3/PiToPsi.md#PiToPsi-Li_two) | theorem | shape | `PiToPsi` | Stage3.Li 2 = 2 / Real.log 2 |
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | shape | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
+| [`LevinsonLine.line_facts`](./lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) | theorem | shape | `LevinsonLine` | ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 &lt; ((1/2 : ℂ) + t * I).re |
 | [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | reads ζ | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
 | [`LadderMean.line_not_fading_summable`](./lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) | theorem | reads ζ | `LadderMean` | ¬ Tendsto (fun r : ℕ =&gt; (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop… |
 | [`LineCount.lineCount`](./lean_stage3/LineCount.md#LineCount-lineCount) | def | reads ζ | `LineCount` | ℤ |
@@ -1740,6 +1744,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.re_digamma_sub_log_le`](./lean_stage3/Stirling.md#Stage3-re_digamma_sub_log_le) | theorem | reads ζ | `Stirling` | \|phasePoint t - Real.log ‖zq t‖\| ≤ 96 / t |
 | [`Stage3.re_eq_half_of_RH`](./lean_stage3/Assembly.md#Stage3-re_eq_half_of_RH) | theorem | reads ζ | `Assembly` | (ρ : ℂ).re = 1 / 2 |
 | [`WeilDetect.re_eq_half_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-re_eq_half_of_RH) | theorem | reads ζ | `WeilDetect` | (ρ : ℂ).re = 1 / 2 |
+| [`LevinsonLine.re_gammaR_G_line`](./lean_stage3/LevinsonLine.md#LevinsonLine-re_gammaR_G_line) | theorem | reads ζ | `LevinsonLine` | (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).r… |
 | [`AliasClass.re_inv_pos`](./lean_stage3/AliasClass.md#AliasClass-re_inv_pos) | theorem | shape | `AliasClass` | 0 &lt; (ρ⁻¹).re |
 | [`HardyZ.re_line`](./lean_stage3/HardyZ.md#HardyZ-re_line) | theorem | counting | `HardyZ` | ((1 / 2 : ℂ) + t * I).re = 1 / 2 |
 | [`StepsBelow.re_lt_one`](./lean_stage3/StepsBelow.md#StepsBelow-re_lt_one) | theorem | counting | `StepsBelow` | (-w - 1).re &lt; -1 ∧ (-w - 2).re &lt; -1 |
@@ -2611,6 +2616,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaEM.zeta_eq_em`](./lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | theorem | reads ζ | `ZetaEM` | riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 + emBoundary k N s + emRem k N s |
 | [`ZetaEM.zeta_eq_em_one`](./lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em_one) | theorem | reads ζ | `ZetaEM` | riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 - s * emInt 1 N s |
 | [`ZetaGrowth.zeta_growth_strip`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta_growth_strip) | theorem | reads ζ | `ZetaGrowth` | ‖riemannZeta s‖ ≤ 15 * \|s.im\| ^ 2 |
+| [`LevinsonLine.zeta_line_zero_iff`](./lean_stage3/LevinsonLine.md#LevinsonLine-zeta_line_zero_iff) | theorem | reads ζ | `LevinsonLine` | riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0 |
 | [`ContourShift.zeta_local_data`](./lean_stage3/ContourShift.md#ContourShift-zeta_local_data) | theorem | reads ζ | `ContourShift` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p / p) / (s - p) |
 | [`ContourShift.zeta_local_data_one`](./lean_stage3/ContourShift.md#ContourShift-zeta_local_data_one) | theorem | reads ζ | `ContourShift` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in nhdsWithin 1 {1}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + ((x:ℝ):ℂ) / (s - 1) |
 | [`ContourShift.zeta_local_data_origin`](./lean_stage3/ContourShift.md#ContourShift-zeta_local_data_origin) | theorem | reads ζ | `ContourShift` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in nhdsWithin 0 {0}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (- deriv riemannZeta 0 / riemannZeta 0) / (s - 0) |
