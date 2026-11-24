@@ -832,3 +832,5 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-15  entry 1: duplicate artifacts — O9_run.log ≡ O9_run_default.log, O8_run.log ≡ O8_run_dps300.log
 - [closed] 2026-08-15  entry 1: O1/O2/O3b live only in files (2)/ — never promoted, no result JSON
 - [closed] 2026-08-15  entry 1: O3/O4/05/06/O8/O9 unpreregistered — exploratory, not verdicts
+- [open]   2026-11-24  S4 PROVED (unit 0508, `ResidueRoute`): under H, a zero right of sigma whose mode is isolated in K sigma and on the frontier of the component of 0 in the small disc less K sigma gives False (`isolated_boundary_mode_false`). Accumulating modes and H itself are not proved.
+- [open]   2026-11-24  S5 PROVED (unit 0509, `LadderAssembly`): H, and off the line an attained top real part with an isolated mode, give RiemannHypothesis (`rh_of_ladder_tame`). Open: a top real part never attained, an attained top mode others accumulate on, and H.

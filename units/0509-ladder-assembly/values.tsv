@@ -1,0 +1,17 @@
+key	value	source
+module_lines	132	wc -l lean_stage3/Stage3/LadderAssembly.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/LadderAssembly.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LadderAssembly.lean
+pins	2	top_mode_on_frontier, rh_of_ladder_tame
+errors_first	1	the worker's first build: unknown identifier norm_two_cpow, which lives in FiniteOffLine
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8891	lake build (full Stage3), Build completed successfully
+jobs_module	8831	run/build.log, lake build Stage3.LadderAssembly
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s5	The case split and the assembly
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_residue	508	unit 0508

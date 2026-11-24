@@ -43,12 +43,13 @@ flowchart LR
   x17(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
   x18(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
   x19(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x20(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x21(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x22(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x23(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x24(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x25(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x20(["<b>LadderAssembly</b><br/>top_mode_on_frontier"]):::ext
+  x21(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x22(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x23(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x24(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x25(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x26(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -77,7 +78,7 @@ flowchart LR
   n1 -.-> x5
   n1 -.-> x8
   n1 -.-> x9
-  n10 -.-> x21
+  n10 -.-> x22
   n2 -.-> x11
   n2 -.-> x12
   n2 -.-> x13
@@ -91,17 +92,18 @@ flowchart LR
   n7 -.-> x18
   n7 -.-> x19
   n7 -.-> x2
+  n7 -.-> x20
   n7 -.-> x6
-  n9 -.-> x21
+  n9 -.-> x22
   x14 -.-> n4
   x15 -.-> n6
   x16 -.-> n6
   x17 -.-> n6
-  x20 -.-> n9
-  x22 -.-> n10
-  x23 -.-> n11
+  x21 -.-> n9
+  x23 -.-> n10
   x24 -.-> n11
   x25 -.-> n11
+  x26 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -402,7 +404,7 @@ line 226
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (11 that use it)
+**Feeds** (12 that use it)
 
   - [`CountEuler.core`](../lean_stage3/CountEuler.md#CountEuler-core) (CountEuler) — `` False ``
   - [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) (CountEuler) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ /… ``
@@ -412,6 +414,7 @@ line 226
   - [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) (FilterAttained) — `` RiemannHypothesis ``
   - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLine.norm_term_le`](#FiniteOffLine-norm_term_le) — `` ‖term d (r : ℤ) ρ‖ ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (2 ^ d * ((2:ℝ) ^ (ρ : ℂ).re) ^ r * ‖(ρ : ℂ)‖⁻¹) ``
+  - [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier) (LadderAssembly) — `` (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ ResidueRoute.K σ) 0) ``
   - [`ResidueRoute.K_subset`](../lean_stage3/ResidueRoute.md#ResidueRoute-K_subset) (ResidueRoute) — `` K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖} ``
   - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
   - [`ResidueRoute.norm_um`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_um) (ResidueRoute) — `` ‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re) ``
