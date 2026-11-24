@@ -254,3 +254,43 @@ weights fixed by their heights.
 one derivation on paper: either a bound that uses one of the four facts
 above, or an atomic example showing that the four together still allow the
 wall.
+
+### S7, derivation round 1 (2026-11-24, Julian: "Start")
+
+On paper, here, unchecked by anyone else.
+
+**The wall in `s = −log₂ u`.** For `Re s > Θ`, `F` is the folded sum
+`Σ'_{β≥σ} w_ρ/(1 − 2^(ρ−s))`. Each term is meromorphic on the plane, and
+under H their sum `G` is analytic for `Re s > σ`. The wall is the folded sum
+failing to converge for `Re s < Θ`. In every period strip, the aliases
+`ρ − 2πi m/log 2` of the zeros near `Θ` come close enough to every point to
+blow the sum up. So the wall is a statement about how the heights `γ mod
+2π/log 2` of the zeros near the top fall.
+
+**Free weights with positive real part do not give a wall cheaply.** An
+atom `w·δ_z` with `|z| > 2^σ` adds `w·z^k`, and that outgrows `k²·2^(kσ)`.
+Finitely many atoms cannot cancel it for every large `k`: that is
+`LadderFading`'s Vandermonde step. Atoms spread evenly on a circle cancel
+except at the multiples of their number, and there they outgrow the bound
+as well. So a wall needs exact cancellation among infinitely many atoms, as
+in Wolff's series, at every large `k`. Unit 0431 records that such series
+exist with complex weights. This round has not settled whether they exist
+with weights of positive real part.
+
+**What the zeros fix that Wolff's series leave free.** The weight and the
+point are tied: `w = m(ρ)/ρ` and `z = 2^ρ`, both from `ρ`. Aliases share `z`
+and differ in `w`, and `AliasClass` sums a fibre. A Wolff series picks its
+weights to make the cancellation work. The zeros cannot. So the target is a
+rigidity statement: no family `{(m(ρ)/ρ, 2^ρ)}`, summable, closed under
+conjugation, with `Re(m/ρ) > 0`, has power sums `O(k²·2^(kσ))` while some
+`β > σ`.
+
+**What this round did not reach.** It has no proof of that rigidity and no
+example against it. Every construction tried here broke on the same point:
+whatever does not cancel exactly at modulus above `2^σ` eventually
+dominates. That point is also the only lever found. A proof would show that
+the tied weights cannot cancel exactly on infinitely many levels.
+
+**Next round.** Look for the rigidity in the literature first: uniqueness
+for Dirichlet-type series `Σ a_n λ_n^k` with coefficients tied to their
+exponents (Pólya, Carlson, Mandelbrojt). Then derive.
