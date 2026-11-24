@@ -191,6 +191,7 @@ import Stage3.WholeChain
 import Stage3.HolyChannel
 import Stage3.Readings
 import Stage3.SieveIdem
+import Stage3.NoHoles
 
 namespace Stage3
 

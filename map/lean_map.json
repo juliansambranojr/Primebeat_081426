@@ -48701,6 +48701,351 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/NoHoles.lean",
+  "module": "Stage3.NoHoles",
+  "stem": "NoHoles",
+  "header": "NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase at `N` read back from the logarithms of the integers alone. Möbius inversion over the scales `N/k` undoes the self-bound of `Stage3.SelfBound`, so `ψ(N)` is a signed sum of the log-sums up to `N/k`. Each log-sum is `M log M − M` up to an error of size `log M + 1`, which splits `ψ(N)` into a smooth part and an error part.",
+  "imports": [
+   "Stage3.SelfBound"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Finset"
+  ],
+  "namespaces": [
+   "NoHoles"
+  ],
+  "lines": 199,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SelfBound.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_divisors_moebius",
+    "ns": "NoHoles",
+    "full": "NoHoles.sum_divisors_moebius",
+    "line": 26,
+    "why": "The Möbius function sums to `[m = 1]` over the divisors of `m`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ"
+    ],
+    "proves": "∑ i ∈ m.divisors, ((moebius i : ℤ) : ℝ) = if m = 1 then 1 else 0",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "multiples_eq_image",
+    "ns": "NoHoles",
+    "full": "NoHoles.multiples_eq_image",
+    "line": 33,
+    "why": "The multiples of `k` up to `N`, as the image of `j ↦ k·j` on `1..N/k`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "(Icc 1 N).filter (fun m => k ∣ m) = (Icc 1 (N / k)).image (fun j => k * j)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "moebius_floor_inversion",
+    "ns": "NoHoles",
+    "full": "NoHoles.moebius_floor_inversion",
+    "line": 53,
+    "why": "Möbius inversion over the floors.",
+    "sorry": false,
+    "needs": [
+     "f : ℕ → ℝ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psi_floor",
+    "ns": "NoHoles",
+    "full": "NoHoles.psi_floor",
+    "line": 87,
+    "why": "The staircase depends on the floor of its argument.",
+    "sorry": false,
+    "needs": [
+     "N k : ℕ"
+    ],
+    "proves": "Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psi_by_integers",
+    "ns": "NoHoles",
+    "full": "NoHoles.psi_by_integers",
+    "line": 92,
+    "why": "The staircase from the integers.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ n ∈ Icc 1 (N / k), Real.log (n : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_log_eq",
+    "ns": "NoHoles",
+    "full": "NoHoles.sum_log_eq",
+    "line": 102,
+    "why": "The log-sum is the logarithm of the factorial.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 M, Real.log (n : ℝ) = Real.log ((M.factorial : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_factorial_close",
+    "ns": "NoHoles",
+    "full": "NoHoles.log_factorial_close",
+    "line": 112,
+    "why": "The log-sum is `M log M − M` up to `log M + 1`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M"
+    ],
+    "proves": "|∑ n ∈ Icc 1 M, Real.log (n : ℝ) - ((M : ℝ) * Real.log (M : ℝ) - (M : ℝ))| ≤ Real.log (M : ℝ) + 1",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S",
+    "ns": "NoHoles",
+    "full": "NoHoles.S",
+    "line": 143,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "e",
+    "ns": "NoHoles",
+    "full": "NoHoles.e",
+    "line": 147,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_err_trivial",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "e_bound",
+    "ns": "NoHoles",
+    "full": "NoHoles.e_bound",
+    "line": 150,
+    "why": "The error at every scale is bounded by `log M + 1`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M"
+    ],
+    "proves": "|e M| ≤ Real.log (M : ℝ) + 1",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holes_resid",
+    "ns": "NoHoles",
+    "full": "NoHoles.holes_resid",
+    "line": 155,
+    "why": "The staircase split into its smooth part and its error part.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * S (N / k) + ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holes_err_trivial",
+    "ns": "NoHoles",
+    "full": "NoHoles.holes_err_trivial",
+    "line": 165,
+    "why": "The error part, bounded with `|μ| ≤ 1` alone.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "|∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)| ≤ ∑ k ∈ Icc 1 N, |e (N / k)|",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_err_trivial",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/OneChain.lean",
   "module": "Stage3.OneChain",
   "stem": "OneChain",
@@ -56741,6 +57086,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
      "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
@@ -90710,11 +91056,12 @@
    "Stage3.WholeChain",
    "Stage3.HolyChannel",
    "Stage3.Readings",
-   "Stage3.SieveIdem"
+   "Stage3.SieveIdem",
+   "Stage3.NoHoles"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 202,
+  "lines": 203,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -90795,6 +91142,7 @@
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
+   "lean_stage3/Stage3/NoHoles.lean",
    "lean_stage3/Stage3/OneChain.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",

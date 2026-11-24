@@ -1,0 +1,17 @@
+key	value	source
+module_lines	198	wc -l lean_stage3/Stage3/NoHoles.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/NoHoles.lean
+defs	2	grep -c ^def (S, e)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/NoHoles.lean
+pins	6	moebius_floor_inversion, psi_floor, psi_by_integers, log_factorial_close, holes_resid, holes_err_trivial
+errors_first	0	the worker's first lake build Stage3.NoHoles
+builds	1	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8885	lake build (full Stage3), Build completed successfully
+jobs_module	8839	run/build.log, lake build Stage3.NoHoles
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r13	the integers have no holes
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_self	486	unit 0486

@@ -5,12 +5,14 @@ flowchart LR
   n3["<b>self_bound</b><br/>∑ k ∈ Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N…"]:::shp
   n4["<b>self_bound_resid ■</b><br/>∑ k ∈ Icc 1 N, (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k…"]:::shp
   x0(["<b>SieveExact</b><br/>card_multiples"]):::ext
-  x1(["<b>WholeChain</b><br/>table_side"]):::ext
+  x1(["<b>NoHoles</b><br/>psi_by_integers"]):::ext
+  x2(["<b>WholeChain</b><br/>table_side"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n4
   n3 -.-> x1
+  n3 -.-> x2
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
