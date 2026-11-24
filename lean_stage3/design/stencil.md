@@ -496,3 +496,35 @@ independently of RH. Those already in the tree include the zero density
 bound (`ZeroDensity`) and the zero counting (`Backlund`), and the next step
 is to list them all. The design question for the ladder route is now which
 of those facts, put in place of H, reaches a face.
+
+## S9 Bases per creep rate — on paper, no Lean target yet
+
+Julian, 2026-11-24: name, for each rate of creep, the number of coupled bases
+that scale the wall. On paper, here, unchecked by anyone else.
+
+**The circles.** In the mode `u = 2^(−s)`, the line `Re s = σ` is the circle
+`|u| = 2^(−σ)`. `BandJoin` has the band: every zero lies between
+`|u| = 1/2` (`Re s = 1`) and `|u| = 1` (`Re s = 0`), and the critical line is
+the circle `bandR (1/2) = 2^(−1/2)` (`spiralLink_iff_middle`). The zeros right
+of one half are the ring between the circles `1/2` and `2^(−1/2)`. Under H the
+generating function is analytic inside `|u| < 2^(−1/2)`. So H's own horizon is
+the circle of the critical line: the bound sees the ring only from inside.
+
+**The statement.** For a creep `Θ − β_max(T) ≤ T^(−b)`, `b > 0`, and the first
+`r` primes as coupled bases:
+- input `H_r`: `|ψ(x) − x| ≤ C·log²x·√x` at every `x = p₁^(a₁)⋯p_r^(a_r)`;
+- arithmetic input `D_r(κ)`: every `Δ` with `1 ≤ |Δ| ≤ T` has
+  `max_i dist(Δ·log p_i, 2πℤ) ≥ c·T^(−κ)` (simultaneous approximation);
+- conclusion: if `κ + θ_band/2 < b`, the wall does not form.
+  Here `θ_band` is the density exponent of the band count, `N_band(T) ≤ T^(θ_band)`.
+
+**What is known about `D_r(κ)`.** Dirichlet's theorem gives an upper limit:
+some `Δ ≤ T` reaches `T^(−1/(r−1))`, so `κ ≥ 1/(r−1)` always. That
+`κ = 1/(r−1) + ε` holds for the logarithms of the primes is not proved.
+Linear forms in logarithms give some finite `κ_r`, much larger. With the true
+`κ_r`, the count of bases needed is the least `r` with `κ_r + θ_band/2 < b`.
+
+**What it does not cover.** A creep slower than every power, and a band
+whose density exponent alone exceeds `b`. Both escape every finite `r`. The
+input `H_r` grows with `r` and reaches `NoRunaway` as `r` grows without
+bound (S8).
