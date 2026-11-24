@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1 assembled: `Stage3/LevinsonCount.lean`
+
+    DONE        `levinson_count`: for 0 ≤ c ≤ 1, 4 ≤ a < b, G = ζ + cζ' nonzero
+                on the border of [1/2,3]×[a,b], the factor 1 − c·Re(Gammaℝ'/Gammaℝ)
+                nonzero on the line segment, there is an explicit integer bound
+                (N(b) − N(a)) − 2·(zeros of G in the rectangle) − (A·log b + B)
+                ≤ lineCount b; it assembles LevinsonArg, LevinsonTurn,
+                LevinsonSize and LevinsonEdge; one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0523 and assemble step 1). The
+                avoidance hypotheses (no zero of G on the border, the factor
+                nonzero) stay hypotheses here
+    DEPENDS     the five Levinson modules, `LineCount`
+    OUT         removing the avoidance hypotheses; Littlewood and the mean
+                value (steps 2–6)
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (ii): `Stage3/LevinsonEdge.lean`
 
     DONE        `horizontal_edge_le`: for 0 ≤ c ≤ 1 and T ≥ T₀, with G = ζ + cζ'

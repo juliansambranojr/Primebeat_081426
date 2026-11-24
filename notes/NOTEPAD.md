@@ -847,3 +847,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-24  S11 step 1b PROVED (unit 0520, `LevinsonArg`): continuous argument lift along the line; turning by k·pi gives lineCount >= k. Unconditional.
 - [open]   2026-11-24  S11 step 1c PROVED (unit 0521, `LevinsonTurn`): turning along the line = Re ∫ logDeriv; splits Gammaℝ + G; G part = −2π·N_G(rect) + three edge integrals. Unconditional.
 - [open]   2026-11-24  S11 step 1d (i),(iii) PROVED (unit 0522, `LevinsonSize`): right edge |·| <= pi for 0<=c<=1; Gammaℝ part = phaseTheta difference = pi(N b − N a) up to pi(30 log b + 150). Unconditional.
+- [open]   2026-11-24  S11 step 1d (ii) PROVED (unit 0523, `LevinsonEdge`): horizontal edge turning <= 21π log T + 133π (T >= 4, 0<=c<=1). Unconditional.

@@ -7,7 +7,7 @@ LevinsonSize — block S11 of `lean_stage3/design/stencil.md`, step 1d (i), (iii
 11 theorems, 0 definitions, 310 lines. 
 
 **Imports:** [`ArgCount`](../lean_stage3/ArgCount.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)
 
 ## The picture
 
@@ -24,11 +24,12 @@ flowchart LR
   n8["<b>gamma_part_eq_count</b><br/>(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Real.pi * (rie…"]:::thm
   n9["<b>gamma_part_count_le ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   n10["<b>gamma_part_count_le_gt_two ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
-  x0(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x1(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x2(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x3(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x4(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x0(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
+  x1(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
+  x2(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x3(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x4(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x5(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -37,16 +38,17 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n8 --> n9
-  x0 -.-> n5
-  x0 -.-> n7
-  x1 -.-> n6
+  n1 -.-> x0
+  x1 -.-> n5
   x1 -.-> n7
   x2 -.-> n6
   x2 -.-> n7
   x3 -.-> n6
   x3 -.-> n7
-  x4 -.-> n10
-  x4 -.-> n9
+  x4 -.-> n6
+  x4 -.-> n7
+  x5 -.-> n10
+  x5 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -111,8 +113,9 @@ line 60 · arrows read from text
 
   - [`LevinsonSize.deriv_zeta_eq_LSeries`](#LevinsonSize-deriv_zeta_eq_LSeries) — `` deriv riemannZeta s = -LSeries (LSeries.logMul 1) s ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LevinsonEdge.horizontal_edge_le`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-horizontal_edge_le) (LevinsonEdge) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi ``
   - [`LevinsonSize.re_G_pos`](#LevinsonSize-re_G_pos) — `` 0 < (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re ``
 
 <a name="LevinsonSize-re_G_pos"></a>

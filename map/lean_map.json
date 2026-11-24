@@ -18547,7 +18547,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.horizontal_leg_le"
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.horizontal_leg_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound"
     ]
    },
    {
@@ -45747,6 +45748,476 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonEdge.lean",
+  "module": "Stage3.LevinsonEdge",
+  "stem": "LevinsonEdge",
+  "header": "LevinsonEdge — block S11 of `lean_stage3/design/stencil.md`, step 1d (ii). 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonSize"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LevinsonEdge"
+  ],
+  "lines": 517,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonSize.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "zeta_norm_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.zeta_norm_le",
+    "line": 60,
+    "why": "`ζ` right of `Re = 1/4`, above `Im = 1`. `‖ζ u‖ ≤ 2 + 4‖u‖`, from upstream's `ZetaAltFormula`; the proof of `Stage3.zeta_disk_upper` with these margins.",
+    "sorry": false,
+    "needs": [
+     "hre : 1 / 4 ≤ u.re",
+     "him : 1 ≤ u.im"
+    ],
+    "proves": "‖riemannZeta u‖ ≤ 2 + 4 * ‖u‖",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_norm_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "disc_facts",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.disc_facts",
+    "line": 108,
+    "why": "Coordinates on the disc about `3 + iT`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 ≤ T",
+     "hu : ‖u - (3 + (T : ℂ) * I)‖ ≤ d"
+    ],
+    "proves": "3 - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + 3 + T",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.disc_facts",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.deriv_zeta_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_disc_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.zeta_disc_le",
+    "line": 129,
+    "why": "`ζ` on the `11/4` disc about `3 + iT`. `‖ζ u‖ ≤ 4T + 25` for `T ≥ 4`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hu : ‖u - (3 + (T : ℂ) * I)‖ ≤ 11 / 4"
+    ],
+    "proves": "‖riemannZeta u‖ ≤ 4 * T + 25",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.disc_facts",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.disc_facts",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_norm_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.deriv_zeta_disc_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_zeta_disc_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.deriv_zeta_disc_le",
+    "line": 137,
+    "why": "`ζ'` on the `21/8` disc about `3 + iT`. Cauchy's estimate on the circle of radius `1/8`: `‖ζ' w‖ ≤ 8 (4T + 25) = 32T + 200`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hw : ‖w - (3 + (T : ℂ) * I)‖ ≤ 21 / 8"
+    ],
+    "proves": "‖deriv riemannZeta w‖ ≤ 32 * T + 200",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.deriv_zeta_disc_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.disc_facts",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.disc_facts",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_disc_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_analyticAt",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.G_analyticAt",
+    "line": 166,
+    "why": "`G = ζ + c ζ'` is analytic away from the pole.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "hw : w ≠ 1"
+    ],
+    "proves": "AnalyticAt ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) w",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_disc_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.G_disc_le",
+    "line": 175,
+    "why": "`G` on the `21/8` disc about `3 + iT`. `‖ζ w + c ζ' w‖ ≤ 36T + 225`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hT : 4 ≤ T",
+     "hw : ‖w - (3 + (T : ℂ) * I)‖ ≤ 21 / 8"
+    ],
+    "proves": "‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 36 * T + 225",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_disc_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.deriv_zeta_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.deriv_zeta_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "symm",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.symm",
+    "line": 192,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "g : ℂ → ℂ",
+     "z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "model",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.model",
+    "line": 197,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "g : ℂ → ℂ",
+     "z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "symm_real",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.symm_real",
+    "line": 200,
+    "why": "On the real axis the symmetrisation is `Re g`.",
+    "sorry": false,
+    "needs": [
+     "g : ℂ → ℂ",
+     "x : ℝ"
+    ],
+    "proves": "symm g (x : ℂ) = ((g x).re : ℂ)",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "symm_zero",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.symm_zero",
+    "line": 207,
+    "why": "At the centre the symmetrisation is `Re g 0`.",
+    "sorry": false,
+    "needs": [
+     "g : ℂ → ℂ"
+    ],
+    "proves": "symm g 0 = ((g 0).re : ℂ)",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "symm_differentiableOn",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.symm_differentiableOn",
+    "line": 212,
+    "why": "The symmetrisation is holomorphic where `g` is, on a ball about `0`.",
+    "sorry": false,
+    "needs": [
+     "hd : DifferentiableOn ℂ g (Metric.ball (0 : ℂ) ρ)"
+    ],
+    "proves": "DifferentiableOn ℂ (symm g) (Metric.ball (0 : ℂ) ρ)",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_symm_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.norm_symm_le",
+    "line": 230,
+    "why": "The symmetrisation is bounded by `g` on a ball about `0`.",
+    "sorry": false,
+    "needs": [
+     "hM : ∀ z : ℂ, ‖z‖ ≤ ρ → ‖g z‖ ≤ M",
+     "hz : ‖z‖ ≤ ρ"
+    ],
+    "proves": "‖symm g z‖ ≤ M",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "real_zero_count",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.real_zero_count",
+    "line": 245,
+    "why": "The Jensen count. If `g` is holomorphic on `‖z‖ < 11/10`, `0 < m ≤ Re g 0` and `‖g‖ ≤ M` on `‖z‖ ≤ 7/8`, then the real zeros of `Re g` in `[−5/6, 5/6]` lie in a `Finset` of size at most `21 log (M/m)`: upstream `ZerosBound` at `r = 5/6`, `R = 7/8` on `model g`.",
+    "sorry": false,
+    "needs": [
+     "hd : DifferentiableOn ℂ g (Metric.ball (0 : ℂ) (11 / 10))",
+     "hm : 0 < m",
+     "h0 : m ≤ (g 0).re",
+     "hM : ∀ z : ℂ, ‖z‖ ≤ 7 / 8 → ‖g z‖ ≤ M"
+    ],
+    "proves": "∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 21 * Real.log (M / m)",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.model",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.norm_symm_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_differentiableOn",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_real",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.symm_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_le_of_bound",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.edge_le_of_bound",
+    "line": 369,
+    "why": "The edge, with the growth as a hypothesis. For `G` analytic off `1`, `T ≥ 4`, `Re G(3 + iT) ≥ 1/3`, `‖G‖ ≤ M` on `|w − (3 + iT)| ≤ 21/8`, and `G ≠ 0` on the segment `[1/2, 3] + iT`: `|Im ∫_{1/2}^{3} logDeriv G (x + iT) dx| ≤ π (21 log (3M) + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hGa : ∀ w : ℂ, w ≠ 1 → AnalyticAt ℂ G w",
+     "h0 : 1 / 3 ≤ (G (3 + (T : ℂ) * I)).re",
+     "hM : ∀ w : ℂ, ‖w - (3 + (T : ℂ) * I)‖ ≤ 21 / 8 → ‖G w‖ ≤ M",
+     "hne : ∀ x ∈ Set.Icc (1/2:ℝ) 3, G (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1)",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizontal_edge_le",
+    "ns": "LevinsonEdge",
+    "full": "LevinsonEdge.horizontal_edge_le",
+    "line": 455,
+    "why": "S11 step 1d (ii), the horizontal edge. For `0 ≤ c ≤ 1`, `T ≥ 4`, and `G = ζ + c ζ'` nonzero on the segment `[1/2, 3] + iT`: `|Im ∫_{1/2}^{3} logDeriv G (x + iT) dx| ≤ 21π log T + 133π`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hT : 4 ≤ T",
+     "hne : ∀ x ∈ Set.Icc (1/2:ℝ) 3, riemannZeta (↑x + ↑T * I) + c * deriv riemannZeta (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonEdge.lean",
+    "id": "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_disc_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LevinsonLine.lean",
   "module": "Stage3.LevinsonLine",
   "stem": "LevinsonLine",
@@ -46016,6 +46487,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos"
     ]
    },
@@ -95767,11 +96239,12 @@
    "Stage3.LevinsonLine",
    "Stage3.LevinsonArg",
    "Stage3.LevinsonTurn",
-   "Stage3.LevinsonSize"
+   "Stage3.LevinsonSize",
+   "Stage3.LevinsonEdge"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 217,
+  "lines": 218,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -95850,6 +96323,7 @@
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LevinsonArg.lean",
+   "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",

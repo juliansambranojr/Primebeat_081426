@@ -21,8 +21,9 @@ flowchart LR
   n7["<b>vertical_leg_le</b><br/>|(∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I…"]:::thm
   n8["<b>horizontal_leg_le</b><br/>|(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex…"]:::thm
   n9["<b>zetaArgContour_le</b><br/>|Stage3.zetaArgContour T| ≤ (Z.card : ℝ) + 3 / 2"]:::thm
-  x0(["<b>ArgIdentity</b><br/>logDeriv_zeta_continuousAt"]):::ext
-  x1(["<b>ArgCount</b><br/>argS_le_of_good"]):::ext
+  x0(["<b>LevinsonEdge</b><br/>edge_le_of_bound"]):::ext
+  x1(["<b>ArgIdentity</b><br/>logDeriv_zeta_continuousAt"]):::ext
+  x2(["<b>ArgCount</b><br/>argS_le_of_good"]):::ext
   n0 --> n3
   n1 --> n3
   n1 --> n7
@@ -35,9 +36,10 @@ flowchart LR
   n6 --> n8
   n7 --> n9
   n8 --> n9
-  n9 -.-> x1
-  x0 -.-> n7
-  x0 -.-> n8
+  n6 -.-> x0
+  n9 -.-> x2
+  x1 -.-> n7
+  x1 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -256,9 +258,10 @@ line 147
   - [`ArgLegs.im_integral_le_pi_of_re_nonpos`](#ArgLegs-im_integral_le_pi_of_re_nonpos) — `` |(∫ x in a..b, g' x / g x).im| ≤ Real.pi ``
   - [`ArgLegs.re_sign_const`](#ArgLegs-re_sign_const) — `` (∀ x ∈ Set.Icc a b, 0 ≤ (g x).re) ∨ (∀ x ∈ Set.Icc a b, (g x).re ≤ 0) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ArgLegs.horizontal_leg_le`](#ArgLegs-horizontal_leg_le) — `` |(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex.I)).im| ≤ Real.pi * ((Z.card : ℝ) + 1) ``
+  - [`LevinsonEdge.edge_le_of_bound`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-edge_le_of_bound) (LevinsonEdge) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
 
 <a name="ArgLegs-vertical_leg_le"></a>
 ### `ArgLegs.vertical_leg_le`
