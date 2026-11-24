@@ -200,6 +200,7 @@ import Stage3.ResidueRoute
 import Stage3.LadderAssembly
 import Stage3.ReachRoute
 import Stage3.HardyZ
+import Stage3.LineCount
 
 namespace Stage3
 
