@@ -1,24 +1,21 @@
-# What `ResidueRoute.isolated_boundary_mode_false` rests on
+# What `LadderAssembly.rh_of_ladder_tame` rests on
 
-[`ResidueRoute.isolated_boundary_mode_false`](../lean_stage3/ResidueRoute.md#ResidueRoute-isolated_boundary_mode_false) in `lean_stage3/Stage3/ResidueRoute.lean`, line 372.
+[`LadderAssembly.rh_of_ladder_tame`](../lean_stage3/LadderAssembly.md#LadderAssembly-rh_of_ladder_tame) in `lean_stage3/Stage3/LadderAssembly.lean`, line 84.
 
-**Why.** An isolated mode on the boundary of the origin's component. Let `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, let `1/2 < σ₀ < Θ ≤ 1` and let every zero have real part at most `Θ`. Then there is `E` with `σ₀ ≤ E < Θ` such that for every `σ ≥ E` no zero `ρ₁` with real part above `σ` has its mode `u₁ = 2^(−ρ₁)` isolated in `K = closure {2^(−ρ) : Re ρ ≥ σ}` and on the frontier of the connected component of `{|u| < 2^(−σ)} ∖ K` that holds `0`.
+**Why.** The ladder route, assembled. Under the ladder bound `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, if every failure of the Riemann hypothesis has a tame top — a zero `ρ₁` with `1/2 < Re ρ₁`, every real part at most `Re ρ₁`, and `σ₀ ∈ (1/2, Re ρ₁)`, `ε > 0` with every mode of real part `≥ σ₀` other than `2^(−ρ₁)` at distance at least `ε` from it — then the Riemann hypothesis holds.
 
 **Proves**
 
 ```lean
-∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε → u = (2:ℂ) ^ (-(ρ₁ : ℂ))) → (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ K σ) 0) → False
+RiemannHypothesis
 ```
 
 **Needs** (its hypotheses)
 
   - `` hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k ``
-  - `` hσ₀ : 1 / 2 < σ₀ ``
-  - `` hσ₀Θ : σ₀ < Θ ``
-  - `` hΘ1 : Θ ≤ 1 ``
-  - `` hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ Θ ``
+  - `` htame : ¬ RiemannHypothesis → ∃ ρ₁ : Kadiri.NontrivialZeros, 1/2 < (ρ₁:ℂ).re ∧ (∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ (ρ₁:ℂ).re) ∧ ∃ σ₀ ε : ℝ, 1/2 < σ₀ ∧ σ₀ < (ρ₁:ℂ).re ∧ 0 < ε ∧ ∀ ρ : Kadiri.NontrivialZeros, σ₀ ≤ (ρ:ℂ).re → (2:ℂ)^(-(ρ:ℂ)) ≠ (2:ℂ)^(-(ρ₁:ℂ)) → ε ≤ ‖(2:ℂ)^(-(ρ:ℂ)) - (2:ℂ)^(-(ρ₁:ℂ))… ``
 
-Behind it: 459 theorems and 90 definitions in 49 files. Every one is listed below; Lean recorded each step.
+Behind it: 461 theorems and 90 definitions in 50 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -72,7 +69,8 @@ flowchart LR
   f45["<b>FixedRowTwo</b><br/>3 used"]:::thm
   f46["<b>FilterLadder</b><br/>23 used"]:::thm
   f47["<b>FilterAttained</b><br/>9 used"]:::thm
-  f48["<b>ResidueRoute</b><br/>isolated_boundary_mode_false"]:::end_
+  f48["<b>ResidueRoute</b><br/>20 used"]:::thm
+  f49["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]:::end_
   f3 --> f4
   f1 --> f7
   f6 --> f7
@@ -134,6 +132,7 @@ flowchart LR
   f29 --> f48
   f38 --> f48
   f47 --> f48
+  f48 --> f49
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -154,7 +153,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 - [`AliasClass.re_inv_pos`](../lean_stage3/AliasClass.md#AliasClass-re_inv_pos) — `` 0 < (ρ⁻¹).re ``
 - [`AliasClass.zero_re_pos`](../lean_stage3/AliasClass.md#AliasClass-zero_re_pos) — `` 0 < (ρ : ℂ).re ``
-- ★ [`AliasClass.re_order_div_pos`](../lean_stage3/AliasClass.md#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
+- [`AliasClass.re_order_div_pos`](../lean_stage3/AliasClass.md#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
 
 ### [`Assembly`](../lean_stage3/Assembly.md) — 2
 
@@ -240,7 +239,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`LadderMean`](../lean_stage3/LadderMean.md) — 1
 
-- ★ [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef) — *def*
+- [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef) — *def*
 
 ### [`LeftKernel`](../lean_stage3/LeftKernel.md) — 9
 
@@ -815,7 +814,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`FilterAttained`](../lean_stage3/FilterAttained.md) — 9
 
 - [`FilterAttained.xi`](../lean_stage3/FilterAttained.md#FilterAttained-xi) — *def*
-- ★ [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S) — *def*
+- [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S) — *def*
 - [`FilterAttained.ratio`](../lean_stage3/FilterAttained.md#FilterAttained-ratio) — *def*
 - [`FilterAttained.xi_pow`](../lean_stage3/FilterAttained.md#FilterAttained-xi_pow) — `` xi q a b ρ ^ k = (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ (a * k) * ((2:ℂ) ^ (ρ : ℂ)) ^ (b * k) ``
 - [`FilterAttained.summable_S`](../lean_stage3/FilterAttained.md#FilterAttained-summable_S) — `` Summable ((S σ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
@@ -824,25 +823,30 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FilterAttained.norm_tailT_le`](../lean_stage3/FilterAttained.md#FilterAttained-norm_tailT_le) — `` ‖tailT q a b σ M k ρ‖ ≤ (S σ).indicator (fun ρ => ‖LadderMean.coef ρ‖) ρ ``
 - [`FilterAttained.tsum_split`](../lean_stage3/FilterAttained.md#FilterAttained-tsum_split) — `` ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ = ∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), La… ``
 
-### [`ResidueRoute`](../lean_stage3/ResidueRoute.md) — 19
+### [`ResidueRoute`](../lean_stage3/ResidueRoute.md) — 20
 
-- ★ [`ResidueRoute.um`](../lean_stage3/ResidueRoute.md#ResidueRoute-um) — *def*
-- ★ [`ResidueRoute.K`](../lean_stage3/ResidueRoute.md#ResidueRoute-K) — *def*
+- [`ResidueRoute.um`](../lean_stage3/ResidueRoute.md#ResidueRoute-um) — *def*
+- [`ResidueRoute.K`](../lean_stage3/ResidueRoute.md#ResidueRoute-K) — *def*
 - [`ResidueRoute.P`](../lean_stage3/ResidueRoute.md#ResidueRoute-P) — *def*
-- ★ [`ResidueRoute.G`](../lean_stage3/ResidueRoute.md#ResidueRoute-G) — *def*
-- ★ [`ResidueRoute.F`](../lean_stage3/ResidueRoute.md#ResidueRoute-F) — *def*
-- ★ [`ResidueRoute.isClosed_K`](../lean_stage3/ResidueRoute.md#ResidueRoute-isClosed_K) — `` IsClosed (K σ) ``
-- ★ [`ResidueRoute.um_mem_K`](../lean_stage3/ResidueRoute.md#ResidueRoute-um_mem_K) — `` um ρ ∈ K σ ``
-- ★ [`ResidueRoute.um_eq`](../lean_stage3/ResidueRoute.md#ResidueRoute-um_eq) — `` um ρ = ((2:ℂ) ^ (ρ : ℂ))⁻¹ ``
-- ★ [`ResidueRoute.norm_um`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_um) — `` ‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re) ``
-- ★ [`ResidueRoute.mode_ne_zero`](../lean_stage3/ResidueRoute.md#ResidueRoute-mode_ne_zero) — `` (2:ℂ) ^ (ρ : ℂ) ≠ 0 ``
-- ★ [`ResidueRoute.one_sub_eq`](../lean_stage3/ResidueRoute.md#ResidueRoute-one_sub_eq) — `` 1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u) ``
-- ★ [`ResidueRoute.norm_sub_le`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_sub_le) — `` ‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖ ``
-- ★ [`ResidueRoute.K_subset`](../lean_stage3/ResidueRoute.md#ResidueRoute-K_subset) — `` K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖} ``
-- ★ [`ResidueRoute.summable_coef`](../lean_stage3/ResidueRoute.md#ResidueRoute-summable_coef) — `` Summable fun ρ : FilterAttained.S σ => ‖LadderMean.coef ρ.1‖ ``
-- ★ [`ResidueRoute.differentiableAt_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
-- ★ [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^ k ``
-- ★ [`ResidueRoute.differentiableAt_G`](../lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_G) — `` DifferentiableAt ℂ (G σ) v ``
-- ★ [`ResidueRoute.G_eq_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-G_eq_F) — `` G σ u = F σ u ``
-- ★ [`ResidueRoute.fibre_term`](../lean_stage3/ResidueRoute.md#ResidueRoute-fibre_term) — `` a * (c / (z * a)) = c * z⁻¹ ``
+- [`ResidueRoute.G`](../lean_stage3/ResidueRoute.md#ResidueRoute-G) — *def*
+- [`ResidueRoute.F`](../lean_stage3/ResidueRoute.md#ResidueRoute-F) — *def*
+- [`ResidueRoute.isClosed_K`](../lean_stage3/ResidueRoute.md#ResidueRoute-isClosed_K) — `` IsClosed (K σ) ``
+- [`ResidueRoute.um_mem_K`](../lean_stage3/ResidueRoute.md#ResidueRoute-um_mem_K) — `` um ρ ∈ K σ ``
+- [`ResidueRoute.um_eq`](../lean_stage3/ResidueRoute.md#ResidueRoute-um_eq) — `` um ρ = ((2:ℂ) ^ (ρ : ℂ))⁻¹ ``
+- [`ResidueRoute.norm_um`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_um) — `` ‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re) ``
+- [`ResidueRoute.mode_ne_zero`](../lean_stage3/ResidueRoute.md#ResidueRoute-mode_ne_zero) — `` (2:ℂ) ^ (ρ : ℂ) ≠ 0 ``
+- [`ResidueRoute.one_sub_eq`](../lean_stage3/ResidueRoute.md#ResidueRoute-one_sub_eq) — `` 1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u) ``
+- [`ResidueRoute.norm_sub_le`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_sub_le) — `` ‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖ ``
+- [`ResidueRoute.K_subset`](../lean_stage3/ResidueRoute.md#ResidueRoute-K_subset) — `` K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖} ``
+- [`ResidueRoute.summable_coef`](../lean_stage3/ResidueRoute.md#ResidueRoute-summable_coef) — `` Summable fun ρ : FilterAttained.S σ => ‖LadderMean.coef ρ.1‖ ``
+- [`ResidueRoute.differentiableAt_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
+- [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^ k ``
+- [`ResidueRoute.differentiableAt_G`](../lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_G) — `` DifferentiableAt ℂ (G σ) v ``
+- [`ResidueRoute.G_eq_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-G_eq_F) — `` G σ u = F σ u ``
+- [`ResidueRoute.fibre_term`](../lean_stage3/ResidueRoute.md#ResidueRoute-fibre_term) — `` a * (c / (z * a)) = c * z⁻¹ ``
+- ★ [`ResidueRoute.isolated_boundary_mode_false`](../lean_stage3/ResidueRoute.md#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε → u = (2:… ``
+
+### [`LadderAssembly`](../lean_stage3/LadderAssembly.md) — 1
+
+- ★ [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier) — `` (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ ResidueRoute.K σ) 0) ``
 

@@ -7,7 +7,7 @@ ClosedLoopJoin — block J1 of `lean_stage3/design/closedloop.md`: the join betw
 11 theorems, 4 definitions, 220 lines. 
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`MirrorArea`](../lean_stage3/MirrorArea.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderAssembly`](../lean_stage3/LadderAssembly.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)
 
 ## The picture
 

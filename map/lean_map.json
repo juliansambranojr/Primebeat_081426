@@ -34530,6 +34530,7 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.top_mode_on_frontier",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um"
@@ -39903,6 +39904,94 @@
     "used_by": [
      "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_window"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LadderAssembly.lean",
+  "module": "Stage3.LadderAssembly",
+  "stem": "LadderAssembly",
+  "header": "LadderAssembly — block S5 of `lean_stage3/design/stencil.md`. 2026-11-24. Julian, 2026-11-24: assemble the ladder route; step (D) and the assembled theorem. Block S4 (`ResidueRoute.isolated_boundary_mode_false`) needs a mode `u₁ = 2^(−ρ₁)` isolated in `K σ = closure {2^(−ρ) : Re ρ ≥ σ}` and on the frontier of the component of `0` in `{|u| < 2^(−σ)} ∖ K σ`.",
+  "imports": [
+   "Stage3.ResidueRoute",
+   "Stage3.ClosedLoopJoin"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "LadderAssembly"
+  ],
+  "lines": 133,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopJoin.lean",
+   "lean_stage3/Stage3/ResidueRoute.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "top_mode_on_frontier",
+    "ns": "LadderAssembly",
+    "full": "LadderAssembly.top_mode_on_frontier",
+    "line": 35,
+    "why": "(D) The top mode is on the frontier. If every zero has real part at most `Re ρ₁` and `σ ≤ Re ρ₁`, the mode `2^(−ρ₁)` lies on the frontier of the connected component of `{|u| < 2^(−σ)} ∖ K σ` that holds `0`.",
+    "sorry": false,
+    "needs": [
+     "ρ₁ : Kadiri.NontrivialZeros",
+     "htop : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₁ : ℂ).re",
+     "hσ : σ ≤ (ρ₁ : ℂ).re"
+    ],
+    "proves": "(2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \\ ResidueRoute.K σ) 0)",
+    "file": "lean_stage3/Stage3/LadderAssembly.lean",
+    "id": "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.top_mode_on_frontier",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.rh_of_ladder_tame"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_of_ladder_tame",
+    "ns": "LadderAssembly",
+    "full": "LadderAssembly.rh_of_ladder_tame",
+    "line": 84,
+    "why": "The ladder route, assembled. Under the ladder bound `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, if every failure of the Riemann hypothesis has a tame top — a zero `ρ₁` with `1/2 < Re ρ₁`, every real part at most `Re ρ₁`, and `σ₀ ∈ (1/2, Re ρ₁)`, `ε > 0` with every mode of real part `≥ σ₀` other than `2^(−ρ₁)` at distance at least `ε` from it — then the Riemann hypothesis holds.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "htame : ¬ RiemannHypothesis → ∃ ρ₁ : Kadiri.NontrivialZeros, 1/2 < (ρ₁:ℂ).re ∧ (∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ (ρ₁:ℂ).re) ∧ ∃ σ₀ ε : ℝ, 1/2 < σ₀ ∧ σ₀ < (ρ₁:ℂ).re ∧ 0 < ε ∧ ∀ ρ : Kadiri.NontrivialZeros, σ₀ ≤ (ρ:ℂ).re → (2:ℂ)^(-(ρ:ℂ)) ≠ (2:ℂ)^(-(ρ₁:ℂ)) → ε ≤ ‖(2:ℂ)^(-(ρ:ℂ)) - (2:ℂ)^(-(ρ₁:ℂ))‖"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/LadderAssembly.lean",
+    "id": "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.rh_of_ladder_tame",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.top_mode_on_frontier",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.top_mode_on_frontier",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -55889,6 +55978,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.top_mode_on_frontier",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
@@ -56538,7 +56628,9 @@
      "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LadderAssembly.lean::LadderAssembly.rh_of_ladder_tame"
+    ]
    }
   ]
  },

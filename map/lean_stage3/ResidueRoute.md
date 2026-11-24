@@ -7,7 +7,7 @@ ResidueRoute — block S4 of `lean_stage3/design/stencil.md`. 2026-11-24. The re
 15 theorems, 5 definitions, 559 lines. 
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterAccum`](../lean_stage3/FilterAccum.md)  
-**Imported by:** nothing
+**Imported by:** [`LadderAssembly`](../lean_stage3/LadderAssembly.md)
 
 ## The picture
 
@@ -27,13 +27,14 @@ flowchart LR
   n11["<b>differentiableAt_G</b><br/>DifferentiableAt ℂ (G σ) v"]:::thm
   n12["<b>G_eq_F</b><br/>G σ u = F σ u"]:::thm
   n13["<b>fibre_term</b><br/>a * (c / (z * a)) = c * z⁻¹"]:::cnt
-  n14["<b>isolated_boundary_mode_false ■</b><br/>∃ E : ℝ, σ₀ ≤ E ∧ E ＜ Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.Nontriv…"]:::thm
+  n14["<b>isolated_boundary_mode_false</b><br/>∃ E : ℝ, σ₀ ≤ E ∧ E ＜ Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.Nontriv…"]:::thm
   x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
   x1(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
   x2(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
   x3(["<b>CountReduction</b><br/>tail_rate"]):::ext
   x4(["<b>FilterAttained</b><br/>4 theorems"]):::ext
   x5(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x6(["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]):::ext
   n0 --> n14
   n0 --> n9
   n1 --> n14
@@ -56,6 +57,7 @@ flowchart LR
   n8 --> n14
   n8 --> n9
   n9 --> n14
+  n14 -.-> x6
   x0 -.-> n10
   x0 -.-> n3
   x0 -.-> n7
@@ -96,7 +98,7 @@ def · line 53
 def · line 57
 
 - **Is:** `` K (σ : ℝ) : Set ℂ := closure {u : ℂ | ∃ ρ : NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (-(ρ : ℂ)) = u} noncomputable ``
-- **Used by 5:** [`ResidueRoute.K_subset`](#ResidueRoute-K_subset), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isClosed_K`](#ResidueRoute-isClosed_K), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
+- **Used by 6:** [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier), [`ResidueRoute.K_subset`](#ResidueRoute-K_subset), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isClosed_K`](#ResidueRoute-isClosed_K), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
 
 <a name="ResidueRoute-P"></a>
 ### `ResidueRoute.P`
@@ -596,5 +598,7 @@ line 372 · arrows read from text
 
 **Definitions its proof touches:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef), [`ResidueRoute.F`](#ResidueRoute-F), [`ResidueRoute.G`](#ResidueRoute-G), [`ResidueRoute.K`](#ResidueRoute-K), [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LadderAssembly.rh_of_ladder_tame`](../lean_stage3/LadderAssembly.md#LadderAssembly-rh_of_ladder_tame) (LadderAssembly) — `` RiemannHypothesis ``
 
