@@ -7,7 +7,7 @@ NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase
 10 theorems, 2 definitions, 199 lines. 
 
 **Imports:** [`SelfBound`](../lean_stage3/SelfBound.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Doubling`](../lean_stage3/Doubling.md), [`PerfectFit`](../lean_stage3/PerfectFit.md)
 
 ## The picture
 
@@ -23,7 +23,9 @@ flowchart LR
   n7["<b>e_bound ■</b><br/>|e M| ≤ Real.log (M : ℝ) + 1"]:::shp
   n8["<b>holes_resid ■</b><br/>Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * S…"]:::shp
   n9["<b>holes_err_trivial ■</b><br/>|∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)| ≤ ∑ k ∈ Icc 1…"]:::shp
-  x0(["<b>SelfBound</b><br/>self_bound"]):::ext
+  x0(["<b>Doubling</b><br/>alt_resid_small<br/>alt_scales"]):::ext
+  x1(["<b>PerfectFit</b><br/>perfect_fit"]):::ext
+  x2(["<b>SelfBound</b><br/>self_bound"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n4
@@ -31,7 +33,11 @@ flowchart LR
   n4 --> n8
   n5 --> n6
   n6 --> n7
-  x0 -.-> n4
+  n1 -.-> x0
+  n2 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  x2 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -112,8 +118,9 @@ line 33 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Doubling.alt_scales`](../lean_stage3/Doubling.md#Doubling-alt_scales) (Doubling) — `` ∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log n - 2 * ∑ n ∈ Icc 1 (N / 2), Real.log n ``
   - [`NoHoles.moebius_floor_inversion`](#NoHoles-moebius_floor_inversion) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N ``
 
 <a name="NoHoles-moebius_floor_inversion"></a>
@@ -141,9 +148,10 @@ line 53 · arrows read from text
   - [`NoHoles.multiples_eq_image`](#NoHoles-multiples_eq_image) — `` (Icc 1 N).filter (fun m => k ∣ m) = (Icc 1 (N / k)).image (fun j => k * j) ``
   - [`NoHoles.sum_divisors_moebius`](#NoHoles-sum_divisors_moebius) — `` ∑ i ∈ m.divisors, ((moebius i : ℤ) : ℝ) = if m = 1 then 1 else 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`NoHoles.psi_by_integers`](#NoHoles-psi_by_integers) — `` Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ n ∈ Icc 1 (N / k), Real.log (n : ℝ) ``
+  - [`PerfectFit.perfect_fit`](../lean_stage3/PerfectFit.md#PerfectFit-perfect_fit) (PerfectFit) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1 ``
 
 <a name="NoHoles-psi_floor"></a>
 ### `NoHoles.psi_floor`
@@ -166,8 +174,9 @@ Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Doubling.alt_scales`](../lean_stage3/Doubling.md#Doubling-alt_scales) (Doubling) — `` ∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log n - 2 * ∑ n ∈ Icc 1 (N / 2), Real.log n ``
   - [`NoHoles.psi_by_integers`](#NoHoles-psi_by_integers) — `` Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ n ∈ Icc 1 (N / k), Real.log (n : ℝ) ``
 
 <a name="NoHoles-psi_by_integers"></a>
@@ -248,8 +257,9 @@ line 112 · arrows read from text
 
   - [`NoHoles.sum_log_eq`](#NoHoles-sum_log_eq) — `` ∑ n ∈ Icc 1 M, Real.log (n : ℝ) = Real.log ((M.factorial : ℕ) : ℝ) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Doubling.alt_resid_small`](../lean_stage3/Doubling.md#Doubling-alt_resid_small) (Doubling) — `` |∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ))| ≤ 4 * Real.log N + 5 ``
   - [`NoHoles.e_bound`](#NoHoles-e_bound) — `` |e M| ≤ Real.log (M : ℝ) + 1 ``
 
 <a name="NoHoles-e_bound"></a>

@@ -192,6 +192,8 @@ import Stage3.HolyChannel
 import Stage3.Readings
 import Stage3.SieveIdem
 import Stage3.NoHoles
+import Stage3.PerfectFit
+import Stage3.Doubling
 
 namespace Stage3
 

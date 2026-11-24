@@ -29507,6 +29507,276 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Doubling.lean",
+  "module": "Stage3.Doubling",
+  "stem": "Doubling",
+  "header": "Doubling — block R15 of `lean_stage3/design/runs.md`. 2026-11-24. The self-bound at `N` less twice the self-bound at `⌊N/2⌋`. The even scales `N/(2j)` are the scales of `⌊N/2⌋`, so the difference keeps the odd scales and subtracts the even ones: an alternating sum of the staircase, equal to `log N! − 2·log ⌊N/2⌋!`. By Stirling that is `N log 2` up to `O(log N)`, and the alternating sum of `N/k` is `N log 2` up to `N` times the tail of the alternating harmonic series, at most `1`. The alternating residuals add up to…",
+  "imports": [
+   "Stage3.NoHoles"
+  ],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "Doubling"
+  ],
+  "lines": 261,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/NoHoles.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "neg_one_pow_succ_eq",
+    "ns": "Doubling",
+    "full": "Doubling.neg_one_pow_succ_eq",
+    "line": 25,
+    "why": "The sign `(−1)^(k+1)` read off the parity of `k`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "(-1 : ℝ) ^ (k + 1) = if 2 ∣ k then -1 else 1",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.neg_one_pow_succ_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alt_scales",
+    "ns": "Doubling",
+    "full": "Doubling.alt_scales",
+    "line": 37,
+    "why": "The doubling. The self-bound at `N` less twice the self-bound at `⌊N/2⌋` is the alternating sum of the staircase over the scales `N/k`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log n - 2 * ∑ n ∈ Icc 1 (N / 2), Real.log n",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.neg_one_pow_succ_eq",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.neg_one_pow_succ_eq",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_resid_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_step",
+    "ns": "Doubling",
+    "full": "Doubling.log_step",
+    "line": 55,
+    "why": "One step of the logarithm against `1/x`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x"
+    ],
+    "proves": "1 / (x + 1) ≤ Real.log (x + 1) - Real.log x ∧ Real.log (x + 1) - Real.log x ≤ 1 / x",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.log_step",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.doubling_smooth",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.harmonic_block"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "harmonic_block",
+    "ns": "Doubling",
+    "full": "Doubling.harmonic_block",
+    "line": 74,
+    "why": "The harmonic sum from `n+1` to `n+k` against `log((n+k)/n)`.",
+    "sorry": false,
+    "needs": [
+     "hn : 1 ≤ n",
+     "k : ℕ"
+    ],
+    "proves": "Real.log ((n + k : ℕ) : ℝ) - Real.log (n : ℝ) - (1 / (n : ℝ) - 1 / ((n + k : ℕ) : ℝ)) ≤ ∑ i ∈ Icc 1 (n + k), 1 / (i : ℝ) - ∑ i ∈ Icc 1 n, 1 / (i : ℝ) ∧ ∑ i ∈ Icc 1 (n + k), 1 / (i : ℝ) - ∑ i ∈ Icc 1 n, 1 / (i : ℝ) ≤ Real.log ((n + k : ℕ) : ℝ) - Real.log (n : ℝ)",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.harmonic_block",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.log_step"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.log_step"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alt_even",
+    "ns": "Doubling",
+    "full": "Doubling.alt_even",
+    "line": 90,
+    "why": "The alternating sum up to `2m` is the harmonic sum from `m+1` to `2m`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ"
+    ],
+    "proves": "∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) = ∑ k ∈ Icc 1 (2 * m), 1 / (k : ℝ) - ∑ k ∈ Icc 1 m, 1 / (k : ℝ)",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alt_even_bound",
+    "ns": "Doubling",
+    "full": "Doubling.alt_even_bound",
+    "line": 118,
+    "why": "The alternating sum up to `2m` lies within `1/(2m)` below `log 2`.",
+    "sorry": false,
+    "needs": [
+     "hm : 1 ≤ m"
+    ],
+    "proves": "Real.log 2 - 1 / (2 * (m : ℝ)) ≤ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ∧ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ≤ Real.log 2",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.harmonic_block"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.harmonic_block"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_harmonic"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alt_harmonic",
+    "ns": "Doubling",
+    "full": "Doubling.alt_harmonic",
+    "line": 134,
+    "why": "The alternating harmonic sum. Within `1/N` of `log 2`.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N"
+    ],
+    "proves": "|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) / (k : ℝ) - Real.log 2| ≤ 1 / (N : ℝ)",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.alt_harmonic",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_even_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_resid_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "doubling_smooth",
+    "ns": "Doubling",
+    "full": "Doubling.doubling_smooth",
+    "line": 167,
+    "why": "The smooth parts of the two log-sums against `N log 2`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M",
+     "h : N = 2 * M ∨ N = 2 * M + 1"
+    ],
+    "proves": "|(N : ℝ) * Real.log N - N - 2 * ((M : ℝ) * Real.log M - M) - N * Real.log 2| ≤ Real.log N + 1",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.doubling_smooth",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.log_step"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.log_step"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_resid_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alt_resid_small",
+    "ns": "Doubling",
+    "full": "Doubling.alt_resid_small",
+    "line": 209,
+    "why": "The alternating residuals are small. Over the scales `N/k` with the signs `(−1)^(k+1)`, the residuals of the staircase add up to at most `4 log N + 5`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N"
+    ],
+    "proves": "|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ))| ≤ 4 * Real.log N + 5",
+    "file": "lean_stage3/Stage3/Doubling.lean",
+    "id": "lean_stage3/Stage3/Doubling.lean::Doubling.alt_resid_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_harmonic",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.doubling_smooth",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_harmonic",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
+     "lean_stage3/Stage3/Doubling.lean::Doubling.doubling_smooth",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/EdgeBound.lean",
   "module": "Stage3.EdgeBound",
   "stem": "EdgeBound",
@@ -48766,6 +49036,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
      "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
     ]
    },
@@ -48796,7 +49067,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
+     "lean_stage3/Stage3/PerfectFit.lean::PerfectFit.perfect_fit"
     ]
    },
    {
@@ -48819,6 +49091,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
      "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
     ]
    },
@@ -48901,6 +49174,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_resid_small",
      "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound"
     ]
    },
@@ -49331,6 +49605,56 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
     ],
     "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PerfectFit.lean",
+  "module": "Stage3.PerfectFit",
+  "stem": "PerfectFit",
+  "header": "PerfectFit — block R14 of `lean_stage3/design/runs.md`. 2026-11-24. Julian, 2026-11-24: the harmonic of the integers absorbs the primes' signs as a perfect fit. For the counts it is exact: at every `N`, the counts `⌊N/k⌋` of the integers with nothing missing, signed by `μ(k)`, add up to exactly one.",
+  "imports": [
+   "Stage3.NoHoles"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Finset"
+  ],
+  "namespaces": [
+   "PerfectFit"
+  ],
+  "lines": 40,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/NoHoles.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "perfect_fit",
+    "ns": "PerfectFit",
+    "full": "PerfectFit.perfect_fit",
+    "line": 20,
+    "why": "The perfect fit. The counts of the integers at every scale, signed by the Möbius function, add up to exactly one.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1",
+    "file": "lean_stage3/Stage3/PerfectFit.lean",
+    "id": "lean_stage3/Stage3/PerfectFit.lean::PerfectFit.perfect_fit",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ],
+    "layer": "count",
     "used_by": []
    }
   ]
@@ -57086,6 +57410,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Doubling.lean::Doubling.alt_scales",
      "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
      "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
@@ -91057,11 +91382,13 @@
    "Stage3.HolyChannel",
    "Stage3.Readings",
    "Stage3.SieveIdem",
-   "Stage3.NoHoles"
+   "Stage3.NoHoles",
+   "Stage3.PerfectFit",
+   "Stage3.Doubling"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 203,
+  "lines": 205,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -91093,6 +91420,7 @@
    "lean_stage3/Stage3/CountReduction.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
+   "lean_stage3/Stage3/Doubling.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
@@ -91144,6 +91472,7 @@
    "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/NoHoles.lean",
    "lean_stage3/Stage3/OneChain.lean",
+   "lean_stage3/Stage3/PerfectFit.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",
    "lean_stage3/Stage3/PiFixedRow.lean",

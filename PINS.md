@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block R15 of `design/runs.md`: `Stage3/Doubling.lean`
+
+    DONE        `alt_scales`: Σ_{k≤N} (−1)^(k+1) ψ(N/k) = log N! − 2 log⌊N/2⌋!;
+                `alt_resid_small`: the residuals at the scales, alternating,
+                add to O(log N); the induction toward `NoRunaway` attempted
+                and its stopping step named; one unit
+    ASSUMED     Julian, 2026-11-24: "let's try it": prove `NoRunaway`.
+                Built by one worker
+    DEPENDS     `SelfBound.self_bound`, `NoHoles.log_factorial_close`,
+                `NoHoles.psi_floor`
+    OUT         nothing chosen out; the stopping step is reported
+
+### 2026-11-24 · block R14 of `design/runs.md`: `Stage3/PerfectFit.lean`
+
+    DONE        `perfect_fit`: Σ_{k≤N} μ(k)·⌊N/k⌋ = 1 for every N ≥ 1;
+                one unit
+    ASSUMED     Julian, 2026-11-24: "I do": the harmonic of the integers
+                absorbs the primes' signs perfectly. Written and built here
+    DEPENDS     `NoHoles.moebius_floor_inversion`
+    OUT         the same for the log-weighted harmonic (it is `NoRunaway`)
+
 ### 2026-11-24 · block R13 of `design/runs.md`: `Stage3/NoHoles.lean`
 
     DONE        `moebius_floor_inversion`; `psi_by_integers`: the staircase

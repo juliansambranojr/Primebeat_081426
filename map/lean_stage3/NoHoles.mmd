@@ -9,7 +9,9 @@ flowchart LR
   n7["<b>e_bound ■</b><br/>|e M| ≤ Real.log (M : ℝ) + 1"]:::shp
   n8["<b>holes_resid ■</b><br/>Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * S…"]:::shp
   n9["<b>holes_err_trivial ■</b><br/>|∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)| ≤ ∑ k ∈ Icc 1…"]:::shp
-  x0(["<b>SelfBound</b><br/>self_bound"]):::ext
+  x0(["<b>Doubling</b><br/>alt_resid_small<br/>alt_scales"]):::ext
+  x1(["<b>PerfectFit</b><br/>perfect_fit"]):::ext
+  x2(["<b>SelfBound</b><br/>self_bound"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n4
@@ -17,7 +19,11 @@ flowchart LR
   n4 --> n8
   n5 --> n6
   n6 --> n7
-  x0 -.-> n4
+  n1 -.-> x0
+  n2 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  x2 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	260	wc -l lean_stage3/Stage3/Doubling.lean
+theorems_proved	9	grep -c ^theorem lean_stage3/Stage3/Doubling.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/Doubling.lean
+pins	3	alt_scales, alt_harmonic, alt_resid_small
+errors_first	2	the worker's first lake build Stage3.Doubling: one stuck instance and its cascade on the pin
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8887	lake build (full Stage3), Build completed successfully
+jobs_module	8840	run/build.log, lake build Stage3.Doubling
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r15	the doubling, push and pull
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_holes	503	unit 0503
+c_log	4	the coefficient of log N in alt_resid_small
+c_const	5	the constant in alt_resid_small

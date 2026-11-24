@@ -1,0 +1,18 @@
+key	value	source
+module_lines	39	wc -l lean_stage3/Stage3/PerfectFit.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/PerfectFit.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/PerfectFit.lean
+pins	1	perfect_fit
+errors_first	0	the first lake build Stage3.PerfectFit here
+builds	1	the build here
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8886	lake build (full Stage3), Build completed successfully
+jobs_module	8840	run/build.log, lake build Stage3.PerfectFit
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r14	the perfect fit
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_holes	503	unit 0503
+unit_signed	504	unit 0504

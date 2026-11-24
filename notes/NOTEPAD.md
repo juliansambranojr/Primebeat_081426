@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-24  R15 PROVED (unit 0506, `Doubling`): the residuals at all scales of N, alternating, add to within 4 log N + 5 at every N (no holes and the doubling). The induction toward sqrt N from smaller scales loses the count of scales; it needs the alternating residuals to cancel among themselves. Not proved.
+- [open]   2026-11-24  R14 PROVED (unit 0505, `PerfectFit`): Julian's perfect fit for the counts. At every N, the sum over k of mu(k) times floor(N/k) is exactly 1. The same signs against the log-factorials are the staircase; their absorbing within sqrt N is the open step.
 - [open]   2026-11-24  Unit 0504 (run, EXPLORATORY): the integers' errors, Möbius-signed, stay at 0.25 of sqrt N from 10^4 to 10^7, while their sizes sum to 1.37 N (4319 sqrt N at 10^7). The signs cancel the no-holes errors down inside the square root at every size measured. No proof that they must.
 - [open]   2026-11-24  R13 PROVED (unit 0503, `NoHoles`): the staircase is the Möbius-signed sum of the integers' log-factorials at every scale; each log-factorial is its smooth part within log M + 1. The bound from sizes alone grows like N log N, a lost factor. The route needs the Möbius signs to cancel to sqrt N (Mertens). Not proved.
 - [open]   2026-11-23  J11 (unit 0502, `WholeChain`): the closing theorem names the day. `whole_chain` adds every zero the Holy Family's channel; `table_side` adds the sieve's idempotence, one prime at a time, the first open slot a prime; `readings_side` gathers unit 0500. Nothing new proved; the link has no proof.

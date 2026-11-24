@@ -48,6 +48,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nyquist.Aliases`](./lean/Nyquist.md#Nyquist-Aliases) | def | shape | `Nyquist` | Prop |
 | [`Nyquist.aliases_of_offset`](./lean/Nyquist.md#Nyquist-aliases_of_offset) | theorem | shape | `Nyquist` | Aliases b γ (γ - 2 * π * k / Real.log b) |
 | [`ZeroCells.all_four_have_length_four`](./lean/ZeroCells.md#ZeroCells-all_four_have_length_four) | theorem | counting | `ZeroCells` | Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_cells.length = 4 ∧ PairIdentity.zero_cells.length = 4 ∧ Zeros.measured_zeros.length = 4 |
+| [`Doubling.alt_even`](./lean_stage3/Doubling.md#Doubling-alt_even) | theorem | counting | `Doubling` | ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) = ∑ k ∈ Icc 1 (2 * m), 1 / (k : ℝ) - ∑ k ∈ Icc 1 m, 1 / (k : ℝ) |
+| [`Doubling.alt_even_bound`](./lean_stage3/Doubling.md#Doubling-alt_even_bound) | theorem | shape | `Doubling` | Real.log 2 - 1 / (2 * (m : ℝ)) ≤ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ∧ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ≤ Real.log 2 |
+| [`Doubling.alt_harmonic`](./lean_stage3/Doubling.md#Doubling-alt_harmonic) | theorem | shape | `Doubling` | \|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) / (k : ℝ) - Real.log 2\| ≤ 1 / (N : ℝ) |
+| [`Doubling.alt_resid_small`](./lean_stage3/Doubling.md#Doubling-alt_resid_small) | theorem | shape | `Doubling` | \|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ))\| ≤ 4 * Real.log N + 5 |
+| [`Doubling.alt_scales`](./lean_stage3/Doubling.md#Doubling-alt_scales) | theorem | shape | `Doubling` | ∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) * Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log n - 2 * ∑ n ∈ Icc 1 (N / 2), Real.log n |
 | [`ContourShift.analyticAt_conj_conj`](./lean_stage3/ContourShift.md#ContourShift-analyticAt_conj_conj) | theorem | shape | `ContourShift` | AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) ((starRingEnd ℂ) p) |
 | [`ContourShift.analyticAt_dslope`](./lean_stage3/ContourShift.md#ContourShift-analyticAt_dslope) | theorem | shape | `ContourShift` | AnalyticAt ℂ (dslope f p) p |
 | [`Stage3.analyticOrderNatAt_fun_comp_affine`](./lean_stage3/JensenCount.md#Stage3-analyticOrderNatAt_fun_comp_affine) | theorem | shape | `JensenCount` | analyticOrderNatAt (fun w : ℂ =&gt; g (a * w + b)) z = analyticOrderNatAt g (a * z + b) |
@@ -486,6 +491,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.Dln_le`](./lean_stage3/RouteNum.md#RouteNum-Dln_le) | theorem | reads ζ | `RouteNum` | Glue.Dln ≤ 89846200 |
 | [`Glue.Dln_pos`](./lean_stage3/GlueNum.md#Glue-Dln_pos) | theorem | reads ζ | `GlueNum` | 0 &lt; Dln |
 | [`Crossover.dominance_flips`](./lean/Crossover.md#Crossover-dominance_flips) | theorem | shape | `Crossover` | ratio A B x y i &lt; 1 ∧ 1 &lt; ratio A B x y j |
+| [`Doubling.doubling_smooth`](./lean_stage3/Doubling.md#Doubling-doubling_smooth) | theorem | shape | `Doubling` | \|(N : ℝ) * Real.log N - N - 2 * ((M : ℝ) * Real.log M - M) - N * Real.log 2\| ≤ Real.log N + 1 |
 | [`PerronKernel.dslope_kernel_diff`](./lean_stage3/PerronKernel.md#PerronKernel-dslope_kernel_diff) | theorem | shape | `PerronKernel` | Differentiable ℂ (dslope (fun s : ℂ ↦ (y : ℂ) ^ s) 0) |
 | [`Stage3.dyadic_abs_N_sum_le`](./lean_stage3/ZeroSum.md#Stage3-dyadic_abs_N_sum_le) | theorem | reads ζ | `ZeroSum` | (∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * \|riemannZeta.N ((2 : ℝ) ^ (j + 1))\|) ≤ Real.log 2 / (2 * Real.pi) * (K + 1) * (K + 2) + 3 * (K + 1) / Real.pi + 2 * (riemannZeta.RvM b₁ b₂ b₃ ((2 : ℝ) ^ (K + 1)… |
 | [`JointLadder.dyadic_alias_resolved_jointly`](./lean/JointLadder.md#JointLadder-dyadic_alias_resolved_jointly) | theorem | shape | `JointLadder` | ∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ' ∧ ¬ JointAliases γ γ' |
@@ -754,6 +760,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StencilWeil.handshake_iff`](./lean_stage3/StencilWeil.md#StencilWeil-handshake_iff) | theorem | shape | `StencilWeil` | ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 |
 | [`ClosedLoopJoin.handshake_iff_half`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_half) | theorem | shape | `ClosedLoopJoin` | isHermitianHandshake σ ↔ σ = 1 / 2 |
 | [`ClosedLoopJoin.handshake_iff_sides`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_sides) | theorem | shape | `ClosedLoopJoin` | isHermitianHandshake ρ.re ↔ ∀ p : ℕ, Nat.Prime p → p &gt; 3 → ‖((p : ℝ) : ℂ) ^ ρ‖ = ‖((p : ℝ) : ℂ) ^ (1 - ρ)‖ |
+| [`Doubling.harmonic_block`](./lean_stage3/Doubling.md#Doubling-harmonic_block) | theorem | shape | `Doubling` | Real.log ((n + k : ℕ) : ℝ) - Real.log (n : ℝ) - (1 / (n : ℝ) - 1 / ((n + k : ℕ) : ℝ)) ≤ ∑ i ∈ Icc 1 (n + k), 1 / (i : ℝ) - ∑ i ∈ Icc 1 n, 1 / (i : ℝ) ∧ ∑ i ∈ Icc 1 (n + k), 1 / (i : ℝ) - ∑ i ∈ Icc 1 n… |
 | [`WeilPowerGeom.harmonic_quarter`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-harmonic_quarter) | theorem | shape | `WeilPowerGeom` | ∑ m ∈ Finset.Ico a b, 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) ≤ (Real.log b - Real.log a) / (4 * Real.pi ^ 2) |
 | [`Bridge.hasCompactSupport_kOf`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_kOf) | theorem | shape | `WeilBridge` | HasCompactSupport (kOf G) |
 | [`Bridge.hasCompactSupport_tiltF`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_tiltF) | theorem | shape | `WeilBridge` | HasCompactSupport (tiltF G) |
@@ -1022,6 +1029,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauKernel.log_pow_integral`](./lean_stage3/LandauKernel.md#LandauKernel-log_pow_integral) | theorem | shape | `LandauKernel` | ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1) |
 | [`Stage3.log_pow_isBigO_rpow`](./lean_stage3/ThetaConverse.md#Stage3-log_pow_isBigO_rpow) | theorem | shape | `ThetaConverse` | (fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^ δ) |
 | [`LandauKernel.log_pow_le`](./lean_stage3/LandauKernel.md#LandauKernel-log_pow_le) | theorem | shape | `LandauKernel` | Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n |
+| [`Doubling.log_step`](./lean_stage3/Doubling.md#Doubling-log_step) | theorem | shape | `Doubling` | 1 / (x + 1) ≤ Real.log (x + 1) - Real.log x ∧ Real.log (x + 1) - Real.log x ≤ 1 / x |
 | [`WeilPowerGeom.log_step`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-log_step) | theorem | shape | `WeilPowerGeom` | 1 / ((m : ℝ) + 1) ≤ Real.log ((m : ℝ) + 1) - Real.log m |
 | [`SelfBound.log_sum_eq`](./lean_stage3/SelfBound.md#SelfBound-log_sum_eq) | theorem | shape | `SelfBound` | ∑ n ∈ Icc 1 N, Real.log (n : ℝ) = ∑ d ∈ Icc 1 N, vonMangoldt d * ((N / d : ℕ) : ℝ) |
 | [`WeilPowerGeom.log_telescope`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-log_telescope) | theorem | shape | `WeilPowerGeom` | ∀ b : ℕ, a ≤ b → ∑ m ∈ Finset.Ico a b, 1 / ((m : ℝ) + 1) ≤ Real.log b - Real.log a |
@@ -1215,6 +1223,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.neg_below_zero`](./lean/Zeros.md#Zeros-neg_below_zero) | theorem | counting | `Zeros` | Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d |
 | [`LandauChebyshev.neg_le_G`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-neg_le_G) | theorem | shape | `LandauChebyshev` | -(y * Real.log y) ≤ LandauWindow.G y |
 | [`Propagation.neg_one_pow`](./lean/Propagation.md#Propagation-neg_one_pow) | theorem | counting | `Propagation` | ((-1 : ℤ)) ^ m = 1 ∨ ((-1 : ℤ)) ^ m = -1 |
+| [`Doubling.neg_one_pow_succ_eq`](./lean_stage3/Doubling.md#Doubling-neg_one_pow_succ_eq) | theorem | counting | `Doubling` | (-1 : ℝ) ^ (k + 1) = if 2 ∣ k then -1 else 1 |
 | [`Readings.net_is_sum_of_steps`](./lean_stage3/Readings.md#Readings-net_is_sum_of_steps) | theorem | counting | `Readings` | ∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d =&gt; g d = p), f d |
 | [`SieveResidual.net_wobble`](./lean_stage3/SieveResidual.md#SieveResidual-net_wobble) | theorem | shape | `SieveResidual` | ((netRounding N : ℚ) : ℝ) - smoothNet N = -(((Nat.primeCounting N : ℝ) - Stage3.Li (N : ℝ)) - ((Nat.primeCounting (Nat.sqrt N) : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ))) |
 | [`SieveResidual.net_wobble_rows`](./lean_stage3/SieveResidual.md#SieveResidual-net_wobble_rows) | theorem | shape | `SieveResidual` | ((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) = -(((Nat.primeCounting (2 ^ (2 * m)) : ℝ) - Stage3.Li (((2 ^ (2 * m) : ℕ) : ℝ))) - ((Nat.primeCounting (2 ^ m) : ℝ) - Stage3.Li (((2 ^ … |
@@ -1479,6 +1488,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StepsPeak.peak_height`](./lean_stage3/StepsPeak.md#StepsPeak-peak_height) | theorem | reads ζ | `StepsPeak` | ‖S N ρ₀ - K N ρ₀ 1 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log N : ℂ)‖ ≤ ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * Real.log 2 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * ‖(ρ₀ : ℂ) - 1‖ / ‖(ρ₀ :… |
 | [`StepsPeak.peak_identity`](./lean_stage3/StepsPeak.md#StepsPeak-peak_identity) | theorem | reads ζ | `StepsPeak` | S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ) = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u |
 | [`GeneratorPeak.perBlock`](./lean/GeneratorPeak.md#GeneratorPeak-perBlock) | def | shape | `GeneratorPeak` | ℝ |
+| [`PerfectFit.perfect_fit`](./lean_stage3/PerfectFit.md#PerfectFit-perfect_fit) | theorem | counting | `PerfectFit` | ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1 |
 | [`Chain.period_vacuous_at_one`](./lean/Chain.md#Chain-period_vacuous_at_one) | theorem | shape | `Chain` | Function.Periodic f (2 * Real.pi / Real.log 1) |
 | [`Transform.periodLattice`](./lean/Transform.md#Transform-periodLattice) | def | shape | `Transform` | AddSubgroup ℂ |
 | [`Transform.periodLattice_discrete`](./lean/Transform.md#Transform-periodLattice_discrete) | theorem | shape | `Transform` | DiscreteTopology (periodLattice b) |
