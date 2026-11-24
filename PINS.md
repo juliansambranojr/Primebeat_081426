@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (i), (iii): `Stage3/LevinsonSize.lean`
+
+    DONE        (i) `right_edge_le`: for 0 ≤ c ≤ 1, G = ζ + cζ' has positive real
+                part on Re s = 3, so |Re ∫_a^b logDeriv G(3 + it) dt| ≤ π; (iii)
+                `gamma_part_eq`: Re ∫_a^b logDeriv Gammaℝ(1/2 + it) dt equals the
+                tree's phase difference, so with `ArgCount` the Gammaℝ part is
+                π·(N(b) − N(a)) + O(log b); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0521 and start step 1d). (ii),
+                the horizontal edges, is a separate block on the tree's
+                Backlund template (`ArgCrude`, `ArgCount`)
+    DEPENDS     `LevinsonTurn`, `ArgCount` (`argS_le_gt_two`, `rvM_crude`, the
+                phase), Mathlib `riemannZeta` bounds for Re s > 1
+    OUT         (ii) the horizontal edges; steps 2–6
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1c: `Stage3/LevinsonTurn.lean`
 
     DONE        `lift_turn_eq_integral` (for F differentiable and nonvanishing

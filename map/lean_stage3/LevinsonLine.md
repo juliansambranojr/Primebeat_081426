@@ -21,6 +21,7 @@ flowchart LR
   n5["<b>zeta_line_zero_iff</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
   x0(["<b>HardyZ</b><br/>re_line<br/>xi_line_real"]):::ext
   x1(["<b>LevinsonArg</b><br/>continuous_lineF<br/>lineCount_ge_arg"]):::ext
+  x2(["<b>LevinsonTurn</b><br/>lineF_turn_eq<br/>turn_split"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -28,6 +29,7 @@ flowchart LR
   n3 --> n4
   n4 --> n5
   n0 -.-> x1
+  n0 -.-> x2
   n5 -.-> x1
   x0 -.-> n0
   x0 -.-> n1
@@ -70,12 +72,14 @@ line 30 · arrows read from text
 
   - [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) (HardyZ) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (4 that use it)
+**Feeds** (6 that use it)
 
   - [`LevinsonArg.continuous_lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-continuous_lineF) (LevinsonArg) — `` Continuous (lineF c) ``
   - [`LevinsonLine.deriv_xi_line_im`](#LevinsonLine-deriv_xi_line_im) — `` (deriv completedRiemannZeta (1/2 + t * I)).re = 0 ``
   - [`LevinsonLine.re_gammaR_G_line`](#LevinsonLine-re_gammaR_G_line) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (de… ``
   - [`LevinsonLine.zeta_line_zero_iff`](#LevinsonLine-zeta_line_zero_iff) — `` riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0 ``
+  - [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq) (LevinsonTurn) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I))… ``
+  - [`LevinsonTurn.turn_split`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-turn_split) (LevinsonTurn) — `` (∫ t in a..b, logDeriv (fun s => Gammaℝ s * G s) (1/2 + t * I)).re = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv G (1/2 +… ``
 
 <a name="LevinsonLine-deriv_xi_line_im"></a>
 ### `LevinsonLine.deriv_xi_line_im`

@@ -845,3 +845,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-24  S10 step 4a PROVED (unit 0518, `Littlewood`): Littlewood's lemma on a rectangle with no branch of arg (`littlewood_rect`), with 2-D integrability of logDeriv. Unconditional.
 - [open]   2026-11-24  S11 step 1a PROVED (unit 0519, `LevinsonLine`): Lambda' imaginary on the line; Re(Gammaℝ(ζ+cζ')) = Λ(1 − c Re g); zeros on the line = crossings of the imaginary axis. Unconditional.
 - [open]   2026-11-24  S11 step 1b PROVED (unit 0520, `LevinsonArg`): continuous argument lift along the line; turning by k·pi gives lineCount >= k. Unconditional.
+- [open]   2026-11-24  S11 step 1c PROVED (unit 0521, `LevinsonTurn`): turning along the line = Re ∫ logDeriv; splits Gammaℝ + G; G part = −2π·N_G(rect) + three edge integrals. Unconditional.
