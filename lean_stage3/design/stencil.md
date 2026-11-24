@@ -176,3 +176,37 @@ and `σ = max E σ₀`, below `Θ`, gives `False`.
 
 **Not here.** A top real part that is not attained; an attained top mode
 that other modes accumulate on.
+
+## S6 Reached modes — `Stage3/ReachRoute.lean`
+
+Julian, 2026-11-24, case 2 on the ψ ladder: a mode reached from `0` that
+other modes crowd. Unit 0510 left two arrangements on the ψ route: a limit
+set that walls the modes off from `0`, and a mode on the edge that is a limit
+of other modes. S4 needs isolation only for one limit, and that limit
+survives along any approach that stays non-tangential to the other modes.
+
+Setting of S4: `σ ≥ E`, `Ω` the component of `0` in `ball 0 (2^(−σ)) \ K σ`,
+`G = F` on `Ω`, `F(u) = Σ' w_ρ·u/(u_ρ − u)`, `u_ρ = 2^(−ρ)`.
+
+Reach. A zero `ρ₁` with `σ < β₁` is *reached* when there are `u_j ∈ Ω`,
+`u_j → u₁ = u_{ρ₁}`, `u_j ≠ u₁`, and `M` with
+`‖u_j − u₁‖ ≤ M·‖u_ρ − u_j‖` for every `ρ` with `β ≥ σ` and `u_ρ ≠ u₁`.
+
+Proof. `(u₁ − u_j)·F(u_j) = Σ' w_ρ·u_j·(u₁ − u_j)/(u_ρ − u_j)`. The fibre of
+`u₁` gives `u_j·Σ_fibre w_ρ` exactly. Every other term is at most
+`‖w_ρ‖·‖u_j‖·M`, summable, and tends to `0` since `u_ρ ≠ u₁`. Dominated
+convergence (`tendsto_tsum_of_dominated_convergence`) gives the limit
+`u₁·Σ_fibre w_ρ`. `G` is analytic at `u₁` (`‖u₁‖ < 2^(−σ)`), so
+`(u₁ − u_j)·G(u_j) → 0`, and `G(u_j) = F(u_j)`. The fibre weight is `0`,
+against `AliasClass`.
+
+Isolation and the frontier give a reach: the punctured ball at `u₁` misses
+`K σ`, is connected and meets `Ω`, so it lies in `Ω`, and `u_j = u₁ + r_j`
+with `r_j → 0` has `M = 1` once the ball is free. So S6 holds S4. A cone at
+`u₁` free of other modes and meeting `Ω` gives a reach along its axis, with
+`M = 1/sin` of its half angle.
+
+- `reached_mode_false`, `reach_of_isolated`.
+
+**Not here.** A mode that every approach from `Ω` meets tangentially to the
+other modes. A limit set that separates the modes from `0`. H.

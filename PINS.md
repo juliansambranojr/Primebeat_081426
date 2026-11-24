@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S6 of `design/stencil.md`: `Stage3/ReachRoute.lean`
+
+    DONE        `reached_mode_false`: under H, a mode right of σ reached from
+                0 inside the component along points whose distance to it is
+                at most M times their distance to every other mode gives
+                False; it holds isolation as a special case; one unit
+    ASSUMED     Julian, 2026-11-24: case 2 on the ψ ladder (the answer
+                "Case 2 on the ψ ladder"). Built by one worker from S6's text
+    DEPENDS     `ResidueRoute` (`G_eq_F`, `differentiableAt_G`, `P_bound`,
+                `differentiableAt_F`, `summable_coef`, the fibre step)
+    OUT         modes that every approach from 0 meets tangentially; a limit
+                set that separates the modes from 0; H
+
 ### 2026-11-24 · block S5 of `design/stencil.md`: `Stage3/LadderAssembly.lean`
 
     DONE        `top_mode_on_frontier` (an attained top real part puts its
