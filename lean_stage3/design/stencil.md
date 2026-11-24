@@ -567,3 +567,48 @@ open items. On paper, here, unchecked by anyone else.
 strength is the open problem. Steps 1 to 3 are unconditional and
 build the frame in which H, the wall and the floor can each be read as a count
 of missed sign changes.
+
+### S10 step 4: the floor, on paper (2026-11-24, Julian: "Yes to log and step 4 please")
+
+On paper, here, unchecked by anyone else. Steps 1 to 3 are in Lean (units
+0516 and 0517). Step 4 has to produce sign changes, or zeros on the line, in
+proportion to the full count.
+
+**4a, Littlewood's lemma.** For `f` analytic on the rectangle `[σ₀, 3] × [T, 2T]`
+and nonzero on its edges, `2π·Σ_{zeros, β>σ₀} (β − σ₀) = ∫_T^{2T} log|f(σ₀+it)| dt
+− ∫_T^{2T} log|f(3+it)| dt + (horizontal sides)`. It is the argument principle
+integrated across. The tree has the pieces: `JensenCount`, `ArgCount`, and the
+dependency's `RectangleArgumentPrinciple`. It does not have the lemma. It is
+unconditional.
+
+**4b, concavity.** `∫ log|f| ≤ (T/2)·log((1/T)∫|f|²)`. With `f = ζ·M`, every zero of
+`ζ` right of `σ₀` is a zero of `f`. If the mean square of `ζ·M` on `Re s = σ₀` is
+`T·(1 + o(1))`, the right side is `o(T)`, and so is the weighted count of zeros
+right of `σ₀`.
+
+**4c, what the tree's floor reaches.** `MollifiedMean` bounds `∫|ζ·M − 1|²` on
+`Re s = u > 1/2`, with the mollifier `M_X = Σ_{d<X} μ(d)·d^(−s)`. Taking that to
+`∫|ζ·M|² = T·(1 + o(1))` and feeding it to 4a and 4b gives Bohr–Landau: zeros right
+of any `u > 1/2` are `o(T)`, against `N(T) ~ (T/2π)·log T`. This is the strongest
+step the tree can build from what it has. It puts the zeros near the line,
+and not on it.
+
+**4d, the step onto the line (Levinson).** Take `σ₀ = 1/2 − R/log T`, left of the
+line, and apply 4a and 4b to `V·M`. Here `V = ζ + ζ'/log T` (in Levinson's
+combination) and `M` is a mollifier with smooth weights `μ(n)·P(log(y/n)/log y)`,
+`y = T^θ`. Levinson's lemma turns zeros of `V` right of `σ₀` into a bound on the
+zeros of `ζ` off the line, through the functional equation. The proportion on
+the line is at least `1 − (1/R)·log((1/T)∫|V·M|²)`. The input is the mean value
+of `|V·M|²` just left of the line. Conrey's evaluation, for lengths `θ < 4/7`,
+gives over 40%, and later work gives a little more. None of this is in the tree.
+
+**Where the floor stops.** The proportion grows with the mollifier's length
+`θ`. No known mean value reaches a length that gives 100%. From memory, not
+checked this session: Farmer observed that the mean value for arbitrarily long
+mollifiers, if it held as conjectured, would give 100%. That would be a
+statement about the zeros as a whole, which is the gap of S7 to S9 in another
+form.
+
+**Build order, if pursued.** 4a (Littlewood) in Lean, unconditional. Then 4b.
+Then 4c, Bohr–Landau, from `MollifiedMean`. 4d needs a mean value left of the
+line, which is a large analytic project.
