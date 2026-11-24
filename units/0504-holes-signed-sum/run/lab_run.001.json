@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0504-holes-signed-sum",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v819 x86_64",
+    "virtual_env": null,
+    "git_head": "1170aa4fe3659d3b0916ace3bcaf1a25414da43e",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "e62dd48da5f6f7311cbf2b86c2e66d10a4d5c504e6e1fd45d9c1a23a76a9aa17",
+    "run_start": "2026-11-24T00:31:22Z",
+    "run_end": "2026-11-24T00:31:25Z",
+    "wall_s": 3.101511425999888
+  }
+}

@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-24T00:31:45Z
+# unit: 0504-holes-signed-sum
+# sources searched: 442
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50332
+  Per N: the signed error sum; the bound from sizes alone, sum_k |e(N/k)|; sqrt N;
+
+# 2 found, 0 missing
