@@ -7,7 +7,7 @@ ClosedLoopJoin — block J1 of `lean_stage3/design/closedloop.md`: the join betw
 11 theorems, 4 definitions, 220 lines. 
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`MirrorArea`](../lean_stage3/MirrorArea.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderAssembly`](../lean_stage3/LadderAssembly.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderAssembly`](../lean_stage3/LadderAssembly.md), [`LineCount`](../lean_stage3/LineCount.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)
 
 ## The picture
 
@@ -31,9 +31,10 @@ flowchart LR
   x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   x5(["<b>BandJoin</b><br/>spiralLink_iff_middle"]):::ext
   x6(["<b>HolyChannel</b><br/>spiralLink_iff_channel"]):::ext
-  x7(["<b>Saddle</b><br/>spiralLink_iff_centres"]):::ext
-  x8(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
-  x9(["<b>OneChain</b><br/>one_chain"]):::ext
+  x7(["<b>LineCount</b><br/>rh_iff_line_count"]):::ext
+  x8(["<b>Saddle</b><br/>spiralLink_iff_centres"]):::ext
+  x9(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
+  x10(["<b>OneChain</b><br/>one_chain"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -52,7 +53,8 @@ flowchart LR
   n8 -.-> x6
   n8 -.-> x7
   n8 -.-> x8
-  n9 -.-> x9
+  n8 -.-> x9
+  n9 -.-> x10
   x1 -.-> n1
   x1 -.-> n7
   x3 -.-> n7
@@ -367,12 +369,13 @@ RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2
 
   - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
   - [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) (BandJoin) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
   - [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
   - [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
   - [`HolyChannel.spiralLink_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-spiralLink_iff_channel) (HolyChannel) — `` SpiralLink.SpiralLink ↔ ZeroIsChannel ``
+  - [`LineCount.rh_iff_line_count`](../lean_stage3/LineCount.md#LineCount-rh_iff_line_count) (LineCount) — `` RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T ``
   - [`Saddle.spiralLink_iff_centres`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) (Saddle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 ``
   - [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) (ShareLink) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
   - [`SpiralLink.rh_iff_one_at_each_height`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) (SpiralLink) — `` RiemannHypothesis ↔ OneAtEachHeight ``

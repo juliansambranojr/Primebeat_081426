@@ -48,6 +48,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nyquist.Aliases`](./lean/Nyquist.md#Nyquist-Aliases) | def | shape | `Nyquist` | Prop |
 | [`Nyquist.aliases_of_offset`](./lean/Nyquist.md#Nyquist-aliases_of_offset) | theorem | shape | `Nyquist` | Aliases b γ (γ - 2 * π * k / Real.log b) |
 | [`ZeroCells.all_four_have_length_four`](./lean/ZeroCells.md#ZeroCells-all_four_have_length_four) | theorem | counting | `ZeroCells` | Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_cells.length = 4 ∧ PairIdentity.zero_cells.length = 4 ∧ Zeros.measured_zeros.length = 4 |
+| [`LineCount.allCount`](./lean_stage3/LineCount.md#LineCount-allCount) | def | reads ζ | `LineCount` | ℤ |
 | [`Doubling.alt_even`](./lean_stage3/Doubling.md#Doubling-alt_even) | theorem | counting | `Doubling` | ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) = ∑ k ∈ Icc 1 (2 * m), 1 / (k : ℝ) - ∑ k ∈ Icc 1 m, 1 / (k : ℝ) |
 | [`Doubling.alt_even_bound`](./lean_stage3/Doubling.md#Doubling-alt_even_bound) | theorem | shape | `Doubling` | Real.log 2 - 1 / (2 * (m : ℝ)) ≤ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ∧ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ≤ Real.log 2 |
 | [`Doubling.alt_harmonic`](./lean_stage3/Doubling.md#Doubling-alt_harmonic) | theorem | shape | `Doubling` | \|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) / (k : ℝ) - Real.log 2\| ≤ 1 / (N : ℝ) |
@@ -329,6 +330,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DeepZeroBand.compRow`](./lean/DeepZeroBand.md#DeepZeroBand-compRow) | def | counting | `DeepZeroBand` | ℤ → ℤ |
 | [`Propagation.cone_filled`](./lean/Propagation.md#Propagation-cone_filled) | theorem | counting | `Propagation` | tableFrom (deltaRow s) (s + (k : ℤ)) d ≠ 0 |
 | [`EulerFactorChain.conj_factor_on_critical_line`](./lean/EulerFactorChain.md#EulerFactorChain-conj_factor_on_critical_line) | theorem | shape | `EulerFactorChain` | (starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^ (((1 : ℂ)/2 + t * I) - 1) |
+| [`LineCount.conj_mem`](./lean_stage3/LineCount.md#LineCount-conj_mem) | theorem | reads ζ | `LineCount` | conj (ρ : ℂ) ∈ NontrivialZeros |
 | [`WeilOnLine.conj_mem`](./lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) | theorem | reads ζ | `WeilOnLine` | (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros |
 | [`Bridge.conj_paperFT_conj`](./lean_bridge/WeilBridge.md#Bridge-conj_paperFT_conj) | theorem | shape | `WeilBridge` | conj (paperFT F (conj z)) = paperFT F (-z) |
 | [`WeilOnLine.conjZ`](./lean_stage3/WeilOnLine.md#WeilOnLine-conjZ) | def | reads ζ | `WeilOnLine` | Kadiri.NontrivialZeros |
@@ -1029,6 +1031,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | shape | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
 | [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | reads ζ | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
 | [`LadderMean.line_not_fading_summable`](./lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) | theorem | reads ζ | `LadderMean` | ¬ Tendsto (fun r : ℕ =&gt; (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop… |
+| [`LineCount.lineCount`](./lean_stage3/LineCount.md#LineCount-lineCount) | def | reads ζ | `LineCount` | ℤ |
+| [`LineCount.lineCount_le_allCount`](./lean_stage3/LineCount.md#LineCount-lineCount_le_allCount) | theorem | reads ζ | `LineCount` | lineCount T ≤ allCount T |
 | [`AttainedPi.lineSet`](./lean_stage3/AttainedPi.md#AttainedPi-lineSet) | def | reads ζ | `AttainedPi` | Set NontrivialZeros |
 | [`Interpolant.liRow`](./lean/Interpolant.md#Interpolant-liRow) | def | shape | `Interpolant` | ℝ |
 | [`Interpolant.liRow_contDiff`](./lean/Interpolant.md#Interpolant-liRow_contDiff) | theorem | shape | `Interpolant` | ContDiff ℝ (⊤ : ℕ∞) liRow |
@@ -1192,6 +1196,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ReZetaCount.mem_reZeros`](./lean_stage3/ReZetaCount.md#ReZetaCount-mem_reZeros) | theorem | reads ζ | `ReZetaCount` | x ∈ reZeros hT ↔ x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T * Complex.I)).re = 0 |
 | [`SieveIdem.mem_sieveStep`](./lean_stage3/SieveIdem.md#SieveIdem-mem_sieveStep) | theorem | counting | `SieveIdem` | m ∈ sieveStep p A ↔ m ∈ A ∧ ¬ p ∣ m |
 | [`ArgLegs.mem_slitPlane_of_re_nonneg`](./lean_stage3/ArgLegs.md#ArgLegs-mem_slitPlane_of_re_nonneg) | theorem | shape | `ArgLegs` | z ∈ Complex.slitPlane |
+| [`LineCount.mem_zerosUpTo`](./lean_stage3/LineCount.md#LineCount-mem_zerosUpTo) | theorem | counting | `LineCount` | ρ ∈ zerosUpTo T ↔ 0 &lt; (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T |
 | [`ContourShift.mem_zetaWindow`](./lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow) | theorem | reads ζ | `ContourShift` | ρ ∈ Stage3.zetaWindow T₀ |
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
 | [`FiniteOffLine.mem_ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem | reads ζ | `FiniteOffLine` | ρ ∈ ZF T ↔ \|(ρ : ℂ).im\| &lt; T |
@@ -1769,6 +1774,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellResidual.RH_iff_cells`](./lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | theorem | reads ζ | `CellResidual` | RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
 | [`ClosedLoopJoin.rh_iff_force_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 |
 | [`ClosedLoopJoin.rh_iff_handshake`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re |
+| [`LineCount.rh_iff_line_count`](./lean_stage3/LineCount.md#LineCount-rh_iff_line_count) | theorem | reads ζ | `LineCount` | RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T |
 | [`SpiralLink.rh_iff_one_at_each_height`](./lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) | theorem | reads ζ | `SpiralLink` | RiemannHypothesis ↔ OneAtEachHeight |
 | [`VonKoch.RH_iff_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ |
 | [`ClosedLoopJoin.rh_iff_re_half`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 |
@@ -1939,6 +1945,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerPhase.sigmaN_eq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigmaN_eq) | theorem | shape | `WeilPowerPhase` | sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 |
 | [`WeilPowerPhase.sigmaN_tendsto`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigmaN_tendsto) | theorem | shape | `WeilPowerPhase` | Tendsto (fun n =&gt; sigmaN m n) atTop (𝓝 (sigma m)) |
 | [`HardyZ.signChange_zero_on_line`](./lean_stage3/HardyZ.md#HardyZ-signChange_zero_on_line) | theorem | reads ζ | `HardyZ` | ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 |
+| [`LineCount.signChanges_le_line_count`](./lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) | theorem | reads ζ | `LineCount` | (k : ℤ) ≤ lineCount T |
 | [`SeedPerturbation.silence46_alive_at_three`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_alive_at_three) | theorem | counting | `SeedPerturbation` | silence46_excess 3 ≠ 0 |
 | [`SeedPerturbation.silence46_cell_4_1_moves`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_cell_4_1_moves) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - silence46_excess x) 4 1 ≠ tableFrom N 4 1 |
 | [`SeedPerturbation.silence46_deep_cells_fixed`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_deep_cells_fixed) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - silence46_excess x) 8 3 = tableFrom N 8 3 ∧ tableFrom (fun x =&gt; N x - silence46_excess x) 20 6 = tableFrom N 20 6 |
@@ -2093,6 +2100,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Saddle.stretch_eq`](./lean_stage3/Saddle.md#Saddle-stretch_eq) | theorem | shape | `Saddle` | stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re |
 | [`GeneratorPeak.strictAnti_of_lt`](./lean/GeneratorPeak.md#GeneratorPeak-strictAnti_of_lt) | theorem | shape | `GeneratorPeak` | StrictAnti (score R P α β) |
 | [`GeneratorPeak.strictMono_of_lt`](./lean/GeneratorPeak.md#GeneratorPeak-strictMono_of_lt) | theorem | shape | `GeneratorPeak` | StrictMono (score R P α β) |
+| [`LineCount.strictSignChange_zero_on_line`](./lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) | theorem | reads ζ | `LineCount` | ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 |
 | [`Transform.strip_is_fundamental_domain`](./lean/Transform.md#Transform-strip_is_fundamental_domain) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ = b ^ (-(1 : ℝ)) |
 | [`ZetaGrowth.stripRegion`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-stripRegion) | def | shape | `ZetaGrowth` | Set ℂ |
 | [`ZeroSquares.strips_le`](./lean_stage3/ZeroSquares.md#ZeroSquares-strips_le) | theorem | reads ζ | `ZeroSquares` | ∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u ≤ 3 * innerI X 1 T u |
@@ -2557,6 +2565,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.zeros_outside_inner_circle`](./lean/Transform.md#Transform-zeros_outside_inner_circle) | theorem | reads ζ | `Transform` | b ^ (-(1 : ℝ)) &lt; ‖(b : ℂ) ^ (-s)‖ |
 | [`Transform.zeros_re_lt_one`](./lean/Transform.md#Transform-zeros_re_lt_one) | theorem | reads ζ | `Transform` | s.re &lt; 1 |
 | [`Transform.zeros_re_pos`](./lean/Transform.md#Transform-zeros_re_pos) | theorem | reads ζ | `Transform` | 0 &lt; s.re |
+| [`LineCount.zerosUpTo`](./lean_stage3/LineCount.md#LineCount-zerosUpTo) | def | counting | `LineCount` | Finset NontrivialZeros |
 | [`CountEuler.zeta`](./lean_stage3/CountEuler.md#CountEuler-zeta) | def | shape | `CountEuler` | ℂ |
 | [`ZetaGrowth.zeta1`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1) | def | shape | `ZetaGrowth` | ℂ |
 | [`ZetaGrowth.zeta1_analyticOnNhd`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_analyticOnNhd) | theorem | reads ζ | `ZetaGrowth` | AnalyticOnNhd ℂ (zeta1 N) stripRegion |
