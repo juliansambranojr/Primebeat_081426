@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-24T20:11:16Z
+# unit: 0514-bases-per-creep
+# sources searched: 56
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:62224
+  So would a proof be valid if we name for any base x = rate of creep to show that you need x bases to...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41023
+  theorem spiralLink_iff_middle :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41024
+  SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) := by
+
+# 4 found, 0 missing

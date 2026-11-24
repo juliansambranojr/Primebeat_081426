@@ -22,6 +22,43 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S6 of `design/stencil.md`: `Stage3/ReachRoute.lean`
+
+    DONE        `reached_mode_false`: under H, a mode right of σ reached from
+                0 inside the component along points whose distance to it is
+                at most M times their distance to every other mode gives
+                False; it holds isolation as a special case; one unit
+    ASSUMED     Julian, 2026-11-24: case 2 on the ψ ladder (the answer
+                "Case 2 on the ψ ladder"). Built by one worker from S6's text
+    DEPENDS     `ResidueRoute` (`G_eq_F`, `differentiableAt_G`, `P_bound`,
+                `differentiableAt_F`, `summable_coef`, the fibre step)
+    OUT         modes that every approach from 0 meets tangentially; a limit
+                set that separates the modes from 0; H
+
+### 2026-11-24 · block S5 of `design/stencil.md`: `Stage3/LadderAssembly.lean`
+
+    DONE        `top_mode_on_frontier` (an attained top real part puts its
+                mode on the frontier of the component of 0, every σ below
+                it) and `rh_of_ladder_tame`: H, and off the line a top zero
+                that is attained with its mode isolated, give
+                `RiemannHypothesis`; one unit
+    ASSUMED     Julian, 2026-11-24: "Start the loop" (steps (D) and the
+                assembled theorem). Built by one worker from S5's text
+    DEPENDS     `ResidueRoute.isolated_boundary_mode_false`
+    OUT         a top real part that is not attained; an attained top mode
+                that other modes accumulate on
+
+### 2026-11-24 · block S4 of `design/stencil.md`: `Stage3/ResidueRoute.lean`
+
+    DONE        `isolated_boundary_mode_false`: under the ladder bound H, a
+                zero right of σ whose mode is isolated in the closure of the
+                modes and on the boundary of the component of its complement
+                holding 0 contradicts H; one unit
+    ASSUMED     Julian, 2026-11-24: "Start the loop" (ladder-route assembly,
+                step (A1)). Built by one worker from the design's paper text
+    DEPENDS     `FilterLadder`, `ZeroDensity`, `ZeroSummable`, `FilterAccum`
+    OUT         modes accumulating on a set that separates them from 0
+
 ### 2026-11-24 · block R16 of `design/runs.md`: `Stage3/WindowsOfRH.lean`
 
     DONE        `windows_of_rh`: RiemannHypothesis → ∀ θ ∈ (1/2, 1), ∃ δ C,

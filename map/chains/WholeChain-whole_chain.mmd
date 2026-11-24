@@ -3,106 +3,146 @@ flowchart LR
   f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
   f2["<b>ClosedLoopChain</b><br/>2 used"]:::thm
   f3["<b>JensenCount</b><br/>17 used"]:::thm
-  f4["<b>LandauWindow</b><br/>2 used"]:::thm
-  f5["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
-  f6["<b>PerronKernel</b><br/>33 used"]:::thm
-  f7["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f8["<b>RvMCrude</b><br/>3 used"]:::thm
-  f9["<b>ArgCrude</b><br/>3 used"]:::thm
-  f10["<b>SieveExact</b><br/>15 used"]:::thm
-  f11["<b>Statement</b><br/>1 used"]:::thm
-  f12["<b>PsiToPi</b><br/>13 used"]:::thm
-  f13["<b>LineBound</b><br/>54 used"]:::thm
-  f14["<b>Abscissa</b><br/>6 used"]:::thm
-  f15["<b>RowLeaves</b><br/>2 used"]:::thm
-  f16["<b>SieveResidual</b><br/>3 used"]:::thm
-  f17["<b>Stirling</b><br/>20 used"]:::thm
-  f18["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f19["<b>ArgLegs</b><br/>10 used"]:::thm
-  f20["<b>ArgCount</b><br/>14 used"]:::thm
-  f21["<b>ThetaLine</b><br/>3 used"]:::thm
-  f22["<b>ThetaPi</b><br/>1 used"]:::thm
-  f23["<b>ThetaPull</b><br/>6 used"]:::thm
-  f24["<b>ThetaPsi</b><br/>14 used"]:::thm
-  f25["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f26["<b>ThetaConverse</b><br/>12 used"]:::thm
-  f27["<b>RateBelow</b><br/>1 used"]:::thm
-  f28["<b>WeilOnLine</b><br/>1 used"]:::thm
-  f29["<b>SpiralLink</b><br/>10 used"]:::thm
-  f30["<b>BandJoin</b><br/>5 used"]:::thm
-  f31["<b>HolyChannel</b><br/>4 used"]:::thm
-  f32["<b>ShareLink</b><br/>4 used"]:::thm
-  f33["<b>Saddle</b><br/>8 used"]:::thm
-  f34["<b>ZeroSum</b><br/>7 used"]:::thm
-  f35["<b>Assembly</b><br/>8 used"]:::thm
-  f36["<b>ContourShift</b><br/>29 used"]:::thm
-  f37["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f38["<b>EdgeBound</b><br/>17 used"]:::thm
-  f39["<b>Glue</b><br/>5 used"]:::thm
-  f40["<b>GlueFloor</b><br/>8 used"]:::thm
-  f41["<b>PiToPsi</b><br/>13 used"]:::thm
-  f42["<b>CellResidual</b><br/>16 used"]:::thm
-  f43["<b>HalfSieve</b><br/>11 used"]:::thm
-  f44["<b>OneChain</b><br/>2 used"]:::thm
-  f45["<b>WholeChain</b><br/>whole_chain"]:::end_
+  f4["<b>LandauKernel</b><br/>6 used"]:::thm
+  f5["<b>JointDialGate</b><br/>1 used"]:::thm
+  f6["<b>LandauPoleSub</b><br/>3 used"]:::thm
+  f7["<b>LandauRates</b><br/>3 used"]:::thm
+  f8["<b>LandauTail</b><br/>3 used"]:::thm
+  f9["<b>LandauTrig</b><br/>6 used"]:::thm
+  f10["<b>LandauWindow</b><br/>8 used"]:::thm
+  f11["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
+  f12["<b>LandauCrude</b><br/>1 used"]:::thm
+  f13["<b>LandauChebyshev</b><br/>5 used"]:::thm
+  f14["<b>LandauMellin</b><br/>8 used"]:::thm
+  f15["<b>LandauMellinG</b><br/>12 used"]:::thm
+  f16["<b>LandauTaylor</b><br/>7 used"]:::thm
+  f17["<b>LandauPrimeSide</b><br/>4 used"]:::thm
+  f18["<b>PerronKernel</b><br/>33 used"]:::thm
+  f19["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f20["<b>RvMCrude</b><br/>3 used"]:::thm
+  f21["<b>ArgCrude</b><br/>3 used"]:::thm
+  f22["<b>SieveExact</b><br/>15 used"]:::thm
+  f23["<b>Statement</b><br/>1 used"]:::thm
+  f24["<b>PsiToPi</b><br/>13 used"]:::thm
+  f25["<b>LineBound</b><br/>54 used"]:::thm
+  f26["<b>Abscissa</b><br/>6 used"]:::thm
+  f27["<b>RowLeaves</b><br/>2 used"]:::thm
+  f28["<b>SieveResidual</b><br/>3 used"]:::thm
+  f29["<b>Stirling</b><br/>20 used"]:::thm
+  f30["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f31["<b>ArgLegs</b><br/>10 used"]:::thm
+  f32["<b>ArgCount</b><br/>14 used"]:::thm
+  f33["<b>ThetaLine</b><br/>3 used"]:::thm
+  f34["<b>ThetaPi</b><br/>1 used"]:::thm
+  f35["<b>ThetaPull</b><br/>6 used"]:::thm
+  f36["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f37["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f38["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f39["<b>RateBelow</b><br/>1 used"]:::thm
+  f40["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f41["<b>SpiralLink</b><br/>10 used"]:::thm
+  f42["<b>BandJoin</b><br/>5 used"]:::thm
+  f43["<b>HolyChannel</b><br/>4 used"]:::thm
+  f44["<b>ShareLink</b><br/>4 used"]:::thm
+  f45["<b>Saddle</b><br/>8 used"]:::thm
+  f46["<b>ZeroSum</b><br/>7 used"]:::thm
+  f47["<b>Assembly</b><br/>8 used"]:::thm
+  f48["<b>ContourShift</b><br/>29 used"]:::thm
+  f49["<b>LandauPoleLocal</b><br/>3 used"]:::thm
+  f50["<b>LandauPoleDisc</b><br/>1 used"]:::thm
+  f51["<b>LandauZeroSide</b><br/>2 used"]:::thm
+  f52["<b>LandauCriterion</b><br/>3 used"]:::thm
+  f53["<b>WindowsOfRH</b><br/>19 used"]:::thm
+  f54["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f55["<b>EdgeBound</b><br/>17 used"]:::thm
+  f56["<b>Glue</b><br/>5 used"]:::thm
+  f57["<b>GlueFloor</b><br/>8 used"]:::thm
+  f58["<b>PiToPsi</b><br/>13 used"]:::thm
+  f59["<b>CellResidual</b><br/>16 used"]:::thm
+  f60["<b>HalfSieve</b><br/>11 used"]:::thm
+  f61["<b>OneChain</b><br/>2 used"]:::thm
+  f62["<b>WholeChain</b><br/>whole_chain"]:::end_
   f4 --> f5
-  f3 --> f7
-  f8 --> f9
-  f11 --> f12
-  f3 --> f13
+  f4 --> f8
+  f10 --> f11
+  f10 --> f12
   f12 --> f13
-  f13 --> f14
-  f12 --> f15
-  f10 --> f16
-  f12 --> f16
+  f10 --> f14
+  f14 --> f15
+  f4 --> f16
+  f13 --> f16
+  f15 --> f16
   f8 --> f17
-  f9 --> f18
-  f17 --> f18
-  f18 --> f19
-  f7 --> f20
-  f19 --> f20
-  f14 --> f21
-  f21 --> f23
+  f16 --> f17
+  f3 --> f19
+  f20 --> f21
   f23 --> f24
-  f13 --> f25
-  f22 --> f26
-  f24 --> f26
+  f3 --> f25
+  f24 --> f25
   f25 --> f26
-  f26 --> f27
-  f5 --> f29
-  f28 --> f29
+  f24 --> f27
+  f22 --> f28
+  f24 --> f28
+  f20 --> f29
+  f21 --> f30
   f29 --> f30
-  f2 --> f31
-  f29 --> f31
-  f29 --> f32
-  f27 --> f33
-  f32 --> f33
-  f34 --> f35
-  f3 --> f36
+  f30 --> f31
+  f19 --> f32
+  f31 --> f32
+  f26 --> f33
+  f33 --> f35
   f35 --> f36
-  f36 --> f37
+  f25 --> f37
+  f34 --> f38
+  f36 --> f38
   f37 --> f38
   f38 --> f39
-  f1 --> f40
-  f6 --> f40
-  f12 --> f40
-  f20 --> f40
-  f39 --> f40
-  f15 --> f41
-  f25 --> f41
+  f11 --> f41
   f40 --> f41
-  f0 --> f42
   f41 --> f42
-  f16 --> f43
-  f29 --> f43
+  f2 --> f43
   f41 --> f43
-  f29 --> f44
-  f42 --> f44
-  f30 --> f45
-  f31 --> f45
-  f33 --> f45
-  f43 --> f45
+  f41 --> f44
+  f39 --> f45
   f44 --> f45
+  f46 --> f47
+  f3 --> f48
+  f47 --> f48
+  f15 --> f49
+  f48 --> f49
+  f6 --> f50
+  f49 --> f50
+  f9 --> f51
+  f17 --> f51
+  f50 --> f51
+  f7 --> f52
+  f51 --> f52
+  f5 --> f53
+  f45 --> f53
+  f52 --> f53
+  f48 --> f54
+  f54 --> f55
+  f55 --> f56
+  f1 --> f57
+  f18 --> f57
+  f24 --> f57
+  f32 --> f57
+  f56 --> f57
+  f27 --> f58
+  f37 --> f58
+  f57 --> f58
+  f0 --> f59
+  f58 --> f59
+  f28 --> f60
+  f41 --> f60
+  f58 --> f60
+  f41 --> f61
+  f59 --> f61
+  f42 --> f62
+  f43 --> f62
+  f53 --> f62
+  f60 --> f62
+  f61 --> f62
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

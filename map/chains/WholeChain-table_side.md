@@ -1,6 +1,6 @@
 # What `WholeChain.table_side` rests on
 
-[`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) in `lean_stage3/Stage3/WholeChain.lean`, line 61.
+[`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) in `lean_stage3/Stage3/WholeChain.lean`, line 66.
 
 **Why.** The table's side. What is proved of the table at every `N`, with no zero in the statement.
 

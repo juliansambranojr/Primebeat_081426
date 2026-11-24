@@ -7,7 +7,7 @@ CountReduction — block N2 of `lean_stage3/design/countmodes.md`, as corrected 
 12 theorems, 1 definition, 601 lines. 
 
 **Imports:** [`AttainedPi`](../lean_stage3/AttainedPi.md), [`CountModes`](../lean_stage3/CountModes.md), [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountEuler`](../lean_stage3/CountEuler.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountEuler`](../lean_stage3/CountEuler.md), [`ResidueRoute`](../lean_stage3/ResidueRoute.md)
 
 ## The picture
 
@@ -29,11 +29,12 @@ flowchart LR
   x1(["<b>CountEuler</b><br/>euler_exposed_false<br/>summable_ord_im<br/>tsum_transform"]):::ext
   x2(["<b>ZeroSummable</b><br/>6 theorems"]):::ext
   x3(["<b>ZeroDensity</b><br/>zero_density"]):::ext
-  x4(["<b>AttainedPi</b><br/>norm_log_piMode_low<br/>one_le_log"]):::ext
-  x5(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
-  x6(["<b>FixedRowTwo</b><br/>Api2_nonneg<br/>c1t_nonneg<br/>norm_tr_efRem_le_height_two"]):::ext
-  x7(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
-  x8(["<b>PiZeros</b><br/>norm_tr_psiTheta_le<br/>pi_eq_zero_sum"]):::ext
+  x4(["<b>ResidueRoute</b><br/>P_bound"]):::ext
+  x5(["<b>AttainedPi</b><br/>norm_log_piMode_low<br/>one_le_log"]):::ext
+  x6(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
+  x7(["<b>FixedRowTwo</b><br/>Api2_nonneg<br/>c1t_nonneg<br/>norm_tr_efRem_le_height_two"]):::ext
+  x8(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
+  x9(["<b>PiZeros</b><br/>norm_tr_psiTheta_le<br/>pi_eq_zero_sum"]):::ext
   n0 --> n1
   n0 --> n11
   n1 --> n11
@@ -52,6 +53,7 @@ flowchart LR
   n9 --> n11
   n1 -.-> x1
   n11 -.-> x1
+  n4 -.-> x4
   n6 -.-> x1
   x0 -.-> n1
   x0 -.-> n11
@@ -61,11 +63,11 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n6
   x3 -.-> n4
-  x4 -.-> n11
   x5 -.-> n11
   x6 -.-> n11
   x7 -.-> n11
   x8 -.-> n11
+  x9 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -238,9 +240,10 @@ line 125 · arrows read from text
 
 **Definitions its proof touches:** [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CountReduction.count_modes_small`](#CountReduction-count_modes_small) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="CountReduction-norm_term_le"></a>
 ### `CountReduction.norm_term_le`

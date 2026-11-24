@@ -23,13 +23,14 @@ flowchart LR
   n7["<b>filter_attained_false</b><br/>False"]:::thm
   n8["<b>attained_psi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>ZeroSummable</b><br/>summable_norm_coef"]):::ext
-  x1(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
-  x3(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
-  x4(["<b>LadderMean</b><br/>mean_extract"]):::ext
-  x5(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
-  x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
-  x7(["<b>OneChain</b><br/>spiralLink_of_attained_psi"]):::ext
+  x1(["<b>ResidueRoute</b><br/>P_bound"]):::ext
+  x2(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x4(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x5(["<b>LadderMean</b><br/>mean_extract"]):::ext
+  x6(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
+  x7(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x8(["<b>OneChain</b><br/>spiralLink_of_attained_psi"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -41,17 +42,21 @@ flowchart LR
   n5 --> n6
   n6 --> n7
   n7 --> n8
-  n7 -.-> x5
-  n8 -.-> x7
+  n1 -.-> x1
+  n2 -.-> x1
+  n3 -.-> x1
+  n5 -.-> x1
+  n7 -.-> x6
+  n8 -.-> x8
   x0 -.-> n1
-  x1 -.-> n2
-  x1 -.-> n6
-  x1 -.-> n7
-  x2 -.-> n4
-  x2 -.-> n8
-  x3 -.-> n7
+  x2 -.-> n2
+  x2 -.-> n6
+  x2 -.-> n7
+  x3 -.-> n4
+  x3 -.-> n8
   x4 -.-> n7
-  x6 -.-> n8
+  x5 -.-> n7
+  x7 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -74,7 +79,7 @@ def · line 42
 the rate of a zero under the filter
 
 - **Is:** `` xi (q : Polynomial ℂ) (a b : ℕ) (ρ : Kadiri.NontrivialZeros) : ℂ := ((2:ℂ) ^ (ρ : ℂ)) ^ b * (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ a ``
-- **Used by 5:** [`FilterAccum.xi_eq_xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz), [`FilterAttained.attained_psi`](#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.xi_pow`](#FilterAttained-xi_pow)
+- **Used by 6:** [`FilterAccum.xi_eq_xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz), [`FilterAttained.attained_psi`](#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.xi_pow`](#FilterAttained-xi_pow), [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound)
 
 <a name="FilterAttained-S"></a>
 ### `FilterAttained.S`
@@ -84,7 +89,7 @@ def · line 46
 The zeros with real part at least `σ`.
 
 - **Is:** `` S (σ : ℝ) : Set NontrivialZeros := {ρ | σ ≤ (ρ : ℂ).re} ``
-- **Used by 7:** [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.summable_S`](#FilterAttained-summable_S), [`FilterAttained.tailT`](#FilterAttained-tailT), [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split)
+- **Used by 15:** [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.summable_S`](#FilterAttained-summable_S), [`FilterAttained.tailT`](#FilterAttained-tailT), [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split), [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false), [`ResidueRoute.F`](../lean_stage3/ResidueRoute.md#ResidueRoute-F), [`ResidueRoute.G_eq_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-G_eq_F), [`ResidueRoute.P`](../lean_stage3/ResidueRoute.md#ResidueRoute-P), [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound), [`ResidueRoute.differentiableAt_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-differentiableAt_F), [`ResidueRoute.isolated_boundary_mode_false`](../lean_stage3/ResidueRoute.md#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.summable_coef`](../lean_stage3/ResidueRoute.md#ResidueRoute-summable_coef)
 
 <a name="FilterAttained-ratio"></a>
 ### `FilterAttained.ratio`
@@ -95,7 +100,7 @@ The rate of a zero divided by a fixed size `M`.
 
 - **Is:** `` ratio (q : Polynomial ℂ) (a b : ℕ) (M : ℝ) (ρ : NontrivialZeros) : ℂ := xi q a b ρ / (M : ℂ) ``
 - **Built from:** [`FilterAttained.xi`](#FilterAttained-xi)
-- **Used by 7:** [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.finite_part_le`](#FilterAttained-finite_part_le), [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.tailT`](#FilterAttained-tailT), [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split)
+- **Used by 8:** [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.finite_part_le`](#FilterAttained-finite_part_le), [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.tailT`](#FilterAttained-tailT), [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split), [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound)
 
 <a name="FilterAttained-tailT"></a>
 ### `FilterAttained.tailT`
@@ -106,7 +111,7 @@ One zero's term at row `k`, kept only when it is right of `σ` and above height 
 
 - **Is:** `` tailT (q : Polynomial ℂ) (a b : ℕ) (σ M : ℝ) (k : ℕ) (ρ : NontrivialZeros) : ℂ := if ρ ∈ ZF ((2:ℝ) ^ (b * k)) then 0 else (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ ``
 - **Built from:** [`FilterAttained.S`](#FilterAttained-S), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
-- **Used by 3:** [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split)
+- **Used by 4:** [`FilterAttained.norm_tailT_le`](#FilterAttained-norm_tailT_le), [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](#FilterAttained-tsum_split), [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound)
 
 ## Theorems
 
@@ -164,11 +169,12 @@ Summable ((S σ).indicator fun ρ => ‖LadderMean.coef ρ‖)
 
 **Definitions its proof touches:** [`FilterAttained.S`](#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false) — `` False ``
   - [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT) — `` Tendsto (fun k : ℕ => ∑' ρ, tailT q a b σ M k ρ) atTop (𝓝 0) ``
   - [`FilterAttained.tsum_split`](#FilterAttained-tsum_split) — `` ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ = ∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : … ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="FilterAttained-finite_part_le"></a>
 ### `FilterAttained.finite_part_le`
@@ -202,9 +208,10 @@ line 68 · arrows read from text
 
 **Definitions its proof touches:** [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterLadder.Afl`](../lean_stage3/FilterLadder.md#FilterLadder-Afl), [`FilterLadder.Wn`](../lean_stage3/FilterLadder.md#FilterLadder-Wn), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full) — `` Tendsto (fun k : ℕ => ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="FilterAttained-norm_tailT_le"></a>
 ### `FilterAttained.norm_tailT_le`
@@ -233,10 +240,11 @@ line 115 · arrows read from text
 
 **Definitions its proof touches:** [`FilterAttained.S`](#FilterAttained-S), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.tailT`](#FilterAttained-tailT), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`FilterAttained.tendsto_tailT`](#FilterAttained-tendsto_tailT) — `` Tendsto (fun k : ℕ => ∑' ρ, tailT q a b σ M k ρ) atTop (𝓝 0) ``
   - [`FilterAttained.tsum_split`](#FilterAttained-tsum_split) — `` ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ = ∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : … ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="FilterAttained-tendsto_tailT"></a>
 ### `FilterAttained.tendsto_tailT`
@@ -303,9 +311,10 @@ line 151 · arrows read from text
 
 **Definitions its proof touches:** [`FilterAttained.S`](#FilterAttained-S), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.tailT`](#FilterAttained-tailT), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FilterAttained.tendsto_full`](#FilterAttained-tendsto_full) — `` Tendsto (fun k : ℕ => ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="FilterAttained-tendsto_full"></a>
 ### `FilterAttained.tendsto_full`

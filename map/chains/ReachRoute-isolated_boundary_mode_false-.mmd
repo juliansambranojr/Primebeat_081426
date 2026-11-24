@@ -1,0 +1,121 @@
+flowchart LR
+  f0["<b>AliasClass</b><br/>3 used"]:::thm
+  f1["<b>Assembly</b><br/>2 used"]:::thm
+  f2["<b>CellZeros</b><br/>1 used"]:::thm
+  f3["<b>DirichletMean</b><br/>7 used"]:::thm
+  f4["<b>DirichletMeanW</b><br/>5 used"]:::thm
+  f5["<b>Glue</b><br/>1 used"]:::thm
+  f6["<b>JensenCount</b><br/>17 used"]:::thm
+  f7["<b>ContourShift</b><br/>28 used"]:::thm
+  f8["<b>LadderMean</b><br/>1 used"]:::thm
+  f9["<b>LeftKernel</b><br/>9 used"]:::thm
+  f10["<b>LeftSmooth</b><br/>47 used"]:::thm
+  f11["<b>CellFixedRow</b><br/>1 used"]:::thm
+  f12["<b>LineBound</b><br/>4 used"]:::thm
+  f13["<b>Mollified</b><br/>15 used"]:::thm
+  f14["<b>PerronKernel</b><br/>25 used"]:::thm
+  f15["<b>PerronTwo</b><br/>10 used"]:::thm
+  f16["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f17["<b>RealSegment</b><br/>4 used"]:::thm
+  f18["<b>RvMCrude</b><br/>3 used"]:::thm
+  f19["<b>ArgCrude</b><br/>3 used"]:::thm
+  f20["<b>SquareMean</b><br/>6 used"]:::thm
+  f21["<b>Stirling</b><br/>20 used"]:::thm
+  f22["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f23["<b>ArgLegs</b><br/>10 used"]:::thm
+  f24["<b>ArgCount</b><br/>14 used"]:::thm
+  f25["<b>WeilBands</b><br/>1 used"]:::thm
+  f26["<b>WeilOnLine</b><br/>3 used"]:::thm
+  f27["<b>ZeroSum</b><br/>7 used"]:::thm
+  f28["<b>FiniteOffLine</b><br/>6 used"]:::thm
+  f29["<b>FilterAccum</b><br/>2 used"]:::thm
+  f30["<b>FiniteOffLinePi</b><br/>3 used"]:::thm
+  f31["<b>PiRemainder</b><br/>7 used"]:::thm
+  f32["<b>PiZeros</b><br/>1 used"]:::thm
+  f33["<b>ZetaEM</b><br/>26 used"]:::thm
+  f34["<b>MollifiedMean</b><br/>15 used"]:::thm
+  f35["<b>ZeroSquares</b><br/>19 used"]:::thm
+  f36["<b>ZeroDensity</b><br/>11 used"]:::thm
+  f37["<b>ZeroSummable</b><br/>14 used"]:::thm
+  f38["<b>CountReduction</b><br/>3 used"]:::thm
+  f39["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f40["<b>BoxBounds</b><br/>3 used"]:::thm
+  f41["<b>EdgeBound</b><br/>14 used"]:::thm
+  f42["<b>EdgeNum</b><br/>9 used"]:::thm
+  f43["<b>GlueNum</b><br/>6 used"]:::thm
+  f44["<b>ExplicitTwo</b><br/>16 used"]:::thm
+  f45["<b>FixedRowTwo</b><br/>3 used"]:::thm
+  f46["<b>FilterLadder</b><br/>23 used"]:::thm
+  f47["<b>FilterAttained</b><br/>9 used"]:::thm
+  f48["<b>ResidueRoute</b><br/>19 used"]:::thm
+  f49["<b>ReachRoute</b><br/>isolated_boundary_mode_false'"]:::end_
+  f3 --> f4
+  f1 --> f7
+  f6 --> f7
+  f5 --> f10
+  f7 --> f10
+  f9 --> f10
+  f10 --> f11
+  f14 --> f15
+  f6 --> f16
+  f18 --> f19
+  f18 --> f21
+  f19 --> f22
+  f21 --> f22
+  f22 --> f23
+  f16 --> f24
+  f23 --> f24
+  f17 --> f28
+  f24 --> f28
+  f27 --> f28
+  f28 --> f29
+  f2 --> f30
+  f28 --> f30
+  f1 --> f31
+  f28 --> f31
+  f1 --> f32
+  f28 --> f32
+  f4 --> f34
+  f13 --> f34
+  f33 --> f34
+  f6 --> f35
+  f20 --> f35
+  f34 --> f35
+  f35 --> f36
+  f8 --> f37
+  f25 --> f37
+  f26 --> f37
+  f28 --> f37
+  f36 --> f37
+  f37 --> f38
+  f7 --> f39
+  f39 --> f40
+  f39 --> f41
+  f40 --> f42
+  f41 --> f42
+  f42 --> f43
+  f10 --> f44
+  f12 --> f44
+  f15 --> f44
+  f43 --> f44
+  f11 --> f45
+  f44 --> f45
+  f30 --> f46
+  f31 --> f46
+  f32 --> f46
+  f45 --> f46
+  f37 --> f47
+  f46 --> f47
+  f29 --> f48
+  f38 --> f48
+  f47 --> f48
+  f0 --> f49
+  f48 --> f49
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

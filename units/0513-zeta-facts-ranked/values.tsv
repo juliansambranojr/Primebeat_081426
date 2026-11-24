@@ -1,0 +1,6 @@
+key	value	source
+facts	240	the inventory agent's summary line
+faces	20	the inventory agent's summary line
+pnt_results	45	the inventory agent's summary line
+pnt_sorry	1	IEANTN/Kadiri.lean:1362 kadiri_thm_3_1_q1
+unit_wall	512	unit 0512

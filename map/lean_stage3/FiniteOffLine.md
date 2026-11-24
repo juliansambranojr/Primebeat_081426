@@ -29,25 +29,27 @@ flowchart LR
   x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi<br/>norm_order_mul<br/>ordR_nonneg"]):::ext
   x4(["<b>PiFixedRow</b><br/>norm_low_integral_le<br/>sum_order_inv_sq_le<br/>zinv_dyadic_le"]):::ext
   x5(["<b>PiRemainder</b><br/>5 theorems"]):::ext
-  x6(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
-  x7(["<b>CellFixedRow</b><br/>cell_zero_sum_finset_all"]):::ext
-  x8(["<b>FixedRowTwo</b><br/>cell_zero_sum_finset_two"]):::ext
-  x9(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
-  x10(["<b>FilterLadder</b><br/>filtered_modes_small_sq"]):::ext
-  x11(["<b>StepsPeak</b><br/>norm_order<br/>peak_height"]):::ext
-  x12(["<b>StepsRate</b><br/>rate_upper"]):::ext
-  x13(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x14(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x15(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
-  x16(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x17(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
-  x18(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x19(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x20(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x21(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x22(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x23(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x24(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x6(["<b>ResidueRoute</b><br/>K_subset<br/>P_bound<br/>norm_um"]):::ext
+  x7(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
+  x8(["<b>CellFixedRow</b><br/>cell_zero_sum_finset_all"]):::ext
+  x9(["<b>FixedRowTwo</b><br/>cell_zero_sum_finset_two"]):::ext
+  x10(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
+  x11(["<b>FilterLadder</b><br/>filtered_modes_small_sq"]):::ext
+  x12(["<b>StepsPeak</b><br/>norm_order<br/>peak_height"]):::ext
+  x13(["<b>StepsRate</b><br/>rate_upper"]):::ext
+  x14(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x15(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x16(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x17(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
+  x18(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
+  x19(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x20(["<b>LadderAssembly</b><br/>top_mode_on_frontier"]):::ext
+  x21(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x22(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x23(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x24(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x25(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x26(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -71,34 +73,37 @@ flowchart LR
   n0 -.-> x4
   n0 -.-> x5
   n0 -.-> x6
+  n0 -.-> x7
+  n1 -.-> x10
   n1 -.-> x5
-  n1 -.-> x7
   n1 -.-> x8
   n1 -.-> x9
-  n10 -.-> x20
-  n2 -.-> x10
+  n10 -.-> x22
   n2 -.-> x11
   n2 -.-> x12
+  n2 -.-> x13
   n2 -.-> x3
   n2 -.-> x4
   n2 -.-> x5
-  n2 -.-> x6
+  n2 -.-> x7
   n6 -.-> x4
   n6 -.-> x5
-  n7 -.-> x10
-  n7 -.-> x17
+  n7 -.-> x11
   n7 -.-> x18
+  n7 -.-> x19
   n7 -.-> x2
-  n9 -.-> x20
-  x13 -.-> n4
-  x14 -.-> n6
+  n7 -.-> x20
+  n7 -.-> x6
+  n9 -.-> x22
+  x14 -.-> n4
   x15 -.-> n6
   x16 -.-> n6
-  x19 -.-> n9
-  x21 -.-> n10
-  x22 -.-> n11
-  x23 -.-> n11
+  x17 -.-> n6
+  x21 -.-> n9
+  x23 -.-> n10
   x24 -.-> n11
+  x25 -.-> n11
+  x26 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -121,7 +126,7 @@ def · line 47
 The zeros below a height, as a finite set.
 
 - **Is:** `` ZF (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite T).toFinset ``
-- **Used by 56:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_tailTerm_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le), [`AttainedPi.tailTerm`](../lean_stage3/AttainedPi.md#AttainedPi-tailTerm), [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail), [`AttainedPi.topRow`](../lean_stage3/AttainedPi.md#AttainedPi-topRow), [`AttainedPi.tsum_split`](../lean_stage3/AttainedPi.md#AttainedPi-tsum_split), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CountReduction.cim`](../lean_stage3/CountReduction.md#CountReduction-cim), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le), [`CountReduction.two_le_cim`](../lean_stage3/CountReduction.md#CountReduction-two_le_cim), [`FilterAttained.finite_part_le`](../lean_stage3/FilterAttained.md#FilterAttained-finite_part_le), [`FilterAttained.tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tailT), [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](../lean_stage3/FilterAttained.md#FilterAttained-tsum_split), [`FilterLadder.filtered_modes_small`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum), [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le), [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), and 16 more (full list in `map/lean_map.json`)
+- **Used by 57:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_tailTerm_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le), [`AttainedPi.tailTerm`](../lean_stage3/AttainedPi.md#AttainedPi-tailTerm), [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail), [`AttainedPi.topRow`](../lean_stage3/AttainedPi.md#AttainedPi-topRow), [`AttainedPi.tsum_split`](../lean_stage3/AttainedPi.md#AttainedPi-tsum_split), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CountReduction.cim`](../lean_stage3/CountReduction.md#CountReduction-cim), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le), [`CountReduction.two_le_cim`](../lean_stage3/CountReduction.md#CountReduction-two_le_cim), [`FilterAttained.finite_part_le`](../lean_stage3/FilterAttained.md#FilterAttained-finite_part_le), [`FilterAttained.tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tailT), [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full), [`FilterAttained.tendsto_tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_tailT), [`FilterAttained.tsum_split`](../lean_stage3/FilterAttained.md#FilterAttained-tsum_split), [`FilterLadder.filtered_modes_small`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum), [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le), [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), and 17 more (full list in `map/lean_map.json`)
 
 <a name="FiniteOffLine-onLineInv"></a>
 ### `FiniteOffLine.onLineInv`
@@ -164,7 +169,7 @@ line 50
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (12 that use it)
+**Feeds** (13 that use it)
 
   - [`AttainedPi.tendsto_tail`](../lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) (AttainedPi) — `` Tendsto (fun r : ℕ => ∑' ρ, tailTerm Θ r ρ) atTop (𝓝 0) ``
   - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
@@ -177,6 +182,7 @@ line 50
   - [`PiRemainder.inv_norm_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow) (PiRemainder) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow ``
   - [`PiRemainder.sum_order_inv_le`](../lean_stage3/PiRemainder.md#PiRemainder-sum_order_inv_le) (PiRemainder) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N … ``
   - [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log) (PiRemainder) — `` zinv x ≤ Mlow * 39000 * Real.log x ^ 2 ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
   - [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) (ZeroSummable) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
 <a name="FiniteOffLine-tsum_sub_eq_sum"></a>
@@ -398,7 +404,7 @@ line 226
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (8 that use it)
+**Feeds** (12 that use it)
 
   - [`CountEuler.core`](../lean_stage3/CountEuler.md#CountEuler-core) (CountEuler) — `` False ``
   - [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) (CountEuler) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ /… ``
@@ -408,6 +414,10 @@ line 226
   - [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) (FilterAttained) — `` RiemannHypothesis ``
   - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLine.norm_term_le`](#FiniteOffLine-norm_term_le) — `` ‖term d (r : ℤ) ρ‖ ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (2 ^ d * ((2:ℝ) ^ (ρ : ℂ).re) ^ r * ‖(ρ : ℂ)‖⁻¹) ``
+  - [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier) (LadderAssembly) — `` (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ ResidueRoute.K σ) 0) ``
+  - [`ResidueRoute.K_subset`](../lean_stage3/ResidueRoute.md#ResidueRoute-K_subset) (ResidueRoute) — `` K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖} ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
+  - [`ResidueRoute.norm_um`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_um) (ResidueRoute) — `` ‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re) ``
 
 <a name="FiniteOffLine-norm_term_le"></a>
 ### `FiniteOffLine.norm_term_le`

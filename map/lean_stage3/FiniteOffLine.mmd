@@ -17,25 +17,27 @@ flowchart LR
   x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi<br/>norm_order_mul<br/>ordR_nonneg"]):::ext
   x4(["<b>PiFixedRow</b><br/>norm_low_integral_le<br/>sum_order_inv_sq_le<br/>zinv_dyadic_le"]):::ext
   x5(["<b>PiRemainder</b><br/>5 theorems"]):::ext
-  x6(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
-  x7(["<b>CellFixedRow</b><br/>cell_zero_sum_finset_all"]):::ext
-  x8(["<b>FixedRowTwo</b><br/>cell_zero_sum_finset_two"]):::ext
-  x9(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
-  x10(["<b>FilterLadder</b><br/>filtered_modes_small_sq"]):::ext
-  x11(["<b>StepsPeak</b><br/>norm_order<br/>peak_height"]):::ext
-  x12(["<b>StepsRate</b><br/>rate_upper"]):::ext
-  x13(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x14(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x15(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
-  x16(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x17(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
-  x18(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x19(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x20(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x21(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x22(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x23(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x24(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x6(["<b>ResidueRoute</b><br/>K_subset<br/>P_bound<br/>norm_um"]):::ext
+  x7(["<b>ZeroSummable</b><br/>4 theorems"]):::ext
+  x8(["<b>CellFixedRow</b><br/>cell_zero_sum_finset_all"]):::ext
+  x9(["<b>FixedRowTwo</b><br/>cell_zero_sum_finset_two"]):::ext
+  x10(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
+  x11(["<b>FilterLadder</b><br/>filtered_modes_small_sq"]):::ext
+  x12(["<b>StepsPeak</b><br/>norm_order<br/>peak_height"]):::ext
+  x13(["<b>StepsRate</b><br/>rate_upper"]):::ext
+  x14(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x15(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x16(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x17(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
+  x18(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
+  x19(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x20(["<b>LadderAssembly</b><br/>top_mode_on_frontier"]):::ext
+  x21(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x22(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x23(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x24(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x25(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x26(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -59,34 +61,37 @@ flowchart LR
   n0 -.-> x4
   n0 -.-> x5
   n0 -.-> x6
+  n0 -.-> x7
+  n1 -.-> x10
   n1 -.-> x5
-  n1 -.-> x7
   n1 -.-> x8
   n1 -.-> x9
-  n10 -.-> x20
-  n2 -.-> x10
+  n10 -.-> x22
   n2 -.-> x11
   n2 -.-> x12
+  n2 -.-> x13
   n2 -.-> x3
   n2 -.-> x4
   n2 -.-> x5
-  n2 -.-> x6
+  n2 -.-> x7
   n6 -.-> x4
   n6 -.-> x5
-  n7 -.-> x10
-  n7 -.-> x17
+  n7 -.-> x11
   n7 -.-> x18
+  n7 -.-> x19
   n7 -.-> x2
-  n9 -.-> x20
-  x13 -.-> n4
-  x14 -.-> n6
+  n7 -.-> x20
+  n7 -.-> x6
+  n9 -.-> x22
+  x14 -.-> n4
   x15 -.-> n6
   x16 -.-> n6
-  x19 -.-> n9
-  x21 -.-> n10
-  x22 -.-> n11
-  x23 -.-> n11
+  x17 -.-> n6
+  x21 -.-> n9
+  x23 -.-> n10
   x24 -.-> n11
+  x25 -.-> n11
+  x26 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

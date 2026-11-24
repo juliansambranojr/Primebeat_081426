@@ -1,16 +1,16 @@
 # What `WholeChain.whole_chain` rests on
 
-[`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) in `lean_stage3/Stage3/WholeChain.lean`, line 41.
+[`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) in `lean_stage3/Stage3/WholeChain.lean`, line 43.
 
 **Why.** The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.
 
 **Proves**
 
 ```lean
-(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)
+(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel) ∧ (SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C)
 ```
 
-Behind it: 447 theorems and 73 definitions in 46 files. Every one is listed below; Lean recorded each step.
+Behind it: 528 theorems and 85 definitions in 63 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -20,106 +20,146 @@ flowchart LR
   f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
   f2["<b>ClosedLoopChain</b><br/>2 used"]:::thm
   f3["<b>JensenCount</b><br/>17 used"]:::thm
-  f4["<b>LandauWindow</b><br/>2 used"]:::thm
-  f5["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
-  f6["<b>PerronKernel</b><br/>33 used"]:::thm
-  f7["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f8["<b>RvMCrude</b><br/>3 used"]:::thm
-  f9["<b>ArgCrude</b><br/>3 used"]:::thm
-  f10["<b>SieveExact</b><br/>15 used"]:::thm
-  f11["<b>Statement</b><br/>1 used"]:::thm
-  f12["<b>PsiToPi</b><br/>13 used"]:::thm
-  f13["<b>LineBound</b><br/>54 used"]:::thm
-  f14["<b>Abscissa</b><br/>6 used"]:::thm
-  f15["<b>RowLeaves</b><br/>2 used"]:::thm
-  f16["<b>SieveResidual</b><br/>3 used"]:::thm
-  f17["<b>Stirling</b><br/>20 used"]:::thm
-  f18["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f19["<b>ArgLegs</b><br/>10 used"]:::thm
-  f20["<b>ArgCount</b><br/>14 used"]:::thm
-  f21["<b>ThetaLine</b><br/>3 used"]:::thm
-  f22["<b>ThetaPi</b><br/>1 used"]:::thm
-  f23["<b>ThetaPull</b><br/>6 used"]:::thm
-  f24["<b>ThetaPsi</b><br/>14 used"]:::thm
-  f25["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f26["<b>ThetaConverse</b><br/>12 used"]:::thm
-  f27["<b>RateBelow</b><br/>1 used"]:::thm
-  f28["<b>WeilOnLine</b><br/>1 used"]:::thm
-  f29["<b>SpiralLink</b><br/>10 used"]:::thm
-  f30["<b>BandJoin</b><br/>5 used"]:::thm
-  f31["<b>HolyChannel</b><br/>4 used"]:::thm
-  f32["<b>ShareLink</b><br/>4 used"]:::thm
-  f33["<b>Saddle</b><br/>8 used"]:::thm
-  f34["<b>ZeroSum</b><br/>7 used"]:::thm
-  f35["<b>Assembly</b><br/>8 used"]:::thm
-  f36["<b>ContourShift</b><br/>29 used"]:::thm
-  f37["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f38["<b>EdgeBound</b><br/>17 used"]:::thm
-  f39["<b>Glue</b><br/>5 used"]:::thm
-  f40["<b>GlueFloor</b><br/>8 used"]:::thm
-  f41["<b>PiToPsi</b><br/>13 used"]:::thm
-  f42["<b>CellResidual</b><br/>16 used"]:::thm
-  f43["<b>HalfSieve</b><br/>11 used"]:::thm
-  f44["<b>OneChain</b><br/>2 used"]:::thm
-  f45["<b>WholeChain</b><br/>whole_chain"]:::end_
+  f4["<b>LandauKernel</b><br/>6 used"]:::thm
+  f5["<b>JointDialGate</b><br/>1 used"]:::thm
+  f6["<b>LandauPoleSub</b><br/>3 used"]:::thm
+  f7["<b>LandauRates</b><br/>3 used"]:::thm
+  f8["<b>LandauTail</b><br/>3 used"]:::thm
+  f9["<b>LandauTrig</b><br/>6 used"]:::thm
+  f10["<b>LandauWindow</b><br/>8 used"]:::thm
+  f11["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
+  f12["<b>LandauCrude</b><br/>1 used"]:::thm
+  f13["<b>LandauChebyshev</b><br/>5 used"]:::thm
+  f14["<b>LandauMellin</b><br/>8 used"]:::thm
+  f15["<b>LandauMellinG</b><br/>12 used"]:::thm
+  f16["<b>LandauTaylor</b><br/>7 used"]:::thm
+  f17["<b>LandauPrimeSide</b><br/>4 used"]:::thm
+  f18["<b>PerronKernel</b><br/>33 used"]:::thm
+  f19["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f20["<b>RvMCrude</b><br/>3 used"]:::thm
+  f21["<b>ArgCrude</b><br/>3 used"]:::thm
+  f22["<b>SieveExact</b><br/>15 used"]:::thm
+  f23["<b>Statement</b><br/>1 used"]:::thm
+  f24["<b>PsiToPi</b><br/>13 used"]:::thm
+  f25["<b>LineBound</b><br/>54 used"]:::thm
+  f26["<b>Abscissa</b><br/>6 used"]:::thm
+  f27["<b>RowLeaves</b><br/>2 used"]:::thm
+  f28["<b>SieveResidual</b><br/>3 used"]:::thm
+  f29["<b>Stirling</b><br/>20 used"]:::thm
+  f30["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f31["<b>ArgLegs</b><br/>10 used"]:::thm
+  f32["<b>ArgCount</b><br/>14 used"]:::thm
+  f33["<b>ThetaLine</b><br/>3 used"]:::thm
+  f34["<b>ThetaPi</b><br/>1 used"]:::thm
+  f35["<b>ThetaPull</b><br/>6 used"]:::thm
+  f36["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f37["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f38["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f39["<b>RateBelow</b><br/>1 used"]:::thm
+  f40["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f41["<b>SpiralLink</b><br/>10 used"]:::thm
+  f42["<b>BandJoin</b><br/>5 used"]:::thm
+  f43["<b>HolyChannel</b><br/>4 used"]:::thm
+  f44["<b>ShareLink</b><br/>4 used"]:::thm
+  f45["<b>Saddle</b><br/>8 used"]:::thm
+  f46["<b>ZeroSum</b><br/>7 used"]:::thm
+  f47["<b>Assembly</b><br/>8 used"]:::thm
+  f48["<b>ContourShift</b><br/>29 used"]:::thm
+  f49["<b>LandauPoleLocal</b><br/>3 used"]:::thm
+  f50["<b>LandauPoleDisc</b><br/>1 used"]:::thm
+  f51["<b>LandauZeroSide</b><br/>2 used"]:::thm
+  f52["<b>LandauCriterion</b><br/>3 used"]:::thm
+  f53["<b>WindowsOfRH</b><br/>19 used"]:::thm
+  f54["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f55["<b>EdgeBound</b><br/>17 used"]:::thm
+  f56["<b>Glue</b><br/>5 used"]:::thm
+  f57["<b>GlueFloor</b><br/>8 used"]:::thm
+  f58["<b>PiToPsi</b><br/>13 used"]:::thm
+  f59["<b>CellResidual</b><br/>16 used"]:::thm
+  f60["<b>HalfSieve</b><br/>11 used"]:::thm
+  f61["<b>OneChain</b><br/>2 used"]:::thm
+  f62["<b>WholeChain</b><br/>whole_chain"]:::end_
   f4 --> f5
-  f3 --> f7
-  f8 --> f9
-  f11 --> f12
-  f3 --> f13
+  f4 --> f8
+  f10 --> f11
+  f10 --> f12
   f12 --> f13
-  f13 --> f14
-  f12 --> f15
-  f10 --> f16
-  f12 --> f16
+  f10 --> f14
+  f14 --> f15
+  f4 --> f16
+  f13 --> f16
+  f15 --> f16
   f8 --> f17
-  f9 --> f18
-  f17 --> f18
-  f18 --> f19
-  f7 --> f20
-  f19 --> f20
-  f14 --> f21
-  f21 --> f23
+  f16 --> f17
+  f3 --> f19
+  f20 --> f21
   f23 --> f24
-  f13 --> f25
-  f22 --> f26
-  f24 --> f26
+  f3 --> f25
+  f24 --> f25
   f25 --> f26
-  f26 --> f27
-  f5 --> f29
-  f28 --> f29
+  f24 --> f27
+  f22 --> f28
+  f24 --> f28
+  f20 --> f29
+  f21 --> f30
   f29 --> f30
-  f2 --> f31
-  f29 --> f31
-  f29 --> f32
-  f27 --> f33
-  f32 --> f33
-  f34 --> f35
-  f3 --> f36
+  f30 --> f31
+  f19 --> f32
+  f31 --> f32
+  f26 --> f33
+  f33 --> f35
   f35 --> f36
-  f36 --> f37
+  f25 --> f37
+  f34 --> f38
+  f36 --> f38
   f37 --> f38
   f38 --> f39
-  f1 --> f40
-  f6 --> f40
-  f12 --> f40
-  f20 --> f40
-  f39 --> f40
-  f15 --> f41
-  f25 --> f41
+  f11 --> f41
   f40 --> f41
-  f0 --> f42
   f41 --> f42
-  f16 --> f43
-  f29 --> f43
+  f2 --> f43
   f41 --> f43
-  f29 --> f44
-  f42 --> f44
-  f30 --> f45
-  f31 --> f45
-  f33 --> f45
-  f43 --> f45
+  f41 --> f44
+  f39 --> f45
   f44 --> f45
+  f46 --> f47
+  f3 --> f48
+  f47 --> f48
+  f15 --> f49
+  f48 --> f49
+  f6 --> f50
+  f49 --> f50
+  f9 --> f51
+  f17 --> f51
+  f50 --> f51
+  f7 --> f52
+  f51 --> f52
+  f5 --> f53
+  f45 --> f53
+  f52 --> f53
+  f48 --> f54
+  f54 --> f55
+  f55 --> f56
+  f1 --> f57
+  f18 --> f57
+  f24 --> f57
+  f32 --> f57
+  f56 --> f57
+  f27 --> f58
+  f37 --> f58
+  f57 --> f58
+  f0 --> f59
+  f58 --> f59
+  f28 --> f60
+  f41 --> f60
+  f58 --> f60
+  f41 --> f61
+  f59 --> f61
+  f42 --> f62
+  f43 --> f62
+  f53 --> f62
+  f60 --> f62
+  f61 --> f62
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -176,10 +216,56 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.jensenF_order`](../lean_stage3/JensenCount.md#Stage3-jensenF_order) — `` analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I * (T : ℂ))) ``
 - [`Stage3.zeta_local_zero_count`](../lean_stage3/JensenCount.md#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
 
-### [`LandauWindow`](../lean_stage3/LandauWindow.md) — 2
+### [`LandauKernel`](../lean_stage3/LandauKernel.md) — 6
 
+- [`LandauKernel.log_pow_le`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_le) — `` Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n ``
+- [`LandauKernel.kernel_le`](../lean_stage3/LandauKernel.md#LandauKernel-kernel_le) — `` Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (n + 1))) ^ n ``
+- [`LandauKernel.log_pow_integrable`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_integrable) — `` IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1) ``
+- [`LandauKernel.tendsto_log_pow_mul`](../lean_stage3/LandauKernel.md#LandauKernel-tendsto_log_pow_mul) — `` Tendsto (fun y : ℝ => Real.log y ^ n * y ^ (-a)) atTop (𝓝 0) ``
+- [`LandauKernel.hasDerivAt_prim`](../lean_stage3/LandauKernel.md#LandauKernel-hasDerivAt_prim) — `` HasDerivAt (fun t : ℝ => -(Real.log t ^ (k + 1) * t ^ (-a)) / a) (Real.log y ^ (k + 1) * y ^ (-a - 1) - ((k : ℝ) + 1) / a * (Real.log y ^ k * y ^ (-a - 1))) y ``
+- [`LandauKernel.log_pow_integral`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_integral) — `` ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1) ``
+
+### [`JointDialGate`](../lean_stage3/JointDialGate.md) — 1
+
+- [`JointDialGate.log_absorbed`](../lean_stage3/JointDialGate.md#JointDialGate-log_absorbed) — `` C * x ^ θ * Real.log x ^ k ≤ C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * x ^ θ' ``
+
+### [`LandauPoleSub`](../lean_stage3/LandauPoleSub.md) — 3
+
+- [`LandauPoleSub.iteratedDeriv_inv_sub`](../lean_stage3/LandauPoleSub.md#LandauPoleSub-iteratedDeriv_inv_sub) — `` iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) ``
+- [`LandauPoleSub.exists_differentiableOn_sub_poles`](../lean_stage3/LandauPoleSub.md#LandauPoleSub-exists_differentiableOn_sub_poles) — `` ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q) ``
+- [`LandauPoleSub.taylor_coeff_sub_poles`](../lean_stage3/LandauPoleSub.md#LandauPoleSub-taylor_coeff_sub_poles) — `` ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k ``
+
+### [`LandauRates`](../lean_stage3/LandauRates.md) — 3
+
+- [`LandauRates.key_ineq`](../lean_stage3/LandauRates.md#LandauRates-key_ineq) — `` 4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam) ∧ 0 < Real.log (1 + δ / 3) - lam ∧ 0 < lam - Real.log (1 - δ / 12) ``
+- [`LandauRates.exists_centre`](../lean_stage3/LandauRates.md#LandauRates-exists_centre) — `` ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240) ``
+- [`LandauRates.exists_pow_small`](../lean_stage3/LandauRates.md#LandauRates-exists_pow_small) — `` ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε ``
+
+### [`LandauTail`](../lean_stage3/LandauTail.md) — 3
+
+- [`LandauTail.kernel_nonneg`](../lean_stage3/LandauTail.md#LandauTail-kernel_nonneg) — `` 0 ≤ᵐ[volume.restrict (Ioi (1 : ℝ))] fun y : ℝ => Real.log y ^ k * y ^ (-a - 1) ``
+- [`LandauTail.lower_tail_le`](../lean_stage3/LandauTail.md#LandauTail-lower_tail_le) — `` ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1) ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1)) ``
+- [`LandauTail.upper_tail_le`](../lean_stage3/LandauTail.md#LandauTail-upper_tail_le) — `` ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1) ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1)) ``
+
+### [`LandauTrig`](../lean_stage3/LandauTrig.md) — 6
+
+- [`LandauTrig.norm_geom_Ico_le`](../lean_stage3/LandauTrig.md#LandauTrig-norm_geom_Ico_le) — `` ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖ ``
+- [`LandauTrig.re_mul_geom_ge`](../lean_stage3/LandauTrig.md#LandauTrig-re_mul_geom_ge) — `` -(‖c‖ * (2 / ‖w - 1‖)) ≤ (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n).re ``
+- [`LandauTrig.sum_block_ge`](../lean_stage3/LandauTrig.md#LandauTrig-sum_block_ge) — `` -(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n ``
+- [`LandauTrig.abs_le_sum_norm`](../lean_stage3/LandauTrig.md#LandauTrig-abs_le_sum_norm) — `` |T n| ≤ ∑ j ∈ s, ‖c j‖ ``
+- [`LandauTrig.sum_sq_block_ge`](../lean_stage3/LandauTrig.md#LandauTrig-sum_sq_block_ge) — `` (N : ℝ) * ∑ j ∈ s, ‖c j‖ ^ 2 - ∑ j ∈ s, ∑ l ∈ s, (if j = l then 0 else ‖c j‖ * ‖c l‖ * (2 / ‖z j * conj (z l) - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n ^ 2 ``
+- [`LandauTrig.exists_large_in_block`](../lean_stage3/LandauTrig.md#LandauTrig-exists_large_in_block) — `` ∃ τ : ℝ, 0 < τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N → ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n ``
+
+### [`LandauWindow`](../lean_stage3/LandauWindow.md) — 8
+
+- [`LandauWindow.rampSum`](../lean_stage3/LandauWindow.md#LandauWindow-rampSum) — *def*
+- [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G) — *def*
+- ★ [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound) — *def*
+- [`LandauWindow.StmtLandauWindow`](../lean_stage3/LandauWindow.md#LandauWindow-StmtLandauWindow) — *def*
 - [`LandauWindow.zeta_neg_nat_ne_zero`](../lean_stage3/LandauWindow.md#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
 - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
+- [`LandauWindow.zeroFree_half_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-zeroFree_half_of_window) — `` ∀ s : ℂ, 1 / 2 < s.re → riemannZeta s ≠ 0 ``
+- [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) — `` RiemannHypothesis ``
 
 ### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 10
 
@@ -193,6 +279,61 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ClosedLoopJoin.rh_iff_re_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 ``
 - [`ClosedLoopJoin.rh_iff_force_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
 - [`ClosedLoopJoin.rh_iff_handshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
+
+### [`LandauCrude`](../lean_stage3/LandauCrude.md) — 1
+
+- [`LandauCrude.rampSum_nonneg`](../lean_stage3/LandauCrude.md#LandauCrude-rampSum_nonneg) — `` 0 ≤ LandauWindow.rampSum y ``
+
+### [`LandauChebyshev`](../lean_stage3/LandauChebyshev.md) — 5
+
+- [`LandauChebyshev.rampSum_le_log`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-rampSum_le_log) — `` LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4)) ``
+- [`LandauChebyshev.log_four_lt_two`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-log_four_lt_two) — `` Real.log 4 < 2 ``
+- [`LandauChebyshev.G_le`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-G_le) — `` LandauWindow.G y ≤ 8 * y ``
+- [`LandauChebyshev.neg_le_G`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-neg_le_G) — `` -(y * Real.log y) ≤ LandauWindow.G y ``
+- [`LandauChebyshev.abs_G_le_log`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-abs_G_le_log) — `` |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y) ``
+
+### [`LandauMellin`](../lean_stage3/LandauMellin.md) — 8
+
+- [`LandauMellin.rampK`](../lean_stage3/LandauMellin.md#LandauMellin-rampK) — *def*
+- [`LandauMellin.rampK_eq_indicator`](../lean_stage3/LandauMellin.md#LandauMellin-rampK_eq_indicator) — `` rampK s n y = (Ioi (n : ℝ)).indicator (fun t : ℝ => (1 / (n : ℂ)) * (t : ℂ) ^ (-s) - (t : ℂ) ^ (-s - 1)) y ``
+- [`LandauMellin.two_powers_integrableOn`](../lean_stage3/LandauMellin.md#LandauMellin-two_powers_integrableOn) — `` IntegrableOn (fun t : ℝ => (1 / (n : ℂ)) * (t : ℂ) ^ (-s) - (t : ℂ) ^ (-s - 1)) (Ioi (n : ℝ)) ``
+- [`LandauMellin.rampK_integrable`](../lean_stage3/LandauMellin.md#LandauMellin-rampK_integrable) — `` IntegrableOn (rampK s n) (Ioi 1) ``
+- [`LandauMellin.rampK_integral`](../lean_stage3/LandauMellin.md#LandauMellin-rampK_integral) — `` ∫ y in Ioi (1 : ℝ), rampK s n y = (n : ℂ) ^ (-s) / (s * (s - 1)) ``
+- [`LandauMellin.rampK_integral_norm`](../lean_stage3/LandauMellin.md#LandauMellin-rampK_integral_norm) — `` ∫ y in Ioi (1 : ℝ), ‖rampK s n y‖ = (n : ℝ) ^ (-s.re) / (s.re * (s.re - 1)) ``
+- [`LandauMellin.rampSum_eq_tsum`](../lean_stage3/LandauMellin.md#LandauMellin-rampSum_eq_tsum) — `` LandauWindow.rampSum y = ∑' n : ℕ, Λ n * max (y / n - 1) 0 ``
+- [`LandauMellin.mellin_rampSum`](../lean_stage3/LandauMellin.md#LandauMellin-mellin_rampSum) — `` ∫ y in Ioi (1 : ℝ), (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1) = -deriv riemannZeta s / riemannZeta s / (s * (s - 1)) ``
+
+### [`LandauMellinG`](../lean_stage3/LandauMellinG.md) — 12
+
+- [`LandauMellinG.Phi`](../lean_stage3/LandauMellinG.md#LandauMellinG-Phi) — *def*
+- [`LandauMellinG.LSeries_vonMangoldt_real_ne_zero`](../lean_stage3/LandauMellinG.md#LandauMellinG-LSeries_vonMangoldt_real_ne_zero) — `` L ↗Λ (σ : ℂ) ≠ 0 ``
+- [`LandauMellinG.rampSum_mellin_integrable`](../lean_stage3/LandauMellinG.md#LandauMellinG-rampSum_mellin_integrable) — `` IntegrableOn (fun y : ℝ => (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ``
+- [`LandauMellinG.logPrim`](../lean_stage3/LandauMellinG.md#LandauMellinG-logPrim) — *def*
+- [`LandauMellinG.hasDerivAt_logPrim`](../lean_stage3/LandauMellinG.md#LandauMellinG-hasDerivAt_logPrim) — `` HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y ``
+- [`LandauMellinG.log_cpow_norm_le`](../lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_norm_le) — `` ‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re) / ((s.re - 1) / 2) ``
+- [`LandauMellinG.log_cpow_integrable`](../lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_integrable) — `` IntegrableOn (fun y : ℝ => (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (Ioi 1) ``
+- [`LandauMellinG.tendsto_logPrim`](../lean_stage3/LandauMellinG.md#LandauMellinG-tendsto_logPrim) — `` Tendsto (logPrim s) atTop (𝓝 0) ``
+- [`LandauMellinG.log_cpow_integral`](../lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_integral) — `` ∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s - 1) ^ 2 ``
+- [`LandauMellinG.G_integrand_eq`](../lean_stage3/LandauMellinG.md#LandauMellinG-G_integrand_eq) — `` (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1) - (Real.log y : ℂ) * (y : ℂ) ^ (-s) + (1 + (Real.eulerMascheroni… ``
+- [`LandauMellinG.G_mellin_integrable`](../lean_stage3/LandauMellinG.md#LandauMellinG-G_mellin_integrable) — `` IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ``
+- [`LandauMellinG.mellin_G`](../lean_stage3/LandauMellinG.md#LandauMellinG-mellin_G) — `` ∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = Phi s ``
+
+### [`LandauTaylor`](../lean_stage3/LandauTaylor.md) — 7
+
+- [`LandauTaylor.mellinLog`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog) — *def*
+- [`LandauTaylor.integrand_norm_le`](../lean_stage3/LandauTaylor.md#LandauTaylor-integrand_norm_le) — `` ‖(LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)‖ ≤ 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1)) ``
+- [`LandauTaylor.bound_integrable`](../lean_stage3/LandauTaylor.md#LandauTaylor-bound_integrable) — `` IntegrableOn (fun y : ℝ => 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1))) (Ioi 1) ``
+- [`LandauTaylor.mellinLog_integrable`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_integrable) — `` IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1) ``
+- [`LandauTaylor.mellinLog_hasDerivAt`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_hasDerivAt) — `` HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s ``
+- [`LandauTaylor.iteratedDeriv_Phi`](../lean_stage3/LandauTaylor.md#LandauTaylor-iteratedDeriv_Phi) — `` iteratedDeriv k LandauMellinG.Phi s = mellinLog k s ``
+- [`LandauTaylor.mellinLog_real`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_real) — `` mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) : ℝ) : ℂ) ``
+
+### [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md) — 4
+
+- [`LandauPrimeSide.Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik) — *def*
+- [`LandauPrimeSide.Ik_integrable`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik_integrable) — `` IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1) ``
+- [`LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-iteratedDeriv_Phi_eq_Ik) — `` iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ) ``
+- [`LandauPrimeSide.Ik_le`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik_le) — `` Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ - 1 - b') … ``
 
 ### [`PerronKernel`](../lean_stage3/PerronKernel.md) — 33
 
@@ -673,6 +814,49 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ContourShift.zeta_order_conj`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
 - [`ContourShift.zeta_order_reflect`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_reflect) — `` analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
 - [`ContourShift.residue_identity`](../lean_stage3/ContourShift.md#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Com… ``
+
+### [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md) — 3
+
+- [`LandauPoleLocal.differentiableAt_Phi`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi) — `` DifferentiableAt ℂ LandauMellinG.Phi s ``
+- [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) ``
+- [`LandauPoleLocal.Phi_regular_at_one`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_regular_at_one) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s ``
+
+### [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md) — 1
+
+- [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc) — `` ∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧ ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c - ∑ ρ ∈ P, (analyticOrderNatA… ``
+
+### [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md) — 2
+
+- [`LandauZeroSide.exists_gap`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-exists_gap) — `` ∃ R₂ : ℝ, r < R₂ ∧ R₂ ≤ R₃ ∧ ∀ ρ ∈ F, ‖c - ρ‖ < R₂ → ‖c - ρ‖ ≤ r ``
+- [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) — `` ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧ 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^… ``
+
+### [`LandauCriterion`](../lean_stage3/LandauCriterion.md) — 3
+
+- [`LandauCriterion.contradiction`](../lean_stage3/LandauCriterion.md#LandauCriterion-contradiction) — `` False ``
+- [`LandauCriterion.stmtLandauWindow`](../lean_stage3/LandauCriterion.md#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
+- [`LandauCriterion.rh_of_windows`](../lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) — `` RiemannHypothesis ``
+
+### [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md) — 19
+
+- [`WindowsOfRH.rampSum_eq_mertens`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-rampSum_eq_mertens) — `` LandauWindow.rampSum y = y * ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) - ψ y ``
+- [`WindowsOfRH.sum_vonMangoldt_div`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-sum_vonMangoldt_div) — `` ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) = ψ y / y + ∫ t in Set.Ioc 1 y, ψ t / t ^ 2 ``
+- [`WindowsOfRH.rampSum_eq_integral`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-rampSum_eq_integral) — `` LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2 ``
+- [`WindowsOfRH.integral_cpow_neg`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-integral_cpow_neg) — `` ∫ y in Set.Ioi (1 : ℝ), (y : ℂ) ^ (-(σ : ℂ)) = 1 / ((σ : ℂ) - 1) ``
+- [`WindowsOfRH.mul_cpow_eq`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-mul_cpow_eq) — `` (y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ)) ``
+- [`WindowsOfRH.phi_sub_pole_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-phi_sub_pole_le) — `` ‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α) ``
+- [`WindowsOfRH.const_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero) — `` c = 0 ``
+- [`WindowsOfRH.noRunaway_of_rh`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-noRunaway_of_rh) — `` Saddle.NoRunaway ``
+- [`WindowsOfRH.E`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-E) — *def*
+- [`WindowsOfRH.c0`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-c0) — *def*
+- [`WindowsOfRH.r`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-r) — *def*
+- [`WindowsOfRH.E_div_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_le) — `` ∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → |E t / t ^ 2| ≤ A * t ^ (θ' - 2) ``
+- [`WindowsOfRH.E_div_integrableOn`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_integrableOn) — `` IntegrableOn (fun t : ℝ => E t / t ^ 2) (Set.Ioi 1) ``
+- [`WindowsOfRH.G_eq`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-G_eq) — `` LandauWindow.G y = c0 * y + r y ``
+- [`WindowsOfRH.tail_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-tail_le) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, max x₀ 1 ≤ y → |r y| ≤ K * y ^ θ' ``
+- [`WindowsOfRH.r_bound`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-r_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ (3 / 4 : ℝ) ``
+- [`WindowsOfRH.c0_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-c0_eq_zero) — `` c0 = 0 ``
+- [`WindowsOfRH.windows_of_rh`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-windows_of_rh) — `` ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
+- ★ [`WindowsOfRH.spiralLink_iff_windows`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-spiralLink_iff_windows) — `` SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
 
 ### [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md) — 21
 

@@ -15,43 +15,46 @@ flowchart LR
   p4["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
   t4["<b>finite_off_line_pi</b>"]:::thm
   p4 --> t4 --> rh
-  p5["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
-  t5["<b>rh_of_windows</b>"]:::thm
+  p5["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>¬ RiemannHypothesis → ∃ ρ₁ : Kadiri.NontrivialZeros, 1/2 ＜…"]:::bad
+  t5["<b>rh_of_ladder_tame</b>"]:::thm
   p5 --> t5 --> rh
-  p6["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
-  t6["<b>rh_of_zeroFree_half</b>"]:::thm
+  p6["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t6["<b>rh_of_windows</b>"]:::thm
   p6 --> t6 --> rh
-  p7["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
-  t7["<b>rh_of_window</b>"]:::thm
+  p7["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t7["<b>rh_of_zeroFree_half</b>"]:::thm
   p7 --> t7 --> rh
-  p8["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
-  t8["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p8["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t8["<b>rh_of_window</b>"]:::thm
   p8 --> t8 --> rh
-  p9["Target"]:::bad
-  t9["<b>rh_of_target</b>"]:::thm
+  p9["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t9["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p9 --> t9 --> rh
-  p10["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t10["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p10["Target"]:::bad
+  t10["<b>rh_of_target</b>"]:::thm
   p10 --> t10 --> rh
-  p11["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t11["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p11["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t11["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p11 --> t11 --> rh
-  p12["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t12["<b>RH_of_psiWeak</b>"]:::thm
+  p12["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t12["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p12 --> t12 --> rh
-  e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
+  p13["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t13["<b>RH_of_psiWeak</b>"]:::thm
+  p13 --> t13 --> rh
+  e0["<b>rh_of_ladder_tame</b><br/>RiemannHypothesis"]:::end_
   rh --> e0
-  e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
+  e1["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e1
-  e2["<b>depth_eight</b><br/>Construction.tableFrom TableRoute.rowN r 8 ≠ 0"]:::end_
+  e2["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
   rh --> e2
-  e3["<b>depth_five</b><br/>Construction.tableFrom TableRoute.rowN r 5 ≠ 0"]:::end_
+  e3["<b>depth_eight</b><br/>Construction.tableFrom TableRoute.rowN r 8 ≠ 0"]:::end_
   rh --> e3
-  e4["<b>depth_four</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::end_
+  e4["<b>depth_five</b><br/>Construction.tableFrom TableRoute.rowN r 5 ≠ 0"]:::end_
   rh --> e4
-  e5["<b>depth_one</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::end_
+  e5["<b>depth_four</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::end_
   rh --> e5
-  more(["and 21 more ends under RH"]):::end_
+  more(["and 22 more ends under RH"]):::end_
   rh --> more
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

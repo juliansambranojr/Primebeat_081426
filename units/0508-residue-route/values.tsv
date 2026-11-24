@@ -1,0 +1,16 @@
+key	value	source
+module_lines	558	wc -l lean_stage3/Stage3/ResidueRoute.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/ResidueRoute.lean
+defs	5	grep -A1 noncomputable (um, K, P, G, F)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ResidueRoute.lean
+pins	1	isolated_boundary_mode_false
+errors_first	7	the worker's first build: two unknown identifiers, a whnf timeout in G_eq_F, two unsolved goals after simp, and their cascade on G_eq_F's constant and the pin
+builds	3	the worker's report: two failing builds, then clean
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8891	lake build (full Stage3), Build completed successfully
+jobs_module	8826	run/build.log, lake build Stage3.ResidueRoute
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s4	The residue route
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

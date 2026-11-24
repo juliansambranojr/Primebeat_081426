@@ -11,7 +11,9 @@ flowchart LR
   x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x2(["<b>CountEuler</b><br/>re_ord_div_w_pos"]):::ext
   x3(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
-  x4(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x4(["<b>ReachRoute</b><br/>reached_mode_false"]):::ext
+  x5(["<b>ResidueRoute</b><br/>isolated_boundary_mode_false"]):::ext
+  x6(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n7
@@ -23,11 +25,13 @@ flowchart LR
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
+  n2 -.-> x4
+  n2 -.-> x5
   n3 -.-> x0
   n6 -.-> x0
-  x4 -.-> n4
-  x4 -.-> n5
-  x4 -.-> n6
+  x6 -.-> n4
+  x6 -.-> n5
+  x6 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -7,7 +7,7 @@ WindowsOfRH — block R16 of `lean_stage3/design/runs.md`. 2026-11-24. The rever
 17 theorems, 3 definitions, 510 lines. 
 
 **Imports:** [`JointDialGate`](../lean_stage3/JointDialGate.md), [`LandauCriterion`](../lean_stage3/LandauCriterion.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`Saddle`](../lean_stage3/Saddle.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -29,11 +29,12 @@ flowchart LR
   n13["<b>r_bound</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ (3 / 4 :…"]:::shp
   n14["<b>c0_eq_zero</b><br/>c0 = 0"]:::thm
   n15["<b>windows_of_rh</b><br/>∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWindow.Win…"]:::thm
-  n16["<b>spiralLink_iff_windows ■</b><br/>SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, …"]:::thm
+  n16["<b>spiralLink_iff_windows</b><br/>SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, …"]:::thm
   x0(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
   x1(["<b>LandauPoleLocal</b><br/>Phi_regular_at_one"]):::ext
   x2(["<b>JointDialGate</b><br/>log_absorbed"]):::ext
   x3(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n11
@@ -53,6 +54,7 @@ flowchart LR
   n7 --> n15
   n9 --> n10
   n9 --> n12
+  n16 -.-> x4
   x0 -.-> n5
   x1 -.-> n6
   x2 -.-> n9
@@ -586,5 +588,7 @@ SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ
 
 **Definitions its proof touches:** [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

@@ -139,3 +139,392 @@ constraint `a·deg q < b` caps the mass of the potential below one.
 
 **Where both routes stop.** An accumulation set that separates the modes
 from `0`.
+
+## S4 The residue route — `Stage3/ResidueRoute.lean`
+
+Julian, 2026-11-24: assemble the ladder route; step (A1). From "After the
+independent check" above: with `Θ − 5δ² < σ < Θ`, S1 at `q = 1` and the
+density rate for the tail give `P_k = Σ'_{β≥σ} w_ρ z_ρ^k = O(k⁴ 2^(kσ))`, so
+`G(u) = Σ_k P_k u^k` is analytic in `|u| < 2^(−σ)`. On `|u| < 2^(−Θ)`,
+`G(u) = Σ' w_ρ u/(u_ρ − u)`, analytic off `K = closure{u_ρ}`. A mode `u_1`,
+`β_1 > σ`, isolated in `K` and on the boundary of the component of `ℂ∖K`
+holding `0`, is a pole with residue `−u_1·Σ_fibre w_ρ ≠ 0` (`AliasClass`).
+
+- `isolated_boundary_mode_false`.
+
+**Not here.** An accumulation set separating the modes from `0`.
+
+## S5 The case split and the assembly — `Stage3/LadderAssembly.lean`
+
+Julian, 2026-11-24: assemble the ladder route; step (D) and the assembled
+theorem. S4 compiled (5178791) with its boundary condition on the component
+of `0` in `ball 0 (2^(−σ)) \ K σ`: `G` is known analytic only on that disc.
+
+(D) If `Re ρ₁ = Θ` bounds every real part, every `u ∈ K σ` has
+`|u| ≥ 2^(−Θ)`, so the open disc `|u| < 2^(−Θ)` misses `K σ`, is connected,
+holds `0`, and sits in the component. `|u₁| = 2^(−Θ)` puts `u₁` in the
+closure of that disc, and `u₁ ∈ K σ` keeps it out of the component: `u₁` is
+on its frontier, for every `σ ≤ Θ`. Isolation among the modes with
+`Re ρ ≥ σ₀` passes to `K σ` for `σ ≥ σ₀` with `ε/2`.
+
+Assembly. Off the line, a tame top is `ρ₁` with `1/2 < Re ρ₁`, every real
+part `≤ Re ρ₁`, and some `σ₀ ∈ (1/2, Re ρ₁)` and `ε > 0` with every mode of
+`Re ρ ≥ σ₀` other than `u₁` at distance `≥ ε` from it. S4 at `Θ = Re ρ₁`
+and `σ = max E σ₀`, below `Θ`, gives `False`.
+
+- `top_mode_on_frontier`, `rh_of_ladder_tame`.
+
+**Not here.** A top real part that is not attained; an attained top mode
+that other modes accumulate on.
+
+## S6 Reached modes — `Stage3/ReachRoute.lean`
+
+Julian, 2026-11-24, case 2 on the ψ ladder: a mode reached from `0` that
+other modes crowd. Unit 0510 left two arrangements on the ψ route: a limit
+set that walls the modes off from `0`, and a mode on the edge that is a limit
+of other modes. S4 needs isolation only for one limit, and that limit
+survives along any approach that stays non-tangential to the other modes.
+
+Setting of S4: `σ ≥ E`, `Ω` the component of `0` in `ball 0 (2^(−σ)) \ K σ`,
+`G = F` on `Ω`, `F(u) = Σ' w_ρ·u/(u_ρ − u)`, `u_ρ = 2^(−ρ)`.
+
+Reach. A zero `ρ₁` with `σ < β₁` is *reached* when there are `u_j ∈ Ω`,
+`u_j → u₁ = u_{ρ₁}`, `u_j ≠ u₁`, and `M` with
+`‖u_j − u₁‖ ≤ M·‖u_ρ − u_j‖` for every `ρ` with `β ≥ σ` and `u_ρ ≠ u₁`.
+
+Proof. `(u₁ − u_j)·F(u_j) = Σ' w_ρ·u_j·(u₁ − u_j)/(u_ρ − u_j)`. The fibre of
+`u₁` gives `u_j·Σ_fibre w_ρ` exactly. Every other term is at most
+`‖w_ρ‖·‖u_j‖·M`, summable, and tends to `0` since `u_ρ ≠ u₁`. Dominated
+convergence (`tendsto_tsum_of_dominated_convergence`) gives the limit
+`u₁·Σ_fibre w_ρ`. `G` is analytic at `u₁` (`‖u₁‖ < 2^(−σ)`), so
+`(u₁ − u_j)·G(u_j) → 0`, and `G(u_j) = F(u_j)`. The fibre weight is `0`,
+against `AliasClass`.
+
+Isolation and the frontier give a reach: the punctured ball at `u₁` misses
+`K σ`, is connected and meets `Ω`, so it lies in `Ω`, and `u_j = u₁ + r_j`
+with `r_j → 0` has `M = 1` once the ball is free. So S6 holds S4. A cone at
+`u₁` free of other modes and meeting `Ω` gives a reach along its axis, with
+`M = 1/sin` of its half angle.
+
+- `reached_mode_false`, `reach_of_isolated`.
+
+**Not here.** A mode that every approach from `Ω` meets tangentially to the
+other modes. A limit set that separates the modes from `0`. H.
+
+## S7 The wall — on paper, no Lean target yet
+
+Julian, 2026-11-24: "Let's do the wall and loop". The arrangement: the limit
+set of the modes right of `σ` cuts `0` off from every mode. Example: no zero
+reaches `Θ`, and the angles `γ·log 2 (mod 2π)` of the zeros near `Θ` are
+dense, so `K σ` holds the circle `|u| = R`, `R = 2^(−Θ)`, and `Ω` is the
+disc `|u| < R`.
+
+**The reduction (proved pieces).** `G` and `F` have the same power series at
+`0`. Its coefficients are the power sums `P_k = Σ'_{β≥σ} w_ρ·z_ρ^k`,
+`z_ρ = 2^ρ` (`ResidueRoute.G_eq_F`, `P_bound`). Under H, `|P_k| ≤ A·k²·2^(kσ)`.
+So the wall case is the moment problem: a summable family `w_ρ` on the
+points `z_ρ` (`|z_ρ| < 2^Θ`, sup not reached), whose power sums grow like
+`2^(kσ)` with `σ < Θ`. Nothing beyond this is used by S4 to S6, and on the
+wall nothing beyond it is available to them: `Ω` is the inner disc, where
+`F = G` already says only this.
+
+**Summability and the sign of the weights do not close it.** The uniform
+measure on a circle `|z| = s` has `∫ z^k = 0` for every `k ≥ 1`. It is
+positive, and its power sums are as small as can be. Wolff's series give
+atomic families with complex weights whose power sums all vanish. Whether an
+atomic family with weights of positive real part can have power sums
+`O(k²·2^(kσ))` with an atom outside `|z| = 2^σ` is not settled here. Either
+way, the wall needs a property of the zeros of ζ beyond their count, the
+summability of `m/ρ` and the sign of `Re(m/ρ)`. Unit 0431 says the same.
+
+**What the zeros have that a measure on a circle does not.**
+- The conjugate pairs: `w_ρ̄ = conj w_ρ`, `z_ρ̄ = conj z_ρ`, so every `P_k` is
+  real.
+- The weights `m(ρ)/ρ`: tied to the height, `|w_ρ| ≈ m/|γ|`. A wall needs
+  the angles `γ·log 2` spread, and the weights fall as `γ` grows.
+- The density bound `ZeroDensity.zero_density`: few zeros near `Θ`.
+- The monotone ψ under the ladder: `ψ(2^(k+1)) − ψ(2^k) ≥ 0`.
+
+None of these has been turned into a bound against the wall. The first
+candidate to try is the weights' fall with height: the atoms at angle near
+`φ` with `|z| > 2^(σ+δ)` would have to cancel in every power sum, against
+weights fixed by their heights.
+
+**Not a block yet.** No statement here is ready for Lean. The next step is
+one derivation on paper: either a bound that uses one of the four facts
+above, or an atomic example showing that the four together still allow the
+wall.
+
+### S7, derivation round 1 (2026-11-24, Julian: "Start")
+
+On paper, here, unchecked by anyone else.
+
+**The wall in `s = −log₂ u`.** For `Re s > Θ`, `F` is the folded sum
+`Σ'_{β≥σ} w_ρ/(1 − 2^(ρ−s))`. Each term is meromorphic on the plane, and
+under H their sum `G` is analytic for `Re s > σ`. The wall is the folded sum
+failing to converge for `Re s < Θ`. In every period strip, the aliases
+`ρ − 2πi m/log 2` of the zeros near `Θ` come close enough to every point to
+blow the sum up. So the wall is a statement about how the heights `γ mod
+2π/log 2` of the zeros near the top fall.
+
+**Free weights with positive real part do not give a wall cheaply.** An
+atom `w·δ_z` with `|z| > 2^σ` adds `w·z^k`, and that outgrows `k²·2^(kσ)`.
+Finitely many atoms cannot cancel it for every large `k`: that is
+`LadderFading`'s Vandermonde step. Atoms spread evenly on a circle cancel
+except at the multiples of their number, and there they outgrow the bound
+as well. So a wall needs exact cancellation among infinitely many atoms, as
+in Wolff's series, at every large `k`. Unit 0431 records that such series
+exist with complex weights. This round has not settled whether they exist
+with weights of positive real part.
+
+**What the zeros fix that Wolff's series leave free.** The weight and the
+point are tied: `w = m(ρ)/ρ` and `z = 2^ρ`, both from `ρ`. Aliases share `z`
+and differ in `w`, and `AliasClass` sums a fibre. A Wolff series picks its
+weights to make the cancellation work. The zeros cannot. So the target is a
+rigidity statement: no family `{(m(ρ)/ρ, 2^ρ)}`, summable, closed under
+conjugation, with `Re(m/ρ) > 0`, has power sums `O(k²·2^(kσ))` while some
+`β > σ`.
+
+**What this round did not reach.** It has no proof of that rigidity and no
+example against it. Every construction tried here broke on the same point:
+whatever does not cancel exactly at modulus above `2^σ` eventually
+dominates. That point is also the only lever found. A proof would show that
+the tied weights cannot cancel exactly on infinitely many levels.
+
+**Next round.** Look for the rigidity in the literature first: uniqueness
+for Dirichlet-type series `Σ a_n λ_n^k` with coefficients tied to their
+exponents (Pólya, Carlson, Mandelbrojt). Then derive.
+
+### S7, round 2 (2026-11-24, Julian: "Run a shorter loop and start round 2")
+
+**Literature.** Five searches found no theorem that a bound on `ψ` at the
+doublings alone gives RH, nor any uniqueness theorem for pole sums with
+weights of positive real part accumulating on a curve. The tool the
+literature uses for discrete power sums of zeros is Turán's power sum
+method; one 2026 paper on Landau–Siegel zeros applies it.
+
+**Turán on the wall, on paper.** Take `β* > σ`, a height `T`, and `S(T)` the
+zeros with `β ≥ β*`, `|γ| ≤ T`: finite, `N = N(T)` of them, and its largest
+modulus `2^(β_max(T))` is attained inside `S(T)` even when `Θ` is not. Turán's
+second theorem bounds `max_{m<k≤m+N} |Σ_{S(T)} w_ρ (z_ρ/2^(β_max))^k|` below by
+`(N/(8e(m+N)))^N` times a partial sum of the weights, which is nonzero
+(positive real part). With `m = cN`, the errors are:
+- H: `k²·2^(−k(β_max−σ))`, beaten once `c(β_max − σ)·log 2 > log(8e(1+c))`;
+- the zeros left of `β*`: the same with `β_max − β*`, beaten the same way;
+- the zeros above `T`, the tail: weight `O(T^(−(1−θ)))` by `ZeroDensity`, but
+  their real parts can exceed `β_max(T)` (that is the creeping), so they cost
+  `T^(−(1−θ))·2^(k(Θ−β_max(T)))`.
+The tail must lie below `(8e(1+c))^(−N(T))`. So it needs
+`N(T) ≪ log T`, and the density bound gives only a power of `T`.
+
+**The lost factor.** `(8e(1+c))^(N(T))`: Turán's loss, one fixed factor per
+zero in the finite set, against the polynomial saving `T^(1−θ)` of the
+density bound. It grows with the parameter. By the repo's rule, the steps
+are right and the design is wrong. The cause is the aliasing: no filter of
+the dyadic samples can damp a zero by its height, because every filter acts
+on the mode `2^ρ`, and the high zeros carry the same modes as the low ones.
+The smoothing that makes Turán's method work on `ψ(x)` for all `x` is not
+available on the doublings.
+
+**What would rescue it.** Either a Turán-type bound whose loss is
+subexponential in `N`, or zeros near the top so sparse that `N(T) = O(log T)`.
+Neither is in the tree or in what was found.
+
+### S7, round 3: a rescue of Turán's loss (2026-11-24, Julian: "Out the Turán rescue")
+
+On paper, here, unchecked by anyone else.
+
+**Turán's loss is the price of an arbitrary arrangement.** Its bound holds for
+any `N` points. The roots of unity show that some loss is forced: their power
+sums vanish for `k = 1, …, N − 1`. But for separated points the loss is
+polynomial. On a window of length `K`, the Montgomery–Vaughan mean value
+theorem gives `Σ_{k=m+1}^{m+K} |Σ_j c_j e^(ikφ_j)|² = Σ_j |c_j|²·(K + θ_j·3π/δ_j)`,
+with `|θ_j| ≤ 1` and `δ_j` the distance from `φ_j` to the nearest other angle.
+Once `K > 6π/δ`, this is at least `(K/2)·Σ|c_j|²`. The loss is `1/δ`, with no
+power of `N`.
+
+**On the wall.** Normalize `S(T)`'s modes by `2^(β_max(T))`, merge exact alias
+fibres (`AliasClass`: each merged weight ≠ 0), and let `δ(T)` be the least
+angular separation of the merged modes. The radial factors `|ζ_j|^k ≤ 1`
+weaken only the zeros below the top, and the top one keeps its full share.
+With `K ≈ 6π/δ(T)` and the shift `m` fixed by H's constant, the errors are:
+- H: `k²·2^(−k(β_max−σ))`, small for `k ≥ m`;
+- the zeros left of `β*`: small the same way;
+- the zeros above `T`: `T^(−(1−θ))·2^(K(Θ − β_max(T)))`.
+So the wall falls on every `T` with `(Θ − β_max(T)) ≤ c·δ(T)·log T`.
+
+**What is left.** A creep that is fast against the separation. The real parts
+near the top approach `Θ` more slowly than the angles `γ·log 2 (mod 2π)` of
+the top zeros spread apart. Turán's `exp(N)` against the density saving has
+become `1/δ(T)` against the creep rate, a contest between two properties of
+the zeros near the top. Neither is bounded in the tree. Lower bounds for
+`δ(T)` are bounds on near-coincidences `(γ − γ')·log 2 ≈ 2πn`, that is,
+on how close the zeros come to the alias lattice. Bounds of that kind are
+the territory of pair-correlation and simplicity results, which are open.
+
+**The direction of the weights helps the clusters.** For `γ > 0`, every
+weight is `m/ρ ≈ −i·m/γ`. Modes close in angle therefore add without
+cancelling at every `k` with `k·(angle spread) < π/2`. A cluster of near
+aliases acts as one heavy mode at those `k`, and the weights do not cancel
+inside it. The exception is the clusters near the real axis, where a zero
+meets its conjugate. This is not yet turned into a bound that replaces
+`δ(T)`.
+
+**Next.** (a) Turn the alignment of the weights into a mean value bound with
+clusters in place of separated points. If that works, only the conjugate
+clusters near the real axis keep a separation condition. (b) Check the
+Montgomery–Vaughan step against the radial factors exactly. It is used here
+for points on the circle.
+
+### S7, round 3 (b): Montgomery–Vaughan with the radial factors (2026-11-24, Julian: "B")
+
+On paper, here, unchecked by anyone else. Round 3 used the mean value theorem
+as if every normalized mode sat on the circle. They sit inside it:
+`ζ_j = r_j·e^(iφ_j)` with `r_j = 2^(β_j − β_max) ≤ 1`.
+
+**Band the modes.** Fix `η' > 0`. The band is the modes with `β_j ≥ β_max − η'`;
+the rest lie below it. On the window `k ∈ (m, m+K]`:
+- in the band, `r_j^k = r_j^(m+1)·r_j^(k−m−1)`, and
+  `|r_j^(k−m−1) − 1| ≤ K·η'·log 2`. So the band's sum is the circle sum with
+  coefficients `c'_j = c_j·r_j^(m+1)`, plus an error at most
+  `K·η'·log 2·‖c‖₁` at each `k`;
+- below the band, every term is at most `|c_j|·2^(−m·η')`.
+
+**The bound.** The circle part has `ℓ²` norm over the window at least
+`√(K/2)·‖c'‖₂` once `K > 6π/δ_band` (round 3), with `δ_band` the least
+separation of the band's merged angles. The two errors have `ℓ²` norm at
+most `√K` times their sizes above. Both fall below half the main term when
+- `η' ≤ ‖c‖₂ / (6·K·‖c‖₁)`, which `η' ≈ 1/(6K·√N_band)` meets, and
+- `m ≥ (1/η')·log₂(8·Σ|w| / |c_top|)`, where `c_top` is the weight of the
+  attained top of `S(T)`, with `r = 1`, so `‖c'‖₂ ≥ |c_top|`.
+
+**So (b) holds, at a polynomial cost.** The window ends at
+`m + K ≈ 6K·√N_band·log(Σ|w|/|c_top|) + K`, with `K ≈ 6π/δ_band`. The
+corrected condition for the wall to fall at `T` is
+`(Θ − β_max(T)) · δ_band(T)⁻¹ · N_band(T)^(1/2) · log(1/|c_top|) ≤ c·(1−θ)·log T`.
+Every factor is a power of the parameters or a logarithm. Nothing in it is
+exponential in `N`, unlike Turán's loss.
+
+**What it costs against round 3.** The count enters again, through
+`√N_band` and only for the zeros in the thin top band. The weight of the top
+zero enters through a logarithm, with `|c_top| ≈ 1/|γ_top|`.
+
+**What remains open.** The condition is about the zeros. It holds on
+every `T` where the creep `Θ − β_max(T)` is small against
+`δ_band·log T/√N_band`. A wall needs the creep to stay large against that
+quantity at every height. Nothing in the tree bounds either side.
+
+### S7, round 3 (a): the aligned weights in clusters (2026-11-24, Julian: "Yes")
+
+On paper, here, unchecked by anyone else.
+
+**What alignment gives.** For `γ > 0` the weight `c'_j = w_j·(positive)` has
+argument within `β_j/γ_j` of `−π/2`. A cluster `C` of band modes whose
+angular diameter is `d` has `|Σ_C c'_j e^(ikφ_j)| ≥ cos(k·d + max β/γ)·Σ_C |c'_j|`.
+So the cluster acts as one point of weight at least `½·Σ_C|c'|` at every `k`
+with `k·d ≤ 1`.
+
+**Where it breaks.** The bound reads `k·d`, measured from `k = 0` and not
+from the window's start. The window is `(m, m+K]`, and round 3 (b) needs
+`m ≈ 6K·√N_band·log(…)`, so the clusters need `d ≤ 1/(m+K)`. Between
+clusters the mean value step needs separation `≥ 6π/K`. That is two scales
+with a ratio of at least `6π(m+K)/K`, about `36π·√N_band·log(…)`.
+- Grouping at one threshold `t` gives clusters of diameter up to `N_C·t` with
+  gaps `≥ t`, and fails once a cluster holds a few points.
+- Choosing a threshold that falls in a gap of the pairwise separations needs
+  up to `N²` candidate scales. The ratio of the outermost to the innermost is
+  exponential in `N²`, so `K` is too.
+
+**Dirichlet gives the same.** Simultaneous approximation finds `k ≤ Q^N` with
+every `kφ_j` within `2π/Q` of `0 (mod 2π)`. There every weight is aligned
+and nothing cancels, except that each zero meets its conjugate: `−i/γ`
+against `+i/γ`. What survives is `Σ 2β/γ²`, positive and exact, but `k` is
+exponential in `N`.
+
+**Result of (a).** Alignment does not remove the separation condition in
+general. It removes it when the near-alias clusters have a two-scale gap:
+diameter `≤ 1/(m+K)` and gaps `≥ 6π/K`. Every general route tried (Turán,
+single grouping, the choice of scale, Dirichlet) meets a loss exponential in
+the number of zeros near the top. Only the mean value theorem on separated
+points, round 3, loses polynomially, and it pays in `δ_band`.
+
+**The lost factor, named.** Without a lower bound on how near the top zeros
+come to the alias lattice, `(γ − γ')·log 2 ≈ 2πn`, every route loses
+`exp(c·N(T))` against the density saving `T^(1−θ)`. With such a bound,
+`δ_band(T) ≥ T^(−a)`, round 3 (b) closes the wall at every `T` whose creep is
+below `T^(−a)·log T/√N_band(T)`. The design question for the wall is now that
+separation, a property of the zeros of ζ (unit 0431).
+
+## S8 The lens ladder — on paper, no Lean target yet
+
+Julian, 2026-11-24: couple the bases, because the tables run from dyadic to
+enneadic. On paper, here, unchecked by anyone else.
+
+**One base at a time.** Only 2, 3, 5 and 7 carry new information. 4, 8 and 9
+are powers of 2 and 3, so their ladders are sub-samples of those. On its own
+ladder each base has its own alias lattice `2π/log b` and its own wall. The
+wall survives as long as some pair of top zeros sits near each base's
+lattice, and different pairs can serve different bases.
+
+**Coupled.** Sample `ψ` on `2^a·3^b`. A zero's mode is `(2^ρ, 3^ρ)`. Two zeros
+share it only if `γ − γ'` lies in `(2π/log 2)ℤ ∩ (2π/log 3)ℤ = {0}`, so every
+alias class is a single zero. A pair near the lattice in both coordinates
+needs `|n·log 3 − n'·log 2|` tiny with `n, n'` of the order of `T`. Linear
+forms in logarithms, through the finite irrationality measure of
+`log 3/log 2`, bound it below by `c·T^(−A)`. That is the separation unit 0512
+asked for, with no assumption on the zeros. It is not in Mathlib. The
+elementary bound `|log(3^n/2^m)| ≥ 1/max(3^n, 2^m)` is exponentially small
+and gives the exponential loss back.
+
+**The creep.** `Θ − β_max(T)` belongs to the zeros and is the same through
+every lens. Its cost is `x^(creep)` over the range of `x` the argument must
+read, and that range falls as bases are added. Worst case, at any fixed
+finite set of bases, the separation is Baker's `T^(−A)` and a slow creep
+escapes.
+
+**The end of the ladder.** Add every prime and the grid is every integer.
+The hypothesis is then the square-root bound for `ψ(x)` at every `x`, the
+staircase in the square-root frame, which the tree has as RH-equivalent:
+`Readings.wire_holds_iff` (`SpiralLink ↔ Saddle.NoRunaway`). There Landau's
+argument reads `x` continuously and the creep costs nothing.
+
+**What it shows.** Every route closes through a face equivalent to RH: the
+lens ladder, the thirteen doors of `map/ROAD.md`, the faces
+`spiralLink_iff_*`. Equivalence connects the faces, and it does not supply a
+proof. A proof needs one face derived from facts about ζ proved
+independently of RH. Those already in the tree include the zero density
+bound (`ZeroDensity`) and the zero counting (`Backlund`), and the next step
+is to list them all. The design question for the ladder route is now which
+of those facts, put in place of H, reaches a face.
+
+## S9 Bases per creep rate — on paper, no Lean target yet
+
+Julian, 2026-11-24: name, for each rate of creep, the number of coupled bases
+that scale the wall. On paper, here, unchecked by anyone else.
+
+**The circles.** In the mode `u = 2^(−s)`, the line `Re s = σ` is the circle
+`|u| = 2^(−σ)`. `BandJoin` has the band: every zero lies between
+`|u| = 1/2` (`Re s = 1`) and `|u| = 1` (`Re s = 0`), and the critical line is
+the circle `bandR (1/2) = 2^(−1/2)` (`spiralLink_iff_middle`). The zeros right
+of one half are the ring between the circles `1/2` and `2^(−1/2)`. Under H the
+generating function is analytic inside `|u| < 2^(−1/2)`. So H's own horizon is
+the circle of the critical line: the bound sees the ring only from inside.
+
+**The statement.** For a creep `Θ − β_max(T) ≤ T^(−b)`, `b > 0`, and the first
+`r` primes as coupled bases:
+- input `H_r`: `|ψ(x) − x| ≤ C·log²x·√x` at every `x = p₁^(a₁)⋯p_r^(a_r)`;
+- arithmetic input `D_r(κ)`: every `Δ` with `1 ≤ |Δ| ≤ T` has
+  `max_i dist(Δ·log p_i, 2πℤ) ≥ c·T^(−κ)` (simultaneous approximation);
+- conclusion: if `κ + θ_band/2 < b`, the wall does not form.
+  Here `θ_band` is the density exponent of the band count, `N_band(T) ≤ T^(θ_band)`.
+
+**What is known about `D_r(κ)`.** Dirichlet's theorem gives an upper limit:
+some `Δ ≤ T` reaches `T^(−1/(r−1))`, so `κ ≥ 1/(r−1)` always. That
+`κ = 1/(r−1) + ε` holds for the logarithms of the primes is not proved.
+Linear forms in logarithms give some finite `κ_r`, much larger. With the true
+`κ_r`, the count of bases needed is the least `r` with `κ_r + θ_band/2 < b`.
+
+**What it does not cover.** A creep slower than every power, and a band
+whose density exponent alone exceeds `b`. Both escape every finite `r`. The
+input `H_r` grows with `r` and reaches `NoRunaway` as `r` grows without
+bound (S8).
