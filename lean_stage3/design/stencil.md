@@ -375,3 +375,41 @@ clusters in place of separated points. If that works, only the conjugate
 clusters near the real axis keep a separation condition. (b) Check the
 Montgomery–Vaughan step against the radial factors exactly. It is used here
 for points on the circle.
+
+### S7, round 3 (b): Montgomery–Vaughan with the radial factors (2026-11-24, Julian: "B")
+
+On paper, here, unchecked by anyone else. Round 3 used the mean value theorem
+as if every normalized mode sat on the circle. They sit inside it:
+`ζ_j = r_j·e^(iφ_j)` with `r_j = 2^(β_j − β_max) ≤ 1`.
+
+**Band the modes.** Fix `η' > 0`. The band is the modes with `β_j ≥ β_max − η'`;
+the rest lie below it. On the window `k ∈ (m, m+K]`:
+- in the band, `r_j^k = r_j^(m+1)·r_j^(k−m−1)`, and
+  `|r_j^(k−m−1) − 1| ≤ K·η'·log 2`. So the band's sum is the circle sum with
+  coefficients `c'_j = c_j·r_j^(m+1)`, plus an error at most
+  `K·η'·log 2·‖c‖₁` at each `k`;
+- below the band, every term is at most `|c_j|·2^(−m·η')`.
+
+**The bound.** The circle part has `ℓ²` norm over the window at least
+`√(K/2)·‖c'‖₂` once `K > 6π/δ_band` (round 3), with `δ_band` the least
+separation of the band's merged angles. The two errors have `ℓ²` norm at
+most `√K` times their sizes above. Both fall below half the main term when
+- `η' ≤ ‖c‖₂ / (6·K·‖c‖₁)`, which `η' ≈ 1/(6K·√N_band)` meets, and
+- `m ≥ (1/η')·log₂(8·Σ|w| / |c_top|)`, where `c_top` is the weight of the
+  attained top of `S(T)`, with `r = 1`, so `‖c'‖₂ ≥ |c_top|`.
+
+**So (b) holds, at a polynomial cost.** The window ends at
+`m + K ≈ 6K·√N_band·log(Σ|w|/|c_top|) + K`, with `K ≈ 6π/δ_band`. The
+corrected condition for the wall to fall at `T` is
+`(Θ − β_max(T)) · δ_band(T)⁻¹ · N_band(T)^(1/2) · log(1/|c_top|) ≤ c·(1−θ)·log T`.
+Every factor is a power of the parameters or a logarithm. Nothing in it is
+exponential in `N`, unlike Turán's loss.
+
+**What it costs against round 3.** The count enters again, through
+`√N_band` and only for the zeros in the thin top band. The weight of the top
+zero enters through a logarithm, with `|c_top| ≈ 1/|γ_top|`.
+
+**What remains open.** The condition is about the zeros. It holds on
+every `T` where the creep `Θ − β_max(T)` is small against
+`δ_band·log T/√N_band`. A wall needs the creep to stay large against that
+quantity at every height. Nothing in the tree bounds either side.
