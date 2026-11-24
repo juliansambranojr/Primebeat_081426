@@ -7,7 +7,7 @@ FilterAccum — block S3 of `lean_stage3/design/stencil.md`, in its corrected fo
 10 theorems, 3 definitions, 246 lines. 
 
 **Imports:** [`FilterAttained`](../lean_stage3/FilterAttained.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md), [`ResidueRoute`](../lean_stage3/ResidueRoute.md)
 
 ## The picture
 
@@ -24,10 +24,11 @@ flowchart LR
   n8["<b>finite_accumulation_false</b><br/>False"]:::thm
   n9["<b>rh_of_finite_accumulation</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLine</b><br/>norm_two_cpow"]):::ext
-  x1(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
-  x2(["<b>FilterLadder</b><br/>Wn_nonneg"]):::ext
-  x3(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
-  x4(["<b>OneChain</b><br/>spiralLink_of_finite_accumulation"]):::ext
+  x1(["<b>ResidueRoute</b><br/>4 theorems"]):::ext
+  x2(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
+  x3(["<b>FilterLadder</b><br/>Wn_nonneg"]):::ext
+  x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x5(["<b>OneChain</b><br/>spiralLink_of_finite_accumulation"]):::ext
   n0 --> n5
   n0 --> n6
   n1 --> n8
@@ -38,13 +39,15 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
-  n9 -.-> x4
+  n3 -.-> x1
+  n4 -.-> x1
+  n9 -.-> x5
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n8
-  x1 -.-> n8
   x2 -.-> n8
-  x3 -.-> n9
+  x3 -.-> n8
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -199,9 +202,11 @@ line 66 · arrows read from text
 
   - [`FiniteOffLine.norm_two_cpow`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) (FiniteOffLine) — `` ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`FilterAccum.finite_accumulation_false`](#FilterAccum-finite_accumulation_false) — `` False ``
+  - [`ResidueRoute.mode_ne_zero`](../lean_stage3/ResidueRoute.md#ResidueRoute-mode_ne_zero) (ResidueRoute) — `` (2:ℂ) ^ (ρ : ℂ) ≠ 0 ``
+  - [`ResidueRoute.norm_sub_le`](../lean_stage3/ResidueRoute.md#ResidueRoute-norm_sub_le) (ResidueRoute) — `` ‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖ ``
 
 <a name="FilterAccum-norm_mode_le_two"></a>
 ### `FilterAccum.norm_mode_le_two`
@@ -226,9 +231,11 @@ line 71 · arrows read from text
 
   - [`FiniteOffLine.norm_two_cpow`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) (FiniteOffLine) — `` ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`FilterAccum.finite_accumulation_false`](#FilterAccum-finite_accumulation_false) — `` False ``
+  - [`ResidueRoute.G_eq_F`](../lean_stage3/ResidueRoute.md#ResidueRoute-G_eq_F) (ResidueRoute) — `` G σ u = F σ u ``
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
 
 <a name="FilterAccum-norm_xiz_near_le"></a>
 ### `FilterAccum.norm_xiz_near_le`

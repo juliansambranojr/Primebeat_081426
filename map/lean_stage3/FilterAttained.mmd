@@ -9,13 +9,14 @@ flowchart LR
   n7["<b>filter_attained_false</b><br/>False"]:::thm
   n8["<b>attained_psi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>ZeroSummable</b><br/>summable_norm_coef"]):::ext
-  x1(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
-  x3(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
-  x4(["<b>LadderMean</b><br/>mean_extract"]):::ext
-  x5(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
-  x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
-  x7(["<b>OneChain</b><br/>spiralLink_of_attained_psi"]):::ext
+  x1(["<b>ResidueRoute</b><br/>P_bound"]):::ext
+  x2(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x4(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x5(["<b>LadderMean</b><br/>mean_extract"]):::ext
+  x6(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
+  x7(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x8(["<b>OneChain</b><br/>spiralLink_of_attained_psi"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -27,17 +28,21 @@ flowchart LR
   n5 --> n6
   n6 --> n7
   n7 --> n8
-  n7 -.-> x5
-  n8 -.-> x7
+  n1 -.-> x1
+  n2 -.-> x1
+  n3 -.-> x1
+  n5 -.-> x1
+  n7 -.-> x6
+  n8 -.-> x8
   x0 -.-> n1
-  x1 -.-> n2
-  x1 -.-> n6
-  x1 -.-> n7
-  x2 -.-> n4
-  x2 -.-> n8
-  x3 -.-> n7
+  x2 -.-> n2
+  x2 -.-> n6
+  x2 -.-> n7
+  x3 -.-> n4
+  x3 -.-> n8
   x4 -.-> n7
-  x6 -.-> n8
+  x5 -.-> n7
+  x7 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

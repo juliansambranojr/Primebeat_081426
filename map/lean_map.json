@@ -15538,7 +15538,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
      "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
-     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
     ]
    },
    {
@@ -28660,7 +28661,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32372,7 +32374,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le"
     ]
    },
    {
@@ -32399,7 +32403,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32643,7 +32649,8 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.ratio",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi_pow"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi_pow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32672,7 +32679,14 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef"
     ]
    },
    {
@@ -32708,7 +32722,8 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32770,7 +32785,8 @@
     "used_by": [
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32815,7 +32831,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32854,7 +32871,8 @@
     "used_by": [
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.norm_tailT_le",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32892,7 +32910,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -32978,7 +32997,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -33925,7 +33945,8 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
-     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound"
     ]
    },
    {
@@ -34170,6 +34191,7 @@
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
@@ -34211,6 +34233,7 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -34506,7 +34529,10 @@
      "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
-     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um"
     ]
    },
    {
@@ -40170,6 +40196,13 @@
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
     ]
@@ -55774,6 +55807,738 @@
      "lean_stage3/Stage3/RouteGate.lean::RouteGate.relErrWindow_route",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ResidueRoute.lean",
+  "module": "Stage3.ResidueRoute",
+  "stem": "ResidueRoute",
+  "header": "ResidueRoute — block S4 of `lean_stage3/design/stencil.md`. 2026-11-24. The residue route, from the section \"After the independent check\". Under the ladder bound `H`, `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, fix `1/2 < σ₀ < Θ ≤ 1` with `Θ` an upper bound for the real parts of the zeros. The tail-rate exponent `θ' < 1` of `CountReduction.tail_rate` at `σ₀` gives `E = max σ₀ (Θ − (1 − θ')) < Θ`. For every `σ ≥ E` (the design's `σ ∈ (Θ − 5δ², Θ)`):",
+  "imports": [
+   "Stage3.FilterAccum",
+   "Stage3.CountReduction",
+   "Stage3.AliasClass"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "ResidueRoute"
+  ],
+  "lines": 559,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/AliasClass.lean",
+   "lean_stage3/Stage3/CountReduction.lean",
+   "lean_stage3/Stage3/FilterAccum.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "um",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.um",
+    "line": 53,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "K",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.K",
+    "line": 57,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "Set ℂ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "P",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.P",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "G",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.G",
+    "line": 67,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "u : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "F",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.F",
+    "line": 71,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "u : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "isClosed_K",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.isClosed_K",
+    "line": 75,
+    "why": "`K` is closed.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "IsClosed (K σ)",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "um_mem_K",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.um_mem_K",
+    "line": 78,
+    "why": "The mode of a zero right of `σ` lies in `K`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : σ ≤ (ρ : ℂ).re"
+    ],
+    "proves": "um ρ ∈ K σ",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "um_eq",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.um_eq",
+    "line": 82,
+    "why": "`u_ρ = 1/z_ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "um ρ = ((2:ℂ) ^ (ρ : ℂ))⁻¹",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_um",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.norm_um",
+    "line": 85,
+    "why": "`|u_ρ| = 2^(−β)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖um ρ‖ = (2:ℝ) ^ (-(ρ : ℂ).re)",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mode_ne_zero",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.mode_ne_zero",
+    "line": 89,
+    "why": "The mode `2^ρ` is not zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(2:ℂ) ^ (ρ : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_sub_eq",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.one_sub_eq",
+    "line": 93,
+    "why": "`1 − z_ρ·u = z_ρ·(u_ρ − u)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "u : ℂ"
+    ],
+    "proves": "1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u)",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sub_le",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.norm_sub_le",
+    "line": 98,
+    "why": "`|u_ρ − u| ≤ |1 − z_ρ·u|`, since `|z_ρ| ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "u : ℂ"
+    ],
+    "proves": "‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "K_subset",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.K_subset",
+    "line": 104,
+    "why": "Every point of `K` has size at least `1/2`.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖}",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_coef",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.summable_coef",
+    "line": 117,
+    "why": "The weights `|m(ρ)/ρ|` right of `σ > 1/2` are summable.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ"
+    ],
+    "proves": "Summable fun ρ : FilterAttained.S σ => ‖LadderMean.coef ρ.1‖",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableAt_F",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.differentiableAt_F",
+    "line": 123,
+    "why": "`F` is differentiable off `K`. Near a point `v ∉ K`, at distance `ε` from `K`, every term is bounded by `(2/ε)·|m(ρ)/ρ|`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ",
+     "hv : v ∉ K σ"
+    ],
+    "proves": "DifferentiableAt ℂ (F σ) v",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "P_bound",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.P_bound",
+    "line": 170,
+    "why": "The ladder sums right of `σ`. Under `H`, for `1/2 < σ₀ ≤ 1` and `Θ` an upper bound for the real parts, there are `θ' < 1` and `Ct ≥ 0` such that for every `σ ≥ σ₀` with `Θ ≤ σ + (1 − θ')` and every `k ≥ 2`, `‖Σ'_{β≥σ} m(ρ)/ρ·(2^ρ)^k‖ ≤ (|Afl C| + Ct)·k²·(2^σ)^k`. The zeros below height `2^k` by block S1 at `q = 1`; those above by the tail rate.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ₀ : 1 / 2 < σ₀",
+     "hσ₀1 : σ₀ ≤ 1",
+     "hΘ : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^ k",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.norm_tailT_le",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.ratio",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.summable_S",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.norm_tailT_le",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.ratio",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.summable_S",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tsum_split",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableAt_G",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.differentiableAt_G",
+    "line": 282,
+    "why": "`G` is differentiable in `|u| < 1/X` when `‖P_k‖ ≤ A·k²·X^k` for `k ≥ 2`.",
+    "sorry": false,
+    "needs": [
+     "hX : 0 < X",
+     "hA : ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ A * (k:ℝ) ^ 2 * X ^ k",
+     "hv : ‖v‖ < X⁻¹"
+    ],
+    "proves": "DifferentiableAt ℂ (G σ) v",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_eq_F",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.G_eq_F",
+    "line": 322,
+    "why": "`G = F` near the origin. For `|u| < 1/4`, `|2^ρ·u| ≤ 1/2`, and the double sum `Σ_k Σ'_ρ m(ρ)/ρ·(2^ρ u)^k` may be summed in either order.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ",
+     "hu : ‖u‖ < 1 / 4"
+    ],
+    "proves": "G σ u = F σ u",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "fibre_term",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.fibre_term",
+    "line": 363,
+    "why": "An identity for the fibre term: `a·(c/(z·a)) = c·z⁻¹`.",
+    "sorry": false,
+    "needs": [
+     "ha : a ≠ 0",
+     "hz : z ≠ 0"
+    ],
+    "proves": "a * (c / (z * a)) = c * z⁻¹",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.fibre_term",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "isolated_boundary_mode_false",
+    "ns": "ResidueRoute",
+    "full": "ResidueRoute.isolated_boundary_mode_false",
+    "line": 372,
+    "why": "An isolated mode on the boundary of the origin's component. Let `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, let `1/2 < σ₀ < Θ ≤ 1` and let every zero have real part at most `Θ`. Then there is `E` with `σ₀ ≤ E < Θ` such that for every `σ ≥ E` no zero `ρ₁` with real part above `σ` has its mode `u₁ = 2^(−ρ₁)` isolated in `K = closure {2^(−ρ) : Re ρ ≥ σ}` and on the frontier of the connected component of `{|u| < 2^(−σ)} ∖ K` that holds `0`.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ₀ : 1 / 2 < σ₀",
+     "hσ₀Θ : σ₀ < Θ",
+     "hΘ1 : Θ ≤ 1",
+     "hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε → u = (2:ℂ) ^ (-(ρ₁ : ℂ))) → (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \\ K σ) 0) → False",
+    "file": "lean_stage3/Stage3/ResidueRoute.lean",
+    "id": "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isolated_boundary_mode_false",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.fibre_term",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.S",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.G_eq_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.K_subset",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_F",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.differentiableAt_G",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.fibre_term",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.isClosed_K",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.mode_ne_zero",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_sub_le",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.norm_um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.one_sub_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_eq",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.um_mem_K"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -89958,6 +90723,7 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
      "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
@@ -89993,6 +90759,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
@@ -90384,6 +91151,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.P_bound",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
     ]
    },
@@ -90424,7 +91192,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.attained_off_line_pi",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.summable_line",
-     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.summable_S"
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.summable_S",
+     "lean_stage3/Stage3/ResidueRoute.lean::ResidueRoute.summable_coef"
     ]
    }
   ]

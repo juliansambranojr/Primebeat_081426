@@ -26,15 +26,16 @@ flowchart LR
   n12["<b>norm_coef</b><br/>‖LadderMean.coef ρ‖ = w ρ"]:::thm
   n13["<b>summable_norm_coef</b><br/>Summable fun ρ : S =＞ ‖LadderMean.coef ρ‖"]:::thm
   x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
-  x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x2(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
-  x3(["<b>ZeroSquares</b><br/>window_mem"]):::ext
-  x4(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
-  x5(["<b>CountReduction</b><br/>4 theorems"]):::ext
-  x6(["<b>ZeroDensity</b><br/>zero_density"]):::ext
-  x7(["<b>AttainedPi</b><br/>4 theorems"]):::ext
-  x8(["<b>CountEuler</b><br/>summable_ord_im"]):::ext
-  x9(["<b>FilterAttained</b><br/>summable_S"]):::ext
+  x1(["<b>ResidueRoute</b><br/>P_bound<br/>summable_coef"]):::ext
+  x2(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x3(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
+  x4(["<b>ZeroSquares</b><br/>window_mem"]):::ext
+  x5(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
+  x6(["<b>CountReduction</b><br/>4 theorems"]):::ext
+  x7(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  x8(["<b>AttainedPi</b><br/>4 theorems"]):::ext
+  x9(["<b>CountEuler</b><br/>summable_ord_im"]):::ext
+  x10(["<b>FilterAttained</b><br/>summable_S"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n13
@@ -51,26 +52,29 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n10
-  n10 -.-> x5
-  n10 -.-> x7
-  n11 -.-> x5
-  n11 -.-> x7
+  n0 -.-> x1
+  n10 -.-> x6
+  n10 -.-> x8
+  n11 -.-> x6
   n11 -.-> x8
-  n13 -.-> x7
-  n13 -.-> x9
-  n6 -.-> x5
-  n7 -.-> x5
-  n8 -.-> x5
-  n9 -.-> x5
+  n11 -.-> x9
+  n12 -.-> x1
+  n13 -.-> x1
+  n13 -.-> x10
+  n13 -.-> x8
+  n6 -.-> x6
+  n7 -.-> x6
+  n8 -.-> x6
+  n9 -.-> x6
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n12
   x0 -.-> n6
-  x1 -.-> n2
   x2 -.-> n2
   x3 -.-> n2
-  x4 -.-> n5
-  x6 -.-> n10
+  x4 -.-> n2
+  x5 -.-> n5
+  x7 -.-> n10
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -93,7 +97,7 @@ def · line 48
 The weight of a nontrivial zero: its order over its modulus.
 
 - **Is:** `` w (ρ : NontrivialZeros) : ℝ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ ``
-- **Used by 10:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate), [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
+- **Used by 11:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate), [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound), [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
 
 ## Theorems
 
@@ -122,8 +126,9 @@ line 52
 
   - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) (FiniteOffLine) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
   - [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
   - [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef) — `` Summable fun ρ : S => ‖LadderMean.coef ρ‖ ``
   - [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) :… ``
@@ -502,8 +507,9 @@ line 363
 
   - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) (FiniteOffLine) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ResidueRoute.P_bound`](../lean_stage3/ResidueRoute.md#ResidueRoute-P_bound) (ResidueRoute) — `` ∃ θ' Ct : ℝ, θ' < 1 ∧ 0 ≤ Ct ∧ ∀ σ : ℝ, σ₀ ≤ σ → Θ ≤ σ + (1 - θ') → ∀ k : ℕ, 2 ≤ k → ‖P σ k‖ ≤ (|FilterLadder.Afl C| + Ct) * (k:ℝ) ^ 2 * ((2:ℝ) ^ σ) ^… ``
   - [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef) — `` Summable fun ρ : S => ‖LadderMean.coef ρ‖ ``
 
 <a name="ZeroSummable-summable_norm_coef"></a>
@@ -537,9 +543,10 @@ Summable fun ρ : S => ‖LadderMean.coef ρ‖
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
   - [`AttainedPi.summable_line`](../lean_stage3/AttainedPi.md#AttainedPi-summable_line) (AttainedPi) — `` Summable ((lineSet Θ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
   - [`FilterAttained.summable_S`](../lean_stage3/FilterAttained.md#FilterAttained-summable_S) (FilterAttained) — `` Summable ((S σ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
+  - [`ResidueRoute.summable_coef`](../lean_stage3/ResidueRoute.md#ResidueRoute-summable_coef) (ResidueRoute) — `` Summable fun ρ : FilterAttained.S σ => ‖LadderMean.coef ρ.1‖ ``
 
