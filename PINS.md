@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S5 of `design/stencil.md`: `Stage3/LadderAssembly.lean`
+
+    DONE        `top_mode_on_frontier` (an attained top real part puts its
+                mode on the frontier of the component of 0, every σ below
+                it) and `rh_of_ladder_tame`: H, and off the line a top zero
+                that is attained with its mode isolated, give
+                `RiemannHypothesis`; one unit
+    ASSUMED     Julian, 2026-11-24: "Start the loop" (steps (D) and the
+                assembled theorem). Built by one worker from S5's text
+    DEPENDS     `ResidueRoute.isolated_boundary_mode_false`
+    OUT         a top real part that is not attained; an attained top mode
+                that other modes accumulate on
+
 ### 2026-11-24 · block S4 of `design/stencil.md`: `Stage3/ResidueRoute.lean`
 
     DONE        `isolated_boundary_mode_false`: under the ladder bound H, a

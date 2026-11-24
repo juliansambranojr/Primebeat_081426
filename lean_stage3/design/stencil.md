@@ -153,3 +153,26 @@ holding `0`, is a pole with residue `−u_1·Σ_fibre w_ρ ≠ 0` (`AliasClass`)
 - `isolated_boundary_mode_false`.
 
 **Not here.** An accumulation set separating the modes from `0`.
+
+## S5 The case split and the assembly — `Stage3/LadderAssembly.lean`
+
+Julian, 2026-11-24: assemble the ladder route; step (D) and the assembled
+theorem. S4 compiled (5178791) with its boundary condition on the component
+of `0` in `ball 0 (2^(−σ)) \ K σ`: `G` is known analytic only on that disc.
+
+(D) If `Re ρ₁ = Θ` bounds every real part, every `u ∈ K σ` has
+`|u| ≥ 2^(−Θ)`, so the open disc `|u| < 2^(−Θ)` misses `K σ`, is connected,
+holds `0`, and sits in the component. `|u₁| = 2^(−Θ)` puts `u₁` in the
+closure of that disc, and `u₁ ∈ K σ` keeps it out of the component: `u₁` is
+on its frontier, for every `σ ≤ Θ`. Isolation among the modes with
+`Re ρ ≥ σ₀` passes to `K σ` for `σ ≥ σ₀` with `ε/2`.
+
+Assembly. Off the line, a tame top is `ρ₁` with `1/2 < Re ρ₁`, every real
+part `≤ Re ρ₁`, and some `σ₀ ∈ (1/2, Re ρ₁)` and `ε > 0` with every mode of
+`Re ρ ≥ σ₀` other than `u₁` at distance `≥ ε` from it. S4 at `Θ = Re ρ₁`
+and `σ = max E σ₀`, below `Θ`, gives `False`.
+
+- `top_mode_on_frontier`, `rh_of_ladder_tame`.
+
+**Not here.** A top real part that is not attained; an attained top mode
+that other modes accumulate on.
