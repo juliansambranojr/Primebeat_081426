@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, the mollifier's edge terms: `Stage3/LevinsonMollEdge.lean`
+
+    DONE        for a Dirichlet polynomial ψ(s) = Σ_{h=1}^{M} b_h h^(−s), b_1 = 1,
+                |b_h| ≤ B, and f = G·ψ, G = ζ + cζ' (0 ≤ c ≤ 1):
+                `right_terms_le` (on Re s = X large, |f − 1| < 1 so log f is a
+                Dirichlet series with no constant term, and the two right-edge
+                terms of `levinson_right` are O(1) in T, explicit) and
+                `horizontal_terms_le` (each horizontal edgeH integral over
+                [σ₀, X] is O(log b + log M), by `LevinsonEdge.edge_le_of_bound`
+                with a polynomial bound for f); one unit
+    ASSUMED     Julian, 2026-11-24: "Log and the mollifies edge terms". The
+                mollifier is a generic Dirichlet polynomial; Levinson's
+                μ(h)·P(log(M/h)/log M)·h^(σ₀−1/2) is a case of it
+    DEPENDS     `LevinsonRight`, `LevinsonEdge`, `LevinsonSize`
+    OUT         the avoidance hypotheses; the mean value (step 5)
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, steps 2–4: `Stage3/LevinsonRight.lean`
 
     DONE        `zeros_right_le`: for f analytic near the rectangle
