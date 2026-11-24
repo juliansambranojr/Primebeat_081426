@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-24T07:38:15Z
+# unit: 0507-windows-of-rh
+# sources searched: 453
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:52954
+  The reverse direction, RH ⇒ windows
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:53400
+  theorem rampSum_eq_integral {y : ℝ} (hy : 1 ≤ y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:53401
+  LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:53558
+  theorem const_eq_zero {c K α : ℝ} {r : ℝ → ℝ} (hα : α < 1) (hK : 0 ≤ K)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:53509
+  (hG : ∀ y ∈ Set.Ioi (1 : ℝ), LandauWindow.G y = c * y + r y)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:53560
+  (hr : ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ α) : c = 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58164
+  theorem noRunaway_of_rh (hRH : RiemannHypothesis) : Saddle.NoRunaway :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a62e06f6b070c9abd.jsonl:909
+  theorem c0_eq_zero (hN : Saddle.NoRunaway) : c0 = 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58338
+  theorem windows_of_rh (hRH : RiemannHypothesis) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a62e06f6b070c9abd.jsonl:917
+  ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58340
+  theorem spiralLink_iff_windows : SpiralLink.SpiralLink ↔
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a62e06f6b070c9abd.jsonl:917
+  ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C :=
+
+# 13 found, 0 missing

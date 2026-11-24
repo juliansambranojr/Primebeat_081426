@@ -1,0 +1,17 @@
+key	value	source
+module_lines	509	wc -l lean_stage3/Stage3/WindowsOfRH.lean
+theorems_proved	17	grep -c ^theorem lean_stage3/Stage3/WindowsOfRH.lean
+defs	3	grep -c ^def (E, c0, r)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WindowsOfRH.lean
+pins	6	rampSum_eq_integral, const_eq_zero, noRunaway_of_rh, c0_eq_zero, windows_of_rh, spiralLink_iff_windows
+errors_first	6	the worker's first build of S3 and S5: a positivity goal, a default argument, the Chebyshev theta notation, and their cascade on the pins
+builds	2	the worker's report; S1, S2, S4 built earlier here
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8889	lake build (full Stage3), Build completed successfully
+jobs_module	8845	run/build.log, lake build Stage3.WindowsOfRH
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r16	RH gives the windows
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_criterion	399	unit 0399

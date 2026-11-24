@@ -83,7 +83,7 @@ The staircase does not run away in the square-root frame: from some point on it 
 
 - **Is:** `` NoRunaway : Prop := ∃ (C : ℝ) (k : ℕ) (x₀ : ℝ), Stage3.StmtPsiWeakTheta (1 / 2) C k x₀ ``
 - **Built from:** [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta)
-- **Used by 6:** [`Readings.iv_exact`](../lean_stage3/Readings.md#Readings-iv_exact), [`Readings.wire_holds_iff`](../lean_stage3/Readings.md#Readings-wire_holds_iff), [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway), [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
+- **Used by 11:** [`Readings.iv_exact`](../lean_stage3/Readings.md#Readings-iv_exact), [`Readings.wire_holds_iff`](../lean_stage3/Readings.md#Readings-wire_holds_iff), [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway), [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain), [`WindowsOfRH.E_div_integrableOn`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_integrableOn), [`WindowsOfRH.G_eq`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-G_eq), [`WindowsOfRH.c0_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-c0_eq_zero), [`WindowsOfRH.noRunaway_of_rh`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-noRunaway_of_rh), [`WindowsOfRH.r_bound`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-r_bound)
 
 ## Theorems
 
