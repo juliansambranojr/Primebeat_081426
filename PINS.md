@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block R16 of `design/runs.md`: `Stage3/WindowsOfRH.lean`
+
+    DONE        `windows_of_rh`: RiemannHypothesis → ∀ θ ∈ (1/2, 1), ∃ δ C,
+                0 < δ ∧ LandauWindow.WindowBound θ δ C; with
+                `rh_of_windows` the window bound becomes a full face of the
+                chain; one unit
+    ASSUMED     Julian, 2026-11-24: "do this first": the reverse direction.
+                Route S1–S5 of the design block. Built by one worker
+    DEPENDS     `Saddle.spiralLink_iff_noRunaway`, `SpiralLink.rh_iff_spiralLink`,
+                `LandauMellinG.mellin_G`, `LandauPoleLocal.Phi_regular_at_one`,
+                `JointDialGate.log_absorbed`, Mathlib's Abel summation
+    OUT         the window bound without RH
+
 ### 2026-11-24 · block R15 of `design/runs.md`: `Stage3/Doubling.lean`
 
     DONE        `alt_scales`: Σ_{k≤N} (−1)^(k+1) ψ(N/k) = log N! − 2 log⌊N/2⌋!;

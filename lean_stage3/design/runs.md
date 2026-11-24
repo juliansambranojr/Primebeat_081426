@@ -307,3 +307,23 @@ alternating sum of `N/k` is `N log 2` within a constant. So
 `|R(y)| ≤ C√y` below `N`. The sizes alone give `C√N·Σ_{2≤k≤N} k^(−1/2)`,
 which grows like `2C·N`: the number of scales is a lost factor growing with
 `N`. Closing it needs the alternating residuals to cancel among themselves.
+
+## R16 RH gives the windows — `Stage3/WindowsOfRH.lean`
+
+Julian, 2026-11-24: make the window bound a full face: the reverse of
+`LandauCriterion.rh_of_windows`.
+
+- S1. RH ⇒ `Saddle.NoRunaway`: `|ψ(t) − t| ≤ C·t^(1/2)·(log t)^k` for
+  `t ≥ x₀` (compiled: `rh_iff_spiralLink`, `spiralLink_iff_noRunaway`).
+- S2. `rampSum y = y·Σ_{n≤y} Λ(n)/n − ψ(y)` (finite sum) and Abel
+  summation `Σ_{n≤y} Λ(n)/n = ψ(y)/y + ∫₁^y ψ(t)/t² dt`.
+- S3. `G y = c₀·y + r y`, `c₀ = 1 + γ + ∫₁^∞ (ψ(t) − t)/t² dt`,
+  `r y = −y·∫_y^∞ (ψ(t) − t)/t² dt`; by S1 `|r y| ≤ C′·y^(1/2)·(log y)^k`.
+- S4. `c₀ = 0`: `LandauMellinG.mellin_G` and
+  `LandauPoleLocal.Phi_regular_at_one`; a nonzero `c₀` gives `Phi` the pole
+  `c₀/(s − 1)`; `(s − 1)·Phi s → c₀` along real `s → 1⁺`, and the
+  regularity sends it to `0`.
+- S5. `JointDialGate.log_absorbed`: `y^(1/2)(log y)^k ≤ A·y^θ`; every window
+  beyond a point satisfies `WindowBound θ δ C`.
+
+- `windows_of_rh`, `spiralLink_iff_windows`.
