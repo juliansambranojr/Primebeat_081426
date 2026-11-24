@@ -207,6 +207,7 @@ import Stage3.LevinsonArg
 import Stage3.LevinsonTurn
 import Stage3.LevinsonSize
 import Stage3.LevinsonEdge
+import Stage3.LevinsonCount
 
 namespace Stage3
 
