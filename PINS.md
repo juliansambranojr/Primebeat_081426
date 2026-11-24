@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block R13 of `design/runs.md`: `Stage3/NoHoles.lean`
+
+    DONE        `moebius_floor_inversion`; `psi_by_integers`: the staircase
+                is the Möbius-signed sum of the integers' log-factorials at
+                the scales N/k; `log_factorial_close`: each log-factorial is
+                its smooth part within a log; `holes_resid`: the residual
+                split into the smooth part's sum and the integers' errors;
+                the stopping step named; one unit
+    ASSUMED     Julian, 2026-11-24: "Do it": use that the integers have no
+                holes to bound the residual. Built by one worker
+    DEPENDS     `SelfBound.self_bound`, Mathlib's Möbius and Stirling
+    OUT         the square-root bound, if the Möbius signs are needed for it
+
 ### 2026-11-23 · block J11 of `design/closedloop.md`: `Stage3/WholeChain.lean`
 
     DONE        `whole_chain` names the channel; `table_side` names the

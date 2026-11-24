@@ -248,3 +248,28 @@ The first number no earlier prime divides is prime.
 
 Not derived: idempotence fixes which numbers are left; it gives no size for
 the roundings `⌊N/p⌋` the counts carry.
+
+## R13 The integers have no holes — `Stage3/NoHoles.lean`
+
+Julian, 2026-11-24, "Do it": a made-up prime system (Beurling) can sieve
+idempotently and still have zeros off the line; what the real primes have is
+the integers 1, 2, 3, … with nothing missing. Use it.
+
+`SelfBound.self_bound`: `Σ_{k≤N} ψ(N/k) = log N!`. Inverted by the Möbius
+signs: `ψ(N) = Σ_{k≤N} μ(k)·log⌊N/k⌋!`. The integers enter only through
+`log M!`, which is `M log M − M` within a logarithm (no holes, an error of
+size `log M` at every `M`). So
+
+    ψ(N) = Σ_{k≤N} μ(k)·S(N/k) + Σ_{k≤N} μ(k)·e(N/k),
+    S(M) = M log M − M,   |e(M)| ≤ C·(log M + 1).
+
+- `moebius_floor_inversion`: `F(M) = Σ_{j≤M} f(⌊M/j⌋)` gives
+  `Σ_{k≤N} μ(k)·F(⌊N/k⌋) = f(N)`.
+- `psi_by_integers`, `log_factorial_close`, `holes_resid`.
+
+**The size of what is added.** The second sum has `N` terms, each at most a
+logarithm, with signs `μ(k)`. Without the signs cancelling, its bound is
+`N·log N`: a factor `N/√N` lost, growing with `N`. By the rule on a lost
+factor this is a design failure of the route unless the signs cancel. The
+cancellation is the Möbius string `μ(1), μ(2), …` in `{−1, 0, 1}` staying
+within `√N`, Mertens' statement.
