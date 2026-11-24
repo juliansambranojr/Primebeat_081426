@@ -834,3 +834,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-15  entry 1: O3/O4/05/06/O8/O9 unpreregistered — exploratory, not verdicts
 - [open]   2026-11-24  S4 PROVED (unit 0508, `ResidueRoute`): under H, a zero right of sigma whose mode is isolated in K sigma and on the frontier of the component of 0 in the small disc less K sigma gives False (`isolated_boundary_mode_false`). Accumulating modes and H itself are not proved.
 - [open]   2026-11-24  S5 PROVED (unit 0509, `LadderAssembly`): H, and off the line an attained top real part with an isolated mode, give RiemannHypothesis (`rh_of_ladder_tame`). Open: a top real part never attained, an attained top mode others accumulate on, and H.
+- [open]   2026-11-24  Decision (unit 0510): `rh_of_ladder_tame` (0509) is weaker than `attained_psi` (0467); the attained case, crowded or not, was closed. The open arrangement on the ladder route is creeping alone, plus H.

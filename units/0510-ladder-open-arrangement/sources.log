@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-24T15:55:40Z
+# unit: 0510-ladder-open-arrangement
+# sources searched: 54
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:60039
+  Do you want a decision unit recording that 0509 is weaker than 0467, and that the open arrangement i...
+
+# 2 found, 0 missing
