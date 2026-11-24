@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1c: `Stage3/LevinsonTurn.lean`
+
+    DONE        `lift_turn_eq_integral` (for F differentiable and nonvanishing
+                along the line segment, a continuous argument's turning
+                φ b − φ a equals Re ∫_a^b (logDeriv F)(1/2 + it) dt), the split
+                for F = Gammaℝ·G into the Gammaℝ part and the G part, and
+                `G_turn_eq` (the G part equals −2π·(zeros of G in the rectangle
+                [1/2, w.re]×[a,b], with order) plus the right-edge and
+                horizontal terms, from `Littlewood.two_pi_count_eq` at σ = 1/2);
+                one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0520 and start step 1c). The
+                error terms stay explicit integrals; their O(log T) bounds are
+                step 1d
+    DEPENDS     `LevinsonArg`, `Littlewood.two_pi_count_eq`
+    OUT         the O(log T) bounds (step 1d); θ(T) against N(T); steps 2–6
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1b: `Stage3/LevinsonArg.lean`
 
     DONE        `exists_arg_lift` (a continuous nonvanishing F on [a,b] has a

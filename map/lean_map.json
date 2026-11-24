@@ -38266,6 +38266,7 @@
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
@@ -45473,6 +45474,270 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonArg.lean",
+  "module": "Stage3.LevinsonArg",
+  "stem": "LevinsonArg",
+  "header": "LevinsonArg — block S11 of `lean_stage3/design/stencil.md`, step 1b. 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonLine",
+   "Stage3.LineCount"
+  ],
+  "opens": [
+   "Complex",
+   "Kadiri",
+   "LineCount"
+  ],
+  "namespaces": [
+   "LevinsonArg"
+  ],
+  "lines": 309,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonLine.lean",
+   "lean_stage3/Stage3/LineCount.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "lineF",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.lineF",
+    "line": 47,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_log_lift",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.exists_log_lift",
+    "line": 53,
+    "why": "A continuous nonvanishing `F` on `[a, b]` has a continuous logarithm there.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hc : ContinuousOn F (Set.Icc a b)",
+     "hne : ∀ t ∈ Set.Icc a b, F t ≠ 0"
+    ],
+    "proves": "∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, Complex.exp (L t) = F t",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_log_lift",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_arg_lift",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.exists_arg_lift",
+    "line": 114,
+    "why": "Target 1. A continuous nonvanishing `F` on `[a, b]` has a continuous argument there: `F t = ‖F t‖ · exp(i φ t)`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hc : ContinuousOn F (Set.Icc a b)",
+     "hne : ∀ t ∈ Set.Icc a b, F t ≠ 0"
+    ],
+    "proves": "∃ φ : ℝ → ℝ, ContinuousOn φ (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, F t = ‖F t‖ * Complex.exp (φ t * Complex.I)",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_log_lift"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_log_lift"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "crossings_of_le",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.crossings_of_le",
+    "line": 126,
+    "why": "The increasing case of `crossings_of_arg`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hc : ContinuousOn φ (Set.Icc a b)",
+     "k : ℕ",
+     "hk : (k : ℝ) * Real.pi ≤ φ b - φ a"
+    ],
+    "proves": "∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "crossings_of_arg",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.crossings_of_arg",
+    "line": 193,
+    "why": "Target 2. If a continuous `φ` moves by at least `kπ` across `[a, b]`, then `cos φ` vanishes at `k` strictly increasing points of `[a, b]`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hc : ContinuousOn φ (Set.Icc a b)",
+     "k : ℕ",
+     "hk : (k : ℝ) * Real.pi ≤ |φ b - φ a|"
+    ],
+    "proves": "∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_lineF",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.continuous_lineF",
+    "line": 210,
+    "why": "Levinson's function is continuous on the line.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ"
+    ],
+    "proves": "Continuous (lineF c)",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "distinct_line_zeros_le_lineCount",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.distinct_line_zeros_le_lineCount",
+    "line": 234,
+    "why": "`k` distinct heights in `(0, T]` carrying zeros of `ζ` on the line give at least `k` zeros on the line up to height `T`, with multiplicity (the counting step of `LineCount.signChanges_le_line_count`, re-proved for an injective family).",
+    "sorry": false,
+    "needs": [
+     "γ : Fin k → ℝ",
+     "hinj : Function.Injective γ",
+     "hpos : ∀ i, 0 < γ i",
+     "hT : ∀ i, γ i ≤ T",
+     "hζ : ∀ i, riemannZeta (1/2 + γ i * I) = 0"
+    ],
+    "proves": "(k : ℤ) ≤ lineCount T",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineCount_ge_arg",
+    "ns": "LevinsonArg",
+    "full": "LevinsonArg.lineCount_ge_arg",
+    "line": 274,
+    "why": "Target 3. If a continuous argument `φ` of `Gammaℝ · (ζ + c ζ')` along `[1/2 + a i, 1/2 + b i]` moves by at least `kπ`, and the real factor `1 − c · Re(Gammaℝ'/Gammaℝ)` does not vanish there, then at least `k` zeros of `ζ` lie on the line up to height `T ≥ b`, with multiplicity.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a",
+     "hab : a ≤ b",
+     "hbT : b ≤ T",
+     "hfac : ∀ t ∈ Set.Icc a b, 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, lineF c t = ‖lineF c t‖ * Complex.exp (φ t * Complex.I)",
+     "hk : (k : ℝ) * Real.pi ≤ |φ b - φ a|"
+    ],
+    "proves": "(k : ℤ) ≤ lineCount T",
+    "file": "lean_stage3/Stage3/LevinsonArg.lean",
+    "id": "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LevinsonLine.lean",
   "module": "Stage3.LevinsonLine",
   "stem": "LevinsonLine",
@@ -45518,6 +45783,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
@@ -45658,7 +45924,9 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+    ]
    }
   ]
  },
@@ -48030,6 +48298,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
@@ -48089,6 +48358,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
@@ -48116,6 +48387,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
     ]
@@ -94782,11 +95054,12 @@
    "Stage3.HardyZ",
    "Stage3.LineCount",
    "Stage3.Littlewood",
-   "Stage3.LevinsonLine"
+   "Stage3.LevinsonLine",
+   "Stage3.LevinsonArg"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 214,
+  "lines": 215,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -94864,6 +95137,7 @@
    "lean_stage3/Stage3/LandauZeroSide.lean",
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
+   "lean_stage3/Stage3/LevinsonArg.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",

@@ -7,7 +7,7 @@ LevinsonLine — block S11 of `lean_stage3/design/stencil.md`, step 1a. 2026-11-
 6 theorems, 0 definitions, 161 lines. 
 
 **Imports:** [`HardyZ`](../lean_stage3/HardyZ.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonArg`](../lean_stage3/LevinsonArg.md)
 
 ## The picture
 
@@ -18,14 +18,17 @@ flowchart LR
   n2["<b>differentiableAt_Gammaℝ ■</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::cnt
   n3["<b>deriv_completedZeta_eq</b><br/>deriv completedRiemannZeta s = deriv Gammaℝ s * riemannZeta s + …"]:::thm
   n4["<b>re_gammaR_G_line</b><br/>(Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv r…"]:::thm
-  n5["<b>zeta_line_zero_iff ■</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
+  n5["<b>zeta_line_zero_iff</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
   x0(["<b>HardyZ</b><br/>re_line<br/>xi_line_real"]):::ext
+  x1(["<b>LevinsonArg</b><br/>continuous_lineF<br/>lineCount_ge_arg"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
   n1 --> n4
   n3 --> n4
   n4 --> n5
+  n0 -.-> x1
+  n5 -.-> x1
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n4
@@ -67,8 +70,9 @@ line 30 · arrows read from text
 
   - [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) (HardyZ) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`LevinsonArg.continuous_lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-continuous_lineF) (LevinsonArg) — `` Continuous (lineF c) ``
   - [`LevinsonLine.deriv_xi_line_im`](#LevinsonLine-deriv_xi_line_im) — `` (deriv completedRiemannZeta (1/2 + t * I)).re = 0 ``
   - [`LevinsonLine.re_gammaR_G_line`](#LevinsonLine-re_gammaR_G_line) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (de… ``
   - [`LevinsonLine.zeta_line_zero_iff`](#LevinsonLine-zeta_line_zero_iff) — `` riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0 ``
@@ -206,5 +210,7 @@ riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + 
   - [`LevinsonLine.line_facts`](#LevinsonLine-line_facts) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LevinsonLine.re_gammaR_G_line`](#LevinsonLine-re_gammaR_G_line) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (de… ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg) (LevinsonArg) — `` (k : ℤ) ≤ lineCount T ``
 

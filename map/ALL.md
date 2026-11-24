@@ -357,6 +357,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.continuous_f2`](./lean_stage3/WeilPower.md#WeilPower-continuous_f2) | theorem | shape | `WeilPower` | Continuous (f2 k) |
 | [`ZeroSquares.continuous_innerI`](./lean_stage3/ZeroSquares.md#ZeroSquares-continuous_innerI) | theorem | reads ζ | `ZeroSquares` | Continuous (innerI X a b) |
 | [`CountModes.continuous_integrand`](./lean_stage3/CountModes.md#CountModes-continuous_integrand) | theorem | shape | `CountModes` | Continuous (fun s : ℝ =&gt; Complex.exp ((k:ℂ) * (w - s)) / (w - s)) |
+| [`LevinsonArg.continuous_lineF`](./lean_stage3/LevinsonArg.md#LevinsonArg-continuous_lineF) | theorem | reads ζ | `LevinsonArg` | Continuous (lineF c) |
 | [`LeftSmooth.continuous_logDeriv_path`](./lean_stage3/LeftSmooth.md#LeftSmooth-continuous_logDeriv_path) | theorem | reads ζ | `LeftSmooth` | Continuous fun t =&gt; deriv riemannZeta (p t) / riemannZeta (p t) |
 | [`WeilWindow.continuous_P`](./lean_stage3/WeilWindow.md#WeilWindow-continuous_P) | theorem | shape | `WeilWindow` | Continuous P |
 | [`Stage3.continuous_phasePoint`](./lean_stage3/Stirling.md#Stage3-continuous_phasePoint) | theorem | reads ζ | `Stirling` | Continuous phasePoint |
@@ -426,6 +427,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.cQ`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cQ) | def | shape | `WeilPowerCompare` | ℝ |
 | [`WeilPowerCompare.cQ_pos`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cQ_pos) | theorem | shape | `WeilPowerCompare` | 0 &lt; cQ m |
 | [`Transform.critical_circle_is_lattice_inversion_mean`](./lean/Transform.md#Transform-critical_circle_is_lattice_inversion_mean) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2)) ^ 2 |
+| [`LevinsonArg.crossings_of_arg`](./lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_arg) | theorem | shape | `LevinsonArg` | ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 |
+| [`LevinsonArg.crossings_of_le`](./lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_le) | theorem | shape | `LevinsonArg` | ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 |
 | [`WeilOddPower.cS`](./lean_stage3/WeilOddPower.md#WeilOddPower-cS) | def | shape | `WeilOddPower` | ℝ |
 | [`WeilOddPower.cS_eq`](./lean_stage3/WeilOddPower.md#WeilOddPower-cS_eq) | theorem | shape | `WeilOddPower` | cS m * (((m : ℝ) + 1) * Real.pi) = 2 * cK (m + 1) |
 | [`WeilPowerBands.cS_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cS_le) | theorem | shape | `WeilPowerBands` | cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1) |
@@ -505,6 +508,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DirichletMean.dirichlet_mean_value_window`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_window) | theorem | shape | `DirichletMean` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
 | [`SquareMean.disc_sq_mean`](./lean_stage3/SquareMean.md#SquareMean-disc_sq_mean) | theorem | shape | `SquareMean` | π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ z, (ball c δ).indicator (fun z =&gt; ‖f z‖ ^ 2) z |
 | [`WeilSeries.dist_ge`](./lean_stage3/WeilSeries.md#WeilSeries-dist_ge) | theorem | shape | `WeilSeries` | 9 / 5 * \|(idx t : ℝ) - (idx γ : ℝ)\| - 9 / 5 ≤ \|t - γ\| |
+| [`LevinsonArg.distinct_line_zeros_le_lineCount`](./lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount) | theorem | reads ζ | `LevinsonArg` | (k : ℤ) ≤ lineCount T |
 | [`ContourShift.div_sub_eq_dslope`](./lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) | theorem | shape | `ContourShift` | f s / (s - p) = f p / (s - p) + dslope f p s |
 | [`Littlewood.divisor_eq`](./lean_stage3/Littlewood.md#Littlewood-divisor_eq) | theorem | counting | `Littlewood` | MeromorphicOn.divisor f U p = MeromorphicOn.divisor f (Rectangle z w) p |
 | [`Glue.Dln`](./lean_stage3/GlueNum.md#Glue-Dln) | def | reads ζ | `GlueNum` | ℝ |
@@ -578,6 +582,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.Eup`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-Eup) | def | shape | `WeilPowerCompare` | ℝ |
 | [`FilterAccum.eval_qP`](./lean_stage3/FilterAccum.md#FilterAccum-eval_qP) | theorem | counting | `FilterAccum` | (qP P).eval w = ∏ p ∈ P, (w - p⁻¹) |
 | [`FilterAccum.eval_qP_ne_zero`](./lean_stage3/FilterAccum.md#FilterAccum-eval_qP_ne_zero) | theorem | counting | `FilterAccum` | (qP P).eval z⁻¹ ≠ 0 |
+| [`LevinsonArg.exists_arg_lift`](./lean_stage3/LevinsonArg.md#LevinsonArg-exists_arg_lift) | theorem | shape | `LevinsonArg` | ∃ φ : ℝ → ℝ, ContinuousOn φ (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, F t = ‖F t‖ * Complex.exp (φ t * Complex.I) |
 | [`FilterAccum.exists_b`](./lean_stage3/FilterAccum.md#FilterAccum-exists_b) | theorem | counting | `FilterAccum` | ∃ b : ℕ, q.natDegree &lt; b ∧ W &lt; c * r ^ b |
 | [`LandauRates.exists_centre`](./lean_stage3/LandauRates.md#LandauRates-exists_centre) | theorem | shape | `LandauRates` | ∃ σ₀ : ℝ, 1 &lt; σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ &lt; σ₀ - θ ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240) |
 | [`WeilPowerClean.exists_clean_shell`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-exists_clean_shell) | theorem | shape | `WeilPowerClean` | ∃ k, k &lt; K ∧ ∀ j ∈ S, k ∉ B j |
@@ -588,6 +593,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauZeroSide.exists_gap`](./lean_stage3/LandauZeroSide.md#LandauZeroSide-exists_gap) | theorem | shape | `LandauZeroSide` | ∃ R₂ : ℝ, r &lt; R₂ ∧ R₂ ≤ R₃ ∧ ∀ ρ ∈ F, ‖c - ρ‖ &lt; R₂ → ‖c - ρ‖ ≤ r |
 | [`ArgCount.exists_good_below`](./lean_stage3/ArgCount.md#ArgCount-exists_good_below) | theorem | reads ζ | `ArgCount` | ∃ T : ℝ, a &lt; T ∧ T &lt; T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False |
 | [`LandauTrig.exists_large_in_block`](./lean_stage3/LandauTrig.md#LandauTrig-exists_large_in_block) | theorem | shape | `LandauTrig` | ∃ τ : ℝ, 0 &lt; τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N → ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n |
+| [`LevinsonArg.exists_log_lift`](./lean_stage3/LevinsonArg.md#LevinsonArg-exists_log_lift) | theorem | shape | `LevinsonArg` | ∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, Complex.exp (L t) = F t |
 | [`Covering.exists_near_lattice`](./lean/Covering.md#Covering-exists_near_lattice) | theorem | shape | `Covering` | ∃ n : ℤ, \|u - n * L\| ≤ L / 2 |
 | [`LandauRates.exists_pow_small`](./lean_stage3/LandauRates.md#LandauRates-exists_pow_small) | theorem | shape | `LandauRates` | ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k &lt; ε |
 | [`WeilPowerCount.exists_range_log`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-exists_range_log) | theorem | shape | `WeilPowerCount` | ∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L → (c₁ * M + c₂) * ((W : ℝ) + 1) * lρ + E ≤ L |
@@ -1056,7 +1062,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | reads ζ | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
 | [`LadderMean.line_not_fading_summable`](./lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) | theorem | reads ζ | `LadderMean` | ¬ Tendsto (fun r : ℕ =&gt; (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop… |
 | [`LineCount.lineCount`](./lean_stage3/LineCount.md#LineCount-lineCount) | def | reads ζ | `LineCount` | ℤ |
+| [`LevinsonArg.lineCount_ge_arg`](./lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg) | theorem | reads ζ | `LevinsonArg` | (k : ℤ) ≤ lineCount T |
 | [`LineCount.lineCount_le_allCount`](./lean_stage3/LineCount.md#LineCount-lineCount_le_allCount) | theorem | reads ζ | `LineCount` | lineCount T ≤ allCount T |
+| [`LevinsonArg.lineF`](./lean_stage3/LevinsonArg.md#LevinsonArg-lineF) | def | reads ζ | `LevinsonArg` | ℂ |
 | [`AttainedPi.lineSet`](./lean_stage3/AttainedPi.md#AttainedPi-lineSet) | def | reads ζ | `AttainedPi` | Set NontrivialZeros |
 | [`Interpolant.liRow`](./lean/Interpolant.md#Interpolant-liRow) | def | shape | `Interpolant` | ℝ |
 | [`Interpolant.liRow_contDiff`](./lean/Interpolant.md#Interpolant-liRow_contDiff) | theorem | shape | `Interpolant` | ContDiff ℝ (⊤ : ℕ∞) liRow |
