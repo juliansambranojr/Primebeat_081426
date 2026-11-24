@@ -7,7 +7,7 @@ CountModes — block N1 of `lean_stage3/design/countmodes.md`, as corrected in i
 29 theorems, 2 definitions, 513 lines. 
 
 **Imports:** [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`LineCount`](../lean_stage3/LineCount.md)
 
 ## The picture
 
@@ -44,6 +44,7 @@ flowchart LR
   n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
   x0(["<b>CountEuler</b><br/>10 theorems"]):::ext
   x1(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
+  x2(["<b>LineCount</b><br/>rh_iff_line_count"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n12
@@ -79,6 +80,7 @@ flowchart LR
   n9 --> n12
   n2 -.-> x0
   n2 -.-> x1
+  n2 -.-> x2
   n21 -.-> x0
   n23 -.-> x0
   n24 -.-> x1
@@ -200,7 +202,7 @@ line 125 · arrows read from text
 
   - [`CountModes.riemannZeta_ne_zero_of_Ioo`](#CountModes-riemannZeta_ne_zero_of_Ioo) — `` riemannZeta (b : ℂ) ≠ 0 ``
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
   - [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) (CountEuler) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
   - [`CountModes.norm_cst_le`](#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
@@ -209,6 +211,7 @@ line 125 · arrows read from text
   - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le) (CountReduction) — `` |(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹ ``
   - [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) (CountReduction) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ… ``
+  - [`LineCount.rh_iff_line_count`](../lean_stage3/LineCount.md#LineCount-rh_iff_line_count) (LineCount) — `` RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T ``
 
 <a name="CountModes-sub_ofReal_ne_zero"></a>
 ### `CountModes.sub_ofReal_ne_zero`

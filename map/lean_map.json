@@ -23948,6 +23948,7 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
@@ -27601,7 +27602,8 @@
      "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
      "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
-     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
     ]
    },
    {
@@ -38263,7 +38265,9 @@
     "used_by": [
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
-     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
    },
    {
@@ -38292,7 +38296,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line"
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
    },
    {
@@ -38317,7 +38322,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line"
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
    },
    {
@@ -47777,6 +47783,301 @@
     "used_by": [
      "lean_stage3/Stage3/VonKochScaffold.lean::VonKoch.RH_iff_psiWeak"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LineCount.lean",
+  "module": "Stage3.LineCount",
+  "stem": "LineCount",
+  "header": "LineCount — block S10 of `lean_stage3/design/stencil.md`, step 3. 2026-11-24. The count up to height `T` is a finite sum of `riemannZeta.order` over the nontrivial zeros with `0 < Im ρ ≤ T` (the set is finite by `Kadiri.nontrivialZeros_abs_im_lt_finite`); the line count is the same sum over the zeros with `Re ρ = 1/2`. No continuous phase `θ` and no `S(T)` are defined.",
+  "imports": [
+   "Stage3.HardyZ",
+   "Stage3.ClosedLoopJoin",
+   "Stage3.CountModes"
+  ],
+  "opens": [
+   "Classical",
+   "Complex",
+   "ComplexConjugate",
+   "Kadiri"
+  ],
+  "namespaces": [
+   "LineCount"
+  ],
+  "lines": 224,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopJoin.lean",
+   "lean_stage3/Stage3/CountModes.lean",
+   "lean_stage3/Stage3/HardyZ.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "zerosUpTo",
+    "ns": "LineCount",
+    "full": "LineCount.zerosUpTo",
+    "line": 50,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "Finset NontrivialZeros",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "allCount",
+    "ns": "LineCount",
+    "full": "LineCount.allCount",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℤ",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "lineCount",
+    "ns": "LineCount",
+    "full": "LineCount.lineCount",
+    "line": 61,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℤ",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mem_zerosUpTo",
+    "ns": "LineCount",
+    "full": "LineCount.mem_zerosUpTo",
+    "line": 67,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ρ ∈ zerosUpTo T ↔ 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "strictSignChange_zero_on_line",
+    "ns": "LineCount",
+    "full": "LineCount.strictSignChange_zero_on_line",
+    "line": 80,
+    "why": "A strict sign change of `t ↦ Λ(1/2 + t i)` on `[t₁, t₂]` gives a zero of `ζ` on the line at height in the open interval `(t₁, t₂)`.",
+    "sorry": false,
+    "needs": [
+     "h : t₁ < t₂",
+     "hs : (completedRiemannZeta (1/2 + t₁ * I)).re * (completedRiemannZeta (1/2 + t₂ * I)).re < 0"
+    ],
+    "proves": "∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conj_mem",
+    "ns": "LineCount",
+    "full": "LineCount.conj_mem",
+    "line": 103,
+    "why": "The conjugate of a nontrivial zero is a nontrivial zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "conj (ρ : ℂ) ∈ NontrivialZeros",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.conj_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineCount_le_allCount",
+    "ns": "LineCount",
+    "full": "LineCount.lineCount_le_allCount",
+    "line": 110,
+    "why": "Line count below the count.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "lineCount T ≤ allCount T",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_line_count",
+    "ns": "LineCount",
+    "full": "LineCount.rh_iff_line_count",
+    "line": 117,
+    "why": "RH is the line count. RH holds exactly when, at every height, the zeros on the line with multiplicity number all the nontrivial zeros.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.conj_mem",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.conj_mem",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "signChanges_le_line_count",
+    "ns": "LineCount",
+    "full": "LineCount.signChanges_le_line_count",
+    "line": 155,
+    "why": "Sign changes give zeros on the line. `k` strict sign changes of `t ↦ Λ(1/2 + t i)` on consecutive intervals of a strictly increasing sequence in `(0, T]` give at least `k` zeros on the line up to height `T`, with multiplicity.",
+    "sorry": false,
+    "needs": [
+     "t : Fin (k + 1) → ℝ",
+     "hmono : StrictMono t",
+     "h0 : 0 < t 0",
+     "hT : t (Fin.last k) ≤ T",
+     "hs : ∀ i : Fin k, (completedRiemannZeta (1/2 + t i.castSucc * I)).re * (completedRiemannZeta (1/2 + t i.succ * I)).re < 0"
+    ],
+    "proves": "(k : ℤ) ≤ lineCount T",
+    "file": "lean_stage3/Stage3/LineCount.lean",
+    "id": "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -93382,11 +93683,12 @@
    "Stage3.ResidueRoute",
    "Stage3.LadderAssembly",
    "Stage3.ReachRoute",
-   "Stage3.HardyZ"
+   "Stage3.HardyZ",
+   "Stage3.LineCount"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 211,
+  "lines": 212,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -93465,6 +93767,7 @@
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LineBound.lean",
+   "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/MirrorArea.lean",
