@@ -454,3 +454,45 @@ come to the alias lattice, `(γ − γ')·log 2 ≈ 2πn`, every route loses
 `δ_band(T) ≥ T^(−a)`, round 3 (b) closes the wall at every `T` whose creep is
 below `T^(−a)·log T/√N_band(T)`. The design question for the wall is now that
 separation, a property of the zeros of ζ (unit 0431).
+
+## S8 The lens ladder — on paper, no Lean target yet
+
+Julian, 2026-11-24: couple the bases, because the tables run from dyadic to
+enneadic. On paper, here, unchecked by anyone else.
+
+**One base at a time.** Only 2, 3, 5 and 7 carry new information. 4, 8 and 9
+are powers of 2 and 3, so their ladders are sub-samples of those. On its own
+ladder each base has its own alias lattice `2π/log b` and its own wall. The
+wall survives as long as some pair of top zeros sits near each base's
+lattice, and different pairs can serve different bases.
+
+**Coupled.** Sample `ψ` on `2^a·3^b`. A zero's mode is `(2^ρ, 3^ρ)`. Two zeros
+share it only if `γ − γ'` lies in `(2π/log 2)ℤ ∩ (2π/log 3)ℤ = {0}`, so every
+alias class is a single zero. A pair near the lattice in both coordinates
+needs `|n·log 3 − n'·log 2|` tiny with `n, n'` of the order of `T`. Linear
+forms in logarithms, through the finite irrationality measure of
+`log 3/log 2`, bound it below by `c·T^(−A)`. That is the separation unit 0512
+asked for, with no assumption on the zeros. It is not in Mathlib. The
+elementary bound `|log(3^n/2^m)| ≥ 1/max(3^n, 2^m)` is exponentially small
+and gives the exponential loss back.
+
+**The creep.** `Θ − β_max(T)` belongs to the zeros and is the same through
+every lens. Its cost is `x^(creep)` over the range of `x` the argument must
+read, and that range falls as bases are added. Worst case, at any fixed
+finite set of bases, the separation is Baker's `T^(−A)` and a slow creep
+escapes.
+
+**The end of the ladder.** Add every prime and the grid is every integer.
+The hypothesis is then the square-root bound for `ψ(x)` at every `x`, the
+staircase in the square-root frame, which the tree has as RH-equivalent:
+`Readings.wire_holds_iff` (`SpiralLink ↔ Saddle.NoRunaway`). There Landau's
+argument reads `x` continuously and the creep costs nothing.
+
+**What it shows.** Every route closes through a face equivalent to RH: the
+lens ladder, the thirteen doors of `map/ROAD.md`, the faces
+`spiralLink_iff_*`. Equivalence connects the faces, and it does not supply a
+proof. A proof needs one face derived from facts about ζ proved
+independently of RH. Those already in the tree include the zero density
+bound (`ZeroDensity`) and the zero counting (`Backlund`), and the next step
+is to list them all. The design question for the ladder route is now which
+of those facts, put in place of H, reaches a face.
