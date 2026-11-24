@@ -38180,6 +38180,180 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/HardyZ.lean",
+  "module": "Stage3.HardyZ",
+  "stem": "HardyZ",
+  "header": "HardyZ — block S10 of `lean_stage3/design/stencil.md`, steps 1 and 2. 2026-11-24.",
+  "imports": [],
+  "opens": [
+   "Complex",
+   "ComplexConjugate"
+  ],
+  "namespaces": [
+   "HardyZ"
+  ],
+  "lines": 128,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "Gammaℝ_conj",
+    "ns": "HardyZ",
+    "full": "HardyZ.Gammaℝ_conj",
+    "line": 35,
+    "why": "`Gammaℝ` commutes with conjugation.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "Gammaℝ (conj s) = conj (Gammaℝ s)",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.Gammaℝ_conj",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "completedRiemannZeta_conj_of_re_pos",
+    "ns": "HardyZ",
+    "full": "HardyZ.completedRiemannZeta_conj_of_re_pos",
+    "line": 48,
+    "why": "Conjugation. Right of zero, `Λ (conj s) = conj (Λ s)`, from `ζ`'s conjugation and `ζ = Λ / Gammaℝ`.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re"
+    ],
+    "proves": "completedRiemannZeta (conj s) = conj (completedRiemannZeta s)",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.completedRiemannZeta_conj_of_re_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_line",
+    "ns": "HardyZ",
+    "full": "HardyZ.re_line",
+    "line": 62,
+    "why": "The point `1/2 + t i` of the critical line has real part one half.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "((1 / 2 : ℂ) + t * I).re = 1 / 2",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "xi_line_real",
+    "ns": "HardyZ",
+    "full": "HardyZ.xi_line_real",
+    "line": 66,
+    "why": "Step 1. `Λ` is real on the critical line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(completedRiemannZeta (1/2 + t * Complex.I)).im = 0",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.completedRiemannZeta_conj_of_re_pos",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.completedRiemannZeta_conj_of_re_pos",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_xi_line",
+    "ns": "HardyZ",
+    "full": "HardyZ.continuous_xi_line",
+    "line": 76,
+    "why": "`t ↦ Λ(1/2 + t i)` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I))",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "signChange_zero_on_line",
+    "ns": "HardyZ",
+    "full": "HardyZ.signChange_zero_on_line",
+    "line": 97,
+    "why": "Step 2. A sign change of `t ↦ Λ(1/2 + t i)` on `[t₁, t₂]` gives a zero of `ζ` on the critical line at height in `[t₁, t₂]`.",
+    "sorry": false,
+    "needs": [
+     "h : t₁ ≤ t₂",
+     "hs : (completedRiemannZeta (1/2 + t₁ * I)).re * (completedRiemannZeta (1/2 + t₂ * I)).re ≤ 0"
+    ],
+    "proves": "∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0",
+    "file": "lean_stage3/Stage3/HardyZ.lean",
+    "id": "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/HolyChannel.lean",
   "module": "Stage3.HolyChannel",
   "stem": "HolyChannel",
@@ -93207,11 +93381,12 @@
    "Stage3.WindowsOfRH",
    "Stage3.ResidueRoute",
    "Stage3.LadderAssembly",
-   "Stage3.ReachRoute"
+   "Stage3.ReachRoute",
+   "Stage3.HardyZ"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 210,
+  "lines": 211,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -93260,6 +93435,7 @@
    "lean_stage3/Stage3/GlueFloor.lean",
    "lean_stage3/Stage3/GlueNum.lean",
    "lean_stage3/Stage3/HalfSieve.lean",
+   "lean_stage3/Stage3/HardyZ.lean",
    "lean_stage3/Stage3/HolyChannel.lean",
    "lean_stage3/Stage3/IndicatorContDiff.lean",
    "lean_stage3/Stage3/JensenCount.lean",
