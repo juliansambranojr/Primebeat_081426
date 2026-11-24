@@ -19,8 +19,9 @@ flowchart LR
   n3["<b>xi_line_real</b><br/>(completedRiemannZeta (1/2 + t * Complex.I)).im = 0"]:::thm
   n4["<b>continuous_xi_line</b><br/>Continuous (fun t : ℝ =＞ completedRiemannZeta (1/2 + t * Complex…"]:::shp
   n5["<b>signChange_zero_on_line ■</b><br/>∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0"]:::thm
-  x0(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
-  x1(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
+  x0(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
+  x1(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
+  x2(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -29,9 +30,10 @@ flowchart LR
   n4 --> n5
   n2 -.-> x0
   n2 -.-> x1
-  n3 -.-> x0
+  n2 -.-> x2
   n3 -.-> x1
-  n4 -.-> x1
+  n3 -.-> x2
+  n4 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -115,11 +117,12 @@ line 62 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`HardyZ.continuous_xi_line`](#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
   - [`HardyZ.xi_line_real`](#HardyZ-xi_line_real) — `` (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 ``
+  - [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount) (LevinsonArg) — `` (k : ℤ) ≤ lineCount T ``
   - [`LevinsonLine.line_facts`](../lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) (LevinsonLine) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LineCount.signChanges_le_line_count`](../lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) (LineCount) — `` (k : ℤ) ≤ lineCount T ``
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``

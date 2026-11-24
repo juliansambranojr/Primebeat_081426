@@ -4,14 +4,17 @@ flowchart LR
   n2["<b>differentiableAt_Gammaℝ ■</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::cnt
   n3["<b>deriv_completedZeta_eq</b><br/>deriv completedRiemannZeta s = deriv Gammaℝ s * riemannZeta s + …"]:::thm
   n4["<b>re_gammaR_G_line</b><br/>(Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv r…"]:::thm
-  n5["<b>zeta_line_zero_iff ■</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
+  n5["<b>zeta_line_zero_iff</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
   x0(["<b>HardyZ</b><br/>re_line<br/>xi_line_real"]):::ext
+  x1(["<b>LevinsonArg</b><br/>continuous_lineF<br/>lineCount_ge_arg"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
   n1 --> n4
   n3 --> n4
   n4 --> n5
+  n0 -.-> x1
+  n5 -.-> x1
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n4
