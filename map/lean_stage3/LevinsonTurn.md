@@ -21,12 +21,13 @@ flowchart LR
   n5["<b>continuousOn_logDeriv_line</b><br/>ContinuousOn (fun t : ℝ =＞ logDeriv f (1/2 + t * I)) S"]:::cnt
   n6["<b>analyticAt_Gammaℝ ■</b><br/>AnalyticAt ℂ Gammaℝ s"]:::shp
   n7["<b>turn_split</b><br/>(∫ t in a..b, logDeriv (fun s =＞ Gammaℝ s * G s) (1/2 + t * I)).…"]:::shp
-  n8["<b>lineF_turn_eq ■</b><br/>φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫…"]:::thm
+  n8["<b>lineF_turn_eq</b><br/>φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫…"]:::thm
   n9["<b>countRight_left_eq ■</b><br/>Littlewood.countRight f z w z.re = ∑ p ∈ (divisor_support_rectan…"]:::shp
-  n10["<b>G_turn_eq ■</b><br/>(∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Lit…"]:::shp
+  n10["<b>G_turn_eq</b><br/>(∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Lit…"]:::shp
   x0(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>right_edge_le"]):::ext
   x1(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
   x2(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x3(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
   n0 --> n1
   n1 --> n4
   n2 --> n4
@@ -34,7 +35,9 @@ flowchart LR
   n5 --> n7
   n7 --> n8
   n1 -.-> x0
+  n10 -.-> x3
   n3 -.-> x0
+  n8 -.-> x3
   x1 -.-> n10
   x1 -.-> n5
   x1 -.-> n9
@@ -303,7 +306,9 @@ line 260 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonArg.lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineF)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonTurn-countRight_left_eq"></a>
 ### `LevinsonTurn.countRight_left_eq`
@@ -364,5 +369,7 @@ line 308 · arrows read from text
 
 **Definitions its proof touches:** [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 

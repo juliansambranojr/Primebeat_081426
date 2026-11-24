@@ -163,6 +163,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellFixedRow.Bleft_nonneg`](./lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg) | theorem | reads ζ | `CellFixedRow` | 0 ≤ LeftSmooth.Bleft |
 | [`WeilPowerClean.blocked_card_le`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-blocked_card_le) | theorem | shape | `WeilPowerClean` | B.card ≤ W + 1 |
 | [`ContourShift.borderIntegrable_sum_poles`](./lean_stage3/ContourShift.md#ContourShift-borderIntegrable_sum_poles) | theorem | reads ζ | `ContourShift` | RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w |
+| [`LevinsonCount.bottom_mem_border`](./lean_stage3/LevinsonCount.md#LevinsonCount-bottom_mem_border) | theorem | shape | `LevinsonCount` | ((x : ℂ) + a * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) |
 | [`Littlewood.bottom_mem_border`](./lean_stage3/Littlewood.md#Littlewood-bottom_mem_border) | theorem | counting | `Littlewood` | (↑x + ↑z.im * I : ℂ) ∈ RectangleBorder z w |
 | [`LandauTaylor.bound_integrable`](./lean_stage3/LandauTaylor.md#LandauTaylor-bound_integrable) | theorem | shape | `LandauTaylor` | IntegrableOn (fun y : ℝ =&gt; 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1))) (Ioi 1) |
 | [`SeedPerturbation.boundary_can_move`](./lean/SeedPerturbation.md#SeedPerturbation-boundary_can_move) | theorem | counting | `SeedPerturbation` | tableFrom e r d ≠ 0 |
@@ -720,6 +721,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.g`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-g) | def | shape | `WeilPowerGauss` | ℂ |
 | [`WeilTransform.G`](./lean_stage3/WeilTransform.md#WeilTransform-G) | def | shape | `WeilTransform` | ℝ |
 | [`LevinsonEdge.G_analyticAt`](./lean_stage3/LevinsonEdge.md#LevinsonEdge-G_analyticAt) | theorem | reads ζ | `LevinsonEdge` | AnalyticAt ℂ (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) w |
+| [`LevinsonCount.G_analyticOnNhd_rect`](./lean_stage3/LevinsonCount.md#LevinsonCount-G_analyticOnNhd_rect) | theorem | reads ζ | `LevinsonCount` | AnalyticOnNhd ℂ (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)) |
 | [`LevinsonEdge.G_disc_le`](./lean_stage3/LevinsonEdge.md#LevinsonEdge-G_disc_le) | theorem | reads ζ | `LevinsonEdge` | ‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 36 * T + 225 |
 | [`WeilPowerPhase.g_eq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-g_eq) | theorem | shape | `WeilPowerPhase` | g w j = 1 + x w j |
 | [`WindowsOfRH.G_eq`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-G_eq) | theorem | shape | `WindowsOfRH` | LandauWindow.G y = c0 * y + r y |
@@ -1071,8 +1073,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`CompositeSplit.least_prime_fiber`](./lean_stage3/CompositeSplit.md#CompositeSplit-least_prime_fiber) | theorem | counting | `CompositeSplit` | (Icc 2 N).filter (fun n =&gt; n.minFac = p) = ((Icc 1 (N / p)).filter (fun m =&gt; ∀ q : ℕ, q.Prime → q &lt; p → ¬ q ∣ m)).image (fun m =&gt; p * m) |
 | [`LeftSmooth.left_edge_bound`](./lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound) | theorem | reads ζ | `LeftSmooth` | ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) |
 | [`ExplicitTwo.left_edge_bound_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) | theorem | reads ζ | `ExplicitTwo` | ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) |
+| [`LevinsonCount.left_mem_border`](./lean_stage3/LevinsonCount.md#LevinsonCount-left_mem_border) | theorem | shape | `LevinsonCount` | ((1/2 : ℂ) + t * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) |
 | [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) | theorem | counting | `Littlewood` | (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w |
 | [`SieveExact.level_card`](./lean_stage3/SieveExact.md#SieveExact-level_card) | theorem | counting | `SieveExact` | ((smallPrimes N).powersetCard k).card = ((smallPrimes N).card).choose k |
+| [`LevinsonCount.levinson_count`](./lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) | theorem | reads ζ | `LevinsonCount` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
 | [`Stage3.Li`](./lean_stage3/PsiToPi.md#Stage3-Li) | def | shape | `PsiToPi` | ℝ |
 | [`HalfSieve.Li_floor_close`](./lean_stage3/HalfSieve.md#HalfSieve-Li_floor_close) | theorem | shape | `HalfSieve` | \|Stage3.Li x - Stage3.Li (n : ℝ)\| ≤ 2 |
 | [`PiToPsi.Li_mul_log_sub_integral`](./lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral) | theorem | shape | `PiToPsi` | Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x |
@@ -2404,6 +2408,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.tiltF`](./lean_bridge/WeilBridge.md#Bridge-tiltF) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`WeilBridgeLeaf.tiltF`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-tiltF) | def | shape | `WeilBridgeLeaf` | ℝ → ℂ |
 | [`Bridge.tiltF_im`](./lean_bridge/WeilBridge.md#Bridge-tiltF_im) | theorem | shape | `WeilBridge` | (tiltF G u).im = 0 |
+| [`LevinsonCount.top_mem_border`](./lean_stage3/LevinsonCount.md#LevinsonCount-top_mem_border) | theorem | shape | `LevinsonCount` | ((x : ℂ) + b * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) |
 | [`Littlewood.top_mem_border`](./lean_stage3/Littlewood.md#Littlewood-top_mem_border) | theorem | counting | `Littlewood` | (↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w |
 | [`LadderAssembly.top_mode_on_frontier`](./lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier) | theorem | reads ζ | `LadderAssembly` | (2:ℂ) ^ (-(ρ₁ : ℂ)) ∈ frontier (connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ ResidueRoute.K σ) 0) |
 | [`AttainedPi.topRow`](./lean_stage3/AttainedPi.md#AttainedPi-topRow) | def | reads ζ | `AttainedPi` | Finset NontrivialZeros |

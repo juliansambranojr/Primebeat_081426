@@ -105,7 +105,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 137
 
 - **Is:** `` countRight (f : ℂ → ℂ) (z w : ℂ) (σ : ℝ) : ℝ := ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset, if σ < p.re then ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) else 0 ``
-- **Used by 6:** [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
+- **Used by 7:** [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
 
 <a name="Littlewood-edgeH"></a>
 ### `Littlewood.edgeH`
