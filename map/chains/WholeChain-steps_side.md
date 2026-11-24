@@ -1,36 +1,38 @@
-# What `StepsBelow.rain_steps` rests on
+# What `WholeChain.steps_side` rests on
 
-[`StepsBelow.rain_steps`](../lean_stage3/StepsBelow.md#StepsBelow-rain_steps) in `lean_stage3/Stage3/StepsBelow.lean`, line 760.
+[`WholeChain.steps_side`](../lean_stage3/WholeChain.md#WholeChain-steps_side) in `lean_stage3/Stage3/WholeChain.lean`, line 99.
 
-**Why.** The rain comes. At a zero `ρ₀`, the turned steps to a cutoff, less their smooth term, exceed `C·N^δ` at cutoffs beyond any `N₀`, for every `0 ≤ δ < Re ρ₀ − Re s`.
+**Why.** The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.
 
 **Proves**
 
 ```lean
-∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖
+(∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0) ∧ (∀ (ρ₀ : NontrivialZeros) (θ : ℝ), θ < (ρ₀ : ℂ).re → ∀ (C : ℝ) (k : ℕ) (x₀ : ℝ), ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x|) ∧ (∀ (ρ₀ : NontrivialZeros) (s : ℂ), 0 < s.re → (ρ₀ : ℂ) ≠ s → ∀ δ : ℝ, 0 ≤ δ → δ < (ρ₀ : ℂ).re - s.re → ∀ (C : ℝ) (N₀ : ℕ), ∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖)
 ```
 
-**Needs** (its hypotheses)
-
-  - `` ρ₀ : Kadiri.NontrivialZeros ``
-  - `` hs : 0 < s.re ``
-  - `` hne : (ρ₀ : ℂ) ≠ s ``
-  - `` hδ0 : 0 ≤ δ ``
-  - `` hδ : δ < (ρ₀ : ℂ).re - s.re ``
-  - `` C : ℝ ``
-  - `` N₀ : ℕ ``
-
-Behind it: 44 theorems and 14 definitions in 3 files. Every one is listed below; Lean recorded each step.
+Behind it: 69 theorems and 19 definitions in 9 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>StepsPeak</b><br/>7 used"]:::thm
-  f1["<b>StepsPole</b><br/>1 used"]:::thm
-  f2["<b>StepsBelow</b><br/>rain_steps"]:::end_
+  f0["<b>ContourShift</b><br/>2 used"]:::thm
+  f1["<b>StepsPeak</b><br/>7 used"]:::thm
+  f2["<b>StepsPole</b><br/>3 used"]:::thm
+  f3["<b>StepsBelow</b><br/>51 used"]:::thm
+  f4["<b>ThetaPi</b><br/>1 used"]:::thm
+  f5["<b>VonKochScaffold</b><br/>13 used"]:::thm
+  f6["<b>ThetaConverse</b><br/>10 used"]:::thm
+  f7["<b>RateBelow</b><br/>1 used"]:::thm
+  f8["<b>WholeChain</b><br/>steps_side"]:::end_
   f0 --> f2
-  f1 --> f2
+  f1 --> f3
+  f2 --> f3
+  f4 --> f6
+  f5 --> f6
+  f6 --> f7
+  f3 --> f8
+  f7 --> f8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -47,6 +49,11 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
+### [`ContourShift`](../lean_stage3/ContourShift.md) — 2
+
+- [`ContourShift.zeta_analyticAt`](../lean_stage3/ContourShift.md#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
+- [`ContourShift.zeta_order_ne_top`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
+
 ### [`StepsPeak`](../lean_stage3/StepsPeak.md) — 7
 
 - [`StepsPeak.ramp`](../lean_stage3/StepsPeak.md#StepsPeak-ramp) — *def*
@@ -57,11 +64,13 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`StepsPeak.h0_not_mem`](../lean_stage3/StepsPeak.md#StepsPeak-h0_not_mem) — `` (0:ℝ) ∉ Set.uIcc (2:ℝ) N ``
 - [`StepsPeak.K_eq`](../lean_stage3/StepsPeak.md#StepsPeak-K_eq) — `` K N s a = s * ((N:ℂ) ^ (a - s) - 2 ^ (a - s)) / (a - s) - (s - 1) * ((N:ℂ) ^ (a - s + 1) - 2 ^ (a - s + 1)) / ((a - s + 1) * N) ``
 
-### [`StepsPole`](../lean_stage3/StepsPole.md) — 1
+### [`StepsPole`](../lean_stage3/StepsPole.md) — 3
 
 - [`StepsPole.steps_sum`](../lean_stage3/StepsPole.md#StepsPole-steps_sum) — `` LSeries (fun n => (ArithmeticFunction.vonMangoldt n : ℂ)) s = - deriv riemannZeta s / riemannZeta s ``
+- [`StepsPole.order_pos`](../lean_stage3/StepsPole.md#StepsPole-order_pos) — `` 0 < analyticOrderNatAt riemannZeta (ρ : ℂ) ``
+- ★ [`StepsPole.steps_pole_ne_zero`](../lean_stage3/StepsPole.md#StepsPole-steps_pole_ne_zero) — `` -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0 ``
 
-### [`StepsBelow`](../lean_stage3/StepsBelow.md) — 50
+### [`StepsBelow`](../lean_stage3/StepsBelow.md) — 51
 
 - [`StepsBelow.coef`](../lean_stage3/StepsBelow.md#StepsBelow-coef) — *def*
 - [`StepsBelow.tent`](../lean_stage3/StepsBelow.md#StepsBelow-tent) — *def*
@@ -112,5 +121,43 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`StepsBelow.anchor_mem`](../lean_stage3/StepsBelow.md#StepsBelow-anchor_mem) — `` ((max θ X + 1 : ℝ) : ℂ) ∈ Stage3.regionθ θ ∧ X < ((max θ X + 1 : ℝ) : ℂ).re ``
 - [`StepsBelow.eqOn_zero_of_agree`](../lean_stage3/StepsBelow.md#StepsBelow-eqOn_zero_of_agree) — `` Set.EqOn (fun z : ℂ ↦ F z * ζ z + deriv ζ z) 0 (Stage3.regionθ θ) ``
 - [`StepsBelow.zeta_ne_zero_of_agree`](../lean_stage3/StepsBelow.md#StepsBelow-zeta_ne_zero_of_agree) — `` ζ ρ ≠ 0 ``
-- ★ [`StepsBelow.zeta_ne_zero_of_steps_bound`](../lean_stage3/StepsBelow.md#StepsBelow-zeta_ne_zero_of_steps_bound) — `` ζ ρ ≠ 0 ``
+- [`StepsBelow.zeta_ne_zero_of_steps_bound`](../lean_stage3/StepsBelow.md#StepsBelow-zeta_ne_zero_of_steps_bound) — `` ζ ρ ≠ 0 ``
+- ★ [`StepsBelow.rain_steps`](../lean_stage3/StepsBelow.md#StepsBelow-rain_steps) — `` ∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖ ``
+
+### [`ThetaPi`](../lean_stage3/ThetaPi.md) — 1
+
+- [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) — *def*
+
+### [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md) — 13
+
+- [`VonKoch.E`](../lean_stage3/VonKochScaffold.md#VonKoch-E) — *def*
+- [`VonKoch.F`](../lean_stage3/VonKochScaffold.md#VonKoch-F) — *def*
+- [`VonKoch.Etr`](../lean_stage3/VonKochScaffold.md#VonKoch-Etr) — *def*
+- [`VonKoch.measurable_psi'`](../lean_stage3/VonKochScaffold.md#VonKoch-measurable_psi-) — `` Measurable (fun t : ℝ ↦ ψ t) ``
+- [`VonKoch.Etr_measurable`](../lean_stage3/VonKochScaffold.md#VonKoch-Etr_measurable) — `` Measurable Etr ``
+- [`VonKoch.E_le_linear`](../lean_stage3/VonKochScaffold.md#VonKoch-E_le_linear) — `` ‖(E t : ℝ)‖ ≤ (Real.log 4 + 5) * t ``
+- [`VonKoch.E_integral_eq_mellin`](../lean_stage3/VonKochScaffold.md#VonKoch-E_integral_eq_mellin) — `` ∫ x in Set.Ioi (1:ℝ), (E x : ℂ) * (x : ℂ) ^ (-s - 1) = mellin Etr (-s) ``
+- [`VonKoch.Etr_locallyIntegrable`](../lean_stage3/VonKochScaffold.md#VonKoch-Etr_locallyIntegrable) — `` MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0) ``
+- [`VonKoch.sum_Icc_vonMangoldt`](../lean_stage3/VonKochScaffold.md#VonKoch-sum_Icc_vonMangoldt) — `` ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k = ψ n ``
+- [`VonKoch.psi_partial_bigO`](../lean_stage3/VonKochScaffold.md#VonKoch-psi_partial_bigO) — `` (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k) =O[Filter.atTop] fun n : ℕ ↦ (n : ℝ) ^ (1:ℝ) ``
+- [`VonKoch.measurable_psi`](../lean_stage3/VonKochScaffold.md#VonKoch-measurable_psi) — `` Measurable (fun t : ℝ ↦ ψ t) ``
+- [`VonKoch.integrable_psi_cpow`](../lean_stage3/VonKochScaffold.md#VonKoch-integrable_psi_cpow) — `` IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))) (Set.Ioi (1:ℝ)) ``
+- [`VonKoch.F_eq_neg_logDeriv`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv) — `` F s = -deriv riemannZeta s / riemannZeta s ``
+
+### [`ThetaConverse`](../lean_stage3/ThetaConverse.md) — 10
+
+- [`Stage3.regionθ`](../lean_stage3/ThetaConverse.md#Stage3-region-) — *def*
+- [`Stage3.isOpen_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-isOpen_region-) — `` IsOpen (regionθ θ) ``
+- [`Stage3.preconnected_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-preconnected_region-) — `` IsPreconnected (regionθ θ) ``
+- [`Stage3.zeta_analyticOnNhd_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-zeta_analyticOnNhd_region-) — `` AnalyticOnNhd ℂ ζ (regionθ θ) ``
+- [`Stage3.log_pow_isBigO_rpow`](../lean_stage3/ThetaConverse.md#Stage3-log_pow_isBigO_rpow) — `` (fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^ δ) ``
+- [`Stage3.F_differentiableAt_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_differentiableAt_theta) — `` DifferentiableAt ℂ VonKoch.F s ``
+- [`Stage3.F_analyticOnNhd_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_analyticOnNhd_theta) — `` AnalyticOnNhd ℂ VonKoch.F (regionθ θ) ``
+- [`Stage3.anchor_mem_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-anchor_mem_region-) — `` ((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 < ((max θ 1 + 1 : ℝ) : ℂ).re ``
+- [`Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta) — `` Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ) ``
+- [`Stage3.no_zero_right_of_theta`](../lean_stage3/ThetaConverse.md#Stage3-no_zero_right_of_theta) — `` ζ ρ ≠ 0 ``
+
+### [`RateBelow`](../lean_stage3/RateBelow.md) — 1
+
+- ★ [`RateBelow.rain_psi`](../lean_stage3/RateBelow.md#RateBelow-rain_psi) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x| ``
 

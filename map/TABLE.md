@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>96 theorems counting,<br/>in 20 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>119 theorems counting,<br/>in 24 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>889 theorems shape,<br/>in 122 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>900 theorems shape,<br/>in 125 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>710 theorems reads ζ,<br/>in 109 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>718 theorems reads ζ,<br/>in 112 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 200 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1140 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 731 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 223 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1151 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 739 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 96 | 889 | 710 |
+| `lean_stage3/` | 119 | 900 | 718 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -376,6 +376,12 @@ HalfSieve — block R6 of `lean_stage3/design/runs.md`. 2026-11-23. The half of 
 - [`HalfSieve.half_cancels`](./lean_stage3/HalfSieve.md#HalfSieve-half_cancels) — `` ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card = 0 `` The signs of the sieve add to nothing. Over all the sieve's terms the signs `(−1)^|T|` sum to zero: the alternating sum of a Pascal row.
 - [`HalfSieve.netRounding_centered`](./lean_stage3/HalfSieve.md#HalfSieve-netRounding_centered) — `` netRounding N = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * (Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) - 1 / 2) `` The roundings measured from one half. The half of every rounding cancels identically in the sieve's sum.
 
+### [`HolyChannel`](./lean_stage3/HolyChannel.md) — 1
+
+HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Julian's Holy Family is an uneven mirror pair: support `J = 1/3`, condition `M = 2/3`, adding to one, the condition the mirror of the support. Every prime carries that pair as its residual and never resolves it. The zero is the channel the residual passes through: it sits at the pair's midpoint and is never a member. Two facing mirrors cannot tell A from B exactly when they are one mirror; a zero is its own mirror exactly at the midpoint.
+
+- [`HolyChannel.midpoint_half`](./lean_stage3/HolyChannel.md#HolyChannel-midpoint_half) — `` (hf.J + hf.M) / 2 = 1 / 2 `` The midpoint of any Holy Family is one half.
+
 ### [`LeftSmooth`](./lean_stage3/LeftSmooth.md) — 1
 
 LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-11-23.
@@ -392,12 +398,36 @@ Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The produ
 - [`Mollified.card_Icc_dvd`](./lean_stage3/Mollified.md#Mollified-card_Icc_dvd) — `` ((Icc 1 Y).filter (k ∣ ·)).card = Y / k `` Exactly `Y / k` of the naturals in `[1, Y]` are multiples of `k`.
 - [`Mollified.tauBelow_sq_le`](./lean_stage3/Mollified.md#Mollified-tauBelow_sq_le) — `` tauBelow X n ^ 2 ≤ ((triples X).filter (fun t => t.1 * t.2.1 * t.2.2 ∣ n)).card `` The square of the number of divisors of `n` below `X` is at most the number of triples `(g, a, b)` in `[1, X)³` with `g·a·b` dividing `n`.
 
+### [`NoHoles`](./lean_stage3/NoHoles.md) — 4
+
+NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase at `N` read back from the logarithms of the integers alone. Möbius inversion over the scales `N/k` undoes the self-bound of `Stage3.SelfBound`, so `ψ(N)` is a signed sum of the log-sums up to `N/k`. Each log-sum is `M log M − M` up to an error of size `log M + 1`, which splits `ψ(N)` into a smooth part and an error part.
+
+- [`NoHoles.sum_divisors_moebius`](./lean_stage3/NoHoles.md#NoHoles-sum_divisors_moebius) — `` ∑ i ∈ m.divisors, ((moebius i : ℤ) : ℝ) = if m = 1 then 1 else 0 `` The Möbius function sums to `[m = 1]` over the divisors of `m`.
+- [`NoHoles.multiples_eq_image`](./lean_stage3/NoHoles.md#NoHoles-multiples_eq_image) — `` (Icc 1 N).filter (fun m => k ∣ m) = (Icc 1 (N / k)).image (fun j => k * j) `` The multiples of `k` up to `N`, as the image of `j ↦ k·j` on `1..N/k`.
+- [`NoHoles.moebius_floor_inversion`](./lean_stage3/NoHoles.md#NoHoles-moebius_floor_inversion) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N `` Möbius inversion over the floors.
+- [`NoHoles.psi_floor`](./lean_stage3/NoHoles.md#NoHoles-psi_floor) — `` Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ) `` The staircase depends on the floor of its argument.
+
 ### [`PiFixedRow`](./lean_stage3/PiFixedRow.md) — 2
 
 PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The integer count at a fixed `x` with the height of the zero sum taken to infinity. `PiZeros.pi_eq_zero_sum` is an identity at every height; what has to be bounded free of the height is `tr (efRem T) x`, the passage of the explicit formula's remainder. Above `16` the explicit formula at every height does it. On `[2, 16]` each zero is integrated by parts in `t`, which gains a factor `1/|ρ+1|`, and the zeros weighted by `m/|ρ|²` have a sum bounded…
 
 - [`PiFixedRow.sum_sq_div_pow_eq`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_eq) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22 `` The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.
 - [`PiFixedRow.sum_sq_div_pow_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_le) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22 `` The partial sums of `(j+2)²/2^j` are at most `22`.
+
+### [`Readings`](./lean_stage3/Readings.md) — 10
+
+Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The runs and readings of the day, each in its exact form.
+
+- [`Readings.net_is_sum_of_steps`](./lean_stage3/Readings.md#Readings-net_is_sum_of_steps) — `` ∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d => g d = p), f d `` The net is the sum of the steps. Assign every term of the sieve to a prime (its largest prime factor, in unit 0499); the net rounding is the sum over the primes of each prime's step.
+- [`Readings.five_sixths_midpoint`](./lean_stage3/Readings.md#Readings-five_sixths_midpoint) — `` ((2 : ℝ) / 3 + 1) / 2 = 5 / 6 `` Five sixths is the midpoint of two thirds and the whole.
+- [`Readings.five_sixths_step`](./lean_stage3/Readings.md#Readings-five_sixths_step) — `` (5 : ℝ) / 6 - 2 / 3 = 1 / 6 ∧ 1 - (5 : ℝ) / 6 = 1 / 6 `` From two thirds to five sixths is one sixth, the mirror of five sixths.
+- [`Readings.force_at_family`](./lean_stage3/Readings.md#Readings-force_at_family) — `` restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 `` The force at the Holy Family. The closed loop's restoring force at the support and at the condition is five sixths.
+- [`Readings.paper_lemma_zero`](./lean_stage3/Readings.md#Readings-paper_lemma_zero) — `` |(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3 `` The printed Lemma 5.4. The mismatch `|2.5 − (6ε + 0.5)|` is zero exactly at `ε = 1/3`, which is `σ = 5/6`.
+- [`Readings.lattice_opens`](./lean_stage3/Readings.md#Readings-lattice_opens) — `` Nat.Prime 5 ∧ 5 % 6 = 5 ∧ Nat.Prime 7 ∧ 7 % 6 = 1 `` The lattice opens. Five and seven are prime, the first of the two classes modulo six past the scaffold of two and three.
+- [`Readings.paper_mid_rec`](./lean_stage3/Readings.md#Readings-paper_mid_rec) — `` paperMid (k + 1) = 2 * paperMid k + 1 / 2 `` The paper's recurrence. From the regime `[2, 3]` on, each midpoint is twice the one before plus one half: `2.5, 5.5, 11.5, 23.5, …`.
+- [`Readings.paper_mid_values`](./lean_stage3/Readings.md#Readings-paper_mid_values) — `` paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2 `` The regime `[2, 3]` has midpoint five halves, and `[4, 7]` eleven halves.
+- [`Readings.paper_first_mid`](./lean_stage3/Readings.md#Readings-paper_first_mid) — `` 2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1 `` The first regime. The paper's `[0, 1]` with midpoint one half does not obey the recurrence into `[2, 3]`: twice one half plus one half is not five halves.
+- [`Readings.offset_fixed`](./lean_stage3/Readings.md#Readings-offset_fixed) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 `` The offset is fixed. At every doubling the midpoint stands one half above the integer below; the statement has no zero in it.
 
 ### [`Saddle`](./lean_stage3/Saddle.md) — 3
 
@@ -443,6 +473,19 @@ ShareLink — block J6 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ta
 - [`SieveExact.abs_netRounding_le`](./lean_stage3/SieveExact.md#SieveExact-abs_netRounding_le) — `` |netRounding N| ≤ roundingMass N `` The net of the roundings is at most their mass in size.
 - [`SieveExact.roundingMass_nonneg`](./lean_stage3/SieveExact.md#SieveExact-roundingMass_nonneg) — `` 0 ≤ roundingMass N `` The rounding mass is nonnegative.
 - [`SieveExact.netRounding_eq`](./lean_stage3/SieveExact.md#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) `` The net of the roundings, exactly. For `N ≥ 2` the net rounding is the closed product less the count the sieve produces: `N·Π(1 − 1/p)` over the primes up to `√N`, less `1 + π(N) − π(√N)`.
+
+### [`SieveIdem`](./lean_stage3/SieveIdem.md) — 8
+
+SieveIdem — block R12 of `lean_stage3/design/runs.md`. 2026-11-23. Julian, 2026-11-23: the settling happens one slot at a time because of idempotence; every step is the same `f`, and it scales at any `x`.
+
+- [`SieveIdem.sieveStep_idem`](./lean_stage3/SieveIdem.md#SieveIdem-sieveStep_idem) — `` sieveStep p (sieveStep p A) = sieveStep p A `` Idempotent. A step done twice is done once.
+- [`SieveIdem.sieveStep_comm`](./lean_stage3/SieveIdem.md#SieveIdem-sieveStep_comm) — `` sieveStep p (sieveStep q A) = sieveStep q (sieveStep p A) `` Order-free. Two primes' steps give the same set in either order.
+- [`SieveIdem.mem_sieveStep`](./lean_stage3/SieveIdem.md#SieveIdem-mem_sieveStep) — `` m ∈ sieveStep p A ↔ m ∈ A ∧ ¬ p ∣ m `` No size in the rule. A number survives a step exactly when it was there and the prime does not divide it, at every size.
+- [`SieveIdem.sieveBelow_idem`](./lean_stage3/SieveIdem.md#SieveIdem-sieveBelow_idem) — `` sieveBelow p (sieveBelow p A) = sieveBelow p A `` The whole sieve below `p` is idempotent too.
+- [`SieveIdem.sieveBelow_succ`](./lean_stage3/SieveIdem.md#SieveIdem-sieveBelow_succ) — `` sieveBelow (p + 1) A = sieveStep p (sieveBelow p A) `` One slot at a time. Past a prime `p`, the sieve grows by exactly `p`'s step.
+- [`SieveIdem.sieveBelow_succ_of_not_prime`](./lean_stage3/SieveIdem.md#SieveIdem-sieveBelow_succ_of_not_prime) — `` sieveBelow (p + 1) A = sieveBelow p A `` Past a number that is not prime, the sieve does not change.
+- [`SieveIdem.rough_eq_card`](./lean_stage3/SieveIdem.md#SieveIdem-rough_eq_card) — `` CompositeSplit.rough N p = (sieveBelow p (Icc 1 (N / p))).card `` JOIN. The counts of `CompositeSplit.rough` are the sieve below `p` of the numbers up to `N/p`.
+- [`SieveIdem.settles_on_prime`](./lean_stage3/SieveIdem.md#SieveIdem-settles_on_prime) — `` m.Prime `` It settles on a prime. A number from two up that no prime below it divides is prime: the first slot no earlier prime reaches.
 
 ### [`SieveResidual`](./lean_stage3/SieveResidual.md) — 2
 

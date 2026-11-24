@@ -1,0 +1,17 @@
+key	value	source
+module_lines	101	wc -l lean_stage3/Stage3/HolyChannel.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/HolyChannel.lean
+defs	2	grep -c def (holy, ZeroIsChannel)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/HolyChannel.lean
+pins	5	holy_pair_shares, member_is_two, meet_iff_channel, channel_iff_self_mirror, spiralLink_iff_channel
+errors_first	1	the first lake build Stage3.HolyChannel here: holy needed noncomputable
+builds	2	the second build here
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8882	lake build (full Stage3), Build completed successfully
+jobs_module	8842	run/build.log, lake build Stage3.HolyChannel
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j9	the Holy Family's channel
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_family	478	unit 0478

@@ -1,16 +1,16 @@
-# What `OneChain.one_chain` rests on
+# What `WholeChain.whole_chain` rests on
 
-[`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) in `lean_stage3/Stage3/OneChain.lean`, line 61.
+[`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) in `lean_stage3/Stage3/WholeChain.lean`, line 41.
 
-**Why.** One chain. The Riemann hypothesis, the spiral link, one zero at each height, the restoring force at rest at every zero, and every cell of every dyadic ladder at square-root size are one statement.
+**Why.** The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.
 
 **Proves**
 
 ```lean
-(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀)
+(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)
 ```
 
-Behind it: 369 theorems and 55 definitions in 30 files. Every one is listed below; Lean recorded each step.
+Behind it: 447 theorems and 73 definitions in 46 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -18,68 +18,108 @@ Behind it: 369 theorems and 55 definitions in 30 files. Every one is listed belo
 flowchart LR
   f0["<b>Nonvanishing</b><br/>4 used"]:::ext
   f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
-  f2["<b>JensenCount</b><br/>17 used"]:::thm
-  f3["<b>LandauWindow</b><br/>2 used"]:::thm
-  f4["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
-  f5["<b>PerronKernel</b><br/>33 used"]:::thm
-  f6["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f7["<b>RvMCrude</b><br/>3 used"]:::thm
-  f8["<b>ArgCrude</b><br/>3 used"]:::thm
-  f9["<b>Statement</b><br/>1 used"]:::thm
-  f10["<b>PsiToPi</b><br/>13 used"]:::thm
-  f11["<b>LineBound</b><br/>54 used"]:::thm
-  f12["<b>RowLeaves</b><br/>2 used"]:::thm
-  f13["<b>Stirling</b><br/>20 used"]:::thm
-  f14["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f15["<b>ArgLegs</b><br/>10 used"]:::thm
-  f16["<b>ArgCount</b><br/>14 used"]:::thm
-  f17["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f18["<b>WeilOnLine</b><br/>1 used"]:::thm
-  f19["<b>SpiralLink</b><br/>10 used"]:::thm
-  f20["<b>ZeroSum</b><br/>7 used"]:::thm
-  f21["<b>Assembly</b><br/>8 used"]:::thm
-  f22["<b>ContourShift</b><br/>29 used"]:::thm
-  f23["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f24["<b>EdgeBound</b><br/>17 used"]:::thm
-  f25["<b>Glue</b><br/>5 used"]:::thm
-  f26["<b>GlueFloor</b><br/>8 used"]:::thm
-  f27["<b>PiToPsi</b><br/>13 used"]:::thm
-  f28["<b>CellResidual</b><br/>16 used"]:::thm
-  f29["<b>OneChain</b><br/>one_chain"]:::end_
-  f3 --> f4
-  f2 --> f6
-  f7 --> f8
-  f9 --> f10
-  f2 --> f11
-  f10 --> f11
-  f10 --> f12
-  f7 --> f13
-  f8 --> f14
+  f2["<b>ClosedLoopChain</b><br/>2 used"]:::thm
+  f3["<b>JensenCount</b><br/>17 used"]:::thm
+  f4["<b>LandauWindow</b><br/>2 used"]:::thm
+  f5["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
+  f6["<b>PerronKernel</b><br/>33 used"]:::thm
+  f7["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f8["<b>RvMCrude</b><br/>3 used"]:::thm
+  f9["<b>ArgCrude</b><br/>3 used"]:::thm
+  f10["<b>SieveExact</b><br/>15 used"]:::thm
+  f11["<b>Statement</b><br/>1 used"]:::thm
+  f12["<b>PsiToPi</b><br/>13 used"]:::thm
+  f13["<b>LineBound</b><br/>54 used"]:::thm
+  f14["<b>Abscissa</b><br/>6 used"]:::thm
+  f15["<b>RowLeaves</b><br/>2 used"]:::thm
+  f16["<b>SieveResidual</b><br/>3 used"]:::thm
+  f17["<b>Stirling</b><br/>20 used"]:::thm
+  f18["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f19["<b>ArgLegs</b><br/>10 used"]:::thm
+  f20["<b>ArgCount</b><br/>14 used"]:::thm
+  f21["<b>ThetaLine</b><br/>3 used"]:::thm
+  f22["<b>ThetaPi</b><br/>1 used"]:::thm
+  f23["<b>ThetaPull</b><br/>6 used"]:::thm
+  f24["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f25["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f26["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f27["<b>RateBelow</b><br/>1 used"]:::thm
+  f28["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f29["<b>SpiralLink</b><br/>10 used"]:::thm
+  f30["<b>BandJoin</b><br/>5 used"]:::thm
+  f31["<b>HolyChannel</b><br/>4 used"]:::thm
+  f32["<b>ShareLink</b><br/>4 used"]:::thm
+  f33["<b>Saddle</b><br/>8 used"]:::thm
+  f34["<b>ZeroSum</b><br/>7 used"]:::thm
+  f35["<b>Assembly</b><br/>8 used"]:::thm
+  f36["<b>ContourShift</b><br/>29 used"]:::thm
+  f37["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f38["<b>EdgeBound</b><br/>17 used"]:::thm
+  f39["<b>Glue</b><br/>5 used"]:::thm
+  f40["<b>GlueFloor</b><br/>8 used"]:::thm
+  f41["<b>PiToPsi</b><br/>13 used"]:::thm
+  f42["<b>CellResidual</b><br/>16 used"]:::thm
+  f43["<b>HalfSieve</b><br/>11 used"]:::thm
+  f44["<b>OneChain</b><br/>2 used"]:::thm
+  f45["<b>WholeChain</b><br/>whole_chain"]:::end_
+  f4 --> f5
+  f3 --> f7
+  f8 --> f9
+  f11 --> f12
+  f3 --> f13
+  f12 --> f13
   f13 --> f14
-  f14 --> f15
-  f6 --> f16
-  f15 --> f16
-  f11 --> f17
-  f4 --> f19
+  f12 --> f15
+  f10 --> f16
+  f12 --> f16
+  f8 --> f17
+  f9 --> f18
+  f17 --> f18
   f18 --> f19
-  f20 --> f21
-  f2 --> f22
-  f21 --> f22
-  f22 --> f23
+  f7 --> f20
+  f19 --> f20
+  f14 --> f21
+  f21 --> f23
   f23 --> f24
-  f24 --> f25
-  f1 --> f26
-  f5 --> f26
-  f10 --> f26
-  f16 --> f26
+  f13 --> f25
+  f22 --> f26
+  f24 --> f26
   f25 --> f26
-  f12 --> f27
-  f17 --> f27
   f26 --> f27
-  f0 --> f28
-  f27 --> f28
-  f19 --> f29
+  f5 --> f29
   f28 --> f29
+  f29 --> f30
+  f2 --> f31
+  f29 --> f31
+  f29 --> f32
+  f27 --> f33
+  f32 --> f33
+  f34 --> f35
+  f3 --> f36
+  f35 --> f36
+  f36 --> f37
+  f37 --> f38
+  f38 --> f39
+  f1 --> f40
+  f6 --> f40
+  f12 --> f40
+  f20 --> f40
+  f39 --> f40
+  f15 --> f41
+  f25 --> f41
+  f40 --> f41
+  f0 --> f42
+  f41 --> f42
+  f16 --> f43
+  f29 --> f43
+  f41 --> f43
+  f29 --> f44
+  f42 --> f44
+  f30 --> f45
+  f31 --> f45
+  f33 --> f45
+  f43 --> f45
+  f44 --> f45
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -111,6 +151,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.zeroinner_floor`](../lean_stage3/AssemblyFloor.md#Stage3-zeroinner_floor) — `` 2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK + 1) / Real.pi + 2 * (R + 7 / 8)) + 2 * W ≤ 2 * (L ^ 2 + (4 + 4 * b₁ + 4 * b₂) * L + 2 * b₃ + 2)… ``
 - [`Stage3.floor_arith`](../lean_stage3/AssemblyFloor.md#Stage3-floor_arith) — `` A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 ``
 
+### [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md) — 2
+
+- [`ClosedLoopChain.HolyFamily`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-HolyFamily) — *structure*
+- [`ClosedLoopChain.derive_critical_line`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_critical_line) — `` (hf.J + hf.M) / 2 = 1 / 2 ``
+
 ### [`JensenCount`](../lean_stage3/JensenCount.md) — 17
 
 - [`Stage3.zeta_centre_lower`](../lean_stage3/JensenCount.md#Stage3-zeta_centre_lower) — `` (1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖ ``
@@ -139,14 +184,14 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 10
 
 - [`ClosedLoopJoin.epsilon`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-epsilon) — *def*
-- ★ [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce) — *def*
+- [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce) — *def*
 - [`ClosedLoopJoin.primeWeight`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) — *def*
 - [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) — *def*
 - [`ClosedLoopJoin.force_eq`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq) — `` restoringForce σ = 5 * |σ - 1 / 2| ``
 - [`ClosedLoopJoin.force_eq_zero_iff`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq_zero_iff) — `` restoringForce σ = 0 ↔ σ = 1 / 2 ``
 - [`ClosedLoopJoin.handshake_iff_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_half) — `` isHermitianHandshake σ ↔ σ = 1 / 2 ``
 - [`ClosedLoopJoin.rh_iff_re_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 ``
-- ★ [`ClosedLoopJoin.rh_iff_force_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
+- [`ClosedLoopJoin.rh_iff_force_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
 - [`ClosedLoopJoin.rh_iff_handshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
 
 ### [`PerronKernel`](../lean_stage3/PerronKernel.md) — 33
@@ -218,6 +263,24 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.StmtArgIdentity`](../lean_stage3/ArgCrude.md#Stage3-StmtArgIdentity) — *def*
 - [`Stage3.StmtSCrude`](../lean_stage3/ArgCrude.md#Stage3-StmtSCrude) — *def*
 - [`Stage3.backlundArg_of_identity`](../lean_stage3/ArgCrude.md#Stage3-backlundArg_of_identity) — `` StmtBacklundArg θ B₁ B₃ ``
+
+### [`SieveExact`](../lean_stage3/SieveExact.md) — 15
+
+- [`SieveExact.smallPrimes`](../lean_stage3/SieveExact.md#SieveExact-smallPrimes) — *def*
+- [`SieveExact.survivors`](../lean_stage3/SieveExact.md#SieveExact-survivors) — *def*
+- [`SieveExact.prime_of_mem_smallPrimes`](../lean_stage3/SieveExact.md#SieveExact-prime_of_mem_smallPrimes) — `` p.Prime ``
+- [`SieveExact.forall_dvd_iff_prod_dvd`](../lean_stage3/SieveExact.md#SieveExact-forall_dvd_iff_prod_dvd) — `` (∀ p ∈ T, p ∣ n) ↔ (∏ p ∈ T, p) ∣ n ``
+- [`SieveExact.card_filter_not_dvd`](../lean_stage3/SieveExact.md#SieveExact-card_filter_not_dvd) — `` ((A.filter (fun n => ∀ p ∈ s, ¬ p ∣ n)).card : ℤ) = ∑ T ∈ s.powerset, (-1 : ℤ) ^ T.card * ((A.filter (fun n => (∏ p ∈ T, p) ∣ n)).card : ℤ) ``
+- [`SieveExact.card_multiples`](../lean_stage3/SieveExact.md#SieveExact-card_multiples) — `` ((Finset.Icc 1 N).filter (fun n => d ∣ n)).card = N / d ``
+- [`SieveExact.sieve_sum`](../lean_stage3/SieveExact.md#SieveExact-sieve_sum) — `` ((survivors N).card : ℤ) = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) ``
+- [`SieveExact.survivors_eq`](../lean_stage3/SieveExact.md#SieveExact-survivors_eq) — `` survivors N = insert 1 ((Finset.Icc 1 N).filter (fun n => Nat.Prime n ∧ Nat.sqrt N < n)) ``
+- [`SieveExact.card_survivors`](../lean_stage3/SieveExact.md#SieveExact-card_survivors) — `` (survivors N).card + Nat.primeCounting (Nat.sqrt N) = 1 + Nat.primeCounting N ``
+- [`SieveExact.smoothPart`](../lean_stage3/SieveExact.md#SieveExact-smoothPart) — *def*
+- [`SieveExact.netRounding`](../lean_stage3/SieveExact.md#SieveExact-netRounding) — *def*
+- [`SieveExact.natDiv_eq_sub_fract`](../lean_stage3/SieveExact.md#SieveExact-natDiv_eq_sub_fract) — `` ((n / d : ℕ) : ℚ) = (n : ℚ) / (d : ℚ) - Int.fract ((n : ℚ) / (d : ℚ)) ``
+- [`SieveExact.sieve_split`](../lean_stage3/SieveExact.md#SieveExact-sieve_split) — `` ((survivors N).card : ℚ) = smoothPart N - netRounding N ``
+- [`SieveExact.smoothPart_eq_prod`](../lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) — `` smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) ``
+- [`SieveExact.netRounding_eq`](../lean_stage3/SieveExact.md#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) ``
 
 ### [`Statement`](../lean_stage3/Statement.md) — 1
 
@@ -296,10 +359,25 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`RHPull.psi_weak_of_RH`](../lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3 ``
 - [`RHPull.stmtPsiWeak_of_RH`](../lean_stage3/LineBound.md#RHPull-stmtPsiWeak_of_RH) — `` ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ ``
 
+### [`Abscissa`](../lean_stage3/Abscissa.md) — 6
+
+- [`Stage3.σθ`](../lean_stage3/Abscissa.md#Stage3---) — *def*
+- [`Stage3.σθ_re`](../lean_stage3/Abscissa.md#Stage3---_re) — `` ((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X ``
+- [`Stage3.StmtZeroFreeRight`](../lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) — *def*
+- [`Stage3.zeta_ne_zero_right_of`](../lean_stage3/Abscissa.md#Stage3-zeta_ne_zero_right_of) — `` ζ s ≠ 0 ``
+- [`Stage3.rpow_σθ`](../lean_stage3/Abscissa.md#Stage3-rpow_--) — `` X ^ (σθ θ X) = Real.exp 1 * X ^ θ ``
+- [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
+
 ### [`RowLeaves`](../lean_stage3/RowLeaves.md) — 2
 
 - [`Stage3.continuousOn_inv_log_sq_Ioi`](../lean_stage3/RowLeaves.md#Stage3-continuousOn_inv_log_sq_Ioi) — `` ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Ioi 1) ``
 - [`Stage3.hasDerivAt_Li`](../lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li) — `` HasDerivAt Li (1 / Real.log y) y ``
+
+### [`SieveResidual`](../lean_stage3/SieveResidual.md) — 3
+
+- [`SieveResidual.smoothNet`](../lean_stage3/SieveResidual.md#SieveResidual-smoothNet) — *def*
+- [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding) — `` ((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ)) ``
+- [`SieveResidual.net_wobble`](../lean_stage3/SieveResidual.md#SieveResidual-net_wobble) — `` ((netRounding N : ℚ) : ℝ) - smoothNet N = -(((Nat.primeCounting N : ℝ) - Stage3.Li (N : ℝ)) - ((Nat.primeCounting (Nat.sqrt N) : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ… ``
 
 ### [`Stirling`](../lean_stage3/Stirling.md) — 20
 
@@ -411,6 +489,42 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
 - [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
 
+### [`ThetaLine`](../lean_stage3/ThetaLine.md) — 3
+
+- [`Stage3.logDerivZeta_compact_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_compact_theta) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14530 + 2 / (1 - θ) + 212 / (σ₁ - θ) ``
+- [`Stage3.logDerivZeta_sq_at_X_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_sq_at_X_theta) — `` ‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 ``
+- [`Stage3.logDerivZeta_line_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_line_theta) — `` ‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 ``
+
+### [`ThetaPi`](../lean_stage3/ThetaPi.md) — 1
+
+- [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) — *def*
+
+### [`ThetaPull`](../lean_stage3/ThetaPull.md) — 6
+
+- [`Stage3.half_lt_σθ`](../lean_stage3/ThetaPull.md#Stage3-half_lt_--) — `` (1:ℝ)/2 < σθ θ X ``
+- [`Stage3.four_le_log_of_theta`](../lean_stage3/ThetaPull.md#Stage3-four_le_log_of_theta) — `` (4:ℝ) ≤ Real.log X ``
+- [`Stage3.norm_line_ge_theta`](../lean_stage3/ThetaPull.md#Stage3-norm_line_ge_theta) — `` (1 + |t|) / 3 ≤ ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖ ``
+- [`Stage3.integrand_norm_le_theta`](../lean_stage3/ThetaPull.md#Stage3-integrand_norm_le_theta) — `` ‖SmoothedChebyshevIntegrand ν ε X ((σθ θ X : ℂ) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 * M * X ^ (σθ θ X) ``
+- [`Stage3.I37_norm_le_epsfree_theta`](../lean_stage3/ThetaPull.md#Stage3-I37_norm_le_epsfree_theta) — `` ‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (6 * Real.log (1 + T)) * (11100 * (Real.log X) ^ 2 * B * X ^ (σθ θ X)) ``
+- [`Stage3.I37_power_log3_theta`](../lean_stage3/ThetaPull.md#Stage3-I37_power_log3_theta) — `` ‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi) * X ^ θ * (Real.log X) ^ 3 ``
+
+### [`ThetaPsi`](../lean_stage3/ThetaPsi.md) — 14
+
+- [`Stage3.inv_log_le_theta`](../lean_stage3/ThetaPsi.md#Stage3-inv_log_le_theta) — `` 1 / Real.log X ≤ (1 - θ) / 2 ``
+- [`Stage3.σθ_lt_one`](../lean_stage3/ThetaPsi.md#Stage3---_lt_one) — `` σθ θ X < 1 ``
+- [`Stage3.lt_σθ`](../lean_stage3/ThetaPsi.md#Stage3-lt_--) — `` θ < σθ θ X ``
+- [`Stage3.horiz_length_theta`](../lean_stage3/ThetaPsi.md#Stage3-horiz_length_theta) — `` (1 + 1 / Real.log X) - σθ θ X = 1 - θ ``
+- [`Stage3.holo_logDerivZeta_theta`](../lean_stage3/ThetaPsi.md#Stage3-holo_logDerivZeta_theta) — `` HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) ``
+- [`Stage3.pull_at_theta_abscissa`](../lean_stage3/ThetaPsi.md#Stage3-pull_at_theta_abscissa) — `` SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε T X (σθ θ X) + I₃₇ SmoothingF ε T X (σθ θ X) + I₈ SmoothingF ε T X (σθ θ X) + I₉ Smooth… ``
+- [`Stage3.integrand_norm_le_horiz_theta`](../lean_stage3/ThetaPsi.md#Stage3-integrand_norm_le_horiz_theta) — `` ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (1996 * Real.log (84 * t) + (29 * Real.log t + 129) * Real.log X) * M * X ^ σ ``
+- [`Stage3.integrand_norm_le_horiz_neg_theta`](../lean_stage3/ThetaPsi.md#Stage3-integrand_norm_le_horiz_neg_theta) — `` ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) - (T : ℂ) * I)‖ ≤ (1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X) * M * X ^ σ ``
+- [`Stage3.I8_norm_le_theta`](../lean_stage3/ThetaPsi.md#Stage3-I8_norm_le_theta) — `` ‖I₈ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X) * M * X ^ (1 + 1 / Real.log X)) ``
+- [`Stage3.I2_norm_le_theta`](../lean_stage3/ThetaPsi.md#Stage3-I2_norm_le_theta) — `` ‖I₂ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X) * M * X ^ (1 + 1 / Real.log X)) ``
+- [`Stage3.mellin_vert_le_theta`](../lean_stage3/ThetaPsi.md#Stage3-mellin_vert_le_theta) — `` ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σθ θ X : ℂ) + I * (t : ℂ))‖ ≤ B * ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖⁻¹ ``
+- [`Stage3.contour_at_instantiation_theta`](../lean_stage3/ThetaPsi.md#Stage3-contour_at_instantiation_theta) — `` ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (66600 * Real.exp 1 * B / Real.pi) * X ^ θ * (Real.log X) ^ 3 + (1 / (2 * Rea… ``
+- [`Stage3.theta_instantiation_arithmetic`](../lean_stage3/ThetaPsi.md#Stage3-theta_instantiation_arithmetic) — `` c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * X * Real.log X / ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * ((X ^ (1 -… ``
+- [`Stage3.psi_weak_of_theta`](../lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log t) ^ 3 ``
+
 ### [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md) — 24
 
 - [`VonKoch.E`](../lean_stage3/VonKochScaffold.md#VonKoch-E) — *def*
@@ -438,6 +552,25 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`VonKoch.RH_of_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_of_psiWeak) — `` RiemannHypothesis ``
 - [`VonKoch.RH_iff_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) — `` RiemannHypothesis ↔ ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ ``
 
+### [`ThetaConverse`](../lean_stage3/ThetaConverse.md) — 12
+
+- [`Stage3.regionθ`](../lean_stage3/ThetaConverse.md#Stage3-region-) — *def*
+- [`Stage3.isOpen_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-isOpen_region-) — `` IsOpen (regionθ θ) ``
+- [`Stage3.preconnected_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-preconnected_region-) — `` IsPreconnected (regionθ θ) ``
+- [`Stage3.zeta_analyticOnNhd_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-zeta_analyticOnNhd_region-) — `` AnalyticOnNhd ℂ ζ (regionθ θ) ``
+- [`Stage3.log_pow_isBigO_rpow`](../lean_stage3/ThetaConverse.md#Stage3-log_pow_isBigO_rpow) — `` (fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^ δ) ``
+- [`Stage3.F_differentiableAt_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_differentiableAt_theta) — `` DifferentiableAt ℂ VonKoch.F s ``
+- [`Stage3.F_analyticOnNhd_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_analyticOnNhd_theta) — `` AnalyticOnNhd ℂ VonKoch.F (regionθ θ) ``
+- [`Stage3.anchor_mem_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-anchor_mem_region-) — `` ((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 < ((max θ 1 + 1 : ℝ) : ℂ).re ``
+- [`Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta) — `` Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ) ``
+- [`Stage3.no_zero_right_of_theta`](../lean_stage3/ThetaConverse.md#Stage3-no_zero_right_of_theta) — `` ζ ρ ≠ 0 ``
+- [`Stage3.zeroFreeRight_of_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
+- [`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) — `` StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀ ``
+
+### [`RateBelow`](../lean_stage3/RateBelow.md) — 1
+
+- [`RateBelow.rain_psi`](../lean_stage3/RateBelow.md#RateBelow-rain_psi) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x| ``
+
 ### [`WeilOnLine`](../lean_stage3/WeilOnLine.md) — 1
 
 - [`WeilOnLine.conj_mem`](../lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) — `` (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros ``
@@ -445,15 +578,48 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 10
 
 - [`SpiralLink.mirror_mem`](../lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) — `` (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros ``
-- [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) — *def*
+- ★ [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) — *def*
 - [`SpiralLink.mirrorZ_im`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_im) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ``
 - [`SpiralLink.mirrorZ_re`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re ``
 - [`SpiralLink.mirrorZ_eq_iff`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_eq_iff) — `` mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 ``
 - ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
 - ★ [`SpiralLink.OneAtEachHeight`](../lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight) — *def*
-- ★ [`SpiralLink.rh_iff_spiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_spiralLink) — `` RiemannHypothesis ↔ SpiralLink ``
+- [`SpiralLink.rh_iff_spiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_spiralLink) — `` RiemannHypothesis ↔ SpiralLink ``
 - [`SpiralLink.rh_iff_one_at_each_height`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) — `` RiemannHypothesis ↔ OneAtEachHeight ``
-- ★ [`SpiralLink.spiralLink_iff_one`](../lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) — `` SpiralLink ↔ OneAtEachHeight ``
+- [`SpiralLink.spiralLink_iff_one`](../lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) — `` SpiralLink ↔ OneAtEachHeight ``
+
+### [`BandJoin`](../lean_stage3/BandJoin.md) — 5
+
+- ★ [`BandJoin.bandR`](../lean_stage3/BandJoin.md#BandJoin-bandR) — *def*
+- [`BandJoin.bandR_middle_iff`](../lean_stage3/BandJoin.md#BandJoin-bandR_middle_iff) — `` bandR x = bandR (1 / 2) ↔ x = 1 / 2 ``
+- [`BandJoin.zero_image`](../lean_stage3/BandJoin.md#BandJoin-zero_image) — `` ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (ρ:ℂ).re ``
+- [`BandJoin.zero_middle_iff`](../lean_stage3/BandJoin.md#BandJoin-zero_middle_iff) — `` ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ↔ (ρ:ℂ).re = 1 / 2 ``
+- ★ [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
+
+### [`HolyChannel`](../lean_stage3/HolyChannel.md) — 4
+
+- [`HolyChannel.holy`](../lean_stage3/HolyChannel.md#HolyChannel-holy) — *def*
+- [`HolyChannel.midpoint_half`](../lean_stage3/HolyChannel.md#HolyChannel-midpoint_half) — `` (hf.J + hf.M) / 2 = 1 / 2 ``
+- ★ [`HolyChannel.ZeroIsChannel`](../lean_stage3/HolyChannel.md#HolyChannel-ZeroIsChannel) — *def*
+- ★ [`HolyChannel.spiralLink_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-spiralLink_iff_channel) — `` SpiralLink.SpiralLink ↔ ZeroIsChannel ``
+
+### [`ShareLink`](../lean_stage3/ShareLink.md) — 4
+
+- [`ShareLink.mode_size`](../lean_stage3/ShareLink.md#ShareLink-mode_size) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = T ^ (ρ : ℂ).re ``
+- [`ShareLink.share_is_re`](../lean_stage3/ShareLink.md#ShareLink-share_is_re) — `` Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ = (ρ : ℂ).re ``
+- [`ShareLink.meet_iff`](../lean_stage3/ShareLink.md#ShareLink-meet_iff) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = 1 / 2 ``
+- ★ [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
+
+### [`Saddle`](../lean_stage3/Saddle.md) — 8
+
+- ★ [`Saddle.stretch`](../lean_stage3/Saddle.md#Saddle-stretch) — *def*
+- [`Saddle.stretch_eq`](../lean_stage3/Saddle.md#Saddle-stretch_eq) — `` stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re ``
+- [`Saddle.centre_iff`](../lean_stage3/Saddle.md#Saddle-centre_iff) — `` stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2 ``
+- [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x| ``
+- ★ [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway) — *def*
+- [`Saddle.centre_of_noRunaway`](../lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) — `` stretch ρ = 1 ``
+- ★ [`Saddle.spiralLink_iff_centres`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 ``
+- ★ [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
 
 ### [`ZeroSum`](../lean_stage3/ZeroSum.md) — 7
 
@@ -606,7 +772,22 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`CellResidual.schoenfeldWeak_of_cells`](../lean_stage3/CellResidual.md#CellResidual-schoenfeldWeak_of_cells) — `` ∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
 - [`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) — `` RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ ``
 
-### [`OneChain`](../lean_stage3/OneChain.md) — 1
+### [`HalfSieve`](../lean_stage3/HalfSieve.md) — 11
 
-- ★ [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) — `` SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ ``
+- [`HalfSieve.wobble`](../lean_stage3/HalfSieve.md#HalfSieve-wobble) — *def*
+- [`HalfSieve.resid`](../lean_stage3/HalfSieve.md#HalfSieve-resid) — *def*
+- [`HalfSieve.resid_step`](../lean_stage3/HalfSieve.md#HalfSieve-resid_step) — `` resid N = resid (Nat.sqrt N) - wobble N ``
+- [`HalfSieve.resid_of_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-resid_of_wobble) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ N : ℕ, 2 ≤ N → |resid N| ≤ K * Real.sqrt (N : ℝ) * Real.log (N : ℝ) ``
+- [`HalfSieve.Li_floor_close`](../lean_stage3/HalfSieve.md#HalfSieve-Li_floor_close) — `` |Stage3.Li x - Stage3.Li (n : ℝ)| ≤ 2 ``
+- [`HalfSieve.schoenfeld_of_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-schoenfeld_of_wobble) — `` ∃ K : ℝ, StmtSchoenfeldWeak K 1 2 (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
+- ★ [`HalfSieve.WobbleSqrt`](../lean_stage3/HalfSieve.md#HalfSieve-WobbleSqrt) — *def*
+- [`HalfSieve.wobble_all`](../lean_stage3/HalfSieve.md#HalfSieve-wobble_all) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ) ``
+- [`HalfSieve.spiralLink_of_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-spiralLink_of_wobble) — `` SpiralLink.SpiralLink ``
+- [`HalfSieve.wobble_of_spiralLink`](../lean_stage3/HalfSieve.md#HalfSieve-wobble_of_spiralLink) — `` WobbleSqrt ``
+- ★ [`HalfSieve.spiralLink_iff_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) — `` SpiralLink.SpiralLink ↔ WobbleSqrt ``
+
+### [`OneChain`](../lean_stage3/OneChain.md) — 2
+
+- [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) — `` SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ ``
+- ★ [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ)… ``
 

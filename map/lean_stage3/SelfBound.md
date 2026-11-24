@@ -7,7 +7,7 @@ SelfBound — block R7 of `lean_stage3/design/runs.md`. 2026-11-23. The number l
 5 theorems, 0 definitions, 118 lines. 
 
 **Imports:** [`HalfSieve`](../lean_stage3/HalfSieve.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`NoHoles`](../lean_stage3/NoHoles.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -19,10 +19,14 @@ flowchart LR
   n3["<b>self_bound</b><br/>∑ k ∈ Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N…"]:::shp
   n4["<b>self_bound_resid ■</b><br/>∑ k ∈ Icc 1 N, (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k…"]:::shp
   x0(["<b>SieveExact</b><br/>card_multiples"]):::ext
+  x1(["<b>NoHoles</b><br/>psi_by_integers"]):::ext
+  x2(["<b>WholeChain</b><br/>table_side"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n4
+  n3 -.-> x1
+  n3 -.-> x2
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -142,9 +146,11 @@ line 82 · arrows read from text
   - [`SelfBound.log_sum_eq`](#SelfBound-log_sum_eq) — `` ∑ n ∈ Icc 1 N, Real.log (n : ℝ) = ∑ d ∈ Icc 1 N, vonMangoldt d * ((N / d : ℕ) : ℝ) ``
   - [`SelfBound.psi_scale`](#SelfBound-psi_scale) — `` Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ d ∈ Icc 1 N, if d * k ≤ N then vonMangoldt d else 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`NoHoles.psi_by_integers`](../lean_stage3/NoHoles.md#NoHoles-psi_by_integers) (NoHoles) — `` Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ n ∈ Icc 1 (N / k), Real.log (n : ℝ) ``
   - [`SelfBound.self_bound_resid`](#SelfBound-self_bound_resid) — `` ∑ k ∈ Icc 1 N, (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ) - (N : ℝ) * ∑ k ∈ Icc 1 N, 1 / (k : ℝ) ``
+  - [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) (WholeChain) — `` (∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card … ``
 
 <a name="SelfBound-self_bound_resid"></a>
 ### `SelfBound.self_bound_resid`

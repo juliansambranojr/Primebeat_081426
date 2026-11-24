@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-23T21:47:15Z
+# unit: 0498-holy-channel
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47209
+  Imagine two mirrors A and B that face each other-- would a mirror be seeing itself as mirror A or mi...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47689
+  theorem holy_pair_shares (hf : HolyFamily) (ρ : NontrivialZeros)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47690
+  (h : (ρ : ℂ).re = hf.J) : ((mirrorZ ρ : NontrivialZeros) : ℂ).re = hf.M :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47696
+  theorem member_is_two (hf : HolyFamily) (ρ : NontrivialZeros)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47697
+  (h : (ρ : ℂ).re = hf.J ∨ (ρ : ℂ).re = hf.M) {T : ℝ} (hT : 1 < T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47699
+  ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47709
+  theorem meet_iff_channel (hf : HolyFamily) {T : ℝ} (hT : 1 < T) (ρ : NontrivialZeros) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43033
+  ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47711
+  ↔ (ρ : ℂ).re = (hf.J + hf.M) / 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47717
+  theorem channel_iff_self_mirror (hf : HolyFamily) (ρ : NontrivialZeros) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47718
+  (ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:47728
+  theorem spiralLink_iff_channel : SpiralLink.SpiralLink ↔ ZeroIsChannel :=
+
+# 13 found, 0 missing

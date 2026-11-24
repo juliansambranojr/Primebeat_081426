@@ -1,0 +1,39 @@
+{
+ "K": 53,
+ "top": 94906265,
+ "depth": 12,
+ "prime_zeros": 19,
+ "composite_zeros": 10,
+ "both_zero": 1,
+ "both_k": 7,
+ "both_d": 1,
+ "deep_prime": [
+  {
+   "k": 21,
+   "d": 2
+  },
+  {
+   "k": 42,
+   "d": 5
+  },
+  {
+   "k": 34,
+   "d": 11
+  }
+ ],
+ "deep_composite": [
+  {
+   "k": 20,
+   "d": 3
+  },
+  {
+   "k": 28,
+   "d": 6
+  }
+ ],
+ "prime_share_depth0": 0.0549,
+ "total_ratio": 0.2929,
+ "one_minus_inv_sqrt2": 0.2929,
+ "lower_half_share": 0.4142,
+ "upper_half_share": 0.5858
+}

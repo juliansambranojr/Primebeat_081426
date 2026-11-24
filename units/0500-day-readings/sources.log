@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T22:43:20Z
+# unit: 0500-day-readings
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:48986
+  theorem half_rung_ratio (k : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:48987
+  ((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / Real.sqrt 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49000
+  theorem half_regime_shares (n : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49001
+  (Real.sqrt 2 * 2 ^ n - 2 ^ n) / 2 ^ n = Real.sqrt 2 - 1 ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49002
+  (2 ^ (n + 1) - Real.sqrt 2 * 2 ^ n) / (2 : ℝ) ^ n = 2 - Real.sqrt 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49015
+  theorem net_is_sum_of_steps {D P : Finset ℕ} (g : ℕ → ℕ) (hg : ∀ d ∈ D, g d ∈ P)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49017
+  ∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d => g d = p), f d :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49037
+  theorem paper_lemma_zero (ε : ℝ) : |(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49052
+  theorem paper_mid_rec (k : ℕ) : paperMid (k + 1) = 2 * paperMid k + 1 / 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49078
+  theorem iv_exact (ρ : NontrivialZeros) (h : (ρ : ℂ).re ≠ 1 / 2) : ¬ Saddle.NoRunaway :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49089
+  theorem wire_holds_iff : SpiralLink.SpiralLink ↔ Saddle.NoRunaway :=
+
+# 12 found, 0 missing

@@ -10,11 +10,12 @@ flowchart LR
   n8["<b>wobble_all</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N …"]:::shp
   n9["<b>spiralLink_of_wobble</b><br/>SpiralLink.SpiralLink"]:::thm
   n10["<b>wobble_of_spiralLink</b><br/>WobbleSqrt"]:::shp
-  n11["<b>spiralLink_iff_wobble ■</b><br/>SpiralLink.SpiralLink ↔ WobbleSqrt"]:::thm
+  n11["<b>spiralLink_iff_wobble</b><br/>SpiralLink.SpiralLink ↔ WobbleSqrt"]:::thm
   x0(["<b>ClosedLoopChain</b><br/>structural_ignition"]):::ext
   x1(["<b>SieveResidual</b><br/>net_wobble"]):::ext
   x2(["<b>RowLeaves</b><br/>hasDerivAt_Li"]):::ext
   x3(["<b>PiToPsi</b><br/>RH_of_schoenfeldWeak"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n1 --> n2
   n10 --> n11
   n2 --> n3
@@ -25,6 +26,7 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n11
+  n11 -.-> x4
   x0 -.-> n0
   x1 -.-> n4
   x2 -.-> n6

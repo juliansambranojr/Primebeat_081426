@@ -1,16 +1,16 @@
-# What `Saddle.spiralLink_iff_noRunaway` rests on
+# What `Readings.wire_holds_iff` rests on
 
-[`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) in `lean_stage3/Stage3/Saddle.lean`, line 155.
+[`Readings.wire_holds_iff`](../lean_stage3/Readings.md#Readings-wire_holds_iff) in `lean_stage3/Stage3/Readings.lean`, line 137.
 
-**Why.** The loop is the staircase not running away.
+**Why.** The wire holds. The link holds exactly when the current never outruns the wire: the staircase stays in the square-root frame at every `N` from some point on.
 
 **Proves**
 
 ```lean
-SpiralLink.SpiralLink ↔ NoRunaway
+SpiralLink.SpiralLink ↔ Saddle.NoRunaway
 ```
 
-Behind it: 92 theorems and 16 definitions in 15 files. Every one is listed below; Lean recorded each step.
+Behind it: 93 theorems and 16 definitions in 16 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -30,7 +30,8 @@ flowchart LR
   f11["<b>RateBelow</b><br/>1 used"]:::thm
   f12["<b>WeilOnLine</b><br/>1 used"]:::thm
   f13["<b>SpiralLink</b><br/>4 used"]:::thm
-  f14["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]:::end_
+  f14["<b>Saddle</b><br/>7 used"]:::thm
+  f15["<b>Readings</b><br/>wire_holds_iff"]:::end_
   f1 --> f3
   f2 --> f3
   f3 --> f5
@@ -45,6 +46,7 @@ flowchart LR
   f4 --> f14
   f11 --> f14
   f13 --> f14
+  f14 --> f15
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -114,7 +116,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 - [`Stage3.σθ`](../lean_stage3/Abscissa.md#Stage3---) — *def*
 - [`Stage3.σθ_re`](../lean_stage3/Abscissa.md#Stage3---_re) — `` ((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X ``
-- ★ [`Stage3.StmtZeroFreeRight`](../lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) — *def*
+- [`Stage3.StmtZeroFreeRight`](../lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) — *def*
 - [`Stage3.zeta_ne_zero_right_of`](../lean_stage3/Abscissa.md#Stage3-zeta_ne_zero_right_of) — `` ζ s ≠ 0 ``
 - [`Stage3.rpow_σθ`](../lean_stage3/Abscissa.md#Stage3-rpow_--) — `` X ^ (σθ θ X) = Real.exp 1 * X ^ θ ``
 - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
@@ -188,7 +190,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta) — `` Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ) ``
 - [`Stage3.no_zero_right_of_theta`](../lean_stage3/ThetaConverse.md#Stage3-no_zero_right_of_theta) — `` ζ ρ ≠ 0 ``
 - [`Stage3.zeroFreeRight_of_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
-- ★ [`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) — `` StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀ ``
+- [`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) — `` StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀ ``
 
 ### [`RateBelow`](../lean_stage3/RateBelow.md) — 1
 
@@ -205,12 +207,13 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`SpiralLink.mirrorZ_re`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re ``
 - ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
 
-### [`Saddle`](../lean_stage3/Saddle.md) — 6
+### [`Saddle`](../lean_stage3/Saddle.md) — 7
 
 - [`Saddle.stretch`](../lean_stage3/Saddle.md#Saddle-stretch) — *def*
 - [`Saddle.stretch_eq`](../lean_stage3/Saddle.md#Saddle-stretch_eq) — `` stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re ``
 - [`Saddle.centre_iff`](../lean_stage3/Saddle.md#Saddle-centre_iff) — `` stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2 ``
 - [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x| ``
 - ★ [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway) — *def*
-- ★ [`Saddle.centre_of_noRunaway`](../lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) — `` stretch ρ = 1 ``
+- [`Saddle.centre_of_noRunaway`](../lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) — `` stretch ρ = 1 ``
+- ★ [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
 

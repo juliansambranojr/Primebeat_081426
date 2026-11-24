@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-23T22:35:34Z
+# unit: 0499-prime-step-memory
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:48160
+  The zeros residual stays to couple to the prime's and the prime's residual carries over so it has no...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:48493
+  s_p = sum over d whose largest prime factor is p of mu(d){x/d}: what the roundings
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:48494
+  change when p joins. The net rounding is F = sum_p s_p.
+
+# 4 found, 0 missing

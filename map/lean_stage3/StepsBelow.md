@@ -7,7 +7,7 @@ StepsBelow — block R9 of `lean_stage3/design/runs.md`, the turned steps. 2026-
 41 theorems, 10 definitions, 782 lines. 
 
 **Imports:** [`StepsRate`](../lean_stage3/StepsRate.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -120,9 +120,10 @@ flowchart LR
   n7["<b>eqOn_zero_of_agree</b><br/>Set.EqOn (fun z : ℂ ↦ F z * ζ z + deriv ζ z) 0 (Stage3.regionθ θ…"]:::thm
   n8["<b>zeta_ne_zero_of_agree</b><br/>ζ ρ ≠ 0"]:::thm
   n9["<b>zeta_ne_zero_of_steps_bound</b><br/>ζ ρ ≠ 0"]:::thm
-  n10["<b>rain_steps ■</b><br/>∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ ＜ ‖StepsPeak.S N s - S…"]:::thm
+  n10["<b>rain_steps</b><br/>∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ ＜ ‖StepsPeak.S N s - S…"]:::thm
   x0(["<b>diagram 1</b><br/>9 theorems"]):::ext
   x1(["<b>StepsPole</b><br/>steps_sum"]):::ext
+  x2(["<b>WholeChain</b><br/>steps_side"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
@@ -134,6 +135,7 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 --> n10
+  n10 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3
@@ -1484,5 +1486,7 @@ line 760 · arrows read from text
 
 **Definitions its proof touches:** [`StepsPeak.K`](../lean_stage3/StepsPeak.md#StepsPeak-K), [`StepsPeak.S`](../lean_stage3/StepsPeak.md#StepsPeak-S)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.steps_side`](../lean_stage3/WholeChain.md#WholeChain-steps_side) (WholeChain) — `` (∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0) ∧ (∀ (ρ₀ : NontrivialZeros) (θ : ℝ), θ < (ρ₀ : ℂ).re → ∀ (C : ℝ) … ``
 

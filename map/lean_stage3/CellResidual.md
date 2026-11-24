@@ -110,7 +110,7 @@ Every cell of every dyadic ladder has its residual at square-root size.
 
 - **Is:** `` CellsSqrt (C : ℝ) (r₀ : ℤ) : Prop := ∀ a ∈ Set.Icc (1 : ℝ) 2, ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |cellResid a r d| ≤ C * cellSize r d ``
 - **Built from:** [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cellSize`](#CellResidual-cellSize)
-- **Used by 9:** [`CellResidual.RH_iff_cells`](#CellResidual-RH_iff_cells), [`CellResidual.cells_of_RH`](#CellResidual-cells_of_RH), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain), [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells)
+- **Used by 10:** [`CellResidual.RH_iff_cells`](#CellResidual-RH_iff_cells), [`CellResidual.cells_of_RH`](#CellResidual-cells_of_RH), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain), [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 

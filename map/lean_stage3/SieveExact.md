@@ -33,7 +33,8 @@ flowchart LR
   n17["<b>netRounding_eq</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
   x0(["<b>Compression</b><br/>compression"]):::ext
   x1(["<b>SelfBound</b><br/>log_sum_eq"]):::ext
-  x2(["<b>SieveResidual</b><br/>cast_netRounding"]):::ext
+  x2(["<b>WholeChain</b><br/>table_side"]):::ext
+  x3(["<b>SieveResidual</b><br/>cast_netRounding"]):::ext
   n0 --> n4
   n1 --> n2
   n12 --> n13
@@ -48,9 +49,10 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n9 --> n10
-  n17 -.-> x2
+  n17 -.-> x3
   n3 -.-> x0
   n3 -.-> x1
+  n7 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -73,7 +75,7 @@ def · line 30
 The primes up to the square root of `N`.
 
 - **Is:** `` smallPrimes (N : ℕ) : Finset ℕ := (Finset.range (Nat.sqrt N + 1)).filter Nat.Prime ``
-- **Used by 23:** [`CompositeSplit.composites_by_least_prime`](../lean_stage3/CompositeSplit.md#CompositeSplit-composites_by_least_prime), [`CompositeSplit.composites_no_signs`](../lean_stage3/CompositeSplit.md#CompositeSplit-composites_no_signs), [`CompositeSplit.minFac_mem_smallPrimes`](../lean_stage3/CompositeSplit.md#CompositeSplit-minFac_mem_smallPrimes), [`HalfSieve.half_cancels`](../lean_stage3/HalfSieve.md#HalfSieve-half_cancels), [`HalfSieve.netRounding_centered`](../lean_stage3/HalfSieve.md#HalfSieve-netRounding_centered), [`HalfSieve.two_mem_smallPrimes`](../lean_stage3/HalfSieve.md#HalfSieve-two_mem_smallPrimes), [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq), [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding), [`SieveResidual.smoothNet`](../lean_stage3/SieveResidual.md#SieveResidual-smoothNet)
+- **Used by 24:** [`CompositeSplit.composites_by_least_prime`](../lean_stage3/CompositeSplit.md#CompositeSplit-composites_by_least_prime), [`CompositeSplit.composites_no_signs`](../lean_stage3/CompositeSplit.md#CompositeSplit-composites_no_signs), [`CompositeSplit.minFac_mem_smallPrimes`](../lean_stage3/CompositeSplit.md#CompositeSplit-minFac_mem_smallPrimes), [`HalfSieve.half_cancels`](../lean_stage3/HalfSieve.md#HalfSieve-half_cancels), [`HalfSieve.netRounding_centered`](../lean_stage3/HalfSieve.md#HalfSieve-netRounding_centered), [`HalfSieve.two_mem_smallPrimes`](../lean_stage3/HalfSieve.md#HalfSieve-two_mem_smallPrimes), [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq), [`SieveResidual.cast_netRounding`](../lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding), [`SieveResidual.smoothNet`](../lean_stage3/SieveResidual.md#SieveResidual-smoothNet), [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side)
 
 <a name="SieveExact-survivors"></a>
 ### `SieveExact.survivors`
@@ -348,9 +350,10 @@ line 156 · arrows read from text
 
 **Definitions its proof touches:** [`SieveExact.smallPrimes`](#SieveExact-smallPrimes), [`SieveExact.survivors`](#SieveExact-survivors)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve) — `` (Nat.primeCounting (2 ^ r) : ℤ) = (Nat.primeCounting (Nat.sqrt (2 ^ r)) : ℤ) - 1 + ∑ T ∈ (smallPrimes (2 ^ r)).powerset, (-1 : ℤ) ^ T.card * ((2 ^ r /… ``
+  - [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) (WholeChain) — `` (∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card … ``
 
 <a name="SieveExact-row_by_sieve"></a>
 ### `SieveExact.row_by_sieve`

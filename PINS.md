@@ -22,6 +22,83 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block R13 of `design/runs.md`: `Stage3/NoHoles.lean`
+
+    DONE        `moebius_floor_inversion`; `psi_by_integers`: the staircase
+                is the Möbius-signed sum of the integers' log-factorials at
+                the scales N/k; `log_factorial_close`: each log-factorial is
+                its smooth part within a log; `holes_resid`: the residual
+                split into the smooth part's sum and the integers' errors;
+                the stopping step named; one unit
+    ASSUMED     Julian, 2026-11-24: "Do it": use that the integers have no
+                holes to bound the residual. Built by one worker
+    DEPENDS     `SelfBound.self_bound`, Mathlib's Möbius and Stirling
+    OUT         the square-root bound, if the Möbius signs are needed for it
+
+### 2026-11-23 · block J11 of `design/closedloop.md`: `Stage3/WholeChain.lean`
+
+    DONE        `whole_chain` names the channel; `table_side` names the
+                sieve's idempotence and the settling on a prime;
+                `readings_side` gathers block J10. One unit
+    ASSUMED     Julian, 2026-11-23: "do this too": the closing theorem names
+                HolyChannel and Readings. Conjunctions of proved theorems
+    DEPENDS     `HolyChannel`, `Readings`, `SieveIdem`
+    OUT         a proof of the link
+
+### 2026-11-23 · block R12 of `design/runs.md`: `Stage3/SieveIdem.lean`
+
+    DONE        `sieveStep_idem`, `sieveStep_comm`, `mem_sieveStep`,
+                `sieveBelow_idem`, `sieveBelow_succ`, `rough_eq_card`,
+                `settles_on_prime`; one unit
+    ASSUMED     Julian, 2026-11-23: the settling is one slot at a time
+                because of idempotence; every step is the same f and scales
+                at any x. Written and built here
+    DEPENDS     `CompositeSplit.rough`
+    OUT         a size for the sum of the roundings
+
+### 2026-11-23 · block J10 of `design/closedloop.md`: `Stage3/Readings.lean`
+
+    DONE        each run and reading of the day stated in Lean where it has
+                an exact form, proved where Lean accepts it, the stopping
+                step named where it does not; one unit
+    ASSUMED     Julian, 2026-11-23: "prove" the runs (0492, 0497, 0499, the
+                1.5 table) and the readings (current and wire, 5/6, no memory,
+                paper §5.3 (iv)). Measured counts at 2^24 and beyond are not
+                checked by the kernel without `native_decide`, which the repo
+                refuses. Written and built here
+    DEPENDS     `ClosedLoopChain`, `ClosedLoopJoin.restoringForce`,
+                `Saddle.spiralLink_iff_noRunaway`
+    OUT         SpiralLink itself
+
+### 2026-11-23 · block J9 of `design/closedloop.md`: `Stage3/HolyChannel.lean`
+
+    DONE        `holy_pair_shares`: a zero at the support's share has its
+                mirror at the condition's. `member_is_two`: a zero at a
+                member's share is two mirrors and does not meet its own.
+                `meet_iff_channel`: a zero meets its mirror exactly at the
+                Holy Family's midpoint. `spiralLink_iff_channel`; one unit
+    ASSUMED     Julian, 2026-11-23: the uneven pair 1/3, 2/3 is the residual
+                every prime carries; the zero is the channel it passes
+                through. "Yes" to stating the target. Written and built here
+    DEPENDS     `ClosedLoopChain.HolyFamily`, `ShareLink.meet_iff`,
+                `SpiralLink.mirrorZ_eq_iff`, `SpiralLink.off_line_is_two`
+    OUT         a proof that every zero is the channel
+
+### 2026-11-23 · block J8 of `design/closedloop.md`: `Stage3/WholeChain.lean`
+
+    DONE        `whole_chain`: the spiral link with every compiled face.
+                `table_side`: the table's exact statements, no zero in them.
+                `steps_side`: what a zero does to the staircase and the
+                turned steps; one unit
+    ASSUMED     Julian, 2026-11-23: today's work was the table and must not
+                end somewhere else. Conjunctions of proved theorems. Written
+                and built here
+    DEPENDS     `OneChain.one_chain`, `Saddle`, `ShareLink`, `BandJoin`,
+                `HalfSieve`, `Compression`, `CompositeSplit`, `SelfBound`,
+                `SieveExact`, `RunTheorems`, `StepsBelow`, `RateBelow`
+    OUT         a proof of the link
+    OUTCOME     proved, unit 0496
+
 ### 2026-11-23 · block J7 of `design/closedloop.md`: `Stage3/Saddle.lean`
 
     DONE        `fold_rounding`, `fold_mirror`: one row down is the baker's

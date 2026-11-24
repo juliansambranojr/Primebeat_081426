@@ -1,0 +1,38 @@
+{
+ "e4": {
+  "signed": -25.1,
+  "sizes": 13655.3,
+  "sqrtN": 100.0,
+  "signed_over_sqrt": 0.251,
+  "sizes_over_N": 1.3655,
+  "sizes_over_sqrt": 136.6,
+  "smooth_minus_N": 38.5
+ },
+ "e5": {
+  "signed": -47.7,
+  "sizes": 136571.7,
+  "sqrtN": 316.2,
+  "signed_over_sqrt": 0.151,
+  "sizes_over_N": 1.3657,
+  "sizes_over_sqrt": 431.9,
+  "smooth_minus_N": 99.3
+ },
+ "e6": {
+  "signed": 171.9,
+  "sizes": 1365742.9,
+  "sqrtN": 1000.0,
+  "signed_over_sqrt": 0.172,
+  "sizes_over_N": 1.3657,
+  "sizes_over_sqrt": 1365.7,
+  "smooth_minus_N": -585.3
+ },
+ "e7": {
+  "signed": 776.6,
+  "sizes": 13657458.3,
+  "sqrtN": 3162.3,
+  "signed_over_sqrt": 0.246,
+  "sizes_over_N": 1.3657,
+  "sizes_over_sqrt": 4318.9,
+  "smooth_minus_N": -2237.2
+ }
+}

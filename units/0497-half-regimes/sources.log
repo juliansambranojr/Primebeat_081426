@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-23T13:39:51Z
+# unit: 0497-half-regimes
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45644
+  if you take the table and do regimes of .5 what do the cells come out to?
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45647
+  rung P[k] = primes in (floor 2^((k-1)/2), floor 2^(k/2)],  C[k] = composites there (1 is neither), T...
+
+# 3 found, 0 missing

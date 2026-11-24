@@ -24,11 +24,12 @@ flowchart LR
   n8["<b>wobble_all</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N …"]:::shp
   n9["<b>spiralLink_of_wobble</b><br/>SpiralLink.SpiralLink"]:::thm
   n10["<b>wobble_of_spiralLink</b><br/>WobbleSqrt"]:::shp
-  n11["<b>spiralLink_iff_wobble ■</b><br/>SpiralLink.SpiralLink ↔ WobbleSqrt"]:::thm
+  n11["<b>spiralLink_iff_wobble</b><br/>SpiralLink.SpiralLink ↔ WobbleSqrt"]:::thm
   x0(["<b>ClosedLoopChain</b><br/>structural_ignition"]):::ext
   x1(["<b>SieveResidual</b><br/>net_wobble"]):::ext
   x2(["<b>RowLeaves</b><br/>hasDerivAt_Li"]):::ext
   x3(["<b>PiToPsi</b><br/>RH_of_schoenfeldWeak"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n1 --> n2
   n10 --> n11
   n2 --> n3
@@ -39,6 +40,7 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n11
+  n11 -.-> x4
   x0 -.-> n0
   x1 -.-> n4
   x2 -.-> n6
@@ -88,7 +90,7 @@ The wobble of the sieve stays at square-root size from some `N₀` on.
 
 - **Is:** `` WobbleSqrt : Prop := ∃ (C : ℝ) (N₀ : ℕ), ∀ N : ℕ, N₀ ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ) ``
 - **Built from:** [`HalfSieve.wobble`](#HalfSieve-wobble)
-- **Used by 4:** [`HalfSieve.spiralLink_iff_wobble`](#HalfSieve-spiralLink_iff_wobble), [`HalfSieve.spiralLink_of_wobble`](#HalfSieve-spiralLink_of_wobble), [`HalfSieve.wobble_all`](#HalfSieve-wobble_all), [`HalfSieve.wobble_of_spiralLink`](#HalfSieve-wobble_of_spiralLink)
+- **Used by 5:** [`HalfSieve.spiralLink_iff_wobble`](#HalfSieve-spiralLink_iff_wobble), [`HalfSieve.spiralLink_of_wobble`](#HalfSieve-spiralLink_of_wobble), [`HalfSieve.wobble_all`](#HalfSieve-wobble_all), [`HalfSieve.wobble_of_spiralLink`](#HalfSieve-wobble_of_spiralLink), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 
@@ -433,5 +435,7 @@ SpiralLink.SpiralLink ↔ WobbleSqrt
 
 **Definitions its proof touches:** [`HalfSieve.WobbleSqrt`](#HalfSieve-WobbleSqrt), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

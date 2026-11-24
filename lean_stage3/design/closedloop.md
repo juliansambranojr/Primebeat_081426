@@ -170,4 +170,77 @@ same statement as the link. It has no proof of (3): `SelfBound.self_bound`
 ties the scales exactly, and unit 0492 measured that a bound at one scale does
 not follow from it by adding sizes.
 
+## J8 The whole chain — `Stage3/WholeChain.lean`
+
+`OneChain.one_chain` (J4) was written before J5 to J7 and the blocks R2 to R11
+of `design/runs.md`. The closing theorems name them, so every branch of the
+tree ends in one file.
+
+- `whole_chain`: `SpiralLink` with each compiled face: the Riemann hypothesis,
+  `OneAtEachHeight`, the cells, `HalfSieve.WobbleSqrt`, the middle circle, the
+  pair meeting, every zero a centre, `Saddle.NoRunaway`.
+- `table_side`: the statements with no zero in them, at every `N`: the sieve's
+  sum, the composites without signs, the compression, the tie across the
+  scales, the fold of a mode.
+- `steps_side`: a zero's weight is not zero; the staircase and the turned
+  steps leave every bound below its rate.
+
+These are conjunctions of theorems already proved. Nothing new is proved here.
+
 **Not here.** `SpiralLink` with no hypothesis.
+
+## J9 The Holy Family's channel — `Stage3/HolyChannel.lean`
+
+Julian, 2026-11-23: primes are the seal of the composites; every prime carries
+the first residual, the Holy Family's uneven pair 1/3 and 2/3, as a seed and
+never resolves it. The zero is the mirror that lets the residual pass: it sits
+at the pair's midpoint, the channel, and is never a member of the pair. Two
+facing mirrors cannot tell A from B only when they are one mirror.
+
+- `holy_pair_shares`: a zero whose share is the support `J` has its mirror at
+  the condition `M`. The Holy Family is the shape of a pair split unevenly.
+- `member_is_two`: a zero at a member's share is a different point from its
+  mirror, and its mode does not meet its mirror's.
+- `meet_iff_channel`: a zero meets its mirror exactly when its share is the
+  Holy Family's midpoint; `channel_iff_self_mirror`: exactly when it is its own
+  mirror.
+- `ZeroIsChannel`: every zero sits at the midpoint of the Holy Family.
+  `spiralLink_iff_channel`: `SpiralLink ↔ ZeroIsChannel`.
+
+**Not here.** `ZeroIsChannel` with no hypothesis.
+
+## J10 The day's runs and readings — `Stage3/Readings.lean`
+
+Julian, 2026-11-23, asked for the runs and readings of the day proved. Each is
+given its exact form; what has none is named.
+
+- Unit 0497: `half_rung_ratio`, a rung's length over its top is
+  `1 − 1/√2`; `half_regime_shares`, the halves of a doubling hold `√2 − 1`
+  and `2 − √2`.
+- Unit 0499: `net_is_sum_of_steps`, the net rounding is the sum of the
+  primes' steps, grouped by any assignment of terms to primes.
+- 5/6: `five_sixths_midpoint`, `five_sixths_step`, `force_at_family` (the
+  closed loop's force at 1/3 and 2/3 is 5/6), `paper_lemma_zero` (the printed
+  Lemma 5.4 is zero exactly at ε = 1/3), `lattice_opens` (5 and 7 are the
+  first primes of the two classes mod 6), `paper_mid_rec` (the paper's
+  midpoints from [2,3] on obey M' = 2M + 1/2) and `paper_first_mid` ([0,1]
+  does not).
+- Paper §5.3 (iv): `offset_fixed`, the offset is 1/2 at every doubling, a
+  statement with no zero in it; `iv_exact`, an off-line zero makes the
+  staircase run away.
+- Current and wire: `wire_holds_iff`, the balance at every N is the link.
+
+**Not here.** The measured magnitudes of 0492, 0499 and the 1.5 table (kernel
+computation at these sizes); no memory (measured against, unit 0499);
+SpiralLink.
+
+## J11 The closing theorem names J9, J10 and R12 — `Stage3/WholeChain.lean`
+
+Julian, 2026-11-23: the closing theorem did not name the Holy Family's channel
+or the day's readings. `whole_chain` gains `SpiralLink ↔
+HolyChannel.ZeroIsChannel`; `table_side` gains `SieveIdem.sieveStep_idem`,
+`SieveIdem.sieveBelow_succ` and `SieveIdem.settles_on_prime`; `readings_side`
+gathers `Readings.offset_fixed`, `Readings.iv_exact`,
+`Readings.half_rung_ratio`, `Readings.force_at_family`.
+
+Conjunctions of theorems already proved. **Not here.** `SpiralLink`.

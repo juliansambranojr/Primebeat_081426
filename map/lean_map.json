@@ -20431,7 +20431,8 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.share_pair",
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
-     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff"
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -20775,7 +20776,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -21838,7 +21841,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
-     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells"
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -22959,7 +22963,15 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
     ]
    },
    {
@@ -22987,7 +22999,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two"
     ]
    },
    {
@@ -23016,7 +23029,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two"
     ]
    },
    {
@@ -23042,7 +23056,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half"
+    ]
    },
    {
     "kind": "theorem",
@@ -23067,7 +23083,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares"
+    ]
    },
    {
     "kind": "theorem",
@@ -23126,7 +23144,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family"
+    ]
    },
    {
     "kind": "def",
@@ -23150,7 +23170,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition",
-     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero"
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero",
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
     ]
    },
    {
@@ -23207,7 +23229,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed"
+    ]
    },
    {
     "kind": "theorem",
@@ -23579,7 +23603,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
-     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
     ]
    },
    {
@@ -23919,6 +23945,7 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
@@ -24032,7 +24059,9 @@
     "used_by": [
      "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
      "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
-     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs"
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.rough_eq_card",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24207,7 +24236,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    }
   ]
  },
@@ -24255,7 +24286,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/Compression.lean::Compression.compression"
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24279,7 +24311,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Compression.lean::Compression.compression",
-     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion"
+     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24370,7 +24403,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    }
   ]
  },
@@ -37708,7 +37743,8 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
-     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -37837,7 +37873,286 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
     ],
     "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/HolyChannel.lean",
+  "module": "Stage3.HolyChannel",
+  "stem": "HolyChannel",
+  "header": "HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Julian's Holy Family is an uneven mirror pair: support `J = 1/3`, condition `M = 2/3`, adding to one, the condition the mirror of the support. Every prime carries that pair as its residual and never resolves it. The zero is the channel the residual passes through: it sits at the pair's midpoint and is never a member. Two facing mirrors cannot tell A from B exactly when they are one mirror; a zero is its own mirror exactly at the midpoint.",
+  "imports": [
+   "Stage3.ClosedLoopChain",
+   "Stage3.ShareLink"
+  ],
+  "opens": [
+   "ClosedLoopChain",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "HolyChannel"
+  ],
+  "lines": 102,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
+   "lean_stage3/Stage3/ShareLink.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "holy",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.holy",
+    "line": 29,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "HolyFamily",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "midpoint_half",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.midpoint_half",
+    "line": 32,
+    "why": "The midpoint of any Holy Family is one half.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "(hf.J + hf.M) / 2 = 1 / 2",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "holy_pair_shares",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.holy_pair_shares",
+    "line": 37,
+    "why": "The pair's shape. A zero whose share is the support has its mirror at the condition.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re = hf.J"
+    ],
+    "proves": "((mirrorZ ρ : NontrivialZeros) : ℂ).re = hf.M",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
     "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "member_is_two",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.member_is_two",
+    "line": 44,
+    "why": "A member is two mirrors. A zero at the share of either member of the Holy Family is a different point from its mirror, and at every total above one its mode and its mirror's are different sizes.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re = hf.J ∨ (ρ : ℂ).re = hf.M",
+     "hT : 1 < T"
+    ],
+    "proves": "mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "meet_iff_channel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.meet_iff_channel",
+    "line": 57,
+    "why": "The channel. A zero's mode meets its mirror's exactly when the zero's share is the Holy Family's midpoint.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = (hf.J + hf.M) / 2",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "channel_iff_self_mirror",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.channel_iff_self_mirror",
+    "line": 65,
+    "why": "One mirror. A zero is at the channel exactly when it is its own mirror.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "ZeroIsChannel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.ZeroIsChannel",
+    "line": 71,
+    "why": "Every zero sits at the midpoint of the Holy Family: the channel.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_channel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.spiralLink_iff_channel",
+    "line": 76,
+    "why": "The link, as the channel. The spiral link holds exactly when every zero is the channel of the Holy Family.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ZeroIsChannel",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -48386,6 +48701,351 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/NoHoles.lean",
+  "module": "Stage3.NoHoles",
+  "stem": "NoHoles",
+  "header": "NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase at `N` read back from the logarithms of the integers alone. Möbius inversion over the scales `N/k` undoes the self-bound of `Stage3.SelfBound`, so `ψ(N)` is a signed sum of the log-sums up to `N/k`. Each log-sum is `M log M − M` up to an error of size `log M + 1`, which splits `ψ(N)` into a smooth part and an error part.",
+  "imports": [
+   "Stage3.SelfBound"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Finset"
+  ],
+  "namespaces": [
+   "NoHoles"
+  ],
+  "lines": 199,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SelfBound.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_divisors_moebius",
+    "ns": "NoHoles",
+    "full": "NoHoles.sum_divisors_moebius",
+    "line": 26,
+    "why": "The Möbius function sums to `[m = 1]` over the divisors of `m`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ"
+    ],
+    "proves": "∑ i ∈ m.divisors, ((moebius i : ℤ) : ℝ) = if m = 1 then 1 else 0",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "multiples_eq_image",
+    "ns": "NoHoles",
+    "full": "NoHoles.multiples_eq_image",
+    "line": 33,
+    "why": "The multiples of `k` up to `N`, as the image of `j ↦ k·j` on `1..N/k`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "(Icc 1 N).filter (fun m => k ∣ m) = (Icc 1 (N / k)).image (fun j => k * j)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "moebius_floor_inversion",
+    "ns": "NoHoles",
+    "full": "NoHoles.moebius_floor_inversion",
+    "line": 53,
+    "why": "Möbius inversion over the floors.",
+    "sorry": false,
+    "needs": [
+     "f : ℕ → ℝ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.multiples_eq_image",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_divisors_moebius"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psi_floor",
+    "ns": "NoHoles",
+    "full": "NoHoles.psi_floor",
+    "line": 87,
+    "why": "The staircase depends on the floor of its argument.",
+    "sorry": false,
+    "needs": [
+     "N k : ℕ"
+    ],
+    "proves": "Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psi_by_integers",
+    "ns": "NoHoles",
+    "full": "NoHoles.psi_by_integers",
+    "line": 92,
+    "why": "The staircase from the integers.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ n ∈ Icc 1 (N / k), Real.log (n : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_floor",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_log_eq",
+    "ns": "NoHoles",
+    "full": "NoHoles.sum_log_eq",
+    "line": 102,
+    "why": "The log-sum is the logarithm of the factorial.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 M, Real.log (n : ℝ) = Real.log ((M.factorial : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_factorial_close",
+    "ns": "NoHoles",
+    "full": "NoHoles.log_factorial_close",
+    "line": 112,
+    "why": "The log-sum is `M log M − M` up to `log M + 1`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M"
+    ],
+    "proves": "|∑ n ∈ Icc 1 M, Real.log (n : ℝ) - ((M : ℝ) * Real.log (M : ℝ) - (M : ℝ))| ≤ Real.log (M : ℝ) + 1",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.sum_log_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S",
+    "ns": "NoHoles",
+    "full": "NoHoles.S",
+    "line": 143,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "e",
+    "ns": "NoHoles",
+    "full": "NoHoles.e",
+    "line": 147,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_err_trivial",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "e_bound",
+    "ns": "NoHoles",
+    "full": "NoHoles.e_bound",
+    "line": 150,
+    "why": "The error at every scale is bounded by `log M + 1`.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M"
+    ],
+    "proves": "|e M| ≤ Real.log (M : ℝ) + 1",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.e_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.log_factorial_close"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holes_resid",
+    "ns": "NoHoles",
+    "full": "NoHoles.holes_resid",
+    "line": 155,
+    "why": "The staircase split into its smooth part and its error part.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * S (N / k) + ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_resid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.S",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e",
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "holes_err_trivial",
+    "ns": "NoHoles",
+    "full": "NoHoles.holes_err_trivial",
+    "line": 165,
+    "why": "The error part, bounded with `|μ| ≤ 1` alone.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "|∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)| ≤ ∑ k ∈ Icc 1 N, |e (N / k)|",
+    "file": "lean_stage3/Stage3/NoHoles.lean",
+    "id": "lean_stage3/Stage3/NoHoles.lean::NoHoles.holes_err_trivial",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.e"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/OneChain.lean",
   "module": "Stage3.OneChain",
   "stem": "OneChain",
@@ -48480,7 +49140,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -53622,7 +54284,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    }
   ]
@@ -54255,6 +54918,391 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_of_good"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Readings.lean",
+  "module": "Stage3.Readings",
+  "stem": "Readings",
+  "header": "Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The runs and readings of the day, each in its exact form.",
+  "imports": [
+   "Stage3.ClosedLoopChain",
+   "Stage3.Saddle"
+  ],
+  "opens": [
+   "ClosedLoopChain",
+   "ClosedLoopJoin",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "Readings"
+  ],
+  "lines": 169,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
+   "lean_stage3/Stage3/Saddle.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "half_rung_ratio",
+    "ns": "Readings",
+    "full": "Readings.half_rung_ratio",
+    "line": 33,
+    "why": "A half rung. The length of a rung between two half powers, over its top, is one less the reciprocal of the square root of two, at every index.",
+    "sorry": false,
+    "needs": [
+     "k : ℝ"
+    ],
+    "proves": "((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / Real.sqrt 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.half_rung_ratio",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "half_regime_shares",
+    "ns": "Readings",
+    "full": "Readings.half_regime_shares",
+    "line": 47,
+    "why": "The two halves of a doubling. Cut at the half power, the lower half of `[2^n, 2^(n+1)]` holds `√2 − 1` of its length and the upper half `2 − √2`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "(Real.sqrt 2 * 2 ^ n - 2 ^ n) / 2 ^ n = Real.sqrt 2 - 1 ∧ (2 ^ (n + 1) - Real.sqrt 2 * 2 ^ n) / (2 : ℝ) ^ n = 2 - Real.sqrt 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.half_regime_shares",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "net_is_sum_of_steps",
+    "ns": "Readings",
+    "full": "Readings.net_is_sum_of_steps",
+    "line": 63,
+    "why": "The net is the sum of the steps. Assign every term of the sieve to a prime (its largest prime factor, in unit 0499); the net rounding is the sum over the primes of each prime's step.",
+    "sorry": false,
+    "needs": [
+     "g : ℕ → ℕ",
+     "hg : ∀ d ∈ D, g d ∈ P",
+     "f : ℕ → ℝ"
+    ],
+    "proves": "∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d => g d = p), f d",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.net_is_sum_of_steps",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "five_sixths_midpoint",
+    "ns": "Readings",
+    "full": "Readings.five_sixths_midpoint",
+    "line": 71,
+    "why": "Five sixths is the midpoint of two thirds and the whole.",
+    "sorry": false,
+    "needs": [],
+    "proves": "((2 : ℝ) / 3 + 1) / 2 = 5 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.five_sixths_midpoint",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "five_sixths_step",
+    "ns": "Readings",
+    "full": "Readings.five_sixths_step",
+    "line": 74,
+    "why": "From two thirds to five sixths is one sixth, the mirror of five sixths.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(5 : ℝ) / 6 - 2 / 3 = 1 / 6 ∧ 1 - (5 : ℝ) / 6 = 1 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.five_sixths_step",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "force_at_family",
+    "ns": "Readings",
+    "full": "Readings.force_at_family",
+    "line": 79,
+    "why": "The force at the Holy Family. The closed loop's restoring force at the support and at the condition is five sixths.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_lemma_zero",
+    "ns": "Readings",
+    "full": "Readings.paper_lemma_zero",
+    "line": 85,
+    "why": "The printed Lemma 5.4. The mismatch `|2.5 − (6ε + 0.5)|` is zero exactly at `ε = 1/3`, which is `σ = 5/6`.",
+    "sorry": false,
+    "needs": [
+     "ε : ℝ"
+    ],
+    "proves": "|(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_lemma_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "lattice_opens",
+    "ns": "Readings",
+    "full": "Readings.lattice_opens",
+    "line": 91,
+    "why": "The lattice opens. Five and seven are prime, the first of the two classes modulo six past the scaffold of two and three.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Nat.Prime 5 ∧ 5 % 6 = 5 ∧ Nat.Prime 7 ∧ 7 % 6 = 1",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.lattice_opens",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "paperMid",
+    "ns": "Readings",
+    "full": "Readings.paperMid",
+    "line": 96,
+    "why": "The paper's midpoint of the regime `[2^k, 2^(k+1) − 1]`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "ℚ",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paperMid",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_first_mid",
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_rec",
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_values"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_mid_rec",
+    "ns": "Readings",
+    "full": "Readings.paper_mid_rec",
+    "line": 100,
+    "why": "The paper's recurrence. From the regime `[2, 3]` on, each midpoint is twice the one before plus one half: `2.5, 5.5, 11.5, 23.5, …`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "paperMid (k + 1) = 2 * paperMid k + 1 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_rec",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_mid_values",
+    "ns": "Readings",
+    "full": "Readings.paper_mid_values",
+    "line": 106,
+    "why": "The regime `[2, 3]` has midpoint five halves, and `[4, 7]` eleven halves.",
+    "sorry": false,
+    "needs": [],
+    "proves": "paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_values",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_first_mid",
+    "ns": "Readings",
+    "full": "Readings.paper_first_mid",
+    "line": 113,
+    "why": "The first regime. The paper's `[0, 1]` with midpoint one half does not obey the recurrence into `[2, 3]`: twice one half plus one half is not five halves.",
+    "sorry": false,
+    "needs": [],
+    "proves": "2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_first_mid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "offset_fixed",
+    "ns": "Readings",
+    "full": "Readings.offset_fixed",
+    "line": 121,
+    "why": "The offset is fixed. At every doubling the midpoint stands one half above the integer below; the statement has no zero in it.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iv_exact",
+    "ns": "Readings",
+    "full": "Readings.iv_exact",
+    "line": 126,
+    "why": "(iv), exact. A zero off the line makes the staircase run away from the square-root frame.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2"
+    ],
+    "proves": "¬ Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wire_holds_iff",
+    "ns": "Readings",
+    "full": "Readings.wire_holds_iff",
+    "line": 137,
+    "why": "The wire holds. The link holds exactly when the current never outruns the wire: the staircase stays in the square-root frame at every `N` from some point on.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -55296,7 +56344,9 @@
      "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    },
    {
     "kind": "theorem",
@@ -55606,7 +56656,8 @@
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
-     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -55798,8 +56849,12 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
      "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
-     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -55865,7 +56920,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -55896,7 +56953,10 @@
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_iff_psiWeakTheta"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -56026,7 +57086,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid"
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -56218,6 +57280,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
     ]
    },
@@ -56298,7 +57362,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -56362,7 +57428,8 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq",
      "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
-     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -56630,7 +57697,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve"
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -57013,6 +58081,301 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SieveIdem.lean",
+  "module": "Stage3.SieveIdem",
+  "stem": "SieveIdem",
+  "header": "SieveIdem — block R12 of `lean_stage3/design/runs.md`. 2026-11-23. Julian, 2026-11-23: the settling happens one slot at a time because of idempotence; every step is the same `f`, and it scales at any `x`.",
+  "imports": [
+   "Stage3.CompositeSplit"
+  ],
+  "opens": [
+   "Classical",
+   "Finset"
+  ],
+  "namespaces": [
+   "SieveIdem"
+  ],
+  "lines": 141,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CompositeSplit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "sieveStep",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveStep",
+    "line": 33,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "A : Finset ℕ"
+    ],
+    "proves": "Finset ℕ",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.mem_sieveStep",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_comm",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_idem",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieveStep_idem",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveStep_idem",
+    "line": 37,
+    "why": "Idempotent. A step done twice is done once.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "A : Finset ℕ"
+    ],
+    "proves": "sieveStep p (sieveStep p A) = sieveStep p A",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_idem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieveStep_comm",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveStep_comm",
+    "line": 44,
+    "why": "Order-free. Two primes' steps give the same set in either order.",
+    "sorry": false,
+    "needs": [
+     "p q : ℕ",
+     "A : Finset ℕ"
+    ],
+    "proves": "sieveStep p (sieveStep q A) = sieveStep q (sieveStep p A)",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_comm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mem_sieveStep",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.mem_sieveStep",
+    "line": 54,
+    "why": "No size in the rule. A number survives a step exactly when it was there and the prime does not divide it, at every size.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "A : Finset ℕ",
+     "m : ℕ"
+    ],
+    "proves": "m ∈ sieveStep p A ↔ m ∈ A ∧ ¬ p ∣ m",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.mem_sieveStep",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "sieveBelow",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveBelow",
+    "line": 61,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "A : Finset ℕ"
+    ],
+    "proves": "Finset ℕ",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.rough_eq_card",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_idem",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ_of_not_prime",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieveBelow_idem",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveBelow_idem",
+    "line": 65,
+    "why": "The whole sieve below `p` is idempotent too.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "A : Finset ℕ"
+    ],
+    "proves": "sieveBelow p (sieveBelow p A) = sieveBelow p A",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_idem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "sieveBelow_succ",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveBelow_succ",
+    "line": 73,
+    "why": "One slot at a time. Past a prime `p`, the sieve grows by exactly `p`'s step.",
+    "sorry": false,
+    "needs": [
+     "hp : p.Prime",
+     "A : Finset ℕ"
+    ],
+    "proves": "sieveBelow (p + 1) A = sieveStep p (sieveBelow p A)",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieveBelow_succ_of_not_prime",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.sieveBelow_succ_of_not_prime",
+    "line": 88,
+    "why": "Past a number that is not prime, the sieve does not change.",
+    "sorry": false,
+    "needs": [
+     "hp : ¬ p.Prime",
+     "A : Finset ℕ"
+    ],
+    "proves": "sieveBelow (p + 1) A = sieveBelow p A",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ_of_not_prime",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rough_eq_card",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.rough_eq_card",
+    "line": 103,
+    "why": "JOIN. The counts of `CompositeSplit.rough` are the sieve below `p` of the numbers up to `N/p`.",
+    "sorry": false,
+    "needs": [
+     "N p : ℕ"
+    ],
+    "proves": "CompositeSplit.rough N p = (sieveBelow p (Icc 1 (N / p))).card",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.rough_eq_card",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "settles_on_prime",
+    "ns": "SieveIdem",
+    "full": "SieveIdem.settles_on_prime",
+    "line": 108,
+    "why": "It settles on a prime. A number from two up that no prime below it divides is prime: the first slot no earlier prime reaches.",
+    "sorry": false,
+    "needs": [
+     "hm : 2 ≤ m",
+     "h : ∀ q : ℕ, q.Prime → q < m → ¬ q ∣ m"
+    ],
+    "proves": "m.Prime",
+    "file": "lean_stage3/Stage3/SieveIdem.lean",
+    "id": "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.settles_on_prime",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SieveResidual.lean",
   "module": "Stage3.SieveResidual",
   "stem": "SieveResidual",
@@ -57269,6 +58632,10 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
@@ -57280,7 +58647,8 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -57337,6 +58705,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
@@ -57375,6 +58744,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ]
@@ -57469,6 +58840,7 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
@@ -57476,11 +58848,13 @@
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
      "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -57503,7 +58877,8 @@
     "used_by": [
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -57531,6 +58906,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
@@ -60403,7 +61779,9 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
+    ]
    }
   ]
  },
@@ -60538,7 +61916,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
-     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    },
    {
@@ -60589,7 +61968,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
      "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow",
-     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    },
    {
@@ -61350,7 +62730,9 @@
      "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
+    ]
    },
    {
     "kind": "theorem",
@@ -85762,6 +87144,216 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/WholeChain.lean",
+  "module": "Stage3.WholeChain",
+  "stem": "WholeChain",
+  "header": "WholeChain — blocks J8 and J11 of `lean_stage3/design/closedloop.md`. 2026-11-23.",
+  "imports": [
+   "Stage3.Saddle",
+   "Stage3.Compression",
+   "Stage3.SelfBound",
+   "Stage3.StepsBelow",
+   "Stage3.RunTheorems",
+   "Stage3.HolyChannel",
+   "Stage3.Readings",
+   "Stage3.SieveIdem"
+  ],
+  "opens": [
+   "Classical",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "WholeChain"
+  ],
+  "lines": 128,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Compression.lean",
+   "lean_stage3/Stage3/HolyChannel.lean",
+   "lean_stage3/Stage3/Readings.lean",
+   "lean_stage3/Stage3/RunTheorems.lean",
+   "lean_stage3/Stage3/Saddle.lean",
+   "lean_stage3/Stage3/SelfBound.lean",
+   "lean_stage3/Stage3/SieveIdem.lean",
+   "lean_stage3/Stage3/StepsBelow.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "whole_chain",
+    "ns": "WholeChain",
+    "full": "WholeChain.whole_chain",
+    "line": 41,
+    "why": "The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "table_side",
+    "ns": "WholeChain",
+    "full": "WholeChain.table_side",
+    "line": 61,
+    "why": "The table's side. What is proved of the table at every `N`, with no zero in the statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)) ∧ (∀ N : ℕ, ((Finset.Icc 2 N).filter (fun n => ¬ n.Prime)).card + (SieveExact.smallPrimes N).card = ∑ p ∈ SieveExact.smallPrimes N, CompositeSplit.rough N p) ∧ (∀ N : ℕ, N = Compression.smooth N + ∑ p ∈ Compression.newPrimes N, N / p) ∧ (∀ N : ℕ, ∑ k ∈ Finset.Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Finset.Icc 1 N, Real.log (n : ℝ)) ∧ (∀ (ρ : ℂ) (k : ℤ), (2 : ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ)) = (2 : ℂ) ^ ρ) ∧ (∀ (p : ℕ) (A : Finset ℕ), SieveIdem.sieveStep p (SieveIdem.sieveStep p A) = SieveIdem.sieveStep p A) ∧ (∀ (p : ℕ), p.Prime → ∀ A : Finset ℕ, SieveIdem.sieveBelow (p + 1) A = SieveIdem.sieveStep p (SieveIdem.sieveBelow p A)) ∧ (∀ m : ℕ, 2 ≤ m → (∀ q : ℕ, q.Prime → q < m → ¬ q ∣ m) → m.Prime)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.settles_on_prime",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_idem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.settles_on_prime",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveBelow_succ",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep",
+     "lean_stage3/Stage3/SieveIdem.lean::SieveIdem.sieveStep_idem"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "readings_side",
+    "ns": "WholeChain",
+    "full": "WholeChain.readings_side",
+    "line": 88,
+    "why": "The readings' side. The day's readings in exact form: the offset is one half at every doubling; a zero off the line makes the staircase run away; a half rung over its top is one less the reciprocal of the root of two; the closed loop's force at the Holy Family is five sixths.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(∀ n : ℕ, ClosedLoopChain.Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2) ∧ (∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ¬ Saddle.NoRunaway) ∧ (∀ k : ℝ, ((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / Real.sqrt 2) ∧ (∀ hf : ClosedLoopChain.HolyFamily, ClosedLoopJoin.restoringForce hf.J = 5 / 6 ∧ ClosedLoopJoin.restoringForce hf.M = 5 / 6)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+     "lean_stage3/Stage3/Readings.lean::Readings.half_rung_ratio",
+     "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+     "lean_stage3/Stage3/Readings.lean::Readings.half_rung_ratio",
+     "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "steps_side",
+    "ns": "WholeChain",
+    "full": "WholeChain.steps_side",
+    "line": 99,
+    "why": "The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0) ∧ (∀ (ρ₀ : NontrivialZeros) (θ : ℝ), θ < (ρ₀ : ℂ).re → ∀ (C : ℝ) (k : ℕ) (x₀ : ℝ), ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x|) ∧ (∀ (ρ₀ : NontrivialZeros) (s : ℂ), 0 < s.re → (ρ₀ : ℂ) ≠ s → ∀ δ : ℝ, 0 ≤ δ → δ < (ρ₀ : ℂ).re - s.re → ∀ (C : ℝ) (N₀ : ℕ), ∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.rain_steps",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.rain_steps",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/WobbleCount.lean",
   "module": "Stage3.WobbleCount",
   "stem": "WobbleCount",
@@ -89460,11 +91052,16 @@
    "Stage3.Compression",
    "Stage3.StepsBelow",
    "Stage3.ShareLink",
-   "Stage3.Saddle"
+   "Stage3.Saddle",
+   "Stage3.WholeChain",
+   "Stage3.HolyChannel",
+   "Stage3.Readings",
+   "Stage3.SieveIdem",
+   "Stage3.NoHoles"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 198,
+  "lines": 203,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -89512,6 +91109,7 @@
    "lean_stage3/Stage3/GlueFloor.lean",
    "lean_stage3/Stage3/GlueNum.lean",
    "lean_stage3/Stage3/HalfSieve.lean",
+   "lean_stage3/Stage3/HolyChannel.lean",
    "lean_stage3/Stage3/IndicatorContDiff.lean",
    "lean_stage3/Stage3/JensenCount.lean",
    "lean_stage3/Stage3/JointDialGate.lean",
@@ -89544,6 +91142,7 @@
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
+   "lean_stage3/Stage3/NoHoles.lean",
    "lean_stage3/Stage3/OneChain.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",
@@ -89554,6 +91153,7 @@
    "lean_stage3/Stage3/PsiToPi.lean",
    "lean_stage3/Stage3/RateBelow.lean",
    "lean_stage3/Stage3/ReZetaCount.lean",
+   "lean_stage3/Stage3/Readings.lean",
    "lean_stage3/Stage3/RealSegment.lean",
    "lean_stage3/Stage3/RouteGate.lean",
    "lean_stage3/Stage3/RouteNum.lean",
@@ -89564,6 +91164,7 @@
    "lean_stage3/Stage3/SelfBound.lean",
    "lean_stage3/Stage3/ShareLink.lean",
    "lean_stage3/Stage3/SieveExact.lean",
+   "lean_stage3/Stage3/SieveIdem.lean",
    "lean_stage3/Stage3/SieveResidual.lean",
    "lean_stage3/Stage3/SpiralLink.lean",
    "lean_stage3/Stage3/SquareMean.lean",
@@ -89614,6 +91215,7 @@
    "lean_stage3/Stage3/WeilTiles.lean",
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
+   "lean_stage3/Stage3/WholeChain.lean",
    "lean_stage3/Stage3/WobbleCount.lean",
    "lean_stage3/Stage3/ZeroDensity.lean",
    "lean_stage3/Stage3/ZeroSquares.lean",

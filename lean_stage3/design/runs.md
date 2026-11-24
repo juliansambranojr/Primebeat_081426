@@ -230,3 +230,46 @@ right-hand sum is minus the residual of `smooth N`.
 - `unique_new_prime`, `nonSmooth_eq_biUnion`, `compression`.
 
 Not derived: a size for the residual of `smooth N`.
+
+## R12 The sieve's step is idempotent — `Stage3/SieveIdem.lean`
+
+Julian, 2026-11-23: the settling happens one slot at a time because of
+idempotence; every step is the same `f`, and it scales at any `x`.
+
+A prime's step `f_p` removes its multiples. `f_p ∘ f_p = f_p`; `f_p ∘ f_q =
+f_q ∘ f_p`; membership reads `m ∈ A ∧ ¬ p ∣ m`, with no size in it. The sieve
+below `p` grows by one prime's step past each prime and is unchanged past each
+number that is not prime. Its counts on `[1, N/p]` are `CompositeSplit.rough`.
+The first number no earlier prime divides is prime.
+
+- `sieveStep_idem`, `sieveStep_comm`, `mem_sieveStep`, `sieveBelow_idem`,
+  `sieveBelow_succ`, `sieveBelow_succ_of_not_prime`, `rough_eq_card`,
+  `settles_on_prime`.
+
+Not derived: idempotence fixes which numbers are left; it gives no size for
+the roundings `⌊N/p⌋` the counts carry.
+
+## R13 The integers have no holes — `Stage3/NoHoles.lean`
+
+Julian, 2026-11-24, "Do it": a made-up prime system (Beurling) can sieve
+idempotently and still have zeros off the line; what the real primes have is
+the integers 1, 2, 3, … with nothing missing. Use it.
+
+`SelfBound.self_bound`: `Σ_{k≤N} ψ(N/k) = log N!`. Inverted by the Möbius
+signs: `ψ(N) = Σ_{k≤N} μ(k)·log⌊N/k⌋!`. The integers enter only through
+`log M!`, which is `M log M − M` within a logarithm (no holes, an error of
+size `log M` at every `M`). So
+
+    ψ(N) = Σ_{k≤N} μ(k)·S(N/k) + Σ_{k≤N} μ(k)·e(N/k),
+    S(M) = M log M − M,   |e(M)| ≤ C·(log M + 1).
+
+- `moebius_floor_inversion`: `F(M) = Σ_{j≤M} f(⌊M/j⌋)` gives
+  `Σ_{k≤N} μ(k)·F(⌊N/k⌋) = f(N)`.
+- `psi_by_integers`, `log_factorial_close`, `holes_resid`.
+
+**The size of what is added.** The second sum has `N` terms, each at most a
+logarithm, with signs `μ(k)`. Without the signs cancelling, its bound is
+`N·log N`: a factor `N/√N` lost, growing with `N`. By the rule on a lost
+factor this is a design failure of the route unless the signs cancel. The
+cancellation is the Möbius string `μ(1), μ(2), …` in `{−1, 0, 1}` staying
+within `√N`, Mertens' statement.
