@@ -46610,6 +46610,274 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonRight.lean",
+  "module": "Stage3.LevinsonRight",
+  "stem": "LevinsonRight",
+  "header": "LevinsonRight — block S11 of `lean_stage3/design/stencil.md`, steps 2–4. 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonCount",
+   "Stage3.Littlewood"
+  ],
+  "opens": [
+   "Complex",
+   "Interval",
+   "Littlewood",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LevinsonRight"
+  ],
+  "lines": 331,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonCount.lean",
+   "lean_stage3/Stage3/Littlewood.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "divisor_nonneg_real",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.divisor_nonneg_real",
+    "line": 59,
+    "why": "The divisor of an analytic function, read in `ℝ`, is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f U",
+     "p : ℂ"
+    ],
+    "proves": "(0 : ℝ) ≤ ((MeromorphicOn.divisor f U p : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeros_right_le",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.zeros_right_le",
+    "line": 66,
+    "why": "Step 2. Littlewood bounds the count right of `σ₁`.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0"
+    ],
+    "proves": "2 * Real.pi * (σ₁ - z.re) * countRight f z w σ₁ ≤ (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re + (∫ σ in z.re..w.re, edgeH f w.re z.im σ) - (∫ σ in z.re..w.re, edgeH f w.re w.im σ)",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_integral_le",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.log_integral_le",
+    "line": 93,
+    "why": "Step 4, the concavity. The integral of `log g` is at most the length times the log of the mean, by the tangent line of `log` at the mean.",
+    "sorry": false,
+    "needs": [
+     "hab : a < b",
+     "hg : IntervalIntegrable g volume a b",
+     "hlog : IntervalIntegrable (fun t => Real.log (g t)) volume a b",
+     "hpos : ∀ t ∈ Icc a b, 0 < g t"
+    ],
+    "proves": "∫ t in a..b, Real.log (g t) ≤ (b - a) * Real.log ((1 / (b - a)) * ∫ t in a..b, g t)",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_norm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_integral_norm_le",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.log_integral_norm_le",
+    "line": 123,
+    "why": "Step 4, the form used. `∫ log ‖F‖ = (1/2) ∫ log ‖F‖²`.",
+    "sorry": false,
+    "needs": [
+     "hab : a < b",
+     "hc : ContinuousOn (fun t : ℝ => F (↑σ₀ + ↑t * I)) (Icc a b)",
+     "hnz : ∀ t ∈ Icc a b, F (↑σ₀ + ↑t * I) ≠ 0"
+    ],
+    "proves": "∫ t in a..b, Real.log ‖F (↑σ₀ + ↑t * I)‖ ≤ (b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖F (↑σ₀ + ↑t * I)‖ ^ 2)",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "countRight_mul_ge",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.countRight_mul_ge",
+    "line": 155,
+    "why": "Step 3. The zeros of `G` are zeros of `G · M`, with at least their order.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "hG : AnalyticOnNhd ℂ G (Rectangle z w)",
+     "hM : AnalyticOnNhd ℂ M (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, G p * M p ≠ 0"
+    ],
+    "proves": "countRight G z w σ ≤ countRight (fun s => G s * M s) z w σ",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "countRight_left_eq",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.countRight_left_eq",
+    "line": 196,
+    "why": "The count right of `σ` does not see the left side of the rectangle, as long as that side stays left of `σ`.",
+    "sorry": false,
+    "needs": [
+     "hzz : z.re ≤ z'.re",
+     "hzσ : z'.re ≤ σ",
+     "hzw : z'.re ≤ w.re",
+     "him : z'.im = z.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hz : f z ≠ 0"
+    ],
+    "proves": "countRight f z' w σ = countRight f z w σ",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_right",
+    "ns": "LevinsonRight",
+    "full": "LevinsonRight.levinson_right",
+    "line": 241,
+    "why": "Steps 2–4 combined. Levinson's count of the zeros of `G` right of the line, through `G · M`, Littlewood on `[σ₀, X] × [a, b]`, and the concavity of the logarithm.",
+    "sorry": false,
+    "needs": [
+     "hσ₀ : σ₀ < 1 / 2",
+     "hX : 1 / 2 ≤ X",
+     "hab : a < b",
+     "hG : AnalyticOnNhd ℂ G (Rectangle ((σ₀ : ℂ) + a * I) ((X : ℂ) + b * I))",
+     "hM : AnalyticOnNhd ℂ M (Rectangle ((σ₀ : ℂ) + a * I) ((X : ℂ) + b * I))",
+     "hB : ∀ p ∈ RectangleBorder ((σ₀ : ℂ) + a * I) ((X : ℂ) + b * I), G p * M p ≠ 0"
+    ],
+    "proves": "countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (1 / (2 * Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖G (↑σ₀ + ↑t * I) * M (↑σ₀ + ↑t * I)‖ ^ 2) - (∫ t in a..b, Real.log ‖G (↑X + ↑t * I) * M (↑X + ↑t * I)‖) + (X - σ₀) * (∫ t in a..b, logDeriv (fun s => G s * M s) (↑X + ↑t * I)).re + (∫ σ in σ₀..X, edgeH (fun s => G s * M s) X a σ) - (∫ σ in σ₀..X, edgeH (fun s => G s * M s) X b σ))",
+    "file": "lean_stage3/Stage3/LevinsonRight.lean",
+    "id": "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_norm_le",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.log_integral_norm_le",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LevinsonSize.lean",
   "module": "Stage3.LevinsonSize",
   "stem": "LevinsonSize",
@@ -49988,6 +50256,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
@@ -50018,6 +50288,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -50047,6 +50319,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -50075,6 +50349,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
     ]
    },
@@ -50110,6 +50385,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
@@ -50139,6 +50415,10 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
@@ -50680,6 +50960,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
     ]
    },
@@ -50727,6 +51008,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free"
     ]
@@ -50788,6 +51071,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free"
     ]
    },
@@ -96445,11 +96729,12 @@
    "Stage3.LevinsonTurn",
    "Stage3.LevinsonSize",
    "Stage3.LevinsonEdge",
-   "Stage3.LevinsonCount"
+   "Stage3.LevinsonCount",
+   "Stage3.LevinsonRight"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 219,
+  "lines": 220,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -96531,6 +96816,7 @@
    "lean_stage3/Stage3/LevinsonCount.lean",
    "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
+   "lean_stage3/Stage3/LevinsonRight.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",
    "lean_stage3/Stage3/LineBound.lean",
