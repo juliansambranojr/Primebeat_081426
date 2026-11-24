@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S10 of `design/stencil.md`, step 3: `Stage3/LineCount.lean`
+
+    DONE        `rh_iff_line_count` (RH ↔ for every T the zeros on the line
+                up to height T, with multiplicity, number as many as all
+                nontrivial zeros up to T) and `signChanges_le_line_count`
+                (k alternating sign changes of Λ on the line in (0, T] give at
+                least k zeros on the line up to T); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes log and and start step 3 please".
+                The count is a finite sum of `riemannZeta.order` over zeros
+                with 0 < Im ≤ T, not the smooth θ(T)/π split (no θ is defined)
+    DEPENDS     `HardyZ`, `Kadiri` zero counting (`nontrivialZeros_abs_im_lt_finite`)
+    OUT         θ(T)/π and S(T); the floor (step 4)
+
 ### 2026-11-24 · block S10 of `design/stencil.md`, steps 1 and 2: `Stage3/HardyZ.lean`
 
     DONE        `xi_line_real` (Λ(1/2 + it) is real for real t, from

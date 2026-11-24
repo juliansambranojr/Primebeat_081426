@@ -317,6 +317,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.compare_suppressed`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_suppressed) | theorem | shape | `WeilPowerCompare` | ‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)) * Real.exp (rate m ε' Δ ε * h ^ 2 / 2) * (S m ((ε * h : ℝ) : ℂ)).re |
 | [`Stage3.completed_eq_gammaR_mul_zeta`](./lean_stage3/ArgIdentity.md#Stage3-completed_eq_gammaR_mul_zeta) | theorem | reads ζ | `ArgIdentity` | completedRiemannZeta s = Gammaℝ s * riemannZeta s |
 | [`Stage3.completed_eq_gammaR_mul_zeta'`](./lean_stage3/ArgIdentity.md#Stage3-completed_eq_gammaR_mul_zeta-) | theorem | reads ζ | `ArgIdentity` | completedRiemannZeta s = Gammaℝ s * riemannZeta s |
+| [`HardyZ.completedRiemannZeta_conj_of_re_pos`](./lean_stage3/HardyZ.md#HardyZ-completedRiemannZeta_conj_of_re_pos) | theorem | reads ζ | `HardyZ` | completedRiemannZeta (conj s) = conj (completedRiemannZeta s) |
 | [`Stage3.completedZeta₀_conj`](./lean_stage3/ArgIdentity.md#Stage3-completedZeta-_conj) | theorem | reads ζ | `ArgIdentity` | completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s) |
 | [`PairIdentity.composite_at_zero_20_6`](./lean/PairIdentity.md#PairIdentity-composite_at_zero_20_6) | theorem | counting | `PairIdentity` | tableFrom C 20 6 = 8192 |
 | [`DeepZeroBand.composite_cell_20_6`](./lean/DeepZeroBand.md#DeepZeroBand-composite_cell_20_6) | theorem | counting | `DeepZeroBand` | tableFrom compRow 20 6 = 8192 |
@@ -368,6 +369,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LeftSmooth.continuous_tanPiece'`](./lean_stage3/LeftSmooth.md#LeftSmooth-continuous_tanPiece-) | theorem | shape | `LeftSmooth` | Continuous tanPiece' |
 | [`LeftSmooth.continuous_wL`](./lean_stage3/LeftSmooth.md#LeftSmooth-continuous_wL) | theorem | shape | `LeftSmooth` | Continuous wL |
 | [`WeilWindow.continuous_x2P`](./lean_stage3/WeilWindow.md#WeilWindow-continuous_x2P) | theorem | shape | `WeilWindow` | Continuous fun x : ℝ =&gt; x ^ 2 * P x |
+| [`HardyZ.continuous_xi_line`](./lean_stage3/HardyZ.md#HardyZ-continuous_xi_line) | theorem | shape | `HardyZ` | Continuous (fun t : ℝ =&gt; completedRiemannZeta (1/2 + t * Complex.I)) |
 | [`WeilTransform.continuous_xP`](./lean_stage3/WeilTransform.md#WeilTransform-continuous_xP) | theorem | shape | `WeilTransform` | Continuous fun x : ℝ =&gt; x * P x |
 | [`Stage3.continuousOn_exp_div`](./lean_stage3/RowLeaves.md#Stage3-continuousOn_exp_div) | theorem | shape | `RowLeaves` | ContinuousOn (fun t : ℝ =&gt; Real.exp (Real.log 2 * t) / t) (Ioi 0) |
 | [`CountModes.continuousOn_integrand`](./lean_stage3/CountModes.md#CountModes-continuousOn_integrand) | theorem | shape | `CountModes` | ContinuousOn (fun t : ℝ =&gt; (t : ℂ) ^ ρ / ρ * PiZeros.wt t) (Set.Ioi 1) |
@@ -715,6 +717,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.gammaR_conj`](./lean_stage3/ArgIdentity.md#Stage3-gammaR_conj) | theorem | shape | `ArgIdentity` | Gammaℝ (conj s) = conj (Gammaℝ s) |
 | [`Stage3.gammaR_eq_exp_mul`](./lean_stage3/ArgIdentity.md#Stage3-gammaR_eq_exp_mul) | theorem | shape | `ArgIdentity` | Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s / 2) |
 | [`Stage3.gammaR_fold_eq_phaseTheta`](./lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta) | theorem | reads ζ | `ArgIdentity` | (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im = phaseTheta T |
+| [`HardyZ.Gammaℝ_conj`](./lean_stage3/HardyZ.md#HardyZ-Gamma-_conj) | theorem | shape | `HardyZ` | Gammaℝ (conj s) = conj (Gammaℝ s) |
 | [`GateEval.gate_hyp_of_RH`](./lean_stage3/GateEval.md#GateEval-gate_hyp_of_RH) | theorem | reads ζ | `GateEval` | ∃ ρ : ℝ, JointDialGate.StmtRelErrWindow (fun m : ℤ =&gt; (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ)) (fun m : ℤ =&gt; 2 / Real.log 2 + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t) r (6 + 1) ρ ∧… |
 | [`GateEval.gate_ineq`](./lean_stage3/GateEval.md#GateEval-gate_ineq) | theorem | shape | `GateEval` | 414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - 7) / 2)) &lt; Real.log 2 ^ 6 / (2 * r * 3 ^ 7) |
 | [`TableDepths.gate_ineq_gen`](./lean_stage3/TableDepths.md#TableDepths-gate_ineq_gen) | theorem | shape | `TableDepths` | 414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - ((d:ℝ) + 1)) / 2)) &lt; Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) |
@@ -1708,6 +1711,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.re_eq_half_of_RH`](./lean_stage3/Assembly.md#Stage3-re_eq_half_of_RH) | theorem | reads ζ | `Assembly` | (ρ : ℂ).re = 1 / 2 |
 | [`WeilDetect.re_eq_half_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-re_eq_half_of_RH) | theorem | reads ζ | `WeilDetect` | (ρ : ℂ).re = 1 / 2 |
 | [`AliasClass.re_inv_pos`](./lean_stage3/AliasClass.md#AliasClass-re_inv_pos) | theorem | shape | `AliasClass` | 0 &lt; (ρ⁻¹).re |
+| [`HardyZ.re_line`](./lean_stage3/HardyZ.md#HardyZ-re_line) | theorem | counting | `HardyZ` | ((1 / 2 : ℂ) + t * I).re = 1 / 2 |
 | [`StepsBelow.re_lt_one`](./lean_stage3/StepsBelow.md#StepsBelow-re_lt_one) | theorem | counting | `StepsBelow` | (-w - 1).re &lt; -1 ∧ (-w - 2).re &lt; -1 |
 | [`LandauTrig.re_mul_geom_ge`](./lean_stage3/LandauTrig.md#LandauTrig-re_mul_geom_ge) | theorem | shape | `LandauTrig` | -(‖c‖ * (2 / ‖w - 1‖)) ≤ (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n).re |
 | [`CountEuler.re_ord_div_w_pos`](./lean_stage3/CountEuler.md#CountEuler-re_ord_div_w_pos) | theorem | reads ζ | `CountEuler` | 0 &lt; (ordC ρ * (1 / wz ρ)).re |
@@ -1934,6 +1938,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerPhase.sigmaN`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigmaN) | def | shape | `WeilPowerPhase` | ℝ |
 | [`WeilPowerPhase.sigmaN_eq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigmaN_eq) | theorem | shape | `WeilPowerPhase` | sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 |
 | [`WeilPowerPhase.sigmaN_tendsto`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigmaN_tendsto) | theorem | shape | `WeilPowerPhase` | Tendsto (fun n =&gt; sigmaN m n) atTop (𝓝 (sigma m)) |
+| [`HardyZ.signChange_zero_on_line`](./lean_stage3/HardyZ.md#HardyZ-signChange_zero_on_line) | theorem | reads ζ | `HardyZ` | ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 |
 | [`SeedPerturbation.silence46_alive_at_three`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_alive_at_three) | theorem | counting | `SeedPerturbation` | silence46_excess 3 ≠ 0 |
 | [`SeedPerturbation.silence46_cell_4_1_moves`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_cell_4_1_moves) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - silence46_excess x) 4 1 ≠ tableFrom N 4 1 |
 | [`SeedPerturbation.silence46_deep_cells_fixed`](./lean/SeedPerturbation.md#SeedPerturbation-silence46_deep_cells_fixed) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - silence46_excess x) 8 3 = tableFrom N 8 3 ∧ tableFrom (fun x =&gt; N x - silence46_excess x) 20 6 = tableFrom N 20 6 |
@@ -2483,6 +2488,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.xi_eq_prod`](./lean_stage3/ArgIdentity.md#Stage3-xi_eq_prod) | theorem | reads ζ | `ArgIdentity` | xi s = s * (s - 1) * Gammaℝ s * riemannZeta s |
 | [`FilterAccum.xi_eq_xiz`](./lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz) | theorem | reads ζ | `FilterAccum` | FilterAttained.xi q 1 b ρ = xiz q b ((2:ℂ) ^ (ρ : ℂ)) |
 | [`Stage3.xi_eq_zero_iff`](./lean_stage3/ArgIdentity.md#Stage3-xi_eq_zero_iff) | theorem | reads ζ | `ArgIdentity` | xi s = 0 ↔ riemannZeta s = 0 ∧ 0 &lt; s.re ∧ s.re &lt; 1 |
+| [`HardyZ.xi_line_real`](./lean_stage3/HardyZ.md#HardyZ-xi_line_real) | theorem | reads ζ | `HardyZ` | (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 |
 | [`Stage3.xi_meromorphicOrderAt_ne_top`](./lean_stage3/ArgIdentity.md#Stage3-xi_meromorphicOrderAt_ne_top) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi p ≠ ⊤ |
 | [`Stage3.xi_ne_zero_of_one_le_re`](./lean_stage3/ArgIdentity.md#Stage3-xi_ne_zero_of_one_le_re) | theorem | reads ζ | `ArgIdentity` | xi s ≠ 0 |
 | [`Stage3.xi_ne_zero_of_re_nonpos`](./lean_stage3/ArgIdentity.md#Stage3-xi_ne_zero_of_re_nonpos) | theorem | reads ζ | `ArgIdentity` | xi s ≠ 0 |

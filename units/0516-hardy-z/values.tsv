@@ -1,0 +1,16 @@
+key	value	source
+module_lines	127	wc -l lean_stage3/Stage3/HardyZ.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/HardyZ.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/HardyZ.lean
+pins	2	xi_line_real, signChange_zero_on_line
+errors_first	3	the worker's first build: a composition read as addition, a simp that emptied its hypothesis, and the pin's cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8893	lake build (full Stage3), Build completed successfully
+jobs_module	3172	run/build.log, lake build Stage3.HardyZ
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s10	The horizon and the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
