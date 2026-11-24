@@ -14,23 +14,27 @@ LevinsonArg — block S11 of `lean_stage3/design/stencil.md`, step 1b. 2026-11-2
 ```mermaid
 flowchart LR
   n0["<b>exists_log_lift</b><br/>∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, C…"]:::shp
-  n1["<b>exists_arg_lift ■</b><br/>∃ φ : ℝ → ℝ, ContinuousOn φ (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, F…"]:::shp
+  n1["<b>exists_arg_lift</b><br/>∃ φ : ℝ → ℝ, ContinuousOn φ (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, F…"]:::shp
   n2["<b>crossings_of_le</b><br/>∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, …"]:::shp
   n3["<b>crossings_of_arg</b><br/>∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, …"]:::shp
-  n4["<b>continuous_lineF ■</b><br/>Continuous (lineF c)"]:::thm
+  n4["<b>continuous_lineF</b><br/>Continuous (lineF c)"]:::thm
   n5["<b>distinct_line_zeros_le_lineCount</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
-  n6["<b>lineCount_ge_arg ■</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
-  x0(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
-  x1(["<b>HardyZ</b><br/>re_line"]):::ext
-  x2(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
+  n6["<b>lineCount_ge_arg</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
+  x0(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x1(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x2(["<b>HardyZ</b><br/>re_line"]):::ext
+  x3(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
   n0 --> n1
   n2 --> n3
   n3 --> n6
   n5 --> n6
-  x0 -.-> n4
-  x0 -.-> n6
-  x1 -.-> n5
+  n1 -.-> x0
+  n4 -.-> x0
+  n6 -.-> x0
+  x1 -.-> n4
+  x1 -.-> n6
   x2 -.-> n5
+  x3 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -51,7 +55,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 47
 
 - **Is:** `` lineF (c : ℝ) (t : ℝ) : ℂ := Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I)) ``
-- **Used by 3:** [`LevinsonArg.continuous_lineF`](#LevinsonArg-continuous_lineF), [`LevinsonArg.lineCount_ge_arg`](#LevinsonArg-lineCount_ge_arg), [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq)
+- **Used by 4:** [`LevinsonArg.continuous_lineF`](#LevinsonArg-continuous_lineF), [`LevinsonArg.lineCount_ge_arg`](#LevinsonArg-lineCount_ge_arg), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq)
 
 ## Theorems
 
@@ -107,7 +111,9 @@ line 114 · arrows read from text
 
   - [`LevinsonArg.exists_log_lift`](#LevinsonArg-exists_log_lift) — `` ∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, Complex.exp (L t) = F t ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonArg-crossings_of_le"></a>
 ### `LevinsonArg.crossings_of_le`
@@ -192,7 +198,9 @@ Continuous (lineF c)
 
 **Definitions its proof touches:** [`LevinsonArg.lineF`](#LevinsonArg-lineF)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonArg-distinct_line_zeros_le_lineCount"></a>
 ### `LevinsonArg.distinct_line_zeros_le_lineCount`
@@ -261,5 +269,7 @@ line 274 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonArg.lineF`](#LevinsonArg-lineF), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 

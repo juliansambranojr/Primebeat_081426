@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-24T23:09:20Z
+# unit: 0524-levinson-count
+# sources searched: 67
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65473
+  theorem G_analyticOnNhd_rect (c : ℝ) {a b : ℝ} (ha : 4 ≤ a) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65474
+  AnalyticOnNhd ℂ (fun s => riemannZeta s + c * deriv riemannZeta s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4298536a9df47659.jsonl:2090
+  (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65486
+  theorem levinson_count {c a b : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (ha : 4 ≤ a) (hab : a < b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65487
+  (hB : ∀ p ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I),
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65488
+  riemannZeta p + c * deriv riemannZeta p ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64305
+  1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65060
+  (riemannZeta.N b - riemannZeta.N a)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65492
+  - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65493
+  ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4298536a9df47659.jsonl:2156
+  - (72 * Real.log b + 418) ≤ (lineCount b : ℝ) :=
+
+# 12 found, 0 missing

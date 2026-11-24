@@ -7,7 +7,7 @@ LevinsonEdge — block S11 of `lean_stage3/design/stencil.md`, step 1d (ii). 202
 13 theorems, 2 definitions, 517 lines. 
 
 **Imports:** [`LevinsonSize`](../lean_stage3/LevinsonSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md)
 
 ## The picture
 
@@ -25,9 +25,10 @@ flowchart LR
   n9["<b>norm_symm_le</b><br/>‖symm g z‖ ≤ M"]:::shp
   n10["<b>real_zero_count</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ …"]:::shp
   n11["<b>edge_le_of_bound</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (…"]:::shp
-  n12["<b>horizontal_edge_le ■</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (fun s =＞ riemannZeta s + c * deri…"]:::thm
-  x0(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x1(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  n12["<b>horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (fun s =＞ riemannZeta s + c * deri…"]:::thm
+  x0(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect<br/>levinson_count"]):::ext
+  x1(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x2(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -43,8 +44,10 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n10
-  x0 -.-> n11
-  x1 -.-> n12
+  n12 -.-> x0
+  n4 -.-> x0
+  x1 -.-> n11
+  x2 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -212,8 +215,9 @@ AnalyticAt ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) w
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LevinsonCount.G_analyticOnNhd_rect`](../lean_stage3/LevinsonCount.md#LevinsonCount-G_analyticOnNhd_rect) (LevinsonCount) — `` AnalyticOnNhd ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)) ``
   - [`LevinsonEdge.horizontal_edge_le`](#LevinsonEdge-horizontal_edge_le) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi ``
 
 <a name="LevinsonEdge-G_disc_le"></a>
@@ -456,5 +460,7 @@ line 455 · arrows read from text
   - [`LevinsonEdge.edge_le_of_bound`](#LevinsonEdge-edge_le_of_bound) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
   - [`LevinsonSize.norm_G_sub_one_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-norm_G_sub_one_le) (LevinsonSize) — `` ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1 ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 

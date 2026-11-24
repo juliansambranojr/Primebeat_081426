@@ -18,18 +18,19 @@ flowchart LR
   n2["<b>re_G_pos</b><br/>0 ＜ (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)…"]:::thm
   n3["<b>hasDerivAt_three_comp</b><br/>HasDerivAt (fun y : ℝ =＞ f (3 + y * I)) (deriv f (3 + t * I) * I…"]:::cnt
   n4["<b>continuous_three ■</b><br/>Continuous (fun t : ℝ =＞ (3 + t * I : ℂ))"]:::cnt
-  n5["<b>right_edge_le ■</b><br/>|(∫ t in a..b, logDeriv (fun s =＞ riemannZeta s + c * deriv riem…"]:::thm
+  n5["<b>right_edge_le</b><br/>|(∫ t in a..b, logDeriv (fun s =＞ riemannZeta s + c * deriv riem…"]:::thm
   n6["<b>re_logDeriv_gammaR_line</b><br/>(logDeriv Gammaℝ (1/2 + y * I)).re = -(Real.log Real.pi) / 2 + S…"]:::shp
   n7["<b>gamma_part_eq</b><br/>(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTh…"]:::thm
   n8["<b>gamma_part_eq_count</b><br/>(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Real.pi * (rie…"]:::thm
   n9["<b>gamma_part_count_le ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
-  n10["<b>gamma_part_count_le_gt_two ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
+  n10["<b>gamma_part_count_le_gt_two</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   x0(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
   x1(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x2(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x3(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x4(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x5(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x2(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x3(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x4(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x5(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x6(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -39,16 +40,18 @@ flowchart LR
   n8 --> n10
   n8 --> n9
   n1 -.-> x0
+  n10 -.-> x2
+  n5 -.-> x2
   x1 -.-> n5
   x1 -.-> n7
-  x2 -.-> n6
-  x2 -.-> n7
   x3 -.-> n6
   x3 -.-> n7
   x4 -.-> n6
   x4 -.-> n7
-  x5 -.-> n10
-  x5 -.-> n9
+  x5 -.-> n6
+  x5 -.-> n7
+  x6 -.-> n10
+  x6 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -216,7 +219,9 @@ line 136 · arrows read from text
   - [`LevinsonSize.re_G_pos`](#LevinsonSize-re_G_pos) — `` 0 < (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re ``
   - [`LevinsonTurn.lift_turn_eq_integral`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lift_turn_eq_integral) (LevinsonTurn) — `` φ b - φ a = (∫ t in a..b, F' t / F t).im ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonSize-re_logDeriv_gammaR_line"></a>
 ### `LevinsonSize.re_logDeriv_gammaR_line`
@@ -369,5 +374,7 @@ line 263 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 

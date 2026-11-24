@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, steps 2–4: `Stage3/LevinsonRight.lean`
+
+    DONE        `zeros_right_le`: for f analytic near the rectangle
+                [σ₀, X]×[a,b], nonzero on its border, and σ₀ < σ₁, the order-sum of
+                the zeros with Re > σ₁ is at most (1/(2π(σ₁ − σ₀))) times the
+                right side of `Littlewood.littlewood_rect`; `log_integral_le`
+                (concavity: ∫_a^b log‖f‖ ≤ ((b−a)/2)·log((1/(b−a))∫_a^b ‖f‖²));
+                `countRight_mul_ge` (the zeros of G are zeros of G·M, with at
+                least their order, for M analytic); the combined bound for G
+                through G·M; one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0524 and start steps 2–4). The
+                edge terms of Littlewood for G·M stay explicit integrals here
+    DEPENDS     `Littlewood`, `LevinsonCount`, Mathlib's concavity of log
+    OUT         the edge bounds for G·M with the mollifier; the mean value
+                (step 5); removing the avoidance hypotheses
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1 assembled: `Stage3/LevinsonCount.lean`
 
     DONE        `levinson_count`: for 0 ≤ c ≤ 1, 4 ≤ a < b, G = ζ + cζ' nonzero

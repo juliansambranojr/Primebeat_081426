@@ -45530,6 +45530,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
     ]
    },
@@ -45583,7 +45584,9 @@
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_log_lift"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    },
    {
     "kind": "theorem",
@@ -45666,7 +45669,9 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    },
    {
     "kind": "theorem",
@@ -45740,6 +45745,191 @@
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonCount.lean",
+  "module": "Stage3.LevinsonCount",
+  "stem": "LevinsonCount",
+  "header": "LevinsonCount — block S11 of `lean_stage3/design/stencil.md`, step 1 assembled. 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonEdge"
+  ],
+  "opens": [
+   "Complex",
+   "LineCount"
+  ],
+  "namespaces": [
+   "LevinsonCount"
+  ],
+  "lines": 186,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "G_analyticOnNhd_rect",
+    "ns": "LevinsonCount",
+    "full": "LevinsonCount.G_analyticOnNhd_rect",
+    "line": 44,
+    "why": "`ζ + c ζ'` is analytic on the rectangle with corners `1/2 + a i`, `3 + b i`, `4 ≤ a ≤ b`: every point has imaginary part at least `4`, so it avoids the pole.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "ha : 4 ≤ a",
+     "hab : a ≤ b"
+    ],
+    "proves": "AnalyticOnNhd ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I))",
+    "file": "lean_stage3/Stage3/LevinsonCount.lean",
+    "id": "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "left_mem_border",
+    "ns": "LevinsonCount",
+    "full": "LevinsonCount.left_mem_border",
+    "line": 62,
+    "why": "The left edge lies on the border.",
+    "sorry": false,
+    "needs": [
+     "ht : t ∈ Set.Icc a b"
+    ],
+    "proves": "((1/2 : ℂ) + t * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)",
+    "file": "lean_stage3/Stage3/LevinsonCount.lean",
+    "id": "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.left_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bottom_mem_border",
+    "ns": "LevinsonCount",
+    "full": "LevinsonCount.bottom_mem_border",
+    "line": 75,
+    "why": "The bottom edge lies on the border.",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ Set.Icc (1/2 : ℝ) 3"
+    ],
+    "proves": "((x : ℂ) + a * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)",
+    "file": "lean_stage3/Stage3/LevinsonCount.lean",
+    "id": "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.bottom_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "top_mem_border",
+    "ns": "LevinsonCount",
+    "full": "LevinsonCount.top_mem_border",
+    "line": 87,
+    "why": "The top edge lies on the border.",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ Set.Icc (1/2 : ℝ) 3"
+    ],
+    "proves": "((x : ℂ) + b * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)",
+    "file": "lean_stage3/Stage3/LevinsonCount.lean",
+    "id": "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.top_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_count",
+    "ns": "LevinsonCount",
+    "full": "LevinsonCount.levinson_count",
+    "line": 104,
+    "why": "S11 step 1, assembled: Levinson's count. For `0 ≤ c ≤ 1`, `4 ≤ a < b`, `G = ζ + c ζ'` nonzero on the border of the rectangle with corners `1/2 + a i` and `3 + b i`, and the real factor `1 − c · Re(Gammaℝ'/Gammaℝ)` nonzero along the segment `[1/2 + a i, 1/2 + b i]`: the zeros of `ζ` on the line up to height `b`, with order, number at least `(N b − N a) − 2 · (zeros of G in the rectangle, with order) − (72 log b + 418)`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hB : ∀ p ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I), riemannZeta p + c * deriv riemannZeta p ≠ 0",
+     "hfac : ∀ t ∈ Set.Icc a b, 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonCount.lean",
+    "id": "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.bottom_mem_border",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.left_mem_border",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.top_mem_border",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.bottom_mem_border",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.left_mem_border",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.top_mem_border",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
     ],
     "layer": "zeta",
     "used_by": []
@@ -45902,6 +46092,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le"
     ]
    },
@@ -46212,7 +46403,9 @@
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    }
   ]
  },
@@ -46264,6 +46457,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
@@ -46591,7 +46785,9 @@
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    },
    {
     "kind": "theorem",
@@ -46757,7 +46953,9 @@
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    }
   ]
  },
@@ -47034,7 +47232,9 @@
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    },
    {
     "kind": "theorem",
@@ -47096,7 +47296,9 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+    ]
    }
   ]
  },
@@ -49530,6 +49732,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
@@ -49935,6 +50138,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
@@ -96240,11 +96444,12 @@
    "Stage3.LevinsonArg",
    "Stage3.LevinsonTurn",
    "Stage3.LevinsonSize",
-   "Stage3.LevinsonEdge"
+   "Stage3.LevinsonEdge",
+   "Stage3.LevinsonCount"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 218,
+  "lines": 219,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -96323,6 +96528,7 @@
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LevinsonArg.lean",
+   "lean_stage3/Stage3/LevinsonCount.lean",
    "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
