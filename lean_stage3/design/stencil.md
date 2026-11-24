@@ -528,3 +528,42 @@ Linear forms in logarithms give some finite `κ_r`, much larger. With the true
 whose density exponent alone exceeds `b`. Both escape every finite `r`. The
 input `H_r` grows with `r` and reaches `NoRunaway` as `r` grows without
 bound (S8).
+
+## S10 The horizon and the floor — design, no Lean target yet
+
+Julian, 2026-11-24: write up the frame of unit 0515 as a design block for the
+open items. On paper, here, unchecked by anyone else.
+
+**The objects.**
+- The horizon: `θ(t) = arg(Gammaℝ(1/2 + it))` taken continuously, with
+  `θ(0) = 0`. Mathlib has `Gammaℝ`, `completedRiemannZeta` and
+  `completedRiemannZeta_one_sub`. `θ` is not in the tree.
+- Hardy's function: `Z(t) = e^(iθ(t))·ζ(1/2 + it)`. It is real for real `t`
+  by the functional equation and conjugation (`logDerivZeta_conj`, the
+  `ZetaConj` file). `Z` is not in the tree.
+- The threshold count: `N(T) = θ(T)/π + 1 + S(T)`, `S(T) = (1/π)·arg ζ(1/2 + iT)`.
+  The tree has `N(T)` and its main term through `Kadiri` (`zetaCountingMainTerm`),
+  without the split into `θ` and `S`.
+- The floor: `MollifiedMean.M X s` and `f X s = ζ(s)·M(X, s) − 1`, with
+  `f_eq` in the tree.
+
+**Targets, in order.**
+1. `Z_real`: `Z(t)` is real. It follows from `completedRiemannZeta_one_sub` and
+   conjugation. This is the first Lean step, and it is unconditional.
+2. `signChange_is_zero_on_line`: a sign change of `Z` on `[t₁, t₂]` gives a zero
+   `1/2 + iγ` with `γ ∈ [t₁, t₂]`, by the intermediate value theorem on a real
+   continuous function.
+3. `rh_iff_signChanges`: RH holds exactly when, for every `T`, the zeros on the
+   line up to `T`, counted with multiplicity by the sign changes and the
+   orders of `Z`, number `N(T)`. One direction is the definitions; the other
+   is the count.
+4. The floor, on paper first: Levinson's inequality bounds the number of zeros
+   off the line by an integral of `log|ψ·ζ|` on a line left of one half, with
+   `ψ` a mollifier. The mean value `∫|ψ·ζ|²` that it needs is the missing
+   piece. The tree's `MollifiedMean` bounds `|f|²` right of one half, so it
+   would have to be moved to the line and the mollifier fitted.
+
+**What it does not do.** No known mollifier gives every zero. Step 4 at full
+strength is the open problem. Steps 1 to 3 are unconditional and
+build the frame in which H, the wall and the floor can each be read as a count
+of missed sign changes.
