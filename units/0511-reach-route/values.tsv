@@ -1,0 +1,17 @@
+key	value	source
+module_lines	269	wc -l lean_stage3/Stage3/ReachRoute.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/ReachRoute.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ReachRoute.lean
+pins	2	reached_mode_false, reach_of_isolated
+errors_first	5	the worker's first build: an ambiguous F with the root F, an invalid rewrite on an unreduced application, and their cascade on the pins
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8892	lake build (full Stage3), Build completed successfully
+jobs_module	8827	run/build.log, lake build Stage3.ReachRoute
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s6	Reached modes
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_residue	508	unit 0508

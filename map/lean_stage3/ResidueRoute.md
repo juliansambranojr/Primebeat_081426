@@ -7,7 +7,7 @@ ResidueRoute — block S4 of `lean_stage3/design/stencil.md`. 2026-11-24. The re
 15 theorems, 5 definitions, 559 lines. 
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterAccum`](../lean_stage3/FilterAccum.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderAssembly`](../lean_stage3/LadderAssembly.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderAssembly`](../lean_stage3/LadderAssembly.md), [`ReachRoute`](../lean_stage3/ReachRoute.md)
 
 ## The picture
 
@@ -28,13 +28,14 @@ flowchart LR
   n12["<b>G_eq_F</b><br/>G σ u = F σ u"]:::thm
   n13["<b>fibre_term</b><br/>a * (c / (z * a)) = c * z⁻¹"]:::cnt
   n14["<b>isolated_boundary_mode_false</b><br/>∃ E : ℝ, σ₀ ≤ E ∧ E ＜ Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.Nontriv…"]:::thm
-  x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
-  x1(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x2(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
-  x3(["<b>CountReduction</b><br/>tail_rate"]):::ext
-  x4(["<b>FilterAttained</b><br/>4 theorems"]):::ext
-  x5(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
-  x6(["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]):::ext
+  x0(["<b>ReachRoute</b><br/>reach_of_isolated<br/>reached_mode_false"]):::ext
+  x1(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x2(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x3(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
+  x4(["<b>CountReduction</b><br/>tail_rate"]):::ext
+  x5(["<b>FilterAttained</b><br/>4 theorems"]):::ext
+  x6(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x7(["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]):::ext
   n0 --> n14
   n0 --> n9
   n1 --> n14
@@ -57,19 +58,33 @@ flowchart LR
   n8 --> n14
   n8 --> n9
   n9 --> n14
-  n14 -.-> x6
-  x0 -.-> n10
-  x0 -.-> n3
-  x0 -.-> n7
+  n0 -.-> x0
+  n1 -.-> x0
+  n10 -.-> x0
+  n11 -.-> x0
+  n12 -.-> x0
+  n13 -.-> x0
+  n14 -.-> x7
+  n2 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
+  n9 -.-> x0
   x1 -.-> n10
-  x1 -.-> n12
-  x1 -.-> n4
-  x1 -.-> n6
+  x1 -.-> n3
+  x1 -.-> n7
   x2 -.-> n10
-  x2 -.-> n8
+  x2 -.-> n12
+  x2 -.-> n4
+  x2 -.-> n6
   x3 -.-> n10
+  x3 -.-> n8
   x4 -.-> n10
-  x5 -.-> n14
+  x5 -.-> n10
+  x6 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -90,7 +105,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 53
 
 - **Is:** `` um (ρ : NontrivialZeros) : ℂ := (2:ℂ) ^ (-(ρ : ℂ)) noncomputable ``
-- **Used by 7:** [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.norm_sub_le`](#ResidueRoute-norm_sub_le), [`ResidueRoute.norm_um`](#ResidueRoute-norm_um), [`ResidueRoute.one_sub_eq`](#ResidueRoute-one_sub_eq), [`ResidueRoute.um_eq`](#ResidueRoute-um_eq), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
+- **Used by 9:** [`ReachRoute.reach_of_isolated`](../lean_stage3/ReachRoute.md#ReachRoute-reach_of_isolated), [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.norm_sub_le`](#ResidueRoute-norm_sub_le), [`ResidueRoute.norm_um`](#ResidueRoute-norm_um), [`ResidueRoute.one_sub_eq`](#ResidueRoute-one_sub_eq), [`ResidueRoute.um_eq`](#ResidueRoute-um_eq), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
 
 <a name="ResidueRoute-K"></a>
 ### `ResidueRoute.K`
@@ -98,7 +113,7 @@ def · line 53
 def · line 57
 
 - **Is:** `` K (σ : ℝ) : Set ℂ := closure {u : ℂ | ∃ ρ : NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (-(ρ : ℂ)) = u} noncomputable ``
-- **Used by 6:** [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier), [`ResidueRoute.K_subset`](#ResidueRoute-K_subset), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isClosed_K`](#ResidueRoute-isClosed_K), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
+- **Used by 9:** [`LadderAssembly.top_mode_on_frontier`](../lean_stage3/LadderAssembly.md#LadderAssembly-top_mode_on_frontier), [`ReachRoute.isolated_boundary_mode_false'`](../lean_stage3/ReachRoute.md#ReachRoute-isolated_boundary_mode_false-), [`ReachRoute.reach_of_isolated`](../lean_stage3/ReachRoute.md#ReachRoute-reach_of_isolated), [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false), [`ResidueRoute.K_subset`](#ResidueRoute-K_subset), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.isClosed_K`](#ResidueRoute-isClosed_K), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false), [`ResidueRoute.um_mem_K`](#ResidueRoute-um_mem_K)
 
 <a name="ResidueRoute-P"></a>
 ### `ResidueRoute.P`
@@ -116,7 +131,7 @@ def · line 67
 
 - **Is:** `` G (σ : ℝ) (u : ℂ) : ℂ := ∑' k : ℕ, P σ k * u ^ k noncomputable ``
 - **Built from:** [`ResidueRoute.P`](#ResidueRoute-P)
-- **Used by 3:** [`ResidueRoute.G_eq_F`](#ResidueRoute-G_eq_F), [`ResidueRoute.differentiableAt_G`](#ResidueRoute-differentiableAt_G), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false)
+- **Used by 4:** [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false), [`ResidueRoute.G_eq_F`](#ResidueRoute-G_eq_F), [`ResidueRoute.differentiableAt_G`](#ResidueRoute-differentiableAt_G), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false)
 
 <a name="ResidueRoute-F"></a>
 ### `ResidueRoute.F`
@@ -125,7 +140,7 @@ def · line 71
 
 - **Is:** `` F (σ : ℝ) (u : ℂ) : ℂ := ∑' ρ : FilterAttained.S σ, LadderMean.coef ρ.1 / (1 - (2:ℂ) ^ (ρ.1 : ℂ) * u) ``
 - **Built from:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
-- **Used by 4:** [`ResidueRoute.G_eq_F`](#ResidueRoute-G_eq_F), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.differentiableAt_G`](#ResidueRoute-differentiableAt_G), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false)
+- **Used by 5:** [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false), [`ResidueRoute.G_eq_F`](#ResidueRoute-G_eq_F), [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F), [`ResidueRoute.differentiableAt_G`](#ResidueRoute-differentiableAt_G), [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false)
 
 ## Theorems
 
@@ -152,8 +167,9 @@ IsClosed (K σ)
 
 **Definitions its proof touches:** [`ResidueRoute.K`](#ResidueRoute-K)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
@@ -181,8 +197,10 @@ um ρ ∈ K σ
 
 **Definitions its proof touches:** [`ResidueRoute.K`](#ResidueRoute-K), [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`ReachRoute.reach_of_isolated`](../lean_stage3/ReachRoute.md#ReachRoute-reach_of_isolated) (ReachRoute) — `` ∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (Metric.ball (0:ℂ) ((2:ℝ) ^ (-σ)) \ K σ) 0) ∧ Tendsto u atTop (𝓝 (um ρ₁)) ∧ (∀ j, u j ≠ um ρ₁)… ``
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
@@ -209,8 +227,9 @@ um ρ = ((2:ℂ) ^ (ρ : ℂ))⁻¹
 
 **Definitions its proof touches:** [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
   - [`ResidueRoute.one_sub_eq`](#ResidueRoute-one_sub_eq) — `` 1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u) ``
 
@@ -239,8 +258,9 @@ line 85 · arrows read from text
 
 **Definitions its proof touches:** [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-mode_ne_zero"></a>
@@ -266,8 +286,9 @@ line 89 · arrows read from text
 
   - [`FilterAccum.one_le_norm_mode`](../lean_stage3/FilterAccum.md#FilterAccum-one_le_norm_mode) (FilterAccum) — `` 1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖ ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
   - [`ResidueRoute.one_sub_eq`](#ResidueRoute-one_sub_eq) — `` 1 - (2:ℂ) ^ (ρ : ℂ) * u = (2:ℂ) ^ (ρ : ℂ) * (um ρ - u) ``
 
@@ -298,8 +319,9 @@ line 93 · arrows read from text
 
 **Definitions its proof touches:** [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
   - [`ResidueRoute.norm_sub_le`](#ResidueRoute-norm_sub_le) — `` ‖um ρ - u‖ ≤ ‖1 - (2:ℂ) ^ (ρ : ℂ) * u‖ ``
 
@@ -330,8 +352,9 @@ line 98 · arrows read from text
 
 **Definitions its proof touches:** [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
@@ -360,8 +383,9 @@ K σ ⊆ {u : ℂ | 1 / 2 ≤ ‖u‖}
 
 **Definitions its proof touches:** [`ResidueRoute.K`](#ResidueRoute-K)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-summable_coef"></a>
@@ -389,8 +413,9 @@ Summable fun ρ : FilterAttained.S σ => ‖LadderMean.coef ρ.1‖
 
 **Definitions its proof touches:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.G_eq_F`](#ResidueRoute-G_eq_F) — `` G σ u = F σ u ``
   - [`ResidueRoute.differentiableAt_F`](#ResidueRoute-differentiableAt_F) — `` DifferentiableAt ℂ (F σ) v ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
@@ -424,8 +449,9 @@ DifferentiableAt ℂ (F σ) v
 
 **Definitions its proof touches:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef), [`ResidueRoute.F`](#ResidueRoute-F), [`ResidueRoute.K`](#ResidueRoute-K), [`ResidueRoute.um`](#ResidueRoute-um)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-P_bound"></a>
@@ -465,8 +491,9 @@ line 170 · arrows read from text
 
 **Definitions its proof touches:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`FilterAttained.ratio`](../lean_stage3/FilterAttained.md#FilterAttained-ratio), [`FilterAttained.tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tailT), [`FilterAttained.xi`](../lean_stage3/FilterAttained.md#FilterAttained-xi), [`FilterLadder.Afl`](../lean_stage3/FilterLadder.md#FilterLadder-Afl), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef), [`ResidueRoute.P`](#ResidueRoute-P), [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-differentiableAt_G"></a>
@@ -494,8 +521,9 @@ DifferentiableAt ℂ (G σ) v
 
 **Definitions its proof touches:** [`ResidueRoute.F`](#ResidueRoute-F), [`ResidueRoute.G`](#ResidueRoute-G), [`ResidueRoute.P`](#ResidueRoute-P)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-G_eq_F"></a>
@@ -525,8 +553,9 @@ G σ u = F σ u
 
 **Definitions its proof touches:** [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef), [`ResidueRoute.F`](#ResidueRoute-F), [`ResidueRoute.G`](#ResidueRoute-G), [`ResidueRoute.P`](#ResidueRoute-P)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-fibre_term"></a>
@@ -551,8 +580,9 @@ a * (c / (z * a)) = c * z⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ReachRoute.reached_mode_false`](../lean_stage3/ReachRoute.md#ReachRoute-reached_mode_false) (ReachRoute) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ (u : ℕ → ℂ) (M : ℝ), (∀ j, u j ∈ connectedComponentIn (… ``
   - [`ResidueRoute.isolated_boundary_mode_false`](#ResidueRoute-isolated_boundary_mode_false) — `` ∃ E : ℝ, σ₀ ≤ E ∧ E < Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.NontrivialZeros, σ < (ρ₁ : ℂ).re → (∃ ε : ℝ, 0 < ε ∧ ∀ u ∈ K σ, ‖u - (2:ℂ) ^ (-(ρ₁ : ℂ))‖ < ε… ``
 
 <a name="ResidueRoute-isolated_boundary_mode_false"></a>

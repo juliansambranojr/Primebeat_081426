@@ -14,13 +14,14 @@ flowchart LR
   n12["<b>G_eq_F</b><br/>G σ u = F σ u"]:::thm
   n13["<b>fibre_term</b><br/>a * (c / (z * a)) = c * z⁻¹"]:::cnt
   n14["<b>isolated_boundary_mode_false</b><br/>∃ E : ℝ, σ₀ ≤ E ∧ E ＜ Θ ∧ ∀ σ : ℝ, E ≤ σ → ∀ ρ₁ : Kadiri.Nontriv…"]:::thm
-  x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
-  x1(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x2(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
-  x3(["<b>CountReduction</b><br/>tail_rate"]):::ext
-  x4(["<b>FilterAttained</b><br/>4 theorems"]):::ext
-  x5(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
-  x6(["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]):::ext
+  x0(["<b>ReachRoute</b><br/>reach_of_isolated<br/>reached_mode_false"]):::ext
+  x1(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
+  x2(["<b>FilterAccum</b><br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x3(["<b>ZeroSummable</b><br/>norm_coef<br/>summable_norm_coef<br/>w_nonneg"]):::ext
+  x4(["<b>CountReduction</b><br/>tail_rate"]):::ext
+  x5(["<b>FilterAttained</b><br/>4 theorems"]):::ext
+  x6(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
+  x7(["<b>LadderAssembly</b><br/>rh_of_ladder_tame"]):::ext
   n0 --> n14
   n0 --> n9
   n1 --> n14
@@ -43,19 +44,33 @@ flowchart LR
   n8 --> n14
   n8 --> n9
   n9 --> n14
-  n14 -.-> x6
-  x0 -.-> n10
-  x0 -.-> n3
-  x0 -.-> n7
+  n0 -.-> x0
+  n1 -.-> x0
+  n10 -.-> x0
+  n11 -.-> x0
+  n12 -.-> x0
+  n13 -.-> x0
+  n14 -.-> x7
+  n2 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
+  n9 -.-> x0
   x1 -.-> n10
-  x1 -.-> n12
-  x1 -.-> n4
-  x1 -.-> n6
+  x1 -.-> n3
+  x1 -.-> n7
   x2 -.-> n10
-  x2 -.-> n8
+  x2 -.-> n12
+  x2 -.-> n4
+  x2 -.-> n6
   x3 -.-> n10
+  x3 -.-> n8
   x4 -.-> n10
-  x5 -.-> n14
+  x5 -.-> n10
+  x6 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
