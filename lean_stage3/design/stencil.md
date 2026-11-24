@@ -612,3 +612,49 @@ form.
 **Build order, if pursued.** 4a (Littlewood) in Lean, unconditional. Then 4b.
 Then 4c, Bohr–Landau, from `MollifiedMean`. 4d needs a mean value left of the
 line, which is a large analytic project.
+
+## S11 Levinson's lemma — on paper, no Lean target yet
+
+Julian, 2026-11-24: "Yes" (design Levinson's lemma after Littlewood, unit
+0518). On paper, here, unchecked by anyone else. The formulas in Levinson's
+and Conrey's forms are recalled from memory and were not checked against a
+source this session. Check them before any Lean is pinned.
+
+**The shape of the method.** Write `L = log(T/2π)`. Take `V(s) = Q(−(1/L)·d/ds) ζ(s)`
+with `Q` a real polynomial, `Q(0) = 1`; Levinson's choice is `V = ζ + ζ'/L` up to the
+normalizing constant. Take a mollifier `M(s) = Σ_{n≤y} μ(n)·n^(−s)·P(log(y/n)/log y)`,
+`y = T^θ`, `P(0) = 0`, `P(1) = 1`. Take `σ₀ = 1/2 − R/L`.
+1. **Levinson's lemma.** On the critical line, a zero of `ζ` is forced at every
+   point where the argument of `V` passes a multiple of `π`, through the functional
+   equation `ζ(s) = χ(s)·ζ(1−s)`. Counting the argument along `[1/2, 1/2 + iT]` by the
+   argument principle on the rectangle to its right gives
+   `N₀(T) ≥ N(T) − 2·N_V(T) − O(L)`. Here `N₀` counts the zeros of `ζ` on the line,
+   which is `LineCount.lineCount`, and `N_V` the zeros of `V` with `σ > 1/2` and
+   `0 < t ≤ T`.
+2. **Littlewood on the left.** `littlewood_rect` for `V·M` on `[σ₀, 3] × [T, 2T]` gives
+   `2π·Σ (β − σ₀) = ∫ log|V·M(σ₀+it)| − ∫ log|V·M(3+it)| + (edge terms)`. The zeros
+   of `V` with `β > 1/2` are at distance at least `R/L` from `σ₀`. So
+   `N_V(2T) − N_V(T) ≤ (L/(2πR))·(right side)`.
+3. **The edge terms.** `∫ log|V·M(3+it)| = o(T)`, since `V·M → 1` far right. The
+   horizontal terms are `O(L·(3 − σ₀))`, by the local zero count (`JensenCount`).
+4. **Concavity.** `∫ log|V·M| ≤ (T/2)·log((1/T)∫|V·M|²)`.
+5. **The mean value, the floor.** `(1/T)∫_T^{2T} |V·M(σ₀+it)|² dt → c(P, Q, R, θ)`, an
+   explicit constant, for `θ < 1/2`, or `θ < 4/7` in Conrey's work.
+6. **Assembly.** `κ = liminf N₀/N ≥ 1 − (1/R)·log c(P, Q, R, θ)`. With the best
+   `P`, `Q`, `R` this is positive: about 34% for Levinson and over 40% for Conrey.
+
+**What is in the tree for each step.**
+- Step 1: `HardyZ`, `LineCount`, the conjugate symmetry and the functional
+  equation (Mathlib). The argument count on the line is not in the tree.
+- Step 2: `Littlewood.littlewood_rect`.
+- Step 3: `JensenCount`, `ArgCount`, and the far-right size of ζ (`ZetaBounds`).
+- Step 4: Jensen's inequality for the logarithm. Mathlib has the concavity of the
+  logarithm.
+- Step 5: none. `MollifiedMean` has a mean square right of `1/2` for `M_X` without
+  `P`, `Q` or the shift left of the line. This is the large step.
+
+**Order of building.** 1, then 2 to 4 as the zero-count bound in terms of a mean
+square, which is unconditional and holds for any `V` and `M`. Then 5, which is
+the analytic core. The theorem after 1 to 4, `κ ≥ 1 − (1/R)·log(mean square)`, can
+be stated with the mean square as a hypothesis. That makes the floor exactly
+one named input, in the same way H is for the ladder.

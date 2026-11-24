@@ -842,3 +842,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-24  Unit 0515: horizon = phase of the gamma factor, threshold/basins = sign changes of Hardy's Z against theta/pi, floor = the mollifier (in the tree as MollifiedMean, used only for density). Missing: Z, theta, the sign-change count, Levinson mean values.
 - [open]   2026-11-24  S10 steps 1-2 PROVED (unit 0516, `HardyZ`): Lambda(1/2+it) is real (`xi_line_real`); a sign change on the line gives a zero on the line (`signChange_zero_on_line`). Unconditional.
 - [open]   2026-11-24  S10 step 3 PROVED (unit 0517, `LineCount`): RH iff lineCount T = allCount T for all T (`rh_iff_line_count`); k strict sign changes give lineCount >= k. Unconditional.
+- [open]   2026-11-24  S10 step 4a PROVED (unit 0518, `Littlewood`): Littlewood's lemma on a rectangle with no branch of arg (`littlewood_rect`), with 2-D integrability of logDeriv. Unconditional.
