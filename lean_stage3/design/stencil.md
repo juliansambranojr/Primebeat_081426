@@ -139,3 +139,17 @@ constraint `a·deg q < b` caps the mass of the potential below one.
 
 **Where both routes stop.** An accumulation set that separates the modes
 from `0`.
+
+## S4 The residue route — `Stage3/ResidueRoute.lean`
+
+Julian, 2026-11-24: assemble the ladder route; step (A1). From "After the
+independent check" above: with `Θ − 5δ² < σ < Θ`, S1 at `q = 1` and the
+density rate for the tail give `P_k = Σ'_{β≥σ} w_ρ z_ρ^k = O(k⁴ 2^(kσ))`, so
+`G(u) = Σ_k P_k u^k` is analytic in `|u| < 2^(−σ)`. On `|u| < 2^(−Θ)`,
+`G(u) = Σ' w_ρ u/(u_ρ − u)`, analytic off `K = closure{u_ρ}`. A mode `u_1`,
+`β_1 > σ`, isolated in `K` and on the boundary of the component of `ℂ∖K`
+holding `0`, is a pole with residue `−u_1·Σ_fibre w_ρ ≠ 0` (`AliasClass`).
+
+- `isolated_boundary_mode_false`.
+
+**Not here.** An accumulation set separating the modes from `0`.

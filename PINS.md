@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S4 of `design/stencil.md`: `Stage3/ResidueRoute.lean`
+
+    DONE        `isolated_boundary_mode_false`: under the ladder bound H, a
+                zero right of σ whose mode is isolated in the closure of the
+                modes and on the boundary of the component of its complement
+                holding 0 contradicts H; one unit
+    ASSUMED     Julian, 2026-11-24: "Start the loop" (ladder-route assembly,
+                step (A1)). Built by one worker from the design's paper text
+    DEPENDS     `FilterLadder`, `ZeroDensity`, `ZeroSummable`, `FilterAccum`
+    OUT         modes accumulating on a set that separates them from 0
+
 ### 2026-11-24 · block R16 of `design/runs.md`: `Stage3/WindowsOfRH.lean`
 
     DONE        `windows_of_rh`: RiemannHypothesis → ∀ θ ∈ (1/2, 1), ∃ δ C,
