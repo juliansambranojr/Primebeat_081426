@@ -329,3 +329,49 @@ available on the doublings.
 **What would rescue it.** Either a Turán-type bound whose loss is
 subexponential in `N`, or zeros near the top so sparse that `N(T) = O(log T)`.
 Neither is in the tree or in what was found.
+
+### S7, round 3: a rescue of Turán's loss (2026-11-24, Julian: "Out the Turán rescue")
+
+On paper, here, unchecked by anyone else.
+
+**Turán's loss is the price of an arbitrary arrangement.** Its bound holds for
+any `N` points. The roots of unity show that some loss is forced: their power
+sums vanish for `k = 1, …, N − 1`. But for separated points the loss is
+polynomial. On a window of length `K`, the Montgomery–Vaughan mean value
+theorem gives `Σ_{k=m+1}^{m+K} |Σ_j c_j e^(ikφ_j)|² = Σ_j |c_j|²·(K + θ_j·3π/δ_j)`,
+with `|θ_j| ≤ 1` and `δ_j` the distance from `φ_j` to the nearest other angle.
+Once `K > 6π/δ`, this is at least `(K/2)·Σ|c_j|²`. The loss is `1/δ`, with no
+power of `N`.
+
+**On the wall.** Normalize `S(T)`'s modes by `2^(β_max(T))`, merge exact alias
+fibres (`AliasClass`: each merged weight ≠ 0), and let `δ(T)` be the least
+angular separation of the merged modes. The radial factors `|ζ_j|^k ≤ 1`
+weaken only the zeros below the top, and the top one keeps its full share.
+With `K ≈ 6π/δ(T)` and the shift `m` fixed by H's constant, the errors are:
+- H: `k²·2^(−k(β_max−σ))`, small for `k ≥ m`;
+- the zeros left of `β*`: small the same way;
+- the zeros above `T`: `T^(−(1−θ))·2^(K(Θ − β_max(T)))`.
+So the wall falls on every `T` with `(Θ − β_max(T)) ≤ c·δ(T)·log T`.
+
+**What is left.** A creep that is fast against the separation. The real parts
+near the top approach `Θ` more slowly than the angles `γ·log 2 (mod 2π)` of
+the top zeros spread apart. Turán's `exp(N)` against the density saving has
+become `1/δ(T)` against the creep rate, a contest between two properties of
+the zeros near the top. Neither is bounded in the tree. Lower bounds for
+`δ(T)` are bounds on near-coincidences `(γ − γ')·log 2 ≈ 2πn`, that is,
+on how close the zeros come to the alias lattice. Bounds of that kind are
+the territory of pair-correlation and simplicity results, which are open.
+
+**The direction of the weights helps the clusters.** For `γ > 0`, every
+weight is `m/ρ ≈ −i·m/γ`. Modes close in angle therefore add without
+cancelling at every `k` with `k·(angle spread) < π/2`. A cluster of near
+aliases acts as one heavy mode at those `k`, and the weights do not cancel
+inside it. The exception is the clusters near the real axis, where a zero
+meets its conjugate. This is not yet turned into a bound that replaces
+`δ(T)`.
+
+**Next.** (a) Turn the alignment of the weights into a mean value bound with
+clusters in place of separated points. If that works, only the conjugate
+clusters near the real axis keep a separation condition. (b) Check the
+Montgomery–Vaughan step against the radial factors exactly. It is used here
+for points on the circle.
