@@ -194,6 +194,8 @@ import Stage3.SieveIdem
 import Stage3.NoHoles
 import Stage3.PerfectFit
 import Stage3.Doubling
+import Stage3.Target
+import Stage3.WindowsOfRH
 
 namespace Stage3
 

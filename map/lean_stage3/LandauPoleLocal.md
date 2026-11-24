@@ -5,7 +5,7 @@ LandauPoleLocal — `Phi` near a zero of `ζ` and near `1`. Block 3a of `lean_st
 3 theorems, 0 definitions, 171 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointSymbol`](../lean_stage3/JointSymbol.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointSymbol`](../lean_stage3/JointSymbol.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 
@@ -17,10 +17,12 @@ flowchart LR
   x0(["<b>ContourShift</b><br/>one_le_zeta_order<br/>zeta_analyticAt<br/>zeta_order_ne_top"]):::ext
   x1(["<b>LandauPoleDisc</b><br/>Phi_taylor_on_disc"]):::ext
   x2(["<b>JointSymbol</b><br/>symPhi_principal_part"]):::ext
+  x3(["<b>WindowsOfRH</b><br/>const_eq_zero"]):::ext
   n0 -.-> x1
   n1 -.-> x1
   n1 -.-> x2
   n2 -.-> x1
+  n2 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -121,7 +123,8 @@ line 125
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc) (LandauPoleDisc) — `` ∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧ ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c - ∑ ρ ∈ P, (analyti… ``
+  - [`WindowsOfRH.const_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero) (WindowsOfRH) — `` c = 0 ``
 

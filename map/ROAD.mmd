@@ -27,15 +27,18 @@ flowchart LR
   p8["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
   t8["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p8 --> t8 --> rh
-  p9["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t9["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p9["Target"]:::bad
+  t9["<b>rh_of_target</b>"]:::thm
   p9 --> t9 --> rh
-  p10["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t10["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p10["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t10["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p10 --> t10 --> rh
-  p11["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t11["<b>RH_of_psiWeak</b>"]:::thm
+  p11["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t11["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p11 --> t11 --> rh
+  p12["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t12["<b>RH_of_psiWeak</b>"]:::thm
+  p12 --> t12 --> rh
   e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e0
   e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_

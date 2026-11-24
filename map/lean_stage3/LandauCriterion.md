@@ -5,7 +5,7 @@ LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage
 3 theorems, 0 definitions, 250 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauRates`](../lean_stage3/LandauRates.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md), [`Target`](../lean_stage3/Target.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 
@@ -13,15 +13,17 @@ LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage
 flowchart LR
   n0["<b>contradiction</b><br/>False"]:::thm
   n1["<b>stmtLandauWindow</b><br/>LandauWindow.StmtLandauWindow"]:::thm
-  n2["<b>rh_of_windows ■</b><br/>RiemannHypothesis"]:::thm
+  n2["<b>rh_of_windows</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
   x1(["<b>LandauRates</b><br/>exists_centre<br/>exists_pow_small<br/>key_ineq"]):::ext
   x2(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
   x3(["<b>JointWindowDial</b><br/>zeroFreeRight_of_window"]):::ext
   x4(["<b>LandauWindow</b><br/>rh_of_window"]):::ext
+  x5(["<b>Target</b><br/>rh_of_target"]):::ext
   n0 --> n1
   n1 --> n2
   n1 -.-> x3
+  n2 -.-> x5
   x0 -.-> n0
   x1 -.-> n0
   x1 -.-> n1
@@ -138,5 +140,7 @@ RiemannHypothesis
   - [`LandauCriterion.stmtLandauWindow`](#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
   - [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Stage3.rh_of_target`](../lean_stage3/Target.md#Stage3-rh_of_target) (Target) — `` RiemannHypothesis ``
 

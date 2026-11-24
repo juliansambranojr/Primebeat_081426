@@ -32,15 +32,18 @@ flowchart LR
   p8["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
   t8["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p8 --> t8 --> rh
-  p9["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t9["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p9["Target"]:::bad
+  t9["<b>rh_of_target</b>"]:::thm
   p9 --> t9 --> rh
-  p10["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t10["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p10["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t10["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p10 --> t10 --> rh
-  p11["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t11["<b>RH_of_psiWeak</b>"]:::thm
+  p11["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t11["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p11 --> t11 --> rh
+  p12["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t12["<b>RH_of_psiWeak</b>"]:::thm
+  p12 --> t12 --> rh
   e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e0
   e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
@@ -65,9 +68,9 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 2123.
+- **Theorems Lean has checked:** 2131.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
-- **Theorems that prove it from a hypothesis:** 12. Each hypothesis is a red box: prove one and the line closes.
+- **Theorems that prove it from a hypothesis:** 13. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 11.
 - **Theorems that assume it:** 67, arriving at 26 ends.
 
@@ -84,6 +87,7 @@ flowchart LR
 | [`LandauWindow.rh_of_zeroFree_half`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) | h : ∀ s : ℂ, 1 / 2 &lt; s.re → riemannZeta s ≠ 0 | From a zero-free half-plane to the Riemann hypothesis. |
 | [`LandauWindow.rh_of_window`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) | hW : ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ WindowBound θ δ C | The window bound gives the Riemann hypothesis, given the criterion. |
 | [`PiToPsi.RH_of_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | h : StmtSchoenfeldWeak C 1 x₀ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li | The square-root bound on the count gives the Riemann hypothesis. |
+| [`Stage3.rh_of_target`](./lean_stage3/Target.md#Stage3-rh_of_target) | h : Target | The target gives the Riemann hypothesis. |
 | [`Stage3.RH_of_psiWeakTheta_half`](./lean_stage3/ThetaConverse.md#Stage3-RH_of_psiWeakTheta_half) | h : StmtPsiWeakTheta (1/2) C k x₀ | The weld at `θ = 1/2`: `VonKoch.RH_of_psiWeak`'s statement through the dial, via `Abscissa`'s `StmtZeroFreeRight (1/2)` and V5's reflection. |
 | [`VonKoch.RH_of_no_zero_right_of_half`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_no_zero_right_of_half) | h : ∀ ρ : ℂ, 1/2 &lt; ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0 | V5 — reflection. No zeros right of the line forces every nontrivial zero onto it: a zero at `re &lt; 1/2` inside the strip reflects through `riemannZeta_one_sub` to one at `re &gt; 1/2`. |
 | [`VonKoch.RH_of_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_psiWeak) | hbound : ∀ t : ℝ, x₀ ≤ t → \|ψ t - t\| ≤ C * Real.sqrt t * (Real.log t) ^ 3 | B1 — the converse, assembled from V1–V5. |

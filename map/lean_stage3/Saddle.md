@@ -7,7 +7,7 @@ Saddle — block J7 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table
 11 theorems, 2 definitions, 199 lines. 
 
 **Imports:** [`RateBelow`](../lean_stage3/RateBelow.md), [`ShareLink`](../lean_stage3/ShareLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Readings`](../lean_stage3/Readings.md), [`WholeChain`](../lean_stage3/WholeChain.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Readings`](../lean_stage3/Readings.md), [`WholeChain`](../lean_stage3/WholeChain.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)
 
 ## The picture
 

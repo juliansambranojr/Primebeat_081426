@@ -12,6 +12,7 @@ flowchart LR
   x0(["<b>LandauMellin</b><br/>mellin_rampSum"]):::ext
   x1(["<b>JointSymbol</b><br/>mellin_dd_iter"]):::ext
   x2(["<b>LandauTaylor</b><br/>iteratedDeriv_Phi<br/>mellinLog_integrable"]):::ext
+  x3(["<b>WindowsOfRH</b><br/>phi_sub_pole_le"]):::ext
   n0 --> n1
   n1 --> n8
   n1 --> n9
@@ -26,8 +27,10 @@ flowchart LR
   n7 --> n9
   n8 -.-> x1
   n8 -.-> x2
+  n8 -.-> x3
   n9 -.-> x1
   n9 -.-> x2
+  n9 -.-> x3
   x0 -.-> n1
   x0 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

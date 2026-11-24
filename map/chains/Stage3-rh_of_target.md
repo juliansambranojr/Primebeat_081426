@@ -1,8 +1,8 @@
-# What `LandauCriterion.rh_of_windows` rests on
+# What `Stage3.rh_of_target` rests on
 
-[`LandauCriterion.rh_of_windows`](../lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) in `lean_stage3/Stage3/LandauCriterion.lean`, line 230.
+[`Stage3.rh_of_target`](../lean_stage3/Target.md#Stage3-rh_of_target) in `lean_stage3/Stage3/Target.lean`, line 27.
 
-**Why.** Conditional: if for every `θ` in `(1/2, 1)` there are `δ > 0` and `C` with the window bound `WindowBound θ δ C`, then `RiemannHypothesis` holds. The window bound is a hypothesis of this statement.
+**Why.** The target gives the Riemann hypothesis.
 
 **Proves**
 
@@ -12,9 +12,9 @@ RiemannHypothesis
 
 **Needs** (its hypotheses)
 
-  - `` hW : ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
+  - `` h : Target ``
 
-Behind it: 70 theorems and 9 definitions in 17 files. Every one is listed below; Lean recorded each step.
+Behind it: 71 theorems and 10 definitions in 18 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -36,7 +36,8 @@ flowchart LR
   f13["<b>LandauTaylor</b><br/>7 used"]:::thm
   f14["<b>LandauPrimeSide</b><br/>4 used"]:::thm
   f15["<b>LandauZeroSide</b><br/>2 used"]:::thm
-  f16["<b>LandauCriterion</b><br/>rh_of_windows"]:::end_
+  f16["<b>LandauCriterion</b><br/>3 used"]:::thm
+  f17["<b>Target</b><br/>rh_of_target"]:::end_
   f1 --> f4
   f6 --> f7
   f7 --> f8
@@ -56,6 +57,7 @@ flowchart LR
   f14 --> f15
   f3 --> f16
   f15 --> f16
+  f16 --> f17
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -120,12 +122,12 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 - [`LandauWindow.rampSum`](../lean_stage3/LandauWindow.md#LandauWindow-rampSum) — *def*
 - [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G) — *def*
-- ★ [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound) — *def*
+- [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound) — *def*
 - [`LandauWindow.StmtLandauWindow`](../lean_stage3/LandauWindow.md#LandauWindow-StmtLandauWindow) — *def*
 - [`LandauWindow.zeta_neg_nat_ne_zero`](../lean_stage3/LandauWindow.md#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
 - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
 - [`LandauWindow.zeroFree_half_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-zeroFree_half_of_window) — `` ∀ s : ℂ, 1 / 2 < s.re → riemannZeta s ≠ 0 ``
-- ★ [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) — `` RiemannHypothesis ``
+- [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) — `` RiemannHypothesis ``
 
 ### [`LandauCrude`](../lean_stage3/LandauCrude.md) — 1
 
@@ -197,8 +199,13 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LandauZeroSide.exists_gap`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-exists_gap) — `` ∃ R₂ : ℝ, r < R₂ ∧ R₂ ≤ R₃ ∧ ∀ ρ ∈ F, ‖c - ρ‖ < R₂ → ‖c - ρ‖ ≤ r ``
 - [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) — `` ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧ 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^… ``
 
-### [`LandauCriterion`](../lean_stage3/LandauCriterion.md) — 2
+### [`LandauCriterion`](../lean_stage3/LandauCriterion.md) — 3
 
 - [`LandauCriterion.contradiction`](../lean_stage3/LandauCriterion.md#LandauCriterion-contradiction) — `` False ``
-- ★ [`LandauCriterion.stmtLandauWindow`](../lean_stage3/LandauCriterion.md#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
+- [`LandauCriterion.stmtLandauWindow`](../lean_stage3/LandauCriterion.md#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
+- ★ [`LandauCriterion.rh_of_windows`](../lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) — `` RiemannHypothesis ``
+
+### [`Target`](../lean_stage3/Target.md) — 1
+
+- ★ [`Stage3.Target`](../lean_stage3/Target.md#Stage3-Target) — *def*
 
