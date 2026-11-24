@@ -57190,7 +57190,8 @@
      "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side",
-     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh"
     ]
    },
    {
@@ -87787,7 +87788,7 @@
   "namespaces": [
    "WindowsOfRH"
   ],
-  "lines": 260,
+  "lines": 274,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -87803,7 +87804,7 @@
     "name": "rampSum_eq_mertens",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.rampSum_eq_mertens",
-    "line": 38,
+    "line": 41,
     "why": "The ramp sum through the Mertens sum. For `y ≥ 1`, `rampSum y = y·Σ_{n≤y} Λ(n)/n − ψ(y)`.",
     "sorry": false,
     "needs": [
@@ -87830,7 +87831,7 @@
     "name": "sum_vonMangoldt_div",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.sum_vonMangoldt_div",
-    "line": 67,
+    "line": 70,
     "why": "Abel summation. For `y ≥ 1`, `Σ_{n≤y} Λ(n)/n = ψ(y)/y + ∫_{(1,y]} ψ(t)/t²`.",
     "sorry": false,
     "needs": [
@@ -87853,7 +87854,7 @@
     "name": "rampSum_eq_integral",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.rampSum_eq_integral",
-    "line": 103,
+    "line": 106,
     "why": "S2. For `y ≥ 1`, `rampSum y = y·∫_{(1,y]} ψ(t)/t²`.",
     "sorry": false,
     "needs": [
@@ -87882,7 +87883,7 @@
     "name": "integral_cpow_neg",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.integral_cpow_neg",
-    "line": 113,
+    "line": 116,
     "why": "The power integral `∫_{(1,∞)} y^(−σ) = 1/(σ − 1)` for real `σ > 1`, in `ℂ`.",
     "sorry": false,
     "needs": [
@@ -87905,7 +87906,7 @@
     "name": "mul_cpow_eq",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.mul_cpow_eq",
-    "line": 127,
+    "line": 130,
     "why": "On `(1, ∞)`, `y·y^(−σ−1) = y^(−σ)` in `ℂ`.",
     "sorry": false,
     "needs": [
@@ -87929,7 +87930,7 @@
     "name": "phi_sub_pole_le",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.phi_sub_pole_le",
-    "line": 136,
+    "line": 139,
     "why": "The Mellin transform less its pole. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α`, `α < 1`, then for `σ > 1`, `‖Phi σ − c/(σ − 1)‖ ≤ K/(σ − α)`.",
     "sorry": false,
     "needs": [
@@ -87969,7 +87970,7 @@
     "name": "const_eq_zero",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.const_eq_zero",
-    "line": 183,
+    "line": 186,
     "why": "S4. The constant is zero. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α` and `α < 1`, then `c = 0`: `Phi` is regular at `1`, so it has no pole `c/(s − 1)` there.",
     "sorry": false,
     "needs": [
@@ -87994,6 +87995,31 @@
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_regular_at_one",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "noRunaway_of_rh",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.noRunaway_of_rh",
+    "line": 256,
+    "why": "S1. The Riemann hypothesis gives the staircase in the square-root frame: `|ψ(t) − t| ≤ C·t^(1/2)·(log t)^k` from some point on.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis"
+    ],
+    "proves": "Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
     ],
     "layer": "zeta",
     "used_by": []

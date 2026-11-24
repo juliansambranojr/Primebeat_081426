@@ -1,6 +1,6 @@
 # What `WindowsOfRH.const_eq_zero` rests on
 
-[`WindowsOfRH.const_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero) in `lean_stage3/Stage3/WindowsOfRH.lean`, line 183.
+[`WindowsOfRH.const_eq_zero`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-const_eq_zero) in `lean_stage3/Stage3/WindowsOfRH.lean`, line 186.
 
 **Why.** S4. The constant is zero. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α` and `α < 1`, then `c = 0`: `Phi` is regular at `1`, so it has no pole `c/(s − 1)` there.
 

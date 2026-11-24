@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>721 theorems reads ζ,<br/>in 114 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>722 theorems reads ζ,<br/>in 114 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -96,14 +96,14 @@ Three layers, decided by Lean's record of each proof and everything beneath it (
 
 - **Counting** (green), 227 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
 - **Shape** (violet), 1162 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 742 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Reads ζ** (blue), 743 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 123 | 911 | 721 |
+| `lean_stage3/` | 123 | 911 | 722 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem

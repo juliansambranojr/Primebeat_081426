@@ -4,7 +4,7 @@
 
 WindowsOfRH — block R16 of `lean_stage3/design/runs.md`. 2026-11-24. The reverse of `LandauCriterion.rh_of_windows`, built in steps. This file holds steps S2 and S4 of the design.
 
-7 theorems, 0 definitions, 260 lines. 
+8 theorems, 0 definitions, 274 lines. 
 
 **Imports:** [`JointDialGate`](../lean_stage3/JointDialGate.md), [`LandauCriterion`](../lean_stage3/LandauCriterion.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`Saddle`](../lean_stage3/Saddle.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -20,6 +20,7 @@ flowchart LR
   n4["<b>mul_cpow_eq</b><br/>(y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ))"]:::shp
   n5["<b>phi_sub_pole_le</b><br/>‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α)"]:::thm
   n6["<b>const_eq_zero ■</b><br/>c = 0"]:::thm
+  n7["<b>noRunaway_of_rh ■</b><br/>Saddle.NoRunaway"]:::thm
   x0(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
   x1(["<b>LandauPoleLocal</b><br/>Phi_regular_at_one"]):::ext
   n0 --> n2
@@ -46,7 +47,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="WindowsOfRH-rampSum_eq_mertens"></a>
 ### `WindowsOfRH.rampSum_eq_mertens`
 
-line 38 · arrows read from text
+line 41 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -73,7 +74,7 @@ LandauWindow.rampSum y = y * ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) - ψ y
 <a name="WindowsOfRH-sum_vonMangoldt_div"></a>
 ### `WindowsOfRH.sum_vonMangoldt_div`
 
-line 67 · arrows read from text
+line 70 · arrows read from text
 
 **Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
@@ -98,7 +99,7 @@ line 67 · arrows read from text
 <a name="WindowsOfRH-rampSum_eq_integral"></a>
 ### `WindowsOfRH.rampSum_eq_integral`
 
-line 103 · arrows read from text
+line 106 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -126,7 +127,7 @@ LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2
 <a name="WindowsOfRH-integral_cpow_neg"></a>
 ### `WindowsOfRH.integral_cpow_neg`
 
-line 113 · arrows read from text
+line 116 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -151,7 +152,7 @@ line 113 · arrows read from text
 <a name="WindowsOfRH-mul_cpow_eq"></a>
 ### `WindowsOfRH.mul_cpow_eq`
 
-line 127 · arrows read from text
+line 130 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -177,7 +178,7 @@ line 127 · arrows read from text
 <a name="WindowsOfRH-phi_sub_pole_le"></a>
 ### `WindowsOfRH.phi_sub_pole_le`
 
-line 136 · arrows read from text
+line 139 · arrows read from text
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -212,7 +213,7 @@ line 136 · arrows read from text
 <a name="WindowsOfRH-const_eq_zero"></a>
 ### `WindowsOfRH.const_eq_zero`
 
-line 183 · arrows read from text
+line 186 · arrows read from text
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -237,6 +238,31 @@ c = 0
   - [`WindowsOfRH.phi_sub_pole_le`](#WindowsOfRH-phi_sub_pole_le) — `` ‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α) ``
 
 **Definitions its proof touches:** [`LandauMellinG.Phi`](../lean_stage3/LandauMellinG.md#LandauMellinG-Phi), [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+
+**Feeds:** nothing. It is an end.
+
+<a name="WindowsOfRH-noRunaway_of_rh"></a>
+### `WindowsOfRH.noRunaway_of_rh`
+
+line 256 · arrows read from text
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** S1. The Riemann hypothesis gives the staircase in the square-root frame: `|ψ(t) − t| ≤ C·t^(1/2)·(log t)^k` from some point on.
+
+**Proves**
+
+```lean
+Saddle.NoRunaway
+```
+
+**Needs** (its hypotheses)
+
+  - `` hRH : RiemannHypothesis ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Definitions its proof touches:** [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway)
 
 **Feeds:** nothing. It is an end.
 

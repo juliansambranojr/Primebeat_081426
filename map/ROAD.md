@@ -56,7 +56,7 @@ flowchart LR
   rh --> e4
   e5["<b>depth_one</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::end_
   rh --> e5
-  more(["and 20 more ends under RH"]):::end_
+  more(["and 21 more ends under RH"]):::end_
   rh --> more
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -68,11 +68,11 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 2131.
+- **Theorems Lean has checked:** 2132.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 13. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 11.
-- **Theorems that assume it:** 67, arriving at 26 ends.
+- **Theorems that assume it:** 68, arriving at 27 ends.
 
 ## Statements about the count that settle `RiemannHypothesis`
 
@@ -140,6 +140,7 @@ The ends among the theorems that assume it. "Behind it" links the whole line.
 | [`WeilDetect.weilPositive_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-weilPositive_of_RH) | StmtWeilPositive L | 7 |
 | [`Stage3.norm_zeroPartialSum_le`](./lean_stage3/Assembly.md#Stage3-norm_zeroPartialSum_le) | ‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * \|riemannZeta.N ((2 : ℝ) ^ (K + 1))\| + weightedZeroHeightBucket) | 5 |
 | [`Slice4.zetaE_ne_zero_of_RH`](./lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | zetaE s ≠ 0 | 4 |
+| [`WindowsOfRH.noRunaway_of_rh`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-noRunaway_of_rh) | Saddle.NoRunaway | 2 |
 
 ## Named statements
 
