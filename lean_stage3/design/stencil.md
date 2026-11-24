@@ -294,3 +294,38 @@ the tied weights cannot cancel exactly on infinitely many levels.
 **Next round.** Look for the rigidity in the literature first: uniqueness
 for Dirichlet-type series `Σ a_n λ_n^k` with coefficients tied to their
 exponents (Pólya, Carlson, Mandelbrojt). Then derive.
+
+### S7, round 2 (2026-11-24, Julian: "Run a shorter loop and start round 2")
+
+**Literature.** Five searches found no theorem that a bound on `ψ` at the
+doublings alone gives RH, nor any uniqueness theorem for pole sums with
+weights of positive real part accumulating on a curve. The tool the
+literature uses for discrete power sums of zeros is Turán's power sum
+method; one 2026 paper on Landau–Siegel zeros applies it.
+
+**Turán on the wall, on paper.** Take `β* > σ`, a height `T`, and `S(T)` the
+zeros with `β ≥ β*`, `|γ| ≤ T`: finite, `N = N(T)` of them, and its largest
+modulus `2^(β_max(T))` is attained inside `S(T)` even when `Θ` is not. Turán's
+second theorem bounds `max_{m<k≤m+N} |Σ_{S(T)} w_ρ (z_ρ/2^(β_max))^k|` below by
+`(N/(8e(m+N)))^N` times a partial sum of the weights, which is nonzero
+(positive real part). With `m = cN`, the errors are:
+- H: `k²·2^(−k(β_max−σ))`, beaten once `c(β_max − σ)·log 2 > log(8e(1+c))`;
+- the zeros left of `β*`: the same with `β_max − β*`, beaten the same way;
+- the zeros above `T`, the tail: weight `O(T^(−(1−θ)))` by `ZeroDensity`, but
+  their real parts can exceed `β_max(T)` (that is the creeping), so they cost
+  `T^(−(1−θ))·2^(k(Θ−β_max(T)))`.
+The tail must lie below `(8e(1+c))^(−N(T))`. So it needs
+`N(T) ≪ log T`, and the density bound gives only a power of `T`.
+
+**The lost factor.** `(8e(1+c))^(N(T))`: Turán's loss, one fixed factor per
+zero in the finite set, against the polynomial saving `T^(1−θ)` of the
+density bound. It grows with the parameter. By the repo's rule, the steps
+are right and the design is wrong. The cause is the aliasing: no filter of
+the dyadic samples can damp a zero by its height, because every filter acts
+on the mode `2^ρ`, and the high zeros carry the same modes as the low ones.
+The smoothing that makes Turán's method work on `ψ(x)` for all `x` is not
+available on the doublings.
+
+**What would rescue it.** Either a Turán-type bound whose loss is
+subexponential in `N`, or zeros near the top so sparse that `N(T) = O(log T)`.
+Neither is in the tree or in what was found.
