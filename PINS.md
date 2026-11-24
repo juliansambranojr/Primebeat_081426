@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (ii): `Stage3/LevinsonEdge.lean`
+
+    DONE        `horizontal_edge_le`: for 0 ≤ c ≤ 1 and T ≥ T₀, with G = ζ + cζ'
+                nonzero on [1/2, 3] + iT, |Im ∫_{1/2}^{3} logDeriv G(x + iT) dx| ≤
+                A·log T + B, explicit A, B; Backlund's route: the turning is at
+                most π·(1 + #zeros of x ↦ Re G(x+iT) on [1/2,3]), counted by
+                Jensen on a disc about 3 + iT with a polynomial bound for G;
+                one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0522 and start (ii)).
+                The template is the tree's Backlund count for ζ
+    DEPENDS     `LevinsonSize.re_G_pos`, `JensenCount`, `ArgCrude`, `ArgCount`,
+                PNT+ `ZerosBound`, `GlobalBound`
+    OUT         steps 2–6 of S11
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (i), (iii): `Stage3/LevinsonSize.lean`
 
     DONE        (i) `right_edge_le`: for 0 ≤ c ≤ 1, G = ζ + cζ' has positive real

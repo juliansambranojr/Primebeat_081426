@@ -5,7 +5,7 @@ ArgCount — block `hnt.md#H3` of `lean_stage3/design/hnt.md`, "The assembly: St
 15 theorems, 1 definition, 365 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgLegs`](../lean_stage3/ArgLegs.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md), [`LevinsonSize`](../lean_stage3/LevinsonSize.md)
 
 ## The picture
 
@@ -30,12 +30,13 @@ flowchart LR
   x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
   x2(["<b>ReZetaCount</b><br/>card_reZeros_le<br/>mem_reZeros<br/>re_zeta_two_line_pos"]):::ext
   x3(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x4(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x5(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x6(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x7(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x8(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x9(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x4(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x5(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x6(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x7(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x8(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x9(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x10(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -54,10 +55,12 @@ flowchart LR
   n8 --> n11
   n8 --> n12
   n9 --> n10
-  n14 -.-> x6
+  n12 -.-> x4
+  n14 -.-> x10
   n14 -.-> x7
   n14 -.-> x8
   n14 -.-> x9
+  n8 -.-> x4
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
@@ -68,10 +71,10 @@ flowchart LR
   x3 -.-> n14
   x3 -.-> n6
   x3 -.-> n7
-  x4 -.-> n13
-  x4 -.-> n14
   x5 -.-> n13
   x5 -.-> n14
+  x6 -.-> n13
+  x6 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -362,10 +365,11 @@ line 216
 
 **Definitions its proof touches:** [`ArgCount.good`](#ArgCount-good), [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
   - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
+  - [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two) (LevinsonSize) — `` |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 150) ``
 
 <a name="ArgCount-mainTerm_abs_le"></a>
 ### `ArgCount.mainTerm_abs_le`
@@ -477,9 +481,10 @@ Stage3.StmtSCrude Stage3.argS 15 600
   - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ArgCount.rvM_crude`](#ArgCount-rvM_crude) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
+  - [`LevinsonSize.gamma_part_count_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le) (LevinsonSize) — `` |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 1200) ``
 
 <a name="ArgCount-rvM_crude_of_good_two"></a>
 ### `ArgCount.rvM_crude_of_good_two`
