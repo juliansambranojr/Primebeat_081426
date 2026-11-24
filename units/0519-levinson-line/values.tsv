@@ -1,0 +1,17 @@
+key	value	source
+module_lines	160	wc -l lean_stage3/Stage3/LevinsonLine.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/LevinsonLine.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonLine.lean
+pins	3	deriv_xi_line_im, re_gammaR_G_line, zeta_line_zero_iff
+errors_first	0	the worker's report: the first build was clean
+builds	1	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8896	lake build (full Stage3), Build completed successfully
+jobs_module	3173	run/build.log, lake build Stage3.LevinsonLine
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_hardy	516	unit 0516

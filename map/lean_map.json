@@ -38266,6 +38266,7 @@
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
@@ -38297,6 +38298,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
      "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
    },
@@ -45464,6 +45468,197 @@
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonLine.lean",
+  "module": "Stage3.LevinsonLine",
+  "stem": "LevinsonLine",
+  "header": "LevinsonLine — block S11 of `lean_stage3/design/stencil.md`, step 1a. 2026-11-24.",
+  "imports": [
+   "Stage3.HardyZ"
+  ],
+  "opens": [
+   "Complex",
+   "HardyZ"
+  ],
+  "namespaces": [
+   "LevinsonLine"
+  ],
+  "lines": 161,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/HardyZ.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "line_facts",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.line_facts",
+    "line": 30,
+    "why": "A point of the critical line is neither `0` nor `1`, and has positive real part.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_xi_line_im",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.deriv_xi_line_im",
+    "line": 44,
+    "why": "Target 1. `Λ'` is purely imaginary on the critical line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(deriv completedRiemannZeta (1/2 + t * I)).re = 0",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableAt_Gammaℝ",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.differentiableAt_Gammaℝ",
+    "line": 74,
+    "why": "`Gammaℝ` is differentiable right of zero.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re"
+    ],
+    "proves": "DifferentiableAt ℂ Gammaℝ s",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.differentiableAt_Gammaℝ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_completedZeta_eq",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.deriv_completedZeta_eq",
+    "line": 82,
+    "why": "Right of zero, away from `1`, `Λ' = Gammaℝ' · ζ + Gammaℝ · ζ'`.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re",
+     "h1 : s ≠ 1"
+    ],
+    "proves": "deriv completedRiemannZeta s = deriv Gammaℝ s * riemannZeta s + Gammaℝ s * deriv riemannZeta s",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_completedZeta_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_gammaR_G_line",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.re_gammaR_G_line",
+    "line": 97,
+    "why": "Target 2. On the critical line, for real `c`, `Re(Gammaℝ · (ζ + c ζ')) = Λ · (1 − c · Re(Gammaℝ' / Gammaℝ))`.",
+    "sorry": false,
+    "needs": [
+     "c t : ℝ"
+    ],
+    "proves": "(Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re)",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_completedZeta_eq",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_completedZeta_eq",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_line_zero_iff",
+    "ns": "LevinsonLine",
+    "full": "LevinsonLine.zeta_line_zero_iff",
+    "line": 128,
+    "why": "Target 3. Where `1 − c · Re(Gammaℝ' / Gammaℝ) ≠ 0`, the zeros of `ζ` on the line are exactly the zeros of `Re(Gammaℝ · (ζ + c ζ'))`.",
+    "sorry": false,
+    "needs": [
+     "c t : ℝ",
+     "hc : 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0"
+    ],
+    "proves": "riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0",
+    "file": "lean_stage3/Stage3/LevinsonLine.lean",
+    "id": "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -94586,11 +94781,12 @@
    "Stage3.ReachRoute",
    "Stage3.HardyZ",
    "Stage3.LineCount",
-   "Stage3.Littlewood"
+   "Stage3.Littlewood",
+   "Stage3.LevinsonLine"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 213,
+  "lines": 214,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -94668,6 +94864,7 @@
    "lean_stage3/Stage3/LandauZeroSide.lean",
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
+   "lean_stage3/Stage3/LevinsonLine.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/Littlewood.lean",

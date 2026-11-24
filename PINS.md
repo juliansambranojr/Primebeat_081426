@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1b: `Stage3/LevinsonArg.lean`
+
+    DONE        `exists_arg_lift` (a continuous nonvanishing F on [a,b] has a
+                continuous φ with F t = ‖F t‖·exp(iφ t), by path lifting through
+                Mathlib's `isCoveringMap_exp`), `crossings_of_arg` (⌊|φ b − φ a|/π⌋
+                distinct points in [a,b] with cos φ = 0) and `lineCount_ge_arg`
+                (with F = Gammaℝ·(ζ + cζ') on the line and the real factor of
+                `re_gammaR_G_line` nonzero there, lineCount T ≥ ⌊|Δφ|/π⌋); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0519 and start step 1b)
+    DEPENDS     `LevinsonLine.zeta_line_zero_iff`, `LineCount`; Mathlib
+                `isCoveringMap_exp`, `IsCoveringMap.liftPath`
+    OUT         Δφ = θ(T) − 2π·N_G⁺ + O(L) (the argument principle step); steps 2–6
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, step 1a: `Stage3/LevinsonLine.lean`
 
     DONE        `deriv_xi_line_im` (Λ' is purely imaginary on the line) and

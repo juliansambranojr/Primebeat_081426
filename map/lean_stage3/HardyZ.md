@@ -7,7 +7,7 @@ HardyZ — block S10 of `lean_stage3/design/stencil.md`, steps 1 and 2. 2026-11-
 6 theorems, 0 definitions, 128 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LineCount`](../lean_stage3/LineCount.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonLine`](../lean_stage3/LevinsonLine.md), [`LineCount`](../lean_stage3/LineCount.md)
 
 ## The picture
 
@@ -19,7 +19,8 @@ flowchart LR
   n3["<b>xi_line_real</b><br/>(completedRiemannZeta (1/2 + t * Complex.I)).im = 0"]:::thm
   n4["<b>continuous_xi_line</b><br/>Continuous (fun t : ℝ =＞ completedRiemannZeta (1/2 + t * Complex…"]:::shp
   n5["<b>signChange_zero_on_line ■</b><br/>∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0"]:::thm
-  x0(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
+  x0(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
+  x1(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -27,8 +28,10 @@ flowchart LR
   n3 --> n5
   n4 --> n5
   n2 -.-> x0
+  n2 -.-> x1
   n3 -.-> x0
-  n4 -.-> x0
+  n3 -.-> x1
+  n4 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -112,11 +115,12 @@ line 62 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`HardyZ.continuous_xi_line`](#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
   - [`HardyZ.xi_line_real`](#HardyZ-xi_line_real) — `` (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 ``
+  - [`LevinsonLine.line_facts`](../lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) (LevinsonLine) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LineCount.signChanges_le_line_count`](../lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) (LineCount) — `` (k : ℤ) ≤ lineCount T ``
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
 
@@ -144,9 +148,12 @@ line 66 · arrows read from text
   - [`HardyZ.completedRiemannZeta_conj_of_re_pos`](#HardyZ-completedRiemannZeta_conj_of_re_pos) — `` completedRiemannZeta (conj s) = conj (completedRiemannZeta s) ``
   - [`HardyZ.re_line`](#HardyZ-re_line) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
+  - [`LevinsonLine.deriv_xi_line_im`](../lean_stage3/LevinsonLine.md#LevinsonLine-deriv_xi_line_im) (LevinsonLine) — `` (deriv completedRiemannZeta (1/2 + t * I)).re = 0 ``
+  - [`LevinsonLine.re_gammaR_G_line`](../lean_stage3/LevinsonLine.md#LevinsonLine-re_gammaR_G_line) (LevinsonLine) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (de… ``
+  - [`LevinsonLine.zeta_line_zero_iff`](../lean_stage3/LevinsonLine.md#LevinsonLine-zeta_line_zero_iff) (LevinsonLine) — `` riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0 ``
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
 
 <a name="HardyZ-continuous_xi_line"></a>
