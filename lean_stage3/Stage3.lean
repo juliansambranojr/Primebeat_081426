@@ -201,6 +201,7 @@ import Stage3.LadderAssembly
 import Stage3.ReachRoute
 import Stage3.HardyZ
 import Stage3.LineCount
+import Stage3.Littlewood
 
 namespace Stage3
 
