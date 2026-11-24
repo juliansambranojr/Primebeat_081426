@@ -27,6 +27,7 @@ flowchart LR
   n25["<b>right_mem_border</b><br/>(↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w"]:::cnt
   n26["<b>littlewood_rect</b><br/>2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toF…"]:::shp
   n27["<b>littlewood_rect_zero_free ■</b><br/>(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.i…"]:::shp
+  x0(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -67,6 +68,9 @@ flowchart LR
   n8 --> n10
   n8 --> n9
   n9 --> n11
+  n17 -.-> x0
+  n5 -.-> x0
+  n7 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

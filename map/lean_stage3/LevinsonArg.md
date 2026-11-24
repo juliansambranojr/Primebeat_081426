@@ -7,7 +7,7 @@ LevinsonArg — block S11 of `lean_stage3/design/stencil.md`, step 1b. 2026-11-2
 7 theorems, 1 definition, 309 lines. 
 
 **Imports:** [`LevinsonLine`](../lean_stage3/LevinsonLine.md), [`LineCount`](../lean_stage3/LineCount.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)
 
 ## The picture
 
@@ -51,7 +51,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 47
 
 - **Is:** `` lineF (c : ℝ) (t : ℝ) : ℂ := Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I)) ``
-- **Used by 2:** [`LevinsonArg.continuous_lineF`](#LevinsonArg-continuous_lineF), [`LevinsonArg.lineCount_ge_arg`](#LevinsonArg-lineCount_ge_arg)
+- **Used by 3:** [`LevinsonArg.continuous_lineF`](#LevinsonArg-continuous_lineF), [`LevinsonArg.lineCount_ge_arg`](#LevinsonArg-lineCount_ge_arg), [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq)
 
 ## Theorems
 

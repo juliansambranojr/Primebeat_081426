@@ -45520,7 +45520,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
-     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
     ]
    },
    {
@@ -45786,7 +45787,9 @@
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
-     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
     ]
    },
    {
@@ -45927,6 +45930,342 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonTurn.lean",
+  "module": "Stage3.LevinsonTurn",
+  "stem": "LevinsonTurn",
+  "header": "LevinsonTurn — block S11 of `lean_stage3/design/stencil.md`, step 1c. 2026-11-24.",
+  "imports": [
+   "Stage3.LevinsonArg",
+   "Stage3.Littlewood"
+  ],
+  "opens": [
+   "Complex"
+  ],
+  "namespaces": [
+   "LevinsonTurn"
+  ],
+  "lines": 362,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonArg.lean",
+   "lean_stage3/Stage3/Littlewood.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "int_valued_const",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.int_valued_const",
+    "line": 53,
+    "why": "A continuous function on `[a, b]` with integer values, zero at `a`, is zero at `b`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hc : ContinuousOn d (Set.Icc a b)",
+     "hint : ∀ t ∈ Set.Icc a b, ∃ n : ℤ, d t = n",
+     "ha : d a = 0"
+    ],
+    "proves": "d b = 0",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.int_valued_const",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lift_turn_eq_integral",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.lift_turn_eq_integral",
+    "line": 81,
+    "why": "Target 1. The turning of a continuous argument of a differentiable nonvanishing `F` on `[a, b]` is the imaginary part of `∫_a^b F'/F`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hFc : ContinuousOn F (Set.Icc a b)",
+     "hF : ∀ t ∈ Set.Ioo a b, HasDerivAt F (F' t) t",
+     "hF'c : ContinuousOn F' (Set.Icc a b)",
+     "hne : ∀ t ∈ Set.Icc a b, F t ≠ 0",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, F t = ‖F t‖ * Complex.exp (φ t * Complex.I)"
+    ],
+    "proves": "φ b - φ a = (∫ t in a..b, F' t / F t).im",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.int_valued_const"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.int_valued_const"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_line_comp",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.hasDerivAt_line_comp",
+    "line": 167,
+    "why": "The critical line as a path, and its derivative `i`.",
+    "sorry": false,
+    "needs": [
+     "hf : DifferentiableAt ℂ f (1/2 + t * I)"
+    ],
+    "proves": "HasDerivAt (fun y : ℝ => f (1/2 + y * I)) (deriv f (1/2 + t * I) * I) t",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.hasDerivAt_line_comp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_line",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.continuous_line",
+    "line": 179,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous (fun t : ℝ => (1/2 + t * I : ℂ))",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuous_line",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "line_turn_eq_integral",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.line_turn_eq_integral",
+    "line": 183,
+    "why": "Target 1, on the line. For `f` analytic and nonvanishing along `[1/2 + a i, 1/2 + b i]`, a continuous argument turns by `Re ∫_a^b logDeriv f (1/2 + t i) dt`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hf : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ f (1/2 + t * I)",
+     "hne : ∀ t ∈ Set.Icc a b, f (1/2 + t * I) ≠ 0",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, f (1/2 + t * I) = ‖f (1/2 + t * I)‖ * Complex.exp (φ t * Complex.I)"
+    ],
+    "proves": "φ b - φ a = (∫ t in a..b, logDeriv f (1/2 + t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_logDeriv_line",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.continuousOn_logDeriv_line",
+    "line": 211,
+    "why": "Along the line, `logDeriv f` is continuous where `f` is analytic and nonzero.",
+    "sorry": false,
+    "needs": [
+     "hf : ∀ t ∈ S, AnalyticAt ℂ f (1/2 + t * I)",
+     "hne : ∀ t ∈ S, f (1/2 + t * I) ≠ 0"
+    ],
+    "proves": "ContinuousOn (fun t : ℝ => logDeriv f (1/2 + t * I)) S",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuousOn_logDeriv_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_Gammaℝ",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.analyticAt_Gammaℝ",
+    "line": 220,
+    "why": "`Gammaℝ` is analytic right of zero.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re"
+    ],
+    "proves": "AnalyticAt ℂ Gammaℝ s",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.analyticAt_Gammaℝ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "turn_split",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.turn_split",
+    "line": 228,
+    "why": "Target 2. The split: `Re ∫ logDeriv (Gammaℝ · G) = Re ∫ logDeriv Gammaℝ + Re ∫ logDeriv G` along the line, for `G` analytic and nonvanishing there.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hG : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ G (1/2 + t * I)",
+     "hne : ∀ t ∈ Set.Icc a b, G (1/2 + t * I) ≠ 0"
+    ],
+    "proves": "(∫ t in a..b, logDeriv (fun s => Gammaℝ s * G s) (1/2 + t * I)).re = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv G (1/2 + t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuousOn_logDeriv_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuousOn_logDeriv_line"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineF_turn_eq",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.lineF_turn_eq",
+    "line": 260,
+    "why": "Target 2, for Levinson's function. A continuous argument of `LevinsonArg.lineF c = Gammaℝ · (ζ + c ζ')` along `[1/2 + a i, 1/2 + b i]`, where `ζ + c ζ'` does not vanish, turns by the `Gammaℝ` part plus the `G` part.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hne : ∀ t ∈ Set.Icc a b, riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I) ≠ 0",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, LevinsonArg.lineF c t = ‖LevinsonArg.lineF c t‖ * Complex.exp (φ t * Complex.I)"
+    ],
+    "proves": "φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineF",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "countRight_left_eq",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.countRight_left_eq",
+    "line": 293,
+    "why": "At `σ = z.re` the count right of `σ` is the count of every zero of the rectangle, with order.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0"
+    ],
+    "proves": "Littlewood.countRight f z w z.re = ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "G_turn_eq",
+    "ns": "LevinsonTurn",
+    "full": "LevinsonTurn.G_turn_eq",
+    "line": 308,
+    "why": "Target 3. The `G` part of the turning along `[1/2 + a i, 1/2 + b i]`: for `G` analytic on the rectangle with corners `1/2 + a i` and `X + b i` and nonzero on its border, `Re ∫_a^b logDeriv G (1/2 + t i) dt` is `−2π` times the zeros of `G` in the rectangle, with order, plus the right edge and the two horizontal terms.",
+    "sorry": false,
+    "needs": [
+     "hX : 1/2 < X",
+     "hab : a < b",
+     "hG : AnalyticOnNhd ℂ G (Rectangle ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I))",
+     "hB : ∀ p ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I), G p ≠ 0"
+    ],
+    "proves": "(∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Littlewood.countRight G ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I) (1/2)) + (∫ x in (1/2 : ℝ)..X, logDeriv G (↑x + ↑a * I)).im - (∫ x in (1/2 : ℝ)..X, logDeriv G (↑x + ↑b * I)).im + (∫ t in a..b, logDeriv G (↑X + ↑t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonTurn.lean",
+    "id": "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ],
+    "layer": "shape",
+    "used_by": []
    }
   ]
  },
@@ -48737,6 +49076,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
     ]
@@ -48763,6 +49104,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -48842,6 +49185,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
     ]
    },
@@ -49116,6 +49460,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuousOn_logDeriv_line",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp"
     ]
    },
@@ -95055,11 +95400,12 @@
    "Stage3.LineCount",
    "Stage3.Littlewood",
    "Stage3.LevinsonLine",
-   "Stage3.LevinsonArg"
+   "Stage3.LevinsonArg",
+   "Stage3.LevinsonTurn"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 215,
+  "lines": 216,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -95139,6 +95485,7 @@
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LevinsonArg.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
+   "lean_stage3/Stage3/LevinsonTurn.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/Littlewood.lean",
