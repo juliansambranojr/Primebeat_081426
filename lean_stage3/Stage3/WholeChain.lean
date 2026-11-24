@@ -9,7 +9,8 @@ place.
                 one zero at each height, the cells at square-root size, the
                 sieve's wobble, the middle circle of the band, the pair meeting,
                 every zero a centre, the staircase not running away, every
-                zero the Holy Family's channel
+                zero the Holy Family's channel, the window bound on G at every
+                exponent above one half
   table_side    what is proved of the table with no zero in it: the sieve's
                 sum, the composites without signs, the compression, the tie
                 across the scales, the fold of a mode, the sieve's step
@@ -30,6 +31,7 @@ import Stage3.RunTheorems
 import Stage3.HolyChannel
 import Stage3.Readings
 import Stage3.SieveIdem
+import Stage3.WindowsOfRH
 
 namespace WholeChain
 
@@ -49,12 +51,15 @@ theorem whole_chain :
       ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧
     (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧
     (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧
-    (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel) := by
+    (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel) ∧
+    (SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 →
+      ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C) := by
   have h := OneChain.one_chain
   exact ⟨h.1, h.2.1, h.2.2.2,
     HalfSieve.spiralLink_iff_wobble, BandJoin.spiralLink_iff_middle,
     ShareLink.spiralLink_iff_meet, Saddle.spiralLink_iff_centres,
-    Saddle.spiralLink_iff_noRunaway, HolyChannel.spiralLink_iff_channel⟩
+    Saddle.spiralLink_iff_noRunaway, HolyChannel.spiralLink_iff_channel,
+    WindowsOfRH.spiralLink_iff_windows⟩
 
 /-- **The table's side.** What is proved of the table at every `N`, with no
 zero in the statement. -/

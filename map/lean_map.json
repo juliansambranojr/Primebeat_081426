@@ -42880,6 +42880,7 @@
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.zeroFree_half_of_window",
      "lean_stage3/Stage3/Target.lean::Stage3.Target",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
     ]
@@ -87580,7 +87581,8 @@
    "Stage3.RunTheorems",
    "Stage3.HolyChannel",
    "Stage3.Readings",
-   "Stage3.SieveIdem"
+   "Stage3.SieveIdem",
+   "Stage3.WindowsOfRH"
   ],
   "opens": [
    "Classical",
@@ -87590,7 +87592,7 @@
   "namespaces": [
    "WholeChain"
   ],
-  "lines": 128,
+  "lines": 133,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -87601,7 +87603,8 @@
    "lean_stage3/Stage3/Saddle.lean",
    "lean_stage3/Stage3/SelfBound.lean",
    "lean_stage3/Stage3/SieveIdem.lean",
-   "lean_stage3/Stage3/StepsBelow.lean"
+   "lean_stage3/Stage3/StepsBelow.lean",
+   "lean_stage3/Stage3/WindowsOfRH.lean"
   ],
   "decls": [
    {
@@ -87609,11 +87612,11 @@
     "name": "whole_chain",
     "ns": "WholeChain",
     "full": "WholeChain.whole_chain",
-    "line": 41,
+    "line": 43,
     "why": "The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.",
     "sorry": false,
     "needs": [],
-    "proves": "(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)",
+    "proves": "(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel) ∧ (SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C)",
     "file": "lean_stage3/Stage3/WholeChain.lean",
     "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
     "stmt": [],
@@ -87625,6 +87628,7 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
@@ -87633,7 +87637,8 @@
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows"
     ],
     "exact": false,
     "uses": [
@@ -87644,6 +87649,7 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
@@ -87652,7 +87658,8 @@
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows"
     ],
     "layer": "zeta",
     "used_by": []
@@ -87662,7 +87669,7 @@
     "name": "table_side",
     "ns": "WholeChain",
     "full": "WholeChain.table_side",
-    "line": 61,
+    "line": 66,
     "why": "The table's side. What is proved of the table at every `N`, with no zero in the statement.",
     "sorry": false,
     "needs": [],
@@ -87711,7 +87718,7 @@
     "name": "readings_side",
     "ns": "WholeChain",
     "full": "WholeChain.readings_side",
-    "line": 88,
+    "line": 93,
     "why": "The readings' side. The day's readings in exact form: the offset is one half at every doubling; a zero off the line makes the staircase run away; a half rung over its top is one less the reciprocal of the root of two; the closed loop's force at the Holy Family is five sixths.",
     "sorry": false,
     "needs": [],
@@ -87748,7 +87755,7 @@
     "name": "steps_side",
     "ns": "WholeChain",
     "full": "WholeChain.steps_side",
-    "line": 99,
+    "line": 104,
     "why": "The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.",
     "sorry": false,
     "needs": [],
@@ -88430,7 +88437,9 @@
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },

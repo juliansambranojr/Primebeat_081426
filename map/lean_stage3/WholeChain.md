@@ -4,9 +4,9 @@
 
 WholeChain — blocks J8 and J11 of `lean_stage3/design/closedloop.md`. 2026-11-23.
 
-4 theorems, 0 definitions, 128 lines. 
+4 theorems, 0 definitions, 133 lines. 
 
-**Imports:** [`Compression`](../lean_stage3/Compression.md), [`HolyChannel`](../lean_stage3/HolyChannel.md), [`Readings`](../lean_stage3/Readings.md), [`RunTheorems`](../lean_stage3/RunTheorems.md), [`Saddle`](../lean_stage3/Saddle.md), [`SelfBound`](../lean_stage3/SelfBound.md), [`SieveIdem`](../lean_stage3/SieveIdem.md), [`StepsBelow`](../lean_stage3/StepsBelow.md)  
+**Imports:** [`Compression`](../lean_stage3/Compression.md), [`HolyChannel`](../lean_stage3/HolyChannel.md), [`Readings`](../lean_stage3/Readings.md), [`RunTheorems`](../lean_stage3/RunTheorems.md), [`Saddle`](../lean_stage3/Saddle.md), [`SelfBound`](../lean_stage3/SelfBound.md), [`SieveIdem`](../lean_stage3/SieveIdem.md), [`StepsBelow`](../lean_stage3/StepsBelow.md), [`WindowsOfRH`](../lean_stage3/WindowsOfRH.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
 
 ## The picture
@@ -23,29 +23,31 @@ flowchart LR
   x3(["<b>OneChain</b><br/>one_chain"]):::ext
   x4(["<b>Saddle</b><br/>spiralLink_iff_centres<br/>spiralLink_iff_noRunaway"]):::ext
   x5(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
-  x6(["<b>CompositeSplit</b><br/>composites_no_signs"]):::ext
-  x7(["<b>Compression</b><br/>compression"]):::ext
-  x8(["<b>RunTheorems</b><br/>mode_fold"]):::ext
-  x9(["<b>SelfBound</b><br/>self_bound"]):::ext
-  x10(["<b>SieveExact</b><br/>pi_by_sieve"]):::ext
-  x11(["<b>SieveIdem</b><br/>settles_on_prime<br/>sieveBelow_succ<br/>sieveStep_idem"]):::ext
-  x12(["<b>Readings</b><br/>4 theorems"]):::ext
-  x13(["<b>RateBelow</b><br/>rain_psi"]):::ext
-  x14(["<b>StepsBelow</b><br/>rain_steps"]):::ext
-  x15(["<b>StepsPole</b><br/>steps_pole_ne_zero"]):::ext
+  x6(["<b>WindowsOfRH</b><br/>spiralLink_iff_windows"]):::ext
+  x7(["<b>CompositeSplit</b><br/>composites_no_signs"]):::ext
+  x8(["<b>Compression</b><br/>compression"]):::ext
+  x9(["<b>RunTheorems</b><br/>mode_fold"]):::ext
+  x10(["<b>SelfBound</b><br/>self_bound"]):::ext
+  x11(["<b>SieveExact</b><br/>pi_by_sieve"]):::ext
+  x12(["<b>SieveIdem</b><br/>settles_on_prime<br/>sieveBelow_succ<br/>sieveStep_idem"]):::ext
+  x13(["<b>Readings</b><br/>4 theorems"]):::ext
+  x14(["<b>RateBelow</b><br/>rain_psi"]):::ext
+  x15(["<b>StepsBelow</b><br/>rain_steps"]):::ext
+  x16(["<b>StepsPole</b><br/>steps_pole_ne_zero"]):::ext
   x0 -.-> n0
   x1 -.-> n0
   x10 -.-> n1
   x11 -.-> n1
-  x12 -.-> n2
-  x13 -.-> n3
+  x12 -.-> n1
+  x13 -.-> n2
   x14 -.-> n3
   x15 -.-> n3
+  x16 -.-> n3
   x2 -.-> n0
   x3 -.-> n0
   x4 -.-> n0
   x5 -.-> n0
-  x6 -.-> n1
+  x6 -.-> n0
   x7 -.-> n1
   x8 -.-> n1
   x9 -.-> n1
@@ -66,7 +68,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="WholeChain-whole_chain"></a>
 ### `WholeChain.whole_chain`
 
-line 41 · arrows read from text
+line 43 · arrows read from text
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -75,10 +77,10 @@ line 41 · arrows read from text
 **Proves**
 
 ```lean
-(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)
+(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel) ∧ (SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C)
 ```
 
-**Fed by** (7 theorems its proof uses)
+**Fed by** (8 theorems its proof uses)
 
   - [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) (BandJoin) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
   - [`HalfSieve.spiralLink_iff_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) (HalfSieve) — `` SpiralLink.SpiralLink ↔ WobbleSqrt ``
@@ -87,15 +89,16 @@ line 41 · arrows read from text
   - [`Saddle.spiralLink_iff_centres`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) (Saddle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 ``
   - [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) (Saddle) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
   - [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) (ShareLink) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
+  - [`WindowsOfRH.spiralLink_iff_windows`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-spiralLink_iff_windows) (WindowsOfRH) — `` SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
 
-**Definitions its proof touches:** [`BandJoin.bandR`](../lean_stage3/BandJoin.md#BandJoin-bandR), [`CellResidual.CellsSqrt`](../lean_stage3/CellResidual.md#CellResidual-CellsSqrt), [`HalfSieve.WobbleSqrt`](../lean_stage3/HalfSieve.md#HalfSieve-WobbleSqrt), [`HolyChannel.ZeroIsChannel`](../lean_stage3/HolyChannel.md#HolyChannel-ZeroIsChannel), [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway), [`Saddle.stretch`](../lean_stage3/Saddle.md#Saddle-stretch), [`SpiralLink.OneAtEachHeight`](../lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink), [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ)
+**Definitions its proof touches:** [`BandJoin.bandR`](../lean_stage3/BandJoin.md#BandJoin-bandR), [`CellResidual.CellsSqrt`](../lean_stage3/CellResidual.md#CellResidual-CellsSqrt), [`HalfSieve.WobbleSqrt`](../lean_stage3/HalfSieve.md#HalfSieve-WobbleSqrt), [`HolyChannel.ZeroIsChannel`](../lean_stage3/HolyChannel.md#HolyChannel-ZeroIsChannel), [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound), [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway), [`Saddle.stretch`](../lean_stage3/Saddle.md#Saddle-stretch), [`SpiralLink.OneAtEachHeight`](../lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink), [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ)
 
 **Feeds:** nothing. It is an end.
 
 <a name="WholeChain-table_side"></a>
 ### `WholeChain.table_side`
 
-line 61 · arrows read from text
+line 66 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -125,7 +128,7 @@ line 61 · arrows read from text
 <a name="WholeChain-readings_side"></a>
 ### `WholeChain.readings_side`
 
-line 88 · arrows read from text
+line 93 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -151,7 +154,7 @@ line 88 · arrows read from text
 <a name="WholeChain-steps_side"></a>
 ### `WholeChain.steps_side`
 
-line 99 · arrows read from text
+line 104 · arrows read from text
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
