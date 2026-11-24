@@ -48083,6 +48083,907 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Littlewood.lean",
+  "module": "Stage3.Littlewood",
+  "stem": "Littlewood",
+  "header": "Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24. Littlewood's lemma on a rectangle, with no branch of arg anywhere. The argument principle (PNT+ `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`) is applied on `[σ, b] × [c, d]` for every `σ` whose vertical line misses the zeros, its imaginary part is integrated over `σ ∈ [a, b]`, and the order of integration on the left edge's term is swapped by Fubini. Along a horizontal line the real part of `logDeriv f` is the `x`-derivative o…",
+  "imports": [],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "Littlewood"
+  ],
+  "lines": 628,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "corner_mem",
+    "ns": "Littlewood",
+    "full": "Littlewood.corner_mem",
+    "line": 55,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "z w : ℂ"
+    ],
+    "proves": "z ∈ Rectangle z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "corner_mem_border",
+    "ns": "Littlewood",
+    "full": "Littlewood.corner_mem_border",
+    "line": 59,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "z w : ℂ"
+    ],
+    "proves": "z ∈ RectangleBorder z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_ne_top",
+    "ns": "Littlewood",
+    "full": "Littlewood.order_ne_top",
+    "line": 64,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hz : f z ≠ 0"
+    ],
+    "proves": "∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mem_support_divisor",
+    "ns": "Littlewood",
+    "full": "Littlewood.mem_support_divisor",
+    "line": 78,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hU : U ⊆ Rectangle z w",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hfin : ∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤",
+     "p : ℂ"
+    ],
+    "proves": "p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "divisor_eq",
+    "ns": "Littlewood",
+    "full": "Littlewood.divisor_eq",
+    "line": 108,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hU : U ⊆ Rectangle z w",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hp : p ∈ U"
+    ],
+    "proves": "MeromorphicOn.divisor f U p = MeromorphicOn.divisor f (Rectangle z w) p",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "support_interior",
+    "ns": "Littlewood",
+    "full": "Littlewood.support_interior",
+    "line": 115,
+    "why": "A zero of the support lies strictly inside.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0",
+     "hp : p ∈ (MeromorphicOn.divisor f (Rectangle z w)).support"
+    ],
+    "proves": "z.re < p.re ∧ p.re < w.re ∧ z.im < p.im ∧ p.im < w.im",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "countRight",
+    "ns": "Littlewood",
+    "full": "Littlewood.countRight",
+    "line": 137,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "z w : ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rectIntegral_eq_count",
+    "ns": "Littlewood",
+    "full": "Littlewood.rectIntegral_eq_count",
+    "line": 141,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0",
+     "hσ : σ ∈ Icc z.re w.re",
+     "hgood : ∀ p ∈ (divisor_support_rectangle_finite f z w).toFinset, p.re ≠ σ"
+    ],
+    "proves": "RectangleIntegral (logDeriv f) (↑σ + ↑z.im * I) w = 2 * Real.pi * I * (countRight f z w σ : ℂ)",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_pi_count_eq",
+    "ns": "Littlewood",
+    "full": "Littlewood.two_pi_count_eq",
+    "line": 221,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0",
+     "hσ : σ ∈ Icc z.re w.re",
+     "hgood : ∀ p ∈ (divisor_support_rectangle_finite f z w).toFinset, p.re ≠ σ"
+    ],
+    "proves": "2 * Real.pi * countRight f z w σ = (∫ x in σ..w.re, logDeriv f (↑x + ↑z.im * I)).im - (∫ x in σ..w.re, logDeriv f (↑x + ↑w.im * I)).im + (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re - (∫ t in z.im..w.im, logDeriv f (↑σ + ↑t * I)).re",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ite_eq_indicator",
+    "ns": "Littlewood",
+    "full": "Littlewood.ite_eq_indicator",
+    "line": 238,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β m : ℝ"
+    ],
+    "proves": "(fun σ : ℝ => if σ < β then m else 0) = (Iio β).indicator (fun _ => m)",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.ite_eq_indicator",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_ite_lt",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.intervalIntegrable_ite"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_ite",
+    "ns": "Littlewood",
+    "full": "Littlewood.intervalIntegrable_ite",
+    "line": 243,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β m u v : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun σ : ℝ => if σ < β then m else 0) volume u v",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.intervalIntegrable_ite",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.ite_eq_indicator"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.ite_eq_indicator"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_ite_lt",
+    "ns": "Littlewood",
+    "full": "Littlewood.integral_ite_lt",
+    "line": 253,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hu : u < β",
+     "hv : β < v"
+    ],
+    "proves": "∫ σ in u..v, (if σ < β then m else 0) = m * (β - u)",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_ite_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.ite_eq_indicator"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.ite_eq_indicator"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_countRight",
+    "ns": "Littlewood",
+    "full": "Littlewood.integral_countRight",
+    "line": 268,
+    "why": "The σ-integrated count.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0"
+    ],
+    "proves": "∫ σ in z.re..w.re, countRight f z w σ = ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) * (p.re - z.re)",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_ite_lt",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.intervalIntegrable_ite",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_ite_lt",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.intervalIntegrable_ite",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "locallyIntegrable_inv_norm_sub",
+    "ns": "Littlewood",
+    "full": "Littlewood.locallyIntegrable_inv_norm_sub",
+    "line": 282,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x : ℂ"
+    ],
+    "proves": "LocallyIntegrable (fun s : ℂ => ‖s - x‖⁻¹) volume",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.locallyIntegrable_inv_norm_sub",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableAtFilter_logDeriv"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrableAtFilter_logDeriv",
+    "ns": "Littlewood",
+    "full": "Littlewood.integrableAtFilter_logDeriv",
+    "line": 298,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hp : AnalyticAt ℂ f p",
+     "hord : meromorphicOrderAt f p ≠ ⊤",
+     "hK : IsCompact K",
+     "hKm : MeasurableSet K",
+     "hmeas : AEStronglyMeasurable (logDeriv f) (volume.restrict K)"
+    ],
+    "proves": "IntegrableAtFilter (logDeriv f) (𝓝[K] p) volume",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableAtFilter_logDeriv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.locallyIntegrable_inv_norm_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.locallyIntegrable_inv_norm_sub"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrableOn_logDeriv",
+    "ns": "Littlewood",
+    "full": "Littlewood.integrableOn_logDeriv",
+    "line": 330,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hfin : ∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤"
+    ],
+    "proves": "IntegrableOn (logDeriv f) (Rectangle z w) volume",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableAtFilter_logDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableAtFilter_logDeriv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrableOn_logDeriv_prod",
+    "ns": "Littlewood",
+    "full": "Littlewood.integrableOn_logDeriv_prod",
+    "line": 344,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hfin : ∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤"
+    ],
+    "proves": "IntegrableOn (fun q : ℝ × ℝ => logDeriv f (↑q.1 + ↑q.2 * I)) ([[z.re, w.re]] ×ˢ [[z.im, w.im]]) volume",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_log_norm",
+    "ns": "Littlewood",
+    "full": "Littlewood.hasDerivAt_log_norm",
+    "line": 366,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hg : HasDerivAt g g' x",
+     "h0 : g x ≠ 0"
+    ],
+    "proves": "HasDerivAt (fun y => Real.log ‖g y‖) (g' / g x).re x",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.hasDerivAt_log_norm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousAt_logDeriv",
+    "ns": "Littlewood",
+    "full": "Littlewood.continuousAt_logDeriv",
+    "line": 383,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hs : AnalyticAt ℂ f s",
+     "hds : AnalyticAt ℂ (deriv f) s",
+     "h0 : f s ≠ 0"
+    ],
+    "proves": "ContinuousAt (logDeriv f) s",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_logDeriv_comp",
+    "ns": "Littlewood",
+    "full": "Littlewood.continuousOn_logDeriv_comp",
+    "line": 388,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hγ : Continuous γ",
+     "hS : ∀ x ∈ S, γ x ∈ Rectangle z w",
+     "hnz : ∀ x ∈ S, f (γ x) ≠ 0"
+    ],
+    "proves": "ContinuousOn (fun x => logDeriv f (γ x)) S",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_log_norm_comp",
+    "ns": "Littlewood",
+    "full": "Littlewood.continuousOn_log_norm_comp",
+    "line": 395,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hγ : Continuous γ",
+     "hS : ∀ x ∈ S, γ x ∈ Rectangle z w",
+     "hnz : ∀ x ∈ S, f (γ x) ≠ 0"
+    ],
+    "proves": "ContinuousOn (fun x => Real.log ‖f (γ x)‖) S",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_log_norm_comp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horiz_mem",
+    "ns": "Littlewood",
+    "full": "Littlewood.horiz_mem",
+    "line": 402,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ [[z.re, w.re]]",
+     "ht : t ∈ [[z.im, w.im]]"
+    ],
+    "proves": "(↑x + ↑t * I : ℂ) ∈ Rectangle z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_re_logDeriv_horizontal",
+    "ns": "Littlewood",
+    "full": "Littlewood.integral_re_logDeriv_horizontal",
+    "line": 407,
+    "why": "The real part along a horizontal line is a difference of `log ‖f‖`. No branch.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "ht : t ∈ [[z.im, w.im]]",
+     "hnz : ∀ x ∈ [[z.re, w.re]], f (↑x + ↑t * I) ≠ 0"
+    ],
+    "proves": "∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.hasDerivAt_log_norm",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.hasDerivAt_log_norm",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bottom_mem_border",
+    "ns": "Littlewood",
+    "full": "Littlewood.bottom_mem_border",
+    "line": 423,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ [[z.re, w.re]]"
+    ],
+    "proves": "(↑x + ↑z.im * I : ℂ) ∈ RectangleBorder z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.bottom_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "top_mem_border",
+    "ns": "Littlewood",
+    "full": "Littlewood.top_mem_border",
+    "line": 428,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ [[z.re, w.re]]"
+    ],
+    "proves": "(↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.top_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "left_mem_border",
+    "ns": "Littlewood",
+    "full": "Littlewood.left_mem_border",
+    "line": 433,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : t ∈ [[z.im, w.im]]"
+    ],
+    "proves": "(↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_mem_border",
+    "ns": "Littlewood",
+    "full": "Littlewood.right_mem_border",
+    "line": 438,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : t ∈ [[z.im, w.im]]"
+    ],
+    "proves": "(↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.right_mem_border",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "edgeH",
+    "ns": "Littlewood",
+    "full": "Littlewood.edgeH",
+    "line": 445,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "b y σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "littlewood_rect",
+    "ns": "Littlewood",
+    "full": "Littlewood.littlewood_rect",
+    "line": 448,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0"
+    ],
+    "proves": "2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re + (∫ σ in z.re..w.re, edgeH f w.re z.im σ) - (∫ σ in z.re..w.re, edgeH f w.re w.im σ)",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.bottom_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_log_norm_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.right_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.top_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.bottom_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_log_norm_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.right_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.top_mem_border",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.two_pi_count_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "littlewood_rect_zero_free",
+    "ns": "Littlewood",
+    "full": "Littlewood.littlewood_rect_zero_free",
+    "line": 570,
+    "why": "The zero-free case. With no zero in the closed rectangle the right side of Littlewood's identity vanishes.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re < w.re",
+     "him : z.im < w.im",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hnz : ∀ p ∈ Rectangle z w, f p ≠ 0"
+    ],
+    "proves": "(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re + (∫ σ in z.re..w.re, edgeH f w.re z.im σ) - (∫ σ in z.re..w.re, edgeH f w.re w.im σ) = 0",
+    "file": "lean_stage3/Stage3/Littlewood.lean",
+    "id": "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.corner_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LowCount.lean",
   "module": "Stage3.LowCount",
   "stem": "LowCount",
@@ -93684,11 +94585,12 @@
    "Stage3.LadderAssembly",
    "Stage3.ReachRoute",
    "Stage3.HardyZ",
-   "Stage3.LineCount"
+   "Stage3.LineCount",
+   "Stage3.Littlewood"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 212,
+  "lines": 213,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -93768,6 +94670,7 @@
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
+   "lean_stage3/Stage3/Littlewood.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/MirrorArea.lean",
