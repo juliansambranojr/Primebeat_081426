@@ -22,6 +22,15 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block R14 of `design/runs.md`: `Stage3/PerfectFit.lean`
+
+    DONE        `perfect_fit`: Σ_{k≤N} μ(k)·⌊N/k⌋ = 1 for every N ≥ 1;
+                one unit
+    ASSUMED     Julian, 2026-11-24: "I do": the harmonic of the integers
+                absorbs the primes' signs perfectly. Written and built here
+    DEPENDS     `NoHoles.moebius_floor_inversion`
+    OUT         the same for the log-weighted harmonic (it is `NoRunaway`)
+
 ### 2026-11-24 · block R13 of `design/runs.md`: `Stage3/NoHoles.lean`
 
     DONE        `moebius_floor_inversion`; `psi_by_integers`: the staircase

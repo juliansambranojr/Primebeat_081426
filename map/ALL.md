@@ -1479,6 +1479,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StepsPeak.peak_height`](./lean_stage3/StepsPeak.md#StepsPeak-peak_height) | theorem | reads ζ | `StepsPeak` | ‖S N ρ₀ - K N ρ₀ 1 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log N : ℂ)‖ ≤ ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * Real.log 2 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * ‖(ρ₀ : ℂ) - 1‖ / ‖(ρ₀ :… |
 | [`StepsPeak.peak_identity`](./lean_stage3/StepsPeak.md#StepsPeak-peak_identity) | theorem | reads ζ | `StepsPeak` | S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ) = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u |
 | [`GeneratorPeak.perBlock`](./lean/GeneratorPeak.md#GeneratorPeak-perBlock) | def | shape | `GeneratorPeak` | ℝ |
+| [`PerfectFit.perfect_fit`](./lean_stage3/PerfectFit.md#PerfectFit-perfect_fit) | theorem | counting | `PerfectFit` | ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1 |
 | [`Chain.period_vacuous_at_one`](./lean/Chain.md#Chain-period_vacuous_at_one) | theorem | shape | `Chain` | Function.Periodic f (2 * Real.pi / Real.log 1) |
 | [`Transform.periodLattice`](./lean/Transform.md#Transform-periodLattice) | def | shape | `Transform` | AddSubgroup ℂ |
 | [`Transform.periodLattice_discrete`](./lean/Transform.md#Transform-periodLattice_discrete) | theorem | shape | `Transform` | DiscreteTopology (periodLattice b) |

@@ -48796,7 +48796,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers"
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.psi_by_integers",
+     "lean_stage3/Stage3/PerfectFit.lean::PerfectFit.perfect_fit"
     ]
    },
    {
@@ -49331,6 +49332,56 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
     ],
     "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PerfectFit.lean",
+  "module": "Stage3.PerfectFit",
+  "stem": "PerfectFit",
+  "header": "PerfectFit — block R14 of `lean_stage3/design/runs.md`. 2026-11-24. Julian, 2026-11-24: the harmonic of the integers absorbs the primes' signs as a perfect fit. For the counts it is exact: at every `N`, the counts `⌊N/k⌋` of the integers with nothing missing, signed by `μ(k)`, add up to exactly one.",
+  "imports": [
+   "Stage3.NoHoles"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Finset"
+  ],
+  "namespaces": [
+   "PerfectFit"
+  ],
+  "lines": 40,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/NoHoles.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "perfect_fit",
+    "ns": "PerfectFit",
+    "full": "PerfectFit.perfect_fit",
+    "line": 20,
+    "why": "The perfect fit. The counts of the integers at every scale, signed by the Möbius function, add up to exactly one.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1",
+    "file": "lean_stage3/Stage3/PerfectFit.lean",
+    "id": "lean_stage3/Stage3/PerfectFit.lean::PerfectFit.perfect_fit",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/NoHoles.lean::NoHoles.moebius_floor_inversion"
+    ],
+    "layer": "count",
     "used_by": []
    }
   ]
@@ -91057,11 +91108,12 @@
    "Stage3.HolyChannel",
    "Stage3.Readings",
    "Stage3.SieveIdem",
-   "Stage3.NoHoles"
+   "Stage3.NoHoles",
+   "Stage3.PerfectFit"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 203,
+  "lines": 204,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -91144,6 +91196,7 @@
    "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/NoHoles.lean",
    "lean_stage3/Stage3/OneChain.lean",
+   "lean_stage3/Stage3/PerfectFit.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",
    "lean_stage3/Stage3/PiFixedRow.lean",

@@ -273,3 +273,17 @@ logarithm, with signs `μ(k)`. Without the signs cancelling, its bound is
 factor this is a design failure of the route unless the signs cancel. The
 cancellation is the Möbius string `μ(1), μ(2), …` in `{−1, 0, 1}` staying
 within `√N`, Mertens' statement.
+
+## R14 The perfect fit — `Stage3/PerfectFit.lean`
+
+Julian, 2026-11-24: the harmonic carries the cancellation; the sign it has to
+absorb is a perfect fit because the harmonic already carries the signs'
+absence. For the counts it is exact: `NoHoles.moebius_floor_inversion` with
+`f = 1` on the positive integers gives
+
+    Σ_{k≤N} μ(k)·⌊N/k⌋ = 1.
+
+- `perfect_fit`.
+
+**Not here.** The log-weighted harmonic `Σ μ(k)·log⌊N/k⌋!` is the staircase
+(`NoHoles.psi_by_integers`); its staying within `√N` of `N` is `NoRunaway`.

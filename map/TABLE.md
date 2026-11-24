@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>119 theorems counting,<br/>in 24 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>120 theorems counting,<br/>in 25 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -94,7 +94,7 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 223 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Counting** (green), 224 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
 - **Shape** (violet), 1151 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 739 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
@@ -103,7 +103,7 @@ A file sits in the highest layer any of its theorems reaches; its box says how m
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 119 | 900 | 718 |
+| `lean_stage3/` | 120 | 900 | 718 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -406,6 +406,12 @@ NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase
 - [`NoHoles.multiples_eq_image`](./lean_stage3/NoHoles.md#NoHoles-multiples_eq_image) — `` (Icc 1 N).filter (fun m => k ∣ m) = (Icc 1 (N / k)).image (fun j => k * j) `` The multiples of `k` up to `N`, as the image of `j ↦ k·j` on `1..N/k`.
 - [`NoHoles.moebius_floor_inversion`](./lean_stage3/NoHoles.md#NoHoles-moebius_floor_inversion) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N `` Möbius inversion over the floors.
 - [`NoHoles.psi_floor`](./lean_stage3/NoHoles.md#NoHoles-psi_floor) — `` Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ) `` The staircase depends on the floor of its argument.
+
+### [`PerfectFit`](./lean_stage3/PerfectFit.md) — 1
+
+PerfectFit — block R14 of `lean_stage3/design/runs.md`. 2026-11-24. Julian, 2026-11-24: the harmonic of the integers absorbs the primes' signs as a perfect fit. For the counts it is exact: at every `N`, the counts `⌊N/k⌋` of the integers with nothing missing, signed by `μ(k)`, add up to exactly one.
+
+- [`PerfectFit.perfect_fit`](./lean_stage3/PerfectFit.md#PerfectFit-perfect_fit) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1 `` The perfect fit. The counts of the integers at every scale, signed by the Möbius function, add up to exactly one.
 
 ### [`PiFixedRow`](./lean_stage3/PiFixedRow.md) — 2
 

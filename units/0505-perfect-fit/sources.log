@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-24T01:00:30Z
+# unit: 0505-perfect-fit
+# sources searched: 442
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50543
+  the sign it has to absorb is perfect fit because the harmonic is  already carrying the signs absence
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50632
+  theorem perfect_fit {N : ℕ} (hN : 1 ≤ N) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50633
+  ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ((N / k : ℕ) : ℝ) = 1 :=
+
+# 4 found, 0 missing
