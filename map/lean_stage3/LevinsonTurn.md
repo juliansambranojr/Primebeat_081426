@@ -7,7 +7,7 @@ LevinsonTurn — block S11 of `lean_stage3/design/stencil.md`, step 1c. 2026-11-
 11 theorems, 0 definitions, 362 lines. 
 
 **Imports:** [`LevinsonArg`](../lean_stage3/LevinsonArg.md), [`Littlewood`](../lean_stage3/Littlewood.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonSize`](../lean_stage3/LevinsonSize.md)
 
 ## The picture
 
@@ -16,7 +16,7 @@ flowchart LR
   n0["<b>int_valued_const</b><br/>d b = 0"]:::cnt
   n1["<b>lift_turn_eq_integral</b><br/>φ b - φ a = (∫ t in a..b, F' t / F t).im"]:::shp
   n2["<b>hasDerivAt_line_comp</b><br/>HasDerivAt (fun y : ℝ =＞ f (1/2 + y * I)) (deriv f (1/2 + t * I)…"]:::cnt
-  n3["<b>continuous_line ■</b><br/>Continuous (fun t : ℝ =＞ (1/2 + t * I : ℂ))"]:::cnt
+  n3["<b>continuous_line</b><br/>Continuous (fun t : ℝ =＞ (1/2 + t * I : ℂ))"]:::cnt
   n4["<b>line_turn_eq_integral</b><br/>φ b - φ a = (∫ t in a..b, logDeriv f (1/2 + t * I)).re"]:::shp
   n5["<b>continuousOn_logDeriv_line</b><br/>ContinuousOn (fun t : ℝ =＞ logDeriv f (1/2 + t * I)) S"]:::cnt
   n6["<b>analyticAt_Gammaℝ ■</b><br/>AnalyticAt ℂ Gammaℝ s"]:::shp
@@ -24,19 +24,22 @@ flowchart LR
   n8["<b>lineF_turn_eq ■</b><br/>φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫…"]:::thm
   n9["<b>countRight_left_eq ■</b><br/>Littlewood.countRight f z w z.re = ∑ p ∈ (divisor_support_rectan…"]:::shp
   n10["<b>G_turn_eq ■</b><br/>(∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Lit…"]:::shp
-  x0(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
-  x1(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x0(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>right_edge_le"]):::ext
+  x1(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
+  x2(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   n0 --> n1
   n1 --> n4
   n2 --> n4
   n4 --> n8
   n5 --> n7
   n7 --> n8
-  x0 -.-> n10
-  x0 -.-> n5
-  x0 -.-> n9
-  x1 -.-> n7
-  x1 -.-> n8
+  n1 -.-> x0
+  n3 -.-> x0
+  x1 -.-> n10
+  x1 -.-> n5
+  x1 -.-> n9
+  x2 -.-> n7
+  x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -108,8 +111,9 @@ line 81 · arrows read from text
 
   - [`LevinsonTurn.int_valued_const`](#LevinsonTurn-int_valued_const) — `` d b = 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LevinsonSize.right_edge_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-right_edge_le) (LevinsonSize) — `` |(∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (3 + t * I)).re| ≤ Real.pi ``
   - [`LevinsonTurn.line_turn_eq_integral`](#LevinsonTurn-line_turn_eq_integral) — `` φ b - φ a = (∫ t in a..b, logDeriv f (1/2 + t * I)).re ``
 
 <a name="LevinsonTurn-hasDerivAt_line_comp"></a>
@@ -152,7 +156,9 @@ Continuous (fun t : ℝ => (1/2 + t * I : ℂ))
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds:** nothing. It connects to nothing.
+**Feeds** (1 that use it)
+
+  - [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq) (LevinsonSize) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
 
 <a name="LevinsonTurn-line_turn_eq_integral"></a>
 ### `LevinsonTurn.line_turn_eq_integral`

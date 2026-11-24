@@ -18,6 +18,7 @@ flowchart LR
   n16["<b>backlundPhase_holds</b><br/>StmtBacklundPhase phaseTheta 97 98"]:::thm
   x0(["<b>ArgCount</b><br/>5 theorems"]):::ext
   x1(["<b>ArgIdentity</b><br/>gammaR_fold_eq_phaseTheta<br/>rvM_of_sFromLocal"]):::ext
+  x2(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
   n0 --> n1
   n1 --> n4
   n10 --> n14
@@ -37,7 +38,9 @@ flowchart LR
   n0 -.-> x0
   n1 -.-> x0
   n1 -.-> x1
+  n1 -.-> x2
   n10 -.-> x1
+  n10 -.-> x2
   n16 -.-> x0
   n16 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

@@ -16041,7 +16041,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds_of_good_two"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds_of_good_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two"
     ]
    },
    {
@@ -16175,7 +16176,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le"
     ]
    },
    {
@@ -17612,7 +17614,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta"
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line"
     ]
    },
    {
@@ -17671,7 +17674,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta"
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
     ]
    },
    {
@@ -17985,7 +17989,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS_eq_zetaArgContour",
-     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta"
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
     ]
    },
    {
@@ -18068,7 +18073,10 @@
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS_eq_zetaArgContour",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.backlundArg_of_sFromLocal",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.rvM_of_sFromLocal",
-     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds"
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
     ]
    },
    {
@@ -45788,6 +45796,8 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
     ]
@@ -45935,6 +45945,352 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonSize.lean",
+  "module": "Stage3.LevinsonSize",
+  "stem": "LevinsonSize",
+  "header": "LevinsonSize — block S11 of `lean_stage3/design/stencil.md`, step 1d (i), (iii). 2026-11-24.",
+  "imports": [
+   "Stage3.ArgCount",
+   "Stage3.LevinsonTurn"
+  ],
+  "opens": [
+   "Complex"
+  ],
+  "namespaces": [
+   "LevinsonSize"
+  ],
+  "lines": 310,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ArgCount.lean",
+   "lean_stage3/Stage3/LevinsonTurn.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "deriv_zeta_eq_LSeries",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.deriv_zeta_eq_LSeries",
+    "line": 50,
+    "why": "`ζ'` as an L-series on `re s > 1`.",
+    "sorry": false,
+    "needs": [
+     "hs : 1 < s.re"
+    ],
+    "proves": "deriv riemannZeta s = -LSeries (LSeries.logMul 1) s",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.deriv_zeta_eq_LSeries",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_G_sub_one_le",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.norm_G_sub_one_le",
+    "line": 60,
+    "why": "The Dirichlet tail of `ζ + c ζ'` on `Re s = 3`. `‖G(s) − 1‖ ≤ π²/6 − 1`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hs : s.re = 3"
+    ],
+    "proves": "‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.deriv_zeta_eq_LSeries"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.deriv_zeta_eq_LSeries"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_G_pos",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.re_G_pos",
+    "line": 110,
+    "why": "`ζ + c ζ'` lies in the right half-plane on `Re s = 3`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "t : ℝ"
+    ],
+    "proves": "0 < (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_three_comp",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.hasDerivAt_three_comp",
+    "line": 120,
+    "why": "The line `Re s = 3` as a path, and its derivative `i`.",
+    "sorry": false,
+    "needs": [
+     "hf : DifferentiableAt ℂ f (3 + t * I)"
+    ],
+    "proves": "HasDerivAt (fun y : ℝ => f (3 + y * I)) (deriv f (3 + t * I) * I) t",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_three",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.continuous_three",
+    "line": 132,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous (fun t : ℝ => (3 + t * I : ℂ))",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.continuous_three",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "right_edge_le",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.right_edge_le",
+    "line": 136,
+    "why": "(i) The right edge. For `0 ≤ c ≤ 1`, the right-edge term of `LevinsonTurn.G_turn_eq` at `X = 3` is at most `π` in size.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 ≤ c",
+     "hc1 : c ≤ 1",
+     "hab : a ≤ b"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (3 + t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "re_logDeriv_gammaR_line",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.re_logDeriv_gammaR_line",
+    "line": 198,
+    "why": "On the line, `Re logDeriv Gammaℝ` is the tree's phase integrand.",
+    "sorry": false,
+    "needs": [
+     "y : ℝ"
+    ],
+    "proves": "(logDeriv Gammaℝ (1/2 + y * I)).re = -(Real.log Real.pi) / 2 + Stage3.phasePoint y / 2",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.logDeriv_gammaR",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint_eq",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.zq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.logDeriv_gammaR",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint_eq",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.zq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_part_eq",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.gamma_part_eq",
+    "line": 210,
+    "why": "(iii) The `Gammaℝ` part is the tree's phase difference.",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.intervalIntegral_re",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.logDeriv_gammaR_comp_continuous",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuous_line",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.intervalIntegral_re",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.logDeriv_gammaR_comp_continuous",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuous_line",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_part_eq_count",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.gamma_part_eq_count",
+    "line": 231,
+    "why": "(iii), with the tree's identity. The `Gammaℝ` part is `π (N b − N a)` minus `π (argS b − argS a)`.",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Real.pi * (riemannZeta.N b - riemannZeta.N a) - Real.pi * (Stage3.argS b - Stage3.argS a)",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_part_count_le",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.gamma_part_count_le",
+    "line": 243,
+    "why": "(iii), with `ArgCount`'s bound. For `2 ≤ a ≤ b`, the `Gammaℝ` part is `π (N b − N a)` up to `π (30 log b + 1200)`.",
+    "sorry": false,
+    "needs": [
+     "ha : 2 ≤ a",
+     "hab : a ≤ b"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 1200)",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_part_count_le_gt_two",
+    "ns": "LevinsonSize",
+    "full": "LevinsonSize.gamma_part_count_le_gt_two",
+    "line": 263,
+    "why": "(iii), above `2`. For `2 < a ≤ b`, with `ArgCount.argS_le_gt_two`, the constant is `π (30 log b + 150)`.",
+    "sorry": false,
+    "needs": [
+     "ha : 2 < a",
+     "hab : a ≤ b"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 150)",
+    "file": "lean_stage3/Stage3/LevinsonSize.lean",
+    "id": "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LevinsonTurn.lean",
   "module": "Stage3.LevinsonTurn",
   "stem": "LevinsonTurn",
@@ -46013,6 +46369,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral"
     ]
    },
@@ -46056,7 +46413,9 @@
     "exact": false,
     "uses": [],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -66496,6 +66855,8 @@
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phasePoint_bound_near",
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/Stirling.lean::Stage3.StmtDigammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.continuous_phasePoint",
@@ -66543,6 +66904,7 @@
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.rvM_of_sFromLocal",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_holds",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta_zero"
@@ -66603,6 +66965,7 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog"
     ]
    },
@@ -66866,6 +67229,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/Stirling.lean::Stage3.a_term_le",
      "lean_stage3/Stage3/Stirling.lean::Stage3.add_zq_ne_zero",
      "lean_stage3/Stage3/Stirling.lean::Stage3.normSq_add_zq",
@@ -66901,6 +67265,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/Stirling.lean::Stage3.re_digamma_sub_log_le"
     ]
    },
@@ -95401,11 +95766,12 @@
    "Stage3.Littlewood",
    "Stage3.LevinsonLine",
    "Stage3.LevinsonArg",
-   "Stage3.LevinsonTurn"
+   "Stage3.LevinsonTurn",
+   "Stage3.LevinsonSize"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 216,
+  "lines": 217,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -95485,6 +95851,7 @@
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LevinsonArg.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
+   "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
