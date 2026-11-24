@@ -16,6 +16,9 @@ S4. The constant is zero: if `G y = c·y + r y` on `(1, ∞)` with
 `c/(s − 1)`.
   const_eq_zero
 
+S1. The Riemann hypothesis gives `Saddle.NoRunaway`.
+  noRunaway_of_rh
+
 Axioms: every pinned statement pins to [propext, Classical.choice, Quot.sound].
 -/
 import Stage3.LandauCriterion
@@ -246,6 +249,13 @@ theorem const_eq_zero {c K α : ℝ} {r : ℝ → ℝ} (hα : α < 1) (hK : 0 �
   have := tendsto_nhds_unique hlimc hlim0
   exact_mod_cast this
 
+/-! ### S1 -/
+
+/-- **S1.** The Riemann hypothesis gives the staircase in the square-root
+frame: `|ψ(t) − t| ≤ C·t^(1/2)·(log t)^k` from some point on. -/
+theorem noRunaway_of_rh (hRH : RiemannHypothesis) : Saddle.NoRunaway :=
+  Saddle.spiralLink_iff_noRunaway.mp (SpiralLink.rh_iff_spiralLink.mp hRH)
+
 /-- info: 'WindowsOfRH.rampSum_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms rampSum_eq_integral
@@ -253,6 +263,10 @@ theorem const_eq_zero {c K α : ℝ} {r : ℝ → ℝ} (hα : α < 1) (hK : 0 �
 /-- info: 'WindowsOfRH.const_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms const_eq_zero
+
+/-- info: 'WindowsOfRH.noRunaway_of_rh' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms noRunaway_of_rh
 
 end
 
