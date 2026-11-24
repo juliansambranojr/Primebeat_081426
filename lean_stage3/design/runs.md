@@ -287,3 +287,23 @@ absence. For the counts it is exact: `NoHoles.moebius_floor_inversion` with
 
 **Not here.** The log-weighted harmonic `Σ μ(k)·log⌊N/k⌋!` is the staircase
 (`NoHoles.psi_by_integers`); its staying within `√N` of `N` is `NoRunaway`.
+
+## R15 The doubling, push and pull — `Stage3/Doubling.lean`
+
+Julian, 2026-11-24: "let's try it", `NoRunaway`. Route from his pieces: no
+holes and the dyadic doubling. `self_bound` at `N` less twice `self_bound`
+at `⌊N/2⌋` keeps the odd scales and subtracts the even:
+
+    Σ_{k≤N} (−1)^(k+1) ψ(N/k) = log N! − 2·log⌊N/2⌋!.
+
+By `log_factorial_close` the right side is `N log 2` within `O(log N)`; the
+alternating sum of `N/k` is `N log 2` within a constant. So
+
+    Σ_{k≤N} (−1)^(k+1) R(N/k) = O(log N),   R(x) = ψ(x) − x.
+
+- `alt_scales`, `alt_resid_small`.
+
+**The induction.** `R(N) = R(N/2) − R(N/3) + … + O(log N)`. Assume
+`|R(y)| ≤ C√y` below `N`. The sizes alone give `C√N·Σ_{2≤k≤N} k^(−1/2)`,
+which grows like `2C·N`: the number of scales is a lost factor growing with
+`N`. Closing it needs the alternating residuals to cancel among themselves.
