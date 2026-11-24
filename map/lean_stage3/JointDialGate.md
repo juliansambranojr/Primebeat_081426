@@ -17,13 +17,15 @@ flowchart LR
   n3["<b>relErrWindow_of_theta</b><br/>StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1)…"]:::shp
   n4["<b>relErrWindow_of_window ■</b><br/>∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ (r : ℤ) (n : ℕ), x₀ ≤ (2 : ℝ) ^ ((r : ℝ) -…"]:::thm
   x0(["<b>LandauKernel</b><br/>log_pow_le"]):::ext
-  x1(["<b>JointWindowDial</b><br/>schoenfeldWeakTheta_of_window"]):::ext
+  x1(["<b>WindowsOfRH</b><br/>E_div_le"]):::ext
+  x2(["<b>JointWindowDial</b><br/>schoenfeldWeakTheta_of_window"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n4
+  n1 -.-> x1
   x0 -.-> n1
-  x1 -.-> n4
+  x2 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -105,9 +107,10 @@ C * x ^ θ * Real.log x ^ k ≤ C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k
 
   - [`LandauKernel.log_pow_le`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_le) (LandauKernel) — `` Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`JointDialGate.relErrWindow_of_theta`](#JointDialGate-relErrWindow_of_theta) — `` StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * (2 : ℝ) ^ (((r : ℝ) - n) * (θ' - 1))) ``
+  - [`WindowsOfRH.E_div_le`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_le) (WindowsOfRH) — `` ∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → |E t / t ^ 2| ≤ A * t ^ (θ' - 2) ``
 
 <a name="JointDialGate-powerSaving_relErr"></a>
 ### `JointDialGate.powerSaving_relErr`

@@ -20,10 +20,12 @@ flowchart LR
   x3(["<b>JointWindowDial</b><br/>zeroFreeRight_of_window"]):::ext
   x4(["<b>LandauWindow</b><br/>rh_of_window"]):::ext
   x5(["<b>Target</b><br/>rh_of_target"]):::ext
+  x6(["<b>WindowsOfRH</b><br/>spiralLink_iff_windows"]):::ext
   n0 --> n1
   n1 --> n2
   n1 -.-> x3
   n2 -.-> x5
+  n2 -.-> x6
   x0 -.-> n0
   x1 -.-> n0
   x1 -.-> n1
@@ -140,7 +142,8 @@ RiemannHypothesis
   - [`LandauCriterion.stmtLandauWindow`](#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
   - [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Stage3.rh_of_target`](../lean_stage3/Target.md#Stage3-rh_of_target) (Target) — `` RiemannHypothesis ``
+  - [`WindowsOfRH.spiralLink_iff_windows`](../lean_stage3/WindowsOfRH.md#WindowsOfRH-spiralLink_iff_windows) (WindowsOfRH) — `` SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
 

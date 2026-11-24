@@ -189,6 +189,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`EdgeBound.c0`](./lean_stage3/EdgeBound.md#EdgeBound-c0) | def | shape | `EdgeBound` | ℂ |
 | [`LeftSmooth.c0`](./lean_stage3/LeftSmooth.md#LeftSmooth-c0) | def | shape | `LeftSmooth` | ℂ |
 | [`StepsBelow.c0`](./lean_stage3/StepsBelow.md#StepsBelow-c0) | def | counting | `StepsBelow` | ℂ |
+| [`WindowsOfRH.c0`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-c0) | def | shape | `WindowsOfRH` | ℝ |
+| [`WindowsOfRH.c0_eq_zero`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-c0_eq_zero) | theorem | reads ζ | `WindowsOfRH` | c0 = 0 |
 | [`EdgeBound.c0_im`](./lean_stage3/EdgeBound.md#EdgeBound-c0_im) | theorem | shape | `EdgeBound` | (c0 T').im = T' |
 | [`EdgeBound.c0_re`](./lean_stage3/EdgeBound.md#EdgeBound-c0_re) | theorem | shape | `EdgeBound` | (c0 T').re = 3/2 |
 | [`Chain.C1`](./lean/Chain.md#Chain-C1) | theorem | shape | `Chain` | StmtC1 b |
@@ -502,7 +504,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`Isogeny.dyadicRow_eq_rowN`](./lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN) | theorem | counting | `Isogeny` | Zeros.dyadicRow ((r : ℤ) + 1) = rowN Zeros.pi2 1 r |
 | [`NoHoles.e`](./lean_stage3/NoHoles.md#NoHoles-e) | def | shape | `NoHoles` | ℝ |
 | [`VonKoch.E`](./lean_stage3/VonKochScaffold.md#VonKoch-E) | def | reads ζ | `VonKochScaffold` | ℝ |
+| [`WindowsOfRH.E`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E) | def | counting | `WindowsOfRH` | ℝ |
 | [`NoHoles.e_bound`](./lean_stage3/NoHoles.md#NoHoles-e_bound) | theorem | shape | `NoHoles` | \|e M\| ≤ Real.log (M : ℝ) + 1 |
+| [`WindowsOfRH.E_div_integrableOn`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_integrableOn) | theorem | shape | `WindowsOfRH` | IntegrableOn (fun t : ℝ =&gt; E t / t ^ 2) (Set.Ioi 1) |
+| [`WindowsOfRH.E_div_le`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_le) | theorem | shape | `WindowsOfRH` | ∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → \|E t / t ^ 2\| ≤ A * t ^ (θ' - 2) |
+| [`WindowsOfRH.E_div_measurable`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_measurable) | theorem | counting | `WindowsOfRH` | Measurable (fun t : ℝ =&gt; E t / t ^ 2) |
 | [`VonKoch.E_integral_eq_mellin`](./lean_stage3/VonKochScaffold.md#VonKoch-E_integral_eq_mellin) | theorem | reads ζ | `VonKochScaffold` | ∫ x in Set.Ioi (1:ℝ), (E x : ℂ) * (x : ℂ) ^ (-s - 1) = mellin Etr (-s) |
 | [`VonKoch.E_le_linear`](./lean_stage3/VonKochScaffold.md#VonKoch-E_le_linear) | theorem | reads ζ | `VonKochScaffold` | ‖(E t : ℝ)‖ ≤ (Real.log 4 + 5) * t |
 | [`EdgeBound.edge_bound_core`](./lean_stage3/EdgeBound.md#EdgeBound-edge_bound_core) | theorem | reads ζ | `EdgeBound` | ∃ C : ℝ, 0 &lt; C ∧ ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZeta u ≠ 0 → ∀ δ : ℝ, 0 &lt; δ → δ ≤ 1 → (∀ w ∈ (gz_zeros_ball_finite t (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, δ ≤ … |
@@ -678,6 +684,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.g`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-g) | def | shape | `WeilPowerGauss` | ℂ |
 | [`WeilTransform.G`](./lean_stage3/WeilTransform.md#WeilTransform-G) | def | shape | `WeilTransform` | ℝ |
 | [`WeilPowerPhase.g_eq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-g_eq) | theorem | shape | `WeilPowerPhase` | g w j = 1 + x w j |
+| [`WindowsOfRH.G_eq`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-G_eq) | theorem | shape | `WindowsOfRH` | LandauWindow.G y = c0 * y + r y |
 | [`LandauMellinG.G_integrand_eq`](./lean_stage3/LandauMellinG.md#LandauMellinG-G_integrand_eq) | theorem | shape | `LandauMellinG` | (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1) - (Real.log y : ℂ) * (y : ℂ) ^ (-s) + (1 + (Real.eulerMascheroniConstant : ℂ)) * (y : ℂ) ^ (-s) |
 | [`LandauChebyshev.G_le`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-G_le) | theorem | reads ζ | `LandauChebyshev` | LandauWindow.G y ≤ 8 * y |
 | [`LandauMellinG.G_mellin_integrable`](./lean_stage3/LandauMellinG.md#LandauMellinG-G_mellin_integrable) | theorem | reads ζ | `LandauMellinG` | IntegrableOn (fun y : ℝ =&gt; (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1) |
@@ -1386,6 +1393,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerShell.norm_zOf_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_zOf_le) | theorem | shape | `WeilPowerShell` | ‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2) |
 | [`Stage3.normSq_add_zq`](./lean_stage3/Stirling.md#Stage3-normSq_add_zq) | theorem | shape | `Stirling` | ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 |
 | [`Saddle.NoRunaway`](./lean_stage3/Saddle.md#Saddle-NoRunaway) | def | shape | `Saddle` | Prop |
+| [`WindowsOfRH.noRunaway_of_rh`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-noRunaway_of_rh) | theorem | reads ζ | `WindowsOfRH` | Saddle.NoRunaway |
 | [`LadderFading.not_tendsto_powerSum`](./lean_stage3/LadderFading.md#LadderFading-not_tendsto_powerSum) | theorem | shape | `LadderFading` | ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ =&gt; (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)) ^ r) atTop (𝓝 0) |
 | [`LeftSmooth.Nsm`](./lean_stage3/LeftSmooth.md#LeftSmooth-Nsm) | def | shape | `LeftSmooth` | ℝ |
 | [`LeftSmooth.Nsm_nonneg`](./lean_stage3/LeftSmooth.md#LeftSmooth-Nsm_nonneg) | theorem | shape | `LeftSmooth` | 0 ≤ Nsm |
@@ -1648,6 +1656,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.QS_ne_zero_wOf`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-QS_ne_zero_wOf) | theorem | shape | `WeilPowerCompare` | QS m (wOf ε Δ h) ≠ 0 |
 | [`WeilPowerBounds.QS_ofReal`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-QS_ofReal) | theorem | shape | `WeilPowerBounds` | QS m (s : ℂ) = ((Ps m s : ℝ) : ℂ) |
 | [`WeilPowerBands.r`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-r) | def | shape | `WeilPowerBands` | ℝ |
+| [`WindowsOfRH.r`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-r) | def | counting | `WindowsOfRH` | ℝ |
+| [`WindowsOfRH.r_bound`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-r_bound) | theorem | shape | `WindowsOfRH` | ∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Ioi (1 : ℝ), \|r y\| ≤ K * y ^ (3 / 4 : ℝ) |
 | [`WeilPowerSigma.r_le`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-r_le) | theorem | shape | `WeilPowerSigma` | u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) |
 | [`WeilPowerSigma.r_pos`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-r_pos) | theorem | shape | `WeilPowerSigma` | 1 / (2 * Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2) ≤ u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 |
 | [`RateBelow.rain_psi`](./lean_stage3/RateBelow.md#RateBelow-rain_psi) | theorem | reads ζ | `RateBelow` | ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k &lt; \|Chebyshev.psi x - x\| |
@@ -1936,6 +1946,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`BandJoin.spiralLink_iff_middle`](./lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) | theorem | reads ζ | `BandJoin` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) |
 | [`Saddle.spiralLink_iff_noRunaway`](./lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) | theorem | reads ζ | `Saddle` | SpiralLink.SpiralLink ↔ NoRunaway |
 | [`SpiralLink.spiralLink_iff_one`](./lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) | theorem | reads ζ | `SpiralLink` | SpiralLink ↔ OneAtEachHeight |
+| [`WindowsOfRH.spiralLink_iff_windows`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-spiralLink_iff_windows) | theorem | reads ζ | `WindowsOfRH` | SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C |
 | [`HalfSieve.spiralLink_iff_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) | theorem | reads ζ | `HalfSieve` | SpiralLink.SpiralLink ↔ WobbleSqrt |
 | [`OneChain.spiralLink_of_attained`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_attained) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
 | [`OneChain.spiralLink_of_attained_psi`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_attained_psi) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
@@ -2211,6 +2222,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaGrowth.tail_differentiableAt`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-tail_differentiableAt) | theorem | shape | `ZetaGrowth` | DifferentiableAt ℂ (fun w : ℂ ↦ ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(w+2))) z |
 | [`ZetaEM.tail_ibp`](./lean_stage3/ZetaEM.md#ZetaEM-tail_ibp) | theorem | reads ζ | `ZetaEM` | ((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ (-(s + k)) = -(((bernoulliFun (k+1) (Int.fract a) : ℝ) : ℂ) * (a:ℂ) ^ (-(s + k))) + (s + k) * ∫ x in Ioi a, ((bernoulliFu… |
 | [`ZetaGrowth.tail_ibp`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-tail_ibp) | theorem | reads ζ | `ZetaGrowth` | ∫ x in Ioi (N:ℝ), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1)) = (s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) |
+| [`WindowsOfRH.tail_le`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-tail_le) | theorem | shape | `WindowsOfRH` | ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, max x₀ 1 ≤ y → \|r y\| ≤ K * y ^ θ' |
 | [`ZetaGrowth.tail_norm_le`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-tail_norm_le) | theorem | shape | `ZetaGrowth` | ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖ ≤ (1/4) * (N:ℝ) ^ (-s.re - 1) |
 | [`CountReduction.tail_rate`](./lean_stage3/CountReduction.md#CountReduction-tail_rate) | theorem | reads ζ | `CountReduction` | ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' &lt; 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ \|(ρ:ℂ).im\|) → ∑ ρ ∈ v, ((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖ … |
 | [`FilterAttained.tailT`](./lean_stage3/FilterAttained.md#FilterAttained-tailT) | def | reads ζ | `FilterAttained` | ℂ |
@@ -2404,6 +2416,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.window_shared_of_composite_exponent`](./lean/Zeros.md#Zeros-window_shared_of_composite_exponent) | theorem | counting | `Zeros` | (4 : ℕ) ^ 2 = 2 ^ 4 |
 | [`Nonvanishing.window_term_le`](./lean/Nonvanishing.md#Nonvanishing-window_term_le) | theorem | shape | `Nonvanishing` | (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2) ≤ (Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ ((r : ℝ) / 2) * ((2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ k |
 | [`LandauWindow.WindowBound`](./lean_stage3/LandauWindow.md#LandauWindow-WindowBound) | def | shape | `LandauWindow` | Prop |
+| [`WindowsOfRH.windows_of_rh`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-windows_of_rh) | theorem | reads ζ | `WindowsOfRH` | ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C |
 | [`Zeros.wingMinus`](./lean/ZerosStencil.md#Zeros-wingMinus) | def | counting | `ZerosStencil` | ℤ |
 | [`Zeros.wingPlus`](./lean/ZerosStencil.md#Zeros-wingPlus) | def | counting | `ZerosStencil` | ℤ |
 | [`Readings.wire_holds_iff`](./lean_stage3/Readings.md#Readings-wire_holds_iff) | theorem | reads ζ | `Readings` | SpiralLink.SpiralLink ↔ Saddle.NoRunaway |

@@ -1,20 +1,48 @@
 flowchart LR
   n0["<b>rampSum_eq_mertens</b><br/>LandauWindow.rampSum y = y * ∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) - ψ…"]:::shp
   n1["<b>sum_vonMangoldt_div</b><br/>∑ n ∈ Ioc 0 ⌊y⌋₊, Λ n / (n : ℝ) = ψ y / y + ∫ t in Set.Ioc 1 y, …"]:::cnt
-  n2["<b>rampSum_eq_integral ■</b><br/>LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2"]:::shp
+  n2["<b>rampSum_eq_integral</b><br/>LandauWindow.rampSum y = y * ∫ t in Set.Ioc 1 y, ψ t / t ^ 2"]:::shp
   n3["<b>integral_cpow_neg</b><br/>∫ y in Set.Ioi (1 : ℝ), (y : ℂ) ^ (-(σ : ℂ)) = 1 / ((σ : ℂ) - 1)"]:::shp
   n4["<b>mul_cpow_eq</b><br/>(y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ))"]:::shp
   n5["<b>phi_sub_pole_le</b><br/>‖LandauMellinG.Phi σ - c / ((σ : ℂ) - 1)‖ ≤ K / (σ - α)"]:::thm
-  n6["<b>const_eq_zero ■</b><br/>c = 0"]:::thm
+  n6["<b>const_eq_zero</b><br/>c = 0"]:::thm
+  n7["<b>noRunaway_of_rh</b><br/>Saddle.NoRunaway"]:::thm
+  n8["<b>E_div_measurable ■</b><br/>Measurable (fun t : ℝ =＞ E t / t ^ 2)"]:::cnt
+  n9["<b>E_div_le</b><br/>∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → |E t / t ^ 2| ≤ A * t ^…"]:::shp
+  n10["<b>E_div_integrableOn</b><br/>IntegrableOn (fun t : ℝ =＞ E t / t ^ 2) (Set.Ioi 1)"]:::shp
+  n11["<b>G_eq</b><br/>LandauWindow.G y = c0 * y + r y"]:::shp
+  n12["<b>tail_le</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, max x₀ 1 ≤ y → |r y| ≤ K * y ^ θ'"]:::shp
+  n13["<b>r_bound</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ (3 / 4 :…"]:::shp
+  n14["<b>c0_eq_zero</b><br/>c0 = 0"]:::thm
+  n15["<b>windows_of_rh</b><br/>∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWindow.Win…"]:::thm
+  n16["<b>spiralLink_iff_windows ■</b><br/>SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, …"]:::thm
   x0(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
   x1(["<b>LandauPoleLocal</b><br/>Phi_regular_at_one"]):::ext
+  x2(["<b>JointDialGate</b><br/>log_absorbed"]):::ext
+  x3(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
   n0 --> n2
   n1 --> n2
+  n10 --> n11
+  n10 --> n13
+  n11 --> n14
+  n11 --> n15
+  n12 --> n13
+  n12 --> n15
+  n13 --> n14
+  n14 --> n15
+  n15 --> n16
+  n2 --> n11
   n3 --> n5
   n4 --> n5
   n5 --> n6
+  n6 --> n14
+  n7 --> n15
+  n9 --> n10
+  n9 --> n12
   x0 -.-> n5
   x1 -.-> n6
+  x2 -.-> n9
+  x3 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

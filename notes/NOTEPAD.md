@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-24  R16 PROVED (unit 0507, `WindowsOfRH`): RH gives the window bound on G at every theta in (1/2,1) (`windows_of_rh`); with `rh_of_windows`, `spiralLink_iff_windows`: the window bound is a two-way face of the chain. `Stage3.Target` itself is not proved.
 - [open]   2026-11-24  `Stage3.Target` fixed (Target.lean): the window bound on G at every theta in (1/2,1), upper side, on windows for arbitrarily large Y; `rh_of_target` gives RiemannHypothesis. Target is proved nowhere. Julian: the target is not to move. WindowsOfRH holds S2 and S4 of RH => Target.
 - [open]   2026-11-24  R15 PROVED (unit 0506, `Doubling`): the residuals at all scales of N, alternating, add to within 4 log N + 5 at every N (no holes and the doubling). The induction toward sqrt N from smaller scales loses the count of scales; it needs the alternating residuals to cancel among themselves. Not proved.
 - [open]   2026-11-24  R14 PROVED (unit 0505, `PerfectFit`): Julian's perfect fit for the counts. At every N, the sum over k of mu(k) times floor(N/k) is exactly 1. The same signs against the log-factorials are the staircase; their absorbing within sqrt N is the open step.

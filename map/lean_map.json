@@ -39264,7 +39264,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_theta"
+     "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_theta",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le"
     ]
    },
    {
@@ -40558,7 +40559,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Target.lean::Stage3.rh_of_target"
+     "lean_stage3/Stage3/Target.lean::Stage3.rh_of_target",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows"
     ]
    }
   ]
@@ -42839,6 +42841,7 @@
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_integrable",
      "lean_stage3/Stage3/LandauTaylor.lean::LandauTaylor.mellinLog_real",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
     ]
@@ -42876,7 +42879,9 @@
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.StmtLandauWindow",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.zeroFree_half_of_window",
-     "lean_stage3/Stage3/Target.lean::Stage3.Target"
+     "lean_stage3/Stage3/Target.lean::Stage3.Target",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
     ]
    },
    {
@@ -57190,7 +57195,12 @@
      "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.readings_side",
-     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound"
     ]
    },
    {
@@ -59191,7 +59201,8 @@
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
-     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows"
     ]
    },
    {
@@ -68294,7 +68305,9 @@
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeakTheta_of_psiWeakTheta",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeakTheta_of_zeroFree",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeak_of_psiWeak_half",
-     "lean_stage3/Stage3/ThetaPi.lean::Stage3.stmtPsiWeak_iff_theta_half"
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.stmtPsiWeak_iff_theta_half",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
     ]
    },
    {
@@ -87787,7 +87800,7 @@
   "namespaces": [
    "WindowsOfRH"
   ],
-  "lines": 260,
+  "lines": 510,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -87803,7 +87816,7 @@
     "name": "rampSum_eq_mertens",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.rampSum_eq_mertens",
-    "line": 38,
+    "line": 55,
     "why": "The ramp sum through the Mertens sum. For `y ≥ 1`, `rampSum y = y·Σ_{n≤y} Λ(n)/n − ψ(y)`.",
     "sorry": false,
     "needs": [
@@ -87830,7 +87843,7 @@
     "name": "sum_vonMangoldt_div",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.sum_vonMangoldt_div",
-    "line": 67,
+    "line": 84,
     "why": "Abel summation. For `y ≥ 1`, `Σ_{n≤y} Λ(n)/n = ψ(y)/y + ∫_{(1,y]} ψ(t)/t²`.",
     "sorry": false,
     "needs": [
@@ -87853,7 +87866,7 @@
     "name": "rampSum_eq_integral",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.rampSum_eq_integral",
-    "line": 103,
+    "line": 120,
     "why": "S2. For `y ≥ 1`, `rampSum y = y·∫_{(1,y]} ψ(t)/t²`.",
     "sorry": false,
     "needs": [
@@ -87875,14 +87888,16 @@
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.sum_vonMangoldt_div"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq"
+    ]
    },
    {
     "kind": "theorem",
     "name": "integral_cpow_neg",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.integral_cpow_neg",
-    "line": 113,
+    "line": 130,
     "why": "The power integral `∫_{(1,∞)} y^(−σ) = 1/(σ − 1)` for real `σ > 1`, in `ℂ`.",
     "sorry": false,
     "needs": [
@@ -87905,7 +87920,7 @@
     "name": "mul_cpow_eq",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.mul_cpow_eq",
-    "line": 127,
+    "line": 144,
     "why": "On `(1, ∞)`, `y·y^(−σ−1) = y^(−σ)` in `ℂ`.",
     "sorry": false,
     "needs": [
@@ -87929,7 +87944,7 @@
     "name": "phi_sub_pole_le",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.phi_sub_pole_le",
-    "line": 136,
+    "line": 153,
     "why": "The Mellin transform less its pole. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α`, `α < 1`, then for `σ > 1`, `‖Phi σ − c/(σ − 1)‖ ≤ K/(σ − α)`.",
     "sorry": false,
     "needs": [
@@ -87948,7 +87963,8 @@
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.mellin_G",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.integral_cpow_neg",
-     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq"
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
     ],
     "exact": false,
     "uses": [
@@ -87957,7 +87973,8 @@
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.mellin_G",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
      "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.integral_cpow_neg",
-     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq"
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.mul_cpow_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
     ],
     "layer": "zeta",
     "used_by": [
@@ -87969,7 +87986,7 @@
     "name": "const_eq_zero",
     "ns": "WindowsOfRH",
     "full": "WindowsOfRH.const_eq_zero",
-    "line": 183,
+    "line": 200,
     "why": "S4. The constant is zero. If `G y = c·y + r y` on `(1, ∞)` with `|r y| ≤ K·y^α` and `α < 1`, then `c = 0`: `Phi` is regular at `1`, so it has no pole `c/(s − 1)` there.",
     "sorry": false,
     "needs": [
@@ -87986,14 +88003,431 @@
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_regular_at_one",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
-     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
     ],
     "exact": false,
     "uses": [
      "lean_stage3/Stage3/LandauMellinG.lean::LandauMellinG.Phi",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_regular_at_one",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
-     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le"
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "noRunaway_of_rh",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.noRunaway_of_rh",
+    "line": 270,
+    "why": "S1. The Riemann hypothesis gives the staircase in the square-root frame: `|ψ(t) − t| ≤ C·t^(1/2)·(log t)^k` from some point on.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis"
+    ],
+    "proves": "Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "E",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.E",
+    "line": 289,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_measurable",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c0",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.c0",
+    "line": 293,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "r",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.r",
+    "line": 297,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "y : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.phi_sub_pole_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_div_measurable",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.E_div_measurable",
+    "line": 299,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Measurable (fun t : ℝ => E t / t ^ 2)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_measurable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "E_div_le",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.E_div_le",
+    "line": 304,
+    "why": "Beyond `max x₀ 1`, `|E(t)/t²| ≤ A·t^(θ'−2)`, the log absorbed at `θ' > 1/2`.",
+    "sorry": false,
+    "needs": [
+     "h : Stage3.StmtPsiWeakTheta (1 / 2) C k x₀",
+     "hθ' : 1 / 2 < θ'"
+    ],
+    "proves": "∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → |E t / t ^ 2| ≤ A * t ^ (θ' - 2)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.log_absorbed",
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.log_absorbed",
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_div_integrableOn",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.E_div_integrableOn",
+    "line": 331,
+    "why": "S3 (a). `E(t)/t²` is integrable on `(1, ∞)`.",
+    "sorry": false,
+    "needs": [
+     "hN : Saddle.NoRunaway"
+    ],
+    "proves": "IntegrableOn (fun t : ℝ => E t / t ^ 2) (Set.Ioi 1)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_eq",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.G_eq",
+    "line": 362,
+    "why": "S3 (b). For `y > 1`, `G y = c₀·y + r y`.",
+    "sorry": false,
+    "needs": [
+     "hN : Saddle.NoRunaway",
+     "hy : 1 < y"
+    ],
+    "proves": "LandauWindow.G y = c0 * y + r y",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.G",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.rampSum_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tail_le",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.tail_le",
+    "line": 392,
+    "why": "The tail at exponent `θ' ∈ (1/2, 1)`: beyond `max x₀ 1`, `|r y| ≤ K·y^θ'`.",
+    "sorry": false,
+    "needs": [
+     "h : Stage3.StmtPsiWeakTheta (1 / 2) C k x₀",
+     "hθ'lo : 1 / 2 < θ'",
+     "hθ'1 : θ' < 1"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, max x₀ 1 ≤ y → |r y| ≤ K * y ^ θ'",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_le",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "r_bound",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.r_bound",
+    "line": 425,
+    "why": "S3 (c). For `y > 1`, `|r y| ≤ K·y^(3/4)`.",
+    "sorry": false,
+    "needs": [
+     "hN : Saddle.NoRunaway"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Ioi (1 : ℝ), |r y| ≤ K * y ^ (3 / 4 : ℝ)",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.E_div_integrableOn",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c0_eq_zero",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.c0_eq_zero",
+    "line": 461,
+    "why": "S3 (d). The constant `c₀` is zero.",
+    "sorry": false,
+    "needs": [
+     "hN : Saddle.NoRunaway"
+    ],
+    "proves": "c0 = 0",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.const_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.r_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "windows_of_rh",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.windows_of_rh",
+    "line": 474,
+    "why": "S5. The Riemann hypothesis gives a window bound at every `θ ∈ (1/2, 1)`.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis"
+    ],
+    "proves": "∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.G_eq",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.c0_eq_zero",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.noRunaway_of_rh",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.tail_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_windows",
+    "ns": "WindowsOfRH",
+    "full": "WindowsOfRH.spiralLink_iff_windows",
+    "line": 490,
+    "why": "SpiralLink is the window bounds.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C",
+    "file": "lean_stage3/Stage3/WindowsOfRH.lean",
+    "id": "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.spiralLink_iff_windows",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauCriterion.lean::LandauCriterion.rh_of_windows",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauCriterion.lean::LandauCriterion.rh_of_windows",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.WindowBound",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/WindowsOfRH.lean::WindowsOfRH.windows_of_rh"
     ],
     "layer": "zeta",
     "used_by": []

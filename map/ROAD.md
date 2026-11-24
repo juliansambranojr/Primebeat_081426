@@ -56,7 +56,7 @@ flowchart LR
   rh --> e4
   e5["<b>depth_one</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::end_
   rh --> e5
-  more(["and 20 more ends under RH"]):::end_
+  more(["and 21 more ends under RH"]):::end_
   rh --> more
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -68,11 +68,11 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 2131.
+- **Theorems Lean has checked:** 2141.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 13. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 11.
-- **Theorems that assume it:** 67, arriving at 26 ends.
+- **Theorems that assume it:** 69, arriving at 27 ends.
 
 ## Statements about the count that settle `RiemannHypothesis`
 
@@ -130,6 +130,7 @@ The ends among the theorems that assume it. "Behind it" links the whole line.
 | [`Stage3.stmtPsiWeak_of_RH_half`](./lean_stage3/ThetaPsi.md#Stage3-stmtPsiWeak_of_RH_half) | ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ | [71](./chains/Stage3-stmtPsiWeak_of_RH_half.md) |
 | [`RHPull.stmtPsiWeak_of_RH`](./lean_stage3/LineBound.md#RHPull-stmtPsiWeak_of_RH) | ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ | 66 |
 | [`RHPull.smoothedChebyshev_sqrt_bound`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sqrt_bound) | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (22200 * Real.exp 1 * C / ε) * Real.sqrt X * (Real.log X) ^ 2 + (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84… | [46](./chains/RHPull-smoothedChebyshev_sqrt_bound.md) |
+| [`WindowsOfRH.windows_of_rh`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-windows_of_rh) | ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C | 45 |
 | [`Stage3.I37_sqrt_log3_half`](./lean_stage3/ThetaPull.md#Stage3-I37_sqrt_log3_half) | ‖I₃₇ ν ε T X (RHPull.σRH X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi) * Real.sqrt X * (Real.log X) ^ 3 | [44](./chains/Stage3-I37_sqrt_log3_half.md) |
 | [`RHPull.smoothedChebyshev_sub_main_norm_le`](./lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (1 / (2 * Real.pi)) * (2 * T) * (11100 * (Real.log X) ^ 2 * M₃₇ * X ^ (σRH X)) + (1 / (2 * Real.pi)) * (1 / 2) * ((19… | [41](./chains/RHPull-smoothedChebyshev_sub_main_norm_le.md) |
 | [`Stage3.logDerivZeta_line_half`](./lean_stage3/ThetaLine.md#Stage3-logDerivZeta_line_half) | ‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 | [31](./chains/Stage3-logDerivZeta_line_half.md) |
@@ -150,7 +151,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Schoenfeld.StmtSchoenfeld`](./lean/Schoenfeld.md#Schoenfeld-StmtSchoenfeld) | **OPEN** | — | 2 |
 | [`Stage3.StmtExplicitFormula`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormula) | **OPEN** | — | 0 |
 | [`Stage3.StmtExplicitFormulaPoly`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | **OPEN** | — | 2 |
-| [`Stage3.StmtPsiWeakTheta`](./lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) | **OPEN** | — | 7 |
+| [`Stage3.StmtPsiWeakTheta`](./lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) | **OPEN** | — | 9 |
 | [`Stage3.StmtSFromLocal`](./lean_stage3/ArgCrude.md#Stage3-StmtSFromLocal) | **OPEN** | — | 5 |
 | [`Stage3.StmtSchoenfeld`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeld) | **OPEN** | — | 1 |
 | [`WeilBridgeLeaf.StmtWeilBridge`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-StmtWeilBridge) | **OPEN** | — | 2 |
