@@ -413,3 +413,44 @@ zero enters through a logarithm, with `|c_top| ≈ 1/|γ_top|`.
 every `T` where the creep `Θ − β_max(T)` is small against
 `δ_band·log T/√N_band`. A wall needs the creep to stay large against that
 quantity at every height. Nothing in the tree bounds either side.
+
+### S7, round 3 (a): the aligned weights in clusters (2026-11-24, Julian: "Yes")
+
+On paper, here, unchecked by anyone else.
+
+**What alignment gives.** For `γ > 0` the weight `c'_j = w_j·(positive)` has
+argument within `β_j/γ_j` of `−π/2`. A cluster `C` of band modes whose
+angular diameter is `d` has `|Σ_C c'_j e^(ikφ_j)| ≥ cos(k·d + max β/γ)·Σ_C |c'_j|`.
+So the cluster acts as one point of weight at least `½·Σ_C|c'|` at every `k`
+with `k·d ≤ 1`.
+
+**Where it breaks.** The bound reads `k·d`, measured from `k = 0` and not
+from the window's start. The window is `(m, m+K]`, and round 3 (b) needs
+`m ≈ 6K·√N_band·log(…)`, so the clusters need `d ≤ 1/(m+K)`. Between
+clusters the mean value step needs separation `≥ 6π/K`. That is two scales
+with a ratio of at least `6π(m+K)/K`, about `36π·√N_band·log(…)`.
+- Grouping at one threshold `t` gives clusters of diameter up to `N_C·t` with
+  gaps `≥ t`, and fails once a cluster holds a few points.
+- Choosing a threshold that falls in a gap of the pairwise separations needs
+  up to `N²` candidate scales. The ratio of the outermost to the innermost is
+  exponential in `N²`, so `K` is too.
+
+**Dirichlet gives the same.** Simultaneous approximation finds `k ≤ Q^N` with
+every `kφ_j` within `2π/Q` of `0 (mod 2π)`. There every weight is aligned
+and nothing cancels, except that each zero meets its conjugate: `−i/γ`
+against `+i/γ`. What survives is `Σ 2β/γ²`, positive and exact, but `k` is
+exponential in `N`.
+
+**Result of (a).** Alignment does not remove the separation condition in
+general. It removes it when the near-alias clusters have a two-scale gap:
+diameter `≤ 1/(m+K)` and gaps `≥ 6π/K`. Every general route tried (Turán,
+single grouping, the choice of scale, Dirichlet) meets a loss exponential in
+the number of zeros near the top. Only the mean value theorem on separated
+points, round 3, loses polynomially, and it pays in `δ_band`.
+
+**The lost factor, named.** Without a lower bound on how near the top zeros
+come to the alias lattice, `(γ − γ')·log 2 ≈ 2πn`, every route loses
+`exp(c·N(T))` against the density saving `T^(1−θ)`. With such a bound,
+`δ_band(T) ≥ T^(−a)`, round 3 (b) closes the wall at every `T` whose creep is
+below `T^(−a)·log T/√N_band(T)`. The design question for the wall is now that
+separation, a property of the zeros of ζ (unit 0431).
