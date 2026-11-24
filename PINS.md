@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S10 of `design/stencil.md`, steps 1 and 2: `Stage3/HardyZ.lean`
+
+    DONE        `xi_line_real` (Λ(1/2 + it) is real for real t, from
+                `completedRiemannZeta_one_sub` and conjugation) and
+                `signChange_zero_on_line` (a sign change of t ↦ Λ(1/2 + it)
+                on [t₁, t₂] gives ζ(1/2 + iγ) = 0 with γ ∈ [t₁, t₂]); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes and loop please" (step 1 of S10).
+                Hardy's Z is taken as Λ on the line, which differs from Z by
+                the positive factor |Gammaℝ|, so no continuous phase θ is defined
+    DEPENDS     Mathlib `completedRiemannZeta`, `Gammaℝ`, `Complex.Gamma_conj`
+    OUT         θ(t), the count rh_iff_signChanges (step 3), the floor (step 4)
+
 ### 2026-11-24 · block S6 of `design/stencil.md`: `Stage3/ReachRoute.lean`
 
     DONE        `reached_mode_false`: under H, a mode right of σ reached from
