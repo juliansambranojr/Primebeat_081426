@@ -658,3 +658,39 @@ square, which is unconditional and holds for any `V` and `M`. Then 5, which is
 the analytic core. The theorem after 1 to 4, `κ ≥ 1 − (1/R)·log(mean square)`, can
 be stated with the mean square as a hypothesis. That makes the floor exactly
 one named input, in the same way H is for the ladder.
+
+### S11, checked against sources (2026-11-24, Julian: "Go")
+
+Read this session: Young, "A short proof of Levinson's theorem" (arXiv
+1002.4403), and Feng, "Zeros of the Riemann zeta function on the critical line"
+(arXiv 1003.0059). The text is in the session scratchpad.
+
+**Corrections to S11.**
+- `L = log T` (Young §1), not `log(T/2π)`.
+- `V(s) = Q(−(1/L)·d/ds)ζ(s)`, a real polynomial `Q` with `Q(0) = 1`. Feng's Lemma 1
+  adds `Q'(x) = Q'(1−x)`. Levinson's `Q(x) = 1 − x` gives `V = ζ + ζ'/L`.
+- The mollifier (Young §1) is `ψ(s) = Σ_{h≤M} μ(h)·h^(−(s + 1/2 − σ₀))·P(log(M/h)/log M)`,
+  `M = T^θ`, `0 < θ < 1/2`, `P(0) = 0`, `P(1) = 1`.
+- The bound (Young (1.1); Feng (2.6) for Conrey's longer `B`):
+  `κ ≥ 1 − (1/R)·log((1/T)∫_1^T |Vψ(σ₀+it)|² dt) + o(1)`.
+- The mean value (Young (1.2) and (1.3)):
+  `(1/T)∫_1^T |Vψ(σ₀+it)|² dt = c(P,Q,R,θ) + o(1)`, with
+  `c = 1 + (1/θ)∫_0^1∫_0^1 e^(2Rv)·[ (d/dx)(e^(Rθx)·P(x+u)·Q(v+θx)) at x = 0 ]² du dv`.
+  With `P(x) = x`, `Q(x) = 1 − x`, `R = 1.3`, `θ = 0.5`: `c = 2.35…` and `κ ≥ 0.34…`.
+
+**Step 1, derived here.** Neither source states the counting lemma. They cite
+Conrey's §3 and Levinson and Montgomery for it. Derivation, with `Λ = Gammaℝ·ζ`,
+`g = Gammaℝ'/Gammaℝ`, a real constant `λ`, and `G = ζ + λ·ζ'`:
+- `Gammaℝ·ζ' = Λ' − g·Λ`. On the line `Λ` is real (`HardyZ.xi_line_real`), so `Λ'` is
+  purely imaginary, since `d/dt Λ(1/2+it) = i·Λ'(1/2+it)` is real.
+- Hence, on the line, `Re(Gammaℝ·G) = Λ·(1 − λ·Re g)`.
+- Where `1 − λ·Re g ≠ 0`, the zeros of `ζ` on the line are exactly the points where
+  `Re(Gammaℝ·G) = 0`, the points where `arg(Gammaℝ·G)` passes `π/2 mod π`. They number
+  at least `(1/π)·|Δ arg(Gammaℝ·G)| − 1` along `[1/2, 1/2+iT]`.
+- `Δ arg Gammaℝ = θ(T)`, the horizon of unit 0515. The argument principle for `G` on
+  the rectangle right of the line gives `Δ arg G = −2π·N_G⁺(T) + O(L)`.
+- So `N₀(T) ≥ N(T) − 2·N_G⁺(T) − O(L)`, which is the form in S11, with `λ = 1/L`.
+
+**Lean, step 1a (unconditional).** `re_gammaR_G_line`: for real `λ` and real `t`,
+`Re(Gammaℝ(s)·(ζ(s) + λ·ζ'(s))) = Λ(s)·(1 − λ·Re(Gammaℝ'(s)/Gammaℝ(s)))` at `s = 1/2 + it`.
+Step 1b, the count through a continuous argument along the line, follows it.

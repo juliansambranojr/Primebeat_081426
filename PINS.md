@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1a: `Stage3/LevinsonLine.lean`
+
+    DONE        `deriv_xi_line_im` (Λ' is purely imaginary on the line) and
+                `re_gammaR_G_line` (Re(Gammaℝ·(ζ + λζ')) = Λ·(1 − λ·Re(Gammaℝ'/Gammaℝ))
+                on the line, λ real); one unit
+    ASSUMED     Julian, 2026-11-24: "Go" (step 1 of S11). The identity is
+                derived here (S11, checked against sources); the sources read
+                state the setup and the bound, not the counting lemma
+    DEPENDS     `HardyZ.xi_line_real`; Mathlib `completedRiemannZeta`,
+                `riemannZeta_def_of_ne_zero`, `Gammaℝ`
+    OUT         step 1b (the count through a continuous argument); steps 2–6
+
 ### 2026-11-24 · block S10 of `design/stencil.md`, step 4a: `Stage3/Littlewood.lean`
 
     DONE        `littlewood_rect`: for f analytic near a rectangle
