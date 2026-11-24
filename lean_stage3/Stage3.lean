@@ -199,6 +199,7 @@ import Stage3.WindowsOfRH
 import Stage3.ResidueRoute
 import Stage3.LadderAssembly
 import Stage3.ReachRoute
+import Stage3.HardyZ
 
 namespace Stage3
 
