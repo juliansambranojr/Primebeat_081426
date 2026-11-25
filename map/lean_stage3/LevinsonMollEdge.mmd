@@ -11,7 +11,7 @@ flowchart LR
   n9["<b>right_log_term_le</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
   n10["<b>arg_term_le_of_pos</b><br/>|(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi"]:::shp
   n11["<b>right_arg_term_le</b><br/>|(∫ t in a..b, logDeriv (fun s =＞ (riemannZeta s + c * deriv rie…"]:::thm
-  n12["<b>right_terms_le ■</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
+  n12["<b>right_terms_le</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
   n13["<b>zeta_norm_le_sixteenth</b><br/>‖riemannZeta u‖ ≤ 2 + 16 * ‖u‖"]:::thm
   n14["<b>disc_facts_X</b><br/>X - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + X + T"]:::shp
   n15["<b>zeta_disc_X</b><br/>‖riemannZeta u‖ ≤ 33 * T"]:::thm
@@ -19,11 +19,12 @@ flowchart LR
   n17["<b>G_disc_X</b><br/>‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 561 * T"]:::thm
   n18["<b>real_zero_count_gen</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.c…"]:::shp
   n19["<b>edge_le_gen</b><br/>|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1…"]:::shp
-  n20["<b>horizontal_terms_le ■</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
-  x0(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
-  x1(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
-  x2(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x3(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  n20["<b>horizontal_terms_le</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
+  x0(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x1(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x2(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x3(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x4(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
   n0 --> n20
   n1 --> n4
   n10 --> n11
@@ -51,11 +52,17 @@ flowchart LR
   n8 --> n11
   n8 --> n20
   n9 --> n12
-  x0 -.-> n3
-  x1 -.-> n18
-  x1 -.-> n8
-  x2 -.-> n10
-  x3 -.-> n19
+  n12 -.-> x0
+  n2 -.-> x0
+  n20 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  n8 -.-> x0
+  x1 -.-> n3
+  x2 -.-> n18
+  x2 -.-> n8
+  x3 -.-> n10
+  x4 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

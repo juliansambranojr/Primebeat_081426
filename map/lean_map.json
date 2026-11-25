@@ -15879,7 +15879,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -15996,7 +15997,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le"
     ]
    },
    {
@@ -16177,7 +16179,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude",
-     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le"
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le"
     ]
    },
    {
@@ -18076,7 +18079,8 @@
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
-     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le"
     ]
    },
    {
@@ -45802,7 +45806,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
-     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height"
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -45888,7 +45893,9 @@
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    },
    {
     "kind": "theorem",
@@ -45918,7 +45925,9 @@
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    },
    {
     "kind": "theorem",
@@ -45946,7 +45955,9 @@
      "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    }
   ]
  },
@@ -46129,7 +46140,9 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    }
   ]
  },
@@ -46291,7 +46304,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -46807,7 +46821,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne"
     ]
    }
   ]
@@ -46870,7 +46885,8 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -46897,7 +46913,11 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
     ]
    },
    {
@@ -46984,7 +47004,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -47055,7 +47076,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -47086,7 +47108,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -47168,7 +47191,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
-     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le"
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -47323,7 +47347,9 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    },
    {
     "kind": "theorem",
@@ -47602,7 +47628,9 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    }
   ]
  },
@@ -47656,7 +47684,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
-     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le"
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le"
     ]
    },
    {
@@ -47870,7 +47899,9 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.left_mem_border"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
    }
   ]
  },
@@ -47978,7 +48009,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le"
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
    {
@@ -48568,6 +48600,431 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonWindow.lean",
+  "module": "Stage3.LevinsonWindow",
+  "stem": "LevinsonWindow",
+  "header": "LevinsonWindow — block S11 of `lean_stage3/design/stencil.md`, the assembled window theorem. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonMollEdge",
+   "Stage3.LevinsonAvoid"
+  ],
+  "opens": [
+   "Complex",
+   "Interval",
+   "Kadiri",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LevinsonWindow"
+  ],
+  "lines": 509,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonAvoid.lean",
+   "lean_stage3/Stage3/LevinsonMollEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "windowE",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.windowE",
+    "line": 73,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "B X T a b : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "border_cases",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.border_cases",
+    "line": 79,
+    "why": "A border point lies on one of the four edges.",
+    "sorry": false,
+    "needs": [
+     "hre : z.re ≤ w.re",
+     "him : z.im ≤ w.im",
+     "hp : p ∈ RectangleBorder z w"
+    ],
+    "proves": "(p.im = z.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = z.re ∧ p.im ∈ Icc z.im w.im) ∨ (p.im = w.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = w.re ∧ p.im ∈ Icc z.im w.im)",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticOnNhd_rect_of_im",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.analyticOnNhd_rect_of_im",
+    "line": 92,
+    "why": "Analytic off the pole, a function is analytic near any rectangle above `Im = 1`.",
+    "sorry": false,
+    "needs": [
+     "hf : ∀ w : ℂ, w ≠ 1 → AnalyticAt ℂ f w",
+     "hz : 1 ≤ z.im",
+     "hw : 1 ≤ w.im"
+    ],
+    "proves": "AnalyticOnNhd ℂ f (Rectangle z w)",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "countRight_right_le",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.countRight_right_le",
+    "line": 103,
+    "why": "The count right of `σ` grows with the rectangle.",
+    "sorry": false,
+    "needs": [
+     "hsub : Rectangle z w' ⊆ Rectangle z w",
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hz : f z ≠ 0"
+    ],
+    "proves": "countRight f z w' σ ≤ countRight f z w σ",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.divisor_nonneg_real",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.divisor_eq",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineCount_mono",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.lineCount_mono",
+    "line": 131,
+    "why": "The line count is monotone in the height.",
+    "sorry": false,
+    "needs": [
+     "h : T ≤ T'"
+    ],
+    "proves": "lineCount T ≤ lineCount T'",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_step_le",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.N_step_le",
+    "line": 142,
+    "why": "`N` over a unit interval. For `4 ≤ t ≤ u ≤ t + 1`, `N u − N t ≤ 31 log u + 1250`.",
+    "sorry": false,
+    "needs": [
+     "ht : 4 ≤ t",
+     "htu : t ≤ u",
+     "hu : u ≤ t + 1"
+    ],
+    "proves": "riemannZeta.N u - riemannZeta.N t ≤ 31 * Real.log u + 1250",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_line_ne",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.G_line_ne",
+    "line": 179,
+    "why": "A zero of `G` on the line is a multiple zero of `ζ`. Where the real factor is nonzero and every zero of `ζ` at `1/2 + t i` is simple, `G = ζ + c ζ'` (`c ≠ 0`) is nonzero there.",
+    "sorry": false,
+    "needs": [
+     "hc : c ≠ 0",
+     "hfac : 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0",
+     "hs : riemannZeta (1/2 + t * I) = 0 → deriv riemannZeta (1/2 + t * I) ≠ 0"
+    ],
+    "proves": "riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I) ≠ 0",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "half_log_mean_le",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.half_log_mean_le",
+    "line": 191,
+    "why": "The half-length times the log of a mean square, against a bound `K ≥ 1` on the mean.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hK1 : 1 ≤ K",
+     "hm : (1 / (b - a)) * ∫ t in a..b, ‖F t‖ ^ 2 ≤ K"
+    ],
+    "proves": "(b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖F t‖ ^ 2) ≤ (b - a) / 2 * Real.log K",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tailDelta_nonneg",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.tailDelta_nonneg",
+    "line": 205,
+    "why": "`tailDelta` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "hB : 0 ≤ B"
+    ],
+    "proves": "0 ≤ LevinsonMollEdge.tailDelta M B X",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "windowE_nonneg",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.windowE_nonneg",
+    "line": 216,
+    "why": "The edge terms are nonnegative.",
+    "sorry": false,
+    "needs": [
+     "hM : 1 ≤ M",
+     "hB : 1 ≤ B",
+     "hX : 3 ≤ X",
+     "hT : 1 ≤ T",
+     "hab : a ≤ b"
+    ],
+    "proves": "0 ≤ windowE M B X T a b",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_window",
+    "ns": "LevinsonWindow",
+    "full": "LevinsonWindow.levinson_window",
+    "line": 245,
+    "why": "S11, the assembled window theorem. For `T ≥ e^26`, `c = 1/log T`, the mollifier `ψ = molli M β` with `β 1 = 1`, `‖β h‖ ≤ B`, `σ₀ < 1/2` with a margin `δ > 0`, `1/4 ≤ σ₀ − δ`, `X ≥ 3` with `32 M B ≤ 2^X`, `2X ≤ a`, and a window `a + 3 ≤ b ≤ T`: if the mean square of `G ψ` over every subwindow of `[a, b]`, on every line `σ ∈ [σ₀ − δ, σ₀]`, is at most `K ≥ 1`, and every zero of `ζ` on the segment `1/2 + [a, b] i` is simple, then the zeros of `ζ` on the line up to height `b`, with order, number at least `(N b − N a) − (1/(π(1/2 − σ₀))) · ((b − a)/2 · log K + windowE) − (134 log T + 2918)`.",
+    "sorry": false,
+    "needs": [
+     "hT : Real.exp 26 ≤ T",
+     "hc : c = 1 / Real.log T",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hσ₀ : σ₀ < 1 / 2",
+     "hδ : 0 < δ",
+     "hσδ : 1 / 4 ≤ σ₀ - δ",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hXa : 2 * X ≤ a",
+     "hab : a + 3 ≤ b",
+     "hbT : b ≤ T",
+     "hK1 : 1 ≤ K",
+     "hK : ∀ a' b' : ℝ, a ≤ a' → a' < b' → b' ≤ b → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑σ + ↑t * I) + c * deriv riemannZeta (↑σ + ↑t * I)) * LevinsonMollEdge.molli M β (↑σ + ↑t * I)‖ ^ 2 ≤ K",
+     "hsimple : ∀ t ∈ Icc a b, riemannZeta (1/2 + t * I) = 0 → deriv riemannZeta (1/2 + t * I) ≠ 0"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonWindow.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -51002,6 +51459,8 @@
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
@@ -51291,6 +51750,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -51323,6 +51783,7 @@
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -51352,6 +51813,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count"
     ]
    },
@@ -51423,6 +51885,8 @@
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.zeros_right_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -68822,6 +69286,7 @@
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
      "lean_stage3/Stage3/Stirling.lean::Stage3.StmtDigammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.continuous_phasePoint",
@@ -68870,6 +69335,7 @@
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.rvM_of_sFromLocal",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_holds",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
      "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta_zero"
@@ -97737,11 +98203,12 @@
    "Stage3.LevinsonCount",
    "Stage3.LevinsonRight",
    "Stage3.LevinsonMollEdge",
-   "Stage3.LevinsonAvoid"
+   "Stage3.LevinsonAvoid",
+   "Stage3.LevinsonWindow"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 222,
+  "lines": 223,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -97828,6 +98295,7 @@
    "lean_stage3/Stage3/LevinsonRight.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",
+   "lean_stage3/Stage3/LevinsonWindow.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/Littlewood.lean",

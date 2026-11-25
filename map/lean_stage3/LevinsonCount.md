@@ -17,16 +17,18 @@ flowchart LR
   n1["<b>left_mem_border</b><br/>((1/2 : ℂ) + t * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : …"]:::shp
   n2["<b>bottom_mem_border</b><br/>((x : ℂ) + a * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ)…"]:::shp
   n3["<b>top_mem_border</b><br/>((x : ℂ) + b * I) ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((3 : ℂ)…"]:::shp
-  n4["<b>levinson_count ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
+  n4["<b>levinson_count</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
   x0(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
   x1(["<b>LevinsonArg</b><br/>continuous_lineF<br/>exists_arg_lift<br/>lineCount_ge_arg"]):::ext
   x2(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x3(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>right_edge_le"]):::ext
   x4(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>lineF_turn_eq"]):::ext
+  x5(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
   n0 --> n4
   n1 --> n4
   n2 --> n4
   n3 --> n4
+  n4 -.-> x5
   x0 -.-> n0
   x0 -.-> n4
   x1 -.-> n4
@@ -193,5 +195,7 @@ line 104 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonArg.lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineF), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
