@@ -7,7 +7,7 @@
 43 theorems, 7 definitions, 1014 lines. 
 
 **Imports:** [`TwistedMoment`](../lean_stage3/TwistedMoment.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OffDiagClose`](../lean_stage3/OffDiagClose.md)
 
 ## The picture
 

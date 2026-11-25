@@ -1,0 +1,16 @@
+key	value	source
+module_lines	1101	wc -l lean_stage3/Stage3/OffDiagClose.lean
+theorems_proved	44	grep -c ^theorem lean_stage3/Stage3/OffDiagClose.lean
+defs	9	grep -c ^def lean_stage3/Stage3/OffDiagClose.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/OffDiagClose.lean
+pins	15	phi_iter_bdd, winY_iter_le, weightAll_exists, VY_iter_bound0, Fw_iter_bound, offdiag_term_iter, offdiag_term_iter_young, decay_trade, off_term_iter_le, offSum_bound_iter, aY_bound, logpow_le, Tpow_le, final_size, stmtOffDiag_holds
+errors_first	7	the worker's first build: an unknown constant, two rewrites on unreduced lambdas, and a rewrite of the wrong division
+builds	3	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8913	lake build (full Stage3), Build completed successfully
+jobs_module	8813	run/build.log, lake build Stage3.OffDiagClose
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
