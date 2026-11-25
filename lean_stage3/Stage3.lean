@@ -247,6 +247,8 @@ import Stage3.FloorConstQ
 import Stage3.FloorQ
 import Stage3.Turing
 import Stage3.TuringLWHoriz
+import Stage3.TuringLWSplit
+import Stage3.TuringLW
 
 namespace Stage3
 
