@@ -6,25 +6,29 @@ flowchart LR
   n4["<b>S₁_crude ■</b><br/>|S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75)"]:::thm
   n5["<b>log_zeta_le</b><br/>Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤ Real.lo…"]:::thm
   n6["<b>horizUpper_holds</b><br/>StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9)"]:::thm
-  n7["<b>littlewood_of_pieces ■</b><br/>StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.lo…"]:::thm
-  x0(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
-  x1(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
-  x2(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
-  x3(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
-  x4(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  n7["<b>littlewood_of_pieces</b><br/>StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.lo…"]:::thm
+  x0(["<b>TuringLWSplit</b><br/>littlewood_of_lower<br/>stmtSplit_holds"]):::ext
+  x1(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
+  x2(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
+  x3(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
+  x4(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
+  x5(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   n0 --> n4
   n1 --> n2
   n2 --> n3
   n3 --> n4
   n5 --> n6
   n6 --> n7
-  n1 -.-> x1
-  n2 -.-> x3
-  n3 -.-> x3
-  x0 -.-> n1
-  x2 -.-> n2
-  x2 -.-> n4
-  x4 -.-> n5
+  n0 -.-> x0
+  n1 -.-> x2
+  n2 -.-> x4
+  n3 -.-> x0
+  n3 -.-> x4
+  n7 -.-> x0
+  x1 -.-> n1
+  x3 -.-> n2
+  x3 -.-> n4
+  x5 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

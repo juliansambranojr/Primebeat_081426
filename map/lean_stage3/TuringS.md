@@ -7,7 +7,7 @@ TuringS — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 
 8 theorems, 8 definitions, 240 lines. 
 
 **Imports:** [`Defect`](../lean_stage3/Defect.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)  
-**Imported by:** [`Turing`](../lean_stage3/Turing.md), [`TuringAvg`](../lean_stage3/TuringAvg.md), [`TuringLWHoriz`](../lean_stage3/TuringLWHoriz.md)
+**Imported by:** [`Turing`](../lean_stage3/Turing.md), [`TuringAvg`](../lean_stage3/TuringAvg.md), [`TuringLWHoriz`](../lean_stage3/TuringLWHoriz.md), [`TuringLWSplitOsc`](../lean_stage3/TuringLWSplitOsc.md)
 
 ## The picture
 
@@ -20,25 +20,29 @@ flowchart LR
   n4["<b>S₁_crude ■</b><br/>|S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75)"]:::thm
   n5["<b>log_zeta_le</b><br/>Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤ Real.lo…"]:::thm
   n6["<b>horizUpper_holds</b><br/>StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9)"]:::thm
-  n7["<b>littlewood_of_pieces ■</b><br/>StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.lo…"]:::thm
-  x0(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
-  x1(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
-  x2(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
-  x3(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
-  x4(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  n7["<b>littlewood_of_pieces</b><br/>StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.lo…"]:::thm
+  x0(["<b>TuringLWSplit</b><br/>littlewood_of_lower<br/>stmtSplit_holds"]):::ext
+  x1(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
+  x2(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
+  x3(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
+  x4(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
+  x5(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   n0 --> n4
   n1 --> n2
   n2 --> n3
   n3 --> n4
   n5 --> n6
   n6 --> n7
-  n1 -.-> x1
-  n2 -.-> x3
-  n3 -.-> x3
-  x0 -.-> n1
-  x2 -.-> n2
-  x2 -.-> n4
-  x4 -.-> n5
+  n0 -.-> x0
+  n1 -.-> x2
+  n2 -.-> x4
+  n3 -.-> x0
+  n3 -.-> x4
+  n7 -.-> x0
+  x1 -.-> n1
+  x3 -.-> n2
+  x3 -.-> n4
+  x5 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -62,7 +66,7 @@ def · line 86
 
 - **Is:** `` S (t : ℝ) : ℝ := riemannZeta.N t - (Stage3.phaseTheta t / Real.pi + 1) ``
 - **Built from:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
-- **Used by 9:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S)
+- **Used by 10:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S)
 
 <a name="Turing-S-"></a>
 ### `Turing.S₁`
@@ -83,7 +87,7 @@ def · line 92
 The right-edge term: `Re ∫_0^t ζ′/ζ (2 + iu) du`.
 
 - **Is:** `` F (t : ℝ) : ℝ := (∫ u in (0 : ℝ)..t, logDeriv riemannZeta (2 + (u : ℂ) * Complex.I)).re ``
-- **Used by 2:** [`Turing.StmtOsc`](#Turing-StmtOsc), [`Turing.StmtSplit`](#Turing-StmtSplit)
+- **Used by 7:** [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`TuringLW.F_eq_re_H`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-F_eq_re_H), [`TuringLW.continuous_F`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-continuous_F), [`TuringLW.integral_F`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-integral_F), [`TuringLW.stmtOsc_explicit`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_explicit), [`Turing.StmtOsc`](#Turing-StmtOsc), [`Turing.StmtSplit`](#Turing-StmtSplit)
 
 <a name="Turing-StmtLittlewood"></a>
 ### `Turing.StmtLittlewood`
@@ -94,7 +98,7 @@ Littlewood's bound on `S₁`, the goal of step 1.
 
 - **Is:** `` StmtLittlewood (a b t₀ : ℝ) : Prop := ∀ t₁ t₂ : ℝ, t₀ ≤ t₁ → t₁ ≤ t₂ → |S₁ t₂ - S₁ t₁| ≤ a * Real.log t₂ + b ``
 - **Built from:** [`Turing.S₁`](#Turing-S-)
-- **Used by 3:** [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 5:** [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 <a name="Turing-StmtSplit"></a>
 ### `Turing.StmtSplit`
@@ -105,7 +109,7 @@ The imaginary component of the integrated argument principle on `[1/2, 2] × [t�
 
 - **Is:** `` StmtSplit : Prop := ∀ t₁ t₂ : ℝ, 2 ≤ t₁ → t₁ ≤ t₂ → Real.pi * (S₁ t₂ - S₁ t₁) = (∫ t in t₁..t₂, F t) + ((∫ x in (1 / 2 : ℝ)..2, Real.log ‖riemannZeta ((x : ℂ) + (t₂ : ℂ) * Complex.I)‖) - ∫ x in (1 / 2 : ℝ)..2, Real.log ‖riemannZeta ((x : ℂ) + (t₁ : ℂ) * Complex.I)‖) ``
 - **Built from:** [`Turing.F`](#Turing-F), [`Turing.S₁`](#Turing-S-)
-- **Used by 1:** [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 2:** [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 <a name="Turing-StmtOsc"></a>
 ### `Turing.StmtOsc`
@@ -116,7 +120,7 @@ The right edge oscillates: its integral is bounded uniformly.
 
 - **Is:** `` StmtOsc (c₀ : ℝ) : Prop := ∀ t₁ t₂ : ℝ, t₁ ≤ t₂ → |∫ t in t₁..t₂, F t| ≤ c₀ ``
 - **Built from:** [`Turing.F`](#Turing-F)
-- **Used by 1:** [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 3:** [`TuringLW.stmtOsc_explicit`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_explicit), [`TuringLW.stmtOsc_holds`](../lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_holds), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 <a name="Turing-StmtHorizUpper"></a>
 ### `Turing.StmtHorizUpper`
@@ -136,7 +140,7 @@ def · line 117
 The lower side of the horizontal `log |ζ|` integral: the analytic core.
 
 - **Is:** `` StmtHorizLower (a₂ b₂ : ℝ) : Prop := ∀ t : ℝ, 2 ≤ t → -(a₂ * Real.log t + b₂) ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ``
-- **Used by 2:** [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 3:** [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 ## Theorems
 
@@ -161,8 +165,9 @@ S t = Stage3.argS t
 
 **Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Turing.S`](#Turing-S)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
   - [`Turing.S₁_crude`](#Turing-S-_crude) — `` |S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75) ``
 
 <a name="Turing-continuous_phaseTheta"></a>
@@ -241,9 +246,10 @@ S₁ t₂ - S₁ t₁ = ∫ t in t₁..t₂, S t
 
 **Definitions its proof touches:** [`Turing.S`](#Turing-S), [`Turing.S₁`](#Turing-S-)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count) (TuringAvg) — `` S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
   - [`Turing.S₁_crude`](#Turing-S-_crude) — `` |S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75) ``
 
 <a name="Turing-S-_crude"></a>
@@ -358,5 +364,7 @@ StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.log 9 + b₂) 
 
 **Definitions its proof touches:** [`Turing.StmtHorizLower`](#Turing-StmtHorizLower), [`Turing.StmtLittlewood`](#Turing-StmtLittlewood), [`Turing.StmtOsc`](#Turing-StmtOsc), [`Turing.StmtSplit`](#Turing-StmtSplit), [`Turing.S₁`](#Turing-S-)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower) (TuringLWSplit) — `` Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
 
