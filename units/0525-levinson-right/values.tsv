@@ -1,0 +1,16 @@
+key	value	source
+module_lines	330	wc -l lean_stage3/Stage3/LevinsonRight.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/LevinsonRight.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonRight.lean
+pins	6	zeros_right_le, log_integral_le, log_integral_norm_le, countRight_mul_ge, countRight_left_eq, levinson_right
+errors_first	6	the worker's first build: a lemma under a longer name, a composition matched to the wrong pieces, and the pins' cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8902	lake build (full Stage3), Build completed successfully
+jobs_module	8808	run/build.log, lake build Stage3.LevinsonRight
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

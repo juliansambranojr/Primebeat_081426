@@ -1,0 +1,137 @@
+# check_prose_source.py  2026-11-25T00:05:25Z
+# unit: 0526-levinson-moll-edge
+# sources searched: 69
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65821
+  Log and the mollifies edge terms
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1750
+  theorem molli_sub_one_le {M : ℕ} {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1751
+  (hβ : ∀ h, ‖β h‖ ≤ B) (hM : 1 ≤ M) {X : ℝ} {s : ℂ} (hs : s.re = X) (hX : 0 ≤ X) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1752
+  ‖molli M β s - 1‖ ≤ M * B / (2 : ℝ) ^ X :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1868
+  theorem f_sub_one_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {M : ℕ} (hM : 1 ≤ M)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1869
+  {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1) (hβ : ∀ h, ‖β h‖ ≤ B) {X : ℝ} (hX : 3 ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1871
+  ‖(riemannZeta s + c * deriv riemannZeta s) * molli M β s - 1‖ ≤ tailDelta M B X :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1951
+  theorem right_log_term_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {M : ℕ} (hM : 1 ≤ M)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1952
+  {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1) (hβ : ∀ h, ‖β h‖ ≤ B) {X a b : ℝ} (hX : 3 ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1953
+  (hXMB : 32 * M * B ≤ (2 : ℝ) ^ X) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65941
+  -(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1956
+  ≤ (b - a) * (2 * tailDelta M B X) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1975
+  theorem right_arg_term_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {M : ℕ} (hM : 1 ≤ M)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1952
+  {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1) (hβ : ∀ h, ‖β h‖ ≤ B) {X a b : ℝ} (hX : 3 ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1953
+  (hXMB : 32 * M * B ≤ (2 : ℝ) ^ X) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1978
+  |(∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:1979
+  (↑X + ↑t * I)).re| ≤ Real.pi :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65938
+  theorem right_terms_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {M : ℕ} (hM : 1 ≤ M)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65939
+  {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1) (hβ : ∀ h, ‖β h‖ ≤ B) {X σ₀ a b : ℝ} (hX : 3 ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65940
+  (hXMB : 32 * M * B ≤ (2 : ℝ) ^ X) (hσX : σ₀ ≤ X) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65941
+  -(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65749
+  + (X - σ₀) * (∫ t in a..b, logDeriv
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65944
+  (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2054
+  ≤ (b - a) * (2 * tailDelta M B X) + (X - σ₀) * Real.pi :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2345
+  theorem real_zero_count_gen {g : ℂ → ℂ} {m M r R : ℝ} (hr0 : 0 < r) (hrR : r < R)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65270
+  (hd : DifferentiableOn ℂ g (Metric.ball (0 : ℂ) (11 / 10))) (hm : 0 < m)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2348
+  (h0 : m ≤ (g 0).re) (hM : ∀ z : ℂ, ‖z‖ ≤ R → ‖g z‖ ≤ M) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2349
+  ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2350
+  (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2454
+  theorem edge_le_gen {F : ℂ → ℂ} {X T Mf σ : ℝ} (hX : 1 ≤ X) (hXT : 2 * X ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2455
+  (hFa : ∀ w : ℂ, w ≠ 1 → AnalyticAt ℂ F w)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2456
+  (h0 : 1 / 2 ≤ (F (↑X + ↑T * I)).re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2457
+  (hM : ∀ w : ℂ, ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8 → ‖F w‖ ≤ Mf)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2459
+  (hne : ∀ x ∈ Set.Icc σ X, F (↑x + ↑T * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2460
+  |edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65947
+  theorem horizontal_terms_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {M : ℕ} (hM : 1 ≤ M)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65948
+  {β : ℕ → ℂ} {B : ℝ} (hβ1 : β 1 = 1) (hβ : ∀ h, ‖β h‖ ≤ B) {X σ₀ T : ℝ} (hX : 3 ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65949
+  (hXMB : 32 * M * B ≤ (2 : ℝ) ^ X) (hσ₀ : 1 / 4 ≤ σ₀) (hσX : σ₀ ≤ X) (hXT : 2 * X ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65950
+  (hne : ∀ x ∈ Set.Icc σ₀ X, (riemannZeta (↑x + ↑T * I) + c * deriv riemannZeta (↑x + ↑T * I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65951
+  * molli M β (↑x + ↑T * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65952
+  |∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65954
+  ≤ (X - σ₀) * (Real.pi * ((8 * X - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae0949bf2fdc1a733.jsonl:2601
+  * (Real.log T + Real.log M + Real.log B + 8) + 1)) :=
+
+# 44 found, 0 missing

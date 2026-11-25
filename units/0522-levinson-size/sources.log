@@ -1,0 +1,71 @@
+# check_prose_source.py  2026-11-24T22:43:13Z
+# unit: 0522-levinson-size
+# sources searched: 65
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65046
+  theorem norm_G_sub_one_le {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) {s : ℂ} (hs : s.re = 3) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1655
+  ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65048
+  theorem re_G_pos {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1703
+  0 < (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65050
+  theorem right_edge_le {c a b : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65051
+  |(∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65055
+  theorem gamma_part_eq (a b : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65056
+  (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1805
+  Stage3.phaseTheta b - Stage3.phaseTheta a :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65058
+  theorem gamma_part_eq_count (a b : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65056
+  (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65060
+  Real.pi * (riemannZeta.N b - riemannZeta.N a)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1827
+  - Real.pi * (Stage3.argS b - Stage3.argS a) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65062
+  theorem gamma_part_count_le {a b : ℝ} (ha : 2 ≤ a) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65063
+  |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65064
+  - Real.pi * (riemannZeta.N b - riemannZeta.N a)|
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1839
+  ≤ Real.pi * (30 * Real.log b + 1200) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65066
+  theorem gamma_part_count_le_gt_two {a b : ℝ} (ha : 2 < a) (hab : a ≤ b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65063
+  |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65064
+  - Real.pi * (riemannZeta.N b - riemannZeta.N a)|
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1ff0644e43c26465.jsonl:1859
+  ≤ Real.pi * (30 * Real.log b + 150) :=
+
+# 22 found, 0 missing

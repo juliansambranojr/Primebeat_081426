@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-24T21:28:47Z
+# unit: 0517-line-count
+# sources searched: 58
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63003
+  Yes log and and start step 3 please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6c9897c9d8786e95.jsonl:1230
+  theorem lineCount_le_allCount (T : ℝ) : lineCount T ≤ allCount T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6c9897c9d8786e95.jsonl:1238
+  RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63129
+  theorem signChanges_le_line_count {k : ℕ} {T : ℝ} (t : Fin (k + 1) → ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63130
+  (hmono : StrictMono t) (h0 : 0 < t 0) (hT : t (Fin.last k) ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63131
+  (hs : ∀ i : Fin k, (completedRiemannZeta (1/2 + t i.castSucc * I)).re *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63132
+  (completedRiemannZeta (1/2 + t i.succ * I)).re < 0) :
+
+# 8 found, 0 missing

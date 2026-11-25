@@ -1,0 +1,16 @@
+key	value	source
+module_lines	361	wc -l lean_stage3/Stage3/LevinsonTurn.lean
+theorems_proved	11	grep -c ^theorem lean_stage3/Stage3/LevinsonTurn.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonTurn.lean
+pins	6	lift_turn_eq_integral, line_turn_eq_integral, turn_split, lineF_turn_eq, countRight_left_eq, G_turn_eq
+errors_first	5	the worker's first build: a cast rewrite with no pattern, a field_simp inside an integral, and the pins' cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8898	lake build (full Stage3), Build completed successfully
+jobs_module	8804	run/build.log, lake build Stage3.LevinsonTurn
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

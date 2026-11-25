@@ -1,0 +1,128 @@
+# check_prose_source.py  2026-11-24T21:53:23Z
+# unit: 0518-littlewood
+# sources searched: 59
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63467
+  theorem littlewood_rect {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63468
+  (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63469
+  (hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63470
+  2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63471
+  ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63472
+  = (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63473
+  - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63474
+  + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63475
+  + (∫ σ in z.re..w.re, edgeH f w.re z.im σ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:2367
+  - (∫ σ in z.re..w.re, edgeH f w.re w.im σ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63480
+  theorem littlewood_rect_zero_free {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63468
+  (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63482
+  (hnz : ∀ p ∈ Rectangle z w, f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63472
+  (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63473
+  - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63474
+  + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63475
+  + (∫ σ in z.re..w.re, edgeH f w.re z.im σ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:2611
+  - (∫ σ in z.re..w.re, edgeH f w.re w.im σ) = 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63491
+  theorem integral_countRight {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63468
+  (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63469
+  (hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63494
+  ∫ σ in z.re..w.re, countRight f z w σ =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63458
+  ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:2027
+  ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) * (p.re - z.re) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63500
+  theorem two_pi_count_eq {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63468
+  (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63502
+  (hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0) {σ : ℝ} (hσ : σ ∈ Icc z.re w.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63503
+  (hgood : ∀ p ∈ (divisor_support_rectangle_finite f z w).toFinset, p.re ≠ σ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63504
+  2 * Real.pi * countRight f z w σ =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63505
+  (∫ x in σ..w.re, logDeriv f (↑x + ↑z.im * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63506
+  - (∫ x in σ..w.re, logDeriv f (↑x + ↑w.im * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63507
+  + (∫ t in z.im..w.im, logDeriv f (↑w.re + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:1861
+  - (∫ t in z.im..w.im, logDeriv f (↑σ + ↑t * I)).re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63517
+  theorem integrableOn_logDeriv {z w : ℂ} (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63518
+  (hfin : ∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:2089
+  IntegrableOn (logDeriv f) (Rectangle z w) volume :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63523
+  theorem integral_re_logDeriv_horizontal {z w : ℂ} (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63524
+  {t : ℝ} (ht : t ∈ [[z.im, w.im]]) (hnz : ∀ x ∈ [[z.re, w.re]], f (↑x + ↑t * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63525
+  ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a57a6c917777a8532.jsonl:2292
+  = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ :=
+
+# 41 found, 0 missing

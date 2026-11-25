@@ -5,7 +5,7 @@ ArgCount — block `hnt.md#H3` of `lean_stage3/design/hnt.md`, "The assembly: St
 15 theorems, 1 definition, 365 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgLegs`](../lean_stage3/ArgLegs.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md), [`LevinsonSize`](../lean_stage3/LevinsonSize.md)
 
 ## The picture
 
@@ -29,13 +29,16 @@ flowchart LR
   x0(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour<br/>stmtArgIdentity_holds"]):::ext
   x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
   x2(["<b>ReZetaCount</b><br/>card_reZeros_le<br/>mem_reZeros<br/>re_zeta_two_line_pos"]):::ext
-  x3(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x4(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x5(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x6(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x7(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x8(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x9(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x4(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
+  x5(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x6(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x7(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x8(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x9(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x10(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x11(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x12(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -54,24 +57,30 @@ flowchart LR
   n8 --> n11
   n8 --> n12
   n9 --> n10
-  n14 -.-> x6
-  n14 -.-> x7
-  n14 -.-> x8
+  n12 -.-> x4
+  n12 -.-> x6
+  n14 -.-> x10
+  n14 -.-> x11
+  n14 -.-> x12
   n14 -.-> x9
+  n3 -.-> x3
+  n3 -.-> x4
+  n7 -.-> x4
+  n8 -.-> x6
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
   x1 -.-> n0
   x2 -.-> n0
-  x3 -.-> n10
-  x3 -.-> n13
-  x3 -.-> n14
-  x3 -.-> n6
-  x3 -.-> n7
-  x4 -.-> n13
-  x4 -.-> n14
+  x5 -.-> n10
   x5 -.-> n13
   x5 -.-> n14
+  x5 -.-> n6
+  x5 -.-> n7
+  x7 -.-> n13
+  x7 -.-> n14
+  x8 -.-> n13
+  x8 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -212,9 +221,11 @@ riemannZeta.N T ≤ riemannZeta.N T'
 
   - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+  - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="ArgCount-N_eq_of_no_zero_between"></a>
 ### `ArgCount.N_eq_of_no_zero_between`
@@ -327,9 +338,10 @@ line 185
 
   - [`Stage3.intervalIntegrable_phasePoint`](../lean_stage3/Stirling.md#Stage3-intervalIntegrable_phasePoint) (Stirling) — `` IntervalIntegrable phasePoint MeasureTheory.volume a b ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+  - [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le) (LevinsonWindow) — `` riemannZeta.N u - riemannZeta.N t ≤ 31 * Real.log u + 1250 ``
 
 <a name="ArgCount-argS_le_gt_two"></a>
 ### `ArgCount.argS_le_gt_two`
@@ -362,10 +374,11 @@ line 216
 
 **Definitions its proof touches:** [`ArgCount.good`](#ArgCount-good), [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
   - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
+  - [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two) (LevinsonSize) — `` |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 150) ``
 
 <a name="ArgCount-mainTerm_abs_le"></a>
 ### `ArgCount.mainTerm_abs_le`
@@ -477,9 +490,11 @@ Stage3.StmtSCrude Stage3.argS 15 600
   - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`ArgCount.rvM_crude`](#ArgCount-rvM_crude) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
+  - [`LevinsonSize.gamma_part_count_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le) (LevinsonSize) — `` |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 1200) ``
+  - [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le) (LevinsonWindow) — `` riemannZeta.N u - riemannZeta.N t ≤ 31 * Real.log u + 1250 ``
 
 <a name="ArgCount-rvM_crude_of_good_two"></a>
 ### `ArgCount.rvM_crude_of_good_two`

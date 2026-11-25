@@ -528,3 +528,196 @@ Linear forms in logarithms give some finite `κ_r`, much larger. With the true
 whose density exponent alone exceeds `b`. Both escape every finite `r`. The
 input `H_r` grows with `r` and reaches `NoRunaway` as `r` grows without
 bound (S8).
+
+## S10 The horizon and the floor — design, no Lean target yet
+
+Julian, 2026-11-24: write up the frame of unit 0515 as a design block for the
+open items. On paper, here, unchecked by anyone else.
+
+**The objects.**
+- The horizon: `θ(t) = arg(Gammaℝ(1/2 + it))` taken continuously, with
+  `θ(0) = 0`. Mathlib has `Gammaℝ`, `completedRiemannZeta` and
+  `completedRiemannZeta_one_sub`. `θ` is not in the tree.
+- Hardy's function: `Z(t) = e^(iθ(t))·ζ(1/2 + it)`. It is real for real `t`
+  by the functional equation and conjugation (`logDerivZeta_conj`, the
+  `ZetaConj` file). `Z` is not in the tree.
+- The threshold count: `N(T) = θ(T)/π + 1 + S(T)`, `S(T) = (1/π)·arg ζ(1/2 + iT)`.
+  The tree has `N(T)` and its main term through `Kadiri` (`zetaCountingMainTerm`),
+  without the split into `θ` and `S`.
+- The floor: `MollifiedMean.M X s` and `f X s = ζ(s)·M(X, s) − 1`, with
+  `f_eq` in the tree.
+
+**Targets, in order.**
+1. `Z_real`: `Z(t)` is real. It follows from `completedRiemannZeta_one_sub` and
+   conjugation. This is the first Lean step, and it is unconditional.
+2. `signChange_is_zero_on_line`: a sign change of `Z` on `[t₁, t₂]` gives a zero
+   `1/2 + iγ` with `γ ∈ [t₁, t₂]`, by the intermediate value theorem on a real
+   continuous function.
+3. `rh_iff_signChanges`: RH holds exactly when, for every `T`, the zeros on the
+   line up to `T`, counted with multiplicity by the sign changes and the
+   orders of `Z`, number `N(T)`. One direction is the definitions; the other
+   is the count.
+4. The floor, on paper first: Levinson's inequality bounds the number of zeros
+   off the line by an integral of `log|ψ·ζ|` on a line left of one half, with
+   `ψ` a mollifier. The mean value `∫|ψ·ζ|²` that it needs is the missing
+   piece. The tree's `MollifiedMean` bounds `|f|²` right of one half, so it
+   would have to be moved to the line and the mollifier fitted.
+
+**What it does not do.** No known mollifier gives every zero. Step 4 at full
+strength is the open problem. Steps 1 to 3 are unconditional and
+build the frame in which H, the wall and the floor can each be read as a count
+of missed sign changes.
+
+### S10 step 4: the floor, on paper (2026-11-24, Julian: "Yes to log and step 4 please")
+
+On paper, here, unchecked by anyone else. Steps 1 to 3 are in Lean (units
+0516 and 0517). Step 4 has to produce sign changes, or zeros on the line, in
+proportion to the full count.
+
+**4a, Littlewood's lemma.** For `f` analytic on the rectangle `[σ₀, 3] × [T, 2T]`
+and nonzero on its edges, `2π·Σ_{zeros, β>σ₀} (β − σ₀) = ∫_T^{2T} log|f(σ₀+it)| dt
+− ∫_T^{2T} log|f(3+it)| dt + (horizontal sides)`. It is the argument principle
+integrated across. The tree has the pieces: `JensenCount`, `ArgCount`, and the
+dependency's `RectangleArgumentPrinciple`. It does not have the lemma. It is
+unconditional.
+
+**4b, concavity.** `∫ log|f| ≤ (T/2)·log((1/T)∫|f|²)`. With `f = ζ·M`, every zero of
+`ζ` right of `σ₀` is a zero of `f`. If the mean square of `ζ·M` on `Re s = σ₀` is
+`T·(1 + o(1))`, the right side is `o(T)`, and so is the weighted count of zeros
+right of `σ₀`.
+
+**4c, what the tree's floor reaches.** `MollifiedMean` bounds `∫|ζ·M − 1|²` on
+`Re s = u > 1/2`, with the mollifier `M_X = Σ_{d<X} μ(d)·d^(−s)`. Taking that to
+`∫|ζ·M|² = T·(1 + o(1))` and feeding it to 4a and 4b gives Bohr–Landau: zeros right
+of any `u > 1/2` are `o(T)`, against `N(T) ~ (T/2π)·log T`. This is the strongest
+step the tree can build from what it has. It puts the zeros near the line,
+and not on it.
+
+**4d, the step onto the line (Levinson).** Take `σ₀ = 1/2 − R/log T`, left of the
+line, and apply 4a and 4b to `V·M`. Here `V = ζ + ζ'/log T` (in Levinson's
+combination) and `M` is a mollifier with smooth weights `μ(n)·P(log(y/n)/log y)`,
+`y = T^θ`. Levinson's lemma turns zeros of `V` right of `σ₀` into a bound on the
+zeros of `ζ` off the line, through the functional equation. The proportion on
+the line is at least `1 − (1/R)·log((1/T)∫|V·M|²)`. The input is the mean value
+of `|V·M|²` just left of the line. Conrey's evaluation, for lengths `θ < 4/7`,
+gives over 40%, and later work gives a little more. None of this is in the tree.
+
+**Where the floor stops.** The proportion grows with the mollifier's length
+`θ`. No known mean value reaches a length that gives 100%. From memory, not
+checked this session: Farmer observed that the mean value for arbitrarily long
+mollifiers, if it held as conjectured, would give 100%. That would be a
+statement about the zeros as a whole, which is the gap of S7 to S9 in another
+form.
+
+**Build order, if pursued.** 4a (Littlewood) in Lean, unconditional. Then 4b.
+Then 4c, Bohr–Landau, from `MollifiedMean`. 4d needs a mean value left of the
+line, which is a large analytic project.
+
+## S11 Levinson's lemma — on paper, no Lean target yet
+
+Julian, 2026-11-24: "Yes" (design Levinson's lemma after Littlewood, unit
+0518). On paper, here, unchecked by anyone else. The formulas in Levinson's
+and Conrey's forms are recalled from memory and were not checked against a
+source this session. Check them before any Lean is pinned.
+
+**The shape of the method.** Write `L = log(T/2π)`. Take `V(s) = Q(−(1/L)·d/ds) ζ(s)`
+with `Q` a real polynomial, `Q(0) = 1`; Levinson's choice is `V = ζ + ζ'/L` up to the
+normalizing constant. Take a mollifier `M(s) = Σ_{n≤y} μ(n)·n^(−s)·P(log(y/n)/log y)`,
+`y = T^θ`, `P(0) = 0`, `P(1) = 1`. Take `σ₀ = 1/2 − R/L`.
+1. **Levinson's lemma.** On the critical line, a zero of `ζ` is forced at every
+   point where the argument of `V` passes a multiple of `π`, through the functional
+   equation `ζ(s) = χ(s)·ζ(1−s)`. Counting the argument along `[1/2, 1/2 + iT]` by the
+   argument principle on the rectangle to its right gives
+   `N₀(T) ≥ N(T) − 2·N_V(T) − O(L)`. Here `N₀` counts the zeros of `ζ` on the line,
+   which is `LineCount.lineCount`, and `N_V` the zeros of `V` with `σ > 1/2` and
+   `0 < t ≤ T`.
+2. **Littlewood on the left.** `littlewood_rect` for `V·M` on `[σ₀, 3] × [T, 2T]` gives
+   `2π·Σ (β − σ₀) = ∫ log|V·M(σ₀+it)| − ∫ log|V·M(3+it)| + (edge terms)`. The zeros
+   of `V` with `β > 1/2` are at distance at least `R/L` from `σ₀`. So
+   `N_V(2T) − N_V(T) ≤ (L/(2πR))·(right side)`.
+3. **The edge terms.** `∫ log|V·M(3+it)| = o(T)`, since `V·M → 1` far right. The
+   horizontal terms are `O(L·(3 − σ₀))`, by the local zero count (`JensenCount`).
+4. **Concavity.** `∫ log|V·M| ≤ (T/2)·log((1/T)∫|V·M|²)`.
+5. **The mean value, the floor.** `(1/T)∫_T^{2T} |V·M(σ₀+it)|² dt → c(P, Q, R, θ)`, an
+   explicit constant, for `θ < 1/2`, or `θ < 4/7` in Conrey's work.
+6. **Assembly.** `κ = liminf N₀/N ≥ 1 − (1/R)·log c(P, Q, R, θ)`. With the best
+   `P`, `Q`, `R` this is positive: about 34% for Levinson and over 40% for Conrey.
+
+**What is in the tree for each step.**
+- Step 1: `HardyZ`, `LineCount`, the conjugate symmetry and the functional
+  equation (Mathlib). The argument count on the line is not in the tree.
+- Step 2: `Littlewood.littlewood_rect`.
+- Step 3: `JensenCount`, `ArgCount`, and the far-right size of ζ (`ZetaBounds`).
+- Step 4: Jensen's inequality for the logarithm. Mathlib has the concavity of the
+  logarithm.
+- Step 5: none. `MollifiedMean` has a mean square right of `1/2` for `M_X` without
+  `P`, `Q` or the shift left of the line. This is the large step.
+
+**Order of building.** 1, then 2 to 4 as the zero-count bound in terms of a mean
+square, which is unconditional and holds for any `V` and `M`. Then 5, which is
+the analytic core. The theorem after 1 to 4, `κ ≥ 1 − (1/R)·log(mean square)`, can
+be stated with the mean square as a hypothesis. That makes the floor exactly
+one named input, in the same way H is for the ladder.
+
+### S11, checked against sources (2026-11-24, Julian: "Go")
+
+Read this session: Young, "A short proof of Levinson's theorem" (arXiv
+1002.4403), and Feng, "Zeros of the Riemann zeta function on the critical line"
+(arXiv 1003.0059). The text is in the session scratchpad.
+
+**Corrections to S11.**
+- `L = log T` (Young §1), not `log(T/2π)`.
+- `V(s) = Q(−(1/L)·d/ds)ζ(s)`, a real polynomial `Q` with `Q(0) = 1`. Feng's Lemma 1
+  adds `Q'(x) = Q'(1−x)`. Levinson's `Q(x) = 1 − x` gives `V = ζ + ζ'/L`.
+- The mollifier (Young §1) is `ψ(s) = Σ_{h≤M} μ(h)·h^(−(s + 1/2 − σ₀))·P(log(M/h)/log M)`,
+  `M = T^θ`, `0 < θ < 1/2`, `P(0) = 0`, `P(1) = 1`.
+- The bound (Young (1.1); Feng (2.6) for Conrey's longer `B`):
+  `κ ≥ 1 − (1/R)·log((1/T)∫_1^T |Vψ(σ₀+it)|² dt) + o(1)`.
+- The mean value (Young (1.2) and (1.3)):
+  `(1/T)∫_1^T |Vψ(σ₀+it)|² dt = c(P,Q,R,θ) + o(1)`, with
+  `c = 1 + (1/θ)∫_0^1∫_0^1 e^(2Rv)·[ (d/dx)(e^(Rθx)·P(x+u)·Q(v+θx)) at x = 0 ]² du dv`.
+  With `P(x) = x`, `Q(x) = 1 − x`, `R = 1.3`, `θ = 0.5`: `c = 2.35…` and `κ ≥ 0.34…`.
+
+**Step 1, derived here.** Neither source states the counting lemma. They cite
+Conrey's §3 and Levinson and Montgomery for it. Derivation, with `Λ = Gammaℝ·ζ`,
+`g = Gammaℝ'/Gammaℝ`, a real constant `λ`, and `G = ζ + λ·ζ'`:
+- `Gammaℝ·ζ' = Λ' − g·Λ`. On the line `Λ` is real (`HardyZ.xi_line_real`), so `Λ'` is
+  purely imaginary, since `d/dt Λ(1/2+it) = i·Λ'(1/2+it)` is real.
+- Hence, on the line, `Re(Gammaℝ·G) = Λ·(1 − λ·Re g)`.
+- Where `1 − λ·Re g ≠ 0`, the zeros of `ζ` on the line are exactly the points where
+  `Re(Gammaℝ·G) = 0`, the points where `arg(Gammaℝ·G)` passes `π/2 mod π`. They number
+  at least `(1/π)·|Δ arg(Gammaℝ·G)| − 1` along `[1/2, 1/2+iT]`.
+- `Δ arg Gammaℝ = θ(T)`, the horizon of unit 0515. The argument principle for `G` on
+  the rectangle right of the line gives `Δ arg G = −2π·N_G⁺(T) + O(L)`.
+- So `N₀(T) ≥ N(T) − 2·N_G⁺(T) − O(L)`, which is the form in S11, with `λ = 1/L`.
+
+**Lean, step 1a (unconditional).** `re_gammaR_G_line`: for real `λ` and real `t`,
+`Re(Gammaℝ(s)·(ζ(s) + λ·ζ'(s))) = Λ(s)·(1 − λ·Re(Gammaℝ'(s)/Gammaℝ(s)))` at `s = 1/2 + it`.
+Step 1b, the count through a continuous argument along the line, follows it.
+
+### S11, removing `hsimple` by counting (2026-11-25, Julian: "Log it and count")
+
+On paper, here, unchecked by anyone else.
+
+**The zeros of G on the line.** By `G_line_ne`, a zero of `G = ζ + cζ'` at
+`ρ = 1/2 + iγ` is a common zero of `ζ` and `ζ'`. If `ζ` has order `m ≥ 2` at `ρ`, then
+`ζ'` has order `m − 1`, and so does `G`, since `ζ'` dominates. Call the finite set of
+these points in the window `D`, and put `k_ρ = m_ρ − 1`, `K = Σ_D k_ρ`.
+
+**Divide them out.** `P(s) = Π_{ρ∈D} (s − ρ)^{k_ρ}`, `H = G/P`, which is analytic and
+nonzero on the line segment. On the line, `s − ρ = i(t − γ)`, so `P = i^K × real`.
+Take `F = i^(−K)·Gammaℝ·H`, so that `Re F = (real)·Λ·(1 − c·Re g)`. Every
+crossing of the imaginary axis by `F` is then a zero of `ζ` on the line, by
+`zeta_line_zero_iff` away from `D`. On `D`, ζ vanishes anyway.
+
+**The two counts cancel `K`.**
+- Turning of `F` = Gammaℝ part + turning of `H`. The argument principle for `H` on
+  the rectangle: `H` has the zeros of `G` inside, and none on the border.
+- The edge terms for `H` are those of `G`, less the turning of `P` around the
+  bottom, the right side and the top. Each factor `s − ρ`, with `ρ` on the left
+  edge, turns by exactly `π` there, so the extra term is `−π·K`.
+- So the crossings number at least `(N(b) − N(a)) − 2·N_G − K − E/π − 1`.
+- `lineCount` counts the crossings off `D` once each and every `ρ ∈ D` with
+  multiplicity `m_ρ = k_ρ + 1`. So `lineCount ≥ #crossings − #D + Σ m_ρ
+  = #crossings + K`.
+- Hence `lineCount ≥ (N(b) − N(a)) − 2·N_G − E/π − 1`, with no `hsimple`.

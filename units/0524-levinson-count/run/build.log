@@ -1,0 +1,627 @@
+ℹ [8677/8720] Replayed PrimeNumberTheoremAnd.MediumPNT
+info: PrimeNumberTheoremAnd/MediumPNT.lean:4282:0: 'MediumPNT' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8678/8720] Replayed PrimeNumberTheoremAnd.StrongPNT
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:2860:8: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3268:6: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3358:6: declaration uses `sorry`
+⚠ [8726/8807] Replayed Stage3.ArgIdentity
+warning: Stage3/ArgIdentity.lean:1281:52: This simp argument is unused:
+  Complex.mul_im
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.add_re, Complex.add_im, Complex.sub_re, Complex.sub_im,
+  ̵  ̵ ̵ ̵Complex.neg_re,
+  ̲  ̲ ̲ ̲Complex.neg_im, Complex.mul_re, Complex.m̵u̵l̵_̵i̵m̵,̵
+  ̵ ̵ ̵ ̵ ̵C̵o̵m̵p̵l̵e̵x̵.̵I_re, Complex.I_im, Complex.log_im]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/ArgIdentity.lean:1322:6: Variable name `z` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/ArgIdentity.lean:1408:8: This simp argument is unused:
+  Complex.ofReal_im
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.add_re, Complex.div_re, Complex.neg_re, Complex.ofReal_re,
+          Complex.o̵f̵R̵e̵a̵l̵_̵i̵m̵,̵ ̵C̵o̵m̵p̵l̵e̵x̵.̵normSq_ofNat, Complex.re_ofNat, Complex.im_ofNat]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/ArgIdentity.lean:1420:45: This simp argument is unused:
+  Complex.smul_im
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_im, Complex.add_im, C̵o̵m̵p̵l̵e̵x̵.̵s̵m̵u̵l̵_̵i̵m̵,̵ ̵Complex.zero_im, smul_eq_mul, Complex.mul_im,
+  ̲  ̲ ̲ ̲Complex.I_re, Complex.I_im, Complex.mul_re] at him
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/ArgIdentity.lean:1421:61: This simp argument is unused:
+  Complex.mul_re
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_im, Complex.add_im, Complex.smul_im, Complex.zero_im, smul_eq_mul,
+  ̲  ̲ ̲ ̲Complex.mul_im, Complex.I_re, C̵o̵m̵p̵l̵e̵x̵.̵I̵_̵i̵m̵,̵ ̵C̵o̵m̵p̵l̵e̵x̵.̵m̵u̵l̵_̵r̵e̵]̵C̲o̲m̲p̲l̲e̲x̲.̲I̲_̲i̲m̲]̲ at him
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8731/8807] Replayed Stage3.PerronKernel
+warning: Stage3/PerronKernel.lean:114:30: This simp argument is unused:
+  mul_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_re, Complex.add_re, Complex.ofReal_re, Complex.mul_re,
+  ̵  ̵ ̵ ̵Complex.I_re,
+  ̲  ̲ ̲ ̲Complex.ofReal_im, Complex.I_im, Complex.sub_im, Complex.add_im,
+  ̵  ̵ ̵ ̵Complex.mul_im, mul_zero,
+  ̲ m̵u̵l̵_̵o̵n̵e̵,̵  ̲ ̲zero_mul, sub_zero, zero_sub, zero_add] at hvan
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/PerronKernel.lean:320:32: This simp argument is unused:
+  mul_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_re, Complex.add_re, Complex.ofReal_re, Complex.mul_re,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.I_re,
+  ̲  ̲ ̲ ̲ ̲ ̲Complex.ofReal_im, Complex.I_im, Complex.sub_im, Complex.add_im,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.mul_im, mul_zero,
+  ̲ m̵u̵l̵_̵o̵n̵e̵,̵  ̲ ̲ ̲ ̲zero_mul, sub_zero, zero_sub, zero_add] at hvan
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/PerronKernel.lean:492:64: This simp argument is unused:
+  mul_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_re, Complex.add_re, Complex.neg_re, Complex.ofReal_re,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.mul_re,
+  ̲  ̲ ̲ ̲ ̲ ̲Complex.I_re, Complex.ofReal_im, Complex.I_im, Complex.sub_im,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.add_im, Complex.neg_im,
+  ̲  ̲ ̲ ̲ ̲ ̲Complex.mul_im, mul_zero, m̵u̵l̵_̵o̵n̵e̵,̵ ̵zero_mul,
+  ̵  ̵ ̵ ̵ ̵ ̵sub_zero, zero_sub, zero_add] at hR
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/PerronKernel.lean:493:16: This simp argument is unused:
+  zero_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.sub_re, Complex.add_re, Complex.neg_re, Complex.ofReal_re,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.mul_re,
+  ̲  ̲ ̲ ̲ ̲ ̲Complex.I_re, Complex.ofReal_im, Complex.I_im, Complex.sub_im,
+  ̵  ̵ ̵ ̵ ̵ ̵Complex.add_im, Complex.neg_im,
+  ̲  ̲ ̲ ̲ ̲ ̲Complex.mul_im, mul_zero, mul_one, zero_mul,
+  ̵  ̵ ̵ ̵ ̵ ̵sub_zero, zero_s̵u̵b̵,̵ ̵z̵e̵r̵o̵_̵add] at hR
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/PerronKernel.lean:604:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:606:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:613:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:616:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:782:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:1255:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:1725:10: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/PerronKernel.lean:1657:56: This simp argument is unused:
+  norm_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [ArithmeticFunction.map_zero, zero_mul,̵ ̵n̵o̵r̵m̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8734/8807] Replayed Stage3.Assembly
+warning: Stage3/Assembly.lean:184:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Assembly.lean:235:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Assembly.lean:399:5: Variable name `hx0` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:418:5: Variable name `hb₁` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:418:20: Variable name `hb₂` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:418:35: Variable name `hb₃` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:421:5: Variable name `hK2` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:444:35: Variable name `hb₁` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:444:50: Variable name `hb₂` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Assembly.lean:445:5: Variable name `hb₃` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8735/8807] Replayed Stage3.ContourShift
+warning: Stage3/ContourShift.lean:110:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:208:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:287:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:301:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:309:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:315:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:617:33: Variable name `hz` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/ContourShift.lean:1259:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ContourShift.lean:1263:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8736/8807] Replayed Stage3.ZetaGrowth
+warning: Stage3/ZetaGrowth.lean:787:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8737/8807] Replayed Stage3.EdgeBound
+warning: Stage3/EdgeBound.lean:410:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/EdgeBound.lean:413:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/EdgeBound.lean:494:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/EdgeBound.lean:636:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8738/8807] Replayed Stage3.BoxBounds
+warning: Stage3/BoxBounds.lean:118:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8740/8807] Replayed Stage3.LowEdge
+warning: Stage3/LowEdge.lean:408:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8741/8807] Replayed Stage3.EdgeNum
+warning: Stage3/EdgeNum.lean:396:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/EdgeNum.lean:538:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8742/8807] Replayed Stage3.Glue
+warning: Stage3/Glue.lean:148:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Glue.lean:220:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Glue.lean:317:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Glue.lean:377:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/Glue.lean:699:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: Stage3/Glue.lean:864:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [8744/8807] Replayed Stage3.GlueFloor
+warning: Stage3/GlueFloor.lean:180:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: Stage3/GlueFloor.lean:345:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [8745/8807] Replayed Stage3.GlueNum
+warning: Stage3/GlueNum.lean:229:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/GlueNum.lean:301:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/GlueNum.lean:401:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/GlueNum.lean:462:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/GlueNum.lean:783:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: Stage3/GlueNum.lean:948:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [8748/8807] Replayed Stage3.TablePort.Chain
+warning: Stage3/TablePort/Chain.lean:548:15: Variable name `hm` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/TablePort/Chain.lean:548:28: Variable name `hn` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8758/8807] Replayed Stage3.LineBound
+warning: Stage3/LineBound.lean:798:10: This simp argument is unused:
+  Complex.ext_iff
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵C̵o̵m̵p̵l̵e̵x̵.̵e̵x̵t̵_̵i̵f̵f̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Stage3/LineBound.lean:820:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: Stage3/LineBound.lean:863:0: 'Slice3.logDerivZeta_crude' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:864:0: 'Slice3.logDerivZeta_sq_at_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:865:0: 'Slice4.zetaE_disk_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:866:0: 'Slice4.logDerivZeta_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:867:0: 'Slice4b.logDerivZeta_norm_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:868:0: 'Slice4b.logDerivZeta_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:869:0: 'Slice8.schoenfeldWeak_of_psiWeak_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:1016:0: @Slice5.norm_logDerivZeta_of_one_lt_re : ∀ {s : ℂ},
+  1 < s.re → ‖deriv riemannZeta s / riemannZeta s‖ ≤ 2 / (s.re - 1) + 4 / (s.re - 1) ^ 2
+info: Stage3/LineBound.lean:1018:0: 'Slice5.norm_logDerivZeta_of_one_lt_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Stage3/LineBound.lean:1019:0: 'Slice5.norm_logDerivZeta_sigma0' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: Stage3/LineBound.lean:1260:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/LineBound.lean:1381:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/LineBound.lean:1705:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/LineBound.lean:1951:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/LineBound.lean:2079:34: Variable name `hT` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/LineBound.lean:2298:38: Variable name `hT` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8759/8807] Replayed Stage3.VonKochScaffold
+warning: Stage3/VonKochScaffold.lean:616:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/VonKochScaffold.lean:631:6: 'push_cast' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8776/8807] Replayed Stage3.Abscissa
+warning: Stage3/Abscissa.lean:166:5: Variable name `hK` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/Abscissa.lean:279:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8777/8807] Replayed Stage3.ThetaLine
+warning: Stage3/ThetaLine.lean:188:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ThetaLine.lean:61:22: Variable name `hθhi` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Stage3/ThetaLine.lean:368:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8778/8807] Replayed Stage3.ThetaPull
+warning: Stage3/ThetaPull.lean:279:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8779/8807] Replayed Stage3.ThetaPsi
+warning: Stage3/ThetaPsi.lean:244:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ThetaPsi.lean:299:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/ThetaPsi.lean:422:36: Variable name `hθhi` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8784/8807] Replayed Stage3.RouteGate
+warning: Stage3/RouteGate.lean:49:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8785/8807] Replayed Stage3.RouteNum
+warning: Stage3/RouteNum.lean:251:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8787/8807] Replayed Stage3.TablePort.ZerosStencil
+warning: Stage3/TablePort/ZerosStencil.lean:236:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/TablePort/ZerosStencil.lean:243:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Stage3/TablePort/ZerosStencil.lean:298:13: This simp argument is unused:
+  Nat.mem_primeFactors_iff_mem_primeFactorsList
+
+Hint: Omit it from the simp argument list.
+  simp only [N̵a̵t̵.̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵_̵i̵f̵f̵_̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵L̵i̵s̵t̵,̵
+  ̵ ̵ ̵ ̵ ̵← Nat.support_factorization, Finsupp.mem_support_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8789/8807] Replayed Stage3.TablePort.RelativeGate
+warning: Stage3/TablePort/RelativeGate.lean:153:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+Build completed successfully (8807 jobs).

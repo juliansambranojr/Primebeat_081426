@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>127 theorems counting,<br/>in 28 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>166 theorems counting,<br/>in 39 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>922 theorems shape,<br/>in 128 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>993 theorems shape,<br/>in 141 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>736 theorems reads ζ,<br/>in 117 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>788 theorems reads ζ,<br/>in 128 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 231 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1173 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 757 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 270 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1244 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 809 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 127 | 922 | 736 |
+| `lean_stage3/` | 166 | 993 | 788 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -383,6 +383,12 @@ HalfSieve — block R6 of `lean_stage3/design/runs.md`. 2026-11-23. The half of 
 - [`HalfSieve.half_cancels`](./lean_stage3/HalfSieve.md#HalfSieve-half_cancels) — `` ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card = 0 `` The signs of the sieve add to nothing. Over all the sieve's terms the signs `(−1)^|T|` sum to zero: the alternating sum of a Pascal row.
 - [`HalfSieve.netRounding_centered`](./lean_stage3/HalfSieve.md#HalfSieve-netRounding_centered) — `` netRounding N = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * (Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) - 1 / 2) `` The roundings measured from one half. The half of every rounding cancels identically in the sieve's sum.
 
+### [`HardyZ`](./lean_stage3/HardyZ.md) — 1
+
+HardyZ — block S10 of `lean_stage3/design/stencil.md`, steps 1 and 2. 2026-11-24.
+
+- [`HardyZ.re_line`](./lean_stage3/HardyZ.md#HardyZ-re_line) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 `` The point `1/2 + t i` of the critical line has real part one half.
+
 ### [`HolyChannel`](./lean_stage3/HolyChannel.md) — 1
 
 HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Julian's Holy Family is an uneven mirror pair: support `J = 1/3`, condition `M = 2/3`, adding to one, the condition the mirror of the support. Every prime carries that pair as its residual and never resolves it. The zero is the channel the residual passes through: it sits at the pair's midpoint and is never a member. Two facing mirrors cannot tell A from B exactly when they are one mirror; a zero is its own mirror exactly at the midpoint.
@@ -394,6 +400,94 @@ HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Juli
 LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-11-23.
 
 - [`LeftSmooth.dgTerm_nonneg`](./lean_stage3/LeftSmooth.md#LeftSmooth-dgTerm_nonneg) — `` 0 ≤ dgTerm n `` Each weight `1/((n+1)(n+5/4))` is nonnegative.
+
+### [`LevinsonAvoid`](./lean_stage3/LevinsonAvoid.md) — 1
+
+LevinsonAvoid — block S11 of `lean_stage3/design/stencil.md`, avoidance. 2026-11-25.
+
+- [`LevinsonAvoid.mem_rect_of`](./lean_stage3/LevinsonAvoid.md#LevinsonAvoid-mem_rect_of) — `` ((x : ℂ) + y * I) ∈ Rectangle z w `` A point `x + y i` with `x`, `y` between the corners' parts lies in the rectangle.
+
+### [`LevinsonLine`](./lean_stage3/LevinsonLine.md) — 1
+
+LevinsonLine — block S11 of `lean_stage3/design/stencil.md`, step 1a. 2026-11-24.
+
+- [`LevinsonLine.differentiableAt_Gammaℝ`](./lean_stage3/LevinsonLine.md#LevinsonLine-differentiableAt_Gamma-) — `` DifferentiableAt ℂ Gammaℝ s `` `Gammaℝ` is differentiable right of zero.
+
+### [`LevinsonMollEdge`](./lean_stage3/LevinsonMollEdge.md) — 3
+
+LevinsonMollEdge — block S11 of `lean_stage3/design/stencil.md`, the mollifier's edge terms. 2026-11-24.
+
+- [`LevinsonMollEdge.molli_differentiable`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli_differentiable) — `` Differentiable ℂ (molli M β) `` The mollifier is entire.
+- [`LevinsonMollEdge.tailDelta_le_half`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta_le_half) — `` tailDelta M B X ≤ 1 / 2 `` `δ(X) ≤ 1/2` once `32 M B ≤ 2^X`.
+- [`LevinsonMollEdge.hasDerivAt_line_comp`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-hasDerivAt_line_comp) — `` HasDerivAt (fun y : ℝ => f (↑X + ↑y * I)) (deriv f (↑X + ↑t * I) * I) t `` The line `Re s = X` as a path, and its derivative `i`.
+
+### [`LevinsonMultiple`](./lean_stage3/LevinsonMultiple.md) — 10
+
+LevinsonMultiple — block S11 of `lean_stage3/design/stencil.md`, removing `hsimple` by counting. 2026-11-25.
+
+- [`LevinsonMultiple.analyticOrderAt_sub_self`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-analyticOrderAt_sub_self) — `` analyticOrderAt (fun z : ℂ => z - ρ) ρ = 1 `` `s − ρ` has order one at `ρ`.
+- [`LevinsonMultiple.polyP_analyticAt`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-polyP_analyticAt) — `` AnalyticAt ℂ (polyP D n) z `` `P` is analytic everywhere.
+- [`LevinsonMultiple.polyP_ne_zero`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-polyP_ne_zero) — `` polyP D n z ≠ 0 `` `P` is nonzero off `D`.
+- [`LevinsonMultiple.polyP_order`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-polyP_order) — `` analyticOrderAt (polyP D n) ρ = n ρ `` `P` has order `n ρ` at `ρ ∈ D`.
+- [`LevinsonMultiple.logDeriv_polyP`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-logDeriv_polyP) — `` logDeriv (polyP D n) z = ∑ ρ ∈ D, (n ρ : ℂ) * (1 / (z - ρ)) `` The logarithmic derivative of `P` off `D`.
+- [`LevinsonMultiple.divisor_eq_of_mul`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-divisor_eq_of_mul) — `` MeromorphicOn.divisor G U p = MeromorphicOn.divisor H U p `` Dividing by a factor nonzero at `p` leaves the divisor at `p` unchanged.
+- [`LevinsonMultiple.integral_logDeriv_mul`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-integral_logDeriv_mul) — `` (∫ u in u₁..u₂, logDeriv (fun s => P s * H s) (q u)) = (∫ u in u₁..u₂, logDeriv P (q u)) + ∫ u in u₁..u₂, logDeriv H (q u) `` The split of `∫ logDeriv (P · H)` along a path where both are analytic and nonzero.
+- [`LevinsonMultiple.integral_logDeriv_polyP`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-integral_logDeriv_polyP) — `` (∫ u in u₁..u₂, logDeriv (polyP D n) (q u)) = ∑ ρ ∈ D, (n ρ : ℂ) * ∫ u in u₁..u₂, 1 / (q u - ρ) `` Along a path missing `D`, `∫ logDeriv P` is the weighted sum of `∫ 1/(q − ρ)`.
+- [`LevinsonMultiple.natCast_mul_im'`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-natCast_mul_im-) — `` ((m : ℂ) * w).im = m * w.im `` `Im (m w) = m Im w`.
+- [`LevinsonMultiple.natCast_mul_re'`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-natCast_mul_re-) — `` ((m : ℂ) * w).re = m * w.re `` `Re (m w) = m Re w`.
+
+### [`LevinsonRight`](./lean_stage3/LevinsonRight.md) — 1
+
+LevinsonRight — block S11 of `lean_stage3/design/stencil.md`, steps 2–4. 2026-11-24.
+
+- [`LevinsonRight.divisor_nonneg_real`](./lean_stage3/LevinsonRight.md#LevinsonRight-divisor_nonneg_real) — `` (0 : ℝ) ≤ ((MeromorphicOn.divisor f U p : ℤ) : ℝ) `` The divisor of an analytic function, read in `ℝ`, is nonnegative.
+
+### [`LevinsonSize`](./lean_stage3/LevinsonSize.md) — 2
+
+LevinsonSize — block S11 of `lean_stage3/design/stencil.md`, step 1d (i), (iii). 2026-11-24.
+
+- [`LevinsonSize.hasDerivAt_three_comp`](./lean_stage3/LevinsonSize.md#LevinsonSize-hasDerivAt_three_comp) — `` HasDerivAt (fun y : ℝ => f (3 + y * I)) (deriv f (3 + t * I) * I) t `` The line `Re s = 3` as a path, and its derivative `i`.
+- [`LevinsonSize.continuous_three`](./lean_stage3/LevinsonSize.md#LevinsonSize-continuous_three) — `` Continuous (fun t : ℝ => (3 + t * I : ℂ)) ``
+
+### [`LevinsonTurn`](./lean_stage3/LevinsonTurn.md) — 4
+
+LevinsonTurn — block S11 of `lean_stage3/design/stencil.md`, step 1c. 2026-11-24.
+
+- [`LevinsonTurn.int_valued_const`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-int_valued_const) — `` d b = 0 `` A continuous function on `[a, b]` with integer values, zero at `a`, is zero at `b`.
+- [`LevinsonTurn.hasDerivAt_line_comp`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-hasDerivAt_line_comp) — `` HasDerivAt (fun y : ℝ => f (1/2 + y * I)) (deriv f (1/2 + t * I) * I) t `` The critical line as a path, and its derivative `i`.
+- [`LevinsonTurn.continuous_line`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-continuous_line) — `` Continuous (fun t : ℝ => (1/2 + t * I : ℂ)) ``
+- [`LevinsonTurn.continuousOn_logDeriv_line`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-continuousOn_logDeriv_line) — `` ContinuousOn (fun t : ℝ => logDeriv f (1/2 + t * I)) S `` Along the line, `logDeriv f` is continuous where `f` is analytic and nonzero.
+
+### [`LevinsonWindow`](./lean_stage3/LevinsonWindow.md) — 2
+
+LevinsonWindow — block S11 of `lean_stage3/design/stencil.md`, the assembled window theorem. 2026-11-25.
+
+- [`LevinsonWindow.border_cases`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-border_cases) — `` (p.im = z.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = z.re ∧ p.im ∈ Icc z.im w.im) ∨ (p.im = w.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = w.re ∧ p.im ∈ Icc z.im w.… `` A border point lies on one of the four edges.
+- [`LevinsonWindow.tailDelta_nonneg`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-tailDelta_nonneg) — `` 0 ≤ LevinsonMollEdge.tailDelta M B X `` `tailDelta` is nonnegative.
+
+### [`LineCount`](./lean_stage3/LineCount.md) — 1
+
+LineCount — block S10 of `lean_stage3/design/stencil.md`, step 3. 2026-11-24. The count up to height `T` is a finite sum of `riemannZeta.order` over the nontrivial zeros with `0 < Im ρ ≤ T` (the set is finite by `Kadiri.nontrivialZeros_abs_im_lt_finite`); the line count is the same sum over the zeros with `Re ρ = 1/2`. No continuous phase `θ` and no `S(T)` are defined.
+
+- [`LineCount.mem_zerosUpTo`](./lean_stage3/LineCount.md#LineCount-mem_zerosUpTo) — `` ρ ∈ zerosUpTo T ↔ 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T ``
+
+### [`Littlewood`](./lean_stage3/Littlewood.md) — 13
+
+Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24. Littlewood's lemma on a rectangle, with no branch of arg anywhere. The argument principle (PNT+ `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`) is applied on `[σ, b] × [c, d]` for every `σ` whose vertical line misses the zeros, its imaginary part is integrated over `σ ∈ [a, b]`, and the order of integration on the left edge's term is swapped by Fubini. Along a horizontal line the real part of `logDeriv f` is the `x`-derivative o…
+
+- [`Littlewood.corner_mem`](./lean_stage3/Littlewood.md#Littlewood-corner_mem) — `` z ∈ Rectangle z w ``
+- [`Littlewood.corner_mem_border`](./lean_stage3/Littlewood.md#Littlewood-corner_mem_border) — `` z ∈ RectangleBorder z w ``
+- [`Littlewood.mem_support_divisor`](./lean_stage3/Littlewood.md#Littlewood-mem_support_divisor) — `` p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0 ``
+- [`Littlewood.divisor_eq`](./lean_stage3/Littlewood.md#Littlewood-divisor_eq) — `` MeromorphicOn.divisor f U p = MeromorphicOn.divisor f (Rectangle z w) p ``
+- [`Littlewood.ite_eq_indicator`](./lean_stage3/Littlewood.md#Littlewood-ite_eq_indicator) — `` (fun σ : ℝ => if σ < β then m else 0) = (Iio β).indicator (fun _ => m) ``
+- [`Littlewood.intervalIntegrable_ite`](./lean_stage3/Littlewood.md#Littlewood-intervalIntegrable_ite) — `` IntervalIntegrable (fun σ : ℝ => if σ < β then m else 0) volume u v ``
+- [`Littlewood.continuousAt_logDeriv`](./lean_stage3/Littlewood.md#Littlewood-continuousAt_logDeriv) — `` ContinuousAt (logDeriv f) s ``
+- [`Littlewood.continuousOn_logDeriv_comp`](./lean_stage3/Littlewood.md#Littlewood-continuousOn_logDeriv_comp) — `` ContinuousOn (fun x => logDeriv f (γ x)) S ``
+- [`Littlewood.horiz_mem`](./lean_stage3/Littlewood.md#Littlewood-horiz_mem) — `` (↑x + ↑t * I : ℂ) ∈ Rectangle z w ``
+- [`Littlewood.bottom_mem_border`](./lean_stage3/Littlewood.md#Littlewood-bottom_mem_border) — `` (↑x + ↑z.im * I : ℂ) ∈ RectangleBorder z w ``
+- [`Littlewood.top_mem_border`](./lean_stage3/Littlewood.md#Littlewood-top_mem_border) — `` (↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w ``
+- [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) — `` (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
+- [`Littlewood.right_mem_border`](./lean_stage3/Littlewood.md#Littlewood-right_mem_border) — `` (↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
 
 ### [`Mollified`](./lean_stage3/Mollified.md) — 5
 

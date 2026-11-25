@@ -1,0 +1,55 @@
+flowchart LR
+  n0["<b>zeta_norm_le</b><br/>‖riemannZeta u‖ ≤ 2 + 4 * ‖u‖"]:::thm
+  n1["<b>disc_facts</b><br/>3 - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + 3 + T"]:::shp
+  n2["<b>zeta_disc_le</b><br/>‖riemannZeta u‖ ≤ 4 * T + 25"]:::thm
+  n3["<b>deriv_zeta_disc_le</b><br/>‖deriv riemannZeta w‖ ≤ 32 * T + 200"]:::thm
+  n4["<b>G_analyticAt</b><br/>AnalyticAt ℂ (fun s =＞ riemannZeta s + c * deriv riemannZeta s) …"]:::thm
+  n5["<b>G_disc_le</b><br/>‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 36 * T + 225"]:::thm
+  n6["<b>symm_real</b><br/>symm g (x : ℂ) = ((g x).re : ℂ)"]:::shp
+  n7["<b>symm_zero</b><br/>symm g 0 = ((g 0).re : ℂ)"]:::shp
+  n8["<b>symm_differentiableOn</b><br/>DifferentiableOn ℂ (symm g) (Metric.ball (0 : ℂ) ρ)"]:::shp
+  n9["<b>norm_symm_le</b><br/>‖symm g z‖ ≤ M"]:::shp
+  n10["<b>real_zero_count</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ …"]:::shp
+  n11["<b>edge_le_of_bound</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (…"]:::shp
+  n12["<b>horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (fun s =＞ riemannZeta s + c * deri…"]:::thm
+  x0(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect<br/>levinson_count"]):::ext
+  x1(["<b>LevinsonMollEdge</b><br/>f_analyticAt<br/>real_zero_count_gen"]):::ext
+  x2(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
+  x3(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x4(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x5(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n1 --> n3
+  n10 --> n11
+  n11 --> n12
+  n2 --> n3
+  n2 --> n5
+  n3 --> n5
+  n4 --> n12
+  n5 --> n12
+  n6 --> n10
+  n6 --> n7
+  n7 --> n10
+  n8 --> n10
+  n9 --> n10
+  n12 -.-> x0
+  n12 -.-> x2
+  n4 -.-> x0
+  n4 -.-> x1
+  n4 -.-> x2
+  n4 -.-> x3
+  n6 -.-> x1
+  n7 -.-> x1
+  n8 -.-> x1
+  n9 -.-> x1
+  x4 -.-> n11
+  x5 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

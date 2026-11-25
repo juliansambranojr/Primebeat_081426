@@ -1,0 +1,99 @@
+flowchart LR
+  n0["<b>corner_mem</b><br/>z ∈ Rectangle z w"]:::cnt
+  n1["<b>corner_mem_border</b><br/>z ∈ RectangleBorder z w"]:::cnt
+  n2["<b>order_ne_top</b><br/>∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤"]:::shp
+  n3["<b>mem_support_divisor</b><br/>p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0"]:::cnt
+  n4["<b>divisor_eq</b><br/>MeromorphicOn.divisor f U p = MeromorphicOn.divisor f (Rectangle…"]:::cnt
+  n5["<b>support_interior</b><br/>z.re ＜ p.re ∧ p.re ＜ w.re ∧ z.im ＜ p.im ∧ p.im ＜ w.im"]:::shp
+  n6["<b>rectIntegral_eq_count</b><br/>RectangleIntegral (logDeriv f) (↑σ + ↑z.im * I) w = 2 * Real.pi …"]:::shp
+  n7["<b>two_pi_count_eq</b><br/>2 * Real.pi * countRight f z w σ = (∫ x in σ..w.re, logDeriv f (…"]:::shp
+  n8["<b>ite_eq_indicator</b><br/>(fun σ : ℝ =＞ if σ ＜ β then m else 0) = (Iio β).indicator (fun _…"]:::cnt
+  n9["<b>intervalIntegrable_ite</b><br/>IntervalIntegrable (fun σ : ℝ =＞ if σ ＜ β then m else 0) volume …"]:::cnt
+  n10["<b>integral_ite_lt</b><br/>∫ σ in u..v, (if σ ＜ β then m else 0) = m * (β - u)"]:::shp
+  n11["<b>integral_countRight</b><br/>∫ σ in z.re..w.re, countRight f z w σ = ∑ p ∈ (divisor_support_r…"]:::shp
+  n12["<b>locallyIntegrable_inv_norm_sub</b><br/>LocallyIntegrable (fun s : ℂ =＞ ‖s - x‖⁻¹) volume"]:::shp
+  n13["<b>integrableAtFilter_logDeriv</b><br/>IntegrableAtFilter (logDeriv f) (𝓝[K] p) volume"]:::shp
+  n14["<b>integrableOn_logDeriv</b><br/>IntegrableOn (logDeriv f) (Rectangle z w) volume"]:::shp
+  n15["<b>integrableOn_logDeriv_prod</b><br/>IntegrableOn (fun q : ℝ × ℝ =＞ logDeriv f (↑q.1 + ↑q.2 * I)) ([[…"]:::shp
+  n16["<b>hasDerivAt_log_norm</b><br/>HasDerivAt (fun y =＞ Real.log ‖g y‖) (g' / g x).re x"]:::shp
+  n17["<b>continuousAt_logDeriv</b><br/>ContinuousAt (logDeriv f) s"]:::cnt
+  n18["<b>continuousOn_logDeriv_comp</b><br/>ContinuousOn (fun x =＞ logDeriv f (γ x)) S"]:::cnt
+  n19["<b>continuousOn_log_norm_comp</b><br/>ContinuousOn (fun x =＞ Real.log ‖f (γ x)‖) S"]:::shp
+  n20["<b>horiz_mem</b><br/>(↑x + ↑t * I : ℂ) ∈ Rectangle z w"]:::cnt
+  n21["<b>integral_re_logDeriv_horizontal</b><br/>∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (…"]:::shp
+  n22["<b>bottom_mem_border</b><br/>(↑x + ↑z.im * I : ℂ) ∈ RectangleBorder z w"]:::cnt
+  n23["<b>top_mem_border</b><br/>(↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w"]:::cnt
+  n24["<b>left_mem_border</b><br/>(↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w"]:::cnt
+  n25["<b>right_mem_border</b><br/>(↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w"]:::cnt
+  n26["<b>littlewood_rect</b><br/>2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toF…"]:::shp
+  n27["<b>littlewood_rect_zero_free ■</b><br/>(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.i…"]:::shp
+  x0(["<b>LevinsonRight</b><br/>4 theorems"]):::ext
+  x1(["<b>LevinsonMultiple</b><br/>countRight_eq_of_mul<br/>integral_logDeriv_mul<br/>levinson_count'"]):::ext
+  x2(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
+  x3(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
+  x4(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  n0 --> n2
+  n0 --> n27
+  n1 --> n26
+  n1 --> n5
+  n1 --> n6
+  n10 --> n11
+  n11 --> n26
+  n12 --> n13
+  n13 --> n14
+  n14 --> n15
+  n15 --> n26
+  n16 --> n21
+  n17 --> n18
+  n18 --> n21
+  n18 --> n26
+  n19 --> n26
+  n2 --> n26
+  n2 --> n27
+  n2 --> n5
+  n2 --> n6
+  n20 --> n21
+  n20 --> n26
+  n21 --> n26
+  n22 --> n26
+  n23 --> n26
+  n24 --> n26
+  n25 --> n26
+  n26 --> n27
+  n3 --> n26
+  n3 --> n27
+  n3 --> n5
+  n3 --> n6
+  n4 --> n6
+  n5 --> n11
+  n5 --> n6
+  n6 --> n7
+  n7 --> n26
+  n8 --> n10
+  n8 --> n9
+  n9 --> n11
+  n1 -.-> x0
+  n17 -.-> x1
+  n17 -.-> x4
+  n2 -.-> x0
+  n2 -.-> x1
+  n2 -.-> x2
+  n24 -.-> x0
+  n26 -.-> x0
+  n3 -.-> x0
+  n3 -.-> x1
+  n3 -.-> x2
+  n3 -.-> x3
+  n4 -.-> x0
+  n4 -.-> x2
+  n5 -.-> x0
+  n5 -.-> x4
+  n7 -.-> x4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

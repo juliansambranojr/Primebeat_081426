@@ -1,0 +1,16 @@
+key	value	source
+module_lines	516	wc -l lean_stage3/Stage3/LevinsonEdge.lean
+theorems_proved	13	grep -c ^theorem lean_stage3/Stage3/LevinsonEdge.lean
+defs	2	grep -A1 noncomputable (symm, model)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonEdge.lean
+pins	6	horizontal_edge_le, edge_le_of_bound, real_zero_count, G_disc_le, deriv_zeta_disc_le, zeta_norm_le
+errors_first	4	the worker's first build: an open side goal after simp, and the pins' cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8900	lake build (full Stage3), Build completed successfully
+jobs_module	8806	run/build.log, lake build Stage3.LevinsonEdge
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

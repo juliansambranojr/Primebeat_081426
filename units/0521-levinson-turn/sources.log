@@ -1,0 +1,128 @@
+# check_prose_source.py  2026-11-24T22:27:21Z
+# unit: 0521-levinson-turn
+# sources searched: 64
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64733
+  theorem lift_turn_eq_integral {F F' : ℝ → ℂ} {φ : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64734
+  (hFc : ContinuousOn F (Set.Icc a b))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64735
+  (hF : ∀ t ∈ Set.Ioo a b, HasDerivAt F (F' t) t)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64736
+  (hF'c : ContinuousOn F' (Set.Icc a b))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64519
+  (hne : ∀ t ∈ Set.Icc a b, F t ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64535
+  (hφc : ContinuousOn φ (Set.Icc a b))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64739
+  (hφ : ∀ t ∈ Set.Icc a b, F t = ‖F t‖ * Complex.exp (φ t * Complex.I)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad03c1a8f00472899.jsonl:1364
+  φ b - φ a = (∫ t in a..b, F' t / F t).im :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64742
+  theorem line_turn_eq_integral {f : ℂ → ℂ} {φ : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64743
+  (hf : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ f (1/2 + t * I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64744
+  (hne : ∀ t ∈ Set.Icc a b, f (1/2 + t * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64535
+  (hφc : ContinuousOn φ (Set.Icc a b))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64747
+  f (1/2 + t * I) = ‖f (1/2 + t * I)‖ * Complex.exp (φ t * Complex.I)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad03c1a8f00472899.jsonl:1466
+  φ b - φ a = (∫ t in a..b, logDeriv f (1/2 + t * I)).re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64750
+  theorem turn_split {G : ℂ → ℂ} {a b : ℝ} (hab : a ≤ b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64751
+  (hG : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ G (1/2 + t * I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64752
+  (hne : ∀ t ∈ Set.Icc a b, G (1/2 + t * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64753
+  (∫ t in a..b, logDeriv (fun s => Gammaℝ s * G s) (1/2 + t * I)).re =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64754
+  (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad03c1a8f00472899.jsonl:1510
+  (∫ t in a..b, logDeriv G (1/2 + t * I)).re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64757
+  theorem lineF_turn_eq {c a b : ℝ} {φ : ℝ → ℝ} (hab : a ≤ b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64759
+  riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64535
+  (hφc : ContinuousOn φ (Set.Icc a b))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64762
+  LevinsonArg.lineF c t = ‖LevinsonArg.lineF c t‖ * Complex.exp (φ t * Complex.I)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64763
+  φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64764
+  (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64767
+  theorem countRight_left_eq {f : ℂ → ℂ} {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63468
+  (hf : AnalyticOnNhd ℂ f (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63469
+  (hB : ∀ p ∈ RectangleBorder z w, f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64770
+  Littlewood.countRight f z w z.re =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:63458
+  ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad03c1a8f00472899.jsonl:1575
+  ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64774
+  theorem G_turn_eq {G : ℂ → ℂ} {a b X : ℝ} (hX : 1/2 < X) (hab : a < b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64775
+  (hG : AnalyticOnNhd ℂ G (Rectangle ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64776
+  (hB : ∀ p ∈ RectangleBorder ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I), G p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64777
+  (∫ t in a..b, logDeriv G (1/2 + t * I)).re =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64778
+  -(2 * Real.pi * Littlewood.countRight G ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I) (1/2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64779
+  + (∫ x in (1/2 : ℝ)..X, logDeriv G (↑x + ↑a * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:64780
+  - (∫ x in (1/2 : ℝ)..X, logDeriv G (↑x + ↑b * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad03c1a8f00472899.jsonl:1592
+  + (∫ t in a..b, logDeriv G (↑X + ↑t * I)).re :=
+
+# 41 found, 0 missing

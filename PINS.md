@@ -22,6 +22,204 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S11 of `design/stencil.md`, removing `hsimple`: `Stage3/LevinsonMultiple.lean`
+
+    DONE        `levinson_count'`: `LevinsonCount.levinson_count` without the
+                left-edge part of hB, the zeros of G on the line being divided
+                out (S11, "removing hsimple by counting"), with the same bound
+                up to the constant; and `levinson_window'`: `levinson_window`
+                with no `hsimple`; one unit
+    ASSUMED     Julian, 2026-11-25: "Log it and count". The derivation is S11's
+                last subsection
+    DEPENDS     the Levinson modules; `G_line_ne`; finiteness of zeros
+    OUT         the mean value (step 5); the limit over windows
+
+### 2026-11-25 · block S11 of `design/stencil.md`, the assembled window theorem: `Stage3/LevinsonWindow.lean`
+
+    DONE        `levinson_window`: for T ≥ e^26, c = 1/log T, a mollifier
+                `molli M β` (β 1 = 1, ‖β h‖ ≤ B), σ₀ ∈ [1/4, 1/2), X with the
+                right-edge conditions, and a window [a, b] ⊆ [4, T] of length
+                ≥ 3: if the mean square of G·ψ on the line σ₀ over the window
+                is at most K, then lineCount b ≥ (N b − N a) − (1/(π(1/2 − σ₀)))·
+                ((b−a)/2·log K + E) − (A·log b + B'), E and the constants
+                explicit; it chooses good heights within one of a and b and a
+                good abscissa just left of σ₀, and absorbs the shifts; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0527 and build the assembled
+                theorem). The mean square bound K is the one named hypothesis
+                (step 5); the asymptotic κ is not stated here
+    DEPENDS     `LevinsonCount`, `LevinsonRight`, `LevinsonMollEdge`,
+                `LevinsonAvoid`, `ArgCount`
+    OUT         the mean value (step 5); κ as a liminf over T
+
+### 2026-11-25 · block S11 of `design/stencil.md`, avoidance: `Stage3/LevinsonAvoid.lean`
+
+    DONE        `exists_good_height`: for f analytic and not identically zero
+                near [σ₀, X]×[t₀, t₀+1], some t ∈ [t₀, t₀+1] has f ≠ 0 on
+                [σ₀, X] + it (the zeros in a compact rectangle are finite);
+                `exists_good_abscissa`: likewise some σ ∈ [σ₀ − δ, σ₀] has f ≠ 0
+                on σ + i[a, b]; `factor_pos`: for c = 1/log T and 4 ≤ t ≤ T,
+                1 − c·Re(Gammaℝ'/Gammaℝ)(1/2 + it) > 0; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes log it and avoidance". Moving a
+                height by at most one changes N by O(log T) (`ArgCount`)
+    DEPENDS     `Littlewood.divisor_support_rectangle_finite` use, the
+                tree's digamma / phasePoint bounds (`Stirling`, `ArgCount`)
+    OUT         the assembled theorem; the mean value (step 5)
+
+### 2026-11-24 · block S11 of `design/stencil.md`, the mollifier's edge terms: `Stage3/LevinsonMollEdge.lean`
+
+    DONE        for a Dirichlet polynomial ψ(s) = Σ_{h=1}^{M} b_h h^(−s), b_1 = 1,
+                |b_h| ≤ B, and f = G·ψ, G = ζ + cζ' (0 ≤ c ≤ 1):
+                `right_terms_le` (on Re s = X large, |f − 1| < 1 so log f is a
+                Dirichlet series with no constant term, and the two right-edge
+                terms of `levinson_right` are O(1) in T, explicit) and
+                `horizontal_terms_le` (each horizontal edgeH integral over
+                [σ₀, X] is O(log b + log M), by `LevinsonEdge.edge_le_of_bound`
+                with a polynomial bound for f); one unit
+    ASSUMED     Julian, 2026-11-24: "Log and the mollifies edge terms". The
+                mollifier is a generic Dirichlet polynomial; Levinson's
+                μ(h)·P(log(M/h)/log M)·h^(σ₀−1/2) is a case of it
+    DEPENDS     `LevinsonRight`, `LevinsonEdge`, `LevinsonSize`
+    OUT         the avoidance hypotheses; the mean value (step 5)
+
+### 2026-11-24 · block S11 of `design/stencil.md`, steps 2–4: `Stage3/LevinsonRight.lean`
+
+    DONE        `zeros_right_le`: for f analytic near the rectangle
+                [σ₀, X]×[a,b], nonzero on its border, and σ₀ < σ₁, the order-sum of
+                the zeros with Re > σ₁ is at most (1/(2π(σ₁ − σ₀))) times the
+                right side of `Littlewood.littlewood_rect`; `log_integral_le`
+                (concavity: ∫_a^b log‖f‖ ≤ ((b−a)/2)·log((1/(b−a))∫_a^b ‖f‖²));
+                `countRight_mul_ge` (the zeros of G are zeros of G·M, with at
+                least their order, for M analytic); the combined bound for G
+                through G·M; one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0524 and start steps 2–4). The
+                edge terms of Littlewood for G·M stay explicit integrals here
+    DEPENDS     `Littlewood`, `LevinsonCount`, Mathlib's concavity of log
+    OUT         the edge bounds for G·M with the mollifier; the mean value
+                (step 5); removing the avoidance hypotheses
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1 assembled: `Stage3/LevinsonCount.lean`
+
+    DONE        `levinson_count`: for 0 ≤ c ≤ 1, 4 ≤ a < b, G = ζ + cζ' nonzero
+                on the border of [1/2,3]×[a,b], the factor 1 − c·Re(Gammaℝ'/Gammaℝ)
+                nonzero on the line segment, there is an explicit integer bound
+                (N(b) − N(a)) − 2·(zeros of G in the rectangle) − (A·log b + B)
+                ≤ lineCount b; it assembles LevinsonArg, LevinsonTurn,
+                LevinsonSize and LevinsonEdge; one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0523 and assemble step 1). The
+                avoidance hypotheses (no zero of G on the border, the factor
+                nonzero) stay hypotheses here
+    DEPENDS     the five Levinson modules, `LineCount`
+    OUT         removing the avoidance hypotheses; Littlewood and the mean
+                value (steps 2–6)
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (ii): `Stage3/LevinsonEdge.lean`
+
+    DONE        `horizontal_edge_le`: for 0 ≤ c ≤ 1 and T ≥ T₀, with G = ζ + cζ'
+                nonzero on [1/2, 3] + iT, |Im ∫_{1/2}^{3} logDeriv G(x + iT) dx| ≤
+                A·log T + B, explicit A, B; Backlund's route: the turning is at
+                most π·(1 + #zeros of x ↦ Re G(x+iT) on [1/2,3]), counted by
+                Jensen on a disc about 3 + iT with a polynomial bound for G;
+                one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0522 and start (ii)).
+                The template is the tree's Backlund count for ζ
+    DEPENDS     `LevinsonSize.re_G_pos`, `JensenCount`, `ArgCrude`, `ArgCount`,
+                PNT+ `ZerosBound`, `GlobalBound`
+    OUT         steps 2–6 of S11
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1d (i), (iii): `Stage3/LevinsonSize.lean`
+
+    DONE        (i) `right_edge_le`: for 0 ≤ c ≤ 1, G = ζ + cζ' has positive real
+                part on Re s = 3, so |Re ∫_a^b logDeriv G(3 + it) dt| ≤ π; (iii)
+                `gamma_part_eq`: Re ∫_a^b logDeriv Gammaℝ(1/2 + it) dt equals the
+                tree's phase difference, so with `ArgCount` the Gammaℝ part is
+                π·(N(b) − N(a)) + O(log b); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0521 and start step 1d). (ii),
+                the horizontal edges, is a separate block on the tree's
+                Backlund template (`ArgCrude`, `ArgCount`)
+    DEPENDS     `LevinsonTurn`, `ArgCount` (`argS_le_gt_two`, `rvM_crude`, the
+                phase), Mathlib `riemannZeta` bounds for Re s > 1
+    OUT         (ii) the horizontal edges; steps 2–6
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1c: `Stage3/LevinsonTurn.lean`
+
+    DONE        `lift_turn_eq_integral` (for F differentiable and nonvanishing
+                along the line segment, a continuous argument's turning
+                φ b − φ a equals Re ∫_a^b (logDeriv F)(1/2 + it) dt), the split
+                for F = Gammaℝ·G into the Gammaℝ part and the G part, and
+                `G_turn_eq` (the G part equals −2π·(zeros of G in the rectangle
+                [1/2, w.re]×[a,b], with order) plus the right-edge and
+                horizontal terms, from `Littlewood.two_pi_count_eq` at σ = 1/2);
+                one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0520 and start step 1c). The
+                error terms stay explicit integrals; their O(log T) bounds are
+                step 1d
+    DEPENDS     `LevinsonArg`, `Littlewood.two_pi_count_eq`
+    OUT         the O(log T) bounds (step 1d); θ(T) against N(T); steps 2–6
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1b: `Stage3/LevinsonArg.lean`
+
+    DONE        `exists_arg_lift` (a continuous nonvanishing F on [a,b] has a
+                continuous φ with F t = ‖F t‖·exp(iφ t), by path lifting through
+                Mathlib's `isCoveringMap_exp`), `crossings_of_arg` (⌊|φ b − φ a|/π⌋
+                distinct points in [a,b] with cos φ = 0) and `lineCount_ge_arg`
+                (with F = Gammaℝ·(ζ + cζ') on the line and the real factor of
+                `re_gammaR_G_line` nonzero there, lineCount T ≥ ⌊|Δφ|/π⌋); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes" (log 0519 and start step 1b)
+    DEPENDS     `LevinsonLine.zeta_line_zero_iff`, `LineCount`; Mathlib
+                `isCoveringMap_exp`, `IsCoveringMap.liftPath`
+    OUT         Δφ = θ(T) − 2π·N_G⁺ + O(L) (the argument principle step); steps 2–6
+
+### 2026-11-24 · block S11 of `design/stencil.md`, step 1a: `Stage3/LevinsonLine.lean`
+
+    DONE        `deriv_xi_line_im` (Λ' is purely imaginary on the line) and
+                `re_gammaR_G_line` (Re(Gammaℝ·(ζ + λζ')) = Λ·(1 − λ·Re(Gammaℝ'/Gammaℝ))
+                on the line, λ real); one unit
+    ASSUMED     Julian, 2026-11-24: "Go" (step 1 of S11). The identity is
+                derived here (S11, checked against sources); the sources read
+                state the setup and the bound, not the counting lemma
+    DEPENDS     `HardyZ.xi_line_real`; Mathlib `completedRiemannZeta`,
+                `riemannZeta_def_of_ne_zero`, `Gammaℝ`
+    OUT         step 1b (the count through a continuous argument); steps 2–6
+
+### 2026-11-24 · block S10 of `design/stencil.md`, step 4a: `Stage3/Littlewood.lean`
+
+    DONE        `littlewood_rect`: for f analytic near a rectangle
+                [a,b]×[c,d], nonzero on its edges, 2π·Σ order·(Re ρ − a) over
+                its zeros equals ∫_c^d log‖f(a+it)‖ − ∫_c^d log‖f(b+it)‖ plus the
+                two horizontal terms, written with no branch of arg; one unit
+    ASSUMED     Julian, 2026-11-24: "Go" (step 4a). Built as the first brick
+                of 4d (Levinson): 4b–4c only reach Bohr–Landau, which
+                `zero_density` already gives (unit 0513)
+    DEPENDS     PNT+ `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`,
+                `divisor_support_rectangle_finite`; Mathlib Fubini
+    OUT         4b, 4c (covered by `zero_density`); Levinson's lemma and the
+                mean value left of the line (4d)
+
+### 2026-11-24 · block S10 of `design/stencil.md`, step 3: `Stage3/LineCount.lean`
+
+    DONE        `rh_iff_line_count` (RH ↔ for every T the zeros on the line
+                up to height T, with multiplicity, number as many as all
+                nontrivial zeros up to T) and `signChanges_le_line_count`
+                (k alternating sign changes of Λ on the line in (0, T] give at
+                least k zeros on the line up to T); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes log and and start step 3 please".
+                The count is a finite sum of `riemannZeta.order` over zeros
+                with 0 < Im ≤ T, not the smooth θ(T)/π split (no θ is defined)
+    DEPENDS     `HardyZ`, `Kadiri` zero counting (`nontrivialZeros_abs_im_lt_finite`)
+    OUT         θ(T)/π and S(T); the floor (step 4)
+
+### 2026-11-24 · block S10 of `design/stencil.md`, steps 1 and 2: `Stage3/HardyZ.lean`
+
+    DONE        `xi_line_real` (Λ(1/2 + it) is real for real t, from
+                `completedRiemannZeta_one_sub` and conjugation) and
+                `signChange_zero_on_line` (a sign change of t ↦ Λ(1/2 + it)
+                on [t₁, t₂] gives ζ(1/2 + iγ) = 0 with γ ∈ [t₁, t₂]); one unit
+    ASSUMED     Julian, 2026-11-24: "Yes and loop please" (step 1 of S10).
+                Hardy's Z is taken as Λ on the line, which differs from Z by
+                the positive factor |Gammaℝ|, so no continuous phase θ is defined
+    DEPENDS     Mathlib `completedRiemannZeta`, `Gammaℝ`, `Complex.Gamma_conj`
+    OUT         θ(t), the count rh_iff_signChanges (step 3), the floor (step 4)
+
 ### 2026-11-24 · block S6 of `design/stencil.md`: `Stage3/ReachRoute.lean`
 
     DONE        `reached_mode_false`: under H, a mode right of σ reached from

@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-24T21:20:37Z
+# unit: 0516-hardy-z
+# sources searched: 57
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:50241
+  Source: session transcript, 2026-11-24
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ab36151378f5cfc3a.jsonl:805
+  theorem xi_line_real (t : ℝ) : (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:62904
+  theorem signChange_zero_on_line {t₁ t₂ : ℝ} (h : t₁ ≤ t₂)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:62905
+  (hs : (completedRiemannZeta (1/2 + t₁ * I)).re *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:62906
+  (completedRiemannZeta (1/2 + t₂ * I)).re ≤ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ab36151378f5cfc3a.jsonl:838
+  ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 :=
+
+# 6 found, 0 missing

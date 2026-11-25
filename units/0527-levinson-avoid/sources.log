@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-25T00:23:26Z
+# unit: 0527-levinson-avoid
+# sources searched: 70
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66068
+  Yes log it and avoidance
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66170
+  theorem exists_good_height {f : ℂ → ℂ} {σ₀ X t₀ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66171
+  (hf : AnalyticOnNhd ℂ f (Rectangle ((σ₀ : ℂ) + t₀ * I) ((X : ℂ) + (t₀ + 1 : ℝ) * I)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66172
+  (hne : ∃ p ∈ Rectangle ((σ₀ : ℂ) + t₀ * I) ((X : ℂ) + (t₀ + 1 : ℝ) * I), f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae2d2924ed0b8a05b.jsonl:1068
+  ∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66175
+  theorem exists_good_abscissa {f : ℂ → ℂ} {σ₀ δ X a b : ℝ} (hδ : 0 < δ) (hX : σ₀ ≤ X)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66176
+  (hf : AnalyticOnNhd ℂ f (Rectangle (((σ₀ - δ : ℝ) : ℂ) + a * I) ((X : ℂ) + b * I)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66177
+  (hne : ∃ p ∈ Rectangle (((σ₀ - δ : ℝ) : ℂ) + a * I) ((X : ℂ) + b * I), f p ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae2d2924ed0b8a05b.jsonl:1087
+  ∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66180
+  theorem factor_pos {T t : ℝ} (hT : Real.exp 26 ≤ T) (ht : t ∈ Icc 4 T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae2d2924ed0b8a05b.jsonl:1105
+  (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re :=
+
+# 12 found, 0 missing

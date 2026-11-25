@@ -1,0 +1,16 @@
+key	value	source
+module_lines	223	wc -l lean_stage3/Stage3/LineCount.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/LineCount.lean
+defs	3	grep -A1 noncomputable (zerosUpTo, allCount, lineCount)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LineCount.lean
+pins	3	lineCount_le_allCount, rh_iff_line_count, signChanges_le_line_count
+errors_first	8	the worker's first build: an untyped binder in a filter read over the complex numbers, an implicit argument, and the pins' cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8894	lake build (full Stage3), Build completed successfully
+jobs_module	8800	run/build.log, lake build Stage3.LineCount
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s10	The horizon and the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

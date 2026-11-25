@@ -1,0 +1,16 @@
+key	value	source
+module_lines	906	wc -l lean_stage3/Stage3/LevinsonMollEdge.lean
+theorems_proved	21	grep -c ^theorem lean_stage3/Stage3/LevinsonMollEdge.lean
+defs	2	grep -A1 noncomputable (molli, tailDelta)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonMollEdge.lean
+pins	8	molli_sub_one_le, f_sub_one_le, right_log_term_le, right_arg_term_le, right_terms_le, real_zero_count_gen, edge_le_gen, horizontal_terms_le
+errors_first	4	the worker's first build: a power rewritten in the wrong place, two heartbeat timeouts from a set holding zeta and the mollifier, and a cascade
+builds	3	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8903	lake build (full Stage3), Build completed successfully
+jobs_module	8809	run/build.log, lake build Stage3.LevinsonMollEdge
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

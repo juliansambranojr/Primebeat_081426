@@ -133,12 +133,13 @@ flowchart LR
   n20["<b>logDeriv_zeta_analyticAt</b><br/>AnalyticAt ℂ (logDeriv riemannZeta) z"]:::thm
   n21["<b>logDeriv_zeta_continuousAt</b><br/>ContinuousAt (logDeriv riemannZeta) z"]:::thm
   n22["<b>argS_eq_zetaArgContour</b><br/>argS T = zetaArgContour T"]:::thm
-  x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
-  x1(["<b>Stirling</b><br/>backlundPhase_holds<br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x2(["<b>ArgCount</b><br/>argS_le_of_good<br/>rvM_crude<br/>rvM_crude_of_good_two"]):::ext
-  x3(["<b>ArgCrude</b><br/>argCrude_of_pieces<br/>rvM_of_stirling_and_pieces"]):::ext
-  x4(["<b>JensenCount</b><br/>localCount_holds"]):::ext
-  x5(["<b>ArgLegs</b><br/>horizontal_leg_le<br/>vertical_leg_le"]):::ext
+  x0(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
+  x1(["<b>diagram 1</b><br/>4 theorems"]):::ext
+  x2(["<b>Stirling</b><br/>backlundPhase_holds<br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x3(["<b>ArgCount</b><br/>argS_le_of_good<br/>rvM_crude<br/>rvM_crude_of_good_two"]):::ext
+  x4(["<b>ArgCrude</b><br/>argCrude_of_pieces<br/>rvM_of_stirling_and_pieces"]):::ext
+  x5(["<b>JensenCount</b><br/>localCount_holds"]):::ext
+  x6(["<b>ArgLegs</b><br/>horizontal_leg_le<br/>vertical_leg_le"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n12
@@ -164,17 +165,20 @@ flowchart LR
   n7 --> n16
   n8 --> n11
   n9 --> n11
-  n17 -.-> x2
-  n21 -.-> x5
-  n22 -.-> x2
-  x0 -.-> n22
-  x0 -.-> n3
-  x0 -.-> n6
-  x1 -.-> n16
-  x1 -.-> n19
-  x3 -.-> n18
-  x3 -.-> n19
+  n15 -.-> x0
+  n17 -.-> x3
+  n2 -.-> x0
+  n21 -.-> x6
+  n22 -.-> x3
+  n4 -.-> x0
+  x1 -.-> n22
+  x1 -.-> n3
+  x1 -.-> n6
+  x2 -.-> n16
+  x2 -.-> n19
+  x4 -.-> n18
   x4 -.-> n19
+  x5 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -218,7 +222,7 @@ def · line 1445
 
 - **Is:** `` argS (T : ℝ) : ℝ := riemannZeta.N T - (phaseTheta T / Real.pi + 1) ``
 - **Built from:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
-- **Used by 11:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds), [`ArgCount.sCrude_holds_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds_of_good_two), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](#Stage3-backlundArg_of_sFromLocal), [`Stage3.rvM_of_sFromLocal`](#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](#Stage3-stmtArgIdentity_holds)
+- **Used by 15:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds), [`ArgCount.sCrude_holds_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds_of_good_two), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](#Stage3-backlundArg_of_sFromLocal), [`Stage3.rvM_of_sFromLocal`](#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](#Stage3-stmtArgIdentity_holds), [`LevinsonSize.gamma_part_count_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le), [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two), [`LevinsonSize.gamma_part_eq_count`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq_count), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le)
 
 <a name="Stage3-zetaArgContour"></a>
 ### `Stage3.zetaArgContour`
@@ -1187,9 +1191,10 @@ logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamma (s / 2) / 
 
   - [`Stage3.gammaR_eq_exp_mul`](#Stage3-gammaR_eq_exp_mul) — `` Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s / 2) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Stage3.gammaR_fold_eq_phaseTheta`](#Stage3-gammaR_fold_eq_phaseTheta) — `` (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im = phaseTheta T ``
+  - [`LevinsonSize.re_logDeriv_gammaR_line`](../lean_stage3/LevinsonSize.md#LevinsonSize-re_logDeriv_gammaR_line) (LevinsonSize) — `` (logDeriv Gammaℝ (1/2 + y * I)).re = -(Real.log Real.pi) / 2 + Stage3.phasePoint y / 2 ``
 
 <a name="Stage3-logDeriv_xi_split"></a>
 ### `Stage3.logDeriv_xi_split`
@@ -1245,9 +1250,10 @@ line 1036
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Stage3.gammaR_fold_eq_phaseTheta`](#Stage3-gammaR_fold_eq_phaseTheta) — `` (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im = phaseTheta T ``
+  - [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq) (LevinsonSize) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
 
 <a name="Stage3-intervalIntegral_im"></a>
 ### `Stage3.intervalIntegral_im`
@@ -1537,10 +1543,11 @@ Continuous fun x : ℝ => logDeriv Gammaℝ (g x)
 
   - [`Stage3.logDeriv_gammaR_continuousAt`](#Stage3-logDeriv_gammaR_continuousAt) — `` ContinuousAt (logDeriv Gammaℝ) z ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour) — `` argS T = zetaArgContour T ``
   - [`Stage3.gammaR_fold_eq_phaseTheta`](#Stage3-gammaR_fold_eq_phaseTheta) — `` (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im = phaseTheta T ``
+  - [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq) (LevinsonSize) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
 
 <a name="Stage3-gammaR_fold_eq_phaseTheta"></a>
 ### `Stage3.gammaR_fold_eq_phaseTheta`

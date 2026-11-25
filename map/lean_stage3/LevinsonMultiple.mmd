@@ -1,0 +1,93 @@
+flowchart LR
+  n0["<b>analyticAt_dslope</b><br/>AnalyticAt ℂ (dslope f a) z"]:::shp
+  n1["<b>analyticOrderAt_sub_self</b><br/>analyticOrderAt (fun z : ℂ =＞ z - ρ) ρ = 1"]:::cnt
+  n2["<b>exists_pow_mul</b><br/>∀ f : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ f z) → (k : ℕ∞) ≤ analyticOr…"]:::shp
+  n3["<b>polyP_analyticAt</b><br/>AnalyticAt ℂ (polyP D n) z"]:::cnt
+  n4["<b>polyP_ne_zero</b><br/>polyP D n z ≠ 0"]:::cnt
+  n5["<b>polyP_order</b><br/>analyticOrderAt (polyP D n) ρ = n ρ"]:::cnt
+  n6["<b>logDeriv_polyP</b><br/>logDeriv (polyP D n) z = ∑ ρ ∈ D, (n ρ : ℂ) * (1 / (z - ρ))"]:::cnt
+  n7["<b>polyP_line</b><br/>polyP D n (1/2 + t * I) = I ^ (∑ ρ ∈ D, n ρ) * ((∏ ρ ∈ D, (t - ρ…"]:::shp
+  n8["<b>arg_turn_segment</b><br/>(∫ u in u₁..u₂, v / (z₀ + u * v)).im = arg (z₀ + u₂ * v) - arg (…"]:::shp
+  n9["<b>arg_mul_I_neg</b><br/>arg (r * I) = -(Real.pi / 2)"]:::shp
+  n10["<b>arg_mul_I_pos</b><br/>arg (r * I) = Real.pi / 2"]:::shp
+  n11["<b>exists_prod_mul</b><br/>∀ f : ℂ → ℂ, (∀ ρ ∈ D, ρ ∈ S) → (∀ z ∈ S, AnalyticAt ℂ f z) → (∀…"]:::shp
+  n12["<b>G_order_add_one</b><br/>analyticOrderAt (fun s =＞ riemannZeta s + c * deriv riemannZeta …"]:::thm
+  n13["<b>zeta_order_ge</b><br/>((analyticOrderAt (fun s =＞ riemannZeta s + c * deriv riemannZet…"]:::thm
+  n14["<b>sum_order_le_lineCount</b><br/>∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount T"]:::thm
+  n15["<b>divisor_eq_of_mul</b><br/>MeromorphicOn.divisor G U p = MeromorphicOn.divisor H U p"]:::cnt
+  n16["<b>countRight_eq_of_mul</b><br/>Littlewood.countRight G z w σ = Littlewood.countRight H z w σ"]:::shp
+  n17["<b>integral_logDeriv_mul</b><br/>(∫ u in u₁..u₂, logDeriv (fun s =＞ P s * H s) (q u)) = (∫ u in u…"]:::cnt
+  n18["<b>factor_turn</b><br/>(∫ x in (1/2:ℝ)..3, 1 / ((x:ℂ) + a * I - ρ)).im - (∫ x in (1/2:ℝ…"]:::shp
+  n19["<b>integral_logDeriv_polyP</b><br/>(∫ u in u₁..u₂, logDeriv (polyP D n) (q u)) = ∑ ρ ∈ D, (n ρ : ℂ)…"]:::cnt
+  n20["<b>natCast_mul_im'</b><br/>((m : ℂ) * w).im = m * w.im"]:::cnt
+  n21["<b>natCast_mul_re'</b><br/>((m : ℂ) * w).re = m * w.re"]:::cnt
+  n22["<b>polyP_edges</b><br/>(∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑a * I)).im - (∫ …"]:::shp
+  n23["<b>levinson_count'</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
+  n24["<b>levinson_window' ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ…"]:::thm
+  x0(["<b>LevinsonTurn</b><br/>4 theorems"]):::ext
+  x1(["<b>HardyZ</b><br/>re_line"]):::ext
+  x2(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
+  x3(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x4(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
+  x5(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
+  x7(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x8(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
+  x9(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
+  x10(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x11(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x13(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n10 --> n18
+  n11 --> n23
+  n12 --> n13
+  n13 --> n23
+  n14 --> n23
+  n15 --> n16
+  n16 --> n23
+  n17 --> n23
+  n18 --> n22
+  n19 --> n22
+  n2 --> n11
+  n20 --> n22
+  n21 --> n22
+  n22 --> n23
+  n23 --> n24
+  n3 --> n23
+  n3 --> n5
+  n4 --> n23
+  n5 --> n23
+  n6 --> n19
+  n7 --> n23
+  n8 --> n18
+  n9 --> n18
+  x0 -.-> n23
+  x0 -.-> n8
+  x1 -.-> n14
+  x1 -.-> n23
+  x10 -.-> n24
+  x11 -.-> n24
+  x12 -.-> n24
+  x13 -.-> n24
+  x2 -.-> n14
+  x3 -.-> n16
+  x3 -.-> n17
+  x3 -.-> n23
+  x4 -.-> n23
+  x5 -.-> n23
+  x6 -.-> n23
+  x6 -.-> n24
+  x7 -.-> n23
+  x8 -.-> n23
+  x9 -.-> n23
+  x9 -.-> n24
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

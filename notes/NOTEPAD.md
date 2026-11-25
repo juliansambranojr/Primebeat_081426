@@ -839,3 +839,18 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-24  Decision (unit 0512): on the psi ladder the wall (no top attained, modes walled off from 0) defeats every general power-sum route by a factor exponential in the zero count (Turán, clustering, Dirichlet); Montgomery-Vaughan loses only 1/separation. Open: a separation bound for the top zeros from the alias lattice; H.
 - [open]   2026-11-24  Unit 0513: the unconditional zeta facts in the tree ranked by off-line room; strongest is zero_density (few off-line zeros); none gives the wall's separation or creep rate.
 - [open]   2026-11-24  Unit 0514 (S8, S9): coupled bases kill aliasing; a creep falling like a power of T is beaten by finitely many bases given a simultaneous approximation bound (unproved); slower creep needs every base = NoRunaway.
+- [open]   2026-11-24  Unit 0515: horizon = phase of the gamma factor, threshold/basins = sign changes of Hardy's Z against theta/pi, floor = the mollifier (in the tree as MollifiedMean, used only for density). Missing: Z, theta, the sign-change count, Levinson mean values.
+- [open]   2026-11-24  S10 steps 1-2 PROVED (unit 0516, `HardyZ`): Lambda(1/2+it) is real (`xi_line_real`); a sign change on the line gives a zero on the line (`signChange_zero_on_line`). Unconditional.
+- [open]   2026-11-24  S10 step 3 PROVED (unit 0517, `LineCount`): RH iff lineCount T = allCount T for all T (`rh_iff_line_count`); k strict sign changes give lineCount >= k. Unconditional.
+- [open]   2026-11-24  S10 step 4a PROVED (unit 0518, `Littlewood`): Littlewood's lemma on a rectangle with no branch of arg (`littlewood_rect`), with 2-D integrability of logDeriv. Unconditional.
+- [open]   2026-11-24  S11 step 1a PROVED (unit 0519, `LevinsonLine`): Lambda' imaginary on the line; Re(Gammaℝ(ζ+cζ')) = Λ(1 − c Re g); zeros on the line = crossings of the imaginary axis. Unconditional.
+- [open]   2026-11-24  S11 step 1b PROVED (unit 0520, `LevinsonArg`): continuous argument lift along the line; turning by k·pi gives lineCount >= k. Unconditional.
+- [open]   2026-11-24  S11 step 1c PROVED (unit 0521, `LevinsonTurn`): turning along the line = Re ∫ logDeriv; splits Gammaℝ + G; G part = −2π·N_G(rect) + three edge integrals. Unconditional.
+- [open]   2026-11-24  S11 step 1d (i),(iii) PROVED (unit 0522, `LevinsonSize`): right edge |·| <= pi for 0<=c<=1; Gammaℝ part = phaseTheta difference = pi(N b − N a) up to pi(30 log b + 150). Unconditional.
+- [open]   2026-11-24  S11 step 1d (ii) PROVED (unit 0523, `LevinsonEdge`): horizontal edge turning <= 21π log T + 133π (T >= 4, 0<=c<=1). Unconditional.
+- [open]   2026-11-24  S11 step 1 ASSEMBLED (unit 0524, `LevinsonCount`): (N b − N a) − 2·countG − (72 log b + 418) <= lineCount b, with border-avoidance and factor hypotheses. Unconditional.
+- [open]   2026-11-24  S11 steps 2-4 PROVED (unit 0525, `LevinsonRight`): zeros of G right of the line <= (1/(2π(1/2−σ0)))·[((b−a)/2)·log(mean ‖Gψ(σ0+it)‖²) + edges]. Unconditional.
+- [open]   2026-11-25  Mollifier edge terms PROVED (unit 0526, `LevinsonMollEdge`): right edge <= (b−a)·2δ(X) + (X−σ0)π; horizontals O((X−σ0)(8X−1)(log T + log M + log B)). Unconditional.
+- [open]   2026-11-25  Avoidance PROVED (unit 0527, `LevinsonAvoid`): good heights/abscissas exist; factor > 0 for c = 1/log T, T >= e^26. Unconditional.
+- [open]   2026-11-25  Levinson one window ASSEMBLED (unit 0528, `LevinsonWindow`): mean square K as the named input, plus hsimple (ζ, ζ' no common zero on the line). Unconditional otherwise.
+- [open]   2026-11-25  hsimple REMOVED (unit 0529, `LevinsonMultiple`): levinson_count' / levinson_window' — the window's only named input is the mean square K. Unconditional otherwise.
