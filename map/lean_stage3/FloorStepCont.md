@@ -7,7 +7,7 @@
 6 theorems, 1 definition, 162 lines. 
 
 **Imports:** [`LevinsonWindowNear`](../lean_stage3/LevinsonWindowNear.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)  
-**Imported by:** [`FloorStep`](../lean_stage3/FloorStep.md)
+**Imported by:** [`FloorQCont`](../lean_stage3/FloorQCont.md), [`FloorStep`](../lean_stage3/FloorStep.md)
 
 ## The picture
 
@@ -19,16 +19,18 @@ flowchart LR
   n3["<b>Fint_shift</b><br/>∃ δ : ℝ, 0 ＜ δ ∧ δ ≤ 1 / 8 ∧ ∀ σ ∈ Icc (σ₀ - δ) σ₀, ∀ t ∈ Icc A …"]:::thm
   n4["<b>mean_shift</b><br/>(1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ (1 / (b' - a')…"]:::thm
   n5["<b>hK_shift</b><br/>∃ δ : ℝ, 0 ＜ δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / …"]:::thm
-  x0(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
-  x1(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x0(["<b>FloorQCont</b><br/>continuousOn_FintV"]):::ext
+  x1(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x2(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n3
   n2 --> n4
   n3 --> n5
   n4 --> n5
-  n5 -.-> x0
+  n0 -.-> x0
   n5 -.-> x1
+  n5 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -76,8 +78,9 @@ Continuous (LevinsonMollEdge.molli M β)
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.continuousOn_FintV`](../lean_stage3/FloorQCont.md#FloorQ-continuousOn_FintV) (FloorQCont) — `` ContinuousOn (fun p : ℝ × ℝ => FintV Q L M β p.1 p.2) {p | 0 < p.2} ``
   - [`FloorStep.continuousOn_Fint`](#FloorStep-continuousOn_Fint) — `` ContinuousOn (fun p : ℝ × ℝ => Fint c M β p.1 p.2) {p | p.1 ≠ 1} ``
 
 <a name="FloorStep-continuousOn_Fint"></a>

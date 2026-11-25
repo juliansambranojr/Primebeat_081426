@@ -7,7 +7,7 @@
 2 theorems, 0 definitions, 268 lines. 
 
 **Imports:** [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorLongStep`](../lean_stage3/FloorLongStep.md), [`FloorSum`](../lean_stage3/FloorSum.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorLongStep`](../lean_stage3/FloorLongStep.md), [`FloorQStep`](../lean_stage3/FloorQStep.md), [`FloorSum`](../lean_stage3/FloorSum.md)
 
 ## The picture
 

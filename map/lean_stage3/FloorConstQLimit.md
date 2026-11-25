@@ -7,7 +7,7 @@
 12 theorems, 9 definitions, 297 lines. 
 
 **Imports:** [`FloorConstLimit`](../lean_stage3/FloorConstLimit.md), [`FloorConstQDeriv`](../lean_stage3/FloorConstQDeriv.md)  
-**Imported by:** [`FloorConstQ`](../lean_stage3/FloorConstQ.md)
+**Imported by:** [`FloorConstQ`](../lean_stage3/FloorConstQ.md), [`FloorQStep`](../lean_stage3/FloorQStep.md)
 
 ## The picture
 
@@ -30,6 +30,7 @@ flowchart LR
   x2(["<b>FloorConstLimit</b><br/>4 theorems"]):::ext
   x3(["<b>FloorConstQ</b><br/>KflQ_eq<br/>floor_constQ"]):::ext
   x4(["<b>DiagMain</b><br/>logM_ge"]):::ext
+  x5(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
   n0 --> n7
   n1 --> n5
   n2 --> n5
@@ -41,6 +42,7 @@ flowchart LR
   n8 --> n9
   n9 --> n10
   n10 -.-> x3
+  n10 -.-> x5
   n8 -.-> x3
   x0 -.-> n0
   x1 -.-> n1
@@ -129,7 +131,7 @@ Levinson–Conrey's constant for a general `Q`: `Q(−∂a)Q(−∂b)F` at `a = 
 
 - **Is:** `` KflQ (Q : ℝ[X]) (A B C θ R : ℝ) : ℝ := ∑ k ∈ Finset.range (Q.natDegree + 1), ∑ l ∈ Finset.range (Q.natDegree + 1), Q.coeff k * Q.coeff l * (-1) ^ (k + l) * XF A B C θ R k l ``
 - **Built from:** [`FloorConstQ.XF`](#FloorConstQ-XF)
-- **Used by 12:** [`FloorConstQ.KflQ_eq`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_pos), [`FloorConstQ.floor_constQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](../lean_stage3/FloorConstQ.md#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](../lean_stage3/FloorConstQ.md#FloorConstQ-log_KflQ_lt), [`FloorConstQ.KflQ_lin`](#FloorConstQ-KflQ_lin), [`FloorConstQ.KflQ_one_sub`](#FloorConstQ-KflQ_one_sub), [`FloorConstQ.dopQ_cY_eq`](#FloorConstQ-dopQ_cY_eq), [`FloorConstQ.re_dopQ_tendsto`](#FloorConstQ-re_dopQ_tendsto), [`FloorConstQ.tendsto_KflQ`](#FloorConstQ-tendsto_KflQ)
+- **Used by 15:** [`FloorConstQ.KflQ_eq`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](../lean_stage3/FloorConstQ.md#FloorConstQ-KflQ_pos), [`FloorConstQ.floor_constQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](../lean_stage3/FloorConstQ.md#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](../lean_stage3/FloorConstQ.md#FloorConstQ-log_KflQ_lt), [`FloorConstQ.KflQ_lin`](#FloorConstQ-KflQ_lin), [`FloorConstQ.KflQ_one_sub`](#FloorConstQ-KflQ_one_sub), [`FloorConstQ.dopQ_cY_eq`](#FloorConstQ-dopQ_cY_eq), [`FloorConstQ.re_dopQ_tendsto`](#FloorConstQ-re_dopQ_tendsto), [`FloorConstQ.tendsto_KflQ`](#FloorConstQ-tendsto_KflQ), [`FloorQ.logmaxQ_le`](../lean_stage3/FloorQ.md#FloorQ-logmaxQ_le), [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ)
 
 <a name="FloorConstQ-SB"></a>
 ### `FloorConstQ.SB`
@@ -501,9 +503,10 @@ Tendsto (fun T => (MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.lo
 
 **Definitions its proof touches:** [`FloorConst.Ar`](../lean_stage3/FloorConstLimit.md#FloorConst-Ar), [`FloorConst.Br`](../lean_stage3/FloorConstLimit.md#FloorConst-Br), [`FloorConst.Cr`](../lean_stage3/FloorConstLimit.md#FloorConst-Cr), [`FloorConstQ.KflQ`](#FloorConstQ-KflQ), [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConstQ.floor_constQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-floor_constQ) (FloorConstQ) — `` Tendsto (fun T => (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 / 100)) T) ((-((3 / 2) / Real.log T) : ℝ) : ℂ) ((-((3 / 2) / Real.log T) : ℝ) : ℂ)).re… ``
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
 
 <a name="FloorConstQ-KflQ_one_sub"></a>
 ### `FloorConstQ.KflQ_one_sub`

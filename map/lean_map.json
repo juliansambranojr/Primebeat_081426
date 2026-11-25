@@ -25138,6 +25138,7 @@
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.levinson_floor_of_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.N_ge",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
     ]
@@ -25168,6 +25169,9 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
@@ -27846,6 +27850,7 @@
     "used_by": [
      "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.horizontal_leg_le",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen"
     ]
@@ -37762,6 +37767,12 @@
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
@@ -37859,6 +37870,7 @@
     "used_by": [
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
      "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line"
     ]
    },
@@ -48253,7 +48265,9 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
    }
   ]
  },
@@ -48313,7 +48327,9 @@
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.term_le"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.term_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48398,7 +48414,9 @@
     "used_by": [
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
-     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.analyticAt_H"
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.analyticAt_H",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48726,7 +48744,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
-     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge"
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48782,7 +48802,9 @@
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48810,7 +48832,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
-     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds"
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48886,7 +48910,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le"
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le"
     ]
    },
    {
@@ -48931,7 +48956,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge"
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -48954,7 +48980,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge"
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
    },
    {
@@ -57343,7 +57370,10 @@
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
-     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
     ]
    },
    {
@@ -57382,7 +57412,10 @@
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
-     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
     ]
    },
    {
@@ -57421,7 +57454,10 @@
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
-     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
     ]
    },
    {
@@ -57937,7 +57973,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
-     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
     ]
    },
    {
@@ -57973,7 +58011,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
-     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
     ]
    },
    {
@@ -58034,7 +58074,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
    },
    {
     "kind": "theorem",
@@ -58057,7 +58099,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
    },
    {
     "kind": "theorem",
@@ -58080,7 +58124,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
    },
    {
     "kind": "theorem",
@@ -58105,7 +58151,9 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
    },
    {
     "kind": "theorem",
@@ -59074,7 +59122,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le"
+    ]
    }
   ]
  },
@@ -59816,7 +59866,10 @@
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
-     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ"
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
     ]
    },
    {
@@ -60349,7 +60402,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ"
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
     ]
    },
    {
@@ -61315,6 +61369,1258 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQ.lean",
+  "module": "Stage3.FloorQ",
+  "stem": "FloorQ",
+  "header": "# FloorQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: a proved floor above one third. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorQStep",
+   "Stage3.FloorConstQ",
+   "Stage3.FloorSum"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "FloorConstQ",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 166,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorConstQ.lean",
+   "lean_stage3/Stage3/FloorQStep.lean",
+   "lean_stage3/Stage3/FloorSum.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "logmaxQ_le",
+    "ns": "FloorQ",
+    "full": "FloorQ.logmaxQ_le",
+    "line": 43,
+    "why": "The `max 1` and the `ε₁` of `floor_stepQ`, priced at `Q₀`, `P₀`, `θ = 49/100`, `R = 3/2`.",
+    "sorry": false,
+    "needs": [
+     "hε₁ : 0 < ε₁",
+     "hx : x ≤ KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2) + 2 * ε₁"
+    ],
+    "proves": "Real.log (max 1 x) / (3 / 2) ≤ (1 - 224 / 625) + 2 * ε₁",
+    "file": "lean_stage3/Stage3/FloorQ.lean",
+    "id": "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stepQ",
+    "ns": "FloorQ",
+    "full": "FloorQ.stepQ",
+    "line": 77,
+    "why": "The window floor at `P₀`, `Q₀`. For `ε₁ > 0`, from some height `T₁ ≥ 1` on, `(224/625 − 2ε₁)(N T − N(T/2)) − ε₁ T log T ≤ lineCount T − lineCount(T/2)`.",
+    "sorry": false,
+    "needs": [
+     "hε₁ : 0 < ε₁"
+    ],
+    "proves": "∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ)",
+    "file": "lean_stage3/Stage3/FloorQ.lean",
+    "id": "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_one",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_zero",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_deriv_symm",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_zero",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_one",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_zero",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_deriv_symm",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_zero",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.logmaxQ_le",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_floorQ",
+    "ns": "FloorQ",
+    "full": "FloorQ.levinson_floorQ",
+    "line": 108,
+    "why": "B4 step 5, a proved floor above one third. At `Q₀`, `P₀`, `θ = 49/100`, `R = 3/2`: for every `ε > 0`, from some height on, at least `(224/625 − ε) N T` of the zeros of `ζ` with height in `(0, T]` lie on the critical line, counted with multiplicity.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (224 / 625 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ)",
+    "file": "lean_stage3/Stage3/FloorQ.lean",
+    "id": "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQCont.lean",
+  "module": "Stage3.FloorQCont",
+  "stem": "FloorQCont",
+  "header": "# FloorQCont — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: continuity in `σ` for `V ψ`. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorQGamma",
+   "Stage3.FloorStepCont"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 151,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorQGamma.lean",
+   "lean_stage3/Stage3/FloorStepCont.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "FintV",
+    "ns": "FloorQ",
+    "full": "FloorQ.FintV",
+    "line": 30,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "σ t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV_shift",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV_t",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.meanV_shift",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_FintV",
+    "ns": "FloorQ",
+    "full": "FloorQ.continuousOn_FintV",
+    "line": 33,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ"
+    ],
+    "proves": "ContinuousOn (fun p : ℝ × ℝ => FintV Q L M β p.1 p.2) {p | 0 < p.2}",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV_shift",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_FintV_t",
+    "ns": "FloorQ",
+    "full": "FloorQ.continuousOn_FintV_t",
+    "line": 48,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "ContinuousOn (FintV Q L M β σ) (Ioi 0)",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV_t",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.meanV_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "FintV_shift",
+    "ns": "FloorQ",
+    "full": "FloorQ.FintV_shift",
+    "line": 61,
+    "why": "Continuity in `σ`, uniform in `t ∈ [A, B]`, `A > 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hA : 0 < A",
+     "hε : 0 < ε"
+    ],
+    "proves": "∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ σ ∈ Icc (σ₀ - δ) σ₀, ∀ t ∈ Icc A B, FintV Q L M β σ t ≤ FintV Q L M β σ₀ t + ε",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "meanV_shift",
+    "ns": "FloorQ",
+    "full": "FloorQ.meanV_shift",
+    "line": 90,
+    "why": "A pointwise shift by `ε` on `[a′, b′] ⊆ (0, ∞)` moves the mean by at most `ε`.",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "ha : 0 < a'",
+     "hab : a' < b'",
+     "h : ∀ t ∈ Icc a' b', FintV Q L M β σ t ≤ FintV Q L M β σ₀ t + ε"
+    ],
+    "proves": "(1 / (b' - a')) * ∫ t in a'..b', FintV Q L M β σ t ≤ (1 / (b' - a')) * (∫ t in a'..b', FintV Q L M β σ₀ t) + ε",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.meanV_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV_t"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV_t"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hK_shiftV",
+    "ns": "FloorQ",
+    "full": "FloorQ.hK_shiftV",
+    "line": 118,
+    "why": "The mean from `σ₀` to `[σ₀ − δ, σ₀]`. For `T > 0`: if the mean at `σ₀` is at most `K + ε/2` on every window `[a′, b′]`, `a′ ∈ [T/2, T/2 + 1]`, `b′ ∈ [T − 1, T]`, then for some `δ ∈ (0, 1/8]` the mean at every `σ ∈ [σ₀ − δ, σ₀]` is at most `K + ε` there.",
+    "sorry": false,
+    "needs": [
+     "Q : Polynomial ℝ",
+     "L : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hT : 0 < T",
+     "hε : 0 < ε",
+     "h0 : ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', FintV Q L M β σ₀ t ≤ K + ε / 2"
+    ],
+    "proves": "∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', FintV Q L M β σ t ≤ K + ε",
+    "file": "lean_stage3/Stage3/FloorQCont.lean",
+    "id": "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV_shift",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.meanV_shift"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV_shift",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.meanV_shift"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQEdge.lean",
+  "module": "Stage3.FloorQEdge",
+  "stem": "FloorQEdge",
+  "header": "# FloorQEdge — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: the edge terms of Littlewood's lemma for a function given on the upper half-plane. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonMollEdge"
+  ],
+  "opens": [
+   "Complex",
+   "Interval",
+   "LevinsonMollEdge",
+   "Littlewood",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 284,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonMollEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "arg_term_le_on",
+    "ns": "FloorQ",
+    "full": "FloorQ.arg_term_le_on",
+    "line": 32,
+    "why": "The argument term on `[a, b]`. `LevinsonMollEdge.arg_term_le_of_pos` with analyticity and `Re f > 0` asked on `X + [a, b] i` only.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hfa : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ f (↑X + ↑t * I)",
+     "hpos : ∀ t ∈ Set.Icc a b, 0 < (f (↑X + ↑t * I)).re"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/FloorQEdge.lean",
+    "id": "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.hasDerivAt_line_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.right_terms_gen"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_terms_gen",
+    "ns": "FloorQ",
+    "full": "FloorQ.right_terms_gen",
+    "line": 80,
+    "why": "The two right-edge terms, from `‖f − 1‖ ≤ δ ≤ 1/2` on `X + [a, b] i`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hσX : σ₀ ≤ X",
+     "hfa : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ f (↑X + ↑t * I)",
+     "hf1 : ∀ t ∈ Set.Icc a b, ‖f (↑X + ↑t * I) - 1‖ ≤ δ",
+     "hδ : δ ≤ 1 / 2"
+    ],
+    "proves": "-(∫ t in a..b, Real.log ‖f (↑X + ↑t * I)‖) + (X - σ₀) * (∫ t in a..b, logDeriv f (↑X + ↑t * I)).re ≤ (b - a) * (2 * δ) + (X - σ₀) * Real.pi",
+    "file": "lean_stage3/Stage3/FloorQEdge.lean",
+    "id": "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.right_terms_gen",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.log_norm_abs_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.log_norm_abs_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_le_upper",
+    "ns": "FloorQ",
+    "full": "FloorQ.edge_le_upper",
+    "line": 108,
+    "why": "The edge, analyticity above the real axis only. `LevinsonMollEdge.edge_le_gen` with `hFa` asked on `Im > 0`; the proof is a copy. For `1 ≤ X`, `2X ≤ T`, `F` analytic off `1`, `Re F(X + iT) ≥ 1/2`, `‖F‖ ≤ Mf` on `‖w − (X + iT)‖ ≤ X − 1/8`, `1/4 ≤ σ ≤ X` and `F ≠ 0` on `[σ, X] + iT`: `|edgeH F X T σ| ≤ π ((8X − 1) log (2 Mf) + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hFa : ∀ w : ℂ, 0 < w.im → AnalyticAt ℂ F w",
+     "h0 : 1 / 2 ≤ (F (↑X + ↑T * I)).re",
+     "hM : ∀ w : ℂ, ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8 → ‖F w‖ ≤ Mf",
+     "hσ : 1 / 4 ≤ σ",
+     "hσX : σ ≤ X",
+     "hne : ∀ x ∈ Set.Icc σ X, F (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1)",
+    "file": "lean_stage3/Stage3/FloorQEdge.lean",
+    "id": "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.real_zero_count_gen",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.horizontal_terms_gen"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizontal_terms_gen",
+    "ns": "FloorQ",
+    "full": "FloorQ.horizontal_terms_gen",
+    "line": 250,
+    "why": "The horizontal edge terms, from the growth. For `1 ≤ X`, `2X ≤ T`, `f` analytic on `Im > 0`, `Re f(X + iT) ≥ 1/2`, `‖f‖ ≤ Mf` on `‖w − (X + iT)‖ ≤ X − 1/8`, `1/4 ≤ σ₀ ≤ X` and `f ≠ 0` on `[σ₀, X] + iT`: `|∫_{σ₀}^X edgeH f X T σ dσ| ≤ (X − σ₀) π ((8X − 1) log (2 Mf) + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hXT : 2 * X ≤ T",
+     "hFa : ∀ w : ℂ, 0 < w.im → AnalyticAt ℂ f w",
+     "h0 : 1 / 2 ≤ (f (↑X + ↑T * I)).re",
+     "hM : ∀ w : ℂ, ‖w - (↑X + ↑T * I)‖ ≤ X - 1 / 8 → ‖f w‖ ≤ Mf",
+     "hσ₀ : 1 / 4 ≤ σ₀",
+     "hσX : σ₀ ≤ X",
+     "hne : ∀ x ∈ Set.Icc σ₀ X, f (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|∫ σ in σ₀..X, edgeH f X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1))",
+    "file": "lean_stage3/Stage3/FloorQEdge.lean",
+    "id": "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.horizontal_terms_gen",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.edgeH"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQGamma.lean",
+  "module": "Stage3.FloorQGamma",
+  "stem": "FloorQGamma",
+  "header": "# FloorQGamma — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: the size of `V` far right and on the growth discs. 2026-11-25.",
+  "imports": [
+   "Stage3.GrRatio",
+   "Stage3.DigammaBound",
+   "Stage3.LevinsonMollEdge"
+  ],
+  "opens": [
+   "Complex",
+   "Metric",
+   "Polynomial",
+   "Set"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 321,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DigammaBound.lean",
+   "lean_stage3/Stage3/GrRatio.lean",
+   "lean_stage3/Stage3/LevinsonMollEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "GR",
+    "ns": "FloorQ",
+    "full": "FloorQ.GR",
+    "line": 40,
+    "why": "The shifted ratio `‖Γℝ z‖/‖Γℝ w‖ · e^{−(log T/2)(Re z − Re w)}`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "z w : ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_nonneg",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GR_nonneg",
+    "ns": "FloorQ",
+    "full": "FloorQ.GR_nonneg",
+    "line": 43,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "z w : ℂ"
+    ],
+    "proves": "0 ≤ GR T z w",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GR_add_two",
+    "ns": "FloorQ",
+    "full": "FloorQ.GR_add_two",
+    "line": 47,
+    "why": "The shift by `2`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "hz : 0 < z.re",
+     "hw : 0 < w.re"
+    ],
+    "proves": "GR T (z + 2) (w + 2) = GR T z w * (‖z‖ / ‖w‖)",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GR_shift",
+    "ns": "FloorQ",
+    "full": "FloorQ.GR_shift",
+    "line": 64,
+    "why": "The shift by `2n`, priced.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "hz : 0 < z.re",
+     "hw : 0 < w.re",
+     "hzw : ‖z - w‖ ≤ 2",
+     "hwi : 0 < w.im",
+     "n : ℕ"
+    ],
+    "proves": "GR T (z + 2 * n) (w + 2 * n) ≤ GR T z w * (1 + 2 / w.im) ^ n",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_ratio_far",
+    "ns": "FloorQ",
+    "full": "FloorQ.gamma_ratio_far",
+    "line": 97,
+    "why": "The gamma ratio far right. For `T ≥ 64`, `Re z, Re w ≥ 1/16`, `|Re z − Re w| ≤ 1`, `Re w ≤ T/64`, `Im z, Im w ∈ [T/4, 2T]` and `|Im z − Im w| ≤ 1`: `GR T z w ≤ B`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 64 ≤ T → ∀ z w : ℂ, 1 / 16 ≤ z.re → 1 / 16 ≤ w.re → |z.re - w.re| ≤ 1 → w.re ≤ T / 64 → T / 4 ≤ z.im → z.im ≤ 2 * T → T / 4 ≤ w.im → w.im ≤ 2 * T → |z.im - w.im| ≤ 1 → GR T z w ≤ B",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_add_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR_shift",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_V_im",
+    "ns": "FloorQ",
+    "full": "FloorQ.analyticAt_V_im",
+    "line": 183,
+    "why": "`V` is analytic on `Im > 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hw : 0 < w.im"
+    ],
+    "proves": "AnalyticAt ℂ (ConreyCount.V Q L) w",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_right_le",
+    "ns": "FloorQ",
+    "full": "FloorQ.V_right_le",
+    "line": 191,
+    "why": "`V` far right. For `Q` and `T ≥ max 64 (e)`, `3 ≤ X ≤ T/128`, `t ∈ [T/4 + 1, 2T − 1]`: `‖V(X + it) − Q(0) ζ(X + it)‖ ≤ C_V / log T`, `C_V = 2 K_Q B`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 1 ≤ Real.log T → ∀ xR t : ℝ, 3 ≤ xR → xR ≤ T / 128 → T / 4 + 1 ≤ t → t ≤ 2 * T - 1 → ‖ConreyCount.V Q (Real.log T) ((xR : ℂ) + t * I) - (Q.coeff 0 : ℂ) * riemannZeta ((xR : ℂ) + t * I)‖ ≤ C / Real.log T",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.zeta_norm_le_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.zeta_norm_le_two",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_disc_le",
+    "ns": "FloorQ",
+    "full": "FloorQ.V_disc_le",
+    "line": 241,
+    "why": "`V` on the growth discs. For `T ≥ 64` with `16 ≤ log T`, `Re w ∈ [1/8, T/128]`, `Im w ∈ [T/4 + 1, 2T − 1]`: `‖V w‖ ≤ C_D T`, `C_D = 34 K_Q B`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 16 ≤ Real.log T → ∀ w : ℂ, 1 / 8 ≤ w.re → w.re ≤ T / 128 → T / 4 + 1 ≤ w.im → w.im ≤ 2 * T - 1 → ‖ConreyCount.V Q (Real.log T) w‖ ≤ C * T",
+    "file": "lean_stage3/Stage3/FloorQGamma.lean",
+    "id": "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_norm_le_sixteenth"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.GR",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_norm_le_sixteenth"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQStep.lean",
+  "module": "Stage3.FloorQStep",
+  "stem": "FloorQStep",
+  "header": "# FloorQStep — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: Conrey's floor on `[T/2, T]` for a general `Q`. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorQWindow",
+   "Stage3.FloorQCont",
+   "Stage3.FloorStep",
+   "Stage3.GrRatio",
+   "Stage3.DigammaBound",
+   "Stage3.FloorConstQLimit"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 423,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DigammaBound.lean",
+   "lean_stage3/Stage3/FloorConstQLimit.lean",
+   "lean_stage3/Stage3/FloorQCont.lean",
+   "lean_stage3/Stage3/FloorQWindow.lean",
+   "lean_stage3/Stage3/FloorStep.lean",
+   "lean_stage3/Stage3/GrRatio.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "combineQ",
+    "ns": "FloorQ",
+    "full": "FloorQ.combineQ",
+    "line": 53,
+    "why": "The arithmetic of the floor, `FloorStep.combine` with the constant term `E0`.",
+    "sorry": false,
+    "needs": [
+     "hL1 : 1 ≤ L",
+     "hT0 : 0 < T",
+     "hR : 0 < R",
+     "hε : 0 < ε",
+     "hwin : ND - (1 / (Real.pi * (R / L))) * ((T - T / 2) / 2 * lK + ((T - T / 2) * (2 * td) + Wp)) - E0 ≤ LC",
+     "htd : td ≤ τ",
+     "hτ : τ ≤ ε * Real.pi * R / 4",
+     "hWp : Wp ≤ Real.pi * Cw * L ^ 3",
+     "hCw : 4 * Cw / (R * ε) * L ^ 3 ≤ T",
+     "hN : T * L / (4 * Real.pi) - ND ≤ T + 224 * L + 1396",
+     "hlK0 : 0 ≤ lK",
+     "hlK : lK ≤ Kb",
+     "hT224 : 224 * L + 1396 ≤ T",
+     "hKbL : 8 * Kb / (R * ε) ≤ L",
+     "hE : E0 ≤ ε / 4 * T * L"
+    ],
+    "proves": "ND - lK / R * ND - ε * T * L ≤ LC",
+    "file": "lean_stage3/Stage3/FloorQStep.lean",
+    "id": "lean_stage3/Stage3/FloorQStep.lean::FloorQ.combineQ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "constE",
+    "ns": "FloorQ",
+    "full": "FloorQ.constE",
+    "line": 111,
+    "why": "The constant term of the window, priced.",
+    "sorry": false,
+    "needs": [
+     "hL1 : 1 ≤ L",
+     "hε : 0 < ε",
+     "hC₀def : C₀ = 2788 + 42 * |Real.log (3 * Ac)|",
+     "hTC₀ : 4 * C₀ / ε ≤ T"
+    ],
+    "proves": "72 * L + 42 * Real.log (3 * Ac) + 154 + 62 * L + 2500 ≤ ε / 4 * T * L",
+    "file": "lean_stage3/Stage3/FloorQStep.lean",
+    "id": "lean_stage3/Stage3/FloorQStep.lean::FloorQ.constE",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "floor_stepQ",
+    "ns": "FloorQ",
+    "full": "FloorQ.floor_stepQ",
+    "line": 131,
+    "why": "B4 step 5, Conrey's floor on one dyadic window. For real `Q` with `Q′(x) = Q′(1 − x)`, `Q(1/2) ≠ 0`, `Q(0) = 1`, `P(0) = 0`, `P(1) = 1`, `0 < θ < 1/2`, `R > 0`, every `ε > 0`: from some height on, the zeros on the line with height in `(T/2, T]` number at least `(1 − log K/R)(N T − N(T/2)) − ε T log T`, `K = max 1 (Re DopQ(cY)(−R/L, −R/L) + ε)`.",
+    "sorry": false,
+    "needs": [
+     "Q P : Polynomial ℝ",
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1",
+     "hP0 : P.eval 0 = 0",
+     "hP1 : P.eval 1 = 1",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε)) / R * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ)",
+    "file": "lean_stage3/Stage3/FloorQStep.lean",
+    "id": "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.conrey_count_window'",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.combineQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.constE",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.windowEQ",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.W2_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.XMB_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.X_bounds",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.eventually_logpow_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.conrey_count_window'",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.hK_shiftV",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le",
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.analyticAt_V_im",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.combineQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.constE",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.windowEQ",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.W2_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.XMB_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.X_bounds",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.eventually_logpow_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_norm_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.norm_G_sub_one_le_X",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorQWindow.lean",
+  "module": "Stage3.FloorQWindow",
+  "stem": "FloorQWindow",
+  "header": "# FloorQWindow — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: the window for a general `Q`. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorQEdge",
+   "Stage3.LevinsonWindowNear"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "LevinsonWindow",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "FloorQ"
+  ],
+  "lines": 276,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorQEdge.lean",
+   "lean_stage3/Stage3/LevinsonWindowNear.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "windowEQ",
+    "ns": "FloorQ",
+    "full": "FloorQ.windowEQ",
+    "line": 41,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "δR Mf X a b : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorQWindow.lean",
+    "id": "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.windowEQ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rect_upper",
+    "ns": "FloorQ",
+    "full": "FloorQ.rect_upper",
+    "line": 46,
+    "why": "Analytic on `Im > 0`, a function is analytic near any rectangle above the real axis.",
+    "sorry": false,
+    "needs": [
+     "hf : ∀ w : ℂ, 0 < w.im → AnalyticAt ℂ f w",
+     "hz : 0 < z.im",
+     "hw : 0 < w.im"
+    ],
+    "proves": "AnalyticOnNhd ℂ f (Rectangle z w)",
+    "file": "lean_stage3/Stage3/FloorQWindow.lean",
+    "id": "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.rect_upper",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conrey_window_diff",
+    "ns": "FloorQ",
+    "full": "FloorQ.conrey_window_diff",
+    "line": 61,
+    "why": "The window for a general `G`, difference form. For `G` analytic on `Im > 0`, `ψ` entire, `σ₀ < 1/2` with a margin `δ > 0`, `1/4 ≤ σ₀ − δ`, `X ≥ 3`, `2X ≤ a`, `a + 3 ≤ b ≤ T`, `1 ≤ K`, the right edge `‖G ψ − 1‖ ≤ δ_R ≤ 1/2` on `X + [a, b] i`, the growth `‖G ψ‖ ≤ Mf` on the discs of radius `X − 1/8` about `X + y i`, `y ∈ [a, b]`, the count `hcount` at the good heights and the mean `hK` there: the zeros of `ζ` on the line with height in `(a, b]` number at least `(N b − N a) − (1/(π(1/2 − σ₀)))((b − a)/2 · log K + windowEQ) − (Ec + 62 log T + 2500)`.",
+    "sorry": false,
+    "needs": [
+     "hGa : ∀ w : ℂ, 0 < w.im → AnalyticAt ℂ G w",
+     "hψ : Differentiable ℂ ψ",
+     "hσ₀ : σ₀ < 1 / 2",
+     "hδ : 0 < δ",
+     "hσδ : 1 / 4 ≤ σ₀ - δ",
+     "hX : 3 ≤ X",
+     "hXa : 2 * X ≤ a",
+     "hab : a + 3 ≤ b",
+     "hbT : b ≤ T",
+     "hK1 : 1 ≤ K",
+     "hδR : δR ≤ 1 / 2",
+     "hR : ∀ t ∈ Icc a b, ‖G (↑X + ↑t * I) * ψ (↑X + ↑t * I) - 1‖ ≤ δR",
+     "hMf : ∀ y ∈ Icc a b, ∀ w : ℂ, ‖w - (↑X + ↑y * I)‖ ≤ X - 1 / 8 → ‖G w * ψ w‖ ≤ Mf",
+     "hcount : ∀ a' b' : ℝ, a ≤ a' → a' ≤ a + 1 → b - 1 ≤ b' → b' ≤ b → a' < b' → (∀ x ∈ Icc (1/2 : ℝ) 3, G (↑x + ↑a' * I) ≠ 0) → (∀ x ∈ Icc (1/2 : ℝ) 3, G (↑x + ↑b' * I) ≠ 0) → riemannZeta (1/2 + a' * I) ≠ 0 → (riemannZeta.N b' - riemannZeta.N a') - 2 * Littlewood.countRight G ((1/2 : ℂ) + a' * I) ((3 : ℂ) + b' * I) (1/2) - Ec ≤ (lineCount b' : ℝ) - (lineCount a' : ℝ)",
+     "hK : ∀ a' b' : ℝ, a ≤ a' → a' ≤ a + 1 → b - 1 ≤ b' → b' ≤ b → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', ‖G (↑σ + ↑t * I) * ψ (↑σ + ↑t * I)‖ ^ 2 ≤ K"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 2500) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/FloorQWindow.lean",
+    "id": "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.horizontal_terms_gen",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.right_terms_gen",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.rect_upper",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.windowEQ",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.horizontal_terms_gen",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.right_terms_gen",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.rect_upper",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.windowEQ",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/FloorStep.lean",
   "module": "Stage3.FloorStep",
   "stem": "FloorStep",
@@ -61547,6 +62853,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
      "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
     ]
    },
@@ -61783,6 +63090,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
@@ -61821,6 +63129,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -61855,6 +63164,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -61889,6 +63199,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -61923,6 +63234,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -61952,6 +63264,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -61979,6 +63292,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -62009,6 +63323,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.W2_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -62034,6 +63349,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    },
@@ -62062,6 +63378,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.N_ge"
     ]
@@ -62417,6 +63734,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
     ]
    }
@@ -64240,6 +65558,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.gamma_ratio_far",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
     ]
    },
@@ -64562,7 +65881,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ"
+    ]
    },
    {
     "kind": "theorem",
@@ -72790,6 +74111,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
@@ -72881,6 +74203,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -72915,6 +74238,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -73891,6 +75215,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.FintV",
+     "lean_stage3/Stage3/FloorQCont.lean::FloorQ.continuousOn_FintV",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
      "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint",
      "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
@@ -73933,6 +75260,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
@@ -73972,6 +75300,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le"
     ]
    },
@@ -74003,6 +75332,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le"
     ]
    },
@@ -74031,6 +75361,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
@@ -74064,6 +75395,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le"
     ]
    },
@@ -74166,6 +75498,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.right_terms_gen",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le"
     ]
    },
@@ -74189,6 +75522,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos"
     ]
    },
@@ -74409,6 +75743,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.zeta_disc_X"
     ]
    },
@@ -74575,6 +75910,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen"
     ]
    },
@@ -75855,6 +77191,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -76306,6 +77643,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
@@ -76670,6 +78008,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
@@ -76738,6 +78077,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -76767,6 +78107,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -76806,6 +78147,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -76862,6 +78204,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -77127,6 +78470,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
     ]
@@ -79804,6 +81148,10 @@
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.levinson_floor_of_long",
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.levinson_floorQ",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
@@ -80259,6 +81607,8 @@
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.conrey_count_window'",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
+     "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -80861,6 +82211,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.edge_le_upper",
+     "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.horizontal_terms_gen",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
@@ -81982,6 +83334,8 @@
      "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
@@ -122071,6 +123425,8 @@
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
@@ -122157,6 +123513,7 @@
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
@@ -122370,6 +123727,8 @@
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
+     "lean_stage3/Stage3/FloorQ.lean::FloorQ.stepQ",
+     "lean_stage3/Stage3/FloorQStep.lean::FloorQ.floor_stepQ",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
@@ -146325,11 +147684,12 @@
    "Stage3.DigammaBound",
    "Stage3.MeanQ",
    "Stage3.GrRatio",
-   "Stage3.FloorConstQ"
+   "Stage3.FloorConstQ",
+   "Stage3.FloorQ"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 255,
+  "lines": 256,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -146390,6 +147750,7 @@
    "lean_stage3/Stage3/FloorConst.lean",
    "lean_stage3/Stage3/FloorConstQ.lean",
    "lean_stage3/Stage3/FloorLong.lean",
+   "lean_stage3/Stage3/FloorQ.lean",
    "lean_stage3/Stage3/FloorStep.lean",
    "lean_stage3/Stage3/FloorSum.lean",
    "lean_stage3/Stage3/GateEval.lean",

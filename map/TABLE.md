@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>461 theorems counting,<br/>in 85 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>462 theorems counting,<br/>in 86 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1544 theorems shape,<br/>in 197 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1561 theorems shape,<br/>in 202 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>989 theorems reads ζ,<br/>in 171 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>995 theorems reads ζ,<br/>in 175 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 565 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1795 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1010 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 566 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1812 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1016 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 461 | 1544 | 989 |
+| `lean_stage3/` | 462 | 1561 | 995 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -654,6 +654,12 @@ FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The fi
 - [`FloorConstQ.g1_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g1_analyticAt) — `` AnalyticAt ℂ (g1 A B θ) u ``
 - [`FloorConstQ.g2_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g2_analyticAt) — `` AnalyticAt ℂ (g2 C θ) u ``
 - [`FloorConstQ.neg_inv_pow_mul`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-neg_inv_pow_mul) — `` (-1 / L) ^ k * L ^ k = (-1) ^ k ``
+
+### [`FloorQWindow`](./lean_stage3/FloorQWindow.md) — 1
+
+# FloorQWindow — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: the window for a general `Q`. 2026-11-25.
+
+- [`FloorQ.rect_upper`](./lean_stage3/FloorQWindow.md#FloorQ-rect_upper) — `` AnalyticOnNhd ℂ f (Rectangle z w) `` Analytic on `Im > 0`, a function is analytic near any rectangle above the real axis.
 
 ### [`FloorStepCont`](./lean_stage3/FloorStepCont.md) — 1
 

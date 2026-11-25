@@ -20,13 +20,16 @@ flowchart LR
   n18["<b>real_zero_count_gen</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.c…"]:::shp
   n19["<b>edge_le_gen</b><br/>|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1…"]:::shp
   n20["<b>horizontal_terms_le</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
-  x0(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
-  x1(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x2(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
-  x3(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
-  x4(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x0(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
+  x1(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x2(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x3(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x4(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x5(["<b>FloorQEdge</b><br/>arg_term_le_on<br/>edge_le_upper<br/>right_terms_gen"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x8(["<b>FloorQGamma</b><br/>V_disc_le"]):::ext
+  x9(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
   n0 --> n20
   n1 --> n4
   n10 --> n11
@@ -54,29 +57,37 @@ flowchart LR
   n8 --> n11
   n8 --> n20
   n9 --> n12
-  n12 -.-> x0
+  n0 -.-> x0
+  n1 -.-> x0
   n12 -.-> x1
   n12 -.-> x2
+  n12 -.-> x3
+  n13 -.-> x8
+  n18 -.-> x5
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
-  n20 -.-> x0
+  n2 -.-> x3
   n20 -.-> x1
   n20 -.-> x2
-  n4 -.-> x0
+  n20 -.-> x3
+  n3 -.-> x0
   n4 -.-> x1
   n4 -.-> x2
-  n5 -.-> x0
+  n4 -.-> x3
   n5 -.-> x1
   n5 -.-> x2
-  n8 -.-> x0
+  n5 -.-> x3
+  n6 -.-> x5
+  n7 -.-> x5
   n8 -.-> x1
   n8 -.-> x2
-  x3 -.-> n3
-  x4 -.-> n18
-  x4 -.-> n8
-  x5 -.-> n10
-  x6 -.-> n19
+  n8 -.-> x3
+  x4 -.-> n3
+  x6 -.-> n18
+  x6 -.-> n8
+  x7 -.-> n10
+  x9 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -7,7 +7,7 @@ DigammaBound — block S13 of `lean_stage3/design/stencil.md`, B4 step 2, the si
 5 theorems, 0 definitions, 220 lines. 
 
 **Imports:** [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorQGamma`](../lean_stage3/FloorQGamma.md), [`FloorQStep`](../lean_stage3/FloorQStep.md)
 
 ## The picture
 
@@ -17,16 +17,18 @@ flowchart LR
   n1["<b>right_edge_ge</b><br/>1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re"]:::thm
   n2["<b>disc_le</b><br/>ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t)"]:::thm
   n3["<b>stmtVEdges_holds</b><br/>∃ A T₀ : ℝ, 0 ＜ A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A"]:::thm
-  n4["<b>conrey_count_window' ■</b><br/>∃ A T₀ : ℝ, 0 ＜ A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → …"]:::thm
+  n4["<b>conrey_count_window'</b><br/>∃ A T₀ : ℝ, 0 ＜ A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → …"]:::thm
   x0(["<b>DigammaBoundIdentity</b><br/>differentiableAt_H"]):::ext
   x1(["<b>DigammaBoundSize</b><br/>7 theorems"]):::ext
   x2(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   x3(["<b>ConreyCount</b><br/>conrey_count_window"]):::ext
+  x4(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n3
   n2 --> n3
   n3 --> n4
+  n4 -.-> x4
   x0 -.-> n1
   x0 -.-> n2
   x1 -.-> n1
@@ -214,5 +216,7 @@ line 184 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
 

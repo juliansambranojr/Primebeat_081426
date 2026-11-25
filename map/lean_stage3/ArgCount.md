@@ -31,19 +31,21 @@ flowchart LR
   x2(["<b>ReZetaCount</b><br/>card_reZeros_le<br/>mem_reZeros<br/>re_zeta_two_line_pos"]):::ext
   x3(["<b>Defect</b><br/>N_eq_sum_lt"]):::ext
   x4(["<b>FloorLong</b><br/>floor_of_long<br/>levinson_floor_of_long"]):::ext
-  x5(["<b>FloorSum</b><br/>N_ge<br/>levinson_floor<br/>step_X"]):::ext
-  x6(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
-  x7(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
-  x8(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
-  x9(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x10(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
-  x11(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x12(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x13(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x14(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x15(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
-  x16(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x17(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x5(["<b>FloorQ</b><br/>levinson_floorQ<br/>stepQ"]):::ext
+  x6(["<b>FloorSum</b><br/>N_ge<br/>levinson_floor<br/>step_X"]):::ext
+  x7(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
+  x8(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x9(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
+  x10(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x11(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x12(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x13(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x14(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x15(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x16(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x17(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
+  x18(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x19(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -63,36 +65,39 @@ flowchart LR
   n8 --> n12
   n9 --> n10
   n1 -.-> x3
-  n12 -.-> x10
-  n12 -.-> x7
-  n14 -.-> x13
-  n14 -.-> x14
+  n12 -.-> x12
+  n12 -.-> x9
   n14 -.-> x15
   n14 -.-> x16
   n14 -.-> x17
+  n14 -.-> x18
+  n14 -.-> x19
   n2 -.-> x4
   n2 -.-> x5
+  n2 -.-> x6
+  n3 -.-> x10
   n3 -.-> x4
   n3 -.-> x5
   n3 -.-> x6
   n3 -.-> x7
   n3 -.-> x8
-  n7 -.-> x7
-  n8 -.-> x10
+  n3 -.-> x9
+  n7 -.-> x9
+  n8 -.-> x12
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
   x1 -.-> n0
+  x11 -.-> n10
   x11 -.-> n13
   x11 -.-> n14
-  x12 -.-> n13
-  x12 -.-> n14
+  x11 -.-> n6
+  x11 -.-> n7
+  x13 -.-> n13
+  x13 -.-> n14
+  x14 -.-> n13
+  x14 -.-> n14
   x2 -.-> n0
-  x9 -.-> n10
-  x9 -.-> n13
-  x9 -.-> n14
-  x9 -.-> n6
-  x9 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -207,11 +212,12 @@ line 93
 
   - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
   - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
   - [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
+  - [`FloorQ.levinson_floorQ`](../lean_stage3/FloorQ.md#FloorQ-levinson_floorQ) (FloorQ) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (224 / 625 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
   - [`FloorSum.N_ge`](../lean_stage3/FloorSum.md#FloorSum-N_ge) (FloorSum) — `` ∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T ``
   - [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) (FloorSum) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
 
@@ -238,10 +244,13 @@ riemannZeta.N T ≤ riemannZeta.N T'
 
   - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 
-**Feeds** (7 that use it)
+**Feeds** (10 that use it)
 
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
   - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
+  - [`FloorQ.levinson_floorQ`](../lean_stage3/FloorQ.md#FloorQ-levinson_floorQ) (FloorQ) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (224 / 625 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
+  - [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ) (FloorQ) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T :… ``
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) (FloorSum) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
   - [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X) (FloorSum) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) … ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``

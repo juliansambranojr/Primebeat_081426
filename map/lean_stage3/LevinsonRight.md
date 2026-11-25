@@ -22,8 +22,9 @@ flowchart LR
   n6["<b>levinson_right</b><br/>countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (…"]:::shp
   x0(["<b>LevinsonWindow</b><br/>countRight_right_le<br/>levinson_window"]):::ext
   x1(["<b>Littlewood</b><br/>7 theorems"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
-  x3(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x2(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
   n0 --> n1
   n0 --> n4
   n1 --> n6
@@ -35,6 +36,7 @@ flowchart LR
   n6 -.-> x0
   n6 -.-> x2
   n6 -.-> x3
+  n6 -.-> x4
   x1 -.-> n1
   x1 -.-> n4
   x1 -.-> n5
@@ -278,8 +280,9 @@ countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (1 / (2 * R
 
 **Definitions its proof touches:** [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight), [`Littlewood.edgeH`](../lean_stage3/Littlewood.md#Littlewood-edgeH)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
