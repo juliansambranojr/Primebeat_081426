@@ -217,6 +217,7 @@ import Stage3.ApproxFE
 import Stage3.ApproxShift
 import Stage3.ApproxBounds
 import Stage3.ApproxDeriv
+import Stage3.TwistedMoment
 
 namespace Stage3
 
