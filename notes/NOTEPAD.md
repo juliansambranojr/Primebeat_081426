@@ -855,3 +855,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-25  Levinson one window ASSEMBLED (unit 0528, `LevinsonWindow`): mean square K as the named input, plus hsimple (ζ, ζ' no common zero on the line). Unconditional otherwise.
 - [open]   2026-11-25  hsimple REMOVED (unit 0529, `LevinsonMultiple`): levinson_count' / levinson_window' — the window's only named input is the mean square K. Unconditional otherwise.
 - [open]   2026-11-25  S12 piece 1 (unit 0530, `ApproxFE`): Young's Lemma 4 exactly, given the named contour shift StmtShift. Unconditional.
+- [open]   2026-11-25  Contour shift PROVED (unit 0531, `ApproxShift`): approxFE, Young's Lemma 4 exactly, no shift hypothesis. Unconditional.

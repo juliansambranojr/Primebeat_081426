@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2a, the sizes: `Stage3/ApproxBounds.lean`
+
+    DONE        the sizes the twisted moment needs, for α, β with |α|, |β| ≤ 1/L
+                and t ≥ t₀: `XY_size` (|X_{α,β,t}| ≤ C·(t/2π)^(−Re(α+β)), Young (4.2)),
+                `resY_small` (|resY α β t| ≤ C_A·(1+|t|)^(−A)), and `VY_decay`
+                (|V_{α,β}(x,t)| ≤ C_A·(1 + |t|/x)^(−A), the j = 0 case of (4.3)),
+                with explicit or existential constants; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0531 and start piece 2). Piece 2
+                (Young's Lemma 3) needs these bounds first
+    DEPENDS     `ApproxFE`, `ApproxShift`, the tree's Γ and digamma bounds
+                (`Stirling`), Mathlib Γ asymptotics
+    OUT         the twisted moment itself (piece 2b), the operator (3),
+                unsmoothing (4)
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, the contour shift: `Stage3/ApproxShift.lean`
 
     DONE        `stmtShift_holds`: `ApproxFE.StmtShift α β t c` under the
