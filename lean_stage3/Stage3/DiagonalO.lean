@@ -1,5 +1,5 @@
 /-
-# DiagonalO — the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
+# DiagonalO — block S12 of `lean_stage3/design/stencil.md`, the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
 
 Julian's decision (unit 0538): the diagonal main term `ζ(1+α+β) S(α,β,0) = c₁(α,β)` is carried
 with `o(1)` (`DiagMainStmt.StmtDiagMainO`), since Levinson's floor needs only the leading term.

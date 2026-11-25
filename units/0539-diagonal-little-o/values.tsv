@@ -1,0 +1,16 @@
+key	value	source
+module_lines	260	wc -l lean_stage3/Stage3/DiagonalO.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/DiagonalO.lean
+defs	2	grep -c ^def lean_stage3/Stage3/DiagonalO.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/DiagonalO.lean
+pins	7	small_of_log, errY_absorb, T_le_errO, what0_le, stmtDiagO_of_mainO, lemma3_resO_of_parts, lemma3_resO_of_mainO_X
+errors_first	0	the worker's first build: none, one unused-hypothesis warning (TRAPS row 20)
+builds	4	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8921	lake build (full Stage3), Build completed successfully
+jobs_module	8816	run/build.log, lake build Stage3.DiagonalO
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

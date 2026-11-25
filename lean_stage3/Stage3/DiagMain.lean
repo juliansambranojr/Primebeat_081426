@@ -1,5 +1,5 @@
 /-
-# Stage3.DiagMain — the diagonal's main term, little-o (Young's Lemma 7): the reduction and the
+# Stage3.DiagMain — block S12 of `lean_stage3/design/stencil.md`, the diagonal's main term, little-o (Young's Lemma 7): the reduction and the
 Möbius input. 2026-11-25.
 
 Target: `DiagMainStmt.StmtDiagMainO P θ R κ`, `ζ(1+α+β) S(α,β,0) − c₁(α,β) → 0` uniformly on

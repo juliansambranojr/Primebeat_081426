@@ -22,6 +22,42 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, the swapped term: `Stage3/SwapX.lean`
+
+    DONE        `StmtX` (TwistedMoment): I_X(α,β) = T^(−α−β) I₁(−β,−α) + O(T/L),
+                or over `WeightAll`, or with an o(T) error if O(T/L) loses a
+                factor; or the largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0539, 0540, TRAPS 57–58,
+                start `StmtSdiagLead` and `StmtX` side by side). Written while the
+                worker runs, minutes after its start.
+    DEPENDS     `TwistedMoment`, `ApproxBounds`, `ApproxFE`, `Diagonal`,
+                `OffDiagClose`, `DiagonalO`
+    OUT         `StmtSdiagLead`; the operator (piece 3); unsmoothing (piece 4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the main term's arithmetic: `Stage3/SdiagLead.lean`
+
+    DONE        `StmtSdiagLead` (DiagMain) for P(0) = 0, 0 < θ < 1/2: the Jordan
+                swap, the per-d asymptotic to o(1/log M) from `psiMu_tendsto`, the
+                coprimality step on average over d, the d-sum; then
+                `StmtDiagMainO`; or the largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (as above). Written while the
+                worker runs, minutes after its start.
+    DEPENDS     `DiagMain`, `DiagMainMu`, `Diagonal`, PNT+ `Consequences`
+    OUT         `StmtX`; pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the little-o layer and the main term: `Stage3/DiagMainStmt.lean`, `DiagonalO.lean`, `DiagMain.lean`, `DiagMainMu.lean`
+
+    DONE        `StmtDiagMainO` and `errO`; `StmtDiagO` from `StmtDiagMainO` and
+                `diag_young`; Lemma 3 up to `Ires` with o(T) error from the
+                parts; `StmtDiagMainO` from `mu_pnt`, or a decision if a factor is
+                lost; units 0539, 0540
+    ASSUMED     Julian, 2026-11-25: "Yes to all and we will take your
+                recommendation" (log 0538, the o(1) route). Written after the
+                files were built: the pins step was skipped when the workers
+                started.
+    DEPENDS     `Diagonal`, `TwistedMoment`, `OffDiagClose`, PNT+ `Consequences`
+    OUT         `StmtX`; pieces 3–4
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, the diagonal: `Stage3/Diagonal.lean`
 
     DONE        `StmtDiag` (TwistedMoment), Young §5–6: (a) the diagonal hm = kn

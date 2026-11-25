@@ -67,6 +67,8 @@ build, 2026-09-08.
 | 54 | about ten cascading type errors after writing `(deriv f t : ℂ)` for `f : ℝ → ℝ` | the ascription sits inside `deriv`, so Lean elaborates `deriv` at `ℝ → ℂ` | cast outside: `((deriv f t : ℝ) : ℂ)` (unit 0534) |
 | 55 | a helper with implicit interval endpoints applies to the wrong `Icc` and the goal no longer matches | the endpoints were unified from the first `Icc` in scope | pass them by name, `(a := T/4) (b := 2*T)` (unit 0534) |
 | 56 | a hypothesis `W : Weight T (Real.log T)` is shown as an inaccessible `W✝` after `set L := Real.log T`, and lemmas about `W` stop applying | `set` rewrites `Real.log T` to `L` in the types of hypotheses too, so `W` gets a new type and the old name is shadowed | use `have hL : L = Real.log T := rfl` with a plain `let`/abbreviation, or `set ... with hL` and then `rw [← hL] at *` only where needed, or skip `set` and write `Real.log T` (unit 0538) |
+| 57 | `omega` fails with a counterexample listing `N / Y` as `d ≤ -1` after `set a := N / Y` | `set` leaves `a` as a local definition `omega` does not unfold, and the division facts are not in context | state the needed facts first (`Nat.div_lt_self`, `Nat.lt_mul_div_succ`), then `generalize N / Y = a at … ⊢` (unit 0540) |
+| 58 | `rw [abs_mul, abs_of_nonneg (by linarith)]` leaves a failing `by linarith` side goal | the rewrite lands on the first `|·|` in the goal, so the side goal is about the wrong term (the first-match family of row 7) | name the term: `abs_of_nonneg (show 0 ≤ f t - f (t+1) by linarith)` (unit 0540) |
 
 ## Bench and gate traps
 
