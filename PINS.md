@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, Littlewood's three pieces: `Stage3/TuringLW*.lean`
+
+    DONE        `Turing.StmtSplit` (the imaginary part of the integrated argument
+                principle), `Turing.StmtOsc c₀` (∫ of the real part of ∫ ζ′/ζ on
+                Re = 2 bounded), `Turing.StmtHorizLower a₂ b₂` (∫_{1/2}^{2}
+                log|ζ(x + it)| dx ≥ −(a₂ log t + b₂), Poisson–Jensen); then
+                `Turing.StmtLittlewood` with explicit constants by
+                `littlewood_of_pieces`; one unit
+    ASSUMED     Julian, 2026-11-25: "The three little wood pieces in lean please".
+                Written before the workers start.
+    DEPENDS     `Turing*`, `Littlewood`, `JensenCount`, `ArgCount`, `LevinsonEdge`,
+                `LevinsonSize`, `ZetaGrowth`, PNT+ log-derivative bounds
+    OUT         the sign data (rigorous evaluation of Z)
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, its analytic half: `Stage3/TuringCert.lean` and `Stage3/Turing*.lean`
 
     DONE        Littlewood's bound on ∫ S: S₁(T) = ∫_0^T S(t) dt with
