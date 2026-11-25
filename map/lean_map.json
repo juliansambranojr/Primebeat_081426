@@ -22119,6 +22119,14 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
      "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
@@ -22227,6 +22235,14 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
      "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
@@ -42627,7 +42643,9 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
-     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
     ]
    }
   ]
@@ -45668,7 +45686,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
     ]
    },
    {
@@ -62550,7 +62569,9 @@
      "lean_stage3/Stage3/StirlingX.lean::Stirling.lemma3_resO_of_mainO'"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
    }
   ]
  },
@@ -72534,6 +72555,7 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum_nonneg",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
@@ -74040,7 +74062,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o"
     ]
    },
    {
@@ -74569,6 +74592,1578 @@
     ],
     "layer": "zeta",
     "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Operator.lean",
+  "module": "Stage3.Operator",
+  "stem": "Operator",
+  "header": "# Operator — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: the mollified mean of Levinson's `G`. 2026-11-25.",
+  "imports": [
+   "Stage3.Lemma3",
+   "Stage3.OperatorCY",
+   "Stage3.OperatorInt"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "DiagMainStmt",
+   "DiagonalO",
+   "Filter",
+   "Metric",
+   "OffDiagClose",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Operator"
+  ],
+  "lines": 311,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Lemma3.lean",
+   "lean_stage3/Stage3/OperatorCY.lean",
+   "lean_stage3/Stage3/OperatorInt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtMollMeanO",
+    "ns": "Operator",
+    "full": "Operator.StmtMollMeanO",
+    "line": 48,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/Operator.lean",
+    "id": "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_six_le_exp",
+    "ns": "Operator",
+    "full": "Operator.pow_six_le_exp",
+    "line": 57,
+    "why": "`T⁶ ≤ 196608 e^(T²/32)`, from `x³/3! ≤ eˣ`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "T ^ 6 ≤ 196608 * Real.exp (T ^ 2 / 32)",
+    "file": "lean_stage3/Stage3/Operator.lean",
+    "id": "lean_stage3/Stage3/Operator.lean::Operator.pow_six_le_exp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ires_o",
+    "ns": "Operator",
+    "full": "Operator.Ires_o",
+    "line": 66,
+    "why": "The remainder is `o(T)`, uniformly on `Regime κ T`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ1 : θ ≤ 1",
+     "R : ℝ",
+     "hκ : 0 < κ"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Ires W (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ≤ ε * T",
+    "file": "lean_stage3/Stage3/Operator.lean",
+    "id": "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
+     "lean_stage3/Stage3/Operator.lean::Operator.pow_six_le_exp",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
+     "lean_stage3/Stage3/Operator.lean::Operator.pow_six_le_exp",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtMollMeanO_holds",
+    "ns": "Operator",
+    "full": "Operator.stmtMollMeanO_holds",
+    "line": 143,
+    "why": "The mollified mean of Levinson's `G`, `o(T)`, unconditional: Lemma 3 at `o(T)` and Cauchy's estimate on circles of radius `R/(2L)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "StmtMollMeanO P θ R",
+    "file": "lean_stage3/Stage3/Operator.lean",
+    "id": "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/OperatorCY.lean",
+  "module": "Stage3.OperatorCY",
+  "stem": "OperatorCY",
+  "header": "# OperatorCY — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: `c(α,β)` is analytic. 2026-11-25.",
+  "imports": [
+   "Stage3.TwistedMoment",
+   "Stage3.OperatorCauchy"
+  ],
+  "opens": [
+   "Complex",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Operator"
+  ],
+  "lines": 128,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OperatorCauchy.lean",
+   "lean_stage3/Stage3/TwistedMoment.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Aq",
+    "ns": "Operator",
+    "full": "Operator.Aq",
+    "line": 29,
+    "why": "`A = ∫₀¹ P′(u)² du`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bq",
+    "ns": "Operator",
+    "full": "Operator.Bq",
+    "line": 33,
+    "why": "`B = ∫₀¹ P′(u) P(u) du`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Cq",
+    "ns": "Operator",
+    "full": "Operator.Cq",
+    "line": 37,
+    "why": "`C = ∫₀¹ P(u)² du`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c1form",
+    "ns": "Operator",
+    "full": "Operator.c1form",
+    "line": 41,
+    "why": "The closed form of `c₁(α,β)`, `ℓ = log M`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cYform",
+    "ns": "Operator",
+    "full": "Operator.cYform",
+    "line": 47,
+    "why": "The closed form of `c(α,β)` on `ℂ × ℂ`, with `T^(−α−β) = exp(log T · (−(α+β)))`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "T : ℝ",
+     "q : ℂ × ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c1Y_eq",
+    "ns": "Operator",
+    "full": "Operator.c1Y_eq",
+    "line": 53,
+    "why": "`c₁` in closed form.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "c1Y P M α β = c1form P M α β",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cY_eq",
+    "ns": "Operator",
+    "full": "Operator.cY_eq",
+    "line": 82,
+    "why": "`c` in closed form.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "hT : T ≠ 0",
+     "α β : ℂ"
+    ],
+    "proves": "cY P M T α β = cYform P M T (α, β)",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "afst",
+    "ns": "Operator",
+    "full": "Operator.afst",
+    "line": 87,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "AnalyticAt ℂ (fun p : ℂ × ℂ => p.1) q",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.afst",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "asnd",
+    "ns": "Operator",
+    "full": "Operator.asnd",
+    "line": 89,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "AnalyticAt ℂ (fun p : ℂ × ℂ => p.2) q",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.asnd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "cYform_analytic",
+    "ns": "Operator",
+    "full": "Operator.cYform_analytic",
+    "line": 94,
+    "why": "`cYform` is analytic off `α + β = 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "T : ℝ"
+    ],
+    "proves": "AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0}",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cY_partials",
+    "ns": "Operator",
+    "full": "Operator.cY_partials",
+    "line": 106,
+    "why": "The partials of `c(α,β)`, at `α + β ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "hT : T ≠ 0",
+     "hxy : x + y ≠ 0"
+    ],
+    "proves": "DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y => cY P M T x y) y ∧ DifferentiableAt ℂ (fun y => pa (cY P M T) x y) y",
+    "file": "lean_stage3/Stage3/OperatorCY.lean",
+    "id": "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.analytic_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.analytic_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/OperatorCauchy.lean",
+  "module": "Stage3.OperatorCauchy",
+  "stem": "OperatorCauchy",
+  "header": "# OperatorCauchy — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: Cauchy's estimate. 2026-11-25.",
+  "imports": [],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Metric",
+   "Topology"
+  ],
+  "namespaces": [
+   "Operator"
+  ],
+  "lines": 197,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "pa",
+    "ns": "Operator",
+    "full": "Operator.pa",
+    "line": 31,
+    "why": "`∂α f (α, β)`.",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.analytic_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "pb",
+    "ns": "Operator",
+    "full": "Operator.pb",
+    "line": 34,
+    "why": "`∂β f (α, β)`.",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "pab",
+    "ns": "Operator",
+    "full": "Operator.pab",
+    "line": 37,
+    "why": "`∂β ∂α f (α, β)`.",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Dop",
+    "ns": "Operator",
+    "full": "Operator.Dop",
+    "line": 41,
+    "why": "Levinson's operator with `Q(x) = 1 − x`: `D f = (1 + (1/L)∂α)(1 + (1/L)∂β) f = f + (1/L)(∂α f + ∂β f) + (1/L²) ∂α∂β f`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cauchy_bounds",
+    "ns": "Operator",
+    "full": "Operator.cauchy_bounds",
+    "line": 47,
+    "why": "Cauchy's estimate, one variable at a time, on the closed polydisc of radius `ρ`.",
+    "sorry": false,
+    "needs": [
+     "hρ : 0 < ρ",
+     "hFa : ∀ y ∈ closedBall β₀ ρ, ∀ x ∈ closedBall α₀ ρ, DifferentiableAt ℂ (fun x => F x y) x",
+     "hFb : ∀ y ∈ closedBall β₀ ρ, DifferentiableAt ℂ (fun y => F α₀ y) y",
+     "hg : ∀ y ∈ closedBall β₀ ρ, DifferentiableAt ℂ (fun y => pa F α₀ y) y",
+     "hS : ∀ x ∈ closedBall α₀ ρ, ∀ y ∈ closedBall β₀ ρ, ‖F x y‖ ≤ S"
+    ],
+    "proves": "‖F α₀ β₀‖ ≤ S ∧ ‖pa F α₀ β₀‖ ≤ S / ρ ∧ ‖pb F α₀ β₀‖ ≤ S / ρ ∧ ‖pab F α₀ β₀‖ ≤ S / ρ / ρ",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Dop_norm_le",
+    "ns": "Operator",
+    "full": "Operator.Dop_norm_le",
+    "line": 88,
+    "why": "The size of `D f` at the radius `ρ = r/L`: `‖D f‖ ≤ S (1 + 2/r + 1/r²)`. The `1/L` of each derivative cancels the `L` of Cauchy's `1/ρ`; nothing grows with `L`.",
+    "sorry": false,
+    "needs": [
+     "hL : 0 < L",
+     "hr : 0 < r",
+     "hFa : ∀ y ∈ closedBall β₀ (r / L), ∀ x ∈ closedBall α₀ (r / L), DifferentiableAt ℂ (fun x => F x y) x",
+     "hFb : ∀ y ∈ closedBall β₀ (r / L), DifferentiableAt ℂ (fun y => F α₀ y) y",
+     "hg : ∀ y ∈ closedBall β₀ (r / L), DifferentiableAt ℂ (fun y => pa F α₀ y) y",
+     "hS : ∀ x ∈ closedBall α₀ (r / L), ∀ y ∈ closedBall β₀ (r / L), ‖F x y‖ ≤ S"
+    ],
+    "proves": "‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2)",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Dop_sub_mul",
+    "ns": "Operator",
+    "full": "Operator.Dop_sub_mul",
+    "line": 123,
+    "why": "`D` is linear: `D (A − B·c) = D A − (D B)·c`, given the partials it uses.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "hAa : ∀ᶠ y in 𝓝 β₀, DifferentiableAt ℂ (fun x => A x y) α₀",
+     "hBa : ∀ᶠ y in 𝓝 β₀, DifferentiableAt ℂ (fun x => B x y) α₀",
+     "hAb : DifferentiableAt ℂ (fun y => A α₀ y) β₀",
+     "hBb : DifferentiableAt ℂ (fun y => B α₀ y) β₀",
+     "hAg : DifferentiableAt ℂ (fun y => pa A α₀ y) β₀",
+     "hBg : DifferentiableAt ℂ (fun y => pa B α₀ y) β₀"
+    ],
+    "proves": "Dop L (fun x y => A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analytic_partials",
+    "ns": "Operator",
+    "full": "Operator.analytic_partials",
+    "line": 153,
+    "why": "Partials of an analytic function of two variables. For `f` analytic on an open `U ⊆ ℂ × ℂ`: at every point of `U` the partials in each variable exist, and the partial in the first variable is differentiable in the second.",
+    "sorry": false,
+    "needs": [
+     "hU : IsOpen U",
+     "hf : AnalyticOnNhd ℂ f U"
+    ],
+    "proves": "(∀ p ∈ U, DifferentiableAt ℂ (fun x => f (x, p.2)) p.1) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun y => f (p.1, y)) p.2) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun y => pa (fun x y => f (x, y)) p.1 y) p.2)",
+    "file": "lean_stage3/Stage3/OperatorCauchy.lean",
+    "id": "lean_stage3/Stage3/OperatorCauchy.lean::Operator.analytic_partials",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/OperatorInt.lean",
+  "module": "Stage3.OperatorInt",
+  "stem": "OperatorInt",
+  "header": "# OperatorInt — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: the mean as `D` of the moment. 2026-11-25.",
+  "imports": [
+   "Stage3.TwistedMoment",
+   "Stage3.OperatorCauchy"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Operator"
+  ],
+  "lines": 345,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OperatorCauchy.lean",
+   "lean_stage3/Stage3/TwistedMoment.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_setInt",
+    "ns": "Operator",
+    "full": "Operator.hasDerivAt_setInt",
+    "line": 29,
+    "why": "Differentiation under a compact integral.",
+    "sorry": false,
+    "needs": [
+     "hU : IsOpen U",
+     "hf : DifferentiableOn ℂ f U",
+     "hc : Continuous c",
+     "hk : ContinuousOn k (Set.Icc a b)",
+     "hδ : 0 < δ",
+     "hmaps : ∀ x ∈ closedBall x₀ δ, ∀ t ∈ Set.Icc a b, x + c t ∈ U"
+    ],
+    "proves": "HasDerivAt (fun x => ∫ t in Set.Icc a b, f (x + c t) * k t) (∫ t in Set.Icc a b, deriv f (x₀ + c t) * k t) x₀",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.hasDerivAt_setInt",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Jfg",
+    "ns": "Operator",
+    "full": "Operator.Jfg",
+    "line": 74,
+    "why": "`J_{f,g}(α,β) = ∫ w(t) f(1/2+α+it) g(1/2+β−it) |ψ(σ₀+it)|² dt`.",
+    "sorry": false,
+    "needs": [
+     "f g : ℂ → ℂ",
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_eq_Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Gl",
+    "ns": "Operator",
+    "full": "Operator.Gl",
+    "line": 78,
+    "why": "Levinson's `G(s) = ζ(s) + ζ′(s)/L`, i.e. `Q(−(1/L) d/ds)` with `Q(x) = 1 − x`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mollMean",
+    "ns": "Operator",
+    "full": "Operator.mollMean",
+    "line": 81,
+    "why": "The mollified mean `∫ w(t) |G(σ₀+it)|² |ψ(σ₀+it)|² dt`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ L' : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Imom_eq_Jfg",
+    "ns": "Operator",
+    "full": "Operator.Imom_eq_Jfg",
+    "line": 90,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ"
+    ],
+    "proves": "Imom W M a σ₀ α β = Jfg riemannZeta riemannZeta W M a σ₀ α β",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_eq_Jfg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_set",
+    "ns": "Operator",
+    "full": "Operator.Jfg_set",
+    "line": 93,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f g : ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uA_ne_one",
+    "ns": "Operator",
+    "full": "Operator.uA_ne_one",
+    "line": 98,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : ‖x‖ < 1",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "uA x t ≠ 1",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vB_ne_one",
+    "ns": "Operator",
+    "full": "Operator.vB_ne_one",
+    "line": 104,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hy : ‖y‖ < 1",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "vB y t ≠ 1",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "contOn_uA",
+    "ns": "Operator",
+    "full": "Operator.contOn_uA",
+    "line": 110,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hx : ‖x‖ < 1",
+     "hT : 4 ≤ T"
+    ],
+    "proves": "ContinuousOn (fun t => f (uA x t)) (Set.Icc (T / 4) (2 * T))",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "contOn_vB",
+    "ns": "Operator",
+    "full": "Operator.contOn_vB",
+    "line": 115,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hy : ‖y‖ < 1",
+     "hT : 4 ≤ T"
+    ],
+    "proves": "ContinuousOn (fun t => f (vB y t)) (Set.Icc (T / 4) (2 * T))",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_intOn",
+    "ns": "Operator",
+    "full": "Operator.Jfg_intOn",
+    "line": 120,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hg : ContinuousOn g {1}ᶜ",
+     "hα : ‖α‖ < 1",
+     "hβ : ‖β‖ < 1",
+     "hT : 4 ≤ T"
+    ],
+    "proves": "IntegrableOn (fun t => (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ)) (Set.Icc (T / 4) (2 * T))",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_le_of_ball",
+    "ns": "Operator",
+    "full": "Operator.norm_le_of_ball",
+    "line": 130,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ closedBall x₀ δ"
+    ],
+    "proves": "‖x‖ ≤ ‖x₀‖ + δ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_hasDerivAt_left",
+    "ns": "Operator",
+    "full": "Operator.Jfg_hasDerivAt_left",
+    "line": 137,
+    "why": "`∂α J_{f,g} = J_{f′,g}`.",
+    "sorry": false,
+    "needs": [
+     "hf : DifferentiableOn ℂ f {1}ᶜ",
+     "hg : ContinuousOn g {1}ᶜ",
+     "hx₀ : ‖x₀‖ ≤ 1 / 2",
+     "hβ : ‖β‖ < 1",
+     "hT : 4 ≤ T"
+    ],
+    "proves": "HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀ β) x₀",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.hasDerivAt_setInt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.hasDerivAt_setInt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.uA_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_hasDerivAt_right",
+    "ns": "Operator",
+    "full": "Operator.Jfg_hasDerivAt_right",
+    "line": 165,
+    "why": "`∂β J_{f,g} = J_{f,g′}`.",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hg : DifferentiableOn ℂ g {1}ᶜ",
+     "hα : ‖α‖ < 1",
+     "hy₀ : ‖y₀‖ ≤ 1 / 2",
+     "hT : 4 ≤ T"
+    ],
+    "proves": "HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y₀) y₀",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.hasDerivAt_setInt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.hasDerivAt_setInt",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.vB_ne_one",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_diffOn",
+    "ns": "Operator",
+    "full": "Operator.zeta_diffOn",
+    "line": 194,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "DifferentiableOn ℂ riemannZeta {1}ᶜ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.zeta_diffOn",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dzeta_diffOn",
+    "ns": "Operator",
+    "full": "Operator.dzeta_diffOn",
+    "line": 197,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "DifferentiableOn ℂ (deriv riemannZeta) {1}ᶜ",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.dzeta_diffOn",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_zeta_conj",
+    "ns": "Operator",
+    "full": "Operator.deriv_zeta_conj",
+    "line": 201,
+    "why": "`ζ′(s̄) = conj ζ′(s)`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s)",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.deriv_zeta_conj",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMean_eq",
+    "ns": "Operator",
+    "full": "Operator.mollMean_eq",
+    "line": 217,
+    "why": "The mean, expanded: at `α = β = σ₀ − 1/2`, `∫ w |G|² |ψ|² = Jζζ + (1/L)(Jζ′ζ + Jζζ′) + (1/L²) Jζ′ζ′`.",
+    "sorry": false,
+    "needs": [
+     "L' : ℝ",
+     "hT : 4 ≤ T",
+     "hσ : ‖(((σ₀ - 1 / 2 : ℝ)) : ℂ)‖ < 1"
+    ],
+    "proves": "mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + 1 / (L' : ℂ) * (Jfg (deriv riemannZeta) riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + Jfg riemannZeta (deriv riemannZeta) W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ)) + 1 / (L' : ℂ) ^ 2 * Jfg (deriv riemannZeta) (deriv riemannZeta) W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.deriv_zeta_conj",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.deriv_zeta_conj",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Imom_partials",
+    "ns": "Operator",
+    "full": "Operator.Imom_partials",
+    "line": 289,
+    "why": "The partials of `Imom` on `‖α‖, ‖β‖ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hx : ‖x‖ < 1 / 2",
+     "hy : ‖y‖ < 1 / 2"
+    ],
+    "proves": "DifferentiableAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ DifferentiableAt ℂ (fun y => Imom W M a σ₀ x y) y ∧ pa (Imom W M a σ₀) x y = Jfg (deriv riemannZeta) riemannZeta W M a σ₀ x y ∧ pb (Imom W M a σ₀) x y = Jfg riemannZeta (deriv riemannZeta) W M a σ₀ x y ∧ DifferentiableAt ℂ (fun y => pa (Imom W M a σ₀) x y) y ∧ pab (Imom W M a σ₀) x y = Jfg (deriv riemannZeta) (deriv riemannZeta) W M a σ₀ x y",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.zeta_diffOn",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.zeta_diffOn",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Dop_Imom",
+    "ns": "Operator",
+    "full": "Operator.Dop_Imom",
+    "line": 319,
+    "why": "`D` of the moment is the mean: at `α₀ = σ₀ − 1/2`, `‖α₀‖ < 1/2`, `D Imom (α₀, α₀) = ∫ w |G(σ₀+it)|² |ψ(σ₀+it)|²`.",
+    "sorry": false,
+    "needs": [
+     "L' : ℝ",
+     "hT : 4 ≤ T",
+     "hσ : ‖(((σ₀ - 1 / 2 : ℝ)) : ℂ)‖ < 1 / 2"
+    ],
+    "proves": "Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMean W M a σ₀ L'",
+    "file": "lean_stage3/Stage3/OperatorInt.lean",
+    "id": "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+    ]
    }
   ]
  },
@@ -103168,6 +104763,9 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
@@ -103232,6 +104830,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
@@ -104359,6 +105959,13 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
@@ -104456,6 +106063,10 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_eq_Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
@@ -104562,6 +106173,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
@@ -104746,6 +106358,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
@@ -104960,6 +106575,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_uA",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
@@ -104990,6 +106606,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.contOn_vB",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
@@ -105052,6 +106669,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
@@ -105617,7 +107236,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o"
+    ]
    },
    {
     "kind": "def",
@@ -106607,6 +108228,9 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Mof_ge",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
@@ -106663,6 +108287,9 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
@@ -106724,6 +108351,9 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
@@ -106771,6 +108401,7 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
@@ -106809,6 +108440,10 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -106844,6 +108479,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
@@ -107165,7 +108802,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Operator.lean::Operator.Ires_o"
+    ]
    },
    {
     "kind": "theorem",
@@ -129725,11 +131364,12 @@
    "Stage3.SdiagLead",
    "Stage3.StirlingX",
    "Stage3.Arith",
-   "Stage3.Lemma3"
+   "Stage3.Lemma3",
+   "Stage3.Operator"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 241,
+  "lines": 242,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -129841,6 +131481,7 @@
    "lean_stage3/Stage3/NoHoles.lean",
    "lean_stage3/Stage3/OffDiagClose.lean",
    "lean_stage3/Stage3/OneChain.lean",
+   "lean_stage3/Stage3/Operator.lean",
    "lean_stage3/Stage3/PerfectFit.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",

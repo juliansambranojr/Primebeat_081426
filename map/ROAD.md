@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 3015.
+- **Theorems Lean has checked:** 3045.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 12.
@@ -186,6 +186,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`JointDialGate.StmtRelErrWindow`](./lean_stage3/JointDialGate.md#JointDialGate-StmtRelErrWindow) | from a hypothesis | [`JointDialGate.powerSaving_relErr`](./lean_stage3/JointDialGate.md#JointDialGate-powerSaving_relErr) ⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))<br/>[`JointDialGate.relErrWindow_of_theta`](./lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_theta) ⊢ StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * (2 : ℝ) ^ (((r : …<br/>[`JointFloorGate.weakWindow_relErr`](./lean_stage3/JointFloorGate.md#JointFloorGate-weakWindow_relErr) ⊢ JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 : ℝ) ^ (-(((r : ℝ) -…<br/>[`RouteNum.relErrWindow_route_num`](./lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) ⊢ JointDialGate.StmtRelErrWindow (fun m : ℤ =&gt; (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))… | 0 |
 | [`Nonvanishing.StmtSchoenfeldWindow`](./lean/Nonvanishing.md#Nonvanishing-StmtSchoenfeldWindow) | from a hypothesis | [`Schoenfeld.window_of_global`](./lean/Schoenfeld.md#Schoenfeld-window_of_global) ⊢ Nonvanishing.StmtSchoenfeldWindow f L r n | 6 |
 | [`OffDiagClose.StmtOffDiagAll`](./lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll) | from a hypothesis | [`OffDiagClose.stmtOffDiag_holds`](./lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds) ⊢ StmtOffDiagAll P θ R κ | 2 |
+| [`Operator.StmtMollMeanO`](./lean_stage3/Operator.md#Operator-StmtMollMeanO) | from a hypothesis | [`Operator.stmtMollMeanO_holds`](./lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) ⊢ StmtMollMeanO P θ R | 0 |
 | [`RelativeGate.StmtRelErrWindow`](./lean/RelativeGate.md#RelativeGate-StmtRelErrWindow) | from a hypothesis | [`RelativeGate.powerSaving_relErr`](./lean/RelativeGate.md#RelativeGate-powerSaving_relErr) ⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))<br/>[`RelativeGate.schoenfeldWindow_relErr`](./lean/RelativeGate.md#RelativeGate-schoenfeldWindow_relErr) ⊢ StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ (-((r : ℝ) - n) / 2… | 7 |
 | [`SdiagLead.StmtAdApprox`](./lean_stage3/SdiagLeadCore.md#SdiagLead-StmtAdApprox) | from a hypothesis | [`SdiagLead.stmtAdApprox_of_arith`](./lean_stage3/SdiagLeadAd.md#SdiagLead-stmtAdApprox_of_arith) ⊢ StmtAdApprox P A | 2 |
 | [`SdiagLead.StmtDsum`](./lean_stage3/SdiagLeadCore.md#SdiagLead-StmtDsum) | from a hypothesis | [`SdiagLead.stmtDsum_of_arith`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-stmtDsum_of_arith) ⊢ StmtDsum P A | 2 |
