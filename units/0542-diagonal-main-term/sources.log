@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-25T16:28:41Z
+# unit: 0542-diagonal-main-term
+# sources searched: 487
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:71440
+  theorem stmtSdiagLead_holds (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ} (hθ0 : 0 < θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:71441
+  (_hθ : θ < 1 / 2) (R : ℝ) {κ : ℝ} (hκ : 0 < κ) (hA : StmtArith) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:71444
+  theorem stmtDiagMainO_holds (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ} (hθ0 : 0 < θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:71445
+  (hθ : θ < 1 / 2) (R : ℝ) {κ : ℝ} (hκ : 0 < κ) (hA : StmtArith) :
+
+# 5 found, 0 missing

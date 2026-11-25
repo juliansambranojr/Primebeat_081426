@@ -22,6 +22,81 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/Stirling*.lean`
+
+    DONE        `SwapX.StmtXStirling`: X_{α,β,t} = (t/2π)^(−α−β) + O(1/t) for
+                ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1, through PNT+ `digamma_eq_tsum` and the
+                log Γ asymptotic with its argument; or the largest honest piece,
+                the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0541, 0542, TRAPS 59–66, start
+                `StmtArith` and `StmtXStirling` side by side). Written before the
+                workers start.
+    DEPENDS     `SwapX`, `ApproxFE`, `ApproxBounds`, Mathlib Gamma, PNT+ digamma
+    OUT         `StmtArith`; the operator (piece 3); unsmoothing (piece 4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the arithmetic facts: `Stage3/Arith*.lean`
+
+    DONE        `SdiagLead.StmtArith`, its six parts (`StmtSdmLe`, `StmtMeanSig3`,
+                `StmtTailFixed`, `StmtTailAvg`, `StmtGmuLog`, `StmtDivLog`), then
+                `stmtDiagMainO` with no hypothesis beyond P(0) = 0, 0 < θ; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     as above
+    DEPENDS     `SdiagLead*`, Mathlib arithmetic functions (`ArithmeticFunction`,
+                `Nat.totient`, `Nat.primeFactors`), PNT+ if it has μ²/φ sums
+    OUT         `StmtXStirling`; pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the swapped term: `Stage3/SwapX.lean`
+
+    DONE        `StmtX` (TwistedMoment): I_X(α,β) = T^(−α−β) I₁(−β,−α) + O(T/L),
+                or over `WeightAll`, or with an o(T) error if O(T/L) loses a
+                factor; or the largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0539, 0540, TRAPS 57–58,
+                start `StmtSdiagLead` and `StmtX` side by side). Written while the
+                worker runs, minutes after its start.
+    DEPENDS     `TwistedMoment`, `ApproxBounds`, `ApproxFE`, `Diagonal`,
+                `OffDiagClose`, `DiagonalO`
+    OUT         `StmtSdiagLead`; the operator (piece 3); unsmoothing (piece 4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the main term's arithmetic: `Stage3/SdiagLead.lean`
+
+    DONE        `StmtSdiagLead` (DiagMain) for P(0) = 0, 0 < θ < 1/2: the Jordan
+                swap, the per-d asymptotic to o(1/log M) from `psiMu_tendsto`, the
+                coprimality step on average over d, the d-sum; then
+                `StmtDiagMainO`; or the largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (as above). Written while the
+                worker runs, minutes after its start.
+    DEPENDS     `DiagMain`, `DiagMainMu`, `Diagonal`, PNT+ `Consequences`
+    OUT         `StmtX`; pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the little-o layer and the main term: `Stage3/DiagMainStmt.lean`, `DiagonalO.lean`, `DiagMain.lean`, `DiagMainMu.lean`
+
+    DONE        `StmtDiagMainO` and `errO`; `StmtDiagO` from `StmtDiagMainO` and
+                `diag_young`; Lemma 3 up to `Ires` with o(T) error from the
+                parts; `StmtDiagMainO` from `mu_pnt`, or a decision if a factor is
+                lost; units 0539, 0540
+    ASSUMED     Julian, 2026-11-25: "Yes to all and we will take your
+                recommendation" (log 0538, the o(1) route). Written after the
+                files were built: the pins step was skipped when the workers
+                started.
+    DEPENDS     `Diagonal`, `TwistedMoment`, `OffDiagClose`, PNT+ `Consequences`
+    OUT         `StmtX`; pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the diagonal: `Stage3/Diagonal.lean`
+
+    DONE        `StmtDiag` (TwistedMoment), Young §5–6: (a) the diagonal hm = kn
+                rewritten through the Mellin form of V as
+                (1/2πi)∫ G(s)/s·(∫w·g(s,t)dt)·ζ(1+α+β+2s)·S(α,β,s) ds with S the
+                h,k-sum over gcds; (b) the shift past s = 0, the pole of
+                ζ(1+α+β+2s) cancelled by the zero of p, the residue at 0 giving the
+                main term; (c) the h,k-sum evaluated as Young's integral in P
+                (Conrey's lemma), giving c₁(α,β) of (5.3); or the largest honest
+                piece, the rest as named statements with exact goals; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes and merge after unit" (log 0537, merge
+                #20, start the diagonal)
+    DEPENDS     `TwistedMoment`, `OffDiagClose`, `ApproxBounds`, `ApproxShift`,
+                Mathlib Möbius and arithmetic functions
+    OUT         `StmtX`; the operator (piece 3); unsmoothing (piece 4)
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, the window and the off-diagonal: `Stage3/OffDiagClose.lean`
 
     DONE        (i) `WeightAll`: an admissible window with |w^(j)| ≤ C_j·(T/L)^(−j)

@@ -1,0 +1,94 @@
+flowchart LR
+  n0["<b>Gp_hasDerivAt</b><br/>HasDerivAt (Gp p β lM) (β * Gp p β lM u + (lM : ℂ)⁻¹ * Gp p.deri…"]:::cnt
+  n1["<b>Gp_continuous</b><br/>Continuous (Gp p β lM)"]:::cnt
+  n2["<b>G1_hasDerivAt</b><br/>HasDerivAt (G1 P β lM) (G2 P β lM u) u"]:::cnt
+  n3["<b>G2_continuous</b><br/>Continuous (G2 P β lM)"]:::cnt
+  n4["<b>G1_continuous ■</b><br/>Continuous (G1 P β lM)"]:::cnt
+  n5["<b>Gp_zero</b><br/>Gp P β lM 0 = 0"]:::cnt
+  n6["<b>hasDerivAt_logdiv</b><br/>HasDerivAt (fun t : ℝ =＞ Real.log (x / t)) (-s⁻¹) s"]:::shp
+  n7["<b>hasDerivAt_logdiv'</b><br/>HasDerivAt (fun t : ℝ =＞ Real.log (t / n)) s⁻¹ s"]:::shp
+  n8["<b>kernel_continuousAt</b><br/>ContinuousAt (fun t : ℝ =＞ max (Real.log (t / n)) 0 / t) s"]:::shp
+  n9["<b>G2comp_continuousAt</b><br/>ContinuousAt (fun t : ℝ =＞ G2 P β lM (Real.log (x / t))) s"]:::shp
+  n10["<b>Psi_div_continuousAt</b><br/>ContinuousAt (fun t =＞ (∑ n ∈ Ioc 0 ⌊x⌋₊, c n * max (Real.log (t…"]:::shp
+  n11["<b>taylor_n</b><br/>∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((max (Real.lo…"]:::shp
+  n12["<b>sum_taylor</b><br/>∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) = G1 …"]:::shp
+  n13["<b>ftc_G1</b><br/>∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((1 / s : ℝ) :…"]:::shp
+  n14["<b>err_identity</b><br/>∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) - G1 …"]:::shp
+  n15["<b>Gp_bound</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ (A : ℝ) (β : ℂ) (lM u : ℝ), 0 ＜ lM → ‖β‖ * lM…"]:::shp
+  n16["<b>G2_bound</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (β : ℂ) (lM u : ℝ), 0 ＜ lM → ‖β‖ * lM ≤ A → 0…"]:::shp
+  n17["<b>int_piece</b><br/>‖∫ s in a..b, G2 P β lM (Real.log (x / s)) * (((Ψ s - 1) / s : ℝ…"]:::shp
+  n18["<b>err_bound</b><br/>‖∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) - G1…"]:::shp
+  n19["<b>Psi_eq</b><br/>Psi cmu x s = psiR s"]:::shp
+  n20["<b>psiR_eq</b><br/>psiR s = psiMu ⌊s⌋₊ + mMu ⌊s⌋₊ * Real.log (s / ⌊s⌋₊)"]:::shp
+  n21["<b>log_floor_le</b><br/>0 ≤ Real.log (s / ⌊s⌋₊) ∧ Real.log (s / ⌊s⌋₊) ≤ Real.log 2"]:::shp
+  n22["<b>psiR_bdd</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ s : ℝ, 1 ≤ s → |psiR s - 1| ≤ B"]:::shp
+  n23["<b>psiR_tendsto</b><br/>∃ s₀ : ℝ, 1 ≤ s₀ ∧ ∀ s : ℝ, s₀ ≤ s → |psiR s - 1| ≤ ε"]:::shp
+  n24["<b>sum_cpow_eq</b><br/>Smu P lM x β - mainS P lM x β = cexp (-(β * Real.log x)) * (∑ n …"]:::shp
+  n25["<b>norm_xpow_le</b><br/>‖cexp (-(β * Real.log x))‖ ≤ Real.exp A"]:::shp
+  n26["<b>muSmoothR</b><br/>∃ Y : ℝ, 1 ≤ Y ∧ ∃ L₀ : ℝ, 0 ＜ L₀ ∧ ∀ lM : ℝ, L₀ ≤ lM → ∀ x : ℝ,…"]:::shp
+  n27["<b>muSmooth_crude</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 ＜ lM → ∀ x : ℝ, 1 ≤ x → Real.log x …"]:::shp
+  n28["<b>stmtMuSmooth_holds ■</b><br/>StmtMuSmooth P κ"]:::shp
+  x0(["<b>SdiagLeadDsum</b><br/>4 theorems"]):::ext
+  x1(["<b>DiagMainMu</b><br/>mMu_tendsto<br/>psiMu_tendsto"]):::ext
+  x2(["<b>SdiagLeadAd</b><br/>Smu_bound<br/>stmtAdApprox_of_arith"]):::ext
+  n0 --> n1
+  n0 --> n11
+  n0 --> n2
+  n1 --> n3
+  n10 --> n14
+  n10 --> n18
+  n11 --> n12
+  n12 --> n14
+  n13 --> n14
+  n14 --> n18
+  n15 --> n16
+  n16 --> n26
+  n16 --> n27
+  n17 --> n18
+  n18 --> n26
+  n18 --> n27
+  n19 --> n26
+  n19 --> n27
+  n2 --> n11
+  n2 --> n13
+  n2 --> n4
+  n20 --> n22
+  n20 --> n23
+  n21 --> n22
+  n21 --> n23
+  n22 --> n26
+  n22 --> n27
+  n23 --> n26
+  n24 --> n26
+  n24 --> n27
+  n25 --> n26
+  n25 --> n27
+  n26 --> n28
+  n3 --> n9
+  n5 --> n11
+  n6 --> n11
+  n6 --> n13
+  n6 --> n9
+  n7 --> n10
+  n7 --> n11
+  n7 --> n8
+  n8 --> n11
+  n8 --> n12
+  n9 --> n11
+  n9 --> n12
+  n9 --> n13
+  n9 --> n14
+  n9 --> n18
+  n26 -.-> x2
+  n27 -.-> x2
+  n6 -.-> x0
+  x1 -.-> n22
+  x1 -.-> n23
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	80	wc -l lean_stage3/Stage3/SdiagLead.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/SdiagLead.lean
+defs	1	grep -c ^def lean_stage3/Stage3/SdiagLead.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SdiagLead.lean
+pins	2	stmtSdiagLead_holds, stmtDiagMainO_holds
+errors_first	5	the worker's first builds, one per file group: binder order in sum swaps, a smul under simp, a rewrite under a decidable if, nonlinear arithmetic in disguise, a set_option placement
+builds	5	the worker's report, at least one first build per file group
+traps_added	4	lean_stage3/TRAPS.md rows 63-66
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8929	lake build (full Stage3), Build completed successfully
+jobs_module	8827	run/build.log, lake build Stage3.SdiagLead
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	7	ls lean_stage3/Stage3/SdiagLead*.lean
+trap_first	63	lean_stage3/TRAPS.md
+trap_last	66	lean_stage3/TRAPS.md

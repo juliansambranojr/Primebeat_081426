@@ -7,12 +7,14 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>5 theorems"]):::ext
   x1(["<b>ApproxBounds</b><br/>VY_residue"]):::ext
   x2(["<b>ApproxShift</b><br/>approxFE<br/>local_zero"]):::ext
+  x3(["<b>Diagonal</b><br/>Hf_local"]):::ext
   n0 --> n4
   n1 --> n3
   n2 --> n3
   n1 -.-> x1
   n1 -.-> x2
   n2 -.-> x1
+  n2 -.-> x3
   n4 -.-> x2
   x0 -.-> n0
   x0 -.-> n3

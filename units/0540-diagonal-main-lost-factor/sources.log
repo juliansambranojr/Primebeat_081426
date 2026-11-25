@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-25T07:45:12Z
+# unit: 0540-diagonal-main-lost-factor
+# sources searched: 485
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70588
+  def StmtSdiagLead (P : Polynomial ℝ) (θ R κ : ℝ) : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70323
+  ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70590
+  ‖Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0 -
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70591
+  IY P (Mof T θ) α β / (Real.log (Mof T θ) : ℂ)‖ ≤ ε / Real.log T
+
+# 5 found, 0 missing

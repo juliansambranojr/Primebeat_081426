@@ -129,9 +129,11 @@ flowchart LR
   x3(["<b>ApproxShift</b><br/>7 theorems"]):::ext
   x4(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
   x5(["<b>ApproxDerivAll</b><br/>VYk_line_bound<br/>VYk_lines"]):::ext
-  x6(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
-  x7(["<b>OffDiagClose</b><br/>VY_iter_bound0"]):::ext
-  x8(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
+  x6(["<b>Diagonal</b><br/>4 theorems"]):::ext
+  x7(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
+  x8(["<b>OffDiagClose</b><br/>VY_iter_bound0"]):::ext
+  x9(["<b>SwapX</b><br/>S1_sharp"]):::ext
+  x10(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
   n0 --> n3
   n0 --> n5
   n1 --> n3
@@ -168,6 +170,10 @@ flowchart LR
   n0 -.-> x0
   n11 -.-> x4
   n11 -.-> x5
+  n11 -.-> x6
+  n13 -.-> x6
+  n15 -.-> x6
+  n16 -.-> x6
   n17 -.-> x4
   n17 -.-> x5
   n18 -.-> x0
@@ -176,13 +182,14 @@ flowchart LR
   n20 -.-> x5
   n21 -.-> x4
   n22 -.-> x0
-  n22 -.-> x7
-  n24 -.-> x8
-  n25 -.-> x8
-  n26 -.-> x8
-  n27 -.-> x8
-  n28 -.-> x8
-  n29 -.-> x8
+  n22 -.-> x8
+  n22 -.-> x9
+  n24 -.-> x10
+  n25 -.-> x10
+  n26 -.-> x10
+  n27 -.-> x10
+  n28 -.-> x10
+  n29 -.-> x10
   x1 -.-> n2
   x1 -.-> n24
   x1 -.-> n3
@@ -199,7 +206,7 @@ flowchart LR
   x3 -.-> n17
   x3 -.-> n20
   x3 -.-> n25
-  x6 -.-> n20
+  x7 -.-> n20
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -1487,13 +1494,15 @@ line 883 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY)
 
-**Feeds** (5 that use it)
+**Feeds** (7 that use it)
 
   - [`ApproxBounds.VY_line_bound`](#ApproxBounds-VY_line_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖VY α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Re… ``
   - [`ApproxBounds.VY_line_eq`](#ApproxBounds-VY_line_eq) — `` VY α β c x t = VY α β c' x t ``
   - [`ApproxBounds.VY_residue`](#ApproxBounds-VY_residue) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxDeriv.VYj_line_bound`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_line_bound) (ApproxDeriv) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ 1 * VY1 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) … ``
   - [`ApproxDerivAll.VYk_line_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_line_bound) (ApproxDerivAll) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ j * VYk α β j σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
+  - [`Diagonal.KY_bd`](../lean_stage3/Diagonal.md#Diagonal-KY_bd) (Diagonal) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / (2 * Rea… ``
+  - [`Diagonal.orig_bound`](../lean_stage3/Diagonal.md#Diagonal-orig_bound) (Diagonal) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ (Z : ℂ → ℂ) (KZ : ℝ), ∀ σ y : ℝ, -(1 / 4) ≤ σ → σ ≤ 1 → 1 / 4 ≤ ‖(σ : ℂ) … ``
 
 <a name="ApproxBounds-norm_VY_le"></a>
 ### `ApproxBounds.norm_VY_le`
@@ -1548,10 +1557,11 @@ line 952 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.VY_decay`](#ApproxBounds-VY_decay) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
   - [`ApproxBounds.VY_decay_young`](#ApproxBounds-VY_decay_young) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 /… ``
+  - [`Diagonal.inner_t`](../lean_stage3/Diagonal.md#Diagonal-inner_t) (Diagonal) — `` ∑' l : ℕ, ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * ∫ t, (W.w t : ℂ) * VY α β c (((A * (l + 1) : ℕ) : ℝ) *… ``
 
 <a name="ApproxBounds-integrand_differentiableAt"></a>
 ### `ApproxBounds.integrand_differentiableAt`
@@ -1610,10 +1620,11 @@ b ^ σ ≤ b ^ σ₀ + b ^ σ₁
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.VY_line_eq`](#ApproxBounds-VY_line_eq) — `` VY α β c x t = VY α β c' x t ``
   - [`ApproxBounds.VY_residue`](#ApproxBounds-VY_residue) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
+  - [`Diagonal.shift_t`](../lean_stage3/Diagonal.md#Diagonal-shift_t) (Diagonal) — `` VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) 1 = riemannZeta (1 + α + β) * Z 0 + VerticalIntegral' (fun s => KY α… ``
 
 <a name="ApproxBounds-rect_tendsto_ab"></a>
 ### `ApproxBounds.rect_tendsto_ab`
@@ -1639,9 +1650,10 @@ Tendsto (fun T : ℝ => RectangleIntegral f (↑a - I * T) (↑b + I * T)) atTop
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxBounds.VY_line_eq`](#ApproxBounds-VY_line_eq) — `` VY α β c x t = VY α β c' x t ``
+  - [`Diagonal.shift_t`](../lean_stage3/Diagonal.md#Diagonal-shift_t) (Diagonal) — `` VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) 1 = riemannZeta (1 + α + β) * Z 0 + VerticalIntegral' (fun s => KY α… ``
 
 <a name="ApproxBounds-VY_line_eq"></a>
 ### `ApproxBounds.VY_line_eq`
@@ -1854,9 +1866,10 @@ line 1281 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`OffDiagClose.VY_iter_bound0`](../lean_stage3/OffDiagClose.md#OffDiagClose-VY_iter_bound0) (OffDiagClose) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖(t : ℂ) ^ r * iteratedDeriv … ``
+  - [`SwapX.S1_sharp`](../lean_stage3/SwapX.md#SwapX-S1_sharp) (SwapX) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ‖α‖ ≤ η → ‖β‖ ≤ η → ∀ t : ℝ, 1 ≤ t → ‖S1 α β 1 t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * … ``
   - [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound) (TwistedMoment) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="ApproxBounds-lY_le_abs"></a>

@@ -20,7 +20,8 @@ flowchart LR
   x0(["<b>WobbleCount</b><br/>wobbleSum_expansion"]):::ext
   x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
   x2(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
-  x3(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
+  x3(["<b>Diagonal</b><br/>Ez_differentiable<br/>zeta_bd"]):::ext
+  x4(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
   n0 --> n13
   n0 --> n4
   n0 --> n8
@@ -48,7 +49,9 @@ flowchart LR
   n13 -.-> x1
   n15 -.-> x1
   n16 -.-> x3
+  n16 -.-> x4
   n17 -.-> x3
+  n17 -.-> x4
   n7 -.-> x0
   x2 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

@@ -220,6 +220,14 @@ import Stage3.ApproxDeriv
 import Stage3.TwistedMoment
 import Stage3.ApproxDerivAll
 import Stage3.OffDiagClose
+import Stage3.Diagonal
+import Stage3.DiagMainStmt
+import Stage3.DiagonalO
+import Stage3.DiagMainMu
+import Stage3.DiagMain
+import Stage3.SwapX
+import Stage3.SdiagLead
+import Stage3.StirlingX
 
 namespace Stage3
 

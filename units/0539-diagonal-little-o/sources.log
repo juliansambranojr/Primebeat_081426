@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-25T07:42:39Z
+# unit: 0539-diagonal-little-o
+# sources searched: 485
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0d22fe05302aa730.jsonl:964
+  theorem small_of_log {C ε T : ℝ} (hε : 0 < ε) (hT : 1 < T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0c0e4ed52d74bca2.jsonl:1230
+  (hTe : Real.exp (C / ε) ≤ T) : C * (T / Real.log T) ≤ ε * T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ac023933a07c43570.jsonl:942
+  theorem errY_absorb {T : ℝ} (W : Weight T (Real.log T)) {K ε : ℝ} (hε : 0 < ε)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0c0e4ed52d74bca2.jsonl:1245
+  (hT : 1 < T) (hTe : Real.exp (K / ε) ≤ T) : K * errY W ≤ ε * errO W :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0c0e4ed52d74bca2.jsonl:1258
+  theorem T_le_errO {T L : ℝ} (W : Weight T L) (hT : 0 ≤ T) : T ≤ errO W :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0c0e4ed52d74bca2.jsonl:1265
+  theorem what0_le {T L : ℝ} (W : Weight T L) (hT : 0 < T) : ‖(what0 W : ℂ)‖ ≤ 2 * T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70480
+  theorem stmtDiagO_of_mainO (P : Polynomial ℝ) {θ : ℝ} (hθ : θ < 1 / 2) (R : ℝ) {κ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0c0e4ed52d74bca2.jsonl:1285
+  (hκ : 0 < κ) (hmain : StmtDiagMainO P θ R κ) : StmtDiagO P θ R κ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70490
+  theorem lemma3_resO_of_parts {P : Polynomial ℝ} {θ R κ : ℝ} (hκ : 0 < κ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70491
+  (hD : StmtDiagO P θ R κ) (hO : StmtOffDiagAll P θ R κ) (hX : StmtX P θ R κ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70494
+  theorem lemma3_resO_of_mainO_X (P : Polynomial ℝ) {θ : ℝ} (hθ : θ < 1 / 2) (R : ℝ) {κ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70495
+  (hκ : 0 < κ) (hmain : StmtDiagMainO P θ R κ) (hX : StmtX P θ R κ) :
+
+# 13 found, 0 missing
