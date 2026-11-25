@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 1, Conrey's identity and count: `Stage3/ConreyCount*.lean`
+
+    DONE        `conrey_identity`: W(s) + W(1 − s) = 2·Q(1/2)·Λ(s) for W of
+                `OperatorQ` (Conrey 1983 §4 (1) at m = 0, here from the parity of
+                Λ's derivatives); then Levinson's count with V = W/Gammaℝ in place
+                of G: lineCount b − lineCount a ≥ (N b − N a) − 2·(zeros of V right
+                of the line) − O(log b), generalizing `LevinsonArg`,
+                `LevinsonCount`, `LevinsonMultiple`, `LevinsonWindowNear`; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (write B4 round, log the
+                Gram/Turing round and B4's line identity, start step 1).
+                Written before the worker starts.
+    DEPENDS     `OperatorQ`, `HardyZ`, `LevinsonArg`, `LevinsonTurn`,
+                `LevinsonSize`, `LevinsonEdge`, `LevinsonCount`, `LevinsonMultiple`,
+                `LevinsonWindowNear`, `Littlewood`
+    OUT         the mean value of ψV (B4 step 3), the closed form; B3; C
+
 ### 2026-11-25 · block S13 of `design/stencil.md`, B4, the operator with a general Q: `Stage3/OperatorQ*.lean`
 
     DONE        V = Q(−(1/L) d/ds) ζ for a real polynomial Q with Q(0) = 1 and

@@ -927,3 +927,39 @@ in step with the horizon. In Julian's picture: a mechanism that fills every
 basin. The design question stays C3's, now with these two routes closed as
 general statements and (b) open as a finite verification in Lean (Turing's
 method on a range), which the tree does not have.
+
+### S13, B4: the operator with a general Q, after Conrey 1983 (2026-11-25, Julian: "Yes to all please")
+
+Read this session: Conrey, "Zeros of derivatives of Riemann's ξ-function on the
+critical line", J. Number Theory 16 (1983), 49–74, §4 (PDF from Julian; text in
+the session scratchpad, `papers/conrey/main.txt`). His Bulletin announcement of
+two fifths (Bull. AMS 20 (1989)) was read too; it has no proofs.
+
+**What failed.** Levinson's line identity for `V = Q(−(1/L) d/ds) ζ` holds only for
+linear `Q` (`OperatorQ`'s docstring and the worker's numeric check: for a cubic
+`Q`, `Re(Gammaℝ·V)` is not zero at the zeros of ζ on the line).
+
+**Conrey's route.** For a real `φ` with `φ(0) = 1` and `φ(z) + φ(1 − z) = K ≠ 0`
+(equivalent to `φ′(x) = φ′(1 − x)`), the Riemann–Siegel integral gives
+`K·ξ(s) = Q(s) + Q(1 − s)`, `Q = H·V`, his (1) at `m = 0`. On the line the two
+terms are conjugate, so `ξ(1/2 + it) = 0` exactly where `arg Q ≡ π/2 (mod π)`, and
+`N₀ ≥ N − (1/π)·Δ arg V − O(log T)`, his (2). His `V` is
+`C(s) + χ(s) D(s) + (small)`, `C(s) = Σ c(n)(F(s) − log n)^m n^(−s)`, `F = H′/H`,
+`c(z) = φ(L⁻¹ log z)`: the coefficients carry `F(s) − log n`, the shift by
+`F ≈ ½ log(t/2π)` that `OperatorQ` found as `(g − L/2)/L`.
+
+**The tree's form.** `OperatorQ.W = Q(1/2 − (1/L) d/ds) Λ` already has
+`Re W = Q(1/2)·Λ` on the line. With `Λ(1 − s) = Λ(s)`, the odd derivatives change
+sign under `s ↦ 1 − s` and the even ones above order 0 have zero coefficient, so
+`W(s) + W(1 − s) = 2·Q(1/2)·Λ(s)`: Conrey's identity with `K = 2Q(1/2)`, with no
+Riemann–Siegel integral. `V = W/Gammaℝ = Q(−(D + g − L/2)/L) ζ`.
+
+**Steps.**
+1. `conrey_identity` and the count through `arg W` (`ConreyCount`, building).
+2. The edges for `V`: its size far right is a polynomial in `(g − L/2)/L`, near
+   a constant on `[T/4, 2T]`; on lower windows the shift is about `j/L`.
+3. The mean value of `ψV`: a sum over `k, l` of `(−1/L)^(k+l)` times twisted
+   moments of `ζ^(k)` and `ζ^(l)` with polynomial weights in `(g − L/2)/L`; the
+   operator of piece 3 with a general `Q` and a weight.
+4. The closed form, Young's (1.3) with general `Q`; Conrey's Corollary gives
+   `κ ≥ 0.3658` at `θ = 1/2`, the figure unit 0551 computed.
