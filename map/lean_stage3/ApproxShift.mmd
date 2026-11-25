@@ -32,8 +32,9 @@ flowchart LR
   x1(["<b>ApproxFE</b><br/>5 theorems"]):::ext
   x2(["<b>ApproxBounds</b><br/>5 theorems"]):::ext
   x3(["<b>ApproxDeriv</b><br/>KY_local"]):::ext
-  x4(["<b>TwistedMoment</b><br/>approxFE_small<br/>resY_term_cAt"]):::ext
-  x5(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
+  x4(["<b>Diagonal</b><br/>Hf_local<br/>KY_joint_cont"]):::ext
+  x5(["<b>TwistedMoment</b><br/>approxFE_small<br/>resY_term_cAt"]):::ext
+  x6(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n12
@@ -75,11 +76,13 @@ flowchart LR
   n11 -.-> x2
   n18 -.-> x2
   n18 -.-> x4
+  n18 -.-> x5
   n2 -.-> x2
   n20 -.-> x2
+  n20 -.-> x4
   n25 -.-> x2
   n26 -.-> x2
-  n28 -.-> x4
+  n28 -.-> x5
   n3 -.-> x2
   n3 -.-> x3
   x0 -.-> n0
@@ -89,8 +92,8 @@ flowchart LR
   x1 -.-> n28
   x1 -.-> n5
   x1 -.-> n8
-  x5 -.-> n20
-  x5 -.-> n27
+  x6 -.-> n20
+  x6 -.-> n27
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -17261,7 +17261,9 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
-     "lean_stage3/Stage3/ApproxDerivAll.lean::ApproxDerivAll.VYk_line_bound"
+     "lean_stage3/Stage3/ApproxDerivAll.lean::ApproxDerivAll.VYk_line_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound"
     ]
    },
    {
@@ -17326,7 +17328,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t"
     ]
    },
    {
@@ -17392,7 +17395,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
     ]
    },
    {
@@ -17418,7 +17422,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
     ]
    },
    {
@@ -22110,6 +22115,9 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
@@ -22214,6 +22222,9 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
@@ -22319,6 +22330,10 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
     ]
    },
@@ -22372,7 +22387,12 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FY_eq_FL"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FY_eq_FL",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt"
     ]
    },
    {
@@ -22431,7 +22451,22 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FY_eq_FL"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FY_eq_FL",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap"
     ]
    },
    {
@@ -22477,6 +22512,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.Fw_iter_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.Fw_iter_leibniz",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.VY_iter_bound0",
@@ -22585,6 +22623,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
@@ -22637,6 +22678,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
@@ -23037,6 +23081,7 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound"
     ]
    },
@@ -23092,7 +23137,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound"
     ]
    },
    {
@@ -23133,7 +23180,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable"
     ]
    },
    {
@@ -23211,7 +23260,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable"
     ]
    },
    {
@@ -23621,7 +23672,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local"
     ]
    },
    {
@@ -24433,6 +24485,7 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_differentiableAt",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
     ]
    },
@@ -24509,7 +24562,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_pole_neg",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_pole_one",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local"
     ]
    },
    {
@@ -34027,6 +34081,7 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
     ]
    },
@@ -34052,7 +34107,8 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_simple",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data",
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_origin"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_origin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable"
     ]
    },
    {
@@ -34298,6 +34354,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_meromorphicOn",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
     ]
    },
@@ -38146,6 +38203,2909 @@
     "used_by": [
      "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Diagonal.lean",
+  "module": "Stage3.Diagonal",
+  "stem": "Diagonal",
+  "header": "# Diagonal — block S12 of `lean_stage3/design/stencil.md`, the diagonal. 2026-11-25.",
+  "imports": [
+   "Stage3.OffDiagClose",
+   "Stage3.ZetaGrowth"
+  ],
+  "opens": [
+   "ApproxBounds",
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Diagonal"
+  ],
+  "lines": 1891,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OffDiagClose.lean",
+   "lean_stage3/Stage3/ZetaGrowth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Chk",
+    "ns": "Diagonal",
+    "full": "Diagonal.Chk",
+    "line": 83,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "h k : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Rhk",
+    "ns": "Diagonal",
+    "full": "Diagonal.Rhk",
+    "line": 88,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "h k : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Sdiag",
+    "ns": "Diagonal",
+    "full": "Diagonal.Sdiag",
+    "line": 95,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Zd",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zd",
+    "line": 100,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Zhk",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zhk",
+    "line": 105,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "h k : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Wg",
+    "ns": "Diagonal",
+    "full": "Diagonal.Wg",
+    "line": 110,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "α β s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "SB",
+    "ns": "Diagonal",
+    "full": "Diagonal.SB",
+    "line": 114,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gcd_facts",
+    "ns": "Diagonal",
+    "full": "Diagonal.gcd_facts",
+    "line": 121,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "0 < Nat.gcd h k ∧ h = Nat.gcd h k * (h / Nat.gcd h k) ∧ k = Nat.gcd h k * (k / Nat.gcd h k) ∧ 1 ≤ h / Nat.gcd h k ∧ 1 ≤ k / Nat.gcd h k ∧ h / Nat.gcd h k ≤ h ∧ k / Nat.gcd h k ≤ k",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_reindex",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "diag_reindex",
+    "ns": "Diagonal",
+    "full": "Diagonal.diag_reindex",
+    "line": 133,
+    "why": "The constraint `hm = kn`. With `d = (h,k)`, `h = dh'`, `k = dk'`, `(h',k') = 1`, the solutions are exactly `m = k'ℓ`, `n = h'ℓ`, `ℓ ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "F : ℕ → ℕ → ℂ"
+    ],
+    "proves": "∑' p : ℕ × ℕ, (if h * (p.1 + 1) = k * (p.2 + 1) then F (p.1 + 1) (p.2 + 1) else 0) = ∑' l : ℕ, F (k / Nat.gcd h k * (l + 1)) (h / Nat.gcd h k * (l + 1))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_reindex",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ncpow_mul",
+    "ns": "Diagonal",
+    "full": "Diagonal.ncpow_mul",
+    "line": 189,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "m n : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "((m * n : ℕ) : ℂ) ^ z = (m : ℂ) ^ z * (n : ℂ) ^ z",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ell_term",
+    "ns": "Diagonal",
+    "full": "Diagonal.ell_term",
+    "line": 194,
+    "why": "One term of the `ℓ`-sum: `(k'ℓ)^(−1/2−α) (h'ℓ)^(−1/2−β) K (k'h'ℓ²)^(−s) = K k'^(−1/2−α−s) h'^(−1/2−β−s) ℓ^(−(1+α+β+2s))`.",
+    "sorry": false,
+    "needs": [
+     "hA : 1 ≤ A",
+     "hB : 1 ≤ B",
+     "l : ℕ",
+     "α β s K : ℂ"
+    ],
+    "proves": "((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * (K * ((((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ) : ℝ) : ℂ) ^ (-s)) = K * ((A : ℂ) ^ (-(1 / 2 + α + s)) * (B : ℂ) ^ (-(1 / 2 + β + s))) * (1 / ((l : ℂ) + 1) ^ (1 + α + β + 2 * s))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pos_xl",
+    "ns": "Diagonal",
+    "full": "Diagonal.pos_xl",
+    "line": 216,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hA : 1 ≤ A",
+     "hB : 1 ≤ B",
+     "l : ℕ"
+    ],
+    "proves": "0 < ((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_cf",
+    "ns": "Diagonal",
+    "full": "Diagonal.summable_cf",
+    "line": 223,
+    "why": "The `ℓ`-coefficients, weighted by `x_ℓ^(−c)`, are summable for `Re(α+β) + 2c > 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < α.re + β.re + 2 * c",
+     "hA : 1 ≤ A",
+     "hB : 1 ≤ B"
+    ],
+    "proves": "Summable fun l : ℕ => ‖((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β))‖ * (((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ)) ^ (-c)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ell_sum",
+    "ns": "Diagonal",
+    "full": "Diagonal.ell_sum",
+    "line": 244,
+    "why": "The `ℓ`-sum at fixed `t`: `Σ_ℓ (k'ℓ)^(−1/2−α)(h'ℓ)^(−1/2−β) V_c(k'h'ℓ², t) = (1/2πi)∫_(c) G(s)/s g(s,t) ζ(1+α+β+2s) k'^(−1/2−α−s) h'^(−1/2−β−s) ds`.",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hu : 0 < 1 / 2 + α.re + c",
+     "hv : 0 < 1 / 2 + β.re + c",
+     "hw : 0 < α.re + β.re + 2 * c",
+     "hA : 1 ≤ A",
+     "hB : 1 ≤ B"
+    ],
+    "proves": "∑' l : ℕ, ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * VY α β c (((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ)) t = VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * ((A : ℂ) ^ (-(1 / 2 + α + s)) * (B : ℂ) ^ (-(1 / 2 + β + s))))) c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_small'",
+    "ns": "Diagonal",
+    "full": "Diagonal.re_small'",
+    "line": 303,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10"
+    ],
+    "proves": "-(1 / 10) ≤ α.re ∧ α.re ≤ 1 / 10",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_small'",
+    "ns": "Diagonal",
+    "full": "Diagonal.im_small'",
+    "line": 306,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10"
+    ],
+    "proves": "-(1 / 10) ≤ α.im ∧ α.im ≤ 1 / 10",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_le_ends'",
+    "ns": "Diagonal",
+    "full": "Diagonal.rpow_le_ends'",
+    "line": 310,
+    "why": "`x^σ ≤ a^σ + b^σ` for `0 < a ≤ x ≤ b`, any sign of `σ`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a",
+     "hax : a ≤ x",
+     "hxb : x ≤ b"
+    ],
+    "proves": "x ^ σ ≤ a ^ σ + b ^ σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.rpow_le_ends'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gauss_exp",
+    "ns": "Diagonal",
+    "full": "Diagonal.gauss_exp",
+    "line": 319,
+    "why": "`e^(−y²/2) e^(2|y|) ≤ e⁴ e^(−y²/4)`.",
+    "sorry": false,
+    "needs": [
+     "y : ℝ"
+    ],
+    "proves": "Real.exp (-(1 / 2) * y ^ 2) * Real.exp (2 * |y|) ≤ Real.exp 4 * Real.exp (-(1 / 4) * y ^ 2)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_bd",
+    "ns": "Diagonal",
+    "full": "Diagonal.KY_bd",
+    "line": 326,
+    "why": "`‖K(σ+iy, t)‖ ≤ C N (t/2π)^σ e^(−y²/2)` on one line `σ ≠ 0`, `σ > −2/5`, `t ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hσ0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / (2 * Real.pi)) ^ σ * Real.exp (-(1 / 2) * y ^ 2)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_joint_cont",
+    "ns": "Diagonal",
+    "full": "Diagonal.KY_joint_cont",
+    "line": 339,
+    "why": "`K(σ+iy, t)` is jointly continuous in `(t, y)`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0"
+    ],
+    "proves": "Continuous fun p : ℝ × ℝ => KY α β p.1 (σ + p.2 * I)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "joint_integrable",
+    "ns": "Diagonal",
+    "full": "Diagonal.joint_integrable",
+    "line": 377,
+    "why": "The joint integrand is integrable on `ℝ × ℝ`: `w(t) K(σ+iy,t) Z(σ+iy)`, for `Z` continuous on the line with `‖Z(σ+iy)‖ ≤ K e^(2|y|)`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0",
+     "hZc : Continuous fun y : ℝ => Z (σ + y * I)",
+     "hZ : ∀ y : ℝ, ‖Z (σ + y * I)‖ ≤ K * Real.exp (2 * |y|)"
+    ],
+    "proves": "Integrable (fun p : ℝ × ℝ => (W.w p.1 : ℂ) * (KY α β p.1 (σ + p.2 * I) * Z (σ + p.2 * I))) (volume.prod volume)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.rpow_le_ends'",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.rpow_le_ends'",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wVI_integrable",
+    "ns": "Diagonal",
+    "full": "Diagonal.wVI_integrable",
+    "line": 437,
+    "why": "`w(t) (1/2πi)∫_(σ) K(s,t) Z(s) ds` is integrable in `t`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0",
+     "hZc : Continuous fun y : ℝ => Z (σ + y * I)",
+     "hZ : ∀ y : ℝ, ‖Z (σ + y * I)‖ ≤ K * Real.exp (2 * |y|)"
+    ],
+    "proves": "Integrable fun t => (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Z s) σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wVI_swap",
+    "ns": "Diagonal",
+    "full": "Diagonal.wVI_swap",
+    "line": 450,
+    "why": "The Fubini swap: `∫ w(t) (1/2πi)∫_(σ) K(s,t) Z(s) ds dt = (1/2πi)∫_(σ) G(s)/s (∫ w(t) g(s,t) dt) Z(s) ds`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0",
+     "hZc : Continuous fun y : ℝ => Z (σ + y * I)",
+     "hZ : ∀ y : ℝ, ‖Z (σ + y * I)‖ ≤ K * Real.exp (2 * |y|)"
+    ],
+    "proves": "∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Z s) σ = VerticalIntegral' (fun s => GY α β s / s * Wg W α β s * Z s) σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cpow_nat",
+    "ns": "Diagonal",
+    "full": "Diagonal.norm_cpow_nat",
+    "line": 481,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hn : 1 ≤ n",
+     "z : ℂ"
+    ],
+    "proves": "‖(n : ℂ) ^ z‖ = (n : ℝ) ^ z.re",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_line",
+    "ns": "Diagonal",
+    "full": "Diagonal.re_line",
+    "line": 484,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x : ℂ",
+     "σ y : ℝ"
+    ],
+    "proves": "(-(x + ((σ : ℂ) + y * I))).re = -(x.re + σ)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_line",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Rhk_norm",
+    "ns": "Diagonal",
+    "full": "Diagonal.Rhk_norm",
+    "line": 487,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "σ y : ℝ"
+    ],
+    "proves": "‖Rhk α β h k (σ + y * I)‖ = ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + σ)) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + σ))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_line"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Rhk_norm_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.Rhk_norm_le",
+    "line": 496,
+    "why": "`‖Rhk(σ+iy)‖` decreases in `σ`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "hσ : σ' ≤ σ",
+     "y : ℝ"
+    ],
+    "proves": "‖Rhk α β h k (σ + y * I)‖ ≤ ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + σ')) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + σ'))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Sdiag_norm_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.Sdiag_norm_le",
+    "line": 507,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "hσ : σ' ≤ σ",
+     "y : ℝ"
+    ],
+    "proves": "‖Sdiag M a σ₀ α β (σ + y * I)‖ ≤ SB M a σ₀ α β σ'",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "SB_nonneg",
+    "ns": "Diagonal",
+    "full": "Diagonal.SB_nonneg",
+    "line": 516,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "0 ≤ SB M a σ₀ α β σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Rhk_differentiable",
+    "ns": "Diagonal",
+    "full": "Diagonal.Rhk_differentiable",
+    "line": 520,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Differentiable ℂ (Rhk α β h k)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Sdiag_differentiable",
+    "ns": "Diagonal",
+    "full": "Diagonal.Sdiag_differentiable",
+    "line": 531,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "Differentiable ℂ (Sdiag M a σ₀ α β)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_dirichlet_bound",
+    "ns": "Diagonal",
+    "full": "Diagonal.zeta_dirichlet_bound",
+    "line": 541,
+    "why": "`‖ζ(w)‖ ≤ Σ (n+1)^(−Re w)` for `Re w > 1`.",
+    "sorry": false,
+    "needs": [
+     "hw : 1 < w.re"
+    ],
+    "proves": "‖riemannZeta w‖ ≤ ∑' n : ℕ, ((n : ℝ) + 1) ^ (-w.re)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_w",
+    "ns": "Diagonal",
+    "full": "Diagonal.re_w",
+    "line": 549,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "σ y : ℝ"
+    ],
+    "proves": "(1 + α + β + 2 * ((σ : ℂ) + y * I)).re = 1 + α.re + β.re + 2 * σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_w",
+    "ns": "Diagonal",
+    "full": "Diagonal.im_w",
+    "line": 553,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "σ y : ℝ"
+    ],
+    "proves": "(1 + α + β + 2 * ((σ : ℂ) + y * I)).im = α.im + β.im + 2 * y",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_ne_one",
+    "ns": "Diagonal",
+    "full": "Diagonal.w_ne_one",
+    "line": 557,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : α.re + β.re + 2 * σ ≠ 0"
+    ],
+    "proves": "1 + α + β + 2 * ((σ : ℂ) + y * I) ≠ 1",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_line_cont",
+    "ns": "Diagonal",
+    "full": "Diagonal.zeta_line_cont",
+    "line": 566,
+    "why": "`ζ(1+α+β+2s)` is continuous on a line where its argument avoids `1`.",
+    "sorry": false,
+    "needs": [
+     "h : α.re + β.re + 2 * σ ≠ 0"
+    ],
+    "proves": "Continuous fun y : ℝ => riemannZeta (1 + α + β + 2 * ((σ : ℂ) + y * I))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "line_integrable",
+    "ns": "Diagonal",
+    "full": "Diagonal.line_integrable",
+    "line": 572,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hu : 0 < 1 / 2 + α.re + c",
+     "hv : 0 < 1 / 2 + β.re + c",
+     "hZc : Continuous fun y : ℝ => Z (c + y * I)",
+     "hZ : ∀ y : ℝ, ‖Z (c + y * I)‖ ≤ K"
+    ],
+    "proves": "Integrable fun y : ℝ => KY α β t (c + y * I) * Z (c + y * I)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vi_sum",
+    "ns": "Diagonal",
+    "full": "Diagonal.vi_sum",
+    "line": 586,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : Finset ι",
+     "f : ι → ℂ → ℂ",
+     "σ : ℝ",
+     "hf : ∀ i ∈ s, Integrable fun y : ℝ => f i (σ + y * I)"
+    ],
+    "proves": "∑ i ∈ s, VerticalIntegral' (f i) σ = VerticalIntegral' (fun z => ∑ i ∈ s, f i z) σ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.vi_sum",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Kz",
+    "ns": "Diagonal",
+    "full": "Diagonal.Kz",
+    "line": 594,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_line_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.zeta_line_le",
+    "line": 596,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < α.re + β.re + 2 * c",
+     "y : ℝ"
+    ],
+    "proves": "‖riemannZeta (1 + α + β + 2 * ((c : ℂ) + y * I))‖ ≤ Kz α β c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Kz_nonneg",
+    "ns": "Diagonal",
+    "full": "Diagonal.Kz_nonneg",
+    "line": 603,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c : ℝ"
+    ],
+    "proves": "0 ≤ Kz α β c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Zhk_cont",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zhk_cont",
+    "line": 606,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "hne : α.re + β.re + 2 * σ ≠ 0"
+    ],
+    "proves": "Continuous fun y : ℝ => Zhk a σ₀ α β h k (σ + y * I)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Zd_cont",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zd_cont",
+    "line": 612,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hne : α.re + β.re + 2 * σ ≠ 0"
+    ],
+    "proves": "Continuous fun y : ℝ => Zd M a σ₀ α β (σ + y * I)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_cont"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Zhk_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zhk_le",
+    "line": 617,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "hw : 0 < α.re + β.re + 2 * c",
+     "y : ℝ"
+    ],
+    "proves": "‖Zhk a σ₀ α β h k (c + y * I)‖ ≤ Kz α β c * (‖Chk a σ₀ h k‖ * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + c)) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + c))))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Zd_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.Zd_le",
+    "line": 626,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hw : 0 < α.re + β.re + 2 * c",
+     "y : ℝ"
+    ],
+    "proves": "‖Zd M a σ₀ α β (c + y * I)‖ ≤ Kz α β c * SB M a σ₀ α β c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_line_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "le_exp_mul",
+    "ns": "Diagonal",
+    "full": "Diagonal.le_exp_mul",
+    "line": 633,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hK : 0 ≤ K",
+     "y : ℝ"
+    ],
+    "proves": "K ≤ K * Real.exp (2 * |y|)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.le_exp_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inner_t",
+    "ns": "Diagonal",
+    "full": "Diagonal.inner_t",
+    "line": 641,
+    "why": "The `ℓ`-sum, integrated against `w`: `Σ_ℓ c_ℓ ∫ w(t) V_c(x_ℓ, t) dt = ∫ w(t) (1/2πi)∫_(c) G(s)/s g(s,t) ζ(1+α+β+2s) k'^(…) h'^(…) ds dt`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 1 / 10 < c",
+     "hA : 1 ≤ A",
+     "hB : 1 ≤ B"
+    ],
+    "proves": "∑' l : ℕ, ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * ∫ t, (W.w t : ℂ) * VY α β c (((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ)) t = ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * ((A : ℂ) ^ (-(1 / 2 + α + s)) * (B : ℂ) ^ (-(1 / 2 + β + s))))) c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pos_xl",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.summable_cf",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inner_hk",
+    "ns": "Diagonal",
+    "full": "Diagonal.inner_hk",
+    "line": 719,
+    "why": "One `(h, k)` of the diagonal in the per-`t` Mellin form.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 1 / 10 < c",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "∑' p : ℕ × ℕ, (if h * (p.1 + 1) = k * (p.2 + 1) then coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) else 0) = ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Zhk a σ₀ α β h k s) c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_reindex",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_reindex",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "diag_per_t",
+    "ns": "Diagonal",
+    "full": "Diagonal.diag_per_t",
+    "line": 764,
+    "why": "(a), per `t`: the diagonal is `∫ w(t) (1/2πi)∫_(c) G(s)/s g(s,t) ζ(1+α+β+2s) S(α,β,s) ds dt`, for `c > 1/10`, `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, any coefficients `a_h`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 1 / 10 < c"
+    ],
+    "proves": "diagSum W M a σ₀ α β c = ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Zd M a σ₀ α β s) c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.le_exp_mul",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.vi_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.le_exp_mul",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.line_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.vi_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "diag_mellin",
+    "ns": "Diagonal",
+    "full": "Diagonal.diag_mellin",
+    "line": 806,
+    "why": "(a), Young's Mellin form of the diagonal: for `c > 1/10`, `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, `diagSum = (1/2πi) ∫_(c) G(s)/s · (∫ w(t) g(s,t) dt) · ζ(1+α+β+2s) · S(α,β,s) ds`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 1 / 10 < c"
+    ],
+    "proves": "diagSum W M a σ₀ α β c = VerticalIntegral' (fun s => GY α β s / s * Wg W α β s * riemannZeta (1 + α + β + 2 * s) * Sdiag M a σ₀ α β s) c",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.le_exp_mul",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kz_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.le_exp_mul",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_bd",
+    "ns": "Diagonal",
+    "full": "Diagonal.zeta_bd",
+    "line": 825,
+    "why": "`ζ` on the band `−1/2 ≤ Re w ≤ 4`, `‖w − 1‖ ≥ 3/10`: `‖ζ(w)‖ ≤ C e^(|Im w|)` (from `ZetaGrowth.sq_zeta_band_bound`).",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ w : ℂ, -(1 / 2) ≤ w.re → w.re ≤ 4 → 3 / 10 ≤ ‖w - 1‖ → ‖riemannZeta w‖ ≤ Cz * Real.exp |w.im|",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_zeta_band_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_zeta_band_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ez",
+    "ns": "Diagonal",
+    "full": "Diagonal.Ez",
+    "line": 847,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ → ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ez_eq",
+    "ns": "Diagonal",
+    "full": "Diagonal.Ez_eq",
+    "line": 849,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : w ≠ 1"
+    ],
+    "proves": "Ez w = (w - 1) * riemannZeta w",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ez_differentiable",
+    "ns": "Diagonal",
+    "full": "Diagonal.Ez_differentiable",
+    "line": 856,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Differentiable ℂ Ez",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.analyticAt_dslope",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.sq_mul_zeta_analyticAt_one",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.analyticAt_dslope",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.sq_mul_zeta_analyticAt_one",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Hf",
+    "ns": "Diagonal",
+    "full": "Diagonal.Hf",
+    "line": 866,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "Z : ℂ → ℂ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Hf_eq",
+    "ns": "Diagonal",
+    "full": "Diagonal.Hf_eq",
+    "line": 870,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "Z : ℂ → ℂ",
+     "hw : 1 + α + β + 2 * s ≠ 1"
+    ],
+    "proves": "Hf α β t Z s = KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gY_differentiableAt",
+    "ns": "Diagonal",
+    "full": "Diagonal.gY_differentiableAt",
+    "line": 876,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "t : ℝ",
+     "hs : -(2 / 5) < s.re"
+    ],
+    "proves": "DifferentiableAt ℂ (gY α β t) s",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Kf",
+    "ns": "Diagonal",
+    "full": "Diagonal.Kf",
+    "line": 893,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "Z : ℂ → ℂ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Kf_differentiableAt",
+    "ns": "Diagonal",
+    "full": "Diagonal.Kf_differentiableAt",
+    "line": 896,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "t : ℝ",
+     "hZd : Differentiable ℂ Z",
+     "hs : -(2 / 5) < s.re"
+    ],
+    "proves": "DifferentiableAt ℂ (Kf α β t Z) s",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Hf_differentiableAt",
+    "ns": "Diagonal",
+    "full": "Diagonal.Hf_differentiableAt",
+    "line": 906,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "t : ℝ",
+     "hZd : Differentiable ℂ Z",
+     "hs : -(2 / 5) < s.re",
+     "hs0 : s ≠ 0"
+    ],
+    "proves": "DifferentiableAt ℂ (Hf α β t Z) s",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Hf_local",
+    "ns": "Diagonal",
+    "full": "Diagonal.Hf_local",
+    "line": 918,
+    "why": "The residue at `s = 0`: `ζ(1+α+β) Z(0)` (`G(0) = g(0,t) = 1`).",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "t : ℝ",
+     "hZd : Differentiable ℂ Z"
+    ],
+    "proves": "∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] (0 : ℂ), Hf α β t Z s = h s + riemannZeta (1 + α + β) * Z 0 / (s - 0)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_simple",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_simple",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Kf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "orig_bound",
+    "ns": "Diagonal",
+    "full": "Diagonal.orig_bound",
+    "line": 951,
+    "why": "The original integrand on the strip `−1/4 ≤ Re s ≤ 1`, away from `s = 0` and `w = 1`: `‖K(s,t) ζ(1+α+β+2s) Z(s)‖ ≤ C N (t/2π)^σ K_Z e^(−y²/4)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ (Z : ℂ → ℂ) (KZ : ℝ), ∀ σ y : ℝ, -(1 / 4) ≤ σ → σ ≤ 1 → 1 / 4 ≤ ‖(σ : ℂ) + y * I‖ → 3 / 10 ≤ ‖1 + α + β + 2 * ((σ : ℂ) + y * I) - 1‖ → ‖Z (σ + y * I)‖ ≤ KZ → ‖KY α β t (σ + y * I) * (riemannZeta (1 + α + β + 2 * ((σ : ℂ) + y * I)) * Z (σ + y * I))‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / (2 * Real.pi)) ^ σ * KZ * Real.exp (-(1 / 4) * y ^ 2)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gauss4_atTop",
+    "ns": "Diagonal",
+    "full": "Diagonal.gauss4_atTop",
+    "line": 1003,
+    "why": "`e^(−y²/4) → 0` as `y → ±∞`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Tendsto (fun y : ℝ => Real.exp (-(1 / 4) * y ^ 2)) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atTop",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gauss4_atBot",
+    "ns": "Diagonal",
+    "full": "Diagonal.gauss4_atBot",
+    "line": 1007,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Tendsto (fun y : ℝ => Real.exp (-(1 / 4) * y ^ 2)) atBot (𝓝 0)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atBot",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "shift_t",
+    "ns": "Diagonal",
+    "full": "Diagonal.shift_t",
+    "line": 1014,
+    "why": "(b), per `t`: the shift. For `t ≥ 1`, `α + β ≠ 0`, `Z` entire and bounded on the strip `−1/4 ≤ Re s ≤ 1`: `(1/2πi)∫_(1) K(s,t) ζ(1+α+β+2s) Z(s) ds = ζ(1+α+β) Z(0) + (1/2πi)∫_(−1/4) K(s,t) ζ(1+α+β+2s) Z(s) ds`. The pole of `ζ(1+α+β+2s)` at `s = −(α+β)/2` is cancelled by the zero of `p(s)` (`Hf`), so only `s = 0` contributes.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "ht : 1 ≤ t",
+     "hZd : Differentiable ℂ Z",
+     "hZb : ∀ σ y : ℝ, -(1 / 4) ≤ σ → σ ≤ 1 → ‖Z (σ + y * I)‖ ≤ KZ"
+    ],
+    "proves": "VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) 1 = riemannZeta (1 + α + β) * Z 0 + VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) (-(1 / 4))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rect_tendsto_ab",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atBot",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atTop",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rect_tendsto_ab",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_differentiableAt",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_eq",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atBot",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss4_atTop",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.orig_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.w_ne_one"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_left",
+    "ns": "Diagonal",
+    "full": "Diagonal.zeta_left",
+    "line": 1209,
+    "why": "`ζ(1+α+β+2s)` on the left line `Re s = −1/4`: `‖ζ‖ ≤ C e^(2|y|)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ y : ℝ, ‖riemannZeta (1 + α + β + 2 * (((-(1 / 4) : ℝ) : ℂ) + y * I))‖ ≤ Cz * Real.exp (2 * |y|)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.im_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_w",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_VI_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.norm_VI_le",
+    "line": 1235,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖f (σ + y * I)‖",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_VI_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "diag_shift",
+    "ns": "Diagonal",
+    "full": "Diagonal.diag_shift",
+    "line": 1248,
+    "why": "(b), integrated: the main term and the shifted integral. For `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, `α + β ≠ 0`, any coefficients: `diagSum = ŵ(0) ζ(1+α+β) S(α,β,0) + ∫ w(t) (1/2πi)∫_(−1/4) G(s)/s g(s,t) ζ(1+α+β+2s) S(α,β,s) ds dt`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0"
+    ],
+    "proves": "diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Zd M a σ₀ α β s) (-(1 / 4))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd_cont",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.re_small'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shift_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "shifted_bound",
+    "ns": "Diagonal",
+    "full": "Diagonal.shifted_bound",
+    "line": 1291,
+    "why": "(b), the size of the shifted integral: `‖∫ w (1/2πi)∫_(−1/4) …‖ ≤ K₀ N T (T/8π)^(−1/4) SB(−1/4)`, `K₀` absolute.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Zd M a σ₀ α β s) (-(1 / 4))‖ ≤ K0 * (1 + 1 / ‖α + β‖ ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * SB M a σ₀ α β (-(1 / 4))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_VI_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_bd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zd",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gauss_exp",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_VI_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_left",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "aY_bound'",
+    "ns": "Diagonal",
+    "full": "Diagonal.aY_bound'",
+    "line": 1369,
+    "why": "Young's coefficients with the `h^(−1/2)` kept: `‖a_h‖ h^(−σ₀) ≤ B h^(−1/2)`, `B = sup_{[0,1]} |P|`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R : ℝ) (h : ℕ), 1 ≤ h → h ≤ Mof T θ → ‖aY P T θ R h‖ * (h : ℝ) ^ (-sig0 T R) ≤ B * (h : ℝ) ^ (-(1 / 2) : ℝ)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Chk_norm",
+    "ns": "Diagonal",
+    "full": "Diagonal.Chk_norm",
+    "line": 1413,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "‖Chk a σ₀ h k‖ = (‖a h‖ * (h : ℝ) ^ (-σ₀)) * (‖a k‖ * (k : ℝ) ^ (-σ₀))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_shift_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.pow_shift_le",
+    "line": 1421,
+    "why": "`j^(−(1/2+x−1/4)) ≤ e^(κ/2) j^(−1/4)` for `1 ≤ j ≤ M ≤ T^θ`, `θ < 1/2`, `|x| ≤ κ/log T`.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "hθ : θ < 1 / 2",
+     "hj : 1 ≤ j",
+     "hjM : j ≤ M",
+     "hM : (M : ℝ) ≤ T ^ θ",
+     "hx : |x| ≤ κ / Real.log T"
+    ],
+    "proves": "(j : ℝ) ^ (-(1 / 2 + x + -(1 / 4))) ≤ Real.exp (κ / 2) * (j : ℝ) ^ (-(1 / 4) : ℝ)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.pow_shift_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "harm_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.harm_le",
+    "line": 1453,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.Icc 1 M, ((j : ℝ))⁻¹ ≤ 1 + Real.log M",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.harm_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.sum34_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum34_le",
+    "ns": "Diagonal",
+    "full": "Diagonal.sum34_le",
+    "line": 1459,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.Icc 1 M, (j : ℝ) ^ (-(3 / 4) : ℝ) ≤ (M : ℝ) ^ (1 / 4 : ℝ) * (1 + Real.log M)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.sum34_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.harm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.harm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gcd_term",
+    "ns": "Diagonal",
+    "full": "Diagonal.gcd_term",
+    "line": 1478,
+    "why": "One term through `d = (h,k)`: `h^(−1/2) k^(−1/2) k'^(−1/4) h'^(−1/4) = d^(−1) h'^(−3/4) k'^(−3/4)`.",
+    "sorry": false,
+    "needs": [
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "(h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ)) = ((Nat.gcd h k : ℕ) : ℝ)⁻¹ * (((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(3 / 4) : ℝ) * ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(3 / 4) : ℝ))",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gcd_sum",
+    "ns": "Diagonal",
+    "full": "Diagonal.gcd_sum",
+    "line": 1509,
+    "why": "The gcd sum: `Σ_{h,k ≤ M} h^(−1/2) k^(−1/2) k'^(−1/4) h'^(−1/4) ≤ M^(1/2) (1 + log M)³`, from `(h,k) ↦ (d, h', k')` injective.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ)) ≤ (M : ℝ) ^ (1 / 2 : ℝ) * (1 + Real.log M) ^ 3",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.harm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.sum34_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_term",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.harm_le",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.sum34_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "SB_young",
+    "ns": "Diagonal",
+    "full": "Diagonal.SB_young",
+    "line": 1582,
+    "why": "`S` on `Re s = −1/4` for Young's mollifier: `SB(−1/4) ≤ B² e^κ M^(1/2) (1 + log M)³` for `‖α‖, ‖β‖ ≤ κ/log T`, `θ < 1/2`, `M = ⌊T^θ⌋`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 < T → θ < 1 / 2 → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SB (Mof T θ) (aY P T θ R) (sig0 T R) α β (-(1 / 4)) ≤ B ^ 2 * Real.exp κ * (((Mof T θ : ℕ) : ℝ) ^ (1 / 2 : ℝ) * (1 + Real.log ((Mof T θ : ℕ) : ℝ)) ^ 3)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pow_shift_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_facts",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.gcd_sum",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.pow_shift_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logpow_eps",
+    "ns": "Diagonal",
+    "full": "Diagonal.logpow_eps",
+    "line": 1631,
+    "why": "`(log T)^p ≤ ((p+1)/ε)^p T^ε` for `T ≥ 1`, `ε > 0`.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "hε : 0 < ε",
+     "hT : 1 ≤ T"
+    ],
+    "proves": "Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.logpow_eps",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.final_size_diag"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "final_size_diag",
+    "ns": "Diagonal",
+    "full": "Diagonal.final_size_diag",
+    "line": 1651,
+    "why": "The size of the shifted term: for `θ < 1/2` there is `C` with `(1 + κ²L²) T (T/8π)^(−1/4) M^(1/2) (1 + log M)³ ≤ C T/L` for `T ≥ e`, `M ≤ T^θ`.",
+    "sorry": false,
+    "needs": [
+     "hθ : θ < 1 / 2",
+     "κ : ℝ"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * ((M : ℝ) ^ (1 / 2 : ℝ) * (1 + Real.log M) ^ 3) ≤ C * (T / Real.log T)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.final_size_diag",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.logpow_eps"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.logpow_eps"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtDiagMain",
+    "ns": "Diagonal",
+    "full": "Diagonal.StmtDiagMain",
+    "line": 1730,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "diag_young",
+    "ns": "Diagonal",
+    "full": "Diagonal.diag_young",
+    "line": 1737,
+    "why": "(a) + (b) for Young's mollifier, unconditional: for `θ < 1/2`, `κ > 0`, `diagSum = ŵ(0) ζ(1+α+β) S(α,β,0) + O(T/L)` on Lemma 6's range, every `Weight T (log T)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ"
+    ],
+    "proves": "∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0)‖ ≤ C * (T / Real.log T)",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.final_size_diag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_nonneg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.final_size_diag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDiag_of_main",
+    "ns": "Diagonal",
+    "full": "Diagonal.stmtDiag_of_main",
+    "line": 1779,
+    "why": "`StmtDiag` from (c): `diag_young` and `StmtDiagMain` give Young's Lemma 6 for the diagonal, `diagSum = c₁(α,β) ŵ(0) + O(T/L)`, for every `θ < 1/2`, `κ > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hmain : StmtDiagMain P θ R κ"
+    ],
+    "proves": "StmtDiag P θ R κ",
+    "file": "lean_stage3/Stage3/Diagonal.lean",
+    "id": "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -66330,6 +69290,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds"
     ]
    },
@@ -87765,6 +90726,17 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Wg",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.joint_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
@@ -87819,6 +90791,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -88515,6 +91490,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
@@ -89567,6 +92543,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
@@ -90109,6 +93087,9 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
     ]
@@ -90175,6 +93156,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offSum_bound_iter",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.off_term_iter_le",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
@@ -90216,6 +93198,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offSum_bound_iter",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.off_term_iter_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offdiag_term_iter_young",
@@ -90699,6 +93682,11 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_mellin",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_per_t",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -90769,7 +93757,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+    ]
    },
    {
     "kind": "theorem",
@@ -91103,6 +94093,11 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -91135,6 +94130,11 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -91175,6 +94175,11 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -91208,6 +94213,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -91266,6 +94273,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
@@ -91302,6 +94311,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
@@ -91353,6 +94363,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -113895,6 +116906,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Ez_differentiable",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_analytic",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_zeta_band_bound"
     ]
@@ -113923,6 +116935,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_bd",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_partial_fraction"
     ]
    }
@@ -114120,11 +117133,12 @@
    "Stage3.ApproxDeriv",
    "Stage3.TwistedMoment",
    "Stage3.ApproxDerivAll",
-   "Stage3.OffDiagClose"
+   "Stage3.OffDiagClose",
+   "Stage3.Diagonal"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 231,
+  "lines": 232,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -114159,6 +117173,7 @@
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",
    "lean_stage3/Stage3/CountReduction.lean",
+   "lean_stage3/Stage3/Diagonal.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/Doubling.lean",

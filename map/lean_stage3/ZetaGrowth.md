@@ -5,7 +5,7 @@
 18 theorems, 3 definitions, 834 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxBounds`](../lean_stage3/BoxBounds.md), [`EdgeBound`](../lean_stage3/EdgeBound.md), [`WobbleCount`](../lean_stage3/WobbleCount.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxBounds`](../lean_stage3/BoxBounds.md), [`Diagonal`](../lean_stage3/Diagonal.md), [`EdgeBound`](../lean_stage3/EdgeBound.md), [`WobbleCount`](../lean_stage3/WobbleCount.md)
 
 ## The picture
 
@@ -32,7 +32,8 @@ flowchart LR
   x0(["<b>WobbleCount</b><br/>wobbleSum_expansion"]):::ext
   x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
   x2(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
-  x3(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
+  x3(["<b>Diagonal</b><br/>Ez_differentiable<br/>zeta_bd"]):::ext
+  x4(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
   n0 --> n13
   n0 --> n4
   n0 --> n8
@@ -60,7 +61,9 @@ flowchart LR
   n13 -.-> x1
   n15 -.-> x1
   n16 -.-> x3
+  n16 -.-> x4
   n17 -.-> x3
+  n17 -.-> x4
   n7 -.-> x0
   x2 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -611,8 +614,9 @@ AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s
   - [`ContourShift.sq_mul_zeta_analyticAt_one`](../lean_stage3/ContourShift.md#ContourShift-sq_mul_zeta_analyticAt_one) (ContourShift) — `` AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1 ``
   - [`ContourShift.zeta_analyticAt`](../lean_stage3/ContourShift.md#ContourShift-zeta_analyticAt) (ContourShift) — `` AnalyticAt ℂ riemannZeta ρ ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`Diagonal.Ez_differentiable`](../lean_stage3/Diagonal.md#Diagonal-Ez_differentiable) (Diagonal) — `` Differentiable ℂ Ez ``
   - [`EdgeBound.gz_analytic`](../lean_stage3/EdgeBound.md#EdgeBound-gz_analytic) (EdgeBound) — `` AnalyticAt ℂ gz s ``
   - [`ZetaGrowth.sq_zeta_band_bound`](#ZetaGrowth-sq_zeta_band_bound) — `` ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * riemannZeta s‖ ≤ C * (2 + |s.im|) ^ 4 ``
 
@@ -636,7 +640,8 @@ line 735
   - [`ZetaGrowth.sq_mul_zeta_analytic`](#ZetaGrowth-sq_mul_zeta_analytic) — `` AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s ``
   - [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip) — `` ‖riemannZeta s‖ ≤ 15 * |s.im| ^ 2 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Diagonal.zeta_bd`](../lean_stage3/Diagonal.md#Diagonal-zeta_bd) (Diagonal) — `` ∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ w : ℂ, -(1 / 2) ≤ w.re → w.re ≤ 4 → 3 / 10 ≤ ‖w - 1‖ → ‖riemannZeta w‖ ≤ Cz * Real.exp |w.im| ``
   - [`EdgeBound.gz_partial_fraction`](../lean_stage3/EdgeBound.md#EdgeBound-gz_partial_fraction) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → ∀ u : ℂ, u.im = T' → -1/4 ≤ u.re → u.re ≤ 2 → gz u ≠ 0 → ‖deriv gz u / gz u - ∑ w ∈ (gz_zeros_ball_finite T' (by n… ``
 
