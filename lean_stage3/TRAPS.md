@@ -125,6 +125,10 @@ build, 2026-09-08.
 | 112 | `simp only [f]` on a structurally recursive `def` unfolds `f R 1`, `f R 2` but leaves `f R 0` | the equation lemmas fire on the successor cases at numerals | `show f R 0 = … from rfl` (unit 0560) |
 | 113 | `rw [lemma]` with pattern `fun x => ?f (?c * x)` misses a beta-redex `(fun a => g a b) (c * x)` (the family of rows 35 and 53) | the redex is not reduced | `exact congrFun (lemma …) x`, or `beta_reduce at h` before the `rw` (unit 0560) |
 | 114 | a two-variable neighbourhood with `y` outermost, `∀ᶠ y, ∀ᶠ x`, is hard to state | the product filter's order | `(isOpen_ne_fun (continuous_snd.add continuous_fst) continuous_const).mem_nhds`, then `rw [nhds_prod_eq]` and `.curry` (unit 0560) |
+| 115 | parse errors far from the cause in a module with `open Polynomial` | `X` is the polynomial notation there and cannot be a binder or local name | rename the variable (unit 0561) |
+| 116 | `unexpected token 'at'; expected ':='` two lines after a nested `have … := by` that ends in a one-step `calc` | the `calc` swallowed the following tactic lines | close with `exact` (unit 0561) |
+| 117 | `simp only [Set.mem_Iic] at h` makes no progress after `eventually_atTop.mp` of a `Tendsto … .eventually (Iic_mem_nhds …)` | the membership is already unfolded to `x ≤ c` | drop the `simp` (unit 0561) |
+| 118 | `LevinsonMollEdge.edge_le_gen` and `arg_term_le_of_pos` do not apply to Conrey's `V` | they ask analyticity on all of `ℂ ∖ {1}`, and `V` has the poles of the completed zeta at 0 and 1 | use the copies in `FloorQEdge` that ask `Im > 0` or `t ∈ [a, b]` (unit 0561) |
 
 ## Bench and gate traps
 

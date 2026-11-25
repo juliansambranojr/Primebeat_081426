@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-11-25T20:49:19Z
+# unit: 0561-floor-q
+# sources searched: 503
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5804
+  theorem logmaxQ_le {x ε₁ : ℝ} (hε₁ : 0 < ε₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5805
+  (hx : x ≤ KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5807
+  Real.log (max 1 x) / (3 / 2) ≤ (1 - 224 / 625) + 2 * ε₁ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5838
+  theorem stepQ {ε₁ : ℝ} (hε₁ : 0 < ε₁) : ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5839
+  (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:474
+  ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78343
+  theorem levinson_floorQ : ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a04313836fc801c37.jsonl:5870
+  (224 / 625 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) :=
+
+# 9 found, 0 missing

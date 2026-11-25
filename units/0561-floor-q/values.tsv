@@ -1,0 +1,20 @@
+key	value	source
+module_lines	165	wc -l lean_stage3/Stage3/FloorQ.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/FloorQ.lean
+defs	0	grep -c ^def lean_stage3/Stage3/FloorQ.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FloorQ.lean
+pins	3	logmaxQ_le, stepQ, levinson_floorQ
+errors_first	6	the worker's first builds: a notation used as a name, a calc that swallowed lines, two unknown namespaces, a rewrite of the wrong pattern, heartbeat limits, a simp with no progress
+builds	9	the worker's report, builds over the six files
+traps_added	4	lean_stage3/TRAPS.md rows 115-118
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8982	lake build (full Stage3), Build completed successfully
+jobs_module	8885	run/build.log, lake build Stage3.FloorQ
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	6	lean_stage3/Stage3/FloorQ.lean, FloorQGamma.lean, FloorQEdge.lean, FloorQWindow.lean, FloorQCont.lean, FloorQStep.lean
+kappa_q	224/625	levinson_floorQ
+trap_first	115	lean_stage3/TRAPS.md
+trap_last	118	lean_stage3/TRAPS.md

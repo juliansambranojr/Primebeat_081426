@@ -963,3 +963,57 @@ Riemann–Siegel integral. `V = W/Gammaℝ = Q(−(D + g − L/2)/L) ζ`.
    operator of piece 3 with a general `Q` and a weight.
 4. The closed form, Young's (1.3) with general `Q`; Conrey's Corollary gives
    `κ ≥ 0.3658` at `θ = 1/2`, the figure unit 0551 computed.
+
+### S13, B3: the error terms at lengths of one half and more (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else. Facts marked "from memory" were not
+checked against a source this session.
+
+**Where the tree stands.** `FloorQ.levinson_floorQ` proves `224/625` at
+`θ = 49/100`. `FloorLong.floor_of_long` and `GrRatio.mollMeanV_long'` carry the
+whole chain to any `θ > 0` from `FloorLong.StmtLongErr P θ R`: the diagonal's
+shifted line, the off-diagonal and the swapped term at length `T^θ`. Unit 0551
+computed the floor that input would give: 0.41 at `4/7`, 0.89 at `4`, 0.978 at
+`16`, with cubic `P` and `Q` re-optimized.
+
+**The three error terms at `θ ≥ 1/2`, by size.**
+- The swapped term (`SwapX.size_X`): its remainder meets `T^θ`, the mollifier's
+  length, against `t^(1/2)` from the shifted sums; it closes for `θ < 1/2` with
+  the tree's pointwise bounds. Past one half it needs the same cancellation as
+  the off-diagonal.
+- The diagonal's shifted line (`Diagonal.final_size_diag`): `O(L⁵·T^(3/4+θ/2))`,
+  below `T` exactly when `θ < 1/2`. Moving the line further left needs the
+  growth of ζ further left, a convexity-type loss; Young moves `u, v` as well and
+  gets `T^(1−ε)` (from his §6, read this session). This one is a matter of
+  bookkeeping, not of new arithmetic.
+- The off-diagonal (`OffDiagClose.final_size`): the sums over `hm ≠ kn` of the
+  mollifier coefficients times a smooth weight in `mn` and the height. Grouped
+  by the shift `r = hm − kn`, each group is a shifted convolution of the
+  divisor-type sum over `(m, n)` against `μ(h)μ(k)·P·P`. Integration by parts in
+  the height bounds each term trivially; that bound is what stops at one half.
+
+**What Conrey does past one half** (from his Bulletin announcement, read this
+session, and from memory for the details): the off-diagonal with `θ < 4/7` is
+written through Kloosterman sums, and the bounds of Deshouillers and Iwaniec
+for averages of Kloosterman sums, from the Kuznetsov trace formula, give the
+cancellation. None of this is in the tree or in Mathlib. As a Lean project it
+is the spectral theory of `SL₂(ℤ)` at the level of Maass forms, which is
+very large.
+
+**What every length needs.** Farmer's θ = ∞ conjecture (cited by Feng, read
+this session; Farmer's paper not read) is the statement that the twisted moment
+keeps its main term at every length. In the tree's terms it is
+`StmtLongErr P θ R` for every `θ`. Its content is the off-diagonal: that the
+couplings of the mollifier's terms across every shift `r` cancel to `o(T)` at any
+length. In Julian's picture, the composites coupled across every shift add to
+nothing beyond the diagonal.
+
+**Steps, in order of size.**
+1. The diagonal's shifted line at any `θ`: move `u, v` as Young does. Bookkeeping
+   on the tree's `Diagonal` files.
+2. The off-diagonal grouped by the shift `r`, with the shifted convolution sums
+   named: `StmtShiftedConv θ`, the bound that `StmtLongErr` needs, stated in
+   the form a spectral or arithmetic argument would prove it.
+3. The design question for Julian: which property of the Möbius coefficients
+   across shifts gives that cancellation, and at what length. Up to `4/7` the
+   literature answers it with Kloosterman sums; beyond, nothing is known.

@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, its analytic half: `Stage3/Turing*.lean`
+
+    DONE        Littlewood's bound on ∫ S: S₁(T) = ∫_0^T S(t) dt with
+                |S₁(t₂) − S₁(t₁)| ≤ a·log t₂ + b, explicit a, b, from
+                `Littlewood.littlewood_rect` and the tree's ζ bounds; Turing's
+                lemma in the form "if the sign changes of Z found on [g_m, g_n]
+                reach n − m and S₁ is bounded, no zero is missed"; the numerical
+                certificate (signs of Z at given points) as a named Prop; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0561, TRAPS 115–118,
+                Turing's method and a B3 design round). Written before the
+                worker starts.
+    DEPENDS     `Littlewood`, `HardyZ`, `LineCount`, `Defect`, `ArgCount`,
+                `LevinsonSize`, `ZetaGrowth`, `Stirling`
+    OUT         the rigorous evaluation of Z (a design question); B3; C's core
+
 ### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 5, the assembly for a general Q: `Stage3/FloorQ*.lean`
 
     DONE        `floor_stepQ`: on [T/2, T], lineCount T − lineCount (T/2) ≥
