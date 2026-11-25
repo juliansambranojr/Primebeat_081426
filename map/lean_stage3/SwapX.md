@@ -7,7 +7,7 @@
 36 theorems, 10 definitions, 1275 lines. 
 
 **Imports:** [`DiagMain`](../lean_stage3/DiagMain.md), [`DiagonalO`](../lean_stage3/DiagonalO.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`StirlingX`](../lean_stage3/StirlingX.md)
 
 ## The picture
 

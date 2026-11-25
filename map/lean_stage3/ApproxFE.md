@@ -24,7 +24,7 @@ flowchart LR
   n6["<b>Gammaℝ_uA_ne ■</b><br/>Gammaℝ (uA α t) ≠ 0"]:::cnt
   n7["<b>Gammaℝ_vB_ne ■</b><br/>Gammaℝ (vB β t) ≠ 0"]:::cnt
   n8["<b>ratio_aux</b><br/>P ^ a * A * (P ^ b * B) / (P ^ c * C * (P ^ d * D)) = P ^ k * (A…"]:::cnt
-  n9["<b>XY_eq_young ■</b><br/>XY α β t = (Real.pi : ℂ) ^ (α + β) * (Gamma ((1 / 2 - α - t * I)…"]:::shp
+  n9["<b>XY_eq_young</b><br/>XY α β t = (Real.pi : ℂ) ^ (α + β) * (Gamma ((1 / 2 - α - t * I)…"]:::shp
   n10["<b>gY_eq_young ■</b><br/>gY α β t s = (Real.pi : ℂ) ^ (-s) * (Gamma ((1 / 2 + α + s + t *…"]:::shp
   n11["<b>coef_eq_young ■</b><br/>(x : ℂ) ^ (-uA α t) * (y : ℂ) ^ (-vB β t) = (x : ℂ) ^ (-(1 / 2 +…"]:::shp
   n12["<b>norm_Gamma_le</b><br/>‖Gamma z‖ ≤ Real.Gamma z.re"]:::shp
@@ -53,7 +53,8 @@ flowchart LR
   x5(["<b>Diagonal</b><br/>7 theorems"]):::ext
   x6(["<b>SwapX</b><br/>S1_sharp<br/>S1_term_sharp"]):::ext
   x7(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
-  x8(["<b>OffDiagClose</b><br/>summable_major6"]):::ext
+  x8(["<b>StirlingX</b><br/>XY_eq_exp"]):::ext
+  x9(["<b>OffDiagClose</b><br/>summable_major6"]):::ext
   n0 --> n18
   n0 --> n20
   n0 --> n22
@@ -105,7 +106,7 @@ flowchart LR
   n15 -.-> x7
   n16 -.-> x6
   n16 -.-> x7
-  n16 -.-> x8
+  n16 -.-> x9
   n17 -.-> x5
   n18 -.-> x5
   n19 -.-> x0
@@ -120,6 +121,7 @@ flowchart LR
   n3 -.-> x0
   n3 -.-> x1
   n3 -.-> x7
+  n9 -.-> x8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -191,7 +193,7 @@ def · line 59
 
 - **Is:** `` XY (α β : ℂ) (t : ℝ) : ℂ := Gammaℝ (1 - uA α t) * Gammaℝ (1 - vB β t) / (Gammaℝ (uA α t) * Gammaℝ (vB β t)) noncomputable ``
 - **Built from:** [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 16:** [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE), [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound), [`SwapX.StmtXStirling`](../lean_stage3/SwapX.md#SwapX-StmtXStirling), [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX), [`TwistedMoment.I_split`](../lean_stage3/TwistedMoment.md#TwistedMoment-I_split), [`TwistedMoment.approxFE_small`](../lean_stage3/TwistedMoment.md#TwistedMoment-approxFE_small), [`TwistedMoment.integrand_split`](../lean_stage3/TwistedMoment.md#TwistedMoment-integrand_split)
+- **Used by 21:** [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE), [`Stirling.E_bound'`](../lean_stage3/StirlingX.md#Stirling-E_bound-), [`Stirling.StmtXStirlingRel`](../lean_stage3/StirlingX.md#Stirling-StmtXStirlingRel), [`Stirling.XY_eq_exp`](../lean_stage3/StirlingX.md#Stirling-XY_eq_exp), [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-), [`Stirling.stmtXStirlingRel_holds`](../lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds), [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound), [`SwapX.StmtXStirling`](../lean_stage3/SwapX.md#SwapX-StmtXStirling), [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX), [`TwistedMoment.I_split`](../lean_stage3/TwistedMoment.md#TwistedMoment-I_split), [`TwistedMoment.approxFE_small`](../lean_stage3/TwistedMoment.md#TwistedMoment-approxFE_small), [`TwistedMoment.integrand_split`](../lean_stage3/TwistedMoment.md#TwistedMoment-integrand_split)
 
 <a name="ApproxFE-GY"></a>
 ### `ApproxFE.GY`
@@ -593,7 +595,9 @@ XY α β t = (Real.pi : ℂ) ^ (α + β) * (Gamma ((1 / 2 - α - t * I) / 2) * G
 
 **Definitions its proof touches:** [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Stirling.XY_eq_exp`](../lean_stage3/StirlingX.md#Stirling-XY_eq_exp) (StirlingX) — `` XY α β t = cexp (log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) - (logG (wp t + α / 2) + logG (wm t + β / 2)))) ``
 
 <a name="ApproxFE-gY_eq_young"></a>
 ### `ApproxFE.gY_eq_young`

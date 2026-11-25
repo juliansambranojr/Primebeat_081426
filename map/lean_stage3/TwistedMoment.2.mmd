@@ -33,11 +33,12 @@ flowchart LR
   x1(["<b>OffDiagClose</b><br/>off_term_iter_le<br/>offdiag_term_iter_young"]):::ext
   x2(["<b>diagram 3</b><br/>7 theorems"]):::ext
   x3(["<b>SwapX</b><br/>5 theorems"]):::ext
-  x4(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x5(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
-  x6(["<b>Diagonal</b><br/>4 theorems"]):::ext
-  x7(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
-  x8(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
+  x4(["<b>StirlingX</b><br/>E_bound'<br/>stmtXAll_of'"]):::ext
+  x5(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x6(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
+  x7(["<b>Diagonal</b><br/>4 theorems"]):::ext
+  x8(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
+  x9(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
   n0 --> n1
   n10 --> n11
   n11 --> n12
@@ -82,40 +83,44 @@ flowchart LR
   n13 -.-> x2
   n14 -.-> x2
   n15 -.-> x2
-  n15 -.-> x6
+  n15 -.-> x7
   n16 -.-> x2
   n16 -.-> x3
+  n16 -.-> x4
   n17 -.-> x3
   n22 -.-> x3
   n25 -.-> x2
   n26 -.-> x2
   n27 -.-> x3
+  n27 -.-> x4
   n28 -.-> x2
   n28 -.-> x3
-  n28 -.-> x8
+  n28 -.-> x9
   n29 -.-> x2
   n29 -.-> x3
-  n29 -.-> x6
-  n29 -.-> x8
+  n29 -.-> x4
+  n29 -.-> x7
+  n29 -.-> x9
   n3 -.-> x2
   n5 -.-> x2
   n5 -.-> x3
   n6 -.-> x2
   n6 -.-> x3
+  n6 -.-> x4
   n8 -.-> x1
   n8 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n26
-  x4 -.-> n10
-  x4 -.-> n17
-  x4 -.-> n21
-  x4 -.-> n23
-  x4 -.-> n25
-  x5 -.-> n11
-  x5 -.-> n18
-  x7 -.-> n21
-  x7 -.-> n26
+  x5 -.-> n10
+  x5 -.-> n17
+  x5 -.-> n21
+  x5 -.-> n23
+  x5 -.-> n25
+  x6 -.-> n11
+  x6 -.-> n18
+  x8 -.-> n21
+  x8 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -22276,6 +22276,11 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
@@ -22934,7 +22939,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp"
+    ]
    },
    {
     "kind": "theorem",
@@ -69120,6 +69127,7 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum_nonneg",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
@@ -70804,6 +70812,7 @@
     "used_by": [
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
     ]
    },
@@ -70857,6 +70866,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.lemma3_resO_of_mainO'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
     ]
@@ -91072,6 +91083,982 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StirlingLog.lean",
+  "module": "Stage3.StirlingLog",
+  "stem": "StirlingLog",
+  "header": "# StirlingLog — block S12 of `lean_stage3/design/stencil.md`, the Γ-shift with its phase. 2026-11-25.",
+  "imports": [],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "Stirling"
+  ],
+  "lines": 301,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "logG",
+    "ns": "Stirling",
+    "full": "Stirling.logG",
+    "line": 38,
+    "why": "A logarithm of `Γ` on the right half-plane: the limit of PNT+'s `logGammaSeq`.",
+    "sorry": false,
+    "needs": [
+     "z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.exp_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_logG",
+    "ns": "Stirling",
+    "full": "Stirling.tendsto_logG",
+    "line": 40,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re"
+    ],
+    "proves": "Tendsto (Complex.logGammaSeq z) atTop (𝓝 (logG z))",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.exp_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp_logG",
+    "ns": "Stirling",
+    "full": "Stirling.exp_logG",
+    "line": 44,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re"
+    ],
+    "proves": "cexp (logG z) = Gamma z",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.exp_logG",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_step",
+    "ns": "Stirling",
+    "full": "Stirling.log_step",
+    "line": 54,
+    "why": "One step of the logarithm along a segment in the right half-plane.",
+    "sorry": false,
+    "needs": [
+     "hpos : ∀ s ∈ Icc (0 : ℝ) 1, 0 < (c + (s : ℂ) * d).re",
+     "hlow : ∀ s ∈ Icc (0 : ℝ) 1, ‖c‖ ≤ 2 * ‖c + (s : ℂ) * d‖"
+    ],
+    "proves": "‖log (c + d) - log c - d / c‖ ≤ 2 * ‖d‖ ^ 2 / ‖c‖ ^ 2",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.log_step",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_sq_le",
+    "ns": "Stirling",
+    "full": "Stirling.sum_inv_sq_le",
+    "line": 102,
+    "why": "`Σ_{m<N} 1/(m+Y)² ≤ 3/Y − 3/(N+Y)` for `Y ≥ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hY : 1 / 2 ≤ Y",
+     "N : ℕ"
+    ],
+    "proves": "∑ m ∈ Finset.range N, 1 / ((m : ℝ) + Y) ^ 2 ≤ 3 / Y - 3 / ((N : ℝ) + Y)",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_sq_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_normSq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "normSq_add_nat_ge",
+    "ns": "Stirling",
+    "full": "Stirling.normSq_add_nat_ge",
+    "line": 120,
+    "why": "`‖z + m‖² ≥ (m + |Im z|)²/2` for `Re z ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "hre : 0 ≤ z.re",
+     "m : ℕ"
+    ],
+    "proves": "((m : ℝ) + |z.im|) ^ 2 / 2 ≤ ‖z + m‖ ^ 2",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.normSq_add_nat_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_normSq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_normSq_le",
+    "ns": "Stirling",
+    "full": "Stirling.sum_inv_normSq_le",
+    "line": 129,
+    "why": "`Σ_{m<N} 1/‖z+m‖² ≤ 6/|Im z|` for `Re z ≥ 0`, `|Im z| ≥ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hre : 0 ≤ z.re",
+     "hY : 1 / 2 ≤ |z.im|",
+     "N : ℕ"
+    ],
+    "proves": "∑ m ∈ Finset.range N, 1 / ‖z + m‖ ^ 2 ≤ 6 / |z.im|",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_normSq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.normSq_add_nat_ge",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_sq_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.normSq_add_nat_ge",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_sq_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_log_shift",
+    "ns": "Stirling",
+    "full": "Stirling.tendsto_log_shift",
+    "line": 151,
+    "why": "`log(z + (n+1)) − log n → 0`.",
+    "sorry": false,
+    "needs": [
+     "z : ℂ"
+    ],
+    "proves": "Tendsto (fun n : ℕ => log (z + ((n : ℂ) + 1)) - (Real.log n : ℂ)) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_log_shift",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logG_shift",
+    "ns": "Stirling",
+    "full": "Stirling.logG_shift",
+    "line": 176,
+    "why": "The Γ-shift with its phase: `logG(z+a) − logG z = a log z + O(1/|Im z|)`, the constant `2`, for `Re z ≥ 1/4`, `‖a‖ ≤ 1/8`, `|Im z| ≥ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hre : 1 / 4 ≤ z.re",
+     "ha : ‖a‖ ≤ 1 / 8",
+     "hY : 1 / 2 ≤ |z.im|"
+    ],
+    "proves": "‖logG (z + a) - logG z - a * log z‖ ≤ 2 / |z.im|",
+    "file": "lean_stage3/Stage3/StirlingLog.lean",
+    "id": "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.log_step",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_normSq_le",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_log_shift"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.log_step",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.sum_inv_normSq_le",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.tendsto_log_shift"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StirlingX.lean",
+  "module": "Stage3.StirlingX",
+  "stem": "StirlingX",
+  "header": "# StirlingX — block S12 of `lean_stage3/design/stencil.md`, Stirling with the phase for `X_{α,β,t}`. 2026-11-25.",
+  "imports": [
+   "Stage3.SwapX",
+   "Stage3.StirlingLog"
+  ],
+  "opens": [
+   "ApproxBounds",
+   "ApproxFE",
+   "Complex",
+   "ContDiff",
+   "Filter",
+   "MeasureTheory",
+   "OffDiagClose",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Stirling"
+  ],
+  "lines": 544,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/StirlingLog.lean",
+   "lean_stage3/Stage3/SwapX.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "wp",
+    "ns": "Stirling",
+    "full": "Stirling.wp",
+    "line": 60,
+    "why": "`w₊ = 1/4 + it/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wp_sub",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_wp_bounds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wm",
+    "ns": "Stirling",
+    "full": "Stirling.wm",
+    "line": 63,
+    "why": "`w₋ = 1/4 − it/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wp_re",
+    "ns": "Stirling",
+    "full": "Stirling.wp_re",
+    "line": 65,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wp t).re = 1 / 4",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wp_im",
+    "ns": "Stirling",
+    "full": "Stirling.wp_im",
+    "line": 66,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wp t).im = t / 2",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_wp_bounds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wm_re",
+    "ns": "Stirling",
+    "full": "Stirling.wm_re",
+    "line": 67,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wm t).re = 1 / 4",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wm_im",
+    "ns": "Stirling",
+    "full": "Stirling.wm_im",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wm t).im = -(t / 2)",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_shift_pos",
+    "ns": "Stirling",
+    "full": "Stirling.re_shift_pos",
+    "line": 70,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : w.re = 1 / 4",
+     "ha : ‖a‖ ≤ 1 / 10"
+    ],
+    "proves": "0 < (w + a / 2).re",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_shift_pos'",
+    "ns": "Stirling",
+    "full": "Stirling.re_shift_pos'",
+    "line": 75,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : w.re = 1 / 4",
+     "ha : ‖a‖ ≤ 1 / 10"
+    ],
+    "proves": "0 < (w + -a / 2).re",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "XY_eq_exp",
+    "ns": "Stirling",
+    "full": "Stirling.XY_eq_exp",
+    "line": 81,
+    "why": "`X = exp(log π·(α+β) + logG(w₋−α/2) + logG(w₊−β/2) − logG(w₊+α/2) − logG(w₋+β/2))`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "t : ℝ"
+    ],
+    "proves": "XY α β t = cexp (log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) - (logG (wp t + α / 2) + logG (wm t + β / 2))))",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.exp_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.exp_logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.re_shift_pos'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_wm_add_log_wp",
+    "ns": "Stirling",
+    "full": "Stirling.log_wm_add_log_wp",
+    "line": 97,
+    "why": "`log w₋ + log w₊ = 2 log‖w₊‖`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "log (wm t) + log (wp t) = ((2 * Real.log ‖wp t‖ : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_exp_sub_one_le'",
+    "ns": "Stirling",
+    "full": "Stirling.norm_exp_sub_one_le'",
+    "line": 107,
+    "why": "`‖exp x − 1‖ ≤ ‖x‖ e^‖x‖`.",
+    "sorry": false,
+    "needs": [
+     "x : ℂ"
+    ],
+    "proves": "‖cexp x - 1‖ ≤ ‖x‖ * Real.exp ‖x‖",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_exp_sub_one_le'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_wp_bounds",
+    "ns": "Stirling",
+    "full": "Stirling.norm_wp_bounds",
+    "line": 130,
+    "why": "`t/2 ≤ ‖w₊‖ ≤ t/2 + 1/4`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t"
+    ],
+    "proves": "t / 2 ≤ ‖wp t‖ ∧ ‖wp t‖ ≤ t / 2 + 1 / 4",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_wp_bounds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wp_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_wp_sub",
+    "ns": "Stirling",
+    "full": "Stirling.log_wp_sub",
+    "line": 146,
+    "why": "`0 ≤ log‖w₊‖ − log(t/2) ≤ 1/(2t)`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t"
+    ],
+    "proves": "|Real.log (t / 2) - Real.log ‖wp t‖| ≤ 1 / t",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wp_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_wp_bounds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_wp_bounds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtXStirlingRel",
+    "ns": "Stirling",
+    "full": "Stirling.StmtXStirlingRel",
+    "line": 164,
+    "why": "(4.2) with the phase, relative form. `X_{α,β,t} = (t/2π)^(−α−β) (1 + O(1/t))`, uniformly in `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exponent_le",
+    "ns": "Stirling",
+    "full": "Stirling.exponent_le",
+    "line": 170,
+    "why": "The exponent of `X` minus the exponent of `(t/2π)^(−α−β)` is `O(1/t)`, constant `17`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "‖(log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) - (logG (wp t + α / 2) + logG (wm t + β / 2)))) - log (((t / (2 * Real.pi) : ℝ)) : ℂ) * (-(α + β))‖ ≤ 17 / t",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wp_sub",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG_shift",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wm_add_log_wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.log_wp_sub",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm_re",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_im",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtXStirlingRel_holds",
+    "ns": "Stirling",
+    "full": "Stirling.stmtXStirlingRel_holds",
+    "line": 228,
+    "why": "Stirling with the phase: `StmtXStirlingRel` holds, constant `17 e^17`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "StmtXStirlingRel",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_exp_sub_one_le'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/StirlingLog.lean::Stirling.logG",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.XY_eq_exp",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.exponent_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_exp_sub_one_le'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wm",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.wp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.lemma3_resO_of_mainO'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_main_le",
+    "ns": "Stirling",
+    "full": "Stirling.norm_main_le",
+    "line": 258,
+    "why": "`‖(t/2π)^z‖ ≤ e^(10κ)` for `t ∈ [T/4, 2T]`, `‖z‖ ≤ 2κ/L`, `T ≥ 8`, `L ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT8 : 8 ≤ T",
+     "hL1 : 1 ≤ Real.log T",
+     "hz : ‖z‖ ≤ 2 * κ / Real.log T",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "‖(((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z‖ ≤ Real.exp (10 * κ)",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_main_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_bound'",
+    "ns": "Stirling",
+    "full": "Stirling.E_bound'",
+    "line": 293,
+    "why": "`SwapX.E_bound` with the Stirling hypothesis on the support `[T/4, 2T]` only.",
+    "sorry": false,
+    "needs": [
+     "hT8 : 8 ≤ T",
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hCst : 0 ≤ Cst",
+     "hCS : 0 ≤ CS",
+     "hN : 0 ≤ N",
+     "hBm : 0 ≤ Bm",
+     "he : 0 ≤ e",
+     "hst : ∀ t ∈ Set.Icc (T / 4) (2 * T), ‖XY α β t - (((t / (2 * Real.pi) : ℝ)) : ℂ) ^ (-(α + β))‖ ≤ Cst / t",
+     "hS1 : ∀ t : ℝ, 1 ≤ t → ‖S1 (-β) (-α) 1 t‖ ≤ CS * N * t ^ e",
+     "hmsq : ∀ t, msq M a σ₀ t ≤ Bm"
+    ],
+    "proves": "‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * CS * N * (2 * T) ^ e * Bm",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtXAll_of'",
+    "ns": "Stirling",
+    "full": "Stirling.stmtXAll_of'",
+    "line": 336,
+    "why": "`SwapX.stmtXAll_of` from `StmtXStirlingRel`: on `Regime κ T`, `‖(t/2π)^(−α−β)‖ ≤ e^(10κ)` on the support (`norm_main_le`), so the relative remainder is `≤ C e^(10κ)/t` there.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hS : StmtXStirlingRel",
+     "hmain : StmtDiagMainO P θ R κ"
+    ],
+    "proves": "StmtXAll P θ R κ",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_main_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.StmtXStirlingRel",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.norm_main_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.lemma3_resO_of_mainO'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_resO_of_mainO'",
+    "ns": "Stirling",
+    "full": "Stirling.lemma3_resO_of_mainO'",
+    "line": 514,
+    "why": "Lemma 3 up to `I_res`, `o(T)`, from the main term alone: `SwapX.lemma3_resO_of_mainO`'s route with the Stirling input discharged in its relative form (`stmtXStirlingRel_holds`), through `stmtXAll_of'`. `StmtDiagMainO → StmtLemma3resO`, `θ < 1/2`, `κ > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hmain : StmtDiagMainO P θ R κ"
+    ],
+    "proves": "StmtLemma3resO P θ R κ",
+    "file": "lean_stage3/Stage3/StirlingX.lean",
+    "id": "lean_stage3/Stage3/StirlingX.lean::Stirling.lemma3_resO_of_mainO'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXStirlingRel_holds"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SwapX.lean",
   "module": "Stage3.SwapX",
   "stem": "SwapX",
@@ -98719,6 +99706,7 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
@@ -99909,6 +100897,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
@@ -99959,6 +100949,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
@@ -100034,6 +101026,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
@@ -100072,6 +101065,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
@@ -100257,6 +101251,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
     ]
@@ -100595,6 +101590,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
@@ -101023,6 +102019,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
@@ -101115,6 +102112,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
@@ -102153,6 +103151,7 @@
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
@@ -102206,6 +103205,7 @@
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
@@ -102267,6 +103267,7 @@
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.conj_aY",
      "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
@@ -102308,6 +103309,7 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
@@ -102421,6 +103423,7 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
@@ -102728,6 +103731,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -125256,11 +126260,12 @@
    "Stage3.DiagMainMu",
    "Stage3.DiagMain",
    "Stage3.SwapX",
-   "Stage3.SdiagLead"
+   "Stage3.SdiagLead",
+   "Stage3.StirlingX"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 238,
+  "lines": 239,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -125405,6 +126410,7 @@
    "lean_stage3/Stage3/StepsPole.lean",
    "lean_stage3/Stage3/StepsRate.lean",
    "lean_stage3/Stage3/Stirling.lean",
+   "lean_stage3/Stage3/StirlingX.lean",
    "lean_stage3/Stage3/SwapX.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",

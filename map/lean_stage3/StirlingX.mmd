@@ -1,0 +1,58 @@
+flowchart LR
+  n0["<b>wp_re</b><br/>(wp t).re = 1 / 4"]:::cnt
+  n1["<b>wp_im</b><br/>(wp t).im = t / 2"]:::cnt
+  n2["<b>wm_re</b><br/>(wm t).re = 1 / 4"]:::cnt
+  n3["<b>wm_im</b><br/>(wm t).im = -(t / 2)"]:::cnt
+  n4["<b>re_shift_pos</b><br/>0 ＜ (w + a / 2).re"]:::shp
+  n5["<b>re_shift_pos'</b><br/>0 ＜ (w + -a / 2).re"]:::shp
+  n6["<b>XY_eq_exp</b><br/>XY α β t = cexp (log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α…"]:::shp
+  n7["<b>log_wm_add_log_wp</b><br/>log (wm t) + log (wp t) = ((2 * Real.log ‖wp t‖ : ℝ) : ℂ)"]:::shp
+  n8["<b>norm_exp_sub_one_le'</b><br/>‖cexp x - 1‖ ≤ ‖x‖ * Real.exp ‖x‖"]:::shp
+  n9["<b>norm_wp_bounds</b><br/>t / 2 ≤ ‖wp t‖ ∧ ‖wp t‖ ≤ t / 2 + 1 / 4"]:::shp
+  n10["<b>log_wp_sub</b><br/>|Real.log (t / 2) - Real.log ‖wp t‖| ≤ 1 / t"]:::shp
+  n11["<b>exponent_le</b><br/>‖(log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α / 2) + logG (w…"]:::shp
+  n12["<b>stmtXStirlingRel_holds</b><br/>StmtXStirlingRel"]:::shp
+  n13["<b>norm_main_le</b><br/>‖(((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z‖ ≤ Real.exp (10 * κ)"]:::shp
+  n14["<b>E_bound'</b><br/>‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α…"]:::shp
+  n15["<b>stmtXAll_of'</b><br/>StmtXAll P θ R κ"]:::thm
+  n16["<b>lemma3_resO_of_mainO' ■</b><br/>StmtLemma3resO P θ R κ"]:::thm
+  x0(["<b>ApproxFE</b><br/>XY_eq_young"]):::ext
+  x1(["<b>StirlingLog</b><br/>exp_logG<br/>logG_shift"]):::ext
+  x2(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
+  x3(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
+  n0 --> n11
+  n0 --> n6
+  n0 --> n7
+  n1 --> n11
+  n1 --> n9
+  n10 --> n11
+  n11 --> n12
+  n12 --> n16
+  n13 --> n15
+  n14 --> n15
+  n15 --> n16
+  n2 --> n11
+  n2 --> n6
+  n3 --> n11
+  n4 --> n5
+  n4 --> n6
+  n5 --> n6
+  n6 --> n12
+  n7 --> n11
+  n8 --> n12
+  n9 --> n10
+  x0 -.-> n6
+  x1 -.-> n11
+  x1 -.-> n6
+  x2 -.-> n14
+  x2 -.-> n15
+  x3 -.-> n15
+  x3 -.-> n16
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
