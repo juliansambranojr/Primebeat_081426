@@ -128,8 +128,9 @@ flowchart LR
   x2(["<b>ApproxFE</b><br/>7 theorems"]):::ext
   x3(["<b>ApproxShift</b><br/>7 theorems"]):::ext
   x4(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
-  x5(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
-  x6(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
+  x5(["<b>ApproxDerivAll</b><br/>VYk_line_bound<br/>VYk_lines"]):::ext
+  x6(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
+  x7(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
   n0 --> n3
   n0 --> n5
   n1 --> n3
@@ -165,18 +166,21 @@ flowchart LR
   n9 --> n11
   n0 -.-> x0
   n11 -.-> x4
+  n11 -.-> x5
   n17 -.-> x4
+  n17 -.-> x5
   n18 -.-> x0
   n19 -.-> x4
   n20 -.-> x4
+  n20 -.-> x5
   n21 -.-> x4
   n22 -.-> x0
-  n24 -.-> x6
-  n25 -.-> x6
-  n26 -.-> x6
-  n27 -.-> x6
-  n28 -.-> x6
-  n29 -.-> x6
+  n24 -.-> x7
+  n25 -.-> x7
+  n26 -.-> x7
+  n27 -.-> x7
+  n28 -.-> x7
+  n29 -.-> x7
   x1 -.-> n2
   x1 -.-> n24
   x1 -.-> n3
@@ -193,7 +197,7 @@ flowchart LR
   x3 -.-> n17
   x3 -.-> n20
   x3 -.-> n25
-  x5 -.-> n20
+  x6 -.-> n20
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -1481,12 +1485,13 @@ line 883 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`ApproxBounds.VY_line_bound`](#ApproxBounds-VY_line_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖VY α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Re… ``
   - [`ApproxBounds.VY_line_eq`](#ApproxBounds-VY_line_eq) — `` VY α β c x t = VY α β c' x t ``
   - [`ApproxBounds.VY_residue`](#ApproxBounds-VY_residue) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxDeriv.VYj_line_bound`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_line_bound) (ApproxDeriv) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ 1 * VY1 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) … ``
+  - [`ApproxDerivAll.VYk_line_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_line_bound) (ApproxDerivAll) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ j * VYk α β j σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
 
 <a name="ApproxBounds-norm_VY_le"></a>
 ### `ApproxBounds.norm_VY_le`
@@ -1671,11 +1676,12 @@ VY α β c x t = VY α β c' x t
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxBounds.VY_decay`](#ApproxBounds-VY_decay) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
   - [`ApproxBounds.VY_decay_young`](#ApproxBounds-VY_decay_young) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 /… ``
   - [`ApproxDeriv.VYj_lines`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_lines) (ApproxDeriv) — `` VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t ``
+  - [`ApproxDerivAll.VYk_lines`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_lines) (ApproxDerivAll) — `` ∀ y : ℝ, 1 ≤ y → VYk α β (j + 1) c x y = VYk α β (j + 1) A x y ∧ VYk α β (j + 1) c x y = VYk α β (j + 1) (-(1 / 4)) x y ``
 
 <a name="ApproxBounds-VY_decay"></a>
 ### `ApproxBounds.VY_decay`
@@ -1787,10 +1793,11 @@ VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.VY_decay_young`](#ApproxBounds-VY_decay_young) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 /… ``
   - [`ApproxDeriv.VYj_lines`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_lines) (ApproxDeriv) — `` VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t ``
+  - [`ApproxDerivAll.VYk_lines`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_lines) (ApproxDerivAll) — `` ∀ y : ℝ, 1 ≤ y → VYk α β (j + 1) c x y = VYk α β (j + 1) A x y ∧ VYk α β (j + 1) c x y = VYk α β (j + 1) (-(1 / 4)) x y ``
 
 <a name="ApproxBounds-rpow_quarter_le"></a>
 ### `ApproxBounds.rpow_quarter_le`

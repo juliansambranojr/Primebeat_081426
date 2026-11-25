@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, the window and the off-diagonal: `Stage3/OffDiagClose.lean`
+
+    DONE        (i) `WeightAll`: an admissible window with |w^(j)| ≤ C_j·(T/L)^(−j)
+                for every j, and its existence for every T ≥ 8, L ≥ 1 (a smooth
+                bump rescaled, with explicit derivative bounds); (ii)
+                `offdiag_term_iter`: each off-diagonal term bounded with j
+                integrations by parts (`ibp_iter`, `VY_iter_bound`, the window's
+                bounds); (iii) `offSum_bound_iter` and `stmtOffDiag_holds`:
+                `StmtOffDiag` for every θ < 1/2, choosing j from θ; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it" (log 0536, then the
+                window's derivative bounds and StmtOffDiag)
+    DEPENDS     `TwistedMoment`, `ApproxDerivAll`, Mathlib smooth bumps
+                (`ContDiffBump`, `smoothTransition`)
+    OUT         `StmtDiag`, `StmtX`; pieces 3–4
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, all orders: `Stage3/ApproxDerivAll.lean`
 
     DONE        Young's (4.3) for every j: `VY_iter_bound`: for every j and A,

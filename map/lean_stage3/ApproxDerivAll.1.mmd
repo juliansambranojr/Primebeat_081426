@@ -1,0 +1,100 @@
+flowchart LR
+  n0["<b>ibp_iter_chain</b><br/>∀ F : ℕ → ℝ → ℂ, (∀ k ＜ j, ∀ t, HasDerivAt (F k) (F (k + 1) t) t…"]:::cnt
+  n1["<b>ibp_iter ■</b><br/>∫ t in a..b, F t * eL l t = (1 / ((l : ℂ) * I)) ^ j * ∫ t in a..…"]:::cnt
+  n2["<b>tauK_zero</b><br/>tauK 0 h w n = tau h w n"]:::cnt
+  n3["<b>hasDerivAt_tauK_line</b><br/>HasDerivAt (fun t : ℝ =＞ tauK k h (w₀ + t * e) n) (e * tauK (k +…"]:::cnt
+  n4["<b>norm_tauK_le</b><br/>‖tauK k h w n‖ ≤ ((k + 1).factorial : ℝ) * ‖h‖ * 2 ^ (k + 2) * (…"]:::shp
+  n5["<b>dYk_zero</b><br/>dYk α β 0 t s = dY α β t s"]:::shp
+  n6["<b>norm_pow_I_half</b><br/>‖(I / 2) ^ k‖ = (1 / 2) ^ k"]:::shp
+  n7["<b>norm_pow_neg_I_half</b><br/>‖(-(I / 2)) ^ k‖ = (1 / 2) ^ k"]:::shp
+  n8["<b>norm_dYterm_le</b><br/>‖dYterm α β k t s n‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (…"]:::shp
+  n9["<b>summable_dYterm</b><br/>Summable (dYterm α β k t s)"]:::shp
+  n10["<b>norm_dYk_le</b><br/>‖dYk α β k t s‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (…"]:::shp
+  n11["<b>dYk_hasDerivAt</b><br/>HasDerivAt (fun t =＞ dYk α β k t s) (dYk α β (k + 1) t s) t"]:::shp
+  n12["<b>dYk_contDiff</b><br/>∀ k : ℕ, ContDiff ℝ n (fun t =＞ dYk α β k t s)"]:::shp
+  n13["<b>iteratedDeriv_dY</b><br/>iteratedDeriv k (fun t =＞ dY α β t s) = fun t =＞ dYk α β k t s"]:::shp
+  n14["<b>dY_contDiff</b><br/>ContDiff ℝ ∞ (fun t =＞ dY α β t s)"]:::shp
+  n15["<b>Dc_nonneg</b><br/>0 ≤ Dc k"]:::cnt
+  n16["<b>Dk_nonneg</b><br/>0 ≤ Dk k"]:::cnt
+  n17["<b>dYk_crude</b><br/>‖dYk α β k t (σ + y * I)‖ ≤ Dc k * ((1 + |σ|) * (1 + |y|))"]:::shp
+  n18["<b>dYk_bound</b><br/>t ^ (k + 1) * ‖dYk α β k t (σ + y * I)‖ ≤ Dk k * (1 + |σ|) * (1 …"]:::shp
+  n19["<b>dY_iter_bound ■</b><br/>t ^ (k + 1) * ‖iteratedDeriv k (fun t =＞ dY α β t (σ + y * I)) t…"]:::shp
+  n20["<b>pow_key</b><br/>(a * q) ^ i * a * q ^ (J - i + 1) ≤ (a * q) ^ (J + 1)"]:::cnt
+  n21["<b>leib_bound</b><br/>∃ M : ℝ, 0 ≤ M ∧ ∀ (H d : ℕ → ℂ) (G a q : ℝ), 1 ≤ a → 0 ≤ q → ‖H…"]:::cnt
+  n22["<b>gY_contDiff</b><br/>ContDiff ℝ n (fun t =＞ gY α β t s)"]:::shp
+  n23["<b>gY_contDiff_top</b><br/>ContDiff ℝ ∞ (fun t =＞ gY α β t s)"]:::shp
+  n24["<b>gY_iter_succ</b><br/>iteratedDeriv (j + 1) (fun t =＞ gY α β t s) t = ∑ i ∈ Finset.ran…"]:::shp
+  n25["<b>gY_iter_crude</b><br/>∃ R : ℝ, 0 ≤ R ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t y …"]:::shp
+  n26["<b>gY_iter_bound</b><br/>∃ M : ℝ, 0 ≤ M ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::shp
+  n27["<b>cont_gY</b><br/>Continuous fun y : ℝ =＞ gY α β t (σ + y * I)"]:::shp
+  n28["<b>cont_pre</b><br/>Continuous fun y : ℝ =＞ GY α β ((σ : ℂ) + y * I) / ((σ : ℂ) + y …"]:::shp
+  n29["<b>cont_xpow</b><br/>Continuous fun y : ℝ =＞ (x : ℂ) ^ (-((σ : ℂ) + y * I))"]:::cnt
+  x0(["<b>TwistedMoment</b><br/>ibp_once"]):::ext
+  x1(["<b>ApproxDeriv</b><br/>12 theorems"]):::ext
+  x2(["<b>diagram 2</b><br/>6 theorems"]):::ext
+  x3(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
+  n0 --> n1
+  n10 --> n17
+  n10 --> n18
+  n11 --> n12
+  n11 --> n13
+  n12 --> n14
+  n13 --> n19
+  n13 --> n24
+  n14 --> n22
+  n14 --> n24
+  n15 --> n25
+  n16 --> n26
+  n17 --> n18
+  n17 --> n25
+  n18 --> n19
+  n18 --> n26
+  n2 --> n5
+  n20 --> n21
+  n21 --> n25
+  n21 --> n26
+  n22 --> n23
+  n22 --> n24
+  n24 --> n25
+  n24 --> n26
+  n3 --> n11
+  n4 --> n8
+  n5 --> n13
+  n5 --> n14
+  n6 --> n8
+  n7 --> n8
+  n8 --> n10
+  n8 --> n11
+  n8 --> n9
+  n9 --> n11
+  n23 -.-> x2
+  n24 -.-> x2
+  n25 -.-> x2
+  n26 -.-> x2
+  n27 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
+  n9 -.-> x2
+  x0 -.-> n0
+  x1 -.-> n10
+  x1 -.-> n11
+  x1 -.-> n17
+  x1 -.-> n18
+  x1 -.-> n22
+  x1 -.-> n24
+  x1 -.-> n3
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n7
+  x1 -.-> n8
+  x1 -.-> n9
+  x3 -.-> n27
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

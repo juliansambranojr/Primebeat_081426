@@ -45,11 +45,12 @@ flowchart LR
   n27["<b>KY_local</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β …"]:::shp
   n28["<b>cont_F</b><br/>Continuous fun y : ℝ =＞ KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ :…"]:::shp
   n29["<b>re_half_pos</b><br/>0 ＜ ((uA α t + ((σ : ℂ) + y * I)) / 2).re ∧ 0 ＜ ((vB β t + ((σ :…"]:::shp
-  x0(["<b>TwistedMoment</b><br/>eL_hasDerivAt"]):::ext
-  x1(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
-  x2(["<b>diagram 2</b><br/>8 theorems"]):::ext
-  x3(["<b>ApproxShift</b><br/>GY_norm_le"]):::ext
-  x4(["<b>ApproxBounds</b><br/>integrand_differentiableAt'"]):::ext
+  x0(["<b>ApproxDerivAll</b><br/>16 theorems"]):::ext
+  x1(["<b>TwistedMoment</b><br/>eL_hasDerivAt"]):::ext
+  x2(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
+  x3(["<b>diagram 2</b><br/>8 theorems"]):::ext
+  x4(["<b>ApproxShift</b><br/>GY_norm_le"]):::ext
+  x5(["<b>ApproxBounds</b><br/>integrand_differentiableAt'"]):::ext
   n0 --> n1
   n0 --> n6
   n10 --> n16
@@ -84,27 +85,40 @@ flowchart LR
   n7 --> n9
   n8 --> n15
   n9 --> n17
-  n12 -.-> x2
-  n16 -.-> x2
-  n18 -.-> x2
-  n19 -.-> x2
+  n10 -.-> x0
+  n11 -.-> x0
+  n12 -.-> x0
+  n12 -.-> x3
+  n13 -.-> x0
+  n14 -.-> x0
+  n16 -.-> x3
+  n18 -.-> x3
+  n19 -.-> x3
   n2 -.-> x0
-  n21 -.-> x2
-  n22 -.-> x2
-  n23 -.-> x2
-  n24 -.-> x2
-  n25 -.-> x2
-  n26 -.-> x2
-  n27 -.-> x2
-  n28 -.-> x2
-  n29 -.-> x2
-  n4 -.-> x2
-  n5 -.-> x2
-  x1 -.-> n27
-  x1 -.-> n4
-  x1 -.-> n5
-  x3 -.-> n27
-  x4 -.-> n28
+  n2 -.-> x1
+  n21 -.-> x3
+  n22 -.-> x0
+  n22 -.-> x3
+  n23 -.-> x0
+  n23 -.-> x3
+  n24 -.-> x0
+  n24 -.-> x3
+  n25 -.-> x3
+  n26 -.-> x3
+  n27 -.-> x0
+  n27 -.-> x3
+  n28 -.-> x3
+  n29 -.-> x3
+  n4 -.-> x0
+  n4 -.-> x3
+  n5 -.-> x0
+  n5 -.-> x3
+  n7 -.-> x0
+  x2 -.-> n27
+  x2 -.-> n4
+  x2 -.-> n5
+  x4 -.-> n27
+  x5 -.-> n28
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -139,9 +153,10 @@ flowchart LR
   n17["<b>iteratedDeriv_VY</b><br/>iteratedDeriv 1 (fun t =＞ VY α β c x t) = (fun t =＞ VY1 α β c x …"]:::shp
   n18["<b>VY_deriv_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
   x0(["<b>diagram 1</b><br/>15 theorems"]):::ext
-  x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
-  x2(["<b>ApproxFE</b><br/>uA_im<br/>vB_im"]):::ext
-  x3(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
+  x1(["<b>ApproxDerivAll</b><br/>5 theorems"]):::ext
+  x2(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
+  x3(["<b>ApproxFE</b><br/>uA_im<br/>vB_im"]):::ext
+  x4(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -168,10 +183,16 @@ flowchart LR
   n8 --> n10
   n8 --> n13
   n9 --> n10
-  n17 -.-> x1
-  n18 -.-> x1
-  n4 -.-> x1
-  n5 -.-> x1
+  n12 -.-> x1
+  n14 -.-> x1
+  n15 -.-> x1
+  n17 -.-> x2
+  n18 -.-> x2
+  n2 -.-> x1
+  n4 -.-> x2
+  n5 -.-> x2
+  n6 -.-> x1
+  n7 -.-> x1
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n13
@@ -180,10 +201,10 @@ flowchart LR
   x0 -.-> n5
   x0 -.-> n8
   x0 -.-> n9
-  x2 -.-> n6
-  x3 -.-> n13
-  x3 -.-> n14
-  x3 -.-> n16
+  x3 -.-> n6
+  x4 -.-> n13
+  x4 -.-> n14
+  x4 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -213,7 +234,7 @@ def · line 117
 
 - **Is:** `` dY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := I / 2 * ((digamma ((uA α t + s) / 2) - digamma (uA α t / 2)) - (digamma ((vB β t + s) / 2) - digamma (vB β t / 2))) ``
 - **Built from:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
-- **Used by 14:** [`ApproxDeriv.F_hasDerivAt`](#ApproxDeriv-F_hasDerivAt), [`ApproxDeriv.VY1`](#ApproxDeriv-VY1), [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VY2`](#ApproxDeriv-VY2), [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.cont_dY`](#ApproxDeriv-cont_dY), [`ApproxDeriv.d12_bound`](#ApproxDeriv-d12_bound), [`ApproxDeriv.dY_bound`](#ApproxDeriv-dY_bound), [`ApproxDeriv.dY_crude`](#ApproxDeriv-dY_crude), [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](#ApproxDeriv-dY_hasSum), [`ApproxDeriv.gY_hasDerivAt`](#ApproxDeriv-gY_hasDerivAt), [`ApproxDeriv.norm_dY_le`](#ApproxDeriv-norm_dY_le)
+- **Used by 20:** [`ApproxDeriv.F_hasDerivAt`](#ApproxDeriv-F_hasDerivAt), [`ApproxDeriv.VY1`](#ApproxDeriv-VY1), [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VY2`](#ApproxDeriv-VY2), [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.cont_dY`](#ApproxDeriv-cont_dY), [`ApproxDeriv.d12_bound`](#ApproxDeriv-d12_bound), [`ApproxDeriv.dY_bound`](#ApproxDeriv-dY_bound), [`ApproxDeriv.dY_crude`](#ApproxDeriv-dY_crude), [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](#ApproxDeriv-dY_hasSum), [`ApproxDeriv.gY_hasDerivAt`](#ApproxDeriv-gY_hasDerivAt), [`ApproxDeriv.norm_dY_le`](#ApproxDeriv-norm_dY_le), [`ApproxDerivAll.dY_contDiff`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dY_contDiff), [`ApproxDerivAll.dY_iter_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dY_iter_bound), [`ApproxDerivAll.dYk_zero`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_zero), [`ApproxDerivAll.gY_contDiff`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-gY_contDiff), [`ApproxDerivAll.gY_iter_succ`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-gY_iter_succ), [`ApproxDerivAll.iteratedDeriv_dY`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-iteratedDeriv_dY)
 
 <a name="ApproxDeriv-tau"></a>
 ### `ApproxDeriv.tau`
@@ -221,7 +242,7 @@ def · line 117
 def · line 179
 
 - **Is:** `` tau (h w : ℂ) (n : ℕ) : ℂ := ((n : ℂ) + w)⁻¹ - ((n : ℂ) + w + h)⁻¹ noncomputable ``
-- **Used by 6:** [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](#ApproxDeriv-dY_hasSum), [`ApproxDeriv.hasDerivAt_tau_line`](#ApproxDeriv-hasDerivAt_tau_line), [`ApproxDeriv.hasSum_tau`](#ApproxDeriv-hasSum_tau), [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.norm_tau_le`](#ApproxDeriv-norm_tau_le)
+- **Used by 7:** [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](#ApproxDeriv-dY_hasSum), [`ApproxDeriv.hasDerivAt_tau_line`](#ApproxDeriv-hasDerivAt_tau_line), [`ApproxDeriv.hasSum_tau`](#ApproxDeriv-hasSum_tau), [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.norm_tau_le`](#ApproxDeriv-norm_tau_le), [`ApproxDerivAll.tauK_zero`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-tauK_zero)
 
 <a name="ApproxDeriv-tau-"></a>
 ### `ApproxDeriv.tau'`
@@ -237,7 +258,7 @@ def · line 183
 def · line 296
 
 - **Is:** `` tel (b : ℝ) (n : ℕ) : ℝ := 1 / ((n : ℝ) + b) - 1 / (((n + 1 : ℕ) : ℝ) + b) ``
-- **Used by 5:** [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.hasSum_tel`](#ApproxDeriv-hasSum_tel), [`ApproxDeriv.norm_d2term_le`](#ApproxDeriv-norm_d2term_le), [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.sq_le_tel`](#ApproxDeriv-sq_le_tel)
+- **Used by 7:** [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.hasSum_tel`](#ApproxDeriv-hasSum_tel), [`ApproxDeriv.norm_d2term_le`](#ApproxDeriv-norm_d2term_le), [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.sq_le_tel`](#ApproxDeriv-sq_le_tel), [`ApproxDerivAll.dYk_hasDerivAt`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_hasDerivAt), [`ApproxDerivAll.norm_dYterm_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYterm_le)
 
 <a name="ApproxDeriv-d2Y"></a>
 ### `ApproxDeriv.d2Y`
@@ -340,10 +361,11 @@ HasDerivAt (fun t : ℝ => w₀ + (t : ℂ) * e) e t
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxDeriv.gY_hasDerivAt`](#ApproxDeriv-gY_hasDerivAt) — `` HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t ``
   - [`ApproxDeriv.hasDerivAt_tau_line`](#ApproxDeriv-hasDerivAt_tau_line) — `` HasDerivAt (fun t : ℝ => tau h (w₀ + t * e) n) (e * tau' h (w₀ + t * e) n) t ``
+  - [`ApproxDerivAll.hasDerivAt_tauK_line`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-hasDerivAt_tauK_line) (ApproxDerivAll) — `` HasDerivAt (fun t : ℝ => tauK k h (w₀ + t * e) n) (e * tauK (k + 1) h (w₀ + t * e) n) t ``
   - [`TwistedMoment.eL_hasDerivAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-eL_hasDerivAt) (TwistedMoment) — `` HasDerivAt (eL l) (eL l t * (-(l : ℂ) * I)) t ``
 
 <a name="ApproxDeriv-hasDerivAt_Gamma-_comp"></a>
@@ -399,7 +421,7 @@ line 121 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (6 that use it)
+**Feeds** (9 that use it)
 
   - [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt) — `` HasDerivAt (fun t => dY α β t s) (d2Y α β t s) t ``
   - [`ApproxDeriv.dY_hasSum`](#ApproxDeriv-dY_hasSum) — `` HasSum (fun n => I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)) (dY α β t s) ``
@@ -407,6 +429,9 @@ line 121 · arrows read from text
   - [`ApproxDeriv.norm_d2term_le`](#ApproxDeriv-norm_d2term_le) — `` ‖-(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n)‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
   - [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le) — `` ‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
   - [`ApproxDeriv.re_half_pos`](#ApproxDeriv-re_half_pos) — `` 0 < ((uA α t + ((σ : ℂ) + y * I)) / 2).re ∧ 0 < ((vB β t + ((σ : ℂ) + y * I)) / 2).re ``
+  - [`ApproxDerivAll.dYk_hasDerivAt`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_hasDerivAt) (ApproxDerivAll) — `` HasDerivAt (fun t => dYk α β k t s) (dYk α β (k + 1) t s) t ``
+  - [`ApproxDerivAll.meas_dYk`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-meas_dYk) (ApproxDerivAll) — `` AEStronglyMeasurable (fun y : ℝ => dYk α β k t (σ + y * I)) volume ``
+  - [`ApproxDerivAll.norm_dYterm_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYterm_le) (ApproxDerivAll) — `` ‖dYterm α β k t s n‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (1 / 20 + Y)) ^ k * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
 
 <a name="ApproxDeriv-gY_hasDerivAt"></a>
 ### `ApproxDeriv.gY_hasDerivAt`
@@ -436,9 +461,11 @@ HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t
 
 **Definitions its proof touches:** [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxDeriv.psiR`](#ApproxDeriv-psiR), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.F_hasDerivAt`](#ApproxDeriv-F_hasDerivAt) — `` HasDerivAt (fun t => KY α β t s * (x : ℂ) ^ (-s)) (KY α β t s * (x : ℂ) ^ (-s) * dY α β t s) t ``
+  - [`ApproxDerivAll.gY_contDiff`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-gY_contDiff) (ApproxDerivAll) — `` ContDiff ℝ n (fun t => gY α β t s) ``
+  - [`ApproxDerivAll.gY_iter_succ`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-gY_iter_succ) (ApproxDerivAll) — `` iteratedDeriv (j + 1) (fun t => gY α β t s) t = ∑ i ∈ Finset.range (j + 1), (j.choose i : ℂ) * iteratedDeriv i (fun t => gY α β t s) t * dYk α β (j - … ``
 
 <a name="ApproxDeriv-hasSum_tau"></a>
 ### `ApproxDeriv.hasSum_tau`
@@ -489,10 +516,11 @@ line 201 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.norm_tau'_le`](#ApproxDeriv-norm_tau-_le) — `` ‖tau' h w n‖ ≤ 16 * ‖h‖ / (a + Y) * (1 / ((n : ℝ) + (a + Y)) ^ 2) ``
   - [`ApproxDeriv.norm_tau_le`](#ApproxDeriv-norm_tau_le) — `` ‖tau h w n‖ ≤ 4 * ‖h‖ * (1 / ((n : ℝ) + (a + Y)) ^ 2) ``
+  - [`ApproxDerivAll.norm_tauK_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_tauK_le) (ApproxDerivAll) — `` ‖tauK k h w n‖ ≤ ((k + 1).factorial : ℝ) * ‖h‖ * 2 ^ (k + 2) * (1 / (a + Y)) ^ k * (1 / ((n : ℝ) + (a + Y)) ^ 2) ``
 
 <a name="ApproxDeriv-norm_tau_le"></a>
 ### `ApproxDeriv.norm_tau_le`
@@ -585,12 +613,15 @@ HasSum (tel b) (1 / b)
 
 **Definitions its proof touches:** [`ApproxDeriv.tel`](#ApproxDeriv-tel)
 
-**Feeds** (4 that use it)
+**Feeds** (7 that use it)
 
   - [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt) — `` HasDerivAt (fun t => dY α β t s) (d2Y α β t s) t ``
   - [`ApproxDeriv.norm_d2Y_le`](#ApproxDeriv-norm_d2Y_le) — `` ‖d2Y α β t s‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) ``
   - [`ApproxDeriv.norm_dY_le`](#ApproxDeriv-norm_dY_le) — `` ‖dY α β t s‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) ``
   - [`ApproxDeriv.summable_d2term`](#ApproxDeriv-summable_d2term) — `` Summable fun n => -(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n) ``
+  - [`ApproxDerivAll.dYk_hasDerivAt`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_hasDerivAt) (ApproxDerivAll) — `` HasDerivAt (fun t => dYk α β k t s) (dYk α β (k + 1) t s) t ``
+  - [`ApproxDerivAll.norm_dYk_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYk_le) (ApproxDerivAll) — `` ‖dYk α β k t s‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (1 / 20 + Y)) ^ k * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) ``
+  - [`ApproxDerivAll.summable_dYterm`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-summable_dYterm) (ApproxDerivAll) — `` Summable (dYterm α β k t s) ``
 
 <a name="ApproxDeriv-sq_le_tel"></a>
 ### `ApproxDeriv.sq_le_tel`
@@ -614,10 +645,11 @@ line 317 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxDeriv.tel`](#ApproxDeriv-tel)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.norm_d2term_le`](#ApproxDeriv-norm_d2term_le) — `` ‖-(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n)‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
   - [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le) — `` ‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
+  - [`ApproxDerivAll.norm_dYterm_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYterm_le) (ApproxDerivAll) — `` ‖dYterm α β k t s n‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (1 / 20 + Y)) ^ k * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
 
 <a name="ApproxDeriv-nat_add_ne"></a>
 ### `ApproxDeriv.nat_add_ne`
@@ -639,10 +671,12 @@ line 335 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt) — `` HasDerivAt (fun t => dY α β t s) (d2Y α β t s) t ``
   - [`ApproxDeriv.meas_d2Y`](#ApproxDeriv-meas_d2Y) — `` AEStronglyMeasurable (fun y : ℝ => d2Y α β t (σ + y * I)) volume ``
+  - [`ApproxDerivAll.dYk_hasDerivAt`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_hasDerivAt) (ApproxDerivAll) — `` HasDerivAt (fun t => dYk α β k t s) (dYk α β (k + 1) t s) t ``
+  - [`ApproxDerivAll.meas_dYk`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-meas_dYk) (ApproxDerivAll) — `` AEStronglyMeasurable (fun y : ℝ => dYk α β k t (σ + y * I)) volume ``
 
 <a name="ApproxDeriv-dY_hasSum"></a>
 ### `ApproxDeriv.dY_hasSum`
@@ -671,10 +705,11 @@ HasSum (fun n => I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2
 
 **Definitions its proof touches:** [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxDeriv.tau`](#ApproxDeriv-tau), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.dY_hasDerivAt`](#ApproxDeriv-dY_hasDerivAt) — `` HasDerivAt (fun t => dY α β t s) (d2Y α β t s) t ``
   - [`ApproxDeriv.norm_dY_le`](#ApproxDeriv-norm_dY_le) — `` ‖dY α β t s‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) ``
+  - [`ApproxDerivAll.dYk_zero`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_zero) (ApproxDerivAll) — `` dYk α β 0 t s = dY α β t s ``
 
 <a name="ApproxDeriv-norm_I_half"></a>
 ### `ApproxDeriv.norm_I_half`
@@ -691,9 +726,12 @@ line 355 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxDeriv.norm_dterm_le`](#ApproxDeriv-norm_dterm_le) — `` ‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
+  - [`ApproxDerivAll.norm_dYterm_le`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYterm_le) (ApproxDerivAll) — `` ‖dYterm α β k t s n‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (1 / 20 + Y)) ^ k * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n ``
+  - [`ApproxDerivAll.norm_pow_I_half`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_pow_I_half) (ApproxDerivAll) — `` ‖(I / 2) ^ k‖ = (1 / 2) ^ k ``
+  - [`ApproxDerivAll.norm_pow_neg_I_half`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_pow_neg_I_half) (ApproxDerivAll) — `` ‖(-(I / 2)) ^ k‖ = (1 / 2) ^ k ``
 
 <a name="ApproxDeriv-norm_dterm_le"></a>
 ### `ApproxDeriv.norm_dterm_le`
@@ -972,10 +1010,11 @@ line 513 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ 1 * VY1 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) … ``
   - [`ApproxDeriv.gauss_loc`](#ApproxDeriv-gauss_loc) — `` Real.exp (-y ^ 2) * (1 + y ^ 2) * (1 + |y|) ^ k ≤ ((k + 2).factorial : ℝ) * Real.exp 2 * Real.exp (-(1 / 4) * y ^ 2) ``
+  - [`ApproxDerivAll.VYk_line_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_line_bound) (ApproxDerivAll) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ j * VYk α β j σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
 
 <a name="ApproxDeriv-gauss_loc"></a>
 ### `ApproxDeriv.gauss_loc`
@@ -1001,10 +1040,11 @@ Real.exp (-y ^ 2) * (1 + y ^ 2) * (1 + |y|) ^ k ≤ ((k + 2).factorial : ℝ) * 
 
   - [`ApproxDeriv.poly_gauss`](#ApproxDeriv-poly_gauss) — `` (1 + |y|) ^ k * Real.exp (-(1 / 2) * y ^ 2) ≤ (k.factorial : ℝ) * Real.exp 2 * Real.exp (-(1 / 4) * y ^ 2) ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt) — `` HasDerivAt (fun t => VY1 α β σ x t) (VY2 α β σ x t₀) t₀ ``
   - [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt) — `` HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀ ``
+  - [`ApproxDerivAll.IYk_local`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_local) (ApproxDerivAll) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β x j t (σ + y * I)‖ ≤ K * Real.exp (-(1 / 4) * y ^ 2) ``
 
 <a name="ApproxDeriv-norm_half_le"></a>
 ### `ApproxDeriv.norm_half_le`
@@ -1027,12 +1067,14 @@ line 544 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (4 that use it)
+**Feeds** (6 that use it)
 
   - [`ApproxDeriv.d2Y_bound`](#ApproxDeriv-d2Y_bound) — `` t ^ 2 * ‖d2Y α β t (σ + y * I)‖ ≤ 268800 * (1 + |σ|) * (1 + |y|) ^ 3 ``
   - [`ApproxDeriv.d2Y_crude`](#ApproxDeriv-d2Y_crude) — `` ‖d2Y α β t (σ + y * I)‖ ≤ 67200 * (1 + |σ|) * (1 + |y|) ``
   - [`ApproxDeriv.dY_bound`](#ApproxDeriv-dY_bound) — `` t * ‖dY α β t (σ + y * I)‖ ≤ 3360 * (1 + |σ|) * (1 + |y|) ^ 2 ``
   - [`ApproxDeriv.dY_crude`](#ApproxDeriv-dY_crude) — `` ‖dY α β t (σ + y * I)‖ ≤ 1680 * (1 + |σ|) * (1 + |y|) ``
+  - [`ApproxDerivAll.dYk_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_bound) (ApproxDerivAll) — `` t ^ (k + 1) * ‖dYk α β k t (σ + y * I)‖ ≤ Dk k * (1 + |σ|) * (1 + |y|) ^ (k + 2) ``
+  - [`ApproxDerivAll.dYk_crude`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_crude) (ApproxDerivAll) — `` ‖dYk α β k t (σ + y * I)‖ ≤ Dc k * ((1 + |σ|) * (1 + |y|)) ``
 
 <a name="ApproxDeriv-dY_crude"></a>
 ### `ApproxDeriv.dY_crude`
@@ -1134,10 +1176,11 @@ line 576 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt) — `` HasDerivAt (fun t => VY1 α β σ x t) (VY2 α β σ x t₀) t₀ ``
   - [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt) — `` HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀ ``
+  - [`ApproxDerivAll.IYk_local`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_local) (ApproxDerivAll) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β x j t (σ + y * I)‖ ≤ K * Real.exp (-(1 / 4) * y ^ 2) ``
 
 <a name="ApproxDeriv-cont_F"></a>
 ### `ApproxDeriv.cont_F`
@@ -1287,10 +1330,11 @@ line 714 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt) — `` HasDerivAt (fun t => VY1 α β σ x t) (VY2 α β σ x t₀) t₀ ``
   - [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt) — `` HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀ ``
+  - [`ApproxDerivAll.IYk_local`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_local) (ApproxDerivAll) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β x j t (σ + y * I)‖ ≤ K * Real.exp (-(1 / 4) * y ^ 2) ``
 
 <a name="ApproxDeriv-F_hasDerivAt"></a>
 ### `ApproxDeriv.F_hasDerivAt`
@@ -1443,10 +1487,11 @@ t / 5 ≤ |(uA α t / 2).im| ∧ t / 5 ≤ |(uA α t / 2 + ((σ : ℂ) + y * I) 
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.d2Y_bound`](#ApproxDeriv-d2Y_bound) — `` t ^ 2 * ‖d2Y α β t (σ + y * I)‖ ≤ 268800 * (1 + |σ|) * (1 + |y|) ^ 3 ``
   - [`ApproxDeriv.dY_bound`](#ApproxDeriv-dY_bound) — `` t * ‖dY α β t (σ + y * I)‖ ≤ 3360 * (1 + |σ|) * (1 + |y|) ^ 2 ``
+  - [`ApproxDerivAll.dYk_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_bound) (ApproxDerivAll) — `` t ^ (k + 1) * ‖dYk α β k t (σ + y * I)‖ ≤ Dk k * (1 + |σ|) * (1 + |y|) ^ (k + 2) ``
 
 <a name="ApproxDeriv-b_facts"></a>
 ### `ApproxDeriv.b_facts`
@@ -1467,10 +1512,11 @@ t * (1 / (1 / 20 + t / 5)) ≤ 5 ∧ 1 + 1 / (1 / 20 + t / 5) ≤ 6
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.d2Y_bound`](#ApproxDeriv-d2Y_bound) — `` t ^ 2 * ‖d2Y α β t (σ + y * I)‖ ≤ 268800 * (1 + |σ|) * (1 + |y|) ^ 3 ``
   - [`ApproxDeriv.dY_bound`](#ApproxDeriv-dY_bound) — `` t * ‖dY α β t (σ + y * I)‖ ≤ 3360 * (1 + |σ|) * (1 + |y|) ^ 2 ``
+  - [`ApproxDerivAll.dYk_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-dYk_bound) (ApproxDerivAll) — `` t ^ (k + 1) * ‖dYk α β k t (σ + y * I)‖ ≤ Dk k * (1 + |σ|) * (1 + |y|) ^ (k + 2) ``
 
 <a name="ApproxDeriv-dY_bound"></a>
 ### `ApproxDeriv.dY_bound`
@@ -1628,9 +1674,10 @@ line 992 · arrows read from text
 
   - [`ApproxDeriv.norm_VI_le`](#ApproxDeriv-norm_VI_le) — `` ‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖f (σ + y * I)‖ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ 1 * VY1 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) … ``
+  - [`ApproxDerivAll.VYk_line_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_line_bound) (ApproxDerivAll) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ j * VYk α β j σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2… ``
 
 <a name="ApproxDeriv-VYj_line_bound"></a>
 ### `ApproxDeriv.VYj_line_bound`
@@ -1696,9 +1743,10 @@ z ≤ (8 * Cm * 2 ^ A + Ca * 2 ^ A) * N * (1 + x / t) ^ (-A)
 
   - [`ApproxBounds.rpow_quarter_le`](../lean_stage3/ApproxBounds.md#ApproxBounds-rpow_quarter_le) (ApproxBounds) — `` b ^ (1 / 4 : ℝ) ≤ 1 + b ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxDeriv.VY_deriv_bound`](#ApproxDeriv-VY_deriv_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ j : ℕ, 1 ≤ j → j ≤ 2 → ‖(t … ``
+  - [`ApproxDerivAll.VY_iter_bound`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VY_iter_bound) (ApproxDerivAll) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖(t : ℂ) ^ j * iteratedDeriv … ``
 
 <a name="ApproxDeriv-deriv_eq_of_eq_Ici"></a>
 ### `ApproxDeriv.deriv_eq_of_eq_Ici`
@@ -1723,9 +1771,10 @@ f' = g'
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines) — `` VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t ``
+  - [`ApproxDerivAll.VYk_lines`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_lines) (ApproxDerivAll) — `` ∀ y : ℝ, 1 ≤ y → VYk α β (j + 1) c x y = VYk α β (j + 1) A x y ∧ VYk α β (j + 1) c x y = VYk α β (j + 1) (-(1 / 4)) x y ``
 
 <a name="ApproxDeriv-VYj_lines"></a>
 ### `ApproxDeriv.VYj_lines`

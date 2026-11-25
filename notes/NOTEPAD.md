@@ -860,3 +860,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-25  S12 piece 2b-i PROVED (unit 0533, `ApproxDeriv`): V twice differentiable in t; (4.3) for j = 1, 2. TRAPS rows 51–53 added.
 - [open]   2026-11-25  S12 piece 2b-ii (unit 0534, `TwistedMoment`): Lemma 3 split into diagonal, off-diagonal, swapped term; off-diagonal by two IBPs. TRAPS rows 54–55.
 - [open]   2026-11-25  Decision (unit 0535): two IBPs close the off-diagonal only for theta < 1/6; IBP j times, j > (1+2theta)/(1-2theta), needs (4.3) for all j.
+- [open]   2026-11-25  Every order PROVED (unit 0536, `ApproxDerivAll`): V smooth in t, (4.3) for all j; ibp_iter for any j. Carries out decision 0535.

@@ -1,0 +1,54 @@
+flowchart LR
+  n0["<b>meas_dYk</b><br/>AEStronglyMeasurable (fun y : ℝ =＞ dYk α β k t (σ + y * I)) volu…"]:::shp
+  n1["<b>meas_gY_iter</b><br/>∀ i ≤ J, AEStronglyMeasurable (fun y : ℝ =＞ iteratedDeriv i (fun…"]:::shp
+  n2["<b>VYk_zero</b><br/>VYk α β 0 c x t = VY α β c x t"]:::cnt
+  n3["<b>IYk_hasDerivAt</b><br/>HasDerivAt (fun t =＞ IYk α β x j t s) (IYk α β x (j + 1) t s) t"]:::shp
+  n4["<b>norm_IYk_le</b><br/>‖IYk α β x j t s‖ ≤ ‖KY α β t s * (x : ℂ) ^ (-s)‖ * B"]:::cnt
+  n5["<b>meas_IYk</b><br/>AEStronglyMeasurable (fun y : ℝ =＞ IYk α β x j t (σ + y * I)) vo…"]:::shp
+  n6["<b>IYk_local</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β…"]:::shp
+  n7["<b>VYk_hasDerivAt</b><br/>HasDerivAt (fun t =＞ VYk α β j σ x t) (VYk α β (j + 1) σ x t₀) t…"]:::shp
+  n8["<b>VYk_line_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::shp
+  n9["<b>VYk_lines</b><br/>∀ y : ℝ, 1 ≤ y → VYk α β (j + 1) c x y = VYk α β (j + 1) A x y ∧…"]:::thm
+  n10["<b>iteratedDeriv_VY_all</b><br/>iteratedDeriv j (fun t =＞ VY α β c x t) = fun t =＞ VYk α β j c x…"]:::shp
+  n11["<b>VY_contDiff ■</b><br/>ContDiff ℝ ∞ (fun t =＞ VY α β c x t)"]:::shp
+  n12["<b>VY_iter_bound ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
+  x0(["<b>ApproxDeriv</b><br/>9 theorems"]):::ext
+  x1(["<b>diagram 1</b><br/>8 theorems"]):::ext
+  x2(["<b>ApproxBounds</b><br/>VY_line_eq<br/>VY_residue<br/>integrand_bound"]):::ext
+  n0 --> n1
+  n1 --> n5
+  n10 --> n11
+  n10 --> n12
+  n2 --> n10
+  n2 --> n9
+  n3 --> n7
+  n4 --> n6
+  n4 --> n8
+  n5 --> n7
+  n6 --> n7
+  n7 --> n10
+  n7 --> n11
+  n7 --> n9
+  n8 --> n12
+  n9 --> n12
+  x0 -.-> n0
+  x0 -.-> n12
+  x0 -.-> n6
+  x0 -.-> n8
+  x0 -.-> n9
+  x1 -.-> n0
+  x1 -.-> n1
+  x1 -.-> n3
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n8
+  x2 -.-> n8
+  x2 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
