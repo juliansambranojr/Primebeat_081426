@@ -54,9 +54,10 @@ flowchart LR
   x12(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   x13(["<b>ApproxBounds</b><br/>VY_residue"]):::ext
   x14(["<b>ApproxShift</b><br/>local_simple<br/>stmtShift_holds"]):::ext
-  x15(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x16(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x17(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x15(["<b>Diagonal</b><br/>Ez_differentiable<br/>shift_t"]):::ext
+  x16(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x17(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x18(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -107,7 +108,9 @@ flowchart LR
   n10 -.-> x0
   n10 -.-> x13
   n10 -.-> x14
+  n10 -.-> x15
   n11 -.-> x14
+  n11 -.-> x15
   n12 -.-> x14
   n14 -.-> x6
   n14 -.-> x8
@@ -117,11 +120,12 @@ flowchart LR
   n17 -.-> x0
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x15
+  n18 -.-> x16
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
   n18 -.-> x5
+  n19 -.-> x15
   n19 -.-> x9
   n2 -.-> x0
   n2 -.-> x1
@@ -136,8 +140,8 @@ flowchart LR
   n21 -.-> x0
   n21 -.-> x1
   n21 -.-> x11
-  n21 -.-> x16
   n21 -.-> x17
+  n21 -.-> x18
   n21 -.-> x2
   n21 -.-> x3
   n23 -.-> x0
@@ -542,11 +546,12 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 
   - [`ContourShift.residue_rectangle_multi`](#ContourShift-residue_rectangle_multi) — `` RectangleIntegral' f z w = ∑ p ∈ P, A p ``
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds) (ApproxShift) — `` StmtShift α β t c ``
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`Diagonal.shift_t`](../lean_stage3/Diagonal.md#Diagonal-shift_t) (Diagonal) — `` VerticalIntegral' (fun s => KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) 1 = riemannZeta (1 + α + β) * Z 0 + VerticalIntegral' (fun s => KY α… ``
   - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
 
 <a name="ContourShift-analyticAt_dslope"></a>
@@ -570,11 +575,12 @@ AnalyticAt ℂ (dslope f p) p
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxShift.local_simple`](../lean_stage3/ApproxShift.md#ApproxShift-local_simple) (ApproxShift) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in 𝓝[≠] p, f s = h s + A / (s - p) ``
   - [`ContourShift.zeta_local_data`](#ContourShift-zeta_local_data) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p /… ``
   - [`ContourShift.zeta_local_data_origin`](#ContourShift-zeta_local_data_origin) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in nhdsWithin 0 {0}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (- deriv riemannZeta 0 / … ``
+  - [`Diagonal.Ez_differentiable`](../lean_stage3/Diagonal.md#Diagonal-Ez_differentiable) (Diagonal) — `` Differentiable ℂ Ez ``
 
 <a name="ContourShift-div_sub_eq_dslope"></a>
 ### `ContourShift.div_sub_eq_dslope`
@@ -816,9 +822,10 @@ AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ContourShift.zeta_meromorphicOn`](#ContourShift-zeta_meromorphicOn) — `` MeromorphicOn riemannZeta U ``
+  - [`Diagonal.Ez_differentiable`](../lean_stage3/Diagonal.md#Diagonal-Ez_differentiable) (Diagonal) — `` Differentiable ℂ Ez ``
   - [`ZetaGrowth.sq_mul_zeta_analytic`](../lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_mul_zeta_analytic) (ZetaGrowth) — `` AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s ``
 
 <a name="ContourShift-zeta_meromorphicOn"></a>

@@ -7,7 +7,7 @@
 44 theorems, 10 definitions, 1102 lines. 
 
 **Imports:** [`ApproxDerivAll`](../lean_stage3/ApproxDerivAll.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Diagonal`](../lean_stage3/Diagonal.md)
 
 ## The picture
 
@@ -115,6 +115,7 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
   x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
+  x3(["<b>Diagonal</b><br/>diag_young"]):::ext
   n0 --> n1
   n1 --> n6
   n10 --> n13
@@ -127,6 +128,7 @@ flowchart LR
   n7 --> n13
   n8 --> n10
   n9 --> n10
+  n12 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n5
@@ -1479,8 +1481,9 @@ line 960 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young) (Diagonal) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (w… ``
   - [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds) — `` StmtOffDiagAll P θ R κ ``
 
 <a name="OffDiagClose-stmtOffDiag_holds"></a>

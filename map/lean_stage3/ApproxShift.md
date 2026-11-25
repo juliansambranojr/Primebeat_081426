@@ -46,8 +46,9 @@ flowchart LR
   x1(["<b>ApproxFE</b><br/>5 theorems"]):::ext
   x2(["<b>ApproxBounds</b><br/>5 theorems"]):::ext
   x3(["<b>ApproxDeriv</b><br/>KY_local"]):::ext
-  x4(["<b>TwistedMoment</b><br/>approxFE_small<br/>resY_term_cAt"]):::ext
-  x5(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
+  x4(["<b>Diagonal</b><br/>Hf_local<br/>KY_joint_cont"]):::ext
+  x5(["<b>TwistedMoment</b><br/>approxFE_small<br/>resY_term_cAt"]):::ext
+  x6(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n12
@@ -89,11 +90,13 @@ flowchart LR
   n11 -.-> x2
   n18 -.-> x2
   n18 -.-> x4
+  n18 -.-> x5
   n2 -.-> x2
   n20 -.-> x2
+  n20 -.-> x4
   n25 -.-> x2
   n26 -.-> x2
-  n28 -.-> x4
+  n28 -.-> x5
   n3 -.-> x2
   n3 -.-> x3
   x0 -.-> n0
@@ -103,8 +106,8 @@ flowchart LR
   x1 -.-> n28
   x1 -.-> n5
   x1 -.-> n8
-  x5 -.-> n20
-  x5 -.-> n27
+  x6 -.-> n20
+  x6 -.-> n27
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -673,12 +676,13 @@ AnalyticAt ℂ (GY α β) p
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.FL_differentiableAt`](#ApproxShift-FL_differentiableAt) — `` DifferentiableAt ℂ (FL α β t) s ``
   - [`ApproxShift.local_zero`](#ApproxShift-local_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
   - [`ApproxShift.stmtShift_holds`](#ApproxShift-stmtShift_holds) — `` StmtShift α β t c ``
+  - [`Diagonal.KY_joint_cont`](../lean_stage3/Diagonal.md#Diagonal-KY_joint_cont) (Diagonal) — `` Continuous fun p : ℝ × ℝ => KY α β p.1 (σ + p.2 * I) ``
   - [`TwistedMoment.resY_term_cAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-resY_term_cAt) (TwistedMoment) — `` ContinuousAt (fun t => GY α β (f t) / d t * completedRiemannZeta (g t)) t ``
 
 <a name="ApproxShift-FL_differentiableAt"></a>
@@ -740,12 +744,13 @@ line 433 · arrows read from text
   - [`ContourShift.analyticAt_dslope`](../lean_stage3/ContourShift.md#ContourShift-analyticAt_dslope) (ContourShift) — `` AnalyticAt ℂ (dslope f p) p ``
   - [`ContourShift.div_sub_eq_dslope`](../lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) (ContourShift) — `` f s / (s - p) = f p / (s - p) + dslope f p s ``
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.local_pole_neg`](#ApproxShift-local_pole_neg) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h (-w₁) ∧ ∀ᶠ s in 𝓝[≠] (-w₁), F s = h s + g (-w₁) / w₁ * completedRiemannZeta (w₂ - w₁) / D / (s - -w₁) ``
   - [`ApproxShift.local_pole_one`](#ApproxShift-local_pole_one) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h (1 - w₁) ∧ ∀ᶠ s in 𝓝[≠] (1 - w₁), F s = h s + g (1 - w₁) / (1 - w₁) * completedRiemannZeta (w₂ + 1 - w₁) / D / (s - (1 - w… ``
   - [`ApproxShift.local_zero`](#ApproxShift-local_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
+  - [`Diagonal.Hf_local`](../lean_stage3/Diagonal.md#Diagonal-Hf_local) (Diagonal) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] (0 : ℂ), Hf α β t Z s = h s + riemannZeta (1 + α + β) * Z 0 / (s - 0) ``
 
 <a name="ApproxShift-local_zero"></a>
 ### `ApproxShift.local_zero`

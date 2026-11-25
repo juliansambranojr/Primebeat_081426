@@ -35,9 +35,10 @@ flowchart LR
   x3(["<b>ApproxShift</b><br/>7 theorems"]):::ext
   x4(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
   x5(["<b>ApproxDerivAll</b><br/>VYk_line_bound<br/>VYk_lines"]):::ext
-  x6(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
-  x7(["<b>OffDiagClose</b><br/>VY_iter_bound0"]):::ext
-  x8(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
+  x6(["<b>Diagonal</b><br/>4 theorems"]):::ext
+  x7(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
+  x8(["<b>OffDiagClose</b><br/>VY_iter_bound0"]):::ext
+  x9(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
   n0 --> n3
   n0 --> n5
   n1 --> n3
@@ -74,6 +75,10 @@ flowchart LR
   n0 -.-> x0
   n11 -.-> x4
   n11 -.-> x5
+  n11 -.-> x6
+  n13 -.-> x6
+  n15 -.-> x6
+  n16 -.-> x6
   n17 -.-> x4
   n17 -.-> x5
   n18 -.-> x0
@@ -82,13 +87,13 @@ flowchart LR
   n20 -.-> x5
   n21 -.-> x4
   n22 -.-> x0
-  n22 -.-> x7
-  n24 -.-> x8
-  n25 -.-> x8
-  n26 -.-> x8
-  n27 -.-> x8
-  n28 -.-> x8
-  n29 -.-> x8
+  n22 -.-> x8
+  n24 -.-> x9
+  n25 -.-> x9
+  n26 -.-> x9
+  n27 -.-> x9
+  n28 -.-> x9
+  n29 -.-> x9
   x1 -.-> n2
   x1 -.-> n24
   x1 -.-> n3
@@ -105,7 +110,7 @@ flowchart LR
   x3 -.-> n17
   x3 -.-> n20
   x3 -.-> n25
-  x6 -.-> n20
+  x7 -.-> n20
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

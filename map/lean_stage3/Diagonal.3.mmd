@@ -1,0 +1,41 @@
+flowchart LR
+  n0["<b>pow_shift_le</b><br/>(j : ℝ) ^ (-(1 / 2 + x + -(1 / 4))) ≤ Real.exp (κ / 2) * (j : ℝ)…"]:::shp
+  n1["<b>harm_le</b><br/>∑ j ∈ Finset.Icc 1 M, ((j : ℝ))⁻¹ ≤ 1 + Real.log M"]:::shp
+  n2["<b>sum34_le</b><br/>∑ j ∈ Finset.Icc 1 M, (j : ℝ) ^ (-(3 / 4) : ℝ) ≤ (M : ℝ) ^ (1 / …"]:::shp
+  n3["<b>gcd_term</b><br/>(h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat…"]:::shp
+  n4["<b>gcd_sum</b><br/>∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) …"]:::shp
+  n5["<b>SB_young</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 ＜ T → θ ＜ 1 / 2 → ∀ α β : ℂ,…"]:::shp
+  n6["<b>logpow_eps</b><br/>Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε"]:::shp
+  n7["<b>final_size_diag</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T …"]:::shp
+  n8["<b>diag_young</b><br/>∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T…"]:::thm
+  n9["<b>stmtDiag_of_main ■</b><br/>StmtDiag P θ R κ"]:::thm
+  x0(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
+  x1(["<b>diagram 2</b><br/>4 theorems"]):::ext
+  x2(["<b>OffDiagClose</b><br/>N_le"]):::ext
+  x3(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
+  n0 --> n5
+  n1 --> n2
+  n1 --> n4
+  n2 --> n4
+  n3 --> n4
+  n4 --> n5
+  n5 --> n8
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n5
+  x0 -.-> n8
+  x1 -.-> n5
+  x1 -.-> n8
+  x2 -.-> n8
+  x3 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

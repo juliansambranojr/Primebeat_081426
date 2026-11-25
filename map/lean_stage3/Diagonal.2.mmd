@@ -1,0 +1,118 @@
+flowchart LR
+  n0["<b>vi_sum</b><br/>∑ i ∈ s, VerticalIntegral' (f i) σ = VerticalIntegral' (fun z =＞…"]:::cnt
+  n1["<b>zeta_line_le</b><br/>‖riemannZeta (1 + α + β + 2 * ((c : ℂ) + y * I))‖ ≤ Kz α β c"]:::thm
+  n2["<b>Kz_nonneg</b><br/>0 ≤ Kz α β c"]:::cnt
+  n3["<b>Zhk_cont</b><br/>Continuous fun y : ℝ =＞ Zhk a σ₀ α β h k (σ + y * I)"]:::thm
+  n4["<b>Zd_cont</b><br/>Continuous fun y : ℝ =＞ Zd M a σ₀ α β (σ + y * I)"]:::thm
+  n5["<b>Zhk_le</b><br/>‖Zhk a σ₀ α β h k (c + y * I)‖ ≤ Kz α β c * (‖Chk a σ₀ h k‖ * ((…"]:::thm
+  n6["<b>Zd_le</b><br/>‖Zd M a σ₀ α β (c + y * I)‖ ≤ Kz α β c * SB M a σ₀ α β c"]:::thm
+  n7["<b>le_exp_mul</b><br/>K ≤ K * Real.exp (2 * |y|)"]:::shp
+  n8["<b>inner_t</b><br/>∑' l : ℕ, ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + …"]:::thm
+  n9["<b>inner_hk</b><br/>∑' p : ℕ × ℕ, (if h * (p.1 + 1) = k * (p.2 + 1) then coefY a σ₀ …"]:::thm
+  n10["<b>diag_per_t</b><br/>diagSum W M a σ₀ α β c = ∫ t, (W.w t : ℂ) * VerticalIntegral' (f…"]:::thm
+  n11["<b>diag_mellin ■</b><br/>diagSum W M a σ₀ α β c = VerticalIntegral' (fun s =＞ GY α β s / …"]:::thm
+  n12["<b>zeta_bd</b><br/>∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ w : ℂ, -(1 / 2) ≤ w.re → w.re ≤ 4 → 3 / 10 …"]:::thm
+  n13["<b>Ez_eq</b><br/>Ez w = (w - 1) * riemannZeta w"]:::thm
+  n14["<b>Ez_differentiable</b><br/>Differentiable ℂ Ez"]:::thm
+  n15["<b>Hf_eq</b><br/>Hf α β t Z s = KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z…"]:::thm
+  n16["<b>gY_differentiableAt</b><br/>DifferentiableAt ℂ (gY α β t) s"]:::shp
+  n17["<b>Kf_differentiableAt</b><br/>DifferentiableAt ℂ (Kf α β t Z) s"]:::thm
+  n18["<b>Hf_differentiableAt</b><br/>DifferentiableAt ℂ (Hf α β t Z) s"]:::thm
+  n19["<b>Hf_local</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] (0 : ℂ), Hf α β t Z…"]:::thm
+  n20["<b>orig_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::thm
+  n21["<b>gauss4_atTop</b><br/>Tendsto (fun y : ℝ =＞ Real.exp (-(1 / 4) * y ^ 2)) atTop (𝓝 0)"]:::shp
+  n22["<b>gauss4_atBot</b><br/>Tendsto (fun y : ℝ =＞ Real.exp (-(1 / 4) * y ^ 2)) atBot (𝓝 0)"]:::shp
+  n23["<b>shift_t</b><br/>VerticalIntegral' (fun s =＞ KY α β t s * (riemannZeta (1 + α + β…"]:::thm
+  n24["<b>zeta_left</b><br/>∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ y …"]:::thm
+  n25["<b>norm_VI_le</b><br/>‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖f (σ + y…"]:::shp
+  n26["<b>diag_shift</b><br/>diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β…"]:::thm
+  n27["<b>shifted_bound</b><br/>∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : …"]:::thm
+  n28["<b>aY_bound'</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R : ℝ) (h : ℕ), 1 ≤ h → h ≤ Mof T θ → ‖a…"]:::shp
+  n29["<b>Chk_norm</b><br/>‖Chk a σ₀ h k‖ = (‖a h‖ * (h : ℝ) ^ (-σ₀)) * (‖a k‖ * (k : ℝ) ^ …"]:::shp
+  x0(["<b>diagram 1</b><br/>23 theorems"]):::ext
+  x1(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
+  x2(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
+  x3(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic<br/>sq_zeta_band_bound"]):::ext
+  x4(["<b>ContourShift</b><br/>analyticAt_dslope<br/>residue_rectangle_of_local<br/>sq_mul_zeta_analyticAt_one"]):::ext
+  x5(["<b>ApproxFE</b><br/>gY_zero<br/>uA_re<br/>vB_re"]):::ext
+  x6(["<b>ApproxShift</b><br/>local_simple"]):::ext
+  x7(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
+  n0 --> n10
+  n1 --> n5
+  n1 --> n6
+  n10 --> n11
+  n10 --> n26
+  n12 --> n20
+  n12 --> n24
+  n13 --> n15
+  n13 --> n19
+  n14 --> n17
+  n14 --> n18
+  n15 --> n23
+  n16 --> n17
+  n16 --> n18
+  n17 --> n19
+  n18 --> n23
+  n19 --> n23
+  n2 --> n10
+  n2 --> n11
+  n2 --> n6
+  n20 --> n23
+  n21 --> n23
+  n22 --> n23
+  n23 --> n26
+  n24 --> n26
+  n24 --> n27
+  n25 --> n27
+  n3 --> n10
+  n4 --> n11
+  n4 --> n26
+  n5 --> n10
+  n6 --> n11
+  n7 --> n10
+  n7 --> n11
+  n8 --> n9
+  n9 --> n10
+  n26 -.-> x7
+  n27 -.-> x7
+  n28 -.-> x7
+  n29 -.-> x7
+  x0 -.-> n1
+  x0 -.-> n10
+  x0 -.-> n11
+  x0 -.-> n16
+  x0 -.-> n19
+  x0 -.-> n20
+  x0 -.-> n23
+  x0 -.-> n24
+  x0 -.-> n26
+  x0 -.-> n27
+  x0 -.-> n29
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n5
+  x0 -.-> n6
+  x0 -.-> n8
+  x0 -.-> n9
+  x1 -.-> n20
+  x1 -.-> n23
+  x1 -.-> n8
+  x2 -.-> n26
+  x2 -.-> n27
+  x2 -.-> n8
+  x2 -.-> n9
+  x3 -.-> n12
+  x3 -.-> n14
+  x4 -.-> n14
+  x4 -.-> n23
+  x5 -.-> n16
+  x5 -.-> n19
+  x6 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
