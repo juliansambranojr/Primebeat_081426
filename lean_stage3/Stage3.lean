@@ -213,6 +213,7 @@ import Stage3.LevinsonMollEdge
 import Stage3.LevinsonAvoid
 import Stage3.LevinsonWindow
 import Stage3.LevinsonMultiple
+import Stage3.ApproxFE
 
 namespace Stage3
 
