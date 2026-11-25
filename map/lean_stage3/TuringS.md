@@ -24,9 +24,10 @@ flowchart LR
   x0(["<b>TuringLWSplit</b><br/>littlewood_of_lower<br/>stmtSplit_holds"]):::ext
   x1(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
   x2(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
-  x3(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
-  x4(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
-  x5(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  x3(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
+  x4(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
+  x5(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   n0 --> n4
   n1 --> n2
   n2 --> n3
@@ -35,14 +36,15 @@ flowchart LR
   n6 --> n7
   n0 -.-> x0
   n1 -.-> x2
-  n2 -.-> x4
+  n1 -.-> x3
+  n2 -.-> x5
   n3 -.-> x0
-  n3 -.-> x4
+  n3 -.-> x5
   n7 -.-> x0
   x1 -.-> n1
-  x3 -.-> n2
-  x3 -.-> n4
-  x5 -.-> n5
+  x4 -.-> n2
+  x4 -.-> n4
+  x6 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -66,7 +68,7 @@ def · line 86
 
 - **Is:** `` S (t : ℝ) : ℝ := riemannZeta.N t - (Stage3.phaseTheta t / Real.pi + 1) ``
 - **Built from:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
-- **Used by 10:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S)
+- **Used by 13:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-), [`TuringSlope.turing_S_le_sharp`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le_sharp)
 
 <a name="Turing-S-"></a>
 ### `Turing.S₁`
@@ -77,7 +79,7 @@ def · line 89
 
 - **Is:** `` S₁ (T : ℝ) : ℝ := ∫ t in (0 : ℝ)..T, S t ``
 - **Built from:** [`Turing.S`](#Turing-S)
-- **Used by 8:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.StmtLittlewood`](#Turing-StmtLittlewood), [`Turing.StmtSplit`](#Turing-StmtSplit), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 10:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.StmtLittlewood`](#Turing-StmtLittlewood), [`Turing.StmtSplit`](#Turing-StmtSplit), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-)
 
 <a name="Turing-F"></a>
 ### `Turing.F`
@@ -98,7 +100,7 @@ Littlewood's bound on `S₁`, the goal of step 1.
 
 - **Is:** `` StmtLittlewood (a b t₀ : ℝ) : Prop := ∀ t₁ t₂ : ℝ, t₀ ≤ t₁ → t₁ ≤ t₂ → |S₁ t₂ - S₁ t₁| ≤ a * Real.log t₂ + b ``
 - **Built from:** [`Turing.S₁`](#Turing-S-)
-- **Used by 6:** [`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 8:** [`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-)
 
 <a name="Turing-StmtSplit"></a>
 ### `Turing.StmtSplit`
@@ -189,10 +191,11 @@ Continuous Stage3.phaseTheta
 
 **Definitions its proof touches:** [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
   - [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S) — `` IntervalIntegrable S volume a b ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-intervalIntegrable_S"></a>
 ### `Turing.intervalIntegrable_S`

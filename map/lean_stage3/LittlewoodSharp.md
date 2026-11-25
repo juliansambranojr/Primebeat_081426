@@ -7,15 +7,17 @@
 1 theorem, 0 definitions, 60 lines. 
 
 **Imports:** [`LittlewoodSharpHoriz`](../lean_stage3/LittlewoodSharpHoriz.md), [`TuringLWSplit`](../lean_stage3/TuringLWSplit.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TuringSlope`](../lean_stage3/TuringSlope.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>littlewood_sharp ■</b><br/>Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2…"]:::thm
+  n0["<b>littlewood_sharp</b><br/>Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2…"]:::thm
   x0(["<b>LittlewoodSharpHoriz</b><br/>horizLower_sharp"]):::ext
   x1(["<b>TuringLWSplit</b><br/>littlewood_of_lower"]):::ext
+  x2(["<b>TuringSlope</b><br/>defect_zero_of_closing'<br/>turing_S_le_sharp"]):::ext
+  n0 -.-> x2
   x0 -.-> n0
   x1 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -54,5 +56,8 @@ Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 +
 
 **Definitions its proof touches:** [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`TuringSlope.defect_zero_of_closing'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_closing-) (TuringSlope) — `` ∀ T ≤ T₁, Defect.defect T = 0 ``
+  - [`TuringSlope.turing_S_le_sharp`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le_sharp) (TuringSlope) — `` S t ≤ ((3 / 2 + 113 / 4) / Real.pi * Real.log (t + h) + (2 + (3 / 2) * Real.log 9 + 128) / Real.pi) / h + h * (Real.log ((t + h) / (2 * Real.pi)) / 2 … ``
 
