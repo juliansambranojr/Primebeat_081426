@@ -67005,7 +67005,8 @@
     "used_by": [
      "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
      "lean_stage3/Stage3/LineBound.lean::Slice4.logDerivZeta_compact",
-     "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta"
+     "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
    },
    {
@@ -67061,7 +67062,8 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
      "lean_stage3/Stage3/LineBound.lean::Slice4.logDerivZeta_compact",
-     "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta"
+     "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
    },
    {
@@ -67249,7 +67251,16 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude"
+     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
     ]
    },
    {
@@ -67310,7 +67321,10 @@
     "used_by": [
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude"
+     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
     ]
    },
    {
@@ -67342,7 +67356,10 @@
     "used_by": [
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude"
+     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
     ]
    },
    {
@@ -67376,7 +67393,12 @@
     "used_by": [
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude"
+     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
     ]
    },
    {
@@ -67411,7 +67433,9 @@
     "used_by": [
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude"
+     "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
     ]
    },
    {
@@ -120478,6 +120502,983 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLWHoriz.lean",
+  "module": "Stage3.TuringLWHoriz",
+  "stem": "TuringLWHoriz",
+  "header": "TuringLWHoriz — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's three pieces: the lower side `Turing.StmtHorizLower a₂ b₂`, proved with `a₂ = 102`, `b₂ = 500`. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringS",
+   "Stage3.TuringLWHorizLog",
+   "Stage3.TuringLWHorizPoint"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Stage3"
+  ],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 246,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringLWHorizLog.lean",
+   "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+   "lean_stage3/Stage3/TuringS.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "zx",
+    "ns": "TuringLW",
+    "full": "TuringLW.zx",
+    "line": 61,
+    "why": "The point of the model's disc over `x + it`.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "beta",
+    "ns": "TuringLW",
+    "full": "TuringLW.beta",
+    "line": 64,
+    "why": "The real abscissa of a model zero, pulled back to `s`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gLow",
+    "ns": "TuringLW",
+    "full": "TuringLW.gLow",
+    "line": 67,
+    "why": "The lower function.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "x : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zx_arg",
+    "ns": "TuringLW",
+    "full": "TuringLW.zx_arg",
+    "line": 72,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x t : ℝ"
+    ],
+    "proves": "2 * zx x + (2 + Complex.I * (t : ℂ)) = (x : ℂ) + (t : ℂ) * Complex.I",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_zx",
+    "ns": "TuringLW",
+    "full": "TuringLW.norm_zx",
+    "line": 76,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx1 : 1 / 2 ≤ x",
+     "hx2 : x ≤ 2"
+    ],
+    "proves": "‖zx x‖ ≤ 3 / 4",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_sub_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.log_sub_le",
+    "line": 82,
+    "why": "`log(x − β_ρ) − log 2 ≤ log‖z(x) − ρ‖` for `x ≠ β_ρ`.",
+    "sorry": false,
+    "needs": [
+     "hx : x ≠ beta ρ"
+    ],
+    "proves": "Real.log (x - beta ρ) - Real.log 2 ≤ Real.log ‖zx x - ρ‖",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_zeta_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.log_zeta_ge",
+    "line": 97,
+    "why": "The pointwise lower bound on the segment.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "hx1 : 1 / 2 ≤ x",
+     "hx2 : x ≤ 2",
+     "hxE : x ∉ (zeroSet ht).image beta"
+    ],
+    "proves": "gLow ht x ≤ Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_lower",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_ne_zero",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_lower",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_ne_zero",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_sum'",
+    "ns": "TuringLW",
+    "full": "TuringLW.intervalIntegrable_sum'",
+    "line": 137,
+    "why": "A finite sum of interval-integrable real functions, in lambda form.",
+    "sorry": false,
+    "needs": [
+     "s : Finset ι",
+     "f : ι → ℝ → ℝ",
+     "h : ∀ i ∈ s, IntervalIntegrable (f i) volume a b"
+    ],
+    "proves": "IntervalIntegrable (fun x => ∑ i ∈ s, f i x) volume a b",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_gLow",
+    "ns": "TuringLW",
+    "full": "TuringLW.intervalIntegrable_gLow",
+    "line": 149,
+    "why": "The lower function is integrable on the segment.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "IntervalIntegrable (gLow ht) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log3_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.log3_le",
+    "line": 159,
+    "why": "`log 3 ≤ 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log 3 ≤ 2",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log3_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_g_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.integral_g_ge",
+    "line": 164,
+    "why": "The integral of the lower function.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "-(102 * Real.log t + 500) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log3_le",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.integral_log_sub_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_eq",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log3_le",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.integral_log_sub_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_eq",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizLower_holds",
+    "ns": "TuringLW",
+    "full": "TuringLW.horizLower_holds",
+    "line": 213,
+    "why": "The lower side, proved. `StmtHorizLower 102 500`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtHorizLower 102 500",
+    "file": "lean_stage3/Stage3/TuringLWHoriz.lean",
+    "id": "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+  "module": "Stage3.TuringLWHorizLog",
+  "stem": "TuringLWHorizLog",
+  "header": "TuringLWHorizLog — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the lower side `StmtHorizLower`, part 1, the integral of one zero's singularity. 2026-11-25.",
+  "imports": [],
+  "opens": [
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 99,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mul_log_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.mul_log_ge",
+    "line": 33,
+    "why": "`u log u ≥ −1` for `u ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "hu : 0 ≤ u"
+    ],
+    "proves": "-1 ≤ u * Real.log u",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge_of_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_log_nonpos",
+    "ns": "TuringLW",
+    "full": "TuringLW.mul_log_nonpos",
+    "line": 42,
+    "why": "`u log u ≤ 0` on `[0, 1]`.",
+    "sorry": false,
+    "needs": [
+     "hu : 0 ≤ u",
+     "h1 : u ≤ 1"
+    ],
+    "proves": "u * Real.log u ≤ 0",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_nonpos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge_of_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_log_sub_ge_of_nonneg",
+    "ns": "TuringLW",
+    "full": "TuringLW.mul_log_sub_ge_of_nonneg",
+    "line": 46,
+    "why": "The case `0 ≤ a ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 ≤ a",
+     "hab : a ≤ b"
+    ],
+    "proves": "-2 ≤ b * Real.log b - a * Real.log a",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge_of_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_nonpos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_nonpos"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_log_sub_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.mul_log_sub_ge",
+    "line": 60,
+    "why": "`b log b − a log a ≥ −2` for all `a ≤ b` (`Real.log` is even).",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b"
+    ],
+    "proves": "-2 ≤ b * Real.log b - a * Real.log a",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge_of_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_ge",
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge_of_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.integral_log_sub_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_log_sub",
+    "ns": "TuringLW",
+    "full": "TuringLW.intervalIntegrable_log_sub",
+    "line": 74,
+    "why": "`x ↦ log(x − β)` is integrable on `[1/2, 2]`.",
+    "sorry": false,
+    "needs": [
+     "β : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun x : ℝ => Real.log (x - β)) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.intervalIntegrable_log_sub",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_log_sub_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.integral_log_sub_ge",
+    "line": 80,
+    "why": "One zero's singularity, integrated. `∫_{1/2}^{2} log(x − β) dx ≥ −7/2` for every `β`.",
+    "sorry": false,
+    "needs": [
+     "β : ℝ"
+    ],
+    "proves": "-(7 / 2) ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log (x - β)",
+    "file": "lean_stage3/Stage3/TuringLWHorizLog.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.integral_log_sub_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHorizLog.lean::TuringLW.mul_log_sub_ge"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+  "module": "Stage3.TuringLWHorizPoint",
+  "stem": "TuringLWHorizPoint",
+  "header": "TuringLWHorizPoint — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the lower side `StmtHorizLower`, part 2, the pointwise lower bound for `log|ζ|` near the segment. 2026-11-25.",
+  "imports": [
+   "Stage3.JensenCount"
+  ],
+  "opens": [
+   "Complex",
+   "Stage3"
+  ],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 245,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/JensenCount.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "h78",
+    "ns": "TuringLW",
+    "full": "TuringLW.h78",
+    "line": 53,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "(7 : ℝ) / 8 < 1",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zeroSet",
+    "ns": "TuringLW",
+    "full": "TuringLW.zeroSet",
+    "line": 56,
+    "why": "The zeros of `jensenF T` in `‖z‖ ≤ 7/8`.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "Finset ℂ",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zeroMass",
+    "ns": "TuringLW",
+    "full": "TuringLW.zeroMass",
+    "line": 60,
+    "why": "Their total order.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log84_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.log84_le",
+    "line": 64,
+    "why": "`log 84 ≤ 4.86`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log 84 ≤ 4.86",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log84T_eq",
+    "ns": "TuringLW",
+    "full": "TuringLW.log84T_eq",
+    "line": 73,
+    "why": "`log(84 T) = log 84 + log T > 0`.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "Real.log (84 * T) = Real.log 84 + Real.log T",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log84T_pos",
+    "ns": "TuringLW",
+    "full": "TuringLW.log84T_pos",
+    "line": 76,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "0 < Real.log (84 * T)",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroMass_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.zeroMass_le",
+    "line": 80,
+    "why": "The zero count in the model's coordinates.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "zeroMass hT ≤ 15 * Real.log (84 * T)",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_blaschke_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.log_blaschke_ge",
+    "line": 100,
+    "why": "Borel–Carathéodory on the Blaschke quotient.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4"
+    ],
+    "proves": "-12 * Real.log (84 * T) ≤ Real.log ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log84T_pos"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_numer_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.norm_numer_le",
+    "line": 147,
+    "why": "Each Blaschke numerator factor is at most `2` on `‖z‖ ≤ 3/4`.",
+    "sorry": false,
+    "needs": [
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hρ : ‖ρ‖ ≤ 7 / 8"
+    ],
+    "proves": "‖((15 / 16 : ℝ) : ℂ) - z * (starRingEnd ℂ) ρ / ((15 / 16 : ℝ) : ℂ)‖ ≤ 2",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_numer_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_blaschke_mul_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.norm_blaschke_mul_le",
+    "line": 163,
+    "why": "Unfolding the Blaschke quotient off the zeros.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hfz : jensenF T z ≠ 0"
+    ],
+    "proves": "‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ * ∏ ρ ∈ zeroSet hT, ‖z - ρ‖ ^ analyticOrderNatAt (jensenF T) ρ ≤ ‖jensenF T z‖ * 2 ^ (∑ ρ ∈ zeroSet hT, analyticOrderNatAt (jensenF T) ρ)",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_numer_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_numer_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_jensenF_ge",
+    "ns": "TuringLW",
+    "full": "TuringLW.log_jensenF_ge",
+    "line": 198,
+    "why": "The pointwise lower bound in the model's coordinates.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hfz : jensenF T z ≠ 0"
+    ],
+    "proves": "-12 * Real.log (84 * T) - zeroMass hT * Real.log 2 + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ‖ ≤ Real.log ‖jensenF T z‖",
+    "file": "lean_stage3/Stage3/TuringLWHorizPoint.lean",
+    "id": "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.h78",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass",
+     "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/TuringS.lean",
   "module": "Stage3.TuringS",
   "stem": "TuringS",
@@ -120720,6 +121721,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
     ]
    },
@@ -148849,11 +149851,12 @@
    "Stage3.GrRatio",
    "Stage3.FloorConstQ",
    "Stage3.FloorQ",
-   "Stage3.Turing"
+   "Stage3.Turing",
+   "Stage3.TuringLWHoriz"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 257,
+  "lines": 258,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -149025,6 +150028,7 @@
    "lean_stage3/Stage3/ThetaPsi.lean",
    "lean_stage3/Stage3/ThetaPull.lean",
    "lean_stage3/Stage3/Turing.lean",
+   "lean_stage3/Stage3/TuringLWHoriz.lean",
    "lean_stage3/Stage3/TwistedMoment.lean",
    "lean_stage3/Stage3/Unsmooth.lean",
    "lean_stage3/Stage3/VonKochScaffold.lean",

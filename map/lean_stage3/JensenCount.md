@@ -5,7 +5,7 @@ JensenCount — `StmtLocalCount` discharged: the Backlund-style local zero count
 17 theorems, 3 definitions, 552 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCrude`](../lean_stage3/ArgCrude.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`TuringLWHorizPoint`](../lean_stage3/TuringLWHorizPoint.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
 
 ## The picture
 
@@ -30,19 +30,21 @@ flowchart LR
   n16["<b>localCount_holds</b><br/>StmtLocalCount zetaLocalCount 15 73"]:::thm
   x0(["<b>LineBound</b><br/>logDerivZeta_crude<br/>logDerivZeta_compact"]):::ext
   x1(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta"]):::ext
-  x2(["<b>ReZetaCount</b><br/>F_bound"]):::ext
-  x3(["<b>Abscissa</b><br/>logDerivZeta_crude_theta"]):::ext
-  x4(["<b>ContourShift</b><br/>goodT_exists"]):::ext
-  x5(["<b>EdgeBound</b><br/>ball_order_sum_le<br/>gz_partial_fraction"]):::ext
-  x6(["<b>EdgeNum</b><br/>ball_order_sum_le_num<br/>gz_partial_fraction_num"]):::ext
-  x7(["<b>Glue</b><br/>band_order_sum_le"]):::ext
-  x8(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
-  x9(["<b>WeilBands</b><br/>band_count"]):::ext
-  x10(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
-  x11(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
-  x12(["<b>LowCount</b><br/>low_ball_count"]):::ext
-  x13(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
-  x14(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
+  x2(["<b>TuringLWHoriz</b><br/>log_zeta_ge"]):::ext
+  x3(["<b>ReZetaCount</b><br/>F_bound"]):::ext
+  x4(["<b>Abscissa</b><br/>logDerivZeta_crude_theta"]):::ext
+  x5(["<b>ContourShift</b><br/>goodT_exists"]):::ext
+  x6(["<b>EdgeBound</b><br/>ball_order_sum_le<br/>gz_partial_fraction"]):::ext
+  x7(["<b>EdgeNum</b><br/>ball_order_sum_le_num<br/>gz_partial_fraction_num"]):::ext
+  x8(["<b>Glue</b><br/>band_order_sum_le"]):::ext
+  x9(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
+  x10(["<b>WeilBands</b><br/>band_count"]):::ext
+  x11(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
+  x12(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
+  x13(["<b>TuringLWHorizPoint</b><br/>4 theorems"]):::ext
+  x14(["<b>LowCount</b><br/>low_ball_count"]):::ext
+  x15(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x16(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n14
@@ -69,41 +71,47 @@ flowchart LR
   n9 --> n14
   n0 -.-> x0
   n0 -.-> x1
-  n1 -.-> x2
+  n0 -.-> x2
+  n1 -.-> x3
   n10 -.-> x0
-  n10 -.-> x3
+  n10 -.-> x13
+  n10 -.-> x4
   n11 -.-> x0
-  n11 -.-> x3
-  n12 -.-> x12
-  n12 -.-> x13
-  n12 -.-> x5
+  n11 -.-> x13
+  n11 -.-> x4
+  n12 -.-> x14
+  n12 -.-> x15
   n12 -.-> x6
+  n12 -.-> x7
   n14 -.-> x10
   n14 -.-> x11
-  n14 -.-> x4
+  n14 -.-> x12
   n14 -.-> x5
   n14 -.-> x6
   n14 -.-> x7
   n14 -.-> x8
   n14 -.-> x9
-  n16 -.-> x14
+  n16 -.-> x16
   n2 -.-> x0
   n2 -.-> x1
-  n2 -.-> x3
+  n2 -.-> x2
+  n2 -.-> x4
   n4 -.-> x0
-  n4 -.-> x3
+  n4 -.-> x4
   n6 -.-> x10
   n6 -.-> x11
-  n6 -.-> x4
+  n6 -.-> x12
   n6 -.-> x5
   n6 -.-> x6
   n6 -.-> x7
   n6 -.-> x8
   n6 -.-> x9
   n8 -.-> x0
-  n8 -.-> x3
+  n8 -.-> x13
+  n8 -.-> x4
   n9 -.-> x0
-  n9 -.-> x3
+  n9 -.-> x13
+  n9 -.-> x4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -136,7 +144,7 @@ def · line 271
 The normalised local model. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)`; the closed unit ball maps onto `|s - (2+iT)| ≤ 2`.
 
 - **Is:** `` jensenF (T : ℝ) : ℂ → ℂ := fun z => ζ (2 * z + (2 + Complex.I * (T : ℂ))) / ζ (2 + Complex.I * (T : ℂ)) ``
-- **Used by 8:** [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta), [`Stage3.jensenF_analytic`](#Stage3-jensenF_analytic), [`Stage3.jensenF_bound`](#Stage3-jensenF_bound), [`Stage3.jensenF_order`](#Stage3-jensenF_order), [`Stage3.jensenF_zero_eq_one`](#Stage3-jensenF_zero_eq_one), [`Stage3.jensenF_zeros_finite`](#Stage3-jensenF_zeros_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude)
+- **Used by 17:** [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta), [`Stage3.jensenF_analytic`](#Stage3-jensenF_analytic), [`Stage3.jensenF_bound`](#Stage3-jensenF_bound), [`Stage3.jensenF_order`](#Stage3-jensenF_order), [`Stage3.jensenF_zero_eq_one`](#Stage3-jensenF_zero_eq_one), [`Stage3.jensenF_zeros_finite`](#Stage3-jensenF_zeros_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude), [`TuringLW.gLow`](../lean_stage3/TuringLWHoriz.md#TuringLW-gLow), [`TuringLW.integral_g_ge`](../lean_stage3/TuringLWHoriz.md#TuringLW-integral_g_ge), [`TuringLW.intervalIntegrable_gLow`](../lean_stage3/TuringLWHoriz.md#TuringLW-intervalIntegrable_gLow), [`TuringLW.log_zeta_ge`](../lean_stage3/TuringLWHoriz.md#TuringLW-log_zeta_ge), [`TuringLW.log_blaschke_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_blaschke_ge), [`TuringLW.log_jensenF_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_jensenF_ge), [`TuringLW.norm_blaschke_mul_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-norm_blaschke_mul_le), [`TuringLW.zeroMass`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass), [`TuringLW.zeroMass_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass_le)
 
 <a name="Stage3-zetaLocalCount"></a>
 ### `Stage3.zetaLocalCount`
@@ -172,11 +180,12 @@ line 76
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`Stage3.jensenF_bound`](#Stage3-jensenF_bound) — `` ‖jensenF T z‖ ≤ 84 * T ``
   - [`Slice4.logDerivZeta_compact`](../lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14535 + 212 / (σ₁ - 1/2) ``
   - [`Stage3.logDerivZeta_compact_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_compact_theta) (ThetaLine) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14530 + 2 / (1 - θ) + 212 / (σ₁ - θ) ``
+  - [`TuringLW.log_zeta_ge`](../lean_stage3/TuringLWHoriz.md#TuringLW-log_zeta_ge) (TuringLWHoriz) — `` gLow ht x ≤ Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ``
 
 <a name="Stage3-zeta_disk_upper"></a>
 ### `Stage3.zeta_disk_upper`
@@ -226,7 +235,7 @@ line 198
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (9 that use it)
+**Feeds** (10 that use it)
 
   - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) (Abscissa) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
   - [`Stage3.jensenF_order`](#Stage3-jensenF_order) — `` analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I * (T : ℂ))) ``
@@ -237,6 +246,7 @@ line 198
   - [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - 1/2) ``
   - [`Slice4.logDerivZeta_compact`](../lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14535 + 212 / (σ₁ - 1/2) ``
   - [`Stage3.logDerivZeta_compact_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_compact_theta) (ThetaLine) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14530 + 2 / (1 - θ) + 212 / (σ₁ - θ) ``
+  - [`TuringLW.log_zeta_ge`](../lean_stage3/TuringLWHoriz.md#TuringLW-log_zeta_ge) (TuringLWHoriz) — `` gLow ht x ≤ Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ``
 
 <a name="Stage3-pole_away"></a>
 ### `Stage3.pole_away`
@@ -414,11 +424,14 @@ AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)
 
   - [`Stage3.zeta_comp_analytic`](#Stage3-zeta_comp_analytic) — `` AnalyticAt ℂ (fun z : ℂ => ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w ``
 
-**Feeds** (3 that use it)
+**Feeds** (6 that use it)
 
   - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) (Abscissa) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - 1/2) ``
+  - [`TuringLW.log_blaschke_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_blaschke_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) ≤ Real.log ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ ``
+  - [`TuringLW.log_jensenF_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_jensenF_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) - zeroMass hT * Real.log 2 + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ‖ ≤ Real.log ‖jensenF T… ``
+  - [`TuringLW.zeroMass_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass_le) (TuringLWHorizPoint) — `` zeroMass hT ≤ 15 * Real.log (84 * T) ``
 
 <a name="Stage3-jensenF_zero_eq_one"></a>
 ### `Stage3.jensenF_zero_eq_one`
@@ -445,11 +458,14 @@ jensenF T 0 = 1
 
   - [`Stage3.zeta_centre_ne_zero`](#Stage3-zeta_centre_ne_zero) — `` ζ (2 + Complex.I * (T : ℂ)) ≠ 0 ``
 
-**Feeds** (3 that use it)
+**Feeds** (6 that use it)
 
   - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) (Abscissa) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - 1/2) ``
+  - [`TuringLW.log_blaschke_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_blaschke_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) ≤ Real.log ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ ``
+  - [`TuringLW.log_jensenF_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_jensenF_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) - zeroMass hT * Real.log 2 + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ‖ ≤ Real.log ‖jensenF T… ``
+  - [`TuringLW.zeroMass_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass_le) (TuringLWHorizPoint) — `` zeroMass hT ≤ 15 * Real.log (84 * T) ``
 
 <a name="Stage3-jensenF_zeros_finite"></a>
 ### `Stage3.jensenF_zeros_finite`
@@ -477,11 +493,16 @@ line 296
   - [`Stage3.zetaWindowTwo_finite`](#Stage3-zetaWindowTwo_finite) — `` {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite ``
   - [`Stage3.zeta_centre_ne_zero`](#Stage3-zeta_centre_ne_zero) — `` ζ (2 + Complex.I * (T : ℂ)) ≠ 0 ``
 
-**Feeds** (3 that use it)
+**Feeds** (8 that use it)
 
   - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) (Abscissa) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - 1/2) ``
+  - [`TuringLW.log_blaschke_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_blaschke_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) ≤ Real.log ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ ``
+  - [`TuringLW.log_jensenF_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_jensenF_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) - zeroMass hT * Real.log 2 + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ‖ ≤ Real.log ‖jensenF T… ``
+  - [`TuringLW.norm_blaschke_mul_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-norm_blaschke_mul_le) (TuringLWHorizPoint) — `` ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ * ∏ ρ ∈ zeroSet hT, ‖z - ρ‖ ^ analyticOrderNatAt (jensenF T) ρ ≤ ‖jensenF T z‖ * 2 ^ (∑ ρ ∈ zeroSet hT, an… ``
+  - [`TuringLW.zeroMass_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass_le) (TuringLWHorizPoint) — `` zeroMass hT ≤ 15 * Real.log (84 * T) ``
+  - [`TuringLW.zeroSet`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroSet) (TuringLWHorizPoint) — def
 
 <a name="Stage3-jensenF_bound"></a>
 ### `Stage3.jensenF_bound`
@@ -510,11 +531,13 @@ line 316
   - [`Stage3.zeta_centre_lower`](#Stage3-zeta_centre_lower) — `` (1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖ ``
   - [`Stage3.zeta_disk_upper`](#Stage3-zeta_disk_upper) — `` ‖ζ w‖ ≤ 28 * T ``
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
   - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) (Abscissa) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`Slice3.logDerivZeta_crude`](../lean_stage3/LineBound.md#Slice3-logDerivZeta_crude) (LineBound) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - 1/2) ``
+  - [`TuringLW.log_blaschke_ge`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-log_blaschke_ge) (TuringLWHorizPoint) — `` -12 * Real.log (84 * T) ≤ Real.log ‖BlaschkeB (7 / 8) (15 / 16) (jensenF T) z‖ ``
+  - [`TuringLW.zeroMass_le`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroMass_le) (TuringLWHorizPoint) — `` zeroMass hT ≤ 15 * Real.log (84 * T) ``
 
 <a name="Stage3-analyticOrderNatAt_fun_comp_affine"></a>
 ### `Stage3.analyticOrderNatAt_fun_comp_affine`

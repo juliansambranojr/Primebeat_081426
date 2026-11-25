@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 3415.
+- **Theorems Lean has checked:** 3439.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
@@ -166,7 +166,6 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSFromLocal`](./lean_stage3/ArgCrude.md#Stage3-StmtSFromLocal) | **OPEN** | — | 5 |
 | [`Stage3.StmtSchoenfeld`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeld) | **OPEN** | — | 1 |
 | [`SwapX.StmtXStirling`](./lean_stage3/SwapX.md#SwapX-StmtXStirling) | **OPEN** | — | 2 |
-| [`Turing.StmtHorizLower`](./lean_stage3/TuringS.md#Turing-StmtHorizLower) | **OPEN** | — | 1 |
 | [`Turing.StmtOsc`](./lean_stage3/TuringS.md#Turing-StmtOsc) | **OPEN** | — | 1 |
 | [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | **OPEN** | — | 2 |
 | [`Turing.StmtSplit`](./lean_stage3/TuringS.md#Turing-StmtSplit) | **OPEN** | — | 1 |
@@ -233,6 +232,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSCrude`](./lean_stage3/ArgCrude.md#Stage3-StmtSCrude) | proved | [`ArgCount.sCrude_holds`](./lean_stage3/ArgCount.md#ArgCount-sCrude_holds) ⊢ Stage3.StmtSCrude Stage3.argS 15 600 | 1 |
 | [`Stage3.StmtZeroFreeRight`](./lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) | proved | [`Stage3.zeroFreeRight_one`](./lean_stage3/Abscissa.md#Stage3-zeroFreeRight_one) ⊢ StmtZeroFreeRight 1<br/>[`Stage3.zeroFreeRight_one_of_chebyshev`](./lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_one_of_chebyshev) ⊢ StmtZeroFreeRight 1 | 20 |
 | [`Stirling.StmtXStirlingRel`](./lean_stage3/StirlingX.md#Stirling-StmtXStirlingRel) | proved | [`Stirling.stmtXStirlingRel_holds`](./lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds) ⊢ StmtXStirlingRel | 1 |
+| [`Turing.StmtHorizLower`](./lean_stage3/TuringS.md#Turing-StmtHorizLower) | proved | [`TuringLW.horizLower_holds`](./lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) ⊢ Turing.StmtHorizLower 102 500 | 1 |
 | [`Turing.StmtHorizUpper`](./lean_stage3/TuringS.md#Turing-StmtHorizUpper) | proved | [`Turing.horizUpper_holds`](./lean_stage3/TuringS.md#Turing-horizUpper_holds) ⊢ StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9) | 0 |
 
 ## Joints
