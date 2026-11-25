@@ -22,6 +22,32 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, C1, the defect: `Stage3/Defect.lean`
+
+    DONE        `defect T = N T − lineCount T`; `defect_nonneg`; `defect_even` (the
+                off-line zeros pair by ρ ↔ 1 − ρ̄); `defect_le`: from
+                `levinson_floor`, defect T ≤ (2/3 + ε)·N T eventually; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes please" (start B1 and C1 side by side,
+                B2 in Python). Written before the workers start.
+    DEPENDS     `LineCount`, `FloorSum`, `ArgCount`, the zero set's symmetry in
+                the tree (grep `one_sub`, `conj` in the zero files)
+    OUT         B1; C2, C3
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B1, the floor for every length: `Stage3/FloorLong*.lean`
+
+    DONE        `StmtLongErr P θ R`: the three error statements of the chain
+                (`final_size_diag`, `final_size`, `size_X` in their consumed form)
+                as one Prop for any θ > 0; `floor_of_long`: from it, for every
+                ε > 0, eventually lineCount T ≥ (1 − log Kfl(A,B,C,θ,R)/R − ε)·N T
+                (Kfl ≥ 1 or with max 1); and `longErr_of_lt_half`: it holds for
+                θ < 1/2; or the largest honest piece; one unit
+    ASSUMED     as above
+    DEPENDS     the whole S12 chain (`Diagonal`, `OffDiagClose`, `SwapX`,
+                `StirlingX`, `Arith`, `Lemma3`, `Operator`, `Unsmooth`,
+                `FloorConst*`, `FloorStep*`, `FloorSum*`)
+    OUT         B2 (Python), B3; C
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 5c, the sum: `Stage3/FloorSum*.lean`
 
     DONE        at P(x) = x, θ = 49/100, R = 13/10: for every ε > 0, from some T on,
