@@ -112,6 +112,12 @@ build, 2026-09-08.
 | 99 | `simp only [coeff_C_mul, coeff_C_mul_X_pow]` leaves `(X ^ k).coeff i` | `coeff_C_mul` fires first, so `coeff_C_mul_X_pow` no longer matches | `simp [coeff_X_pow, hi]` (unit 0557) |
 | 100 | `field_simp` leaves `\|q\| * (1/L)^j * M * L^j = \|q\| * M` | `field_simp` does not cancel `(1 / L) ^ j` against `L ^ j` | `rw [one_div_pow]` before `field_simp` (unit 0557) |
 | 101 | deprecation warnings at `Polynomial.eval_finset_sum`, `Polynomial.finset_sum_coeff` | renamed on this Mathlib | `Polynomial.eval_finsetSum`, `Polynomial.finsetSum_coeff` (unit 0557) |
+| 102 | `AnalyticAt.comp` or `ContinuousAt.comp` with an inner lambda `fun x => (x, y)` or `fun t => σ + t*I` fails to unify | the inner function is unified with a curried constructor, `Prod.mk α₀` or `HAdd.hAdd ↑σ₀` | `AnalyticAt.comp_of_eq (g := F) (f := fun x => (x, y)) hF hp rfl`, or `ContinuousAt.comp_of_eq … rfl` (unit 0558) |
+| 103 | `iteratedDeriv_fun_sub` misses on `fun z => A z - B z * c` | the smoothness hypothesis from `AnalyticAt.mul` is in Pi form (the family of rows 42 and 79) | pass `(f := A) (g := fun z => B z * c)` with a typed `have hB' : ContDiffAt ℂ k (fun z => B z * c) x` (unit 0558) |
+| 104 | `simp_rw [← lemma hL0]` with `hL0 : 0 < L` makes no progress after `set L := Real.log T` | `set` rewrote only the hypotheses present when it ran; facts specialized later from `∀ T` hypotheses still carry `Real.log T` (row 56's family) | no `set` for `L` (unit 0558) |
+| 105 | `field_simp` leaves `(r / L) ^ k` unexpanded | `field_simp` does not distribute a power over a quotient | `rw [div_pow]` first (unit 0558) |
+| 106 | deprecation warnings at `integral_finset_sum`, `integrable_finset_sum` | renamed on this Mathlib (row 84's family) | `integral_finsetSum`, `integrable_finsetSum` (unit 0558) |
+| 107 | `simp` on `(1 - X : ℝ[X]).coeff 1 = -1` leaves `coeff 1 1 = 0` | `simp` does not close the constant polynomial's coefficient | `rw [coeff_sub, coeff_one, coeff_X_one]; norm_num` (unit 0558) |
 
 ## Bench and gate traps
 

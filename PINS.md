@@ -22,6 +22,28 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S13 of `design/stencil.md`, B4, the gamma ratio: `Stage3/GrRatio*.lean`
+
+    DONE        `MeanQRed.StmtGrRatio n` for every n, by the device of
+                `DigammaBoundIdentity` (V_eq_sum_H: the shift out of V exactly) and
+                Cauchy's estimate on small circles with `DigammaBoundSize.gamma_ratio`;
+                then `window_V_lt_half` and `mollMeanV_long` without `hG`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0558, TRAPS 102–107,
+                start StmtGrRatio and the general-Q closed form). Written before
+                the workers start.
+    DEPENDS     `MeanQRed`, `MeanQ`, `DigammaBound*`, `StirlingLog`
+    OUT         the closed form; the assembly
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 4, the closed form for a general Q: `Stage3/FloorConstQ*.lean`
+
+    DONE        Re DopQ(cY)(T) → c(P, Q, R, θ) of Young's (1.3) for general P and
+                symmetric Q, the identity generalizing `FloorConstLimit.dop_cY_eq`;
+                at one rational cubic Q, cubic or linear P, θ < 1/2 and R, a proved
+                bound log c < R·(1 − κ₀) with κ₀ > 1/3 (target near 0.36); one unit
+    ASSUMED     as above
+    DEPENDS     `FloorConst*`, `MeanQCauchy` (`DopQ`), `OperatorCY`, `TwistedMoment`
+    OUT         StmtGrRatio; the assembly
+
 ### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 3, the mean value with a general Q: `Stage3/MeanQ*.lean`
 
     DONE        the mollified mean of V = W/Gammaℝ (V = Q(1/2 − (D + g)/L) ζ) at

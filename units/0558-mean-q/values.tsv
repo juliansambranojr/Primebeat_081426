@@ -1,0 +1,19 @@
+key	value	source
+module_lines	234	wc -l lean_stage3/Stage3/MeanQ.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/MeanQ.lean
+defs	0	grep -c ^def lean_stage3/Stage3/MeanQ.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/MeanQ.lean
+pins	3	unsmooth_V, window_V_long, window_V_lt_half
+errors_first	1	the worker's first build of the reduction file: a nonnegativity rewrite on the wrong absolute value
+builds	16	the worker's report, builds over the seven files
+traps_added	6	lean_stage3/TRAPS.md rows 102-107
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8972	lake build (full Stage3), Build completed successfully
+jobs_module	8859	run/build.log, lake build Stage3.MeanQ
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	7	lean_stage3/Stage3/MeanQ.lean, MeanQRed.lean, MeanQCauchy.lean, MeanQInt.lean, MeanQMean.lean, MeanQBound.lean, MeanQV.lean
+trap_first	102	lean_stage3/TRAPS.md
+trap_last	107	lean_stage3/TRAPS.md
