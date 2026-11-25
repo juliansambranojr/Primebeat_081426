@@ -227,6 +227,7 @@ import Stage3.DiagMainMu
 import Stage3.DiagMain
 import Stage3.SwapX
 import Stage3.SdiagLead
+import Stage3.StirlingX
 
 namespace Stage3
 
