@@ -13,6 +13,7 @@ flowchart LR
   x5(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
   x6(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
   x7(["<b>CountModes</b><br/>im_ne_zero"]):::ext
+  x8(["<b>SignData</b><br/>nine_zeros_on_line<br/>one_zero_on_line"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -26,6 +27,7 @@ flowchart LR
   n3 -.-> x0
   n4 -.-> x0
   n5 -.-> x4
+  n5 -.-> x8
   x5 -.-> n1
   x5 -.-> n5
   x6 -.-> n4

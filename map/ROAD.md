@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 3499.
+- **Theorems Lean has checked:** 7188.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
@@ -159,13 +159,13 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`ConreyCount.StmtVRight`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight) | **OPEN** | — | 2 |
 | [`Diagonal.StmtDiagMain`](./lean_stage3/Diagonal.md#Diagonal-StmtDiagMain) | **OPEN** | — | 1 |
 | [`Schoenfeld.StmtSchoenfeld`](./lean/Schoenfeld.md#Schoenfeld-StmtSchoenfeld) | **OPEN** | — | 2 |
+| [`SignData.StmtClosingData`](./lean_stage3/SignData.md#SignData-StmtClosingData) | **OPEN** | — | 1 |
 | [`Stage3.StmtExplicitFormula`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormula) | **OPEN** | — | 0 |
 | [`Stage3.StmtExplicitFormulaPoly`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | **OPEN** | — | 2 |
 | [`Stage3.StmtPsiWeakTheta`](./lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) | **OPEN** | — | 9 |
 | [`Stage3.StmtSFromLocal`](./lean_stage3/ArgCrude.md#Stage3-StmtSFromLocal) | **OPEN** | — | 5 |
 | [`Stage3.StmtSchoenfeld`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeld) | **OPEN** | — | 1 |
 | [`SwapX.StmtXStirling`](./lean_stage3/SwapX.md#SwapX-StmtXStirling) | **OPEN** | — | 2 |
-| [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | **OPEN** | — | 2 |
 | [`TwistedMoment.StmtLemma3`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtLemma3) | **OPEN** | — | 0 |
 | [`TwistedMoment.StmtOffDiag`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtOffDiag) | **OPEN** | — | 1 |
 | [`TwistedMoment.StmtX`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtX) | **OPEN** | — | 3 |
@@ -234,6 +234,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Turing.StmtHorizUpper`](./lean_stage3/TuringS.md#Turing-StmtHorizUpper) | proved | [`Turing.horizUpper_holds`](./lean_stage3/TuringS.md#Turing-horizUpper_holds) ⊢ StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9) | 0 |
 | [`Turing.StmtLittlewood`](./lean_stage3/TuringS.md#Turing-StmtLittlewood) | proved | [`TuringLW.littlewood_holds`](./lean_stage3/TuringLW.md#TuringLW-littlewood_holds) ⊢ Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.p… | 2 |
 | [`Turing.StmtOsc`](./lean_stage3/TuringS.md#Turing-StmtOsc) | proved | [`TuringLW.stmtOsc_explicit`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_explicit) ⊢ Turing.StmtOsc (2 * (Real.pi ^ 2 / 6 - 1) / Real.log 2)<br/>[`TuringLW.stmtOsc_holds`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_holds) ⊢ Turing.StmtOsc 2 | 1 |
+| [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | proved | [`SignData.first_zero_signs`](./lean_stage3/SignData.md#SignData-first_zero_signs) ⊢ Turing.StmtSignData 1 ![14, 29 / 2]<br/>[`SignData.run_signs`](./lean_stage3/SignData.md#SignData-run_signs) ⊢ Turing.StmtSignData 9 ![14, 18, 23, 55 / 2, 63 / 2, 71 / 2, 39, 42, 91 / 2, 49] | 2 |
 | [`Turing.StmtSplit`](./lean_stage3/TuringS.md#Turing-StmtSplit) | proved | [`TuringLW.stmtSplit_holds`](./lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) ⊢ Turing.StmtSplit | 1 |
 
 ## Joints

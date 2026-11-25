@@ -20,6 +20,7 @@ flowchart LR
   n18["<b>prod_norm_le</b><br/>∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j"]:::shp
   n19["<b>norm_zeta_sub_partial_le</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
   x0(["<b>MollifiedMean</b><br/>emConst_nonneg<br/>mean_sq_f_le"]):::ext
+  x1(["<b>SignDataZeta</b><br/>zeta_em4"]):::ext
   n0 --> n7
   n1 --> n7
   n10 --> n14
@@ -42,6 +43,8 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 --> n10
+  n14 -.-> x1
+  n16 -.-> x1
   n19 -.-> x0
   n3 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

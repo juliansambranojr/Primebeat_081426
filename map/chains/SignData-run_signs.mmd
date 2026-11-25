@@ -1,0 +1,65 @@
+flowchart LR
+  f0["<b>HardyZ</b><br/>3 used"]:::thm
+  f1["<b>SignDataBall</b><br/>30 used"]:::thm
+  f2["<b>SignDataLog</b><br/>41 used"]:::thm
+  f3["<b>StirlingLog</b><br/>3 used"]:::thm
+  f4["<b>TuringCert</b><br/>1 used"]:::thm
+  f5["<b>ZetaEM</b><br/>21 used"]:::thm
+  f6["<b>SignDataZeta</b><br/>24 used"]:::thm
+  f7["<b>SignDataGamma</b><br/>14 used"]:::thm
+  f8["<b>SignDataPt14</b><br/>93 used"]:::thm
+  f9["<b>SignDataPt18</b><br/>148 used"]:::thm
+  f10["<b>SignDataPt23</b><br/>154 used"]:::thm
+  f11["<b>SignDataPt39</b><br/>550 used"]:::thm
+  f12["<b>SignDataPt42</b><br/>559 used"]:::thm
+  f13["<b>SignDataPt49</b><br/>574 used"]:::thm
+  f14["<b>SignDataPt55_2</b><br/>282 used"]:::thm
+  f15["<b>SignDataPt63_2</b><br/>294 used"]:::thm
+  f16["<b>SignDataPt71_2</b><br/>288 used"]:::thm
+  f17["<b>SignDataPt91_2</b><br/>550 used"]:::thm
+  f18["<b>SignData</b><br/>run_signs"]:::end_
+  f1 --> f2
+  f1 --> f6
+  f5 --> f6
+  f0 --> f7
+  f3 --> f7
+  f6 --> f7
+  f2 --> f8
+  f7 --> f8
+  f2 --> f9
+  f7 --> f9
+  f2 --> f10
+  f7 --> f10
+  f2 --> f11
+  f7 --> f11
+  f2 --> f12
+  f7 --> f12
+  f2 --> f13
+  f7 --> f13
+  f2 --> f14
+  f7 --> f14
+  f2 --> f15
+  f7 --> f15
+  f2 --> f16
+  f7 --> f16
+  f2 --> f17
+  f7 --> f17
+  f4 --> f18
+  f8 --> f18
+  f9 --> f18
+  f10 --> f18
+  f11 --> f18
+  f12 --> f18
+  f13 --> f18
+  f14 --> f18
+  f15 --> f18
+  f16 --> f18
+  f17 --> f18
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,47 +1,73 @@
-# What `TuringLW.littlewood_holds` rests on
+# What `SignData.defect_zero_of_closing` rests on
 
-[`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds) in `lean_stage3/Stage3/TuringLW.lean`, line 22.
+[`SignData.defect_zero_of_closing`](../lean_stage3/SignData.md#SignData-defect_zero_of_closing) in `lean_stage3/Stage3/SignData.lean`, line 142.
 
-**Why.** Littlewood's bound on `∫ S`, unconditional.
+**Why.** Turing's method with Littlewood's constants: the closing data give the defect `0`.
 
 **Proves**
 
 ```lean
-Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2
+∀ T ≤ T₁, Defect.defect T = 0
 ```
 
-Behind it: 136 theorems and 24 definitions in 13 files. Every one is listed below; Lean recorded each step.
+**Needs** (its hypotheses)
+
+  - `` hd : StmtClosingData T₁ h ``
+  - `` h2 : 2 ≤ T₁ ``
+  - `` hh : 0 < h ``
+
+Behind it: 180 theorems and 34 definitions in 22 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
   f0["<b>ArgCount</b><br/>2 used"]:::thm
-  f1["<b>JensenCount</b><br/>12 used"]:::thm
-  f2["<b>LevinsonEdge</b><br/>1 used"]:::thm
-  f3["<b>Littlewood</b><br/>9 used"]:::thm
-  f4["<b>Stirling</b><br/>6 used"]:::thm
-  f5["<b>ArgIdentity</b><br/>53 used"]:::thm
-  f6["<b>TuringLWHorizLog</b><br/>6 used"]:::thm
-  f7["<b>TuringLWHorizPoint</b><br/>11 used"]:::thm
-  f8["<b>TuringS</b><br/>15 used"]:::thm
-  f9["<b>TuringLWHoriz</b><br/>12 used"]:::thm
-  f10["<b>TuringLWSplitOsc</b><br/>26 used"]:::thm
-  f11["<b>TuringLWSplit</b><br/>7 used"]:::thm
-  f12["<b>TuringLW</b><br/>littlewood_holds"]:::end_
-  f4 --> f5
-  f1 --> f7
-  f0 --> f8
-  f2 --> f8
-  f5 --> f8
-  f6 --> f9
-  f7 --> f9
-  f8 --> f9
-  f8 --> f10
-  f3 --> f11
-  f10 --> f11
-  f9 --> f12
+  f1["<b>ContourShift</b><br/>6 used"]:::thm
+  f2["<b>HardyZ</b><br/>4 used"]:::thm
+  f3["<b>JensenCount</b><br/>12 used"]:::thm
+  f4["<b>LevinsonEdge</b><br/>1 used"]:::thm
+  f5["<b>LineCount</b><br/>7 used"]:::thm
+  f6["<b>Littlewood</b><br/>9 used"]:::thm
+  f7["<b>Stirling</b><br/>6 used"]:::thm
+  f8["<b>ArgIdentity</b><br/>53 used"]:::thm
+  f9["<b>TuringLWHorizLog</b><br/>6 used"]:::thm
+  f10["<b>TuringLWHorizPoint</b><br/>11 used"]:::thm
+  f11["<b>TuringS</b><br/>15 used"]:::thm
+  f12["<b>TuringAvg</b><br/>5 used"]:::thm
+  f13["<b>TuringLWHoriz</b><br/>12 used"]:::thm
+  f14["<b>TuringLWSplitOsc</b><br/>26 used"]:::thm
+  f15["<b>TuringLWSplit</b><br/>7 used"]:::thm
+  f16["<b>TuringLW</b><br/>1 used"]:::thm
+  f17["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f18["<b>SpiralLink</b><br/>5 used"]:::thm
+  f19["<b>Defect</b><br/>14 used"]:::thm
+  f20["<b>TuringCert</b><br/>10 used"]:::thm
+  f21["<b>SignData</b><br/>defect_zero_of_closing"]:::end_
+  f2 --> f5
+  f7 --> f8
+  f3 --> f10
+  f0 --> f11
+  f4 --> f11
+  f8 --> f11
   f11 --> f12
+  f9 --> f13
+  f10 --> f13
+  f11 --> f13
+  f11 --> f14
+  f6 --> f15
+  f14 --> f15
+  f13 --> f16
+  f15 --> f16
+  f17 --> f18
+  f0 --> f19
+  f1 --> f19
+  f5 --> f19
+  f18 --> f19
+  f12 --> f20
+  f19 --> f20
+  f16 --> f21
+  f20 --> f21
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -63,6 +89,22 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.N_eq_sum`](../lean_stage3/ArgCount.md#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 - [`ArgCount.N_mono`](../lean_stage3/ArgCount.md#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
 
+### [`ContourShift`](../lean_stage3/ContourShift.md) — 6
+
+- [`ContourShift.zeta_analyticAt`](../lean_stage3/ContourShift.md#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
+- [`ContourShift.zeta_order_ne_top`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
+- [`ContourShift.order_bridge`](../lean_stage3/ContourShift.md#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
+- [`ContourShift.analyticAt_conj_conj`](../lean_stage3/ContourShift.md#ContourShift-analyticAt_conj_conj) — `` AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) ((starRingEnd ℂ) p) ``
+- [`ContourShift.zeta_order_conj`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
+- [`ContourShift.zeta_order_reflect`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_reflect) — `` analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
+
+### [`HardyZ`](../lean_stage3/HardyZ.md) — 4
+
+- [`HardyZ.completedRiemannZeta_conj_of_re_pos`](../lean_stage3/HardyZ.md#HardyZ-completedRiemannZeta_conj_of_re_pos) — `` completedRiemannZeta (conj s) = conj (completedRiemannZeta s) ``
+- [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
+- [`HardyZ.xi_line_real`](../lean_stage3/HardyZ.md#HardyZ-xi_line_real) — `` (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 ``
+- [`HardyZ.continuous_xi_line`](../lean_stage3/HardyZ.md#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
+
 ### [`JensenCount`](../lean_stage3/JensenCount.md) — 12
 
 - [`Stage3.zeta_centre_lower`](../lean_stage3/JensenCount.md#Stage3-zeta_centre_lower) — `` (1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖ ``
@@ -81,6 +123,16 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md) — 1
 
 - [`LevinsonEdge.zeta_norm_le`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-zeta_norm_le) — `` ‖riemannZeta u‖ ≤ 2 + 4 * ‖u‖ ``
+
+### [`LineCount`](../lean_stage3/LineCount.md) — 7
+
+- [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo) — *def*
+- [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount) — *def*
+- [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount) — *def*
+- [`LineCount.mem_zerosUpTo`](../lean_stage3/LineCount.md#LineCount-mem_zerosUpTo) — `` ρ ∈ zerosUpTo T ↔ 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T ``
+- [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
+- [`LineCount.lineCount_le_allCount`](../lean_stage3/LineCount.md#LineCount-lineCount_le_allCount) — `` lineCount T ≤ allCount T ``
+- [`LineCount.signChanges_le_line_count`](../lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) — `` (k : ℤ) ≤ lineCount T ``
 
 ### [`Littlewood`](../lean_stage3/Littlewood.md) — 9
 
@@ -187,7 +239,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Turing.S`](../lean_stage3/TuringS.md#Turing-S) — *def*
 - [`Turing.S₁`](../lean_stage3/TuringS.md#Turing-S-) — *def*
 - [`Turing.F`](../lean_stage3/TuringS.md#Turing-F) — *def*
-- ★ [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood) — *def*
+- [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood) — *def*
 - [`Turing.StmtSplit`](../lean_stage3/TuringS.md#Turing-StmtSplit) — *def*
 - [`Turing.StmtOsc`](../lean_stage3/TuringS.md#Turing-StmtOsc) — *def*
 - [`Turing.StmtHorizUpper`](../lean_stage3/TuringS.md#Turing-StmtHorizUpper) — *def*
@@ -199,6 +251,14 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Turing.log_zeta_le`](../lean_stage3/TuringS.md#Turing-log_zeta_le) — `` Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤ Real.log 9 + Real.log t ``
 - [`Turing.horizUpper_holds`](../lean_stage3/TuringS.md#Turing-horizUpper_holds) — `` StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9) ``
 - [`Turing.littlewood_of_pieces`](../lean_stage3/TuringS.md#Turing-littlewood_of_pieces) — `` StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
+
+### [`TuringAvg`](../lean_stage3/TuringAvg.md) — 5
+
+- [`Turing.theta_sub_le`](../lean_stage3/TuringAvg.md#Turing-theta_sub_le) — `` Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * ((Real.log (u / 2) - Real.log Real.pi + 97 / t) / 2) ``
+- [`Turing.avg_le`](../lean_stage3/TuringAvg.md#Turing-avg_le) — `` f t ≤ ((∫ u in t..t + h, f u) + ∫ u in t..t + h, e u) / h ``
+- [`Turing.integral_lin`](../lean_stage3/TuringAvg.md#Turing-integral_lin) — `` (∫ u in t..t + h, (u - t) * K / Real.pi) = K * h ^ 2 / (2 * Real.pi) ``
+- [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise) — `` S t ≤ S u + ((u - t) * K / Real.pi - c) ``
+- [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count) — `` S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h ``
 
 ### [`TuringLWHoriz`](../lean_stage3/TuringLWHoriz.md) — 12
 
@@ -213,7 +273,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`TuringLW.intervalIntegrable_gLow`](../lean_stage3/TuringLWHoriz.md#TuringLW-intervalIntegrable_gLow) — `` IntervalIntegrable (gLow ht) volume (1 / 2) 2 ``
 - [`TuringLW.log3_le`](../lean_stage3/TuringLWHoriz.md#TuringLW-log3_le) — `` Real.log 3 ≤ 2 ``
 - [`TuringLW.integral_g_ge`](../lean_stage3/TuringLWHoriz.md#TuringLW-integral_g_ge) — `` -(102 * Real.log t + 500) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x ``
-- ★ [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) — `` Turing.StmtHorizLower 102 500 ``
+- [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) — `` Turing.StmtHorizLower 102 500 ``
 
 ### [`TuringLWSplitOsc`](../lean_stage3/TuringLWSplitOsc.md) — 26
 
@@ -252,5 +312,55 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
 - [`TuringLW.intervalIntegrable_log_zeta`](../lean_stage3/TuringLWSplit.md#TuringLW-intervalIntegrable_log_zeta) — `` IntervalIntegrable (fun x : ℝ => Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * I)‖) volume a b ``
 - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) — `` Turing.StmtSplit ``
-- ★ [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower) — `` Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
+- [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower) — `` Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
+
+### [`TuringLW`](../lean_stage3/TuringLW.md) — 1
+
+- ★ [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds) — `` Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2 ``
+
+### [`WeilOnLine`](../lean_stage3/WeilOnLine.md) — 1
+
+- [`WeilOnLine.conj_mem`](../lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) — `` (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros ``
+
+### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 5
+
+- [`SpiralLink.mirror_mem`](../lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) — `` (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros ``
+- [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) — *def*
+- [`SpiralLink.mirrorZ_im`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_im) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ``
+- [`SpiralLink.mirrorZ_re`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re ``
+- [`SpiralLink.mirrorZ_eq_iff`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_eq_iff) — `` mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 ``
+
+### [`Defect`](../lean_stage3/Defect.md) — 14
+
+- ★ [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect) — *def*
+- [`Defect.offCount`](../lean_stage3/Defect.md#Defect-offCount) — *def*
+- [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount) — `` defect T = offCount T ``
+- [`Defect.defect_nonneg`](../lean_stage3/Defect.md#Defect-defect_nonneg) — `` 0 ≤ defect T ``
+- [`Defect.N_eq_sum_lt`](../lean_stage3/Defect.md#Defect-N_eq_sum_lt) — `` riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (ρ : ℂ).im < T), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
+- [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast) — `` (allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
+- [`Defect.exists_right`](../lean_stage3/Defect.md#Defect-exists_right) — `` ∃ T' : ℝ, T < T' ∧ ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im ``
+- [`Defect.zerosUpTo_eq_right`](../lean_stage3/Defect.md#Defect-zerosUpTo_eq_right) — `` zerosUpTo T' = zerosUpTo T ``
+- [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right) — `` riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T ``
+- [`Defect.mirrorZ_order`](../lean_stage3/Defect.md#Defect-mirrorZ_order) — `` riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ) ``
+- [`Defect.mirrorZ_mirrorZ`](../lean_stage3/Defect.md#Defect-mirrorZ_mirrorZ) — `` SpiralLink.mirrorZ (SpiralLink.mirrorZ ρ) = ρ ``
+- [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair) — `` SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : NontrivialZe… ``
+- [`Defect.offCount_eq_two_mul`](../lean_stage3/Defect.md#Defect-offCount_eq_two_mul) — `` offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2)).filter (fun ρ : NontrivialZeros => (ρ : ℂ).re < 1 / 2), riemannZ… ``
+- [`Defect.defect_even`](../lean_stage3/Defect.md#Defect-defect_even) — `` Even (defect T) ``
+
+### [`TuringCert`](../lean_stage3/TuringCert.md) — 10
+
+- [`Turing.StmtSignData`](../lean_stage3/TuringCert.md#Turing-StmtSignData) — *def*
+- [`Turing.turingK`](../lean_stage3/TuringCert.md#Turing-turingK) — *def*
+- [`Turing.turingErr`](../lean_stage3/TuringCert.md#Turing-turingErr) — *def*
+- [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono) — `` defect T ≤ defect T' ``
+- [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two) — `` defect T = 0 ``
+- [`Turing.defect_zero_below`](../lean_stage3/TuringCert.md#Turing-defect_zero_below) — `` ∀ T ≤ T₁, defect T = 0 ``
+- [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N) — `` (allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u ``
+- [`Turing.count_le_N_sub`](../lean_stage3/TuringCert.md#Turing-count_le_N_sub) — `` (∑ j : Fin m, if s j.succ < u then (1 : ℝ) else 0) ≤ riemannZeta.N u - (allCount T₁ : ℝ) ``
+- [`Turing.integral_step`](../lean_stage3/TuringCert.md#Turing-integral_step) — `` (∫ u in a..b, if s < u then (1 : ℝ) else 0) = b - s ``
+- ★ [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
+
+### [`SignData`](../lean_stage3/SignData.md) — 1
+
+- ★ [`SignData.StmtClosingData`](../lean_stage3/SignData.md#SignData-StmtClosingData) — *def*
 

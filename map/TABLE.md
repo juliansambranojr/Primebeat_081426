@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>471 theorems counting,<br/>in 93 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>486 theorems counting,<br/>in 96 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1605 theorems shape,<br/>in 209 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>5234 theorems shape,<br/>in 224 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1047 theorems reads ζ,<br/>in 184 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1092 theorems reads ζ,<br/>in 198 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 575 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1856 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1068 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 590 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 5485 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1113 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 471 | 1605 | 1047 |
+| `lean_stage3/` | 486 | 5234 | 1092 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -1077,6 +1077,36 @@ SieveResidual — block R3 of `lean_stage3/design/runs.md`. 2026-11-23. The roun
 
 - [`SieveResidual.cast_netRounding`](./lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding) — `` ((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ)) `` The net rounding, as a real number, is the product less the count the sieve produces.
 - [`SieveResidual.sqrt_two_pow`](./lean_stage3/SieveResidual.md#SieveResidual-sqrt_two_pow) — `` Nat.sqrt (2 ^ (2 * m)) = 2 ^ m `` The square root of an even power of two is the power of half the exponent.
+
+### [`SignDataBall`](./lean_stage3/SignDataBall.md) — 8
+
+SignDataBall — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: ball arithmetic. 2026-11-25.
+
+- [`SignData.cx_re`](./lean_stage3/SignDataBall.md#SignData-cx_re) — `` (cx a b).re = a ``
+- [`SignData.cx_im`](./lean_stage3/SignDataBall.md#SignData-cx_im) — `` (cx a b).im = b ``
+- [`SignData.ball_exact`](./lean_stage3/SignDataBall.md#SignData-ball_exact) — `` ‖cx a b - cx a b‖ ≤ 0 ``
+- [`SignData.ball_mono`](./lean_stage3/SignDataBall.md#SignData-ball_mono) — `` ‖z - cx a b‖ ≤ R `` Enlarging a ball.
+- [`SignData.real_round`](./lean_stage3/SignDataBall.md#SignData-real_round) — `` |x - c| ≤ R ``
+- [`SignData.real_mul_ball`](./lean_stage3/SignDataBall.md#SignData-real_mul_ball) — `` |u * x - u * a| ≤ |u| * e ``
+- [`SignData.neg_mul_ball`](./lean_stage3/SignDataBall.md#SignData-neg_mul_ball) — `` |-(t * x) - -(t * a)| ≤ |t| * e ``
+- [`SignData.phase_ball`](./lean_stage3/SignDataBall.md#SignData-phase_ball) — `` |(t / 2) * (x - y) - (t / 2) * (a - b)| ≤ |t / 2| * (e₁ + e₂) ``
+
+### [`SignDataGamma`](./lean_stage3/SignDataGamma.md) — 3
+
+SignDataGamma — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: the phase of `Gammaℝ` on the line, to within `π/2`. 2026-11-25.
+
+- [`SignData.zz_re`](./lean_stage3/SignDataGamma.md#SignData-zz_re) — `` (zz t).re = 1 / 4 ``
+- [`SignData.prod_shift`](./lean_stage3/SignDataGamma.md#SignData-prod_shift) — `` ∏ j ∈ Finset.range (n + 1), (z + j) = (n.factorial : ℂ) * (z * ∏ j ∈ Finset.range n, (1 + z / ((j : ℂ) + 1))) `` `∏_{j<n+1}(z+j) = n!·(z·∏_{j<n}(1 + z/(j+1)))`.
+- [`SignData.lineS_div_two`](./lean_stage3/SignDataGamma.md#SignData-lineS_div_two) — `` lineS t / 2 = zz t ``
+
+### [`SignDataZeta`](./lean_stage3/SignDataZeta.md) — 4
+
+SignDataZeta — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: ζ on the line by Euler–Maclaurin of order 4. 2026-11-25.
+
+- [`SignData.lineS_re`](./lean_stage3/SignDataZeta.md#SignData-lineS_re) — `` (lineS t).re = 1 / 2 ``
+- [`SignData.bernoulliFun_four`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_four) — `` bernoulliFun 4 x = x ^ 4 - 2 * x ^ 3 + x ^ 2 - 1 / 30 ``
+- [`SignData.bernoulliFun_three_zero`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_three_zero) — `` bernoulliFun 3 0 = 0 ``
+- [`SignData.bernoulliFun_four_zero`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_four_zero) — `` bernoulliFun 4 0 = -1 / 30 ``
 
 ### [`StepsBelow`](./lean_stage3/StepsBelow.md) — 11
 

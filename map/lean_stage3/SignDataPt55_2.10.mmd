@@ -1,0 +1,62 @@
+flowchart LR
+  n0["<b>p55_2_P250</b><br/>‖∏ j ∈ Finset.range (249 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n1["<b>p55_2_P251</b><br/>‖∏ j ∈ Finset.range (250 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n2["<b>p55_2_P252</b><br/>‖∏ j ∈ Finset.range (251 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n3["<b>p55_2_P253</b><br/>‖∏ j ∈ Finset.range (252 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n4["<b>p55_2_P254</b><br/>‖∏ j ∈ Finset.range (253 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n5["<b>p55_2_P255</b><br/>‖∏ j ∈ Finset.range (254 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n6["<b>p55_2_P256</b><br/>‖∏ j ∈ Finset.range (255 + 1), (1 + zz (55/2 : ℝ) / ((j : ℂ) + 1…"]:::shp
+  n7["<b>p55_2_W</b><br/>‖zz (55/2 : ℝ) * ∏ j ∈ Finset.range (255 + 1), (1 + zz (55/2 : ℝ…"]:::shp
+  n8["<b>p55_2_phase</b><br/>‖cexp (((((55/2 : ℝ) / 2) * (Real.log (((256 : ℕ)) : ℝ) - Real.l…"]:::shp
+  n9["<b>p55_2_G</b><br/>‖gammaDir (55/2 : ℝ) 256 - cx (5029779522.1857416864366354541974…"]:::shp
+  n10["<b>p55_2_X</b><br/>‖gammaDir (55/2 : ℝ) 256 * riemannZeta (lineS (55/2 : ℝ)) - cx (…"]:::thm
+  n11["<b>sign_55_2</b><br/>0 ＜ (completedRiemannZeta (lineS (55/2 : ℝ))).re"]:::thm
+  x0(["<b>SignDataBall</b><br/>4 theorems"]):::ext
+  x1(["<b>SignDataGamma</b><br/>factor_ball<br/>re_lambda_pos<br/>zz_ball"]):::ext
+  x2(["<b>diagram 9</b><br/>p55_2_P249"]):::ext
+  x3(["<b>SignDataLog</b><br/>log_pi_ball'<br/>log_pow2_ball_256"]):::ext
+  x4(["<b>diagram 1</b><br/>p55_2_zeta"]):::ext
+  x5(["<b>SignData</b><br/>run_signs"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n10 --> n11
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n9
+  n8 --> n9
+  n9 --> n10
+  n11 -.-> x5
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n10
+  x0 -.-> n2
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n5
+  x0 -.-> n6
+  x0 -.-> n7
+  x0 -.-> n8
+  x0 -.-> n9
+  x1 -.-> n0
+  x1 -.-> n1
+  x1 -.-> n11
+  x1 -.-> n2
+  x1 -.-> n3
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n7
+  x2 -.-> n0
+  x3 -.-> n8
+  x4 -.-> n10
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

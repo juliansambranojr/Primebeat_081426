@@ -5,18 +5,20 @@ flowchart LR
   n3["<b>allCount_add_card_le_N</b><br/>(allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u"]:::thm
   n4["<b>count_le_N_sub</b><br/>(∑ j : Fin m, if s j.succ ＜ u then (1 : ℝ) else 0) ≤ riemannZeta…"]:::thm
   n5["<b>integral_step</b><br/>(∫ u in a..b, if s ＜ u then (1 : ℝ) else 0) = b - s"]:::cnt
-  n6["<b>defect_zero_of_signs ■</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
+  n6["<b>defect_zero_of_signs</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
   x0(["<b>Defect</b><br/>7 theorems"]):::ext
   x1(["<b>LineCount</b><br/>mem_zerosUpTo<br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
   x2(["<b>HardyZ</b><br/>re_line"]):::ext
   x3(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
   x4(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
+  x5(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
   n0 --> n2
   n1 --> n6
   n2 --> n6
   n3 --> n4
   n4 --> n6
   n5 --> n6
+  n6 -.-> x5
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2

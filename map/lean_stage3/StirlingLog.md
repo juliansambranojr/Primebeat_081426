@@ -7,7 +7,7 @@
 8 theorems, 1 definition, 301 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`StirlingX`](../lean_stage3/StirlingX.md)
+**Imported by:** [`SignDataGamma`](../lean_stage3/SignDataGamma.md), [`StirlingX`](../lean_stage3/StirlingX.md)
 
 ## The picture
 
@@ -21,7 +21,8 @@ flowchart LR
   n5["<b>sum_inv_normSq_le</b><br/>∑ m ∈ Finset.range N, 1 / ‖z + m‖ ^ 2 ≤ 6 / |z.im|"]:::shp
   n6["<b>tendsto_log_shift</b><br/>Tendsto (fun n : ℕ =＞ log (z + ((n : ℂ) + 1)) - (Real.log n : ℂ)…"]:::shp
   n7["<b>logG_shift</b><br/>‖logG (z + a) - logG z - a * log z‖ ≤ 2 / |z.im|"]:::shp
-  x0(["<b>StirlingX</b><br/>XY_eq_exp<br/>exponent_le"]):::ext
+  x0(["<b>SignDataGamma</b><br/>re_lambda_eq<br/>tail_le"]):::ext
+  x1(["<b>StirlingX</b><br/>XY_eq_exp<br/>exponent_le"]):::ext
   n0 --> n1
   n0 --> n7
   n2 --> n7
@@ -29,8 +30,10 @@ flowchart LR
   n4 --> n5
   n5 --> n7
   n6 --> n7
+  n0 -.-> x0
   n1 -.-> x0
-  n7 -.-> x0
+  n1 -.-> x1
+  n7 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -53,7 +56,7 @@ def · line 38
 A logarithm of `Γ` on the right half-plane: the limit of PNT+'s `logGammaSeq`.
 
 - **Is:** `` logG (z : ℂ) : ℂ := limUnder atTop (Complex.logGammaSeq z) ``
-- **Used by 6:** [`Stirling.exp_logG`](#Stirling-exp_logG), [`Stirling.logG_shift`](#Stirling-logG_shift), [`Stirling.tendsto_logG`](#Stirling-tendsto_logG), [`Stirling.XY_eq_exp`](../lean_stage3/StirlingX.md#Stirling-XY_eq_exp), [`Stirling.exponent_le`](../lean_stage3/StirlingX.md#Stirling-exponent_le), [`Stirling.stmtXStirlingRel_holds`](../lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds)
+- **Used by 8:** [`SignData.re_lambda_eq`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_eq), [`SignData.tail_le`](../lean_stage3/SignDataGamma.md#SignData-tail_le), [`Stirling.exp_logG`](#Stirling-exp_logG), [`Stirling.logG_shift`](#Stirling-logG_shift), [`Stirling.tendsto_logG`](#Stirling-tendsto_logG), [`Stirling.XY_eq_exp`](../lean_stage3/StirlingX.md#Stirling-XY_eq_exp), [`Stirling.exponent_le`](../lean_stage3/StirlingX.md#Stirling-exponent_le), [`Stirling.stmtXStirlingRel_holds`](../lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds)
 
 ## Theorems
 
@@ -78,8 +81,9 @@ Tendsto (Complex.logGammaSeq z) atTop (𝓝 (logG z))
 
 **Definitions its proof touches:** [`Stirling.logG`](#Stirling-logG)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`SignData.tail_le`](../lean_stage3/SignDataGamma.md#SignData-tail_le) (SignDataGamma) — `` ‖Stirling.logG z - Complex.logGammaSeq z n‖ ≤ (2 * ‖z‖ + ‖z‖ ^ 2) / n ``
   - [`Stirling.exp_logG`](#Stirling-exp_logG) — `` cexp (logG z) = Gamma z ``
   - [`Stirling.logG_shift`](#Stirling-logG_shift) — `` ‖logG (z + a) - logG z - a * log z‖ ≤ 2 / |z.im| ``
 
@@ -106,8 +110,9 @@ cexp (logG z) = Gamma z
 
 **Definitions its proof touches:** [`Stirling.logG`](#Stirling-logG)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SignData.re_lambda_eq`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_eq) (SignDataGamma) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (gammaDir t n * riemannZeta (lineS t)).re ``
   - [`Stirling.XY_eq_exp`](../lean_stage3/StirlingX.md#Stirling-XY_eq_exp) (StirlingX) — `` XY α β t = cexp (log (Real.pi : ℂ) * (α + β) + ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) - (logG (wp t + α / 2) + logG (wm t + β / 2)))) ``
 
 <a name="Stirling-log_step"></a>
