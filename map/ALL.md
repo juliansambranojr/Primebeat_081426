@@ -87,6 +87,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxFE.approxFE_of_shift`](./lean_stage3/ApproxFE.md#ApproxFE-approxFE_of_shift) | theorem | reads ζ | `ApproxFE` | riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t) + XY α β t * (∑' p : ℕ × ℕ, ((p… |
 | [`TwistedMoment.approxFE_small`](./lean_stage3/TwistedMoment.md#TwistedMoment-approxFE_small) | theorem | reads ζ | `TwistedMoment` | riemannZeta (uA α t) * riemannZeta (vB β t) = S1 α β c t + XY α β t * S1 (-β) (-α) c t - resY α β t |
 | [`Operator.Aq`](./lean_stage3/OperatorCY.md#Operator-Aq) | def | counting | `OperatorCY` | ℂ |
+| [`FloorConst.Aq_eq`](./lean_stage3/FloorConstLimit.md#FloorConst-Aq_eq) | theorem | shape | `FloorConstLimit` | Aq P = ((Ar P : ℝ) : ℂ) |
+| [`FloorConst.Ar`](./lean_stage3/FloorConstLimit.md#FloorConst-Ar) | def | counting | `FloorConstLimit` | ℝ |
+| [`FloorConst.Ar_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Ar_X) | theorem | counting | `FloorConstLimit` | Ar Polynomial.X = 1 |
 | [`LeftSmooth.arctan_int_le`](./lean_stage3/LeftSmooth.md#LeftSmooth-arctan_int_le) | theorem | shape | `LeftSmooth` | (∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a |
 | [`PiRemainder.Arem`](./lean_stage3/PiRemainder.md#PiRemainder-Arem) | def | reads ζ | `PiRemainder` | ℝ |
 | [`PiRemainder.Arem_nonneg`](./lean_stage3/PiRemainder.md#PiRemainder-Arem_nonneg) | theorem | reads ζ | `PiRemainder` | 0 ≤ Arem |
@@ -207,6 +210,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`NyquistPeak.boundaryBase_pos`](./lean/NyquistPeak.md#NyquistPeak-boundaryBase_pos) | theorem | shape | `NyquistPeak` | 0 &lt; boundaryBase γ |
 | [`WeilDetect.box_empty_of_positive_of_detect`](./lean_stage3/WeilDetect.md#WeilDetect-box_empty_of_positive_of_detect) | theorem | reads ζ | `WeilDetect` | OffLineBox ε T = ∅ |
 | [`Operator.Bq`](./lean_stage3/OperatorCY.md#Operator-Bq) | def | counting | `OperatorCY` | ℂ |
+| [`FloorConst.Bq_eq`](./lean_stage3/FloorConstLimit.md#FloorConst-Bq_eq) | theorem | shape | `FloorConstLimit` | Bq P = ((Br P : ℝ) : ℂ) |
+| [`FloorConst.Br`](./lean_stage3/FloorConstLimit.md#FloorConst-Br) | def | counting | `FloorConstLimit` | ℝ |
+| [`FloorConst.Br_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Br_X) | theorem | counting | `FloorConstLimit` | Br Polynomial.X = 1 / 2 |
 | [`WeilPowerNear.bracket_nonneg`](./lean_stage3/WeilPowerNear.md#WeilPowerNear-bracket_nonneg) | theorem | shape | `WeilPowerNear` | 0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ |
 | [`LeftKernel.Bser`](./lean_stage3/LeftKernel.md#LeftKernel-Bser) | def | shape | `LeftKernel` | ℝ |
 | [`LeftSmooth.Bsm`](./lean_stage3/LeftSmooth.md#LeftSmooth-Bsm) | def | shape | `LeftSmooth` | ℝ |
@@ -524,7 +530,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.cprime_pos`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-cprime_pos) | theorem | shape | `WeilPowerGauss` | 0 &lt; cS m / D m |
 | [`Operator.Cq`](./lean_stage3/OperatorCY.md#Operator-Cq) | def | counting | `OperatorCY` | ℂ |
 | [`WeilPowerCompare.cQ`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cQ) | def | shape | `WeilPowerCompare` | ℝ |
+| [`FloorConst.Cq_eq`](./lean_stage3/FloorConstLimit.md#FloorConst-Cq_eq) | theorem | shape | `FloorConstLimit` | Cq P = ((Cr P : ℝ) : ℂ) |
 | [`WeilPowerCompare.cQ_pos`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cQ_pos) | theorem | shape | `WeilPowerCompare` | 0 &lt; cQ m |
+| [`FloorConst.Cr`](./lean_stage3/FloorConstLimit.md#FloorConst-Cr) | def | counting | `FloorConstLimit` | ℝ |
+| [`FloorConst.Cr_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Cr_X) | theorem | counting | `FloorConstLimit` | Cr Polynomial.X = 1 / 3 |
 | [`Transform.critical_circle_is_lattice_inversion_mean`](./lean/Transform.md#Transform-critical_circle_is_lattice_inversion_mean) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2)) ^ 2 |
 | [`LevinsonArg.crossings_of_arg`](./lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_arg) | theorem | shape | `LevinsonArg` | ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 |
 | [`LevinsonArg.crossings_of_le`](./lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_le) | theorem | shape | `LevinsonArg` | ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 |
@@ -541,6 +550,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Arith.CV`](./lean_stage3/ArithTail.md#Arith-CV) | def | shape | `ArithTail` | ℝ |
 | [`TwistedMoment.cY`](./lean_stage3/TwistedMoment.md#TwistedMoment-cY) | def | shape | `TwistedMoment` | ℂ |
 | [`Operator.cY_eq`](./lean_stage3/OperatorCY.md#Operator-cY_eq) | theorem | shape | `OperatorCY` | cY P M T α β = cYform P M T (α, β) |
+| [`FloorConst.cY_eq_HF`](./lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF) | theorem | shape | `FloorConstDeriv` | cY P M T x y = HF (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y |
 | [`Operator.cY_partials`](./lean_stage3/OperatorCY.md#Operator-cY_partials) | theorem | shape | `OperatorCY` | DifferentiableAt ℂ (fun x =&gt; cY P M T x y) x ∧ DifferentiableAt ℂ (fun y =&gt; cY P M T x y) y ∧ DifferentiableAt ℂ (fun y =&gt; pa (cY P M T) x y) y |
 | [`Operator.cYform`](./lean_stage3/OperatorCY.md#Operator-cYform) | def | shape | `OperatorCY` | ℂ |
 | [`Operator.cYform_analytic`](./lean_stage3/OperatorCY.md#Operator-cYform_analytic) | theorem | shape | `OperatorCY` | AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ \| q.1 + q.2 ≠ 0} |
@@ -657,7 +667,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Glue.Dln_pos`](./lean_stage3/GlueNum.md#Glue-Dln_pos) | theorem | reads ζ | `GlueNum` | 0 &lt; Dln |
 | [`Crossover.dominance_flips`](./lean/Crossover.md#Crossover-dominance_flips) | theorem | shape | `Crossover` | ratio A B x y i &lt; 1 ∧ 1 &lt; ratio A B x y j |
 | [`Operator.Dop`](./lean_stage3/OperatorCauchy.md#Operator-Dop) | def | counting | `OperatorCauchy` | ℂ |
+| [`FloorConst.dop_closed`](./lean_stage3/FloorConstLimit.md#FloorConst-dop_closed) | theorem | shape | `FloorConstLimit` | HF A B C ((θ * L : ℝ) : ℂ) L ((-(R / L) : ℝ) : ℂ) ((-(R / L) : ℝ) : ℂ) + 1 / (L : ℂ) * (Hx A B C ((θ * L : ℝ) : ℂ) L ((-(R / L) : ℝ) : ℂ) ((-(R / L) : ℝ) : ℂ) + Hy A B C ((θ * L : ℝ) : ℂ) L ((-(R / L)… |
 | [`Unsmooth.dop_cY_bdd`](./lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) | theorem | shape | `UnsmoothCY` | ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K |
+| [`FloorConst.dop_cY_eq`](./lean_stage3/FloorConstLimit.md#FloorConst-dop_cY_eq) | theorem | shape | `FloorConstLimit` | Dop (Real.log T) (cY P M T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ) = ((Kfl (Ar P) (Br P) (Cr P) (Real.log M / Real.log T) R : ℝ) : ℂ) |
 | [`Operator.Dop_Imom`](./lean_stage3/OperatorInt.md#Operator-Dop_Imom) | theorem | reads ζ | `OperatorInt` | Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMean W M a σ₀ L' |
 | [`Operator.Dop_norm_le`](./lean_stage3/OperatorCauchy.md#Operator-Dop_norm_le) | theorem | shape | `OperatorCauchy` | ‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2) |
 | [`Operator.Dop_sub_mul`](./lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) | theorem | counting | `OperatorCauchy` | Dop L (fun x y =&gt; A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c |
@@ -716,6 +728,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`OffDiagClose.edgeUp_contDiff`](./lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_contDiff) | theorem | shape | `OffDiagClose` | ContDiff ℝ ∞ (edgeUp c a) |
 | [`OffDiagClose.edgeUp_iter`](./lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_iter) | theorem | shape | `OffDiagClose` | iteratedDeriv i (edgeUp c a) t = c ^ i * iteratedDeriv i Real.smoothTransition (c * (t - a)) |
 | [`OffDiagClose.edgeUp_iter_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_iter_le) | theorem | shape | `OffDiagClose` | \|iteratedDeriv i (edgeUp c a) t\| ≤ phiB i * c ^ i |
+| [`FloorConst.EF`](./lean_stage3/FloorConstDeriv.md#FloorConst-EF) | def | counting | `FloorConstDeriv` | ℂ |
 | [`PiZeros.efRem`](./lean_stage3/PiZeros.md#PiZeros-efRem) | def | reads ζ | `PiZeros` | ℂ |
 | [`Nonvanishing.Ehigh`](./lean/Nonvanishing.md#Nonvanishing-Ehigh) | def | shape | `Nonvanishing` | ℝ |
 | [`RelativeGate.EhighRel`](./lean/RelativeGate.md#RelativeGate-EhighRel) | def | shape | `RelativeGate` | ℝ |
@@ -793,14 +806,20 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerSelect.exists_step_le`](./lean_stage3/WeilPowerSelect.md#WeilPowerSelect-exists_step_le) | theorem | shape | `WeilPowerSelect` | ∃ k &lt; N, f (k + 1) ≤ f k + δ |
 | [`WeilPowerSelect.exists_target_step`](./lean_stage3/WeilPowerSelect.md#WeilPowerSelect-exists_target_step) | theorem | shape | `WeilPowerSelect` | ∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ (E (k + 1)) ^ 2 ≤ (E k) ^ 2 + δSel K' lam h |
 | [`WeilPowerClean.exists_unblocked`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-exists_unblocked) | theorem | counting | `WeilPowerClean` | ∃ k, k &lt; K ∧ ∀ j ∈ S, k ∉ B j |
+| [`FloorConst.exp_13_10_bounds`](./lean_stage3/FloorConst.md#FloorConst-exp_13_10_bounds) | theorem | shape | `FloorConst` | (1 + 1 / 10 + 1 / 200 + 1 / 6000 : ℝ) ^ 13 ≤ Real.exp (13 / 10) ∧ Real.exp (13 / 10) ≤ (1 + 1 / 10 + 1 / 200 + 1 / 6000 + 1 / 192000 : ℝ) ^ 13 |
+| [`FloorConst.exp_13_15_ge`](./lean_stage3/FloorConst.md#FloorConst-exp_13_15_ge) | theorem | shape | `FloorConst` | (1 + 1 / 15 + 1 / 450 + 1 / 20250 : ℝ) ^ 13 ≤ Real.exp (13 / 15) |
 | [`WeilPowerShell.exp_end_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-exp_end_le) | theorem | shape | `WeilPowerShell` | Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2) * (k : ℝ) + -1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2))) ≤ Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2)) |
 | [`Expansion.exp_eq_rpow`](./lean/Expansion.md#Expansion-exp_eq_rpow) | theorem | shape | `Expansion` | Real.exp (Real.log 2 * x) = (2 : ℝ) ^ x |
+| [`FloorConst.exp_fifteenth_ge`](./lean_stage3/FloorConst.md#FloorConst-exp_fifteenth_ge) | theorem | shape | `FloorConst` | 1 + 1 / 15 + 1 / 450 + 1 / 20250 ≤ Real.exp (1 / 15) |
 | [`WeilPowerGauss.exp_le_one_add`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-exp_le_one_add) | theorem | shape | `WeilPowerGauss` | Real.exp (x - x ^ 2) ≤ 1 + x |
 | [`WeilPowerGeom.exp_lin_le_Mab`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-exp_lin_le_Mab) | theorem | shape | `WeilPowerGeom` | Real.exp (z.re * ((m : ℝ) + 1 / 2) / Real.pi ^ 2) ≤ Mab z a b |
 | [`WeilPowerGeomGen.exp_lin_le_MabGen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-exp_lin_le_MabGen) | theorem | shape | `WeilPowerGeomGen` | Real.exp (z.re * (α * (h : ℝ) + β₀)) ≤ MabGen z α β₀ a b |
 | [`Stirling.exp_logG`](./lean_stage3/StirlingLog.md#Stirling-exp_logG) | theorem | shape | `StirlingLog` | cexp (logG z) = Gamma z |
+| [`FloorConst.exp_mul_nat`](./lean_stage3/FloorConst.md#FloorConst-exp_mul_nat) | theorem | shape | `FloorConst` | Real.exp (n * x) = Real.exp x ^ n |
 | [`WeilPowerGeom.exp_shift`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-exp_shift) | theorem | shape | `WeilPowerGeom` | Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2) = Complex.exp (z / (2 * (Real.pi : ℂ) ^ 2)) * Complex.exp (z / (Real.pi : ℂ) ^ 2) ^ m |
 | [`WeilPowerGeomGen.exp_shift_gen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-exp_shift_gen) | theorem | shape | `WeilPowerGeomGen` | Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ)) = Complex.exp (z * ((β₀ : ℝ) : ℂ)) * Complex.exp (z * ((α : ℝ) : ℂ)) ^ h |
+| [`FloorConst.exp_tenth_ge`](./lean_stage3/FloorConst.md#FloorConst-exp_tenth_ge) | theorem | shape | `FloorConst` | 1 + 1 / 10 + 1 / 200 + 1 / 6000 ≤ Real.exp (1 / 10) |
+| [`FloorConst.exp_tenth_le`](./lean_stage3/FloorConst.md#FloorConst-exp_tenth_le) | theorem | shape | `FloorConst` | Real.exp (1 / 10) ≤ 1 + 1 / 10 + 1 / 200 + 1 / 6000 + 1 / 192000 |
 | [`LeftSmooth.explicit_formula_all`](./lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all) | theorem | reads ζ | `LeftSmooth` | ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Bleft * x ^ (-(1:ℝ)/4) |
 | [`ExplicitTwo.explicit_formula_all_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_all_two) | theorem | reads ζ | `ExplicitTwo` | ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + Bleft2 * x ^ (-(1:ℝ)/4) |
 | [`ExplicitLeft.explicit_formula_any`](./lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any) | theorem | reads ζ | `ExplicitLeft` | ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Aleft * (Real.log (T+1))^2 * x ^ (-(1:ℝ)/4) |
@@ -901,6 +920,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxShift.FL_line_integrable`](./lean_stage3/ApproxShift.md#ApproxShift-FL_line_integrable) | theorem | reads ζ | `ApproxShift` | Integrable fun y : ℝ =&gt; FL α β t (σ + y * I) |
 | [`Stage3.floor_arith`](./lean_stage3/AssemblyFloor.md#Stage3-floor_arith) | theorem | shape | `AssemblyFloor` | A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 |
 | [`GateEval.floor_bound`](./lean_stage3/GateEval.md#GateEval-floor_bound) | theorem | shape | `GateEval` | 3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / ℓ ^ 2 + 18 * c1 / ((2:ℝ) ^ (36:ℕ) * (2:ℝ) ^ (18:ℕ)) + c3 / ((2:ℝ) ^ (18:ℕ) * ℓ) + c4 * (1 / (2:ℝ) ^ (9:ℕ)) / (2:ℝ) ^ (18:ℕ)) + 13 ≤ 414 |
+| [`FloorConst.floor_const`](./lean_stage3/FloorConst.md#FloorConst-floor_const) | theorem | shape | `FloorConst` | Tendsto (fun T =&gt; (Dop (Real.log T) (cY Polynomial.X (Mof T (49 / 100)) T) ((-((13 / 10) / Real.log T) : ℝ) : ℂ) ((-((13 / 10) / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (… |
 | [`ClosedLoopChain.floor_midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-floor_midpoint) | theorem | counting | `ClosedLoopChain` | ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1 |
 | [`Stage3.floorConst`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst) | def | shape | `AssemblyFloor` | ℝ |
 | [`Stage3.floorConst_nonneg`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst_nonneg) | theorem | shape | `AssemblyFloor` | 0 ≤ floorConst c₁ c₂ b₁ b₂ b₃ W x₀ |
@@ -1051,6 +1071,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxBounds.gErr`](./lean_stage3/ApproxBounds.md#ApproxBounds-gErr) | def | shape | `ApproxBounds` | ℝ |
 | [`ApproxBounds.gErr_nonneg`](./lean_stage3/ApproxBounds.md#ApproxBounds-gErr_nonneg) | theorem | shape | `ApproxBounds` | 0 ≤ gErr r |
 | [`CountEuler.gf`](./lean_stage3/CountEuler.md#CountEuler-gf) | def | shape | `CountEuler` | ℝ |
+| [`FloorConst.gF`](./lean_stage3/FloorConstDeriv.md#FloorConst-gF) | def | counting | `FloorConstDeriv` | ℂ |
 | [`Glue.Gf`](./lean_stage3/Glue.md#Glue-Gf) | def | reads ζ | `Glue` | ℂ → ℂ |
 | [`CountEuler.gf_le`](./lean_stage3/CountEuler.md#CountEuler-gf_le) | theorem | shape | `CountEuler` | gf p κ s ≤ p + κ |
 | [`CountEuler.gf_lt`](./lean_stage3/CountEuler.md#CountEuler-gf_lt) | theorem | shape | `CountEuler` | gf p κ s &lt; p + κ |
@@ -1082,8 +1103,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxBounds.gRModel`](./lean_stage3/ApproxBounds.md#ApproxBounds-gRModel) | def | shape | `ApproxBounds` | ℝ |
 | [`ApproxBounds.gRModel_reflect`](./lean_stage3/ApproxBounds.md#ApproxBounds-gRModel_reflect) | theorem | shape | `ApproxBounds` | gRModel w' - gRModel w = a * Real.log Real.pi + Real.log (Real.Gamma ((1 / 2 - a) / 2)) - Real.log (Real.Gamma ((1 / 2 + a) / 2)) - a * lY (Y / 2) |
 | [`LeftSmooth.Gs`](./lean_stage3/LeftSmooth.md#LeftSmooth-Gs) | def | shape | `LeftSmooth` | ℂ |
+| [`FloorConst.gx`](./lean_stage3/FloorConstDeriv.md#FloorConst-gx) | def | counting | `FloorConstDeriv` | ℂ |
+| [`FloorConst.gxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-gxy) | def | counting | `FloorConstDeriv` | ℂ |
 | [`ApproxFE.GY`](./lean_stage3/ApproxFE.md#ApproxFE-GY) | def | counting | `ApproxFE` | ℂ |
 | [`ApproxFE.gY`](./lean_stage3/ApproxFE.md#ApproxFE-gY) | def | counting | `ApproxFE` | ℂ |
+| [`FloorConst.gy`](./lean_stage3/FloorConstDeriv.md#FloorConst-gy) | def | counting | `FloorConstDeriv` | ℂ |
 | [`ApproxShift.GY_analyticAt`](./lean_stage3/ApproxShift.md#ApproxShift-GY_analyticAt) | theorem | counting | `ApproxShift` | AnalyticAt ℂ (GY α β) p |
 | [`ApproxBounds.gY_bound`](./lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound) | theorem | shape | `ApproxBounds` | ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → ‖gY α β t (σ + y * I)‖ ≤ C * (t / (2 * Real.pi)) ^ σ * Real.exp ((Real.pi / 2 + (\|σ₀\| + \|σ₁\|) / … |
 | [`ApproxDerivAll.gY_contDiff`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-gY_contDiff) | theorem | shape | `ApproxDerivAll` | ContDiff ℝ n (fun t =&gt; gY α β t s) |
@@ -1145,6 +1169,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.hasDerivAt_c`](./lean_stage3/WeilPower.md#WeilPower-hasDerivAt_c) | theorem | shape | `WeilPower` | HasDerivAt c (-(Real.pi / 2) * Real.sin (Real.pi * x / 2)) x |
 | [`WeilLobe.hasDerivAt_cos_pi`](./lean_stage3/WeilLobe.md#WeilLobe-hasDerivAt_cos_pi) | theorem | shape | `WeilLobe` | HasDerivAt (fun y : ℝ =&gt; Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x |
 | [`WeilPower.hasDerivAt_E`](./lean_stage3/WeilPower.md#WeilPower-hasDerivAt_E) | theorem | shape | `WeilPower` | HasDerivAt (fun y : ℝ =&gt; Complex.exp (w * (y : ℂ))) (w * Complex.exp (w * (x : ℂ))) x |
+| [`FloorConst.hasDerivAt_EFx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_EFx) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun x =&gt; EF lam x y) (-lam * EF lam x y) x |
+| [`FloorConst.hasDerivAt_EFy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_EFy) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun y =&gt; EF lam x y) (-lam * EF lam x y) y |
 | [`Expansion.hasDerivAt_F`](./lean/Expansion.md#Expansion-hasDerivAt_F) | theorem | shape | `Expansion` | HasDerivAt (F d) (F (d + 1) x) x |
 | [`WeilPower.hasDerivAt_f`](./lean_stage3/WeilPower.md#WeilPower-hasDerivAt_f) | theorem | shape | `WeilPower` | HasDerivAt (fun y : ℝ =&gt; c y ^ (k + 1)) (f1 k x) x |
 | [`WeilPower.hasDerivAt_f1`](./lean_stage3/WeilPower.md#WeilPower-hasDerivAt_f1) | theorem | shape | `WeilPower` | HasDerivAt (f1 (k + 1)) (f2 k x) x |
@@ -1152,6 +1178,12 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxDeriv.hasDerivAt_Gammaℝ_comp`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasDerivAt_Gamma-_comp) | theorem | shape | `ApproxDeriv` | HasDerivAt (fun t =&gt; Gammaℝ (f t)) (Gammaℝ (f t) * psiR (f t) * e) t |
 | [`CountEuler.hasDerivAt_Gc`](./lean_stage3/CountEuler.md#CountEuler-hasDerivAt_Gc) | theorem | shape | `CountEuler` | HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s / ((m + 1 : ℕ) : ℂ)) s |
 | [`CountEuler.hasDerivAt_gf`](./lean_stage3/CountEuler.md#CountEuler-hasDerivAt_gf) | theorem | shape | `CountEuler` | HasDerivAt (gf p κ) (p * (Real.exp (-s) * -1)) s |
+| [`FloorConst.hasDerivAt_gx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gx) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun x =&gt; gF A B C ℓ x y) (gx A C ℓ x y) x |
+| [`FloorConst.hasDerivAt_gxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gxy) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun y =&gt; gx A C ℓ x y) (gxy A C ℓ x y) y |
+| [`FloorConst.hasDerivAt_gy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gy) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun y =&gt; gF A B C ℓ x y) (gy A C ℓ x y) y |
+| [`FloorConst.hasDerivAt_Hx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hx) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun x =&gt; HF A B C ℓ lam x y) (Hx A B C ℓ lam x y) x |
+| [`FloorConst.hasDerivAt_Hxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hxy) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun y =&gt; Hx A B C ℓ lam x y) (Hxy A B C ℓ lam x y) y |
+| [`FloorConst.hasDerivAt_Hy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hy) | theorem | counting | `FloorConstDeriv` | HasDerivAt (fun y =&gt; HF A B C ℓ lam x y) (Hy A B C ℓ lam x y) y |
 | [`CountModes.hasDerivAt_ipart`](./lean_stage3/CountModes.md#CountModes-hasDerivAt_ipart) | theorem | shape | `CountModes` | HasDerivAt (fun u =&gt; ∫ t in (2:ℝ)..u, (t : ℂ) ^ ρ / ρ * PiZeros.wt t) ((y : ℂ) ^ ρ / ρ * PiZeros.wt y) y |
 | [`Stage3.hasDerivAt_Li`](./lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li) | theorem | shape | `RowLeaves` | HasDerivAt Li (1 / Real.log y) y |
 | [`Stage3.hasDerivAt_Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li_two_rpow) | theorem | shape | `RowLeaves` | HasDerivAt (fun u : ℝ =&gt; Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2 * x) / x) x |
@@ -1192,6 +1224,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SwapX.hder_of`](./lean_stage3/SwapX.md#SwapX-hder_of) | theorem | shape | `SwapX` | \|L / (2 * Kt κ) * ℓ (cT s T * (Dk s (k + 1) * Gk s (k + 1) t))\| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹ |
 | [`DiagMain.head_bound`](./lean_stage3/DiagMainMu.md#DiagMain-head_bound) | theorem | shape | `DiagMainMu` | \|∑ n ∈ Ioc 0 (N / Y), (μ n : ℝ) / n * rhoN N n\| ≤ 2 / Y |
 | [`Diagonal.Hf`](./lean_stage3/Diagonal.md#Diagonal-Hf) | def | reads ζ | `Diagonal` | ℂ |
+| [`FloorConst.HF`](./lean_stage3/FloorConstDeriv.md#FloorConst-HF) | def | counting | `FloorConstDeriv` | ℂ |
 | [`Diagonal.Hf_differentiableAt`](./lean_stage3/Diagonal.md#Diagonal-Hf_differentiableAt) | theorem | reads ζ | `Diagonal` | DifferentiableAt ℂ (Hf α β t Z) s |
 | [`Diagonal.Hf_eq`](./lean_stage3/Diagonal.md#Diagonal-Hf_eq) | theorem | reads ζ | `Diagonal` | Hf α β t Z s = KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s) |
 | [`Diagonal.Hf_local`](./lean_stage3/Diagonal.md#Diagonal-Hf_local) | theorem | reads ζ | `Diagonal` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] (0 : ℂ), Hf α β t Z s = h s + riemannZeta (1 + α + β) * Z 0 / (s - 0) |
@@ -1215,6 +1248,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgLegs.horizontal_leg_le`](./lean_stage3/ArgLegs.md#ArgLegs-horizontal_leg_le) | theorem | reads ζ | `ArgLegs` | \|(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex.I)).im\| ≤ Real.pi * ((Z.card : ℝ) + 1) |
 | [`LevinsonMollEdge.horizontal_terms_le`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-horizontal_terms_le) | theorem | reads ζ | `LevinsonMollEdge` | \|∫ σ in σ₀..X, edgeH (fun s =&gt; (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ\| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Real.log M + Real.log B + 8) + 1)) |
 | [`WeilPowerPhase.hterm`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-hterm) | def | shape | `WeilPowerPhase` | ℝ |
+| [`FloorConst.Hx`](./lean_stage3/FloorConstDeriv.md#FloorConst-Hx) | def | counting | `FloorConstDeriv` | ℂ |
+| [`FloorConst.Hxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-Hxy) | def | counting | `FloorConstDeriv` | ℂ |
+| [`FloorConst.Hy`](./lean_stage3/FloorConstDeriv.md#FloorConst-Hy) | def | counting | `FloorConstDeriv` | ℂ |
 | [`TwistedMoment.I1`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1) | def | counting | `TwistedMoment` | ℂ |
 | [`TwistedMoment.I1_diag_off`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1_diag_off) | theorem | shape | `TwistedMoment` | I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β c |
 | [`TwistedMoment.I1_expand`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1_expand) | theorem | shape | `TwistedMoment` | I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) |
@@ -1443,6 +1479,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.K_succ`](./lean_stage3/WeilPower.md#WeilPower-K_succ) | theorem | shape | `WeilPower` | K (m + 1) w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2) = ((m : ℂ) + 1) * (2 * (m : ℂ) + 1) * (Real.pi : ℂ) ^ 2 / 2 * K m w |
 | [`WeilPower.K_zero_mul`](./lean_stage3/WeilPower.md#WeilPower-K_zero_mul) | theorem | shape | `WeilPower` | K 0 w * w = 2 * Complex.sinh w |
 | [`StepsBelow.kap`](./lean_stage3/StepsBelow.md#StepsBelow-kap) | def | counting | `StepsBelow` | ℂ |
+| [`FloorConst.kappa_levinson_ge`](./lean_stage3/FloorConst.md#FloorConst-kappa_levinson_ge) | theorem | shape | `FloorConst` | 1 / 3 ≤ kappaL (49 / 100) (13 / 10) |
+| [`FloorConst.kappaL`](./lean_stage3/FloorConst.md#FloorConst-kappaL) | def | shape | `FloorConst` | ℝ |
 | [`LeftSmooth.kc`](./lean_stage3/LeftSmooth.md#LeftSmooth-kc) | def | shape | `LeftSmooth` | ℝ |
 | [`LeftSmooth.kc_pos`](./lean_stage3/LeftSmooth.md#LeftSmooth-kc_pos) | theorem | shape | `LeftSmooth` | 0 &lt; kc |
 | [`LeftKernel.kernel_bound`](./lean_stage3/LeftKernel.md#LeftKernel-kernel_bound) | theorem | shape | `LeftKernel` | ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) * Complex.I)‖ ≤ (2 / T + Real.pi / \|a\|) / Real.log y |
@@ -1464,6 +1502,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`FilterLadder.Kf`](./lean_stage3/FilterLadder.md#FilterLadder-Kf) | def | reads ζ | `FilterLadder` | ℝ |
 | [`Diagonal.Kf_differentiableAt`](./lean_stage3/Diagonal.md#Diagonal-Kf_differentiableAt) | theorem | reads ζ | `Diagonal` | DifferentiableAt ℂ (Kf α β t Z) s |
 | [`FilterLadder.Kf_nonneg`](./lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) | theorem | reads ζ | `FilterLadder` | 0 ≤ Kf |
+| [`FloorConst.Kfl`](./lean_stage3/FloorConstLimit.md#FloorConst-Kfl) | def | shape | `FloorConstLimit` | ℝ |
+| [`FloorConst.Kfl_levinson_eq`](./lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_eq) | theorem | shape | `FloorConst` | Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) = -760154441 / 645918000 + 3405769 / 12918360 * Real.exp (13 / 10) ^ 2 |
+| [`FloorConst.Kfl_levinson_le`](./lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_le) | theorem | shape | `FloorConst` | Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ≤ -760154441 / 645918000 + 3405769 / 12918360 * ((1 + 1 / 10 + 1 / 200 + 1 / 6000 + 1 / 192000 : ℝ) ^ 13) ^ 2 |
+| [`FloorConst.Kfl_levinson_lt`](./lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_lt) | theorem | shape | `FloorConst` | Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) &lt; Real.exp (13 / 10) |
+| [`FloorConst.Kfl_levinson_pos`](./lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_pos) | theorem | shape | `FloorConst` | 0 &lt; Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) |
 | [`Bridge.kOf`](./lean_bridge/WeilBridge.md#Bridge-kOf) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`Bridge.kOfM`](./lean_bridge/WeilBridge.md#Bridge-kOfM) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`WeilBridgeLeaf.kOfM`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-kOfM) | def | shape | `WeilBridgeLeaf` | ℝ → ℂ |
@@ -1579,6 +1622,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointLadder.log_indep`](./lean/JointLadder.md#JointLadder-log_indep) | theorem | shape | `JointLadder` | l = 0 ∧ k = 0 |
 | [`LevinsonRight.log_integral_le`](./lean_stage3/LevinsonRight.md#LevinsonRight-log_integral_le) | theorem | shape | `LevinsonRight` | ∫ t in a..b, Real.log (g t) ≤ (b - a) * Real.log ((1 / (b - a)) * ∫ t in a..b, g t) |
 | [`LevinsonRight.log_integral_norm_le`](./lean_stage3/LevinsonRight.md#LevinsonRight-log_integral_norm_le) | theorem | shape | `LevinsonRight` | ∫ t in a..b, Real.log ‖F (↑σ₀ + ↑t * I)‖ ≤ (b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖F (↑σ₀ + ↑t * I)‖ ^ 2) |
+| [`FloorConst.log_Kfl_levinson_lt`](./lean_stage3/FloorConst.md#FloorConst-log_Kfl_levinson_lt) | theorem | shape | `FloorConst` | Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) &lt; 13 / 10 |
 | [`Arith.log_le_sum_inv_Icc`](./lean_stage3/ArithBase.md#Arith-log_le_sum_inv_Icc) | theorem | shape | `ArithBase` | Real.log ((n : ℝ) + 1) ≤ ∑ b ∈ Icc 1 n, (1 : ℝ) / b |
 | [`Arith.log_nat_nonneg`](./lean_stage3/ArithBase.md#Arith-log_nat_nonneg) | theorem | shape | `ArithBase` | 0 ≤ Real.log n |
 | [`LevinsonMollEdge.log_norm_abs_le`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-log_norm_abs_le) | theorem | shape | `LevinsonMollEdge` | \|Real.log ‖z‖\| ≤ 2 * δ |
@@ -1639,6 +1683,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stirling.logG`](./lean_stage3/StirlingLog.md#Stirling-logG) | def | shape | `StirlingLog` | ℂ |
 | [`Stirling.logG_shift`](./lean_stage3/StirlingLog.md#Stirling-logG_shift) | theorem | shape | `StirlingLog` | ‖logG (z + a) - logG z - a * log z‖ ≤ 2 / \|z.im\| |
 | [`DiagMain.logM_ge`](./lean_stage3/DiagMain.md#DiagMain-logM_ge) | theorem | shape | `DiagMain` | θ * Real.log T / 2 ≤ Real.log (Mof T θ) |
+| [`FloorConst.logM_ge'`](./lean_stage3/FloorConstLimit.md#FloorConst-logM_ge-) | theorem | shape | `FloorConstLimit` | θ * Real.log T - Real.log 2 ≤ Real.log (Mof T θ) |
 | [`DiagMain.logM_le`](./lean_stage3/DiagMain.md#DiagMain-logM_le) | theorem | shape | `DiagMain` | Real.log (Mof T θ) ≤ θ * Real.log T |
 | [`Diagonal.logpow_eps`](./lean_stage3/Diagonal.md#Diagonal-logpow_eps) | theorem | shape | `Diagonal` | Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε |
 | [`OffDiagClose.logpow_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-logpow_le) | theorem | shape | `OffDiagClose` | Real.log T ^ p ≤ (5 * ((p : ℝ) + 1)) ^ p * T ^ (1 / 5 : ℝ) |
@@ -1881,6 +1926,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`HalfSieve.netRounding_centered`](./lean_stage3/HalfSieve.md#HalfSieve-netRounding_centered) | theorem | counting | `HalfSieve` | netRounding N = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * (Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) - 1 / 2) |
 | [`SieveExact.netRounding_eq`](./lean_stage3/SieveExact.md#SieveExact-netRounding_eq) | theorem | counting | `SieveExact` | netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) |
 | [`Compression.newPrimes`](./lean_stage3/Compression.md#Compression-newPrimes) | def | counting | `Compression` | Finset ℕ |
+| [`FloorConst.nhds_ne_x`](./lean_stage3/FloorConstDeriv.md#FloorConst-nhds_ne_x) | theorem | counting | `FloorConstDeriv` | ∀ᶠ x' in 𝓝 x, x' + y ≠ 0 |
+| [`FloorConst.nhds_ne_y`](./lean_stage3/FloorConstDeriv.md#FloorConst-nhds_ne_y) | theorem | counting | `FloorConstDeriv` | ∀ᶠ y' in 𝓝 y, x + y' ≠ 0 |
 | [`CountEuler.Nn`](./lean_stage3/CountEuler.md#CountEuler-Nn) | def | counting | `CountEuler` | ℂ |
 | [`Crossover.no_crossover_of_single`](./lean/Crossover.md#Crossover-no_crossover_of_single) | theorem | shape | `Crossover` | ratio A 0 x y j ≠ 1 |
 | [`OneChain.no_exposed_zero`](./lean_stage3/OneChain.md#OneChain-no_exposed_zero) | theorem | reads ζ | `OneChain` | ∃ E : ℝ, σ ≤ E ∧ E &lt; Θ ∧ ∀ (ρ₁ : NontrivialZeros), E &lt; (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ &lt; ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ… |
@@ -2184,7 +2231,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.P_pow`](./lean_stage3/WeilPower.md#WeilPower-P_pow) | theorem | shape | `WeilPower` | P x ^ m = c x ^ (2 * m) |
 | [`WeilPowerPhase.P_tendsto`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-P_tendsto) | theorem | shape | `WeilPowerPhase` | Tendsto (fun n =&gt; Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) atTop (𝓝 (P m w)) |
 | [`Operator.pa`](./lean_stage3/OperatorCauchy.md#Operator-pa) | def | counting | `OperatorCauchy` | ℂ |
+| [`FloorConst.pa_cY`](./lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY) | theorem | shape | `FloorConstDeriv` | pa (cY P M T) x y = Hx (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y |
 | [`Operator.pab`](./lean_stage3/OperatorCauchy.md#Operator-pab) | def | counting | `OperatorCauchy` | ℂ |
+| [`FloorConst.pab_cY`](./lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY) | theorem | shape | `FloorConstDeriv` | pab (cY P M T) x y = Hxy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y |
 | [`Transform.pair_collapses_iff_critical`](./lean/Transform.md#Transform-pair_collapses_iff_critical) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2 |
 | [`PairIdentity.pair_identity`](./lean/PairIdentity.md#PairIdentity-pair_identity) | theorem | counting | `PairIdentity` | tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e |
 | [`ShareLink.pair_shares_add`](./lean_stage3/ShareLink.md#ShareLink-pair_shares_add) | theorem | reads ζ | `ShareLink` | Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ + Real.logb T ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ = 1 |
@@ -2204,6 +2253,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Propagation.pasc_succ`](./lean/Propagation.md#Propagation-pasc_succ) | theorem | counting | `Propagation` | pasc (n + 1) (k + 1) = pasc n k + pasc n (k + 1) |
 | [`Propagation.pasc_zero`](./lean/Propagation.md#Propagation-pasc_zero) | theorem | counting | `Propagation` | pasc n 0 = 1 |
 | [`Operator.pb`](./lean_stage3/OperatorCauchy.md#Operator-pb) | def | counting | `OperatorCauchy` | ℂ |
+| [`FloorConst.pb_cY`](./lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY) | theorem | shape | `FloorConstDeriv` | pb (cY P M T) x y = Hy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y |
 | [`CountEuler.Pc`](./lean_stage3/CountEuler.md#CountEuler-Pc) | def | shape | `CountEuler` | ℂ |
 | [`StepsPeak.peak_at_zero`](./lean_stage3/StepsPeak.md#StepsPeak-peak_at_zero) | theorem | reads ζ | `StepsPeak` | ‖S N ρ₀ - K N ρ₀ 1 - (-((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log N : ℂ) + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log 2 : ℂ) + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * ((ρ₀ : ℂ) - 1) *… |
 | [`StepsPeak.peak_formula`](./lean_stage3/StepsPeak.md#StepsPeak-peak_formula) | theorem | reads ζ | `StepsPeak` | ‖S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ)‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re) |
@@ -2460,6 +2510,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerPhase.re_A_sq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-re_A_sq) | theorem | shape | `WeilPowerPhase` | ((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2).re * Real.cos (2 * (w ^ 2).im * sigma m) - (w ^ 2).im * Real.sin (2 * (w ^ 2).im * sig… |
 | [`ApproxDeriv.re_conds`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-re_conds) | theorem | shape | `ApproxDeriv` | 1 / 20 ≤ (uA α t / 2).re ∧ 1 / 20 ≤ (uA α t / 2 + s / 2).re ∧ 1 / 20 ≤ (vB β t / 2).re ∧ 1 / 20 ≤ (vB β t / 2 + s / 2).re |
 | [`Stage3.re_digamma_sub_log_le`](./lean_stage3/Stirling.md#Stage3-re_digamma_sub_log_le) | theorem | reads ζ | `Stirling` | \|phasePoint t - Real.log ‖zq t‖\| ≤ 96 / t |
+| [`FloorConst.re_dop_tendsto`](./lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto) | theorem | shape | `FloorConstLimit` | Tendsto (fun T =&gt; (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (Cr P) θ R)) |
+| [`FloorConst.re_dop_tendsto_X`](./lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto_X) | theorem | shape | `FloorConstLimit` | Tendsto (fun T =&gt; (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 / 2) (1 / 3) θ R)) |
 | [`Stage3.re_eq_half_of_RH`](./lean_stage3/Assembly.md#Stage3-re_eq_half_of_RH) | theorem | reads ζ | `Assembly` | (ρ : ℂ).re = 1 / 2 |
 | [`WeilDetect.re_eq_half_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-re_eq_half_of_RH) | theorem | reads ζ | `WeilDetect` | (ρ : ℂ).re = 1 / 2 |
 | [`LevinsonSize.re_G_pos`](./lean_stage3/LevinsonSize.md#LevinsonSize-re_G_pos) | theorem | reads ζ | `LevinsonSize` | 0 &lt; (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re |
@@ -3221,6 +3273,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Isogeny.telescope`](./lean/Isogeny.md#Isogeny-telescope) | theorem | counting | `Isogeny` | ∑ j ∈ range k, (g (m + j + 1) - g (m + j)) = g (m + k) - g m |
 | [`FilterAttained.tendsto_full`](./lean_stage3/FilterAttained.md#FilterAttained-tendsto_full) | theorem | reads ζ | `FilterAttained` | Tendsto (fun k : ℕ =&gt; ∑' ρ, (S σ).indicator (fun ρ =&gt; LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) |
 | [`CountEuler.tendsto_Gc`](./lean_stage3/CountEuler.md#CountEuler-tendsto_Gc) | theorem | shape | `CountEuler` | Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0) |
+| [`FloorConst.tendsto_Kfl`](./lean_stage3/FloorConstLimit.md#FloorConst-tendsto_Kfl) | theorem | shape | `FloorConstLimit` | Tendsto (fun t =&gt; Kfl A B C (f t) R) l (𝓝 (Kfl A B C θ R)) |
 | [`ApproxBounds.tendsto_log_GammaSeq`](./lean_stage3/ApproxBounds.md#ApproxBounds-tendsto_log_GammaSeq) | theorem | shape | `ApproxBounds` | Tendsto (fun n : ℕ =&gt; Real.log ‖GammaSeq ((x : ℂ) + Y * I) n‖ - Real.log ‖GammaSeq (x : ℂ) n‖) atTop (𝓝 (lg x Y)) |
 | [`LandauKernel.tendsto_log_pow_mul`](./lean_stage3/LandauKernel.md#LandauKernel-tendsto_log_pow_mul) | theorem | shape | `LandauKernel` | Tendsto (fun y : ℝ =&gt; Real.log y ^ n * y ^ (-a)) atTop (𝓝 0) |
 | [`Stirling.tendsto_log_shift`](./lean_stage3/StirlingLog.md#Stirling-tendsto_log_shift) | theorem | shape | `StirlingLog` | Tendsto (fun n : ℕ =&gt; log (z + ((n : ℂ) + 1)) - (Real.log n : ℂ)) atTop (𝓝 0) |
@@ -3270,6 +3323,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.theta_err_of_psi_theta`](./lean_stage3/ThetaPi.md#Stage3-theta_err_of_psi_theta) | theorem | shape | `ThetaPi` | \|ϑ x - x\| ≤ E + 2 * x ^ θ * Real.log x |
 | [`Stage3.theta_instantiation_arithmetic`](./lean_stage3/ThetaPsi.md#Stage3-theta_instantiation_arithmetic) | theorem | shape | `ThetaPsi` | c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * X * Real.log X / ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^… |
 | [`PiToPsi.theta_sub_id_eq`](./lean_stage3/PiToPsi.md#PiToPsi-theta_sub_id_eq) | theorem | shape | `PiToPsi` | θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.log x - ∫ t in (2 : ℝ)..x, relRes t |
+| [`FloorConst.theta_tendsto`](./lean_stage3/FloorConstLimit.md#FloorConst-theta_tendsto) | theorem | shape | `FloorConstLimit` | Tendsto (fun T =&gt; Real.log (Mof T θ) / Real.log T) atTop (𝓝 θ) |
 | [`JointDialGate.thetaWindow_of_global`](./lean_stage3/JointDialGate.md#JointDialGate-thetaWindow_of_global) | theorem | shape | `JointDialGate` | ∀ j ∈ range (n + 1), \|f (r - j) - L (r - j)\| ≤ C * ((2 : ℝ) ^ ((r : ℝ) - j)) ^ θ * Real.log ((2 : ℝ) ^ ((r : ℝ) - j)) ^ k |
 | [`TwinLattice.three_five_exceptional`](./lean/TwinLattice.md#TwinLattice-three_five_exceptional) | theorem | counting | `TwinLattice` | (3 : ℕ).Prime ∧ (5 : ℕ).Prime ∧ (3 + 1) % 6 ≠ 0 |
 | [`Bridge.tiltF`](./lean_bridge/WeilBridge.md#Bridge-tiltF) | def | shape | `WeilBridge` | ℝ → ℂ |

@@ -1,0 +1,46 @@
+flowchart LR
+  n0["<b>hasDerivAt_gx</b><br/>HasDerivAt (fun x =＞ gF A B C ℓ x y) (gx A C ℓ x y) x"]:::cnt
+  n1["<b>hasDerivAt_gy</b><br/>HasDerivAt (fun y =＞ gF A B C ℓ x y) (gy A C ℓ x y) y"]:::cnt
+  n2["<b>hasDerivAt_gxy</b><br/>HasDerivAt (fun y =＞ gx A C ℓ x y) (gxy A C ℓ x y) y"]:::cnt
+  n3["<b>hasDerivAt_EFx</b><br/>HasDerivAt (fun x =＞ EF lam x y) (-lam * EF lam x y) x"]:::cnt
+  n4["<b>hasDerivAt_EFy</b><br/>HasDerivAt (fun y =＞ EF lam x y) (-lam * EF lam x y) y"]:::cnt
+  n5["<b>hasDerivAt_Hx</b><br/>HasDerivAt (fun x =＞ HF A B C ℓ lam x y) (Hx A B C ℓ lam x y) x"]:::cnt
+  n6["<b>hasDerivAt_Hy</b><br/>HasDerivAt (fun y =＞ HF A B C ℓ lam x y) (Hy A B C ℓ lam x y) y"]:::cnt
+  n7["<b>hasDerivAt_Hxy</b><br/>HasDerivAt (fun y =＞ Hx A B C ℓ lam x y) (Hxy A B C ℓ lam x y) y"]:::cnt
+  n8["<b>cY_eq_HF</b><br/>cY P M T x y = HF (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (C…"]:::shp
+  n9["<b>nhds_ne_x</b><br/>∀ᶠ x' in 𝓝 x, x' + y ≠ 0"]:::cnt
+  n10["<b>nhds_ne_y</b><br/>∀ᶠ y' in 𝓝 y, x + y' ≠ 0"]:::cnt
+  n11["<b>pa_cY</b><br/>pa (cY P M T) x y = Hx (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : …"]:::shp
+  n12["<b>pb_cY</b><br/>pb (cY P M T) x y = Hy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : …"]:::shp
+  n13["<b>pab_cY</b><br/>pab (cY P M T) x y = Hxy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) …"]:::shp
+  x0(["<b>OperatorCY</b><br/>cY_eq"]):::ext
+  x1(["<b>FloorConstLimit</b><br/>dop_cY_eq"]):::ext
+  n0 --> n5
+  n1 --> n6
+  n1 --> n7
+  n10 --> n12
+  n10 --> n13
+  n11 --> n13
+  n2 --> n7
+  n3 --> n5
+  n4 --> n6
+  n4 --> n7
+  n5 --> n11
+  n6 --> n12
+  n7 --> n13
+  n8 --> n11
+  n8 --> n12
+  n9 --> n11
+  n11 -.-> x1
+  n12 -.-> x1
+  n13 -.-> x1
+  n8 -.-> x1
+  x0 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
