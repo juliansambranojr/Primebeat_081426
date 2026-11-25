@@ -1,0 +1,16 @@
+key	value	source
+module_lines	765	wc -l lean_stage3/Stage3/ApproxFE.lean
+theorems_proved	35	grep -c ^theorem lean_stage3/Stage3/ApproxFE.lean
+defs	10	grep -c ^def lean_stage3/Stage3/ApproxFE.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ApproxFE.lean
+pins	9	zeta_prod_fe, XY_eq_young, gY_eq_young, coef_eq_young, mellin_double_sum, FY_reflect, vertInt_reflect, residue_zero, approxFE_of_shift
+errors_first	11	the worker's first build: a named argument, an unfolded set, a composition, a norm rewrite, a missing nonzero fact, and the pins' cascade
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8907	lake build (full Stage3), Build completed successfully
+jobs_module	8669	run/build.log, lake build Stage3.ApproxFE
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

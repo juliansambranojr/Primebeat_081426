@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, the contour shift: `Stage3/ApproxShift.lean`
+
+    DONE        `stmtShift_holds`: `ApproxFE.StmtShift α β t c` under the
+                hypotheses its docstring names (α + β ≠ 0, Γℝ(u), Γℝ(v) ≠ 0,
+                c > 1/2 + |Re α|, |Re β|, the five poles distinct); the route is
+                `ContourShift.residue_rectangle_multi` on [−c, c] × [−Y, Y] and
+                Y → ∞, with a bound |Λ(s)| ≤ poly(|Im s|) on vertical strips,
+                from the Γℝ bound on Re > 0, the tree's ζ bounds, and Λ(s) =
+                Λ(1 − s) for the left half; and `approxFE` with no shift
+                hypothesis; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0530 and build the contour shift)
+    DEPENDS     `ApproxFE`, `ContourShift`, `LevinsonEdge.zeta_norm_le`,
+                Mathlib `completedRiemannZeta_one_sub`, Γ bounds
+    OUT         the size of resY; (4.3); pieces 2–4 of S12
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 1: `Stage3/ApproxFE.lean`
 
     DONE        Young's Lemma 4 (arXiv 1002.4403): the approximate functional

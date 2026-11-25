@@ -1,0 +1,131 @@
+# check_prose_source.py  2026-11-25T02:02:59Z
+# unit: 0530-approx-fe
+# sources searched: 73
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67106
+  theorem zeta_prod_fe {α β : ℂ} {t : ℝ} (hα : α.re < 1 / 2) (hβ : β.re < 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67107
+  (hu : Gammaℝ (uA α t) ≠ 0) (hv : Gammaℝ (vB β t) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67108
+  riemannZeta (uA α t) * riemannZeta (vB β t) =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1529
+  XY α β t * (riemannZeta (1 / 2 - α - t * I) * riemannZeta (1 / 2 - β + t * I)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67110
+  theorem XY_eq_young (α β : ℂ) (t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67111
+  XY α β t = (Real.pi : ℂ) ^ (α + β) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67112
+  (Gamma ((1 / 2 - α - t * I) / 2) * Gamma ((1 / 2 - β + t * I) / 2)) /
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1577
+  (Gamma ((1 / 2 + α + t * I) / 2) * Gamma ((1 / 2 + β - t * I) / 2)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67114
+  theorem gY_eq_young (α β : ℂ) (t : ℝ) (s : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67115
+  gY α β t s = (Real.pi : ℂ) ^ (-s) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67116
+  (Gamma ((1 / 2 + α + s + t * I) / 2) * Gamma ((1 / 2 + β + s - t * I) / 2)) /
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1577
+  (Gamma ((1 / 2 + α + t * I) / 2) * Gamma ((1 / 2 + β - t * I) / 2)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67118
+  theorem coef_eq_young (α β : ℂ) (t : ℝ) {x y : ℝ} (hx : 0 < x) (hy : 0 < y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67119
+  (x : ℂ) ^ (-uA α t) * (y : ℂ) ^ (-vB β t) =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1612
+  (x : ℂ) ^ (-(1 / 2 + α)) * (y : ℂ) ^ (-(1 / 2 + β)) * ((x / y : ℝ) : ℂ) ^ (-(t * I)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67121
+  theorem mellin_double_sum {α β : ℂ} {t c : ℝ} (hc : 0 < c) (hu : 1 / 2 < c + α.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67123
+  ∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67124
+  VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1838
+  VerticalIntegral' (FY α β t) c :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67126
+  theorem FY_reflect {α β : ℂ} {t : ℝ} {s : ℂ} (hα : α.re < 1 / 2) (hβ : β.re < 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67127
+  (hu : Gammaℝ (uA α t) ≠ 0) (hv : Gammaℝ (vB β t) ≠ 0) (hs0 : s ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67128
+  (h1 : 0 < (1 - uA α t + s).re) (h2 : 0 < (1 - vB β t + s).re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67129
+  (hg1 : Gammaℝ (uA α t + -s) ≠ 0) (hg2 : Gammaℝ (vB β t + -s) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1941
+  FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67131
+  theorem vertInt_reflect {α β : ℂ} {t c : ℝ} (hc : 0 < c) (hα : α.re < 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67132
+  (hβ : β.re < 1 / 2) (hu : Gammaℝ (uA α t) ≠ 0) (hv : Gammaℝ (vB β t) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67100
+  VerticalIntegral' (FY α β t) (-c) =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:1988
+  -(XY α β t * VerticalIntegral' (FY (-β) (-α) t) c) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67135
+  theorem residue_zero {α β : ℂ} {t : ℝ} (hαβ : α + β ≠ 0) (hα : α.re < 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67132
+  (hβ : β.re < 1 / 2) (hu : Gammaℝ (uA α t) ≠ 0) (hv : Gammaℝ (vB β t) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67137
+  Tendsto (fun s => s * FY α β t s) (𝓝[≠] 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:2037
+  (𝓝 (riemannZeta (uA α t) * riemannZeta (vB β t))) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67139
+  theorem approxFE_of_shift {α β : ℂ} {t c : ℝ} (hα : α.re < 1 / 2) (hβ : β.re < 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67140
+  (hα' : -(1 / 2) < α.re) (hβ' : -(1 / 2) < β.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67141
+  (hcα : 1 / 2 + |α.re| < c) (hcβ : 1 / 2 + |β.re| < c) (hshift : StmtShift α β t c) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67108
+  riemannZeta (uA α t) * riemannZeta (vB β t) =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67143
+  (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67144
+  VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t) +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67145
+  XY α β t * (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA (-β) t) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67146
+  ((p.2 : ℂ) + 1) ^ (-vB (-α) t) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a3f34c7ca7af43f00.jsonl:2116
+  VY (-β) (-α) c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t) - resY α β t :=
+
+# 42 found, 0 missing
