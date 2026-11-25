@@ -7,7 +7,7 @@
 34 theorems, 3 definitions, 269 lines. 
 
 **Imports:** [`FloorConstQLimit`](../lean_stage3/FloorConstQLimit.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorQ`](../lean_stage3/FloorQ.md)
 
 ## The picture
 
@@ -15,10 +15,10 @@
 
 ```mermaid
 flowchart LR
-  n0["<b>P0_zero ■</b><br/>P0.eval 0 = 0"]:::cnt
-  n1["<b>P0_one ■</b><br/>P0.eval 1 = 1"]:::cnt
-  n2["<b>Q0_zero ■</b><br/>Q0.eval 0 = 1"]:::cnt
-  n3["<b>Q0_deriv_symm ■</b><br/>Q0.derivative.eval x = Q0.derivative.eval (1 - x)"]:::cnt
+  n0["<b>P0_zero</b><br/>P0.eval 0 = 0"]:::cnt
+  n1["<b>P0_one</b><br/>P0.eval 1 = 1"]:::cnt
+  n2["<b>Q0_zero</b><br/>Q0.eval 0 = 1"]:::cnt
+  n3["<b>Q0_deriv_symm</b><br/>Q0.derivative.eval x = Q0.derivative.eval (1 - x)"]:::cnt
   n4["<b>integral_poly</b><br/>∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0"]:::cnt
   n5["<b>Ar_P0</b><br/>FloorConst.Ar P0 = 152147 / 150000"]:::cnt
   n6["<b>Br_P0</b><br/>FloorConst.Br P0 = 1 / 2"]:::cnt
@@ -45,8 +45,9 @@ flowchart LR
   n27["<b>exp_three_eq</b><br/>Real.exp 3 = Real.exp (1 / 2) ^ 6"]:::shp
   n28["<b>exp_y_ge</b><br/>∑ i ∈ Finset.range 12, (1203 / 1250 : ℝ) ^ i / i.factorial ≤ Rea…"]:::shp
   n29["<b>KflQ_pos</b><br/>0 ＜ KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr…"]:::shp
-  x0(["<b>FloorConstQLimit</b><br/>KflQ_lin"]):::ext
-  x1(["<b>diagram 2</b><br/>KflQ_lt<br/>log_KflQ_lt"]):::ext
+  x0(["<b>FloorQ</b><br/>stepQ"]):::ext
+  x1(["<b>FloorConstQLimit</b><br/>KflQ_lin"]):::ext
+  x2(["<b>diagram 2</b><br/>KflQ_lt<br/>log_KflQ_lt"]):::ext
   n10 --> n21
   n10 --> n22
   n10 --> n23
@@ -100,12 +101,16 @@ flowchart LR
   n9 --> n21
   n9 --> n22
   n9 --> n23
-  n24 -.-> x1
-  n25 -.-> x1
-  n27 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
-  x0 -.-> n24
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n24 -.-> x2
+  n25 -.-> x2
+  n27 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
+  n3 -.-> x0
+  x1 -.-> n24
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -123,12 +128,14 @@ flowchart LR
   n0["<b>KflQ_lt</b><br/>KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0)…"]:::shp
   n1["<b>log_KflQ_lt</b><br/>Real.log (KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorCo…"]:::shp
   n2["<b>kappaQ_gt ■</b><br/>1 / 3 ＜ (224 / 625 : ℝ) ∧ 224 / 625 ＜ kappaQ (49 / 100) (3 / 2)"]:::shp
-  n3["<b>floor_constQ ■</b><br/>Tendsto (fun T =＞ (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 …"]:::shp
+  n3["<b>floor_constQ</b><br/>Tendsto (fun T =＞ (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 …"]:::shp
   x0(["<b>diagram 1</b><br/>5 theorems"]):::ext
   x1(["<b>FloorConstQLimit</b><br/>re_dopQ_tendsto"]):::ext
+  x2(["<b>FloorQ</b><br/>logmaxQ_le"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n3
+  n3 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x1 -.-> n3
@@ -154,7 +161,7 @@ def · line 45
 `P₀(x) = (7/50)x³ − (1/100)x² + (87/100)x`.
 
 - **Is:** `` P0 : ℝ[X] := C (7 / 50) * X ^ 3 + C (-1 / 100) * X ^ 2 + C (87 / 100) * X ``
-- **Used by 12:** [`FloorConstQ.Ar_P0`](#FloorConstQ-Ar_P0), [`FloorConstQ.Br_P0`](#FloorConstQ-Br_P0), [`FloorConstQ.Cr_P0`](#FloorConstQ-Cr_P0), [`FloorConstQ.KflQ_eq`](#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](#FloorConstQ-KflQ_pos), [`FloorConstQ.P0_one`](#FloorConstQ-P0_one), [`FloorConstQ.P0_zero`](#FloorConstQ-P0_zero), [`FloorConstQ.floor_constQ`](#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](#FloorConstQ-log_KflQ_lt)
+- **Used by 14:** [`FloorConstQ.Ar_P0`](#FloorConstQ-Ar_P0), [`FloorConstQ.Br_P0`](#FloorConstQ-Br_P0), [`FloorConstQ.Cr_P0`](#FloorConstQ-Cr_P0), [`FloorConstQ.KflQ_eq`](#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](#FloorConstQ-KflQ_pos), [`FloorConstQ.P0_one`](#FloorConstQ-P0_one), [`FloorConstQ.P0_zero`](#FloorConstQ-P0_zero), [`FloorConstQ.floor_constQ`](#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](#FloorConstQ-log_KflQ_lt), [`FloorQ.logmaxQ_le`](../lean_stage3/FloorQ.md#FloorQ-logmaxQ_le), [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ)
 
 <a name="FloorConstQ-Q0"></a>
 ### `FloorConstQ.Q0`
@@ -164,7 +171,7 @@ def · line 48
 `Q₀(x) = (24/25)x³ − (36/25)x² − (27/50)x + 1`.
 
 - **Is:** `` Q0 : ℝ[X] := C (24 / 25) * X ^ 3 + C (-36 / 25) * X ^ 2 + C (-27 / 50) * X + C 1 ``
-- **Used by 16:** [`FloorConstQ.KflQ_eq`](#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](#FloorConstQ-KflQ_pos), [`FloorConstQ.Q0_c0`](#FloorConstQ-Q0_c0), [`FloorConstQ.Q0_c1`](#FloorConstQ-Q0_c1), [`FloorConstQ.Q0_c2`](#FloorConstQ-Q0_c2), [`FloorConstQ.Q0_c3`](#FloorConstQ-Q0_c3), [`FloorConstQ.Q0_deriv_symm`](#FloorConstQ-Q0_deriv_symm), [`FloorConstQ.Q0_zero`](#FloorConstQ-Q0_zero), [`FloorConstQ.SA_Q0`](#FloorConstQ-SA_Q0), [`FloorConstQ.SB_Q0`](#FloorConstQ-SB_Q0), [`FloorConstQ.SC_Q0`](#FloorConstQ-SC_Q0), [`FloorConstQ.floor_constQ`](#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](#FloorConstQ-log_KflQ_lt)
+- **Used by 18:** [`FloorConstQ.KflQ_eq`](#FloorConstQ-KflQ_eq), [`FloorConstQ.KflQ_lt`](#FloorConstQ-KflQ_lt), [`FloorConstQ.KflQ_pos`](#FloorConstQ-KflQ_pos), [`FloorConstQ.Q0_c0`](#FloorConstQ-Q0_c0), [`FloorConstQ.Q0_c1`](#FloorConstQ-Q0_c1), [`FloorConstQ.Q0_c2`](#FloorConstQ-Q0_c2), [`FloorConstQ.Q0_c3`](#FloorConstQ-Q0_c3), [`FloorConstQ.Q0_deriv_symm`](#FloorConstQ-Q0_deriv_symm), [`FloorConstQ.Q0_zero`](#FloorConstQ-Q0_zero), [`FloorConstQ.SA_Q0`](#FloorConstQ-SA_Q0), [`FloorConstQ.SB_Q0`](#FloorConstQ-SB_Q0), [`FloorConstQ.SC_Q0`](#FloorConstQ-SC_Q0), [`FloorConstQ.floor_constQ`](#FloorConstQ-floor_constQ), [`FloorConstQ.kappaQ`](#FloorConstQ-kappaQ), [`FloorConstQ.kappaQ_gt`](#FloorConstQ-kappaQ_gt), [`FloorConstQ.log_KflQ_lt`](#FloorConstQ-log_KflQ_lt), [`FloorQ.logmaxQ_le`](../lean_stage3/FloorQ.md#FloorQ-logmaxQ_le), [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ)
 
 <a name="FloorConstQ-kappaQ"></a>
 ### `FloorConstQ.kappaQ`
@@ -196,7 +203,9 @@ P0.eval 0 = 0
 
 **Definitions its proof touches:** [`FloorConstQ.P0`](#FloorConstQ-P0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ) (FloorQ) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T :… ``
 
 <a name="FloorConstQ-P0_one"></a>
 ### `FloorConstQ.P0_one`
@@ -215,7 +224,9 @@ P0.eval 1 = 1
 
 **Definitions its proof touches:** [`FloorConstQ.P0`](#FloorConstQ-P0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ) (FloorQ) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T :… ``
 
 <a name="FloorConstQ-Q0_zero"></a>
 ### `FloorConstQ.Q0_zero`
@@ -234,7 +245,9 @@ Q0.eval 0 = 1
 
 **Definitions its proof touches:** [`FloorConstQ.Q0`](#FloorConstQ-Q0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ) (FloorQ) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T :… ``
 
 <a name="FloorConstQ-Q0_deriv_symm"></a>
 ### `FloorConstQ.Q0_deriv_symm`
@@ -257,7 +270,9 @@ Q0.derivative.eval x = Q0.derivative.eval (1 - x)
 
 **Definitions its proof touches:** [`FloorConstQ.Q0`](#FloorConstQ-Q0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ) (FloorQ) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T :… ``
 
 <a name="FloorConstQ-integral_poly"></a>
 ### `FloorConstQ.integral_poly`
@@ -1005,5 +1020,7 @@ Tendsto (fun T => (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 / 100)) T) ((-((
 
 **Definitions its proof touches:** [`FloorConst.Ar`](../lean_stage3/FloorConstLimit.md#FloorConst-Ar), [`FloorConst.Br`](../lean_stage3/FloorConstLimit.md#FloorConst-Br), [`FloorConst.Cr`](../lean_stage3/FloorConstLimit.md#FloorConst-Cr), [`FloorConstQ.P0`](#FloorConstQ-P0), [`FloorConstQ.Q0`](#FloorConstQ-Q0), [`FloorConstQ.KflQ`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-KflQ), [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.logmaxQ_le`](../lean_stage3/FloorQ.md#FloorQ-logmaxQ_le) (FloorQ) — `` Real.log (max 1 x) / (3 / 2) ≤ (1 - 224 / 625) + 2 * ε₁ ``
 

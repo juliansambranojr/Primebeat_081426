@@ -7,7 +7,7 @@ GrRatio — block S13 of `lean_stage3/design/stencil.md`, B4, the gamma ratio. 2
 13 theorems, 1 definition, 365 lines. 
 
 **Imports:** [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md), [`MeanQ`](../lean_stage3/MeanQ.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorQGamma`](../lean_stage3/FloorQGamma.md), [`FloorQStep`](../lean_stage3/FloorQStep.md)
 
 ## The picture
 
@@ -24,12 +24,14 @@ flowchart LR
   n8["<b>pow_shift</b><br/>(-1 / L) ^ i * (L / 2) ^ (i - j) = (-1 / 2 : ℝ) ^ (i - j) * (-1 …"]:::cnt
   n9["<b>grR_sub</b><br/>(((-1 / L) ^ i : ℝ) : ℂ) * MeanQ.grR i w - (((-1 / 2 : ℝ) ^ i : …"]:::shp
   n10["<b>stmtGrRatio_holds</b><br/>MeanQ.StmtGrRatio n"]:::shp
-  n11["<b>window_V_lt_half' ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
+  n11["<b>window_V_lt_half'</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
   n12["<b>mollMeanV_long' ■</b><br/>StmtMollMeanV Q P θ R"]:::thm
   x0(["<b>DigammaBoundSize</b><br/>lY_bounds<br/>mul_le_of_abs"]):::ext
-  x1(["<b>DigammaBoundIdentity</b><br/>iteratedDeriv_E"]):::ext
-  x2(["<b>MeanQ</b><br/>window_V_lt_half"]):::ext
-  x3(["<b>MeanQV</b><br/>mollMeanV_long"]):::ext
+  x1(["<b>FloorQGamma</b><br/>gamma_ratio_far"]):::ext
+  x2(["<b>DigammaBoundIdentity</b><br/>iteratedDeriv_E"]):::ext
+  x3(["<b>MeanQ</b><br/>window_V_lt_half"]):::ext
+  x4(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
+  x5(["<b>MeanQV</b><br/>mollMeanV_long"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n11
@@ -42,10 +44,12 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n10
+  n11 -.-> x4
+  n2 -.-> x1
   x0 -.-> n2
-  x1 -.-> n7
-  x2 -.-> n11
-  x3 -.-> n12
+  x2 -.-> n7
+  x3 -.-> n11
+  x5 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -145,8 +149,9 @@ line 88 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxBounds.gModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gModel), [`ApproxBounds.gRModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gRModel), [`ApproxBounds.lY`](../lean_stage3/ApproxBounds.md#ApproxBounds-lY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.gamma_ratio_far`](../lean_stage3/FloorQGamma.md#FloorQ-gamma_ratio_far) (FloorQGamma) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 64 ≤ T → ∀ z w : ℂ, 1 / 16 ≤ z.re → 1 / 16 ≤ w.re → |z.re - w.re| ≤ 1 → w.re ≤ T / 64 → T / 4 ≤ z.im → z.im ≤ 2 * T → T / 4 … ``
   - [`GrRatio.stmtGrRatio_holds`](#GrRatio-stmtGrRatio_holds) — `` MeanQ.StmtGrRatio n ``
 
 <a name="GrRatio-Gamma-_eq"></a>
@@ -409,7 +414,9 @@ line 324 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.psi`](../lean_stage3/TwistedMoment.md#TwistedMoment-psi), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
 
 <a name="GrRatio-mollMeanV_long-"></a>
 ### `GrRatio.mollMeanV_long'`

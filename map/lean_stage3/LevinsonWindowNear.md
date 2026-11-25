@@ -7,7 +7,7 @@ LevinsonWindowNear — block S12 of `lean_stage3/design/stencil.md`, the window 
 5 theorems, 0 definitions, 738 lines. 
 
 **Imports:** [`LevinsonMultiple`](../lean_stage3/LevinsonMultiple.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md), [`FloorQWindow`](../lean_stage3/FloorQWindow.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
 
 ## The picture
 
@@ -22,21 +22,22 @@ flowchart LR
   x1(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
   x2(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
   x3(["<b>FloorLong</b><br/>floor_of_long"]):::ext
-  x4(["<b>FloorSum</b><br/>levinson_floor"]):::ext
-  x5(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
-  x6(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
-  x7(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
-  x8(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
-  x9(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
-  x10(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>line_turn_eq_integral<br/>turn_split"]):::ext
-  x11(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
-  x12(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
-  x13(["<b>ArgCount</b><br/>N_mono"]):::ext
-  x14(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
-  x15(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
-  x16(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
-  x17(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
-  x18(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x4(["<b>FloorQ</b><br/>levinson_floorQ"]):::ext
+  x5(["<b>FloorSum</b><br/>levinson_floor"]):::ext
+  x6(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
+  x7(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
+  x8(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
+  x9(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x10(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
+  x11(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>line_turn_eq_integral<br/>turn_split"]):::ext
+  x12(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
+  x13(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x14(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x15(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x16(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x17(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  x18(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x19(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n2
   n1 --> n4
   n2 --> n3
@@ -44,24 +45,25 @@ flowchart LR
   n0 -.-> x2
   n1 -.-> x3
   n1 -.-> x4
-  n3 -.-> x17
+  n1 -.-> x5
   n3 -.-> x18
+  n3 -.-> x19
   x0 -.-> n0
   x0 -.-> n2
   x1 -.-> n0
   x10 -.-> n2
   x11 -.-> n2
-  x11 -.-> n3
   x12 -.-> n2
-  x13 -.-> n3
+  x12 -.-> n3
+  x13 -.-> n2
   x14 -.-> n3
   x15 -.-> n3
   x16 -.-> n3
-  x5 -.-> n2
+  x17 -.-> n3
   x6 -.-> n2
   x7 -.-> n2
-  x7 -.-> n3
   x8 -.-> n2
+  x8 -.-> n3
   x9 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -136,9 +138,10 @@ line 104 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
+  - [`FloorQ.levinson_floorQ`](../lean_stage3/FloorQ.md#FloorQ-levinson_floorQ) (FloorQ) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (224 / 625 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
   - [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) (FloorSum) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
   - [`LevinsonWindowNear.levinson_window_near`](#LevinsonWindowNear-levinson_window_near) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 

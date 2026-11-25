@@ -2,12 +2,14 @@ flowchart LR
   n0["<b>KflQ_lt</b><br/>KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0)…"]:::shp
   n1["<b>log_KflQ_lt</b><br/>Real.log (KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorCo…"]:::shp
   n2["<b>kappaQ_gt ■</b><br/>1 / 3 ＜ (224 / 625 : ℝ) ∧ 224 / 625 ＜ kappaQ (49 / 100) (3 / 2)"]:::shp
-  n3["<b>floor_constQ ■</b><br/>Tendsto (fun T =＞ (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 …"]:::shp
+  n3["<b>floor_constQ</b><br/>Tendsto (fun T =＞ (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 …"]:::shp
   x0(["<b>diagram 1</b><br/>5 theorems"]):::ext
   x1(["<b>FloorConstQLimit</b><br/>re_dopQ_tendsto"]):::ext
+  x2(["<b>FloorQ</b><br/>logmaxQ_le"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n3
+  n3 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x1 -.-> n3

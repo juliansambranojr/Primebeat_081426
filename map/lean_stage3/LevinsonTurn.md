@@ -25,16 +25,17 @@ flowchart LR
   n9["<b>countRight_left_eq ■</b><br/>Littlewood.countRight f z w z.re = ∑ p ∈ (divisor_support_rectan…"]:::shp
   n10["<b>G_turn_eq</b><br/>(∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Lit…"]:::shp
   x0(["<b>ConreyCountEdge</b><br/>right_edge_le_of_re_pos"]):::ext
-  x1(["<b>LevinsonMollEdge</b><br/>arg_term_le_of_pos"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>arg_turn_segment<br/>levinson_count'"]):::ext
-  x3(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>right_edge_le"]):::ext
-  x4(["<b>ConreyCountOrder</b><br/>zeta_order_ge_line"]):::ext
-  x5(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x6(["<b>ConreyCountLine</b><br/>lineW_turn_eq"]):::ext
-  x7(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x8(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
-  x9(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x10(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x1(["<b>FloorQEdge</b><br/>arg_term_le_on"]):::ext
+  x2(["<b>LevinsonMollEdge</b><br/>arg_term_le_of_pos"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>arg_turn_segment<br/>levinson_count'"]):::ext
+  x4(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>right_edge_le"]):::ext
+  x5(["<b>ConreyCountOrder</b><br/>zeta_order_ge_line"]):::ext
+  x6(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x7(["<b>ConreyCountLine</b><br/>lineW_turn_eq"]):::ext
+  x8(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x9(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
+  x10(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x11(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
   n0 --> n1
   n1 --> n4
   n2 --> n4
@@ -45,26 +46,27 @@ flowchart LR
   n1 -.-> x1
   n1 -.-> x2
   n1 -.-> x3
-  n10 -.-> x10
-  n10 -.-> x2
-  n10 -.-> x5
-  n10 -.-> x7
-  n3 -.-> x3
+  n1 -.-> x4
+  n10 -.-> x11
+  n10 -.-> x3
+  n10 -.-> x6
+  n10 -.-> x8
   n3 -.-> x4
-  n4 -.-> x2
-  n4 -.-> x5
+  n3 -.-> x5
+  n4 -.-> x3
   n4 -.-> x6
   n4 -.-> x7
-  n7 -.-> x2
-  n7 -.-> x5
+  n4 -.-> x8
+  n7 -.-> x3
   n7 -.-> x6
   n7 -.-> x7
-  n8 -.-> x10
-  x8 -.-> n10
-  x8 -.-> n5
-  x8 -.-> n9
-  x9 -.-> n7
-  x9 -.-> n8
+  n7 -.-> x8
+  n8 -.-> x11
+  x10 -.-> n7
+  x10 -.-> n8
+  x9 -.-> n10
+  x9 -.-> n5
+  x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -136,9 +138,10 @@ line 81 · arrows read from text
 
   - [`LevinsonTurn.int_valued_const`](#LevinsonTurn-int_valued_const) — `` d b = 0 ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`ConreyCount.right_edge_le_of_re_pos`](../lean_stage3/ConreyCountEdge.md#ConreyCount-right_edge_le_of_re_pos) (ConreyCountEdge) — `` |(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ Real.pi ``
+  - [`FloorQ.arg_term_le_on`](../lean_stage3/FloorQEdge.md#FloorQ-arg_term_le_on) (FloorQEdge) — `` |(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi ``
   - [`LevinsonMollEdge.arg_term_le_of_pos`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-arg_term_le_of_pos) (LevinsonMollEdge) — `` |(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi ``
   - [`LevinsonMultiple.arg_turn_segment`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-arg_turn_segment) (LevinsonMultiple) — `` (∫ u in u₁..u₂, v / (z₀ + u * v)).im = arg (z₀ + u₂ * v) - arg (z₀ + u₁ * v) ``
   - [`LevinsonSize.right_edge_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-right_edge_le) (LevinsonSize) — `` |(∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (3 + t * I)).re| ≤ Real.pi ``

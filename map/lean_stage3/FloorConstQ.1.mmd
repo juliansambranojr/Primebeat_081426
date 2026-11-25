@@ -1,8 +1,8 @@
 flowchart LR
-  n0["<b>P0_zero ■</b><br/>P0.eval 0 = 0"]:::cnt
-  n1["<b>P0_one ■</b><br/>P0.eval 1 = 1"]:::cnt
-  n2["<b>Q0_zero ■</b><br/>Q0.eval 0 = 1"]:::cnt
-  n3["<b>Q0_deriv_symm ■</b><br/>Q0.derivative.eval x = Q0.derivative.eval (1 - x)"]:::cnt
+  n0["<b>P0_zero</b><br/>P0.eval 0 = 0"]:::cnt
+  n1["<b>P0_one</b><br/>P0.eval 1 = 1"]:::cnt
+  n2["<b>Q0_zero</b><br/>Q0.eval 0 = 1"]:::cnt
+  n3["<b>Q0_deriv_symm</b><br/>Q0.derivative.eval x = Q0.derivative.eval (1 - x)"]:::cnt
   n4["<b>integral_poly</b><br/>∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0"]:::cnt
   n5["<b>Ar_P0</b><br/>FloorConst.Ar P0 = 152147 / 150000"]:::cnt
   n6["<b>Br_P0</b><br/>FloorConst.Br P0 = 1 / 2"]:::cnt
@@ -29,8 +29,9 @@ flowchart LR
   n27["<b>exp_three_eq</b><br/>Real.exp 3 = Real.exp (1 / 2) ^ 6"]:::shp
   n28["<b>exp_y_ge</b><br/>∑ i ∈ Finset.range 12, (1203 / 1250 : ℝ) ^ i / i.factorial ≤ Rea…"]:::shp
   n29["<b>KflQ_pos</b><br/>0 ＜ KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr…"]:::shp
-  x0(["<b>FloorConstQLimit</b><br/>KflQ_lin"]):::ext
-  x1(["<b>diagram 2</b><br/>KflQ_lt<br/>log_KflQ_lt"]):::ext
+  x0(["<b>FloorQ</b><br/>stepQ"]):::ext
+  x1(["<b>FloorConstQLimit</b><br/>KflQ_lin"]):::ext
+  x2(["<b>diagram 2</b><br/>KflQ_lt<br/>log_KflQ_lt"]):::ext
   n10 --> n21
   n10 --> n22
   n10 --> n23
@@ -84,12 +85,16 @@ flowchart LR
   n9 --> n21
   n9 --> n22
   n9 --> n23
-  n24 -.-> x1
-  n25 -.-> x1
-  n27 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
-  x0 -.-> n24
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n24 -.-> x2
+  n25 -.-> x2
+  n27 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
+  n3 -.-> x0
+  x1 -.-> n24
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

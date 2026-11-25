@@ -7,7 +7,7 @@
 6 theorems, 0 definitions, 195 lines. 
 
 **Imports:** [`FloorConst`](../lean_stage3/FloorConst.md), [`FloorStep`](../lean_stage3/FloorStep.md), [`FloorSumTele`](../lean_stage3/FloorSumTele.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Defect`](../lean_stage3/Defect.md), [`FloorLong`](../lean_stage3/FloorLong.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Defect`](../lean_stage3/Defect.md), [`FloorLong`](../lean_stage3/FloorLong.md), [`FloorQ`](../lean_stage3/FloorQ.md)
 
 ## The picture
 

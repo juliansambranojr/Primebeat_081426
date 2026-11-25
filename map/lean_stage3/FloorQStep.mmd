@@ -1,0 +1,32 @@
+flowchart LR
+  n0["<b>combineQ</b><br/>ND - lK / R * ND - ε * T * L ≤ LC"]:::shp
+  n1["<b>constE</b><br/>72 * L + 42 * Real.log (3 * Ac) + 154 + 62 * L + 2500 ≤ ε / 4 * …"]:::shp
+  n2["<b>floor_stepQ</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - …"]:::thm
+  x0(["<b>DigammaBound</b><br/>conrey_count_window'"]):::ext
+  x1(["<b>FloorConstQLimit</b><br/>re_dopQ_tendsto"]):::ext
+  x2(["<b>FloorQCont</b><br/>hK_shiftV"]):::ext
+  x3(["<b>FloorQGamma</b><br/>V_disc_le<br/>V_right_le<br/>analyticAt_V_im"]):::ext
+  x4(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
+  x5(["<b>FloorStepSize</b><br/>9 theorems"]):::ext
+  x6(["<b>GrRatio</b><br/>window_V_lt_half'"]):::ext
+  x7(["<b>LevinsonMollEdge</b><br/>4 theorems"]):::ext
+  x8(["<b>FloorQ</b><br/>stepQ"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 -.-> x8
+  x0 -.-> n2
+  x1 -.-> n2
+  x2 -.-> n2
+  x3 -.-> n2
+  x4 -.-> n2
+  x5 -.-> n2
+  x6 -.-> n2
+  x7 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
