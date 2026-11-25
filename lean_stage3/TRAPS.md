@@ -156,6 +156,9 @@ build, 2026-09-08.
 | 143 | `Finset.Ico_succ_singleton` is an unknown name | not a lemma on this Mathlib | `Finset.sum_Ico_succ_top le_rfl, Finset.Ico_self, Finset.sum_empty` (unit 0570) |
 | 144 | rewriting `(w^3)⁻¹` to `(w⁻¹)^3` with `inv_pow` fails | `inv_pow` states `a⁻¹ ^ n = (a ^ n)⁻¹` | `← inv_pow` (unit 0570) |
 | 145 | `norm_num at h` pushes `↑(a/2)` to `↑a/2`, and `h.trans` stops matching (the family of row 52) | the cast is normalized in `h` only | normalize both sides, or state the bound with the cast already pushed (unit 0570) |
+| 146 | `rw [intervalIntegral.integral_comp_div]` finds no pattern | the integrand is the beta-redex `(fun y => …) (x / c)` under the binder (near rows 53 and 113) | `have hcv := integral_comp_div (f := …) hc; beta_reduce at hcv`, then `rw [hcv]` (unit 0571) |
+| 147 | `positivity` fails on `u/2 ≠ 0` or `0 < u/(2π)` with `u > 0` only as a hypothesis | `positivity` does not use hypotheses, even ones in context | `div_pos (by linarith [hu.1]) (by positivity)`, `ne_of_gt (by linarith)` (unit 0571) |
+| 148 | `unfold S` is ambiguous under `open Turing` | a root-level `S` from the imports clashes with `Turing.S` (row 48's family) | `unfold Turing.S` (unit 0571) |
 
 ## Bench and gate traps
 

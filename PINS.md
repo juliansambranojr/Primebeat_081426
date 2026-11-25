@@ -37,7 +37,7 @@ below with their outcome.
     DEPENDS     `TuringSlope`, `StirlingSeries*`, `SignData*`, `Defect`, `LineCount`
     OUT         B3; C's core
 
-### 2026-11-25 · block S14 of `design/stencil.md`, Turing's slope term: `Stage3/TuringSlope*.lean`
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's slope term: `Stage3/TuringSlope.lean` and `Stage3/TuringSlope*.lean`
 
     DONE        `Turing.theta_sub_le` sharpened through `StirlingSeries`: the
                 horizon's slope θ(u) − θ(t) ≤ (u − t)·(½ log(u/2π) + c/t) with c small
