@@ -1,0 +1,18 @@
+key	value	source
+module_lines	1274	wc -l lean_stage3/Stage3/SwapX.lean
+theorems_proved	36	grep -c ^theorem lean_stage3/Stage3/SwapX.lean
+defs	10	grep -c ^def lean_stage3/Stage3/SwapX.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SwapX.lean
+pins	17	norm_Dk_le, iter_phi, phi_iter_le, logratio_le, g_sub_one, hder_of, decomp, S1_sharp, msq_young, size_X, c1Y_bound, Tp_g, E_bound, J_alg, stmtXAll_of, lemma3_resO_of_partsAll, lemma3_resO_of_mainO
+errors_first	9	the worker's builds: a cast pushed before a calc, an off-support branch, a ring after field_simp, two heartbeat limits, a structure field, an integral_sub pattern, a set_option placement and a name clash
+builds	9	the worker's report
+traps_added	4	lean_stage3/TRAPS.md rows 59-62
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8929	lake build (full Stage3), Build completed successfully
+jobs_module	8822	run/build.log, lake build Stage3.SwapX
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+trap_first	59	lean_stage3/TRAPS.md
+trap_last	62	lean_stage3/TRAPS.md

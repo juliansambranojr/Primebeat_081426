@@ -22,6 +22,29 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/Stirling*.lean`
+
+    DONE        `SwapX.StmtXStirling`: X_{α,β,t} = (t/2π)^(−α−β) + O(1/t) for
+                ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1, through PNT+ `digamma_eq_tsum` and the
+                log Γ asymptotic with its argument; or the largest honest piece,
+                the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0541, 0542, TRAPS 59–66, start
+                `StmtArith` and `StmtXStirling` side by side). Written before the
+                workers start.
+    DEPENDS     `SwapX`, `ApproxFE`, `ApproxBounds`, Mathlib Gamma, PNT+ digamma
+    OUT         `StmtArith`; the operator (piece 3); unsmoothing (piece 4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the arithmetic facts: `Stage3/Arith*.lean`
+
+    DONE        `SdiagLead.StmtArith`, its six parts (`StmtSdmLe`, `StmtMeanSig3`,
+                `StmtTailFixed`, `StmtTailAvg`, `StmtGmuLog`, `StmtDivLog`), then
+                `stmtDiagMainO` with no hypothesis beyond P(0) = 0, 0 < θ; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     as above
+    DEPENDS     `SdiagLead*`, Mathlib arithmetic functions (`ArithmeticFunction`,
+                `Nat.totient`, `Nat.primeFactors`), PNT+ if it has μ²/φ sums
+    OUT         `StmtXStirling`; pieces 3–4
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, the swapped term: `Stage3/SwapX.lean`
 
     DONE        `StmtX` (TwistedMoment): I_X(α,β) = T^(−α−β) I₁(−β,−α) + O(T/L),

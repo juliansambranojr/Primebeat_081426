@@ -1,5 +1,5 @@
 /-
-# Stage3.SdiagLead — `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.
+# Stage3.SdiagLead — block S12 of `lean_stage3/design/stencil.md`: `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.
 
 Target: `DiagMain.StmtSdiagLead P θ R κ`, `S(α,β,0) = I(α,β)/log M + o(1/L)` on `Regime κ T`
 (Young's Lemma 7), and through `DiagMain.stmtDiagMainO_of_lead` the main term

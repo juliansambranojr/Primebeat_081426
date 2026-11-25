@@ -478,12 +478,12 @@ theorem decomp (hκ : 0 < κ) (hL0 : 0 < L) (w : ℝ) (t : ℝ) :
       Complex.one_re, Complex.sub_im, Complex.one_im, Complex.add_re, Complex.I_re,
       Complex.I_im, Complex.add_im, Complex.mul_im]
     field_simp
-    ring
+    try ring
   · simp only [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, Complex.sub_re,
       Complex.one_re, Complex.sub_im, Complex.one_im, Complex.add_re, Complex.I_re,
       Complex.I_im, Complex.add_im, Complex.mul_im]
     field_simp
-    ring
+    try ring
 
 end Concrete
 
@@ -836,7 +836,7 @@ theorem E_bound {T L : ℝ} (hT8 : 8 ≤ T) (W : Weight T L) (M : ℕ) (a : ℕ 
     _ = 8 * Cst * CS * N * (2 * T) ^ e * Bm := by
         rw [hK]
         field_simp
-        ring
+        try ring
 
 theorem le_twC {C : ℕ → ℝ} (hC : ∀ j, 0 ≤ C j) (j : ℕ) : C j ≤ twC C j := by
   unfold twC
