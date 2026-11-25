@@ -38,20 +38,21 @@ flowchart LR
   n22["<b>polyP_edges</b><br/>(∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑a * I)).im - (∫ …"]:::shp
   n23["<b>levinson_count'</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
   n24["<b>levinson_window' ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ…"]:::thm
-  x0(["<b>LevinsonTurn</b><br/>4 theorems"]):::ext
-  x1(["<b>HardyZ</b><br/>re_line"]):::ext
-  x2(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
-  x3(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>mem_support_divisor<br/>order_ne_top"]):::ext
-  x4(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
-  x5(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
-  x6(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
-  x7(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
-  x8(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
-  x9(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
-  x10(["<b>ArgCount</b><br/>N_mono"]):::ext
-  x11(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
-  x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
-  x13(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  x0(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x1(["<b>LevinsonTurn</b><br/>4 theorems"]):::ext
+  x2(["<b>HardyZ</b><br/>re_line"]):::ext
+  x3(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
+  x4(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x5(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
+  x6(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
+  x7(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
+  x8(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x9(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
+  x10(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
+  x11(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x12(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x13(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x14(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n18
@@ -77,26 +78,27 @@ flowchart LR
   n7 --> n23
   n8 --> n18
   n9 --> n18
-  x0 -.-> n23
-  x0 -.-> n8
-  x1 -.-> n14
+  n7 -.-> x0
   x1 -.-> n23
+  x1 -.-> n8
+  x10 -.-> n23
   x10 -.-> n24
   x11 -.-> n24
   x12 -.-> n24
   x13 -.-> n24
+  x14 -.-> n24
   x2 -.-> n14
-  x3 -.-> n16
-  x3 -.-> n17
-  x3 -.-> n23
+  x2 -.-> n23
+  x3 -.-> n14
+  x4 -.-> n16
+  x4 -.-> n17
   x4 -.-> n23
   x5 -.-> n23
   x6 -.-> n23
-  x6 -.-> n24
   x7 -.-> n23
+  x7 -.-> n24
   x8 -.-> n23
   x9 -.-> n23
-  x9 -.-> n24
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -117,7 +119,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 147
 
 - **Is:** `` polyP (D : Finset ℂ) (n : ℂ → ℕ) (z : ℂ) : ℂ := ∏ ρ ∈ D, (z - ρ) ^ n ρ ``
-- **Used by 9:** [`LevinsonMultiple.exists_prod_mul`](#LevinsonMultiple-exists_prod_mul), [`LevinsonMultiple.integral_logDeriv_polyP`](#LevinsonMultiple-integral_logDeriv_polyP), [`LevinsonMultiple.levinson_count'`](#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.logDeriv_polyP`](#LevinsonMultiple-logDeriv_polyP), [`LevinsonMultiple.polyP_analyticAt`](#LevinsonMultiple-polyP_analyticAt), [`LevinsonMultiple.polyP_edges`](#LevinsonMultiple-polyP_edges), [`LevinsonMultiple.polyP_line`](#LevinsonMultiple-polyP_line), [`LevinsonMultiple.polyP_ne_zero`](#LevinsonMultiple-polyP_ne_zero), [`LevinsonMultiple.polyP_order`](#LevinsonMultiple-polyP_order)
+- **Used by 11:** [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line), [`LevinsonMultiple.exists_prod_mul`](#LevinsonMultiple-exists_prod_mul), [`LevinsonMultiple.integral_logDeriv_polyP`](#LevinsonMultiple-integral_logDeriv_polyP), [`LevinsonMultiple.levinson_count'`](#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.logDeriv_polyP`](#LevinsonMultiple-logDeriv_polyP), [`LevinsonMultiple.polyP_analyticAt`](#LevinsonMultiple-polyP_analyticAt), [`LevinsonMultiple.polyP_edges`](#LevinsonMultiple-polyP_edges), [`LevinsonMultiple.polyP_line`](#LevinsonMultiple-polyP_line), [`LevinsonMultiple.polyP_ne_zero`](#LevinsonMultiple-polyP_ne_zero), [`LevinsonMultiple.polyP_order`](#LevinsonMultiple-polyP_order)
 
 ## Theorems
 
@@ -342,8 +344,9 @@ polyP D n (1/2 + t * I) = I ^ (∑ ρ ∈ D, n ρ) * ((∏ ρ ∈ D, (t - ρ.im)
 
 **Definitions its proof touches:** [`LevinsonMultiple.polyP`](#LevinsonMultiple-polyP)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
   - [`LevinsonMultiple.levinson_count'`](#LevinsonMultiple-levinson_count-) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonMultiple-arg_turn_segment"></a>

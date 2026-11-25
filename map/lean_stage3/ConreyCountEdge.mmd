@@ -1,0 +1,32 @@
+flowchart LR
+  n0["<b>analyticAt_V_upper</b><br/>AnalyticAt ℂ (V Q L) w"]:::shp
+  n1["<b>right_edge_le_of_re_pos</b><br/>|(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ Real.pi"]:::shp
+  n2["<b>edge_le_of_bound_upper</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (…"]:::shp
+  n3["<b>V_right_edge_le</b><br/>|(∫ t in a..b, logDeriv (V Q L) (3 + t * I)).re| ≤ Real.pi"]:::shp
+  n4["<b>V_horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑T * I)).im| ≤ Real.…"]:::shp
+  x0(["<b>ConreyCountLine</b><br/>analyticAt_V"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>LevinsonSize</b><br/>hasDerivAt_three_comp"]):::ext
+  x3(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x4(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x5(["<b>LevinsonEdge</b><br/>real_zero_count"]):::ext
+  n0 --> n3
+  n0 --> n4
+  n1 --> n3
+  n2 --> n4
+  n0 -.-> x1
+  n3 -.-> x1
+  n4 -.-> x1
+  x0 -.-> n0
+  x2 -.-> n1
+  x3 -.-> n1
+  x4 -.-> n2
+  x5 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

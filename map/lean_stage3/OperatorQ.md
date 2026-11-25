@@ -7,7 +7,7 @@ OperatorQ — block S13 of `lean_stage3/design/stencil.md`, B4, the operator wit
 14 theorems, 3 definitions, 307 lines. 
 
 **Imports:** [`LevinsonLine`](../lean_stage3/LevinsonLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ConreyCountIdentity`](../lean_stage3/ConreyCountIdentity.md)
 
 ## The picture
 
@@ -24,11 +24,15 @@ flowchart LR
   n8["<b>coeff_comp_neg_X</b><br/>(p.comp (-X)).coeff n = (-1) ^ n * p.coeff n"]:::cnt
   n9["<b>taylor_coeff_even_eq_zero</b><br/>(taylor (1/2 : ℝ) Q).coeff k = 0"]:::cnt
   n10["<b>re_W_line</b><br/>(W Q L ((1/2 : ℂ) + t * I)).re = Q.eval (1/2) * (completedRieman…"]:::thm
-  n11["<b>zeta_line_zero_iff_W ■</b><br/>riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)…"]:::thm
+  n11["<b>zeta_line_zero_iff_W</b><br/>riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)…"]:::thm
   n12["<b>cubic_sym ■</b><br/>Qcubic.eval 0 = 1 ∧ (∀ x : ℝ, Qcubic.derivative.eval x = Qcubic.…"]:::cnt
   n13["<b>cubic_re_W_line ■</b><br/>(W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZet…"]:::thm
   x0(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
+  x2(["<b>ConreyCountIdentity</b><br/>conrey_identity"]):::ext
+  x3(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x4(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x5(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
   n0 --> n1
   n10 --> n11
   n10 --> n13
@@ -40,6 +44,11 @@ flowchart LR
   n7 --> n10
   n8 --> n9
   n9 --> n10
+  n10 -.-> x3
+  n10 -.-> x4
+  n11 -.-> x3
+  n11 -.-> x5
+  n9 -.-> x2
   x0 -.-> n11
   x0 -.-> n2
   x1 -.-> n11
@@ -76,7 +85,7 @@ def · line 206
 `W = Q(1/2 − (1/L) d/ds) Λ`: the Taylor coefficients `b_k` of `Q` at `1/2`, against `(−1/L)^k Λ^{(k)}`.
 
 - **Is:** `` W (Q : ℝ[X]) (L : ℝ) (s : ℂ) : ℂ := ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k : ℝ) : ℂ) * iteratedDeriv k completedRiemannZeta s ``
-- **Used by 3:** [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line), [`OperatorQ.re_W_line`](#OperatorQ-re_W_line), [`OperatorQ.zeta_line_zero_iff_W`](#OperatorQ-zeta_line_zero_iff_W)
+- **Used by 14:** [`ConreyCount.conrey_identity`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity), [`ConreyCount.conrey_identity_K`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity_K), [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`ConreyCount.W_eq_gammaR_mul_V`](../lean_stage3/ConreyCountLine.md#ConreyCount-W_eq_gammaR_mul_V), [`ConreyCount.analyticAt_W`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W), [`ConreyCount.analyticAt_W_line`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W_line), [`ConreyCount.continuous_lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-continuous_lineW), [`ConreyCount.lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW), [`ConreyCount.lineW_turn_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW_turn_eq), [`ConreyCount.logDeriv_W_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-logDeriv_W_eq), [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line), [`OperatorQ.re_W_line`](#OperatorQ-re_W_line), [`OperatorQ.zeta_line_zero_iff_W`](#OperatorQ-zeta_line_zero_iff_W)
 
 <a name="OperatorQ-Qcubic"></a>
 ### `OperatorQ.Qcubic`
@@ -354,8 +363,9 @@ line 175 · arrows read from text
 
   - [`OperatorQ.coeff_comp_neg_X`](#OperatorQ-coeff_comp_neg_X) — `` (p.comp (-X)).coeff n = (-1) ^ n * p.coeff n ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ConreyCount.conrey_identity`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity) (ConreyCountIdentity) — `` OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = 2 * ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta s ``
   - [`OperatorQ.re_W_line`](#OperatorQ-re_W_line) — `` (W Q L ((1/2 : ℂ) + t * I)).re = Q.eval (1/2) * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re ``
 
 <a name="OperatorQ-re_W_line"></a>
@@ -386,8 +396,10 @@ line 212 · arrows read from text
 
 **Definitions its proof touches:** [`OperatorQ.W`](#OperatorQ-W)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
+  - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
   - [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line) — `` (W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re ``
   - [`OperatorQ.zeta_line_zero_iff_W`](#OperatorQ-zeta_line_zero_iff_W) — `` riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0 ``
 
@@ -421,7 +433,10 @@ riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0
 
 **Definitions its proof touches:** [`OperatorQ.W`](#OperatorQ-W)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
+  - [`ConreyCount.lineCount_ge_argW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineCount_ge_argW) (ConreyCountLine) — `` (k : ℤ) ≤ lineCount T ``
 
 <a name="OperatorQ-cubic_sym"></a>
 ### `OperatorQ.cubic_sym`
