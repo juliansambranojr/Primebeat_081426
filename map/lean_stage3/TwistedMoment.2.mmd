@@ -1,0 +1,107 @@
+flowchart LR
+  n0["<b>inv_log_sq_le</b><br/>((Real.log ((P : ℝ) / Q)) ^ 2)⁻¹ ≤ 4 * (P : ℝ) * Q"]:::shp
+  n1["<b>offdiag_term_young</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀…"]:::thm
+  n2["<b>conj_natCast_cpow</b><br/>(starRingEnd ℂ) ((k : ℂ) ^ z) = (k : ℂ) ^ (starRingEnd ℂ z)"]:::shp
+  n3["<b>msq_expand</b><br/>((msq M a σ₀ t : ℝ) : ℂ) = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Ic…"]:::shp
+  n4["<b>norm_psi_le</b><br/>‖psi M a ((σ₀ : ℂ) + t * I)‖ ≤ ∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h …"]:::shp
+  n5["<b>msq_le</b><br/>msq M a σ₀ t ≤ (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^…"]:::shp
+  n6["<b>msq_nonneg</b><br/>0 ≤ msq M a σ₀ t"]:::cnt
+  n7["<b>continuous_msq</b><br/>Continuous (msq M a σ₀)"]:::cnt
+  n8["<b>re_small</b><br/>-(1 / 10) ≤ α.re ∧ α.re ≤ 1 / 10"]:::shp
+  n9["<b>im_small</b><br/>-(1 / 10) ≤ α.im ∧ α.im ≤ 1 / 10"]:::shp
+  n10["<b>uA_ne_vB</b><br/>uA α t ≠ vB β t"]:::shp
+  n11["<b>approxFE_small</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = S1 α β c t + XY α …"]:::thm
+  n12["<b>integrand_split</b><br/>(W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β t)) * (m…"]:::thm
+  n13["<b>continuous_uA</b><br/>Continuous fun t : ℝ =＞ uA α t"]:::cnt
+  n14["<b>continuous_vB</b><br/>Continuous fun t : ℝ =＞ vB β t"]:::cnt
+  n15["<b>integrable_of_Icc</b><br/>Integrable f"]:::cnt
+  n16["<b>w_zero_mul</b><br/>(W.w t : ℂ) * F * G = 0"]:::cnt
+  n17["<b>integrable_Imom</b><br/>Integrable fun t =＞ (W.w t : ℂ) * (riemannZeta (uA α t) * rieman…"]:::thm
+  n18["<b>resY_term_cAt</b><br/>ContinuousAt (fun t =＞ GY α β (f t) / d t * completedRiemannZeta…"]:::cnt
+  n19["<b>ne_zero_of_re_pos</b><br/>z ≠ 0"]:::cnt
+  n20["<b>ne_of_im_ne</b><br/>z ≠ w"]:::cnt
+  n21["<b>continuousAt_resY</b><br/>ContinuousAt (fun t =＞ resY α β t) t"]:::shp
+  n22["<b>integrable_Ires</b><br/>Integrable fun t =＞ (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ…"]:::shp
+  n23["<b>summable_major</b><br/>Summable fun p : ℕ × ℕ =＞ ((p.1 : ℝ) + 1) ^ (-(12 / 5) : ℝ) * ((…"]:::shp
+  n24["<b>rpow_combine</b><br/>y ^ (-(2 / 5) : ℝ) * y ^ (-2 : ℝ) = y ^ (-(12 / 5) : ℝ)"]:::shp
+  n25["<b>S1_term_bound</b><br/>‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY …"]:::shp
+  n26["<b>continuousOn_S1</b><br/>ContinuousOn (fun t =＞ S1 α β c t) (Set.Icc 1 B)"]:::shp
+  n27["<b>integrable_I1</b><br/>Integrable fun t =＞ (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ…"]:::shp
+  n28["<b>I_split</b><br/>Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires…"]:::thm
+  n29["<b>norm_integral_le_Icc</b><br/>‖∫ t, f t‖ ≤ K * (b - a)"]:::shp
+  x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
+  x1(["<b>diagram 3</b><br/>7 theorems"]):::ext
+  x2(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x3(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
+  x4(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
+  n0 --> n1
+  n10 --> n11
+  n11 --> n12
+  n12 --> n28
+  n13 --> n17
+  n13 --> n21
+  n13 --> n26
+  n14 --> n17
+  n14 --> n21
+  n14 --> n26
+  n15 --> n17
+  n15 --> n22
+  n15 --> n27
+  n16 --> n17
+  n16 --> n22
+  n16 --> n27
+  n17 --> n28
+  n18 --> n21
+  n19 --> n21
+  n2 --> n3
+  n20 --> n21
+  n21 --> n22
+  n22 --> n28
+  n23 --> n26
+  n24 --> n25
+  n25 --> n26
+  n26 --> n27
+  n27 --> n28
+  n4 --> n5
+  n7 --> n17
+  n7 --> n22
+  n7 --> n27
+  n8 --> n11
+  n8 --> n17
+  n8 --> n21
+  n8 --> n25
+  n9 --> n10
+  n9 --> n21
+  n1 -.-> x1
+  n13 -.-> x1
+  n14 -.-> x1
+  n15 -.-> x1
+  n16 -.-> x1
+  n25 -.-> x1
+  n26 -.-> x1
+  n28 -.-> x1
+  n29 -.-> x1
+  n3 -.-> x1
+  n5 -.-> x1
+  n6 -.-> x1
+  n8 -.-> x1
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n26
+  x2 -.-> n10
+  x2 -.-> n17
+  x2 -.-> n21
+  x2 -.-> n23
+  x2 -.-> n25
+  x3 -.-> n11
+  x3 -.-> n18
+  x4 -.-> n21
+  x4 -.-> n26
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

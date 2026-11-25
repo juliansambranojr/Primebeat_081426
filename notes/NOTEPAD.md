@@ -858,3 +858,5 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-25  Contour shift PROVED (unit 0531, `ApproxShift`): approxFE, Young's Lemma 4 exactly, no shift hypothesis. Unconditional.
 - [open]   2026-11-25  S12 piece 2a PROVED (unit 0532, `ApproxBounds`): Stirling on vertical lines; |X| ~ (t/2π)^(−Re(α+β)); V decays (1+x/t)^(−A); resY ≤ C e^(−t²/2). TRAPS rows 49–50 added.
 - [open]   2026-11-25  S12 piece 2b-i PROVED (unit 0533, `ApproxDeriv`): V twice differentiable in t; (4.3) for j = 1, 2. TRAPS rows 51–53 added.
+- [open]   2026-11-25  S12 piece 2b-ii (unit 0534, `TwistedMoment`): Lemma 3 split into diagonal, off-diagonal, swapped term; off-diagonal by two IBPs. TRAPS rows 54–55.
+- [open]   2026-11-25  Decision (unit 0535): two IBPs close the off-diagonal only for theta < 1/6; IBP j times, j > (1+2theta)/(1-2theta), needs (4.3) for all j.

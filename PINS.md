@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, all orders: `Stage3/ApproxDerivAll.lean`
+
+    DONE        Young's (4.3) for every j: `VY_iter_bound`: for every j and A,
+                |t^j·∂_t^j V_{α,β}(x,t)| ≤ C_{j,A}·(1+1/‖α+β‖²)·(1 + x/t)^(−A), by induction
+                on the digamma series (∂_t^k dY bounds for every k), with V smooth
+                in t; and `ibp_iter`: j integrations by parts against a weight
+                vanishing to order j at the ends; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it please" (units 0534, 0535,
+                the TRAPS rows, and start the general-j bounds). The decision is
+                unit 0535
+    DEPENDS     `ApproxDeriv` (j ≤ 2 and its route), `ApproxBounds`,
+                `TwistedMoment` (`ibp_twice`, `Weight`)
+    OUT         the window's derivatives to every order (the Weight structure
+                carries j ≤ 2); closing `StmtOffDiag`; `StmtDiag`, `StmtX`
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-ii, the twisted moment: `Stage3/TwistedMoment.lean`
 
     DONE        Young's Lemma 3 for a smooth weight w with (2.1)–(2.3):

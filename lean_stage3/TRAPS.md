@@ -64,6 +64,8 @@ build, 2026-09-08.
 | 51 | `hasDerivAt_tsum` stalls on `NormedSpace ℝ ?m` | the summand and its derivative are left for unification, and the target space is not determined | pass `g` and `g'` to `hasDerivAt_tsum` explicitly (unit 0533) |
 | 52 | `linarith` fails after `norm_num at h` though the two hypotheses look alike | `norm_num at h` rewrote `‖s/2‖` to `‖s‖/2` in `h` only, so the companion hypothesis keeps the other form | normalize both: `norm_num at h h'`, or state the bound in one form from the start (unit 0533) |
 | 53 | `rw` finds no pattern in `(fun t => f t) t` after rewriting with a `funext` equality | the application is not beta-reduced, so the pattern sits under a lambda | `beta_reduce` (or `simp only []`) before the `rw` (unit 0533) |
+| 54 | about ten cascading type errors after writing `(deriv f t : ℂ)` for `f : ℝ → ℝ` | the ascription sits inside `deriv`, so Lean elaborates `deriv` at `ℝ → ℂ` | cast outside: `((deriv f t : ℝ) : ℂ)` (unit 0534) |
+| 55 | a helper with implicit interval endpoints applies to the wrong `Icc` and the goal no longer matches | the endpoints were unified from the first `Icc` in scope | pass them by name, `(a := T/4) (b := 2*T)` (unit 0534) |
 
 ## Bench and gate traps
 

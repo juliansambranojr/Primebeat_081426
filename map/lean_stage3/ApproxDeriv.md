@@ -7,7 +7,7 @@
 49 theorems, 8 definitions, 1303 lines. 
 
 **Imports:** [`ApproxBounds`](../lean_stage3/ApproxBounds.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TwistedMoment`](../lean_stage3/TwistedMoment.md)
 
 ## The picture
 
@@ -45,10 +45,11 @@ flowchart LR
   n27["<b>KY_local</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β …"]:::shp
   n28["<b>cont_F</b><br/>Continuous fun y : ℝ =＞ KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ :…"]:::shp
   n29["<b>re_half_pos</b><br/>0 ＜ ((uA α t + ((σ : ℂ) + y * I)) / 2).re ∧ 0 ＜ ((vB β t + ((σ :…"]:::shp
-  x0(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
-  x1(["<b>diagram 2</b><br/>8 theorems"]):::ext
-  x2(["<b>ApproxShift</b><br/>GY_norm_le"]):::ext
-  x3(["<b>ApproxBounds</b><br/>integrand_differentiableAt'"]):::ext
+  x0(["<b>TwistedMoment</b><br/>eL_hasDerivAt"]):::ext
+  x1(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
+  x2(["<b>diagram 2</b><br/>8 theorems"]):::ext
+  x3(["<b>ApproxShift</b><br/>GY_norm_le"]):::ext
+  x4(["<b>ApproxBounds</b><br/>integrand_differentiableAt'"]):::ext
   n0 --> n1
   n0 --> n6
   n10 --> n16
@@ -83,26 +84,27 @@ flowchart LR
   n7 --> n9
   n8 --> n15
   n9 --> n17
-  n12 -.-> x1
-  n16 -.-> x1
-  n18 -.-> x1
-  n19 -.-> x1
-  n21 -.-> x1
-  n22 -.-> x1
-  n23 -.-> x1
-  n24 -.-> x1
-  n25 -.-> x1
-  n26 -.-> x1
-  n27 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
-  n4 -.-> x1
-  n5 -.-> x1
-  x0 -.-> n27
-  x0 -.-> n4
-  x0 -.-> n5
-  x2 -.-> n27
-  x3 -.-> n28
+  n12 -.-> x2
+  n16 -.-> x2
+  n18 -.-> x2
+  n19 -.-> x2
+  n2 -.-> x0
+  n21 -.-> x2
+  n22 -.-> x2
+  n23 -.-> x2
+  n24 -.-> x2
+  n25 -.-> x2
+  n26 -.-> x2
+  n27 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
+  n4 -.-> x2
+  n5 -.-> x2
+  x1 -.-> n27
+  x1 -.-> n4
+  x1 -.-> n5
+  x3 -.-> n27
+  x4 -.-> n28
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -135,10 +137,11 @@ flowchart LR
   n15["<b>deriv_eq_of_eq_Ici</b><br/>f' = g'"]:::cnt
   n16["<b>VYj_lines</b><br/>VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4…"]:::thm
   n17["<b>iteratedDeriv_VY</b><br/>iteratedDeriv 1 (fun t =＞ VY α β c x t) = (fun t =＞ VY1 α β c x …"]:::shp
-  n18["<b>VY_deriv_bound ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
+  n18["<b>VY_deriv_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
   x0(["<b>diagram 1</b><br/>15 theorems"]):::ext
-  x1(["<b>ApproxFE</b><br/>uA_im<br/>vB_im"]):::ext
-  x2(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
+  x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
+  x2(["<b>ApproxFE</b><br/>uA_im<br/>vB_im"]):::ext
+  x3(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -165,6 +168,10 @@ flowchart LR
   n8 --> n10
   n8 --> n13
   n9 --> n10
+  n17 -.-> x1
+  n18 -.-> x1
+  n4 -.-> x1
+  n5 -.-> x1
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n13
@@ -173,10 +180,10 @@ flowchart LR
   x0 -.-> n5
   x0 -.-> n8
   x0 -.-> n9
-  x1 -.-> n6
-  x2 -.-> n13
-  x2 -.-> n14
-  x2 -.-> n16
+  x2 -.-> n6
+  x3 -.-> n13
+  x3 -.-> n14
+  x3 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -248,7 +255,7 @@ def · line 706
 
 - **Is:** `` VY1 (α β : ℂ) (c x t : ℝ) : ℂ := VerticalIntegral' (fun s => KY α β t s * (x : ℂ) ^ (-s) * dY α β t s) c noncomputable ``
 - **Built from:** [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY)
-- **Used by 5:** [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines), [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY)
+- **Used by 10:** [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VY_hasDerivAt`](#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines), [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY), [`TwistedMoment.Fw1`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw1), [`TwistedMoment.Fw2`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2), [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound), [`TwistedMoment.continuous_VY1`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuous_VY1), [`TwistedMoment.measurable_VY2`](../lean_stage3/TwistedMoment.md#TwistedMoment-measurable_VY2)
 
 <a name="ApproxDeriv-VY2"></a>
 ### `ApproxDeriv.VY2`
@@ -257,7 +264,7 @@ def · line 711
 
 - **Is:** `` VY2 (α β : ℂ) (c x t : ℝ) : ℂ := VerticalIntegral' (fun s => KY α β t s * (x : ℂ) ^ (-s) * (dY α β t s * dY α β t s + d2Y α β t s)) c ``
 - **Built from:** [`ApproxDeriv.d2Y`](#ApproxDeriv-d2Y), [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY)
-- **Used by 4:** [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines), [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY)
+- **Used by 7:** [`ApproxDeriv.VY1_hasDerivAt`](#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines), [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY), [`TwistedMoment.Fw2`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2), [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound), [`TwistedMoment.measurable_VY2`](../lean_stage3/TwistedMoment.md#TwistedMoment-measurable_VY2)
 
 ## Theorems
 
@@ -333,10 +340,11 @@ HasDerivAt (fun t : ℝ => w₀ + (t : ℂ) * e) e t
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxDeriv.gY_hasDerivAt`](#ApproxDeriv-gY_hasDerivAt) — `` HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t ``
   - [`ApproxDeriv.hasDerivAt_tau_line`](#ApproxDeriv-hasDerivAt_tau_line) — `` HasDerivAt (fun t : ℝ => tau h (w₀ + t * e) n) (e * tau' h (w₀ + t * e) n) t ``
+  - [`TwistedMoment.eL_hasDerivAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-eL_hasDerivAt) (TwistedMoment) — `` HasDerivAt (eL l) (eL l t * (-(l : ℂ) * I)) t ``
 
 <a name="ApproxDeriv-hasDerivAt_Gamma-_comp"></a>
 ### `ApproxDeriv.hasDerivAt_Gammaℝ_comp`
@@ -1351,10 +1359,13 @@ HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀
 
 **Definitions its proof touches:** [`ApproxDeriv.VY1`](#ApproxDeriv-VY1), [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
   - [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines) — `` VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t ``
   - [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY) — `` iteratedDeriv 1 (fun t => VY α β c x t) = (fun t => VY1 α β c x t) ∧ iteratedDeriv 2 (fun t => VY α β c x t) = (fun t => VY2 α β c x t) ``
+  - [`TwistedMoment.Fw1_hasDerivAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw1_hasDerivAt) (TwistedMoment) — `` HasDerivAt (Fw1 W α β c x) (Fw2 W α β c x t) t ``
+  - [`TwistedMoment.Fw_hasDerivAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw_hasDerivAt) (TwistedMoment) — `` HasDerivAt (Fw W α β c x) (Fw1 W α β c x t) t ``
+  - [`TwistedMoment.continuous_VY`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuous_VY) (TwistedMoment) — `` Continuous fun t => VY α β c x t ``
 
 <a name="ApproxDeriv-VY1_hasDerivAt"></a>
 ### `ApproxDeriv.VY1_hasDerivAt`
@@ -1395,10 +1406,13 @@ HasDerivAt (fun t => VY1 α β σ x t) (VY2 α β σ x t₀) t₀
 
 **Definitions its proof touches:** [`ApproxDeriv.VY1`](#ApproxDeriv-VY1), [`ApproxDeriv.VY2`](#ApproxDeriv-VY2), [`ApproxDeriv.d2Y`](#ApproxDeriv-d2Y), [`ApproxDeriv.dY`](#ApproxDeriv-dY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY)
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
   - [`ApproxDeriv.VYj_lines`](#ApproxDeriv-VYj_lines) — `` VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t ``
   - [`ApproxDeriv.iteratedDeriv_VY`](#ApproxDeriv-iteratedDeriv_VY) — `` iteratedDeriv 1 (fun t => VY α β c x t) = (fun t => VY1 α β c x t) ∧ iteratedDeriv 2 (fun t => VY α β c x t) = (fun t => VY2 α β c x t) ``
+  - [`TwistedMoment.Fw1_hasDerivAt`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw1_hasDerivAt) (TwistedMoment) — `` HasDerivAt (Fw1 W α β c x) (Fw2 W α β c x t) t ``
+  - [`TwistedMoment.continuous_VY1`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuous_VY1) (TwistedMoment) — `` Continuous fun t => VY1 α β c x t ``
+  - [`TwistedMoment.measurable_VY2`](../lean_stage3/TwistedMoment.md#TwistedMoment-measurable_VY2) (TwistedMoment) — `` Measurable fun t => VY2 α β c x t ``
 
 <a name="ApproxDeriv-im_conds"></a>
 ### `ApproxDeriv.im_conds`
@@ -1781,9 +1795,10 @@ iteratedDeriv 1 (fun t => VY α β c x t) = (fun t => VY1 α β c x t) ∧ itera
 
 **Definitions its proof touches:** [`ApproxDeriv.VY1`](#ApproxDeriv-VY1), [`ApproxDeriv.VY2`](#ApproxDeriv-VY2), [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxDeriv.VY_deriv_bound`](#ApproxDeriv-VY_deriv_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ j : ℕ, 1 ≤ j → j ≤ 2 → ‖(t … ``
+  - [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound) (TwistedMoment) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="ApproxDeriv-VY_deriv_bound"></a>
 ### `ApproxDeriv.VY_deriv_bound`
@@ -1813,5 +1828,7 @@ line 1216 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound) (TwistedMoment) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 

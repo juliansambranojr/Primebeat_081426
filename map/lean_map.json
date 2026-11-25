@@ -16808,7 +16808,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY"
     ]
    },
    {
@@ -16865,7 +16866,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY"
     ]
    },
    {
@@ -17494,7 +17496,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
     ]
    },
    {
@@ -17666,7 +17670,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
+    ]
    },
    {
     "kind": "theorem",
@@ -18040,7 +18046,9 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.Lambda_bound"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
+    ]
    }
   ]
  },
@@ -18170,7 +18178,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL_hasDerivAt"
     ]
    },
    {
@@ -19417,7 +19426,12 @@
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2"
     ]
    },
    {
@@ -19452,7 +19466,10 @@
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2"
     ]
    },
    {
@@ -19571,7 +19588,10 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY"
     ]
    },
    {
@@ -19632,7 +19652,10 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2"
     ]
    },
    {
@@ -20054,7 +20077,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
     ]
    },
    {
@@ -20088,7 +20112,9 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
+    ]
    }
   ]
  },
@@ -20197,7 +20223,18 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.poles",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coef4",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
     ]
    },
    {
@@ -20284,7 +20321,18 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.poles",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.vertInt_FY_eq_FL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coef4",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
     ]
    },
    {
@@ -20321,7 +20369,11 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split"
     ]
    },
    {
@@ -20370,7 +20422,8 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.resA",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
     ]
    },
    {
@@ -20508,7 +20561,21 @@
      "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
     ]
    },
    {
@@ -20596,7 +20663,10 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
     ]
    },
    {
@@ -20644,7 +20714,10 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
     ]
    },
    {
@@ -20675,7 +20748,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
     ]
    },
    {
@@ -20706,7 +20780,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
-     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds"
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
     ]
    },
    {
@@ -21039,7 +21114,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound"
     ]
    },
    {
@@ -21063,7 +21139,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
-     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_major"
     ]
    },
    {
@@ -21704,7 +21781,14 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split"
     ]
    },
    {
@@ -22425,7 +22509,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_differentiableAt",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
-     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
     ]
    },
    {
@@ -22875,7 +22960,9 @@
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small"
+    ]
    }
   ]
  },
@@ -83911,6 +83998,3925 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TwistedMoment.lean",
+  "module": "Stage3.TwistedMoment",
+  "stem": "TwistedMoment",
+  "header": "# TwistedMoment — block S12 of `lean_stage3/design/stencil.md`, piece 2b-ii, the twisted moment. 2026-11-25.",
+  "imports": [
+   "Stage3.ApproxDeriv"
+  ],
+  "opens": [
+   "ApproxBounds",
+   "ApproxDeriv",
+   "ApproxFE",
+   "Complex",
+   "ContDiff",
+   "Filter",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "TwistedMoment",
+   "TwistedMoment.Weight"
+  ],
+  "lines": 1811,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ApproxDeriv.lean"
+  ],
+  "decls": [
+   {
+    "kind": "structure",
+    "name": "Weight",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Weight",
+    "line": 84,
+    "why": "Young's admissible weight (2.1)–(2.3), `Δ = T/L`, the derivative bounds for `j ≤ 2`.",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ"
+    ],
+    "proves": "(T L : ℝ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "what0",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.what0",
+    "line": 102,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiable",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.differentiable",
+    "line": 108,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Differentiable ℝ W.w",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.differentiable",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "smooth1",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.smooth1",
+    "line": 111,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ContDiff ℝ ∞ (deriv W.w)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.smooth1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiable1",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.differentiable1",
+    "line": 114,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Differentiable ℝ (deriv W.w)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.differentiable1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt1",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.hasDerivAt1",
+    "line": 117,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt W.w (deriv W.w t) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.hasDerivAt1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt2",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.hasDerivAt2",
+    "line": 120,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (deriv W.w) (deriv (deriv W.w) t) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.hasDerivAt2",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "cont",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.cont",
+    "line": 123,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous W.w",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.cont",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "cont1",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.cont1",
+    "line": 125,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous (deriv W.w)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.cont1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "cont2",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.cont2",
+    "line": 127,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous (deriv (deriv W.w))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.cont2",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_zero_on",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.deriv_zero_on",
+    "line": 131,
+    "why": "A function vanishing on an open set has derivative zero there.",
+    "sorry": false,
+    "needs": [
+     "hU : IsOpen U",
+     "h : ∀ s ∈ U, f s = 0"
+    ],
+    "proves": "∀ s ∈ U, deriv f s = 0",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.deriv_zero_on",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.zero_out"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_out",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.zero_out",
+    "line": 138,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : t ∉ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "W.w t = 0 ∧ deriv W.w t = 0 ∧ deriv (deriv W.w) t = 0",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.zero_out",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.deriv_zero_on"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.deriv_zero_on"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_le_one",
+    "ns": "TwistedMoment.Weight",
+    "full": "TwistedMoment.Weight.abs_le_one",
+    "line": 149,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "|W.w t| ≤ 1",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight.abs_le_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "eL",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.eL",
+    "line": 159,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "l t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_twice",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ratio_cpow_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_eL",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_eL",
+    "line": 161,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "l : ℝ"
+    ],
+    "proves": "Continuous (eL l)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_eL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "eL_hasDerivAt",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.eL_hasDerivAt",
+    "line": 165,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "l t : ℝ"
+    ],
+    "proves": "HasDerivAt (eL l) (eL l t * (-(l : ℂ) * I)) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_eL",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.norm_eL",
+    "line": 174,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "l t : ℝ"
+    ],
+    "proves": "‖eL l t‖ = 1",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_eL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ibp_once",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ibp_once",
+    "line": 182,
+    "why": "One integration by parts: `∫_a^b F e_λ = (1/(iλ)) ∫_a^b F' e_λ` when `F(a) = F(b) = 0`.",
+    "sorry": false,
+    "needs": [
+     "hl : l ≠ 0",
+     "hF : ∀ t, HasDerivAt F (F1 t) t",
+     "hF1 : IntervalIntegrable F1 volume a b",
+     "ha : F a = 0",
+     "hb : F b = 0"
+    ],
+    "proves": "∫ t in a..b, F t * eL l t = (1 / ((l : ℂ) * I)) * ∫ t in a..b, F1 t * eL l t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL_hasDerivAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_twice"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ibp_twice",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ibp_twice",
+    "line": 207,
+    "why": "Two integrations by parts: `∫_a^b F e_λ = −(1/λ²) ∫_a^b F'' e_λ` when `F` and `F'` vanish at `a` and `b`.",
+    "sorry": false,
+    "needs": [
+     "hl : l ≠ 0",
+     "hF : ∀ t, HasDerivAt F (F1 t) t",
+     "hF1 : ∀ t, HasDerivAt F1 (F2 t) t",
+     "hF2 : IntervalIntegrable F2 volume a b",
+     "ha : F a = 0",
+     "hb : F b = 0",
+     "ha1 : F1 a = 0",
+     "hb1 : F1 b = 0"
+    ],
+    "proves": "∫ t in a..b, F t * eL l t = -(1 / (l : ℂ) ^ 2) * ∫ t in a..b, F2 t * eL l t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_twice",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_once"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ibp_bound",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ibp_bound",
+    "line": 222,
+    "why": "The bound after two integrations by parts: `‖∫_a^b F e_λ‖ ≤ B (b − a)/λ²` when `‖F''‖ ≤ B` on `[a, b]`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hl : l ≠ 0",
+     "hF : ∀ t, HasDerivAt F (F1 t) t",
+     "hF1 : ∀ t, HasDerivAt F1 (F2 t) t",
+     "hF2 : IntervalIntegrable F2 volume a b",
+     "ha : F a = 0",
+     "hb : F b = 0",
+     "ha1 : F1 a = 0",
+     "hb1 : F1 b = 0",
+     "hB : ∀ t ∈ Set.Icc a b, ‖F2 t‖ ≤ B"
+    ],
+    "proves": "‖∫ t in a..b, F t * eL l t‖ ≤ B * (b - a) * (l ^ 2)⁻¹",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_twice",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_eL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_twice",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_eL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Fw",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw",
+    "line": 251,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Fw1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw1",
+    "line": 255,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Fw2",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw2",
+    "line": 259,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fw_hasDerivAt",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw_hasDerivAt",
+    "line": 265,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (Fw W α β c x) (Fw1 W α β c x t) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fw1_hasDerivAt",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw1_hasDerivAt",
+    "line": 272,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (Fw1 W α β c x) (Fw2 W α β c x t) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fw_zero_out",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw_zero_out",
+    "line": 281,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : t ∉ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "Fw W α β c x t = 0 ∧ Fw1 W α β c x t = 0 ∧ Fw2 W α β c x t = 0",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_VY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_VY",
+    "line": 286,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x"
+    ],
+    "proves": "Continuous fun t => VY α β c x t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_VY1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_VY1",
+    "line": 291,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x"
+    ],
+    "proves": "Continuous fun t => VY1 α β c x t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "measurable_VY2",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.measurable_VY2",
+    "line": 296,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x"
+    ],
+    "proves": "Measurable fun t => VY2 α β c x t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "measurable_Fw2",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.measurable_Fw2",
+    "line": 303,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x"
+    ],
+    "proves": "Measurable (Fw2 W α β c x)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_VY2"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_t_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.inv_t_le",
+    "line": 320,
+    "why": "`t⁻¹ ≤ 4Δ⁻¹` on the support, `Δ = T/L ≤ T`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "hL : 1 ≤ L",
+     "ht : T / 4 ≤ t"
+    ],
+    "proves": "t⁻¹ ≤ 4 * (T / L)⁻¹",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_t_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "decay_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.decay_le",
+    "line": 332,
+    "why": "The decay factor at `t ≤ 2T`: `(1 + x/t)^(−A) ≤ (1 + x/(2T))^(−A)`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A",
+     "hx : 0 < x",
+     "ht0 : 0 < t",
+     "ht : t ≤ 2 * T"
+    ],
+    "proves": "(1 + x / t) ^ (-A) ≤ (1 + x / (2 * T)) ^ (-A)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.decay_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fw2_bound",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Fw2_bound",
+    "line": 341,
+    "why": "The pointwise bound on `F''`: `‖(wV)''(t)‖ ≤ K (1 + C₁ + C₂) N Δ^(−2) (1 + x/(2T))^(−A)`, for `t ≥ 1`, from (2.3) and `VY_decay_young`, `VY_deriv_bound` (Young's (4.3), `j ≤ 2`).",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ t : ℝ, 1 ≤ t → ‖Fw2 W α β c x t‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * ((T / L) ^ 2)⁻¹ * (1 + x / (2 * T)) ^ (-A)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.decay_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_t_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.decay_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_t_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offdiag_term",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offdiag_term",
+    "line": 448,
+    "why": "The off-diagonal integral, two integrations by parts. For every `A > 0` there is `K` with `‖∫ w(t) V_{α,β}(x,t) e^(−iλt) dt‖ ≤ K (1 + C₁ + C₂) N T Δ^(−2) λ^(−2) (1 + x/(2T))^(−A)`, `Δ = T/L`, uniformly in the weight, `‖α‖, ‖β‖ ≤ 1/10` with `α + β ≠ 0`, `x > 0`, `λ ≠ 0`, the line `c > 0`, `T ≥ 8`, `L ≥ 1`. Young §4, Lemma 5's proof at `j = 2`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ l : ℝ, l ≠ 0 → ‖∫ t, (W.w t : ℂ) * VY α β c x t * eL l t‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ * (l ^ 2)⁻¹ * (1 + x / (2 * T)) ^ (-A)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_hasDerivAt",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw_zero_out",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ibp_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.measurable_Fw2"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ratio_cpow_eq",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ratio_cpow_eq",
+    "line": 498,
+    "why": "`(p/q)^(−it) = e_{log(p/q)}(t)` for `p, q > 0`.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 < p",
+     "hq : 0 < q",
+     "t : ℝ"
+    ],
+    "proves": "((p : ℂ) / (q : ℂ)) ^ (-((t : ℂ) * I)) = eL (Real.log (p / q)) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ratio_cpow_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.eL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_ratio_ge",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.log_ratio_ge",
+    "line": 507,
+    "why": "`log(q/p) ≥ 1/(2p)` for integers `1 ≤ p < q`.",
+    "sorry": false,
+    "needs": [
+     "hp : 1 ≤ p",
+     "hpq : p < q"
+    ],
+    "proves": "1 / (2 * (p : ℝ)) ≤ Real.log ((q : ℝ) / p)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.log_ratio_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_log_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_log_sq_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.inv_log_sq_le",
+    "line": 525,
+    "why": "The gap, Young's `|log(hm/kn)| ≥ 1/(2√(hkmn))` in the squared form: `(log(P/Q))^(−2) ≤ 4PQ` for integers `P ≠ Q`, both `≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hP : 1 ≤ P",
+     "hQ : 1 ≤ Q",
+     "hPQ : P ≠ Q"
+    ],
+    "proves": "((Real.log ((P : ℝ) / Q)) ^ 2)⁻¹ ≤ 4 * (P : ℝ) * Q",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_log_sq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.log_ratio_ge"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.log_ratio_ge"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offdiag_term_young",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offdiag_term_young",
+    "line": 561,
+    "why": "The off-diagonal term in Young's form. For every `A > 0` there is `K` with, for integers `h, k, m, n ≥ 1`, `hm ≠ kn`, `‖∫ w(t) V_{α,β}(mn,t) (hm/kn)^(−it) dt‖ ≤ K (1 + C₁ + C₂) N T Δ^(−2) · 4hkmn · (1 + mn/(2T))^(−A)`, uniformly as in `offdiag_term`. Young §4, Lemma 5's proof, with `j = 2`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ, 1 ≤ h → 1 ≤ k → 1 ≤ m → 1 ≤ n → h * m ≠ k * n → ‖∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t * ((h : ℂ) * m / ((k : ℂ) * n)) ^ (-((t : ℂ) * I))‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ * (4 * ((h : ℝ) * m) * ((k : ℝ) * n)) * (1 + (m : ℝ) * n / (2 * T)) ^ (-A)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_log_sq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ratio_cpow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_log_sq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ratio_cpow_eq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "psi",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.psi",
+    "line": 623,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "msq",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.msq",
+    "line": 627,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.S1",
+    "line": 632,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Imom",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Imom",
+    "line": 642,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "I1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.I1",
+    "line": 647,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "IX",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.IX",
+    "line": 651,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ires",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Ires",
+    "line": 655,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conj_natCast_cpow",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.conj_natCast_cpow",
+    "line": 661,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "(starRingEnd ℂ) ((k : ℂ) ^ z) = (k : ℂ) ^ (starRingEnd ℂ z)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.conj_natCast_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "msq_expand",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.msq_expand",
+    "line": 668,
+    "why": "`|ψ(σ₀+it)|² = Σ_{h,k ≤ M} a_h ā_k h^(−σ₀−it) k^(−σ₀+it)`.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "((msq M a σ₀ t : ℝ) : ℂ) = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) * (k : ℂ) ^ (-((σ₀ : ℂ) - t * I)))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.conj_natCast_cpow",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.conj_natCast_cpow",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_psi_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.norm_psi_le",
+    "line": 684,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "‖psi M a ((σ₀ : ℂ) + t * I)‖ ≤ ∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "msq_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.msq_le",
+    "line": 695,
+    "why": "`|ψ(σ₀+it)|² ≤ (Σ_{h ≤ M} |a_h| h^(−σ₀))²`.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "msq M a σ₀ t ≤ (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^ 2",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "msq_nonneg",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.msq_nonneg",
+    "line": 699,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "0 ≤ msq M a σ₀ t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_msq",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_msq",
+    "line": 703,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ"
+    ],
+    "proves": "Continuous (msq M a σ₀)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_small",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.re_small",
+    "line": 714,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10"
+    ],
+    "proves": "-(1 / 10) ≤ α.re ∧ α.re ≤ 1 / 10",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_small",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.im_small",
+    "line": 717,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10"
+    ],
+    "proves": "-(1 / 10) ≤ α.im ∧ α.im ≤ 1 / 10",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.im_small",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uA_ne_vB",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.uA_ne_vB",
+    "line": 720,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "uA α t ≠ vB β t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.im_small"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.im_small"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "approxFE_small",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.approxFE_small",
+    "line": 729,
+    "why": "`approxFE` at `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`, `c ≥ 7/10`: `ζ(u)ζ(v) = S1 α β c t + X·S1 (−β) (−α) c t − resY α β t`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "hc : 7 / 10 ≤ c",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "riemannZeta (uA α t) * riemannZeta (vB β t) = S1 α β c t + XY α β t * S1 (-β) (-α) c t - resY α β t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.uA_ne_vB"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_split",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integrand_split",
+    "line": 741,
+    "why": "The integrands split at every `t`, for `T ≥ 4`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "hc : 7 / 10 ≤ c",
+     "t : ℝ"
+    ],
+    "proves": "(W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β t)) * (msq M a σ₀ t : ℂ) = (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ) + (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) c t) * (msq M a σ₀ t : ℂ) - (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_uA",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_uA",
+    "line": 756,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ"
+    ],
+    "proves": "Continuous fun t : ℝ => uA α t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_vB",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_vB",
+    "line": 760,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ"
+    ],
+    "proves": "Continuous fun t : ℝ => vB β t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_of_Icc",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integrable_of_Icc",
+    "line": 765,
+    "why": "A function that vanishes off `[a, b]` and is continuous on it is integrable.",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f (Set.Icc a b)",
+     "h0 : ∀ t, t ∉ Set.Icc a b → f t = 0"
+    ],
+    "proves": "Integrable f",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_zero_mul",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.w_zero_mul",
+    "line": 770,
+    "why": "The `I` integrand vanishes off the support.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "ht : t ∉ Set.Icc (T / 4) (2 * T)",
+     "F G : ℂ"
+    ],
+    "proves": "(W.w t : ℂ) * F * G = 0",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_Imom",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integrable_Imom",
+    "line": 775,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10"
+    ],
+    "proves": "Integrable fun t => (W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β t)) * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_term_cAt",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.resY_term_cAt",
+    "line": 798,
+    "why": "One term of `resY`, continuous in `t` where its pieces are defined.",
+    "sorry": false,
+    "needs": [
+     "hf : Continuous f",
+     "hd : Continuous d",
+     "hg : Continuous g",
+     "hd0 : d t ≠ 0",
+     "hg0 : g t ≠ 0",
+     "hg1 : g t ≠ 1"
+    ],
+    "proves": "ContinuousAt (fun t => GY α β (f t) / d t * completedRiemannZeta (g t)) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ne_zero_of_re_pos",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ne_zero_of_re_pos",
+    "line": 807,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : 0 < z.re"
+    ],
+    "proves": "z ≠ 0",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_zero_of_re_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ne_of_im_ne",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.ne_of_im_ne",
+    "line": 811,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : z.im ≠ w.im"
+    ],
+    "proves": "z ≠ w",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_of_im_ne",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousAt_resY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuousAt_resY",
+    "line": 814,
+    "why": "`resY α β` is continuous at every `t ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "ContinuousAt (fun t => resY α β t) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.im_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_of_im_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_zero_of_re_pos",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.im_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_of_im_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.ne_zero_of_re_pos",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.resY_term_cAt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_Ires",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integrable_Ires",
+    "line": 855,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10"
+    ],
+    "proves": "Integrable fun t => (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_major",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.summable_major",
+    "line": 866,
+    "why": "The majorant of the terms of `S1`: `(m+1)^(−12/5)(n+1)^(−12/5)` is summable on `ℕ × ℕ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable fun p : ℕ × ℕ => ((p.1 : ℝ) + 1) ^ (-(12 / 5) : ℝ) * ((p.2 : ℝ) + 1) ^ (-(12 / 5) : ℝ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_major",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_combine",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.rpow_combine",
+    "line": 874,
+    "why": "`y^(−2/5) · y^(−2) = y^(−12/5)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y"
+    ],
+    "proves": "y ^ (-(2 / 5) : ℝ) * y ^ (-2 : ℝ) = y ^ (-(12 / 5) : ℝ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_combine",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S1_term_bound",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.S1_term_bound",
+    "line": 879,
+    "why": "A term of `S1`, bounded on `1 ≤ t ≤ B` by `C N B² (m+1)^(−12/5)(n+1)^(−12/5)`.",
+    "sorry": false,
+    "needs": [
+     "hC0 : 0 ≤ C",
+     "hC : ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / x) ^ (2 : ℝ)",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "ht : 1 ≤ t",
+     "htB : t ≤ B",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * B ^ 2 * (((p.1 : ℝ) + 1) ^ (-(12 / 5) : ℝ) * ((p.2 : ℝ) + 1) ^ (-(12 / 5) : ℝ))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_combine"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_combine"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_S1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuousOn_S1",
+    "line": 933,
+    "why": "`S1 α β c` is continuous on `[1, B]`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "B : ℝ"
+    ],
+    "proves": "ContinuousOn (fun t => S1 α β c t) (Set.Icc 1 B)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_major"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_major"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_I1",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integrable_I1",
+    "line": 946,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c"
+    ],
+    "proves": "Integrable fun t => (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "I_split",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.I_split",
+    "line": 957,
+    "why": "Part 2, the split. `I(α,β) = I₁ + I_X − I_res`, for `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, `α + β ≠ 0`, `c ≥ 7/10`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "hc : 7 / 10 ≤ c"
+    ],
+    "proves": "Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integral_le_Icc",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.norm_integral_le_Icc",
+    "line": 982,
+    "why": "`‖∫ f‖ ≤ K (b − a)` for `f` vanishing off `[a, b]` with `‖f‖ ≤ K` there.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "h0 : ∀ t, t ∉ Set.Icc a b → f t = 0",
+     "hK : ∀ t ∈ Set.Icc a b, ‖f t‖ ≤ K"
+    ],
+    "proves": "‖∫ t, f t‖ ≤ K * (b - a)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ires_small",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Ires_small",
+    "line": 991,
+    "why": "The resY-term. `‖I_res‖ ≤ C N B_ψ T e^(−T²/32)`, `B_ψ = (Σ_{h ≤ M} |a_h| h^(−σ₀))²`, `N = 1 + ‖α+β‖^(−2)`, for `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`; from `resY_small`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^ 2 * T * Real.exp (-(T ^ 2 / 32))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "coefY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.coefY",
+    "line": 1038,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "h k m n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Jint",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Jint",
+    "line": 1044,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "α β : ℂ",
+     "c : ℝ",
+     "h k m n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coef4",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.coef4",
+    "line": 1048,
+    "why": "The four factors `h^(−σ₀−it) k^(−σ₀+it) m^(−u) n^(−v)` in Young's form.",
+    "sorry": false,
+    "needs": [
+     "hh : 0 < h",
+     "hk : 0 < k",
+     "hm : 0 < m",
+     "hn : 0 < n",
+     "σ₀ t : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "(h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) * (k : ℂ) ^ (-((σ₀ : ℂ) - t * I)) * ((m : ℂ) ^ (-uA α t) * (n : ℂ) ^ (-vB β t)) = ((h : ℂ) ^ (-(σ₀ : ℂ)) * (k : ℂ) ^ (-(σ₀ : ℂ)) * (m : ℂ) ^ (-(1 / 2 + α)) * (n : ℂ) ^ (-(1 / 2 + β))) * ((h : ℂ) * m / ((k : ℂ) * n)) ^ (-((t : ℂ) * I))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coef4",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ehk",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Ehk",
+    "line": 1077,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ₀ : ℝ",
+     "h k : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_Ehk",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_Ehk",
+    "line": 1080,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ₀ : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Continuous (Ehk σ₀ h k)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Ehk",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.norm_Ehk",
+    "line": 1087,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "σ₀ : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "t : ℝ"
+    ],
+    "proves": "‖Ehk σ₀ h k t‖ = (h : ℝ) ^ (-σ₀) * (k : ℝ) ^ (-σ₀)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Ehk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S1term",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.S1term",
+    "line": 1096,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c t : ℝ",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term_integral",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.term_integral",
+    "line": 1101,
+    "why": "One `(h, k, p)` term, integrated: it is `coefY · Jint`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "α β : ℂ",
+     "c : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "a h * (starRingEnd ℂ) (a k) * ∫ t, (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t = coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coef4",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coef4",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_S1term",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.continuous_S1term",
+    "line": 1124,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "Continuous fun t => S1term α β c t p",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_uA",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hk_dom",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.hk_dom",
+    "line": 1135,
+    "why": "The domination behind Fubini for the `(h, k)` piece: each term is integrable and the integrals of the norms are summable over `p` (by `summable_major`).",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "(∀ p : ℕ × ℕ, Integrable fun t => (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ => ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t‖",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_hk",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.integral_hk",
+    "line": 1178,
+    "why": "The `(h, k)` piece of `I₁` is the sum over `p` of its integrated terms (Fubini for the `tsum`).",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "∫ t, (W.w t : ℂ) * S1 α β c t * Ehk σ₀ h k t = ∑' p : ℕ × ℕ, ∫ t, (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1term",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_hk",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.summable_hk",
+    "line": 1192,
+    "why": "The `(h, k)` terms `coefY · Jint` are absolutely summable over `p`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Summable fun p : ℕ × ℕ => ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)‖",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "I1_expand",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.I1_expand",
+    "line": 1205,
+    "why": "Young's (5.1). `I₁ = Σ_{h,k ≤ M} Σ_{m,n ≥ 1} coefY(h,k,m,n) · Jint(h,k,m,n)`, for `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, `c > 0`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c"
+    ],
+    "proves": "I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousOn_S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_Ehk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_of_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integral_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "diagSum",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.diagSum",
+    "line": 1249,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "offSum",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offSum",
+    "line": 1256,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jint_diag",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Jint_diag",
+    "line": 1264,
+    "why": "On the diagonal the twist is `1`: `Jint = ∫ w(t) V(mn,t) dt` when `hm = kn`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "α β : ℂ",
+     "c : ℝ",
+     "hk : 1 ≤ k",
+     "hn : 1 ≤ n",
+     "hd : h * m = k * n"
+    ],
+    "proves": "Jint W α β c h k m n = ∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint_diag",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "I1_diag_off",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.I1_diag_off",
+    "line": 1277,
+    "why": "`I₁` = diagonal + off-diagonal, for `T ≥ 4`, `‖α‖, ‖β‖ ≤ 1/10`, `c > 0`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hc : 0 < c"
+    ],
+    "proves": "I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β c",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "offTerm",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offTerm",
+    "line": 1304,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSeries",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "offSeries",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offSeries",
+    "line": 1310,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSeries",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offTerm_nonneg",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offTerm_nonneg",
+    "line": 1312,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "0 ≤ offTerm T p",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offTerm_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offTerm_le",
+    "line": 1316,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "offTerm T p ≤ (2 * T) ^ (3 : ℝ) * (((p.1 : ℝ) + 1) ^ (-(12 / 5) : ℝ) * ((p.2 : ℝ) + 1) ^ (-(12 / 5) : ℝ))",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_offTerm",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.summable_offTerm",
+    "line": 1341,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T"
+    ],
+    "proves": "Summable (offTerm T)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_mul_self",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.rpow_mul_self",
+    "line": 1345,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "s : ℝ"
+    ],
+    "proves": "x ^ s * x = x ^ (s + 1)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_mul_self",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "off_term_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.off_term_le",
+    "line": 1350,
+    "why": "One off-diagonal term: `‖coefY · Jint‖ ≤ 4 P X_h X_k (mn)^(3/5)(1 + mn/(2T))^(−3)`, `X_h = |a_h| h^(1−σ₀)`, `P` the prefactor of `offdiag_term_young` at `A = 3`.",
+    "sorry": false,
+    "needs": [
+     "hK0 : 0 ≤ K",
+     "hK : ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ, 1 ≤ h → 1 ≤ k → 1 ≤ m → 1 ≤ n → h * m ≠ k * n → ‖∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t * ((h : ℂ) * m / ((k : ℂ) * n)) ^ (-((t : ℂ) * I))‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ * (4 * ((h : ℝ) * m) * ((k : ℝ) * n)) * (1 + (m : ℝ) * n / (2 * T)) ^ (-3 : ℝ)",
+     "W : Weight T L",
+     "hT : 8 ≤ T",
+     "hL : 1 ≤ L",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "hc : 0 < c",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "p : ℕ × ℕ",
+     "hd : h * (p.1 + 1) ≠ k * (p.2 + 1)"
+    ],
+    "proves": "‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)‖ ≤ 4 * (K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹) * ((‖a h‖ * (h : ℝ) ^ (1 - σ₀)) * (‖a k‖ * (k : ℝ) ^ (1 - σ₀))) * offTerm T p",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_mul_self"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.re_small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.rpow_mul_self"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offSum_bound",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.offSum_bound",
+    "line": 1437,
+    "why": "The off-diagonal, summed, with two integrations by parts. There is `K` with `‖offSum‖ ≤ K (1 + C₁ + C₂) N T Δ^(−2) (Σ_{h ≤ M} |a_h| h^(1−σ₀))² · offSeries T`, for `T ≥ 8`, `L ≥ 1`, `‖α‖, ‖β‖ ≤ 1/10`, `α + β ≠ 0`, `c > 0`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ‖offSum W M a σ₀ α β c‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ * (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (1 - σ₀)) ^ 2 * offSeries T",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSeries",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Jint",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.coefY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSeries",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offTerm_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.off_term_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offdiag_term_young",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_offTerm"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "Mof",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Mof",
+    "line": 1509,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T θ : ℝ"
+    ],
+    "proves": "ℕ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "sig0",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.sig0",
+    "line": 1513,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "aY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.aY",
+    "line": 1518,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "h : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c1Y",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.c1Y",
+    "line": 1525,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.cY",
+    "line": 1533,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "T : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Regime",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Regime",
+    "line": 1538,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "κ T : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.swap",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "errY",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.errY",
+    "line": 1543,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtDiag",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.StmtDiag",
+    "line": 1550,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtOffDiag",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.StmtOffDiag",
+    "line": 1560,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtX",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.StmtX",
+    "line": 1569,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtLemma3",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.StmtLemma3",
+    "line": 1578,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "StmtLemma3res",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.StmtLemma3res",
+    "line": 1586,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Regime.swap",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Regime.swap",
+    "line": 1592,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : Regime κ T α β"
+    ],
+    "proves": "Regime κ T (-β) (-α)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.swap",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Regime.small",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.Regime.small",
+    "line": 1598,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT : Real.exp (10 * κ) ≤ T",
+     "h : Regime κ T α β"
+    ],
+    "proves": "‖α‖ ≤ 1 / 10 ∧ ‖β‖ ≤ 1 / 10 ∧ α + β ≠ 0 ∧ 0 < Real.log T",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Tpow_le",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.norm_Tpow_le",
+    "line": 1616,
+    "why": "`‖T^(−α−β)‖ ≤ e^(2κ)` on the range.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "h : Regime κ T α β"
+    ],
+    "proves": "‖(T : ℂ) ^ (-(α + β))‖ ≤ Real.exp (2 * κ)",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_res_of_parts",
+    "ns": "TwistedMoment",
+    "full": "TwistedMoment.lemma3_res_of_parts",
+    "line": 1638,
+    "why": "The assembly: the three open parts give Lemma 3 up to the remainder `I_res`, which `Ires_small` bounds by `C N B_ψ T e^(−T²/32)`. Young §5, \"Lemma 6 implies Lemma 3\".",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hD : StmtDiag P θ R κ",
+     "hO : StmtOffDiag P θ R κ",
+     "hX : StmtX P θ R κ"
+    ],
+    "proves": "StmtLemma3res P θ R κ",
+    "file": "lean_stage3/Stage3/TwistedMoment.lean",
+    "id": "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/VonKochScaffold.lean",
   "module": "Stage3.VonKochScaffold",
   "stem": "VonKochScaffold",
@@ -106352,11 +110358,12 @@
    "Stage3.ApproxFE",
    "Stage3.ApproxShift",
    "Stage3.ApproxBounds",
-   "Stage3.ApproxDeriv"
+   "Stage3.ApproxDeriv",
+   "Stage3.TwistedMoment"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 228,
+  "lines": 229,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -106501,6 +110508,7 @@
    "lean_stage3/Stage3/ThetaPi.lean",
    "lean_stage3/Stage3/ThetaPsi.lean",
    "lean_stage3/Stage3/ThetaPull.lean",
+   "lean_stage3/Stage3/TwistedMoment.lean",
    "lean_stage3/Stage3/VonKochScaffold.lean",
    "lean_stage3/Stage3/WeilBackground.lean",
    "lean_stage3/Stage3/WeilBands.lean",
