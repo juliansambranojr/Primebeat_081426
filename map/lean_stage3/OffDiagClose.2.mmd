@@ -1,0 +1,47 @@
+flowchart LR
+  n0["<b>offdiag_term_iter</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L …"]:::thm
+  n1["<b>offdiag_term_iter_young</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L …"]:::thm
+  n2["<b>major6_nonneg</b><br/>0 ≤ major6 p"]:::cnt
+  n3["<b>summable_major6 ■</b><br/>Summable major6"]:::shp
+  n4["<b>decay_trade</b><br/>y ^ r * y ^ (-(2 / 5) : ℝ) * (1 + y / (2 * T)) ^ (-((r : ℝ) + 4 …"]:::shp
+  n5["<b>off_term_iter_le</b><br/>‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W.toWeight α β c …"]:::shp
+  n6["<b>offSum_bound_iter</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L …"]:::thm
+  n7["<b>aY_bound</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R : ℝ) (h : ℕ), 1 ≤ h → h ≤ Mof T θ → ‖a…"]:::shp
+  n8["<b>logpow_le</b><br/>Real.log T ^ p ≤ (5 * ((p : ℝ) + 1)) ^ p * T ^ (1 / 5 : ℝ)"]:::shp
+  n9["<b>Tpow_le</b><br/>T * ((T / L) ^ (2 * r))⁻¹ * Mr ^ (2 * r + 2) * (2 * T) ^ ((r : ℝ…"]:::shp
+  n10["<b>final_size</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ Mr : ℝ, 0 ≤ Mr → Mr…"]:::shp
+  n11["<b>r_choice</b><br/>2 ≤ ((⌈2 / (1 - 2 * θ)⌉₊ : ℕ) : ℝ) * (1 - 2 * θ)"]:::cnt
+  n12["<b>N_le</b><br/>1 + 1 / ‖α + β‖ ^ 2 ≤ 1 + κ ^ 2 * Real.log T ^ 2"]:::shp
+  n13["<b>stmtOffDiag_holds ■</b><br/>StmtOffDiagAll P θ R κ"]:::thm
+  x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
+  x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
+  x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
+  n0 --> n1
+  n1 --> n6
+  n10 --> n13
+  n11 --> n13
+  n12 --> n13
+  n2 --> n6
+  n4 --> n5
+  n5 --> n6
+  n6 --> n13
+  n7 --> n13
+  n8 --> n10
+  n9 --> n10
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n5
+  x0 -.-> n6
+  x1 -.-> n0
+  x1 -.-> n1
+  x1 -.-> n5
+  x1 -.-> n6
+  x2 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

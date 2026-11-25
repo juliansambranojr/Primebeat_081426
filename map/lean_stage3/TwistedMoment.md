@@ -46,10 +46,11 @@ flowchart LR
   n28["<b>ratio_cpow_eq</b><br/>((p : ℂ) / (q : ℂ)) ^ (-((t : ℂ) * I)) = eL (Real.log (p / q)) t"]:::shp
   n29["<b>log_ratio_ge</b><br/>1 / (2 * (p : ℝ)) ≤ Real.log ((q : ℝ) / p)"]:::shp
   x0(["<b>ApproxDeriv</b><br/>5 theorems"]):::ext
-  x1(["<b>ApproxDerivAll</b><br/>ibp_iter_chain"]):::ext
-  x2(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
-  x3(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
-  x4(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
+  x1(["<b>OffDiagClose</b><br/>4 theorems"]):::ext
+  x2(["<b>ApproxDerivAll</b><br/>ibp_iter_chain"]):::ext
+  x3(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
+  x4(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
+  x5(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
   n11 --> n14
   n12 --> n14
   n13 --> n16
@@ -68,12 +69,17 @@ flowchart LR
   n25 --> n26
   n26 --> n27
   n8 --> n9
-  n14 -.-> x1
-  n20 -.-> x2
+  n13 -.-> x1
+  n14 -.-> x2
+  n19 -.-> x1
   n20 -.-> x3
-  n27 -.-> x2
-  n28 -.-> x2
-  n29 -.-> x2
+  n20 -.-> x4
+  n24 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x3
+  n28 -.-> x1
+  n28 -.-> x3
+  n29 -.-> x3
   x0 -.-> n12
   x0 -.-> n17
   x0 -.-> n18
@@ -81,7 +87,7 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n22
   x0 -.-> n26
-  x4 -.-> n26
+  x5 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -127,10 +133,11 @@ flowchart LR
   n28["<b>I_split</b><br/>Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires…"]:::thm
   n29["<b>norm_integral_le_Icc</b><br/>‖∫ t, f t‖ ≤ K * (b - a)"]:::shp
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
-  x1(["<b>diagram 3</b><br/>7 theorems"]):::ext
-  x2(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x3(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
-  x4(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
+  x1(["<b>OffDiagClose</b><br/>off_term_iter_le<br/>offdiag_term_iter_young"]):::ext
+  x2(["<b>diagram 3</b><br/>7 theorems"]):::ext
+  x3(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x4(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
+  x5(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
   n0 --> n1
   n10 --> n11
   n11 --> n12
@@ -169,31 +176,33 @@ flowchart LR
   n8 --> n25
   n9 --> n10
   n9 --> n21
-  n1 -.-> x1
-  n13 -.-> x1
-  n14 -.-> x1
-  n15 -.-> x1
-  n16 -.-> x1
-  n25 -.-> x1
-  n26 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
-  n3 -.-> x1
-  n5 -.-> x1
-  n6 -.-> x1
+  n0 -.-> x1
+  n1 -.-> x2
+  n13 -.-> x2
+  n14 -.-> x2
+  n15 -.-> x2
+  n16 -.-> x2
+  n25 -.-> x2
+  n26 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
+  n3 -.-> x2
+  n5 -.-> x2
+  n6 -.-> x2
   n8 -.-> x1
+  n8 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n26
-  x2 -.-> n10
-  x2 -.-> n17
-  x2 -.-> n21
-  x2 -.-> n23
-  x2 -.-> n25
-  x3 -.-> n11
-  x3 -.-> n18
-  x4 -.-> n21
-  x4 -.-> n26
+  x3 -.-> n10
+  x3 -.-> n17
+  x3 -.-> n21
+  x3 -.-> n23
+  x3 -.-> n25
+  x4 -.-> n11
+  x4 -.-> n18
+  x5 -.-> n21
+  x5 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -233,6 +242,7 @@ flowchart LR
   x0(["<b>ApproxBounds</b><br/>VY_decay<br/>resY_small"]):::ext
   x1(["<b>diagram 2</b><br/>13 theorems"]):::ext
   x2(["<b>diagram 1</b><br/>continuous_VY"]):::ext
+  x3(["<b>OffDiagClose</b><br/>offSum_bound_iter"]):::ext
   n1 --> n4
   n11 --> n21
   n12 --> n14
@@ -254,6 +264,7 @@ flowchart LR
   n8 --> n11
   n8 --> n17
   n9 --> n11
+  n8 -.-> x3
   x0 -.-> n0
   x0 -.-> n6
   x1 -.-> n0
@@ -286,7 +297,7 @@ structure · line 84
 Young's admissible weight (2.1)–(2.3), `Δ = T/L`, the derivative bounds for `j ≤ 2`.
 
 - **Is:** `` Weight (T L : ℝ) where w : ℝ → ℝ smooth : ContDiff ℝ ∞ w supp : ∀ t, w t ≠ 0 → T / 4 ≤ t ∧ t ≤ 2 * T nonneg : ∀ t, 0 ≤ w t le_one : ∀ t, w t ≤ 1 C1 : ℝ C2 : ℝ C1_nonneg : 0 ≤ C1 C2_nonneg : 0 ≤ C2 d1 : ∀ t, |deriv w t| ≤ C1 * (T / L)⁻¹ d2 : ∀ t, |deriv (deriv w) t| ≤ C2 * ((T / L) ^ 2)⁻¹ noncomputable ``
-- **Used by 27:** [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.errY`](#TwistedMoment-errY), [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.offdiag_term_young`](#TwistedMoment-offdiag_term_young), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral), [`TwistedMoment.w_zero_mul`](#TwistedMoment-w_zero_mul), [`TwistedMoment.what0`](#TwistedMoment-what0)
+- **Used by 28:** [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.errY`](#TwistedMoment-errY), [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.offdiag_term_young`](#TwistedMoment-offdiag_term_young), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral), [`TwistedMoment.w_zero_mul`](#TwistedMoment-w_zero_mul), [`TwistedMoment.what0`](#TwistedMoment-what0)
 
 <a name="TwistedMoment-what0"></a>
 ### `TwistedMoment.what0`
@@ -303,7 +314,7 @@ def · line 102
 def · line 159
 
 - **Is:** `` eL (l t : ℝ) : ℂ := cexp ((t : ℂ) * (-(l : ℂ) * I)) ``
-- **Used by 10:** [`ApproxDerivAll.ibp_iter`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter), [`ApproxDerivAll.ibp_iter_chain`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter_chain), [`TwistedMoment.continuous_eL`](#TwistedMoment-continuous_eL), [`TwistedMoment.eL_hasDerivAt`](#TwistedMoment-eL_hasDerivAt), [`TwistedMoment.ibp_bound`](#TwistedMoment-ibp_bound), [`TwistedMoment.ibp_once`](#TwistedMoment-ibp_once), [`TwistedMoment.ibp_twice`](#TwistedMoment-ibp_twice), [`TwistedMoment.norm_eL`](#TwistedMoment-norm_eL), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.ratio_cpow_eq`](#TwistedMoment-ratio_cpow_eq)
+- **Used by 11:** [`ApproxDerivAll.ibp_iter`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter), [`ApproxDerivAll.ibp_iter_chain`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter_chain), [`OffDiagClose.offdiag_term_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter), [`TwistedMoment.continuous_eL`](#TwistedMoment-continuous_eL), [`TwistedMoment.eL_hasDerivAt`](#TwistedMoment-eL_hasDerivAt), [`TwistedMoment.ibp_bound`](#TwistedMoment-ibp_bound), [`TwistedMoment.ibp_once`](#TwistedMoment-ibp_once), [`TwistedMoment.ibp_twice`](#TwistedMoment-ibp_twice), [`TwistedMoment.norm_eL`](#TwistedMoment-norm_eL), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.ratio_cpow_eq`](#TwistedMoment-ratio_cpow_eq)
 
 <a name="TwistedMoment-Fw"></a>
 ### `TwistedMoment.Fw`
@@ -312,7 +323,7 @@ def · line 251
 
 - **Is:** `` Fw (t : ℝ) : ℂ := (W.w t : ℂ) * VY α β c x t noncomputable ``
 - **Built from:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
-- **Used by 3:** [`TwistedMoment.Fw_hasDerivAt`](#TwistedMoment-Fw_hasDerivAt), [`TwistedMoment.Fw_zero_out`](#TwistedMoment-Fw_zero_out), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term)
+- **Used by 8:** [`OffDiagClose.Fw_contDiff`](../lean_stage3/OffDiagClose.md#OffDiagClose-Fw_contDiff), [`OffDiagClose.Fw_iter_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_bound), [`OffDiagClose.Fw_iter_leibniz`](../lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_leibniz), [`OffDiagClose.Fw_iter_zero_out`](../lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_zero_out), [`OffDiagClose.offdiag_term_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter), [`TwistedMoment.Fw_hasDerivAt`](#TwistedMoment-Fw_hasDerivAt), [`TwistedMoment.Fw_zero_out`](#TwistedMoment-Fw_zero_out), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term)
 
 <a name="TwistedMoment-Fw1"></a>
 ### `TwistedMoment.Fw1`
@@ -400,7 +411,7 @@ def · line 655
 def · line 1038
 
 - **Is:** `` coefY (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ) (h k m n : ℕ) : ℂ := a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-(σ₀ : ℂ)) * (k : ℂ) ^ (-(σ₀ : ℂ)) * (m : ℂ) ^ (-(1 / 2 + α)) * (n : ℂ) ^ (-(1 / 2 + β))) noncomputable ``
-- **Used by 8:** [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.diagSum`](#TwistedMoment-diagSum), [`TwistedMoment.offSum`](#TwistedMoment-offSum), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral)
+- **Used by 10:** [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-off_term_iter_le), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.diagSum`](#TwistedMoment-diagSum), [`TwistedMoment.offSum`](#TwistedMoment-offSum), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral)
 
 <a name="TwistedMoment-Jint"></a>
 ### `TwistedMoment.Jint`
@@ -409,7 +420,7 @@ def · line 1044
 
 - **Is:** `` Jint {T L : ℝ} (W : Weight T L) (α β : ℂ) (c : ℝ) (h k m n : ℕ) : ℂ := ∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t * ((h : ℂ) * m / ((k : ℂ) * n)) ^ (-((t : ℂ) * I)) ``
 - **Built from:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY), [`TwistedMoment.Weight`](#TwistedMoment-Weight)
-- **Used by 9:** [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.diagSum`](#TwistedMoment-diagSum), [`TwistedMoment.offSum`](#TwistedMoment-offSum), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral)
+- **Used by 12:** [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter_young`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter_young), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.diagSum`](#TwistedMoment-diagSum), [`TwistedMoment.offSum`](#TwistedMoment-offSum), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.summable_hk`](#TwistedMoment-summable_hk), [`TwistedMoment.term_integral`](#TwistedMoment-term_integral)
 
 <a name="TwistedMoment-Ehk"></a>
 ### `TwistedMoment.Ehk`
@@ -444,7 +455,7 @@ def · line 1256
 
 - **Is:** `` offSum : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, if h * (p.1 + 1) = k * (p.2 + 1) then 0 else coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) ``
 - **Built from:** [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.coefY`](#TwistedMoment-coefY)
-- **Used by 4:** [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound)
+- **Used by 7:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound)
 
 <a name="TwistedMoment-offTerm"></a>
 ### `TwistedMoment.offTerm`
@@ -469,7 +480,7 @@ def · line 1310
 def · line 1509
 
 - **Is:** `` Mof (T θ : ℝ) : ℕ := ⌊T ^ θ⌋₊ noncomputable ``
-- **Used by 7:** [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 10:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-sig0"></a>
 ### `TwistedMoment.sig0`
@@ -477,7 +488,7 @@ def · line 1509
 def · line 1513
 
 - **Is:** `` sig0 (T R : ℝ) : ℝ := 1 / 2 - R / Real.log T noncomputable ``
-- **Used by 7:** [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 10:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-aY"></a>
 ### `TwistedMoment.aY`
@@ -486,7 +497,7 @@ def · line 1518
 
 - **Is:** `` aY (P : Polynomial ℝ) (T θ R : ℝ) (h : ℕ) : ℂ := ((ArithmeticFunction.moebius h : ℤ) : ℂ) * ((P.eval (Real.log ((Mof T θ : ℝ) / h) / Real.log (Mof T θ)) : ℝ) : ℂ) * (((h : ℝ) ^ (sig0 T R - 1 / 2) : ℝ) : ℂ) noncomputable ``
 - **Built from:** [`TwistedMoment.Mof`](#TwistedMoment-Mof), [`TwistedMoment.sig0`](#TwistedMoment-sig0)
-- **Used by 6:** [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 9:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-c1Y"></a>
 ### `TwistedMoment.c1Y`
@@ -511,7 +522,7 @@ def · line 1533
 def · line 1538
 
 - **Is:** `` Regime (κ T : ℝ) (α β : ℂ) : Prop := ‖α‖ ≤ κ / Real.log T ∧ ‖β‖ ≤ κ / Real.log T ∧ 1 / (κ * Real.log T) ≤ ‖α + β‖ noncomputable ``
-- **Used by 8:** [`TwistedMoment.Regime.small`](#TwistedMoment-Regime-small), [`TwistedMoment.Regime.swap`](#TwistedMoment-Regime-swap), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.norm_Tpow_le`](#TwistedMoment-norm_Tpow_le)
+- **Used by 10:** [`OffDiagClose.N_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-N_le), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`TwistedMoment.Regime.small`](#TwistedMoment-Regime-small), [`TwistedMoment.Regime.swap`](#TwistedMoment-Regime-swap), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.norm_Tpow_le`](#TwistedMoment-norm_Tpow_le)
 
 <a name="TwistedMoment-errY"></a>
 ### `TwistedMoment.errY`
@@ -520,7 +531,7 @@ def · line 1543
 
 - **Is:** `` errY {T L : ℝ} (W : Weight T L) : ℝ := (1 + W.C1 + W.C2) * (T / L) noncomputable ``
 - **Built from:** [`TwistedMoment.Weight`](#TwistedMoment-Weight)
-- **Used by 6:** [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 8:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-StmtDiag"></a>
 ### `TwistedMoment.StmtDiag`
@@ -856,8 +867,9 @@ line 174 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.eL`](#TwistedMoment-eL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`OffDiagClose.offdiag_term_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter) (OffDiagClose) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c… ``
   - [`TwistedMoment.ibp_bound`](#TwistedMoment-ibp_bound) — `` ‖∫ t in a..b, F t * eL l t‖ ≤ B * (b - a) * (l ^ 2)⁻¹ ``
 
 <a name="TwistedMoment-ibp_once"></a>
@@ -1054,8 +1066,10 @@ Fw W α β c x t = 0 ∧ Fw1 W α β c x t = 0 ∧ Fw2 W α β c x t = 0
 
 **Definitions its proof touches:** [`TwistedMoment.Fw`](#TwistedMoment-Fw), [`TwistedMoment.Fw1`](#TwistedMoment-Fw1), [`TwistedMoment.Fw2`](#TwistedMoment-Fw2)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`OffDiagClose.Fw_iter_zero_out`](../lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_zero_out) (OffDiagClose) — `` iteratedDeriv k (Fw W.toWeight α β c x) t = 0 ``
+  - [`OffDiagClose.offdiag_term_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter) (OffDiagClose) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c… ``
   - [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
   - [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
@@ -1206,8 +1220,9 @@ t⁻¹ ≤ 4 * (T / L)⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`OffDiagClose.VY_iter_on_supp`](../lean_stage3/OffDiagClose.md#OffDiagClose-VY_iter_on_supp) (OffDiagClose) — `` ‖iteratedDeriv r (fun t => VY α β c x t) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (4 * (T / L)⁻¹) ^ r * (1 + x / (2 * T)) ^ (-A) ``
   - [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="TwistedMoment-decay_le"></a>
@@ -1234,8 +1249,9 @@ line 332 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`OffDiagClose.VY_iter_on_supp`](../lean_stage3/OffDiagClose.md#OffDiagClose-VY_iter_on_supp) (OffDiagClose) — `` ‖iteratedDeriv r (fun t => VY α β c x t) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (4 * (T / L)⁻¹) ^ r * (1 + x / (2 * T)) ^ (-A) ``
   - [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="TwistedMoment-Fw2_bound"></a>
@@ -1331,8 +1347,9 @@ line 498 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.eL`](#TwistedMoment-eL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`OffDiagClose.offdiag_term_iter_young`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter_young) (OffDiagClose) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ,… ``
   - [`TwistedMoment.offdiag_term_young`](#TwistedMoment-offdiag_term_young) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ, 1 … ``
 
 <a name="TwistedMoment-log_ratio_ge"></a>
@@ -1386,8 +1403,9 @@ line 525 · arrows read from text
 
   - [`TwistedMoment.log_ratio_ge`](#TwistedMoment-log_ratio_ge) — `` 1 / (2 * (p : ℝ)) ≤ Real.log ((q : ℝ) / p) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`OffDiagClose.offdiag_term_iter_young`](../lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter_young) (OffDiagClose) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ,… ``
   - [`TwistedMoment.offdiag_term_young`](#TwistedMoment-offdiag_term_young) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c → ∀ h k m n : ℕ, 1 … ``
 
 <a name="TwistedMoment-offdiag_term_young"></a>
@@ -1609,8 +1627,9 @@ line 714 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
+  - [`OffDiagClose.off_term_iter_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-off_term_iter_le) (OffDiagClose) — `` ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W.toWeight α β c h k (p.1 + 1) (p.2 + 1)‖ ≤ (K * wsum W (2 * r) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) … ``
   - [`TwistedMoment.S1_term_bound`](#TwistedMoment-S1_term_bound) — `` ‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * B ^ 2 * (((… ``
   - [`TwistedMoment.approxFE_small`](#TwistedMoment-approxFE_small) — `` riemannZeta (uA α t) * riemannZeta (vB β t) = S1 α β c t + XY α β t * S1 (-β) (-α) c t - resY α β t ``
   - [`TwistedMoment.continuousAt_resY`](#TwistedMoment-continuousAt_resY) — `` ContinuousAt (fun t => resY α β t) t ``
@@ -2591,8 +2610,9 @@ Summable fun p : ℕ × ℕ => ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * 
 
 **Definitions its proof touches:** [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.coefY`](#TwistedMoment-coefY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter) (OffDiagClose) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ B : ℝ), 0 ≤ B → (∀ h : ℕ, 1 ≤ h → h ≤ M → ‖a h‖ * (h : ℝ) … ``
   - [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off) — `` I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β c ``
   - [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c… ``
 
