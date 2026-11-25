@@ -1,0 +1,183 @@
+flowchart LR
+  n0["<b>cx_re</b><br/>(cx a b).re = a"]:::cnt
+  n1["<b>cx_im</b><br/>(cx a b).im = b"]:::cnt
+  n2["<b>norm_cx_le</b><br/>‖cx a b‖ ≤ |a| + |b|"]:::shp
+  n3["<b>cx_mul ■</b><br/>cx a b * cx c d = cx (a * c - b * d) (a * d + b * c)"]:::shp
+  n4["<b>ball_exact ■</b><br/>‖cx a b - cx a b‖ ≤ 0"]:::cnt
+  n5["<b>ball_add</b><br/>‖z + w - cx e f‖ ≤ R"]:::shp
+  n6["<b>ball_mul</b><br/>‖z * w - cx e f‖ ≤ R"]:::shp
+  n7["<b>ball_conj</b><br/>‖(starRingEnd ℂ) z - cx a (-b)‖ ≤ r"]:::shp
+  n8["<b>ball_ofReal</b><br/>‖(x : ℂ) - cx c 0‖ ≤ e"]:::shp
+  n9["<b>ball_mono ■</b><br/>‖z - cx a b‖ ≤ R"]:::cnt
+  n10["<b>re_pos_of_ball</b><br/>0 ＜ z.re"]:::shp
+  n11["<b>re_neg_of_ball</b><br/>z.re ＜ 0"]:::shp
+  n12["<b>real_round ■</b><br/>|x - c| ≤ R"]:::cnt
+  n13["<b>real_mul_ball</b><br/>|u * x - u * a| ≤ |u| * e"]:::cnt
+  n14["<b>neg_mul_ball</b><br/>|-(t * x) - -(t * a)| ≤ |t| * e"]:::cnt
+  n15["<b>phase_ball</b><br/>|(t / 2) * (x - y) - (t / 2) * (a - b)| ≤ |t / 2| * (e₁ + e₂)"]:::cnt
+  n16["<b>taylor_eq</b><br/>∑ m ∈ Finset.range (2 * K), ((y : ℂ) * I) ^ m / (m.factorial : ℂ…"]:::shp
+  n17["<b>norm_exp_sub_exp_le</b><br/>‖cexp ((y : ℂ) * I) - cexp ((y₀ : ℂ) * I)‖ ≤ |y - y₀|"]:::shp
+  n18["<b>exp_ball_core</b><br/>‖cexp ((y : ℂ) * I) - cx (cosP K y₀) (sinP K y₀)‖ ≤ ε + |y₀| ^ (…"]:::shp
+  n19["<b>exp_reduce</b><br/>cexp ((x : ℂ) * I) = cexp (((x - (j * (Real.pi / 2) + k * (2 * R…"]:::shp
+  n20["<b>pi_ball</b><br/>|Real.pi - 3.14159265358979323846| ≤ 1 / 10 ^ 20"]:::shp
+  n21["<b>red_ball</b><br/>|(x - (j * (Real.pi / 2) + k * (2 * Real.pi))) - y₀| ≤ ε'"]:::shp
+  n22["<b>exp_ball_red</b><br/>‖cexp (((x - (j * (Real.pi / 2) + k * (2 * Real.pi)) : ℝ) : ℂ) *…"]:::shp
+  n23["<b>exp_ball0</b><br/>‖cexp ((x : ℂ) * I) - cx e f‖ ≤ R"]:::shp
+  n24["<b>exp_ball1</b><br/>‖cexp ((x : ℂ) * I) - cx (-f) e‖ ≤ R"]:::shp
+  n25["<b>exp_ball2</b><br/>‖cexp ((x : ℂ) * I) - cx (-e) (-f)‖ ≤ R"]:::shp
+  n26["<b>exp_ball3</b><br/>‖cexp ((x : ℂ) * I) - cx f (-e)‖ ≤ R"]:::shp
+  n27["<b>log_one_ball ■</b><br/>|Real.log 1 - 0| ≤ 0"]:::shp
+  n28["<b>log_succ_ball</b><br/>|Real.log q - c| ≤ R"]:::shp
+  n29["<b>log_pow_ball</b><br/>|Real.log (b ^ m) - m * a| ≤ m * e"]:::shp
+  x0(["<b>SignDataZeta</b><br/>norm_le_of_sq"]):::ext
+  x1(["<b>SignDataPt14</b><br/>91 theorems"]):::ext
+  x2(["<b>SignDataPt18</b><br/>146 theorems"]):::ext
+  x3(["<b>SignDataPt23</b><br/>152 theorems"]):::ext
+  x4(["<b>SignDataPt29_2</b><br/>85 theorems"]):::ext
+  x5(["<b>SignDataPt39</b><br/>548 theorems"]):::ext
+  x6(["<b>SignDataPt42</b><br/>557 theorems"]):::ext
+  x7(["<b>SignDataPt49</b><br/>572 theorems"]):::ext
+  x8(["<b>SignDataPt55_2</b><br/>280 theorems"]):::ext
+  x9(["<b>SignDataPt63_2</b><br/>292 theorems"]):::ext
+  x10(["<b>SignDataPt71_2</b><br/>286 theorems"]):::ext
+  x11(["<b>SignDataPt91_2</b><br/>548 theorems"]):::ext
+  x12(["<b>SignDataGamma</b><br/>re_lambda_neg<br/>re_lambda_pos"]):::ext
+  x13(["<b>SignDataLog</b><br/>21 theorems"]):::ext
+  n13 --> n29
+  n16 --> n18
+  n17 --> n18
+  n18 --> n22
+  n19 --> n23
+  n19 --> n24
+  n19 --> n25
+  n19 --> n26
+  n2 --> n22
+  n2 --> n5
+  n2 --> n6
+  n20 --> n21
+  n21 --> n22
+  n22 --> n23
+  n22 --> n24
+  n22 --> n25
+  n22 --> n26
+  n0 -.-> x0
+  n1 -.-> x0
+  n10 -.-> x12
+  n11 -.-> x12
+  n14 -.-> x1
+  n14 -.-> x10
+  n14 -.-> x11
+  n14 -.-> x2
+  n14 -.-> x3
+  n14 -.-> x4
+  n14 -.-> x5
+  n14 -.-> x6
+  n14 -.-> x7
+  n14 -.-> x8
+  n14 -.-> x9
+  n15 -.-> x1
+  n15 -.-> x10
+  n15 -.-> x11
+  n15 -.-> x2
+  n15 -.-> x3
+  n15 -.-> x4
+  n15 -.-> x5
+  n15 -.-> x6
+  n15 -.-> x7
+  n15 -.-> x8
+  n15 -.-> x9
+  n23 -.-> x1
+  n23 -.-> x10
+  n23 -.-> x11
+  n23 -.-> x2
+  n23 -.-> x3
+  n23 -.-> x5
+  n23 -.-> x6
+  n23 -.-> x7
+  n23 -.-> x8
+  n23 -.-> x9
+  n24 -.-> x1
+  n24 -.-> x10
+  n24 -.-> x11
+  n24 -.-> x2
+  n24 -.-> x4
+  n24 -.-> x5
+  n24 -.-> x6
+  n24 -.-> x7
+  n24 -.-> x8
+  n24 -.-> x9
+  n25 -.-> x1
+  n25 -.-> x10
+  n25 -.-> x11
+  n25 -.-> x2
+  n25 -.-> x3
+  n25 -.-> x4
+  n25 -.-> x5
+  n25 -.-> x6
+  n25 -.-> x7
+  n25 -.-> x8
+  n25 -.-> x9
+  n26 -.-> x1
+  n26 -.-> x10
+  n26 -.-> x11
+  n26 -.-> x2
+  n26 -.-> x3
+  n26 -.-> x4
+  n26 -.-> x5
+  n26 -.-> x6
+  n26 -.-> x7
+  n26 -.-> x8
+  n28 -.-> x13
+  n29 -.-> x13
+  n5 -.-> x1
+  n5 -.-> x10
+  n5 -.-> x11
+  n5 -.-> x2
+  n5 -.-> x3
+  n5 -.-> x4
+  n5 -.-> x5
+  n5 -.-> x6
+  n5 -.-> x7
+  n5 -.-> x8
+  n5 -.-> x9
+  n6 -.-> x1
+  n6 -.-> x10
+  n6 -.-> x11
+  n6 -.-> x2
+  n6 -.-> x3
+  n6 -.-> x4
+  n6 -.-> x5
+  n6 -.-> x6
+  n6 -.-> x7
+  n6 -.-> x8
+  n6 -.-> x9
+  n7 -.-> x1
+  n7 -.-> x10
+  n7 -.-> x11
+  n7 -.-> x2
+  n7 -.-> x3
+  n7 -.-> x4
+  n7 -.-> x5
+  n7 -.-> x6
+  n7 -.-> x7
+  n7 -.-> x8
+  n7 -.-> x9
+  n8 -.-> x1
+  n8 -.-> x10
+  n8 -.-> x11
+  n8 -.-> x2
+  n8 -.-> x3
+  n8 -.-> x4
+  n8 -.-> x5
+  n8 -.-> x6
+  n8 -.-> x7
+  n8 -.-> x8
+  n8 -.-> x9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

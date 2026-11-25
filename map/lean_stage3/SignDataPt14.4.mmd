@@ -1,0 +1,25 @@
+flowchart LR
+  n0["<b>p14_G</b><br/>‖gammaDir (14 : ℝ) 64 - cx (-22741.53292669291301914893560510741…"]:::shp
+  n1["<b>p14_X</b><br/>‖gammaDir (14 : ℝ) 64 * riemannZeta (lineS (14 : ℝ)) - cx (-7912…"]:::thm
+  n2["<b>sign_14</b><br/>(completedRiemannZeta (lineS (14 : ℝ))).re ＜ 0"]:::thm
+  x0(["<b>SignDataBall</b><br/>ball_conj<br/>ball_mul"]):::ext
+  x1(["<b>diagram 3</b><br/>p14_W<br/>p14_phase"]):::ext
+  x2(["<b>diagram 1</b><br/>p14_zeta"]):::ext
+  x3(["<b>SignDataGamma</b><br/>re_lambda_neg"]):::ext
+  x4(["<b>SignData</b><br/>first_zero_signs<br/>run_signs"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 -.-> x4
+  x0 -.-> n0
+  x0 -.-> n1
+  x1 -.-> n0
+  x2 -.-> n1
+  x3 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

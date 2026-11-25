@@ -5,7 +5,7 @@ ZetaEM — block C3 of `lean_stage3/design/carlson.md`. 2026-11-23. Euler–Macl
 20 theorems, 7 definitions, 516 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`MollifiedMean`](../lean_stage3/MollifiedMean.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`MollifiedMean`](../lean_stage3/MollifiedMean.md), [`SignDataZeta`](../lean_stage3/SignDataZeta.md)
 
 ## The picture
 
@@ -32,6 +32,7 @@ flowchart LR
   n18["<b>prod_norm_le</b><br/>∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j"]:::shp
   n19["<b>norm_zeta_sub_partial_le</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
   x0(["<b>MollifiedMean</b><br/>emConst_nonneg<br/>mean_sq_f_le"]):::ext
+  x1(["<b>SignDataZeta</b><br/>zeta_em4"]):::ext
   n0 --> n7
   n1 --> n7
   n10 --> n14
@@ -54,6 +55,8 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 --> n10
+  n14 -.-> x1
+  n16 -.-> x1
   n19 -.-> x0
   n3 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -98,7 +101,7 @@ def · line 62
 The boundary term `s(s+1)⋯(s+j−1)·B_{j+1}(0)/(j+1)!·N^{−(s+j)}`.
 
 - **Is:** `` emTerm (j N : ℕ) (s : ℂ) : ℂ := (∏ i ∈ Finset.range j, (s + i)) * (bernoulliFun (j+1) 0 : ℂ) / ((j+1).factorial : ℂ) * (N:ℂ) ^ (-(s + j)) ``
-- **Used by 5:** [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emTerm`](#ZetaEM-norm_emTerm), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
+- **Used by 6:** [`SignData.emBoundary_four`](../lean_stage3/SignDataZeta.md#SignData-emBoundary_four), [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emTerm`](#ZetaEM-norm_emTerm), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
 
 <a name="ZetaEM-emBoundary"></a>
 ### `ZetaEM.emBoundary`
@@ -109,7 +112,7 @@ The boundary sum `Σ_{1 ≤ j < k} emTerm j N s`.
 
 - **Is:** `` emBoundary (k N : ℕ) (s : ℂ) : ℂ := ∑ j ∈ Finset.Ico 1 k, emTerm j N s ``
 - **Built from:** [`ZetaEM.emTerm`](#ZetaEM-emTerm)
-- **Used by 2:** [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
+- **Used by 3:** [`SignData.emBoundary_four`](../lean_stage3/SignDataZeta.md#SignData-emBoundary_four), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
 
 <a name="ZetaEM-emRem"></a>
 ### `ZetaEM.emRem`
@@ -120,7 +123,7 @@ The order-`k` remainder `emCoef k s · emInt k N s`.
 
 - **Is:** `` emRem (k N : ℕ) (s : ℂ) : ℂ := emCoef k s * emInt k N s ``
 - **Built from:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt)
-- **Used by 4:** [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
+- **Used by 5:** [`SignData.zeta_em4`](../lean_stage3/SignDataZeta.md#SignData-zeta_em4), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
 
 <a name="ZetaEM-bernBound"></a>
 ### `ZetaEM.bernBound`
@@ -130,7 +133,7 @@ def · line 75
 The supremum of `|B_k|` on `[0, 1]`.
 
 - **Is:** `` bernBound (k : ℕ) : ℝ := sSup ((fun x : ℝ ↦ |bernoulliFun k x|) '' Icc 0 1) ``
-- **Used by 10:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le), [`ZetaEM.bernBound_nonneg`](#ZetaEM-bernBound_nonneg), [`ZetaEM.emConst`](#ZetaEM-emConst), [`ZetaEM.integrableOn_bern_cpow`](#ZetaEM-integrableOn_bern_cpow), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.norm_integral_bern_cpow_le`](#ZetaEM-norm_integral_bern_cpow_le), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.tail_ibp`](#ZetaEM-tail_ibp)
+- **Used by 11:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`SignData.bernBound_four_le`](../lean_stage3/SignDataZeta.md#SignData-bernBound_four_le), [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le), [`ZetaEM.bernBound_nonneg`](#ZetaEM-bernBound_nonneg), [`ZetaEM.emConst`](#ZetaEM-emConst), [`ZetaEM.integrableOn_bern_cpow`](#ZetaEM-integrableOn_bern_cpow), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.norm_integral_bern_cpow_le`](#ZetaEM-norm_integral_bern_cpow_le), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.tail_ibp`](#ZetaEM-tail_ibp)
 
 <a name="ZetaEM-emConst"></a>
 ### `ZetaEM.emConst`
@@ -586,8 +589,9 @@ riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) /
 
 **Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SignData.zeta_em4`](../lean_stage3/SignDataZeta.md#SignData-zeta_em4) (SignDataZeta) — `` ‖riemannZeta (lineS t) - (∑ m ∈ Finset.Icc 1 N, (m : ℂ) ^ (-lineS t) + (N : ℂ) ^ (-lineS t) * emB t N)‖ ≤ (∏ i ∈ Finset.range 4, ‖lineS t + i‖) / 24 *… ``
   - [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le) — `` ‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)‖ ≤ emConst k * (N : ℝ) ^ (-s.re) * (1 + (‖s‖ + k) ^ k * (N : ℝ) ^ … ``
 
 <a name="ZetaEM-norm_emInt_le"></a>
@@ -650,8 +654,9 @@ line 373
 
 **Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SignData.zeta_em4`](../lean_stage3/SignDataZeta.md#SignData-zeta_em4) (SignDataZeta) — `` ‖riemannZeta (lineS t) - (∑ m ∈ Finset.Icc 1 N, (m : ℂ) ^ (-lineS t) + (N : ℂ) ^ (-lineS t) * emB t N)‖ ≤ (∏ i ∈ Finset.range 4, ‖lineS t + i‖) / 24 *… ``
   - [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le) — `` ‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)‖ ≤ emConst k * (N : ℝ) ^ (-s.re) * (1 + (‖s‖ + k) ^ k * (N : ℝ) ^ … ``
 
 <a name="ZetaEM-norm_emTerm"></a>

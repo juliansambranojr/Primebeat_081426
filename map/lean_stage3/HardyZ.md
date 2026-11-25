@@ -7,7 +7,7 @@ HardyZ — block S10 of `lean_stage3/design/stencil.md`, steps 1 and 2. 2026-11-
 6 theorems, 0 definitions, 128 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonLine`](../lean_stage3/LevinsonLine.md), [`LineCount`](../lean_stage3/LineCount.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonLine`](../lean_stage3/LevinsonLine.md), [`LineCount`](../lean_stage3/LineCount.md), [`SignDataGamma`](../lean_stage3/SignDataGamma.md)
 
 ## The picture
 
@@ -28,6 +28,7 @@ flowchart LR
   x6(["<b>TuringCert</b><br/>count_le_N_sub"]):::ext
   x7(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
   x8(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
+  x9(["<b>SignDataGamma</b><br/>re_lambda_eq"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -45,6 +46,7 @@ flowchart LR
   n3 -.-> x5
   n3 -.-> x7
   n3 -.-> x8
+  n3 -.-> x9
   n4 -.-> x5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -169,7 +171,7 @@ line 66 · arrows read from text
   - [`HardyZ.completedRiemannZeta_conj_of_re_pos`](#HardyZ-completedRiemannZeta_conj_of_re_pos) — `` completedRiemannZeta (conj s) = conj (completedRiemannZeta s) ``
   - [`HardyZ.re_line`](#HardyZ-re_line) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (8 that use it)
+**Feeds** (9 that use it)
 
   - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
@@ -179,6 +181,7 @@ line 66 · arrows read from text
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
   - [`OperatorQ.im_I_pow_iteratedDeriv`](../lean_stage3/OperatorQ.md#OperatorQ-im_I_pow_iteratedDeriv) (OperatorQ) — `` (I ^ k * iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).im = 0 ``
   - [`OperatorQ.zeta_line_zero_iff_W`](../lean_stage3/OperatorQ.md#OperatorQ-zeta_line_zero_iff_W) (OperatorQ) — `` riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0 ``
+  - [`SignData.re_lambda_eq`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_eq) (SignDataGamma) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (gammaDir t n * riemannZeta (lineS t)).re ``
 
 <a name="HardyZ-continuous_xi_line"></a>
 ### `HardyZ.continuous_xi_line`

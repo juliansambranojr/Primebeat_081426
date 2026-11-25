@@ -1,7 +1,9 @@
 flowchart LR
-  n0["<b>littlewood_holds ■</b><br/>Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * …"]:::thm
+  n0["<b>littlewood_holds</b><br/>Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * …"]:::thm
   x0(["<b>TuringLWHoriz</b><br/>horizLower_holds"]):::ext
   x1(["<b>TuringLWSplit</b><br/>littlewood_of_lower"]):::ext
+  x2(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
+  n0 -.-> x2
   x0 -.-> n0
   x1 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

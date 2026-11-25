@@ -7,15 +7,17 @@
 1 theorem, 0 definitions, 32 lines. 
 
 **Imports:** [`TuringLWHoriz`](../lean_stage3/TuringLWHoriz.md), [`TuringLWSplit`](../lean_stage3/TuringLWSplit.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SignData`](../lean_stage3/SignData.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>littlewood_holds ■</b><br/>Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * …"]:::thm
+  n0["<b>littlewood_holds</b><br/>Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * …"]:::thm
   x0(["<b>TuringLWHoriz</b><br/>horizLower_holds"]):::ext
   x1(["<b>TuringLWSplit</b><br/>littlewood_of_lower"]):::ext
+  x2(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
+  n0 -.-> x2
   x0 -.-> n0
   x1 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -54,5 +56,7 @@ Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500
 
 **Definitions its proof touches:** [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`SignData.defect_zero_of_closing`](../lean_stage3/SignData.md#SignData-defect_zero_of_closing) (SignData) — `` ∀ T ≤ T₁, Defect.defect T = 0 ``
 
