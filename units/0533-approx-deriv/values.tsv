@@ -1,0 +1,16 @@
+key	value	source
+module_lines	1302	wc -l lean_stage3/Stage3/ApproxDeriv.lean
+theorems_proved	49	grep -c ^theorem lean_stage3/Stage3/ApproxDeriv.lean
+defs	8	grep -c ^def lean_stage3/Stage3/ApproxDeriv.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ApproxDeriv.lean
+pins	15	hasDerivAt_Gammaℝ, gY_hasDerivAt, hasSum_tau, dY_hasSum, norm_dY_le, norm_d2Y_le, dY_hasDerivAt, dY_bound, d2Y_bound, VYj_line_bound, VYj_lines, VY_hasDerivAt, VY1_hasDerivAt, iteratedDeriv_VY, VY_deriv_bound
+errors_first	0	the worker's report: the module's first build was clean after four scratch passes
+builds	1	the worker's report
+traps_added	3	lean_stage3/TRAPS.md rows 51 to 53
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8910	lake build (full Stage3), Build completed successfully
+jobs_module	8810	run/build.log, lake build Stage3.ApproxDeriv
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

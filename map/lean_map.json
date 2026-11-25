@@ -17257,7 +17257,8 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound"
     ]
    },
    {
@@ -17461,7 +17462,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines"
     ]
    },
    {
@@ -17533,7 +17535,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F"
     ]
    },
    {
@@ -17602,7 +17605,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines"
     ]
    },
    {
@@ -17625,7 +17629,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.assemble"
     ]
    },
    {
@@ -18041,6 +18046,2054 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ApproxDeriv.lean",
+  "module": "Stage3.ApproxDeriv",
+  "stem": "ApproxDeriv",
+  "header": "# ApproxDeriv — block S12 of `lean_stage3/design/stencil.md`, piece 2b-i, the derivatives of V. 2026-11-25.",
+  "imports": [
+   "Stage3.ApproxBounds"
+  ],
+  "opens": [
+   "ApproxBounds",
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "ApproxDeriv"
+  ],
+  "lines": 1303,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ApproxBounds.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "psiR",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.psiR",
+    "line": 60,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "w : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_Gammaℝ",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_Gammaℝ_comp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ne_neg_nat_of_re_pos",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.ne_neg_nat_of_re_pos",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re",
+     "m : ℕ"
+    ],
+    "proves": "z ≠ -(m : ℂ)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.ne_neg_nat_of_re_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_Gammaℝ",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tau"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_Gammaℝ",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasDerivAt_Gammaℝ",
+    "line": 69,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < w.re"
+    ],
+    "proves": "HasDerivAt Gammaℝ (Gammaℝ w * psiR w) w",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_Gammaℝ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.ne_neg_nat_of_re_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.ne_neg_nat_of_re_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_line",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasDerivAt_line",
+    "line": 101,
+    "why": "A real line in `ℂ`: `t ↦ w₀ + t e` has derivative `e`.",
+    "sorry": false,
+    "needs": [
+     "w₀ e : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t : ℝ => w₀ + (t : ℂ) * e) e t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_Gammaℝ_comp",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasDerivAt_Gammaℝ_comp",
+    "line": 107,
+    "why": "`t ↦ Gammaℝ(f t)` for `f : ℝ → ℂ` with `Re f t > 0`.",
+    "sorry": false,
+    "needs": [
+     "hf : HasDerivAt f e t",
+     "hw : 0 < (f t).re"
+    ],
+    "proves": "HasDerivAt (fun t => Gammaℝ (f t)) (Gammaℝ (f t) * psiR (f t) * e) t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_Gammaℝ_comp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "dY",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.dY",
+    "line": 117,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_conds",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.re_conds",
+    "line": 121,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "t : ℝ"
+    ],
+    "proves": "1 / 20 ≤ (uA α t / 2).re ∧ 1 / 20 ≤ (uA α t / 2 + s / 2).re ∧ 1 / 20 ≤ (vB β t / 2).re ∧ 1 / 20 ≤ (vB β t / 2 + s / 2).re",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gY_hasDerivAt",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.gY_hasDerivAt",
+    "line": 131,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.psiR",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tau",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.tau",
+    "line": 179,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h w : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tau'",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.tau'",
+    "line": 183,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h w : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau'_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasSum_tau",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasSum_tau",
+    "line": 185,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < w.re",
+     "hwh : 0 < (w + h).re"
+    ],
+    "proves": "HasSum (tau h w) (digamma (w + h) - digamma w)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tau",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.ne_neg_nat_of_re_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.ne_neg_nat_of_re_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_nat_add_ge",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_nat_add_ge",
+    "line": 201,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hre : a ≤ z.re",
+     "him : Y ≤ |z.im|",
+     "n : ℕ"
+    ],
+    "proves": "((n : ℝ) + a + Y) / 2 ≤ ‖(n : ℂ) + z‖",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_nat_add_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau'_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tau_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_tau_le",
+    "line": 214,
+    "why": "`‖τₙ‖ ≤ 4‖h‖/(n+a+Y)²` when `Re w, Re(w+h) ≥ a > 0` and `|Im w|, |Im(w+h)| ≥ Y ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a",
+     "hY : 0 ≤ Y",
+     "h1 : a ≤ w.re",
+     "h2 : a ≤ (w + h).re",
+     "h3 : Y ≤ |w.im|",
+     "h4 : Y ≤ |(w + h).im|",
+     "n : ℕ"
+    ],
+    "proves": "‖tau h w n‖ ≤ 4 * ‖h‖ * (1 / ((n : ℝ) + (a + Y)) ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_nat_add_ge",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_nat_add_ge",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tau'_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_tau'_le",
+    "line": 239,
+    "why": "`‖τ'ₙ‖ ≤ 16‖h‖/(a+Y) · 1/(n+a+Y)²` under the same conditions.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a",
+     "hY : 0 ≤ Y",
+     "h1 : a ≤ w.re",
+     "h2 : a ≤ (w + h).re",
+     "h3 : Y ≤ |w.im|",
+     "h4 : Y ≤ |(w + h).im|",
+     "n : ℕ"
+    ],
+    "proves": "‖tau' h w n‖ ≤ 16 * ‖h‖ / (a + Y) * (1 / ((n : ℝ) + (a + Y)) ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau'_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_nat_add_ge",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_nat_add_ge",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tel",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.tel",
+    "line": 296,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "b : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasSum_tel",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasSum_tel",
+    "line": 298,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b"
+    ],
+    "proves": "HasSum (tel b) (1 / b)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sq_le_tel",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.sq_le_tel",
+    "line": 317,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "n : ℕ"
+    ],
+    "proves": "1 / ((n : ℝ) + b) ^ 2 ≤ (1 + 1 / b) * tel b n",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "nat_add_ne",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.nat_add_ne",
+    "line": 335,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re",
+     "n : ℕ"
+    ],
+    "proves": "(n : ℂ) + z ≠ 0",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.nat_add_ne",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dY_hasSum",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.dY_hasSum",
+    "line": 342,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "t : ℝ"
+    ],
+    "proves": "HasSum (fun n => I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)) (dY α β t s)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_I_half",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_I_half",
+    "line": 355,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "‖I / 2‖ = 1 / 2",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_I_half",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_dterm_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_dterm_le",
+    "line": 360,
+    "why": "The term bound for `dY`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "hY : 0 ≤ Y",
+     "i1 : Y ≤ |(uA α t / 2).im|",
+     "i2 : Y ≤ |(uA α t / 2 + s / 2).im|",
+     "i3 : Y ≤ |(vB β t / 2).im|",
+     "i4 : Y ≤ |(vB β t / 2 + s / 2).im|",
+     "n : ℕ"
+    ],
+    "proves": "‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_I_half",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_I_half",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_dY_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_dY_le",
+    "line": 385,
+    "why": "`‖dY‖ ≤ 4‖s/2‖ (1 + 1/b)/b`, `b = 1/20 + Y`, `Y` a lower bound for the four imaginary parts.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "hY : 0 ≤ Y",
+     "i1 : Y ≤ |(uA α t / 2).im|",
+     "i2 : Y ≤ |(uA α t / 2 + s / 2).im|",
+     "i3 : Y ≤ |(vB β t / 2).im|",
+     "i4 : Y ≤ |(vB β t / 2 + s / 2).im|"
+    ],
+    "proves": "‖dY α β t s‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "d2Y",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.d2Y",
+    "line": 397,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_d2term_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_d2term_le",
+    "line": 400,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "hY : 0 ≤ Y",
+     "i1 : Y ≤ |(uA α t / 2).im|",
+     "i2 : Y ≤ |(uA α t / 2 + s / 2).im|",
+     "i3 : Y ≤ |(vB β t / 2).im|",
+     "i4 : Y ≤ |(vB β t / 2 + s / 2).im|",
+     "n : ℕ"
+    ],
+    "proves": "‖-(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n)‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau'_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_tau'_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.sq_le_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_d2term",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.summable_d2term",
+    "line": 427,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "t : ℝ"
+    ],
+    "proves": "Summable fun n => -(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_d2Y_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_d2Y_le",
+    "line": 435,
+    "why": "`‖d2Y‖ ≤ 8‖s/2‖/b · (1 + 1/b)/b`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "hY : 0 ≤ Y",
+     "i1 : Y ≤ |(uA α t / 2).im|",
+     "i2 : Y ≤ |(uA α t / 2 + s / 2).im|",
+     "i3 : Y ≤ |(vB β t / 2).im|",
+     "i4 : Y ≤ |(vB β t / 2 + s / 2).im|"
+    ],
+    "proves": "‖d2Y α β t s‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_tau_line",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.hasDerivAt_tau_line",
+    "line": 445,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h w₀ e : ℂ",
+     "n : ℕ",
+     "t : ℝ",
+     "hp : (n : ℂ) + (w₀ + t * e) ≠ 0",
+     "hq : (n : ℂ) + (w₀ + t * e) + h ≠ 0"
+    ],
+    "proves": "HasDerivAt (fun t : ℝ => tau h (w₀ + t * e) n) (e * tau' h (w₀ + t * e) n) t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dY_hasDerivAt",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.dY_hasDerivAt",
+    "line": 459,
+    "why": "`∂_t dY = d2Y`, for every real `t`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t => dY α β t s) (d2Y α β t s) t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.nat_add_ne",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasDerivAt_tau_line",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.hasSum_tel",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.nat_add_ne",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tel",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "poly_gauss",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.poly_gauss",
+    "line": 513,
+    "why": "`(1+|y|)^k e^(−y²/2) ≤ k! e² e^(−y²/4)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "y : ℝ"
+    ],
+    "proves": "(1 + |y|) ^ k * Real.exp (-(1 / 2) * y ^ 2) ≤ (k.factorial : ℝ) * Real.exp 2 * Real.exp (-(1 / 4) * y ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.poly_gauss",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gauss_loc",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.gauss_loc",
+    "line": 532,
+    "why": "`e^(−y²)(1+y²)(1+|y|)^k ≤ (k+2)! e² e^(−y²/4)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "y : ℝ"
+    ],
+    "proves": "Real.exp (-y ^ 2) * (1 + y ^ 2) * (1 + |y|) ^ k ≤ ((k + 2).factorial : ℝ) * Real.exp 2 * Real.exp (-(1 / 4) * y ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.poly_gauss"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.poly_gauss"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_half_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_half_le",
+    "line": 544,
+    "why": "`‖(σ + iy)/2‖ ≤ (1+|σ|)(1+|y|)`.",
+    "sorry": false,
+    "needs": [
+     "σ y : ℝ"
+    ],
+    "proves": "‖((σ : ℂ) + y * I) / 2‖ ≤ (1 + |σ|) * (1 + |y|)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dY_crude",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.dY_crude",
+    "line": 553,
+    "why": "Crude bounds valid for every real `t`: `‖dY‖ ≤ 1680(1+|σ|)(1+|y|)`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "t y : ℝ"
+    ],
+    "proves": "‖dY α β t (σ + y * I)‖ ≤ 1680 * (1 + |σ|) * (1 + |y|)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "d2Y_crude",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.d2Y_crude",
+    "line": 563,
+    "why": "`‖d2Y‖ ≤ 67200(1+|σ|)(1+|y|)` for every real `t`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "t y : ℝ"
+    ],
+    "proves": "‖d2Y α β t (σ + y * I)‖ ≤ 67200 * (1 + |σ|) * (1 + |y|)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_local",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.KY_local",
+    "line": 576,
+    "why": "Near any `t₀`, the kernel is bounded by `C e^(−y²)(1+y²)` on the line `σ`, uniformly in `t ∈ [t₀−1, t₀+1]`: the numerator by `norm_Gammaℝ_le`, `1/(Gammaℝ(u)Gammaℝ(v))` by compactness.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "hσ : σ ≠ 0",
+     "t₀ : ℝ"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (Real.exp (-y ^ 2) * (1 + y ^ 2))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cont_F",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.cont_F",
+    "line": 634,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "hσ : σ ≠ 0",
+     "hx : 0 < x",
+     "t : ℝ"
+    ],
+    "proves": "Continuous fun y : ℝ => KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_half_pos",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.re_half_pos",
+    "line": 649,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "t y : ℝ"
+    ],
+    "proves": "0 < ((uA α t + ((σ : ℂ) + y * I)) / 2).re ∧ 0 < ((vB β t + ((σ : ℂ) + y * I)) / 2).re",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cont_dY",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.cont_dY",
+    "line": 657,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "t : ℝ"
+    ],
+    "proves": "Continuous fun y : ℝ => dY α β t (σ + y * I)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "meas_d2Y",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.meas_d2Y",
+    "line": 671,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "t : ℝ"
+    ],
+    "proves": "AEStronglyMeasurable (fun y : ℝ => d2Y α β t (σ + y * I)) volume",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.nat_add_ne",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.nat_add_ne",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.tau'",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "VY1",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VY1",
+    "line": 706,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c x t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "VY2",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VY2",
+    "line": 711,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c x t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_F_local",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_F_local",
+    "line": 714,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "hC : ‖KY α β t (σ + y * I)‖ ≤ C * (Real.exp (-y ^ 2) * (1 + y ^ 2))"
+    ],
+    "proves": "‖KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))‖ ≤ C * x ^ (-σ) * (Real.exp (-y ^ 2) * (1 + y ^ 2))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "F_hasDerivAt",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.F_hasDerivAt",
+    "line": 726,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(1 / 4) ≤ s.re",
+     "x t : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t => KY α β t s * (x : ℂ) ^ (-s)) (KY α β t s * (x : ℂ) ^ (-s) * dY α β t s) t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_hasDerivAt",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VY_hasDerivAt",
+    "line": 737,
+    "why": "Differentiability of `V` in `t`, for every real `t`, on every line `σ ≥ −1/4`, `σ ≠ 0`: `∂_t V_σ(x,t) = VY1 α β σ x t`, the derivative under the integral.",
+    "sorry": false,
+    "needs": [
+     "hσ0 : -(1 / 4) ≤ σ",
+     "hσ : σ ≠ 0",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x",
+     "t₀ : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY1_hasDerivAt",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VY1_hasDerivAt",
+    "line": 787,
+    "why": "Differentiability of `∂_t V` in `t`: `∂_t VY1 α β σ x t = VY2 α β σ x t`.",
+    "sorry": false,
+    "needs": [
+     "hσ0 : -(1 / 4) ≤ σ",
+     "hσ : σ ≠ 0",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x",
+     "t₀ : ℝ"
+    ],
+    "proves": "HasDerivAt (fun t => VY1 α β σ x t) (VY2 α β σ x t₀) t₀",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gauss_loc",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_conds",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.im_conds",
+    "line": 870,
+    "why": "In the bulk `|y| ≤ t/2`, the four imaginary parts are at least `t/5`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t",
+     "hy : |y| ≤ t / 2"
+    ],
+    "proves": "t / 5 ≤ |(uA α t / 2).im| ∧ t / 5 ≤ |(uA α t / 2 + ((σ : ℂ) + y * I) / 2).im| ∧ t / 5 ≤ |(vB β t / 2).im| ∧ t / 5 ≤ |(vB β t / 2 + ((σ : ℂ) + y * I) / 2).im|",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "b_facts",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.b_facts",
+    "line": 888,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t"
+    ],
+    "proves": "t * (1 / (1 / 20 + t / 5)) ≤ 5 ∧ 1 + 1 / (1 / 20 + t / 5) ≤ 6",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.b_facts",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dY_bound",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.dY_bound",
+    "line": 898,
+    "why": "`t ‖dY(σ+iy, t)‖ ≤ 3360 (1+|σ|)(1+|y|)²` for `t ≥ 1`: the digamma differences are `O(|s|/t)` in the bulk `|y| ≤ t/2`, and `O(|s|)` with `t < 2|y|` outside it.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "ht : 1 ≤ t",
+     "y : ℝ"
+    ],
+    "proves": "t * ‖dY α β t (σ + y * I)‖ ≤ 3360 * (1 + |σ|) * (1 + |y|) ^ 2",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.b_facts",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.b_facts",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "d2Y_bound",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.d2Y_bound",
+    "line": 927,
+    "why": "`t² ‖d2Y(σ+iy, t)‖ ≤ 268800 (1+|σ|)(1+|y|)³` for `t ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "ht : 1 ≤ t",
+     "y : ℝ"
+    ],
+    "proves": "t ^ 2 * ‖d2Y α β t (σ + y * I)‖ ≤ 268800 * (1 + |σ|) * (1 + |y|) ^ 3",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.b_facts",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.b_facts",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_crude",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_half_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "d12_bound",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.d12_bound",
+    "line": 958,
+    "why": "`t² ‖dY² + d2Y‖ ≤ E (1+|y|)⁴`, `E = 3360²(1+|σ|)² + 268800(1+|σ|)`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hσ0 : -(1 / 4) ≤ σ",
+     "ht : 1 ≤ t",
+     "y : ℝ"
+    ],
+    "proves": "t ^ 2 * ‖dY α β t (σ + y * I) * dY α β t (σ + y * I) + d2Y α β t (σ + y * I)‖ ≤ ((3360 * (1 + |σ|)) ^ 2 + 268800 * (1 + |σ|)) * (1 + |y|) ^ 4",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_VI_le",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.norm_VI_le",
+    "line": 981,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "σ : ℝ"
+    ],
+    "proves": "‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖f (σ + y * I)‖",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_VI_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VI_gauss"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VI_gauss",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VI_gauss",
+    "line": 992,
+    "why": "A line integral bounded through a pointwise `B e^(−y²/4)` bound.",
+    "sorry": false,
+    "needs": [
+     "h : ∀ y : ℝ, ‖f (σ + y * I)‖ ≤ B * Real.exp (-(1 / 4) * y ^ 2)"
+    ],
+    "proves": "‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * (B * Real.sqrt (Real.pi / (1 / 4)))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VI_gauss",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_VI_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_VI_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VYj_line_bound",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VYj_line_bound",
+    "line": 1004,
+    "why": "The derivatives on one line `σ ≥ −1/4`, `σ ≠ 0`, for `t ≥ 1`: `‖t VY1‖, ‖t² VY2‖ ≤ C (1 + ‖α+β‖^(−2)) (t/2π)^σ x^(−σ)`.",
+    "sorry": false,
+    "needs": [
+     "hσ0 : -(1 / 4) ≤ σ",
+     "hσ : σ ≠ 0"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖(t : ℂ) ^ 1 * VY1 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ)) ∧ ‖(t : ℂ) ^ 2 * VY2 α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ))",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VI_gauss",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.poly_gauss",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VI_gauss",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d12_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.poly_gauss",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "assemble",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.assemble",
+    "line": 1097,
+    "why": "The two lines give Young's shape: the line `A` for `x > t`, the line `−1/4` for `x ≤ t`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A",
+     "hCa : 0 ≤ Ca",
+     "hCm : 0 ≤ Cm",
+     "hN : 0 ≤ N",
+     "ht : 1 ≤ t",
+     "hx : 0 < x",
+     "ha : t < x → z ≤ Ca * N * ((t / (2 * Real.pi)) ^ A * x ^ (-A))",
+     "hm : x ≤ t → z ≤ Cm * N * ((t / (2 * Real.pi)) ^ (-(1 / 4) : ℝ) * x ^ (-(-(1 / 4)) : ℝ))"
+    ],
+    "proves": "z ≤ (8 * Cm * 2 ^ A + Ca * 2 ^ A) * N * (1 + x / t) ^ (-A)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.assemble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_quarter_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_quarter_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deriv_eq_of_eq_Ici",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.deriv_eq_of_eq_Ici",
+    "line": 1160,
+    "why": "Two functions differentiable at `t` that agree on `[t, ∞)` have the same derivative.",
+    "sorry": false,
+    "needs": [
+     "hf : HasDerivAt f f' t",
+     "hg : HasDerivAt g g' t",
+     "h : ∀ y, t ≤ y → f y = g y"
+    ],
+    "proves": "f' = g'",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.deriv_eq_of_eq_Ici",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VYj_lines",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VYj_lines",
+    "line": 1167,
+    "why": "The derivatives do not depend on the line, and the residue `1` drops out: for `t ≥ 1`, `VYj c = VYj A = VYj (−1/4)`, `j = 1, 2`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "hx : 0 < x",
+     "hc : 0 < c",
+     "hA : 0 < A",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4)) x t ∧ VY2 α β c x t = VY2 α β A x t ∧ VY2 α β c x t = VY2 α β (-(1 / 4)) x t",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.deriv_eq_of_eq_Ici",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.deriv_eq_of_eq_Ici",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_VY",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.iteratedDeriv_VY",
+    "line": 1201,
+    "why": "`∂_t V = VY1` and `∂_t² V = VY2` as functions, on every line `c > 0`.",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hx : 0 < x",
+     "hc : 0 < c"
+    ],
+    "proves": "iteratedDeriv 1 (fun t => VY α β c x t) = (fun t => VY1 α β c x t) ∧ iteratedDeriv 2 (fun t => VY α β c x t) = (fun t => VY2 α β c x t)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_deriv_bound",
+    "ns": "ApproxDeriv",
+    "full": "ApproxDeriv.VY_deriv_bound",
+    "line": 1216,
+    "why": "Young's (4.3) for `j = 1, 2`. For every `A > 0` there is `C` with `‖t^j ∂_t^j V_{α,β}(x,t)‖ ≤ C (1 + ‖α+β‖^(−2)) (1 + x/t)^(−A)`, `j = 1, 2`, uniformly in `‖α‖, ‖β‖ ≤ 1/10` with `α + β ≠ 0`, `t ≥ 1`, `x > 0`, and the line `c > 0` of `V`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ j : ℕ, 1 ≤ j → j ≤ 2 → ‖(t : ℂ) ^ j * iteratedDeriv j (fun t => VY α β c x t) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (1 + x / t) ^ (-A)",
+    "file": "lean_stage3/Stage3/ApproxDeriv.lean",
+    "id": "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.assemble",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.assemble",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ApproxFE.lean",
   "module": "Stage3.ApproxFE",
   "stem": "ApproxFE",
@@ -18095,6 +20148,22 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
@@ -18166,6 +20235,22 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.dY_hasSum",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.meas_d2Y",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2Y_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_d2term_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_dterm_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_half_pos",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.summable_d2term",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
@@ -18267,6 +20352,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
@@ -18317,6 +20404,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -18362,6 +20451,15 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.F_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY1_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY2",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_line_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.cont_F",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.norm_F_local",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -18404,6 +20502,10 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_deriv_bound",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.VYj_lines",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.iteratedDeriv_VY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE"
@@ -18482,6 +20584,9 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -18527,6 +20632,9 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.gY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.re_conds",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -18566,7 +20674,8 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds"
     ]
    },
    {
@@ -18596,7 +20705,8 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
-     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.im_conds"
     ]
    },
    {
@@ -19820,6 +21930,7 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxDeriv.lean::ApproxDeriv.KY_local",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound"
     ]
    },
@@ -104240,17 +106351,19 @@
    "Stage3.LevinsonMultiple",
    "Stage3.ApproxFE",
    "Stage3.ApproxShift",
-   "Stage3.ApproxBounds"
+   "Stage3.ApproxBounds",
+   "Stage3.ApproxDeriv"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 227,
+  "lines": 228,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/Abscissa.lean",
    "lean_stage3/Stage3/AliasClass.lean",
    "lean_stage3/Stage3/ApproxBounds.lean",
+   "lean_stage3/Stage3/ApproxDeriv.lean",
    "lean_stage3/Stage3/ApproxFE.lean",
    "lean_stage3/Stage3/ApproxShift.lean",
    "lean_stage3/Stage3/ArgCount.lean",

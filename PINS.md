@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-ii, the twisted moment: `Stage3/TwistedMoment.lean`
+
+    DONE        Young's Lemma 3 for a smooth weight w with (2.1)–(2.3):
+                I(α,β) = ∫ w(t)ζ(1/2+α+it)ζ(1/2+β−it)|ψ(σ₀+it)|² dt = c(α,β)·ŵ(0) + O(T/L),
+                uniformly for α, β ≪ 1/L, θ < 1/2; built as (i) inserting
+                `approxFE` and expanding |ψ|², (ii) the diagonal hm = kn giving
+                c(α,β)ŵ(0) (Young §5, Conrey's Lemma for the h, k sum), (iii) the
+                off-diagonal bounded by two integrations by parts with
+                `VY_deriv_bound`; or the largest honest piece, its open goal
+                named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes and then what's left" (log 0533, the
+                TRAPS rows, start 2b-ii). The statement is Young's (3.2)–(3.3)
+    DEPENDS     `ApproxFE`, `ApproxShift`, `ApproxBounds`, `ApproxDeriv`,
+                `DirichletMean`, `DirichletMeanW`, `MollifiedMean`
+    OUT         the operator (piece 3) and unsmoothing (piece 4)
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-i, the derivatives of V: `Stage3/ApproxDeriv.lean`
 
     DONE        Young's (4.3) for j ≥ 1: `VY_deriv_bound`: for each j and A,

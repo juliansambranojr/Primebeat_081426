@@ -61,6 +61,9 @@ build, 2026-09-08.
 | 48 | `Ambiguous term Li`, possible interpretations `_root_.Li` and `Stage3.Li`, at every use, in a module that opens `Stage3` from another namespace | upstream declares a root `Li`; inside `namespace Stage3` the local one wins, under `open Stage3` neither does | write `Stage3.Li` in full (unit 0427) |
 | 49 | `(deterministic) timeout at whnf` or `isDefEq` reported at a long declaration whose every step checks alone | the heartbeat budget is per declaration, so a long proof runs out even when no step is slow | split the proof into lemmas, one per part (`ApproxBounds.resY_T1`…`resY_T4`, `resY_den`), or raise `maxHeartbeats` above the docstring (unit 0532) |
 | 50 | `gcongr` makes no progress, or leaves side goals it should see, on a term built from a `set` name | `gcongr` matches the syntactic shape and does not unfold a `set` local | `unfold`, `rw [hdef]` or `simp only [name]` the `set` name before `gcongr` (unit 0532) |
+| 51 | `hasDerivAt_tsum` stalls on `NormedSpace ℝ ?m` | the summand and its derivative are left for unification, and the target space is not determined | pass `g` and `g'` to `hasDerivAt_tsum` explicitly (unit 0533) |
+| 52 | `linarith` fails after `norm_num at h` though the two hypotheses look alike | `norm_num at h` rewrote `‖s/2‖` to `‖s‖/2` in `h` only, so the companion hypothesis keeps the other form | normalize both: `norm_num at h h'`, or state the bound in one form from the start (unit 0533) |
+| 53 | `rw` finds no pattern in `(fun t => f t) t` after rewriting with a `funext` equality | the application is not beta-reduced, so the pattern sits under a lambda | `beta_reduce` (or `simp only []`) before the `rw` (unit 0533) |
 
 ## Bench and gate traps
 

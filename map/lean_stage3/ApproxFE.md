@@ -46,8 +46,9 @@ flowchart LR
   n28["<b>FY_reflect</b><br/>FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s)"]:::thm
   n29["<b>gamma_ne_off</b><br/>Gammaℝ (w + -((c : ℂ) + y * I)) ≠ 0"]:::shp
   x0(["<b>ApproxBounds</b><br/>9 theorems"]):::ext
-  x1(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
-  x2(["<b>ApproxShift</b><br/>5 theorems"]):::ext
+  x1(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
+  x2(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
+  x3(["<b>ApproxShift</b><br/>5 theorems"]):::ext
   n0 --> n18
   n0 --> n20
   n0 --> n22
@@ -81,16 +82,20 @@ flowchart LR
   n0 -.-> x0
   n0 -.-> x1
   n0 -.-> x2
+  n0 -.-> x3
   n1 -.-> x0
   n1 -.-> x1
   n1 -.-> x2
+  n1 -.-> x3
   n19 -.-> x0
   n2 -.-> x0
-  n22 -.-> x1
-  n27 -.-> x2
-  n28 -.-> x1
-  n29 -.-> x1
+  n2 -.-> x1
+  n22 -.-> x2
+  n27 -.-> x3
+  n28 -.-> x2
+  n29 -.-> x2
   n3 -.-> x0
+  n3 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -143,7 +148,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 51
 
 - **Is:** `` uA (α : ℂ) (t : ℝ) : ℂ := 1 / 2 + α + t * I noncomputable ``
-- **Used by 48:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.im_one_sub_uA`](../lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_uA), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.re_one_sub_uA`](../lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_uA), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_im`](#ApproxFE-uA_im), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.uA_re`](#ApproxFE-uA_re), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), and 8 more (full list in `map/lean_map.json`)
+- **Used by 64:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.im_one_sub_uA`](../lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_uA), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.re_one_sub_uA`](../lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_uA), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local), [`ApproxDeriv.cont_dY`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-cont_dY), [`ApproxDeriv.d2Y`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-d2Y), [`ApproxDeriv.dY`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY), [`ApproxDeriv.dY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY_hasSum), [`ApproxDeriv.gY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-gY_hasDerivAt), [`ApproxDeriv.im_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-im_conds), [`ApproxDeriv.meas_d2Y`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-meas_d2Y), [`ApproxDeriv.norm_d2Y_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2Y_le), [`ApproxDeriv.norm_d2term_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2term_le), [`ApproxDeriv.norm_dY_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dY_le), [`ApproxDeriv.norm_dterm_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.re_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_conds), [`ApproxDeriv.re_half_pos`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_half_pos), [`ApproxDeriv.summable_d2term`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-summable_d2term), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), and 24 more (full list in `map/lean_map.json`)
 
 <a name="ApproxFE-vB"></a>
 ### `ApproxFE.vB`
@@ -151,7 +156,7 @@ def · line 51
 def · line 55
 
 - **Is:** `` vB (β : ℂ) (t : ℝ) : ℂ := 1 / 2 + β - t * I noncomputable ``
-- **Used by 48:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.im_one_sub_vB`](../lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_vB), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.re_one_sub_vB`](../lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_vB), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.vB_im`](#ApproxFE-vB_im), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vB_re`](#ApproxFE-vB_re), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), and 8 more (full list in `map/lean_map.json`)
+- **Used by 64:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log), [`ApproxBounds.XY_size`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_size), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.im_one_sub_vB`](../lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_vB), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.re_one_sub_vB`](../lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_vB), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local), [`ApproxDeriv.cont_dY`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-cont_dY), [`ApproxDeriv.d2Y`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-d2Y), [`ApproxDeriv.dY`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY), [`ApproxDeriv.dY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY_hasDerivAt), [`ApproxDeriv.dY_hasSum`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-dY_hasSum), [`ApproxDeriv.gY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-gY_hasDerivAt), [`ApproxDeriv.im_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-im_conds), [`ApproxDeriv.meas_d2Y`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-meas_d2Y), [`ApproxDeriv.norm_d2Y_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2Y_le), [`ApproxDeriv.norm_d2term_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2term_le), [`ApproxDeriv.norm_dY_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dY_le), [`ApproxDeriv.norm_dterm_le`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dterm_le), [`ApproxDeriv.re_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_conds), [`ApproxDeriv.re_half_pos`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_half_pos), [`ApproxDeriv.summable_d2term`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-summable_d2term), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), and 24 more (full list in `map/lean_map.json`)
 
 <a name="ApproxFE-XY"></a>
 ### `ApproxFE.XY`
@@ -168,7 +173,7 @@ def · line 59
 def · line 64
 
 - **Is:** `` GY (α β s : ℂ) : ℂ := cexp (s ^ 2) * (((α + β) ^ 2 - (2 * s) ^ 2) / (α + β) ^ 2) noncomputable ``
-- **Used by 25:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxBounds.resY_term`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_term), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.GY_neg`](#ApproxFE-GY_neg), [`ApproxFE.GY_swap`](#ApproxFE-GY_swap), [`ApproxFE.GY_zero`](#ApproxFE-GY_zero), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), [`ApproxShift.GY_analyticAt`](../lean_stage3/ApproxShift.md#ApproxShift-GY_analyticAt), [`ApproxShift.GY_norm_le`](../lean_stage3/ApproxShift.md#ApproxShift-GY_norm_le), [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero), [`ApproxShift.resA`](../lean_stage3/ApproxShift.md#ApproxShift-resA), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds)
+- **Used by 27:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxBounds.resY_T1`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T1), [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2), [`ApproxBounds.resY_T3`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T3), [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4), [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small), [`ApproxBounds.resY_term`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_term), [`ApproxDeriv.F_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-F_hasDerivAt), [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.GY_neg`](#ApproxFE-GY_neg), [`ApproxFE.GY_swap`](#ApproxFE-GY_swap), [`ApproxFE.GY_zero`](#ApproxFE-GY_zero), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), [`ApproxShift.GY_analyticAt`](../lean_stage3/ApproxShift.md#ApproxShift-GY_analyticAt), [`ApproxShift.GY_norm_le`](../lean_stage3/ApproxShift.md#ApproxShift-GY_norm_le), [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero), [`ApproxShift.resA`](../lean_stage3/ApproxShift.md#ApproxShift-resA), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds)
 
 <a name="ApproxFE-gY"></a>
 ### `ApproxFE.gY`
@@ -177,7 +182,7 @@ def · line 68
 
 - **Is:** `` gY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := Gammaℝ (uA α t + s) * Gammaℝ (vB β t + s) / (Gammaℝ (uA α t) * Gammaℝ (vB β t)) noncomputable ``
 - **Built from:** [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 11:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
+- **Used by 13:** [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local), [`ApproxDeriv.gY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-gY_hasDerivAt), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
 
 <a name="ApproxFE-KY"></a>
 ### `ApproxFE.KY`
@@ -186,7 +191,7 @@ def · line 73
 
 - **Is:** `` KY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := GY α β s / s * gY α β t s noncomputable ``
 - **Built from:** [`ApproxFE.GY`](#ApproxFE-GY), [`ApproxFE.gY`](#ApproxFE-gY)
-- **Used by 16:** [`ApproxBounds.VY_line_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_bound), [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq), [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.norm_VY_le`](../lean_stage3/ApproxBounds.md#ApproxBounds-norm_VY_le), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.VY`](#ApproxFE-VY), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
+- **Used by 25:** [`ApproxBounds.VY_line_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_bound), [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq), [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound), [`ApproxBounds.integrand_differentiableAt`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt), [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-), [`ApproxBounds.norm_VY_le`](../lean_stage3/ApproxBounds.md#ApproxBounds-norm_VY_le), [`ApproxDeriv.F_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-F_hasDerivAt), [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local), [`ApproxDeriv.VY1`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY1), [`ApproxDeriv.VY1_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY1_hasDerivAt), [`ApproxDeriv.VY2`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY2), [`ApproxDeriv.VY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_line_bound`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_line_bound), [`ApproxDeriv.cont_F`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-cont_F), [`ApproxDeriv.norm_F_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_F_local), [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.VY`](#ApproxFE-VY), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
 
 <a name="ApproxFE-VY"></a>
 ### `ApproxFE.VY`
@@ -195,7 +200,7 @@ def · line 77
 
 - **Is:** `` VY (α β : ℂ) (c x t : ℝ) : ℂ := VerticalIntegral' (fun s => KY α β t s * (x : ℂ) ^ (-s)) c noncomputable ``
 - **Built from:** [`ApproxFE.KY`](#ApproxFE-KY)
-- **Used by 9:** [`ApproxBounds.VY_decay`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_decay), [`ApproxBounds.VY_decay_young`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_decay_young), [`ApproxBounds.VY_line_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_bound), [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq), [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.norm_VY_le`](../lean_stage3/ApproxBounds.md#ApproxBounds-norm_VY_le), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE)
+- **Used by 13:** [`ApproxBounds.VY_decay`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_decay), [`ApproxBounds.VY_decay_young`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_decay_young), [`ApproxBounds.VY_line_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_bound), [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq), [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue), [`ApproxBounds.norm_VY_le`](../lean_stage3/ApproxBounds.md#ApproxBounds-norm_VY_le), [`ApproxDeriv.VY_deriv_bound`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY_deriv_bound), [`ApproxDeriv.VY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY_hasDerivAt), [`ApproxDeriv.VYj_lines`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VYj_lines), [`ApproxDeriv.iteratedDeriv_VY`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-iteratedDeriv_VY), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE)
 
 <a name="ApproxFE-FY"></a>
 ### `ApproxFE.FY`
@@ -248,7 +253,7 @@ line 85 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.uA`](#ApproxFE-uA)
 
-**Feeds** (18 that use it)
+**Feeds** (21 that use it)
 
   - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log) (ApproxBounds) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
@@ -258,6 +263,9 @@ line 85 · arrows read from text
   - [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-) (ApproxBounds) — `` DifferentiableAt ℂ (fun s => KY α β t s * (x : ℂ) ^ (-s)) s ``
   - [`ApproxBounds.resY_T2`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T2) (ApproxBounds) — `` ‖GY α β (-uA α t) / uA α t * completedRiemannZeta (vB β t - uA α t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10… ``
   - [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den) (ApproxBounds) — `` Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Real.pi / 2 + 1) * (t + 1 / 10)) ≤ ‖Gammaℝ (uA α t) * Gammaℝ (vB β t)‖ ``
+  - [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local) (ApproxDeriv) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (Real.exp (-y ^ 2) * (1 + y ^ 2)) ``
+  - [`ApproxDeriv.gY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-gY_hasDerivAt) (ApproxDeriv) — `` HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t ``
+  - [`ApproxDeriv.re_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_conds) (ApproxDeriv) — `` 1 / 20 ≤ (uA α t / 2).re ∧ 1 / 20 ≤ (uA α t / 2 + s / 2).re ∧ 1 / 20 ≤ (vB β t / 2).re ∧ 1 / 20 ≤ (vB β t / 2 + s / 2).re ``
   - [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect) — `` FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) ``
   - [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne) — `` Gammaℝ (uA α t) ≠ 0 ``
   - [`ApproxFE.KY_bound`](#ApproxFE-KY_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ y : ℝ, ‖KY α β t (c + y * I)‖ ≤ C * Real.exp (-(1 / 2) * y ^ 2) ``
@@ -291,7 +299,7 @@ line 88 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.vB`](#ApproxFE-vB)
 
-**Feeds** (18 that use it)
+**Feeds** (21 that use it)
 
   - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log) (ApproxBounds) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
@@ -301,6 +309,9 @@ line 88 · arrows read from text
   - [`ApproxBounds.integrand_differentiableAt'`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_differentiableAt-) (ApproxBounds) — `` DifferentiableAt ℂ (fun s => KY α β t s * (x : ℂ) ^ (-s)) s ``
   - [`ApproxBounds.resY_T4`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_T4) (ApproxBounds) — `` ‖GY α β (-vB β t) / vB β t * completedRiemannZeta (uA α t - vB β t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10… ``
   - [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den) (ApproxBounds) — `` Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Real.pi / 2 + 1) * (t + 1 / 10)) ≤ ‖Gammaℝ (uA α t) * Gammaℝ (vB β t)‖ ``
+  - [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local) (ApproxDeriv) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (Real.exp (-y ^ 2) * (1 + y ^ 2)) ``
+  - [`ApproxDeriv.gY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-gY_hasDerivAt) (ApproxDeriv) — `` HasDerivAt (fun t => gY α β t s) (gY α β t s * dY α β t s) t ``
+  - [`ApproxDeriv.re_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-re_conds) (ApproxDeriv) — `` 1 / 20 ≤ (uA α t / 2).re ∧ 1 / 20 ≤ (uA α t / 2 + s / 2).re ∧ 1 / 20 ≤ (vB β t / 2).re ∧ 1 / 20 ≤ (vB β t / 2 + s / 2).re ``
   - [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect) — `` FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) ``
   - [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne) — `` Gammaℝ (vB β t) ≠ 0 ``
   - [`ApproxFE.KY_bound`](#ApproxFE-KY_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ y : ℝ, ‖KY α β t (c + y * I)‖ ≤ C * Real.exp (-(1 / 2) * y ^ 2) ``
@@ -334,11 +345,12 @@ line 91 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.uA`](#ApproxFE-uA)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log) (ApproxBounds) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
   - [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound) (ApproxBounds) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → ‖gY α β t (σ + y * I)‖ ≤ C * (t / (2 * Real.pi… ``
   - [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den) (ApproxBounds) — `` Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Real.pi / 2 + 1) * (t + 1 / 10)) ≤ ‖Gammaℝ (uA α t) * Gammaℝ (vB β t)‖ ``
+  - [`ApproxDeriv.im_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-im_conds) (ApproxDeriv) — `` t / 5 ≤ |(uA α t / 2).im| ∧ t / 5 ≤ |(uA α t / 2 + ((σ : ℂ) + y * I) / 2).im| ∧ t / 5 ≤ |(vB β t / 2).im| ∧ t / 5 ≤ |(vB β t / 2 + ((σ : ℂ) + y * I) /… ``
 
 <a name="ApproxFE-vB_im"></a>
 ### `ApproxFE.vB_im`
@@ -362,11 +374,12 @@ line 94 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.vB`](#ApproxFE-vB)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxBounds.XY_log`](../lean_stage3/ApproxBounds.md#ApproxBounds-XY_log) (ApproxBounds) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
   - [`ApproxBounds.gY_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-gY_bound) (ApproxBounds) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → ‖gY α β t (σ + y * I)‖ ≤ C * (t / (2 * Real.pi… ``
   - [`ApproxBounds.resY_den`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_den) (ApproxBounds) — `` Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Real.pi / 2 + 1) * (t + 1 / 10)) ≤ ‖Gammaℝ (uA α t) * Gammaℝ (vB β t)‖ ``
+  - [`ApproxDeriv.im_conds`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-im_conds) (ApproxDeriv) — `` t / 5 ≤ |(uA α t / 2).im| ∧ t / 5 ≤ |(uA α t / 2 + ((σ : ℂ) + y * I) / 2).im| ∧ t / 5 ≤ |(vB β t / 2).im| ∧ t / 5 ≤ |(vB β t / 2 + ((σ : ℂ) + y * I) /… ``
 
 <a name="ApproxFE-zeta_fe"></a>
 ### `ApproxFE.zeta_fe`
