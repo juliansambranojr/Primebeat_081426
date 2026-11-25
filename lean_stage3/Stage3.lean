@@ -233,6 +233,7 @@ import Stage3.Lemma3
 import Stage3.Operator
 import Stage3.LevinsonWindowNear
 import Stage3.Unsmooth
+import Stage3.FloorConst
 
 namespace Stage3
 
