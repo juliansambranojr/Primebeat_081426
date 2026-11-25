@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing at scale: Stirling's series and sharper Littlewood constants: `Stage3/StirlingSeries*.lean`, `Stage3/LittlewoodSharp*.lean`
+
+    DONE        (a) Stirling's series for log Γ(z) with an explicit remainder
+                (Re z > 0, |z| large: log Γ = (z−½)log z − z + ½ log 2π +
+                Σ_{k<K} B_{2k}/(2k(2k−1)z^{2k−1}) + R_K, |R_K| ≤ explicit), and a
+                ball enclosure of the gamma phase at height t in O(K) balls,
+                replacing `SignDataGamma.tail_le`; (b) Littlewood's constants
+                sharpened (the per-zero 7/2, the log 2 losses, the radii) with
+                the closing height recomputed; one unit each
+    ASSUMED     Julian, 2026-11-25: "Yes to log and stirling". Written before the
+                workers start.
+    DEPENDS     `SignData*`, `StirlingLog`, `Stirling`, `TuringLW*`, `ZetaEM`
+    OUT         the PNT for μ with a rate; B3; C's core
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing's sign data: `Stage3/SignData*.lean`
 
     DONE        a certified evaluation of Λ(1/2 + it) at given rational t in Lean:
