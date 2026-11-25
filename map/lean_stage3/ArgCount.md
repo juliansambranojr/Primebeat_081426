@@ -29,15 +29,16 @@ flowchart LR
   x0(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour<br/>stmtArgIdentity_holds"]):::ext
   x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
   x2(["<b>ReZetaCount</b><br/>card_reZeros_le<br/>mem_reZeros<br/>re_zeta_two_line_pos"]):::ext
-  x3(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
-  x4(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x5(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
-  x6(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x7(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x8(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x9(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x10(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x11(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x4(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
+  x5(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x6(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x7(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x8(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x9(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x10(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x11(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x12(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -56,29 +57,30 @@ flowchart LR
   n8 --> n11
   n8 --> n12
   n9 --> n10
-  n12 -.-> x3
-  n12 -.-> x5
+  n12 -.-> x4
+  n12 -.-> x6
   n14 -.-> x10
   n14 -.-> x11
-  n14 -.-> x8
+  n14 -.-> x12
   n14 -.-> x9
   n3 -.-> x3
-  n7 -.-> x3
-  n8 -.-> x5
+  n3 -.-> x4
+  n7 -.-> x4
+  n8 -.-> x6
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
   x1 -.-> n0
   x2 -.-> n0
-  x4 -.-> n10
-  x4 -.-> n13
-  x4 -.-> n14
-  x4 -.-> n6
-  x4 -.-> n7
-  x6 -.-> n13
-  x6 -.-> n14
+  x5 -.-> n10
+  x5 -.-> n13
+  x5 -.-> n14
+  x5 -.-> n6
+  x5 -.-> n7
   x7 -.-> n13
   x7 -.-> n14
+  x8 -.-> n13
+  x8 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -219,9 +221,10 @@ riemannZeta.N T ≤ riemannZeta.N T'
 
   - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+  - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="ArgCount-N_eq_of_no_zero_between"></a>
