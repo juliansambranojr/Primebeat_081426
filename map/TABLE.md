@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>464 theorems counting,<br/>in 88 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>466 theorems counting,<br/>in 90 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1562 theorems shape,<br/>in 203 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1576 theorems shape,<br/>in 206 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1013 theorems reads ζ,<br/>in 178 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1021 theorems reads ζ,<br/>in 180 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 568 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1813 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1034 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 570 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1827 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1042 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 464 | 1562 | 1013 |
+| `lean_stage3/` | 466 | 1576 | 1021 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -1132,6 +1132,18 @@ TuringAvg — block S14 of `lean_stage3/design/stencil.md`, Turing's method, ste
 TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 3: the certificate, signs of `Z` at finitely many points ⊢ the defect is `0` up to a height. 2026-11-25.
 
 - [`Turing.integral_step`](./lean_stage3/TuringCert.md#Turing-integral_step) — `` (∫ u in a..b, if s < u then (1 : ℝ) else 0) = b - s `` The step function `[s < u]` integrates to `b − s` over `[a, b] ∋ s`.
+
+### [`TuringLWHoriz`](./lean_stage3/TuringLWHoriz.md) — 1
+
+TuringLWHoriz — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's three pieces: the lower side `Turing.StmtHorizLower a₂ b₂`, proved with `a₂ = 102`, `b₂ = 500`. 2026-11-25.
+
+- [`TuringLW.intervalIntegrable_sum'`](./lean_stage3/TuringLWHoriz.md#TuringLW-intervalIntegrable_sum-) — `` IntervalIntegrable (fun x => ∑ i ∈ s, f i x) volume a b `` A finite sum of interval-integrable real functions, in lambda form.
+
+### [`TuringLWHorizPoint`](./lean_stage3/TuringLWHorizPoint.md) — 1
+
+TuringLWHorizPoint — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the lower side `StmtHorizLower`, part 2, the pointwise lower bound for `log|ζ|` near the segment. 2026-11-25.
+
+- [`TuringLW.h78`](./lean_stage3/TuringLWHorizPoint.md#TuringLW-h78) — `` (7 : ℝ) / 8 < 1 ``
 
 ### [`TwistedMoment`](./lean_stage3/TwistedMoment.md) — 29
 

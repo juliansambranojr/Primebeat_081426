@@ -7,7 +7,7 @@ TuringS — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 
 8 theorems, 8 definitions, 240 lines. 
 
 **Imports:** [`Defect`](../lean_stage3/Defect.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)  
-**Imported by:** [`Turing`](../lean_stage3/Turing.md), [`TuringAvg`](../lean_stage3/TuringAvg.md)
+**Imported by:** [`Turing`](../lean_stage3/Turing.md), [`TuringAvg`](../lean_stage3/TuringAvg.md), [`TuringLWHoriz`](../lean_stage3/TuringLWHoriz.md)
 
 ## The picture
 
@@ -136,7 +136,7 @@ def · line 117
 The lower side of the horizontal `log |ζ|` integral: the analytic core.
 
 - **Is:** `` StmtHorizLower (a₂ b₂ : ℝ) : Prop := ∀ t : ℝ, 2 ≤ t → -(a₂ * Real.log t + b₂) ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ``
-- **Used by 1:** [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 2:** [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 ## Theorems
 
