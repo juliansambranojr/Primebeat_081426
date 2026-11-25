@@ -15709,6 +15709,2338 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ApproxBounds.lean",
+  "module": "Stage3.ApproxBounds",
+  "stem": "ApproxBounds",
+  "header": "# ApproxBounds — block S12 of `lean_stage3/design/stencil.md`, piece 2a, the sizes. 2026-11-25.",
+  "imports": [
+   "Stage3.ApproxShift"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "ApproxBounds"
+  ],
+  "lines": 1722,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ApproxShift.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "fY",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.fY",
+    "line": 52,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y u : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_anti",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_le_inv",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_nonneg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "LY",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y u : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_nonneg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_tendsto",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_add_I",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_hasDerivAt",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_hasDerivAt",
+    "line": 58,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "hu : 0 < u"
+    ],
+    "proves": "HasDerivAt (LY Y) (-2 * fY Y u) u",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "fY_nonneg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.fY_nonneg",
+    "line": 73,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "hu : 0 < u"
+    ],
+    "proves": "0 ≤ fY Y u",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "fY_anti",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.fY_anti",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "ha : 0 < a",
+     "hab : a ≤ b"
+    ],
+    "proves": "fY Y b ≤ fY Y a",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_anti",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "fY_le_inv",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.fY_le_inv",
+    "line": 84,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "hu : 0 < u"
+    ],
+    "proves": "fY Y u ≤ 1 / u",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_le_inv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_nonneg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_nonneg",
+    "line": 89,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y u : ℝ"
+    ],
+    "proves": "0 ≤ LY Y u",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_step",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_step",
+    "line": 96,
+    "why": "One step: `2(b−a) f(b) ≤ L(a) − L(b) ≤ 2(b−a) f(a)` for `0 < a ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "ha : 0 < a",
+     "hab : a ≤ b"
+    ],
+    "proves": "2 * (b - a) * fY Y b ≤ LY Y a - LY Y b ∧ LY Y a - LY Y b ≤ 2 * (b - a) * fY Y a",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_anti"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_hasDerivAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_anti"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_fY_le",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.sum_fY_le",
+    "line": 117,
+    "why": "`Σ_{j ≤ n} f(x+j) ≤ f(x) + L(x)/2`.",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "hx : 0 < x",
+     "n : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.range (n + 1), fY Y (x + j) ≤ fY Y x + LY Y x / 2",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_nonneg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_nonneg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_fY_ge",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.sum_fY_ge",
+    "line": 134,
+    "why": "`(L(x) − L(x+n+1))/2 ≤ Σ_{j ≤ n} f(x+j)`.",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ",
+     "hx : 0 < x",
+     "n : ℕ"
+    ],
+    "proves": "LY Y x / 2 - LY Y (x + ((n + 1 : ℕ) : ℝ)) / 2 ≤ ∑ j ∈ Finset.range (n + 1), fY Y (x + j)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_norm_add_I",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_norm_add_I",
+    "line": 148,
+    "why": "`log ‖a + iY‖ = log a + L(a)/2` for `a > 0`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a",
+     "Y : ℝ"
+    ],
+    "proves": "Real.log ‖(a : ℂ) + Y * I‖ = Real.log a + LY Y a / 2",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_add_I",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_GammaSeq",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.norm_GammaSeq",
+    "line": 159,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "‖GammaSeq s n‖ = ‖(n : ℂ) ^ s‖ * (n.factorial : ℝ) / ∏ j ∈ Finset.range (n + 1), ‖s + j‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_GammaSeq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_GammaSeq_sub",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_GammaSeq_sub",
+    "line": 166,
+    "why": "The partial product: `log‖GammaSeq (x+iY) n‖ − log‖GammaSeq x n‖ = −½ Σ_{j≤n} L(x+j)`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "Y : ℝ",
+     "hn : 1 ≤ n"
+    ],
+    "proves": "Real.log ‖GammaSeq ((x : ℂ) + Y * I) n‖ - Real.log ‖GammaSeq (x : ℂ) n‖ = -(1 / 2) * ∑ j ∈ Finset.range (n + 1), LY Y (x + j)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_add_I",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_GammaSeq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_add_I",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_GammaSeq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "lg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lg",
+    "line": 210,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x Y : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.tendsto_log_GammaSeq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_log_GammaSeq",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.tendsto_log_GammaSeq",
+    "line": 212,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "Y : ℝ"
+    ],
+    "proves": "Tendsto (fun n : ℕ => Real.log ‖GammaSeq ((x : ℂ) + Y * I) n‖ - Real.log ‖GammaSeq (x : ℂ) n‖) atTop (𝓝 (lg x Y))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.tendsto_log_GammaSeq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_tendsto",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_tendsto",
+    "line": 229,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y x : ℝ"
+    ],
+    "proves": "Tendsto (fun n : ℕ => LY Y (x + ((n + 1 : ℕ) : ℝ))) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_shift",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gamma_shift",
+    "line": 245,
+    "why": "The real shift at a fixed height, from Euler's product: for `0 < x₁ ≤ x₂`, `(x₂−x₁) L(x₂)/2 ≤ lg x₂ Y − lg x₁ Y ≤ (x₂−x₁)(f(x₁) + L(x₁)/2)`.",
+    "sorry": false,
+    "needs": [
+     "h1 : 0 < x₁",
+     "h12 : x₁ ≤ x₂",
+     "Y : ℝ"
+    ],
+    "proves": "(x₂ - x₁) * (LY Y x₂ / 2) ≤ lg x₂ Y - lg x₁ Y ∧ lg x₂ Y - lg x₁ Y ≤ (x₂ - x₁) * (fY Y x₁ + LY Y x₁ / 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_tendsto",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.tendsto_log_GammaSeq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_step",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_tendsto",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_GammaSeq_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_ge",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.sum_fY_le",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.tendsto_log_GammaSeq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "lY",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY",
+    "line": 294,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_le_abs",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_lip",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lY_nonneg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY_nonneg",
+    "line": 296,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "0 ≤ lY Y",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lY_neg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY_neg",
+    "line": 301,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "lY (-Y) = lY Y",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_eq",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_eq",
+    "line": 304,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "Y : ℝ"
+    ],
+    "proves": "LY Y x = Real.log (x ^ 2 + Y ^ 2) - 2 * Real.log x",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "LY_half_sub",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.LY_half_sub",
+    "line": 314,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "Y : ℝ"
+    ],
+    "proves": "|LY Y x / 2 - lY Y| ≤ |Real.log x|",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_rel",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gamma_rel",
+    "line": 341,
+    "why": "The real shift in the `ℓ` form: `|lg x₂ Y − lg x₁ Y − (x₂−x₁) ℓ(Y)| ≤ (x₂−x₁)(1/x₁ + |log x₁| + |log x₂|)`.",
+    "sorry": false,
+    "needs": [
+     "h1 : 0 < x₁",
+     "h12 : x₁ ≤ x₂",
+     "Y : ℝ"
+    ],
+    "proves": "|lg x₂ Y - lg x₁ Y - (x₂ - x₁) * lY Y| ≤ (x₂ - x₁) * (1 / x₁ + |Real.log x₁| + |Real.log x₂|)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_le_inv",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.LY_half_sub",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.fY_le_inv",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_half_norm_sq",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gamma_half_norm_sq",
+    "line": 364,
+    "why": "`‖Γ(1/2+iY)‖² = π / cosh(πY)` (PNT+ `gamma_half_vertical_norm_sq`, not built at the pin; re-proved).",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "‖Complex.Gamma (((1 / 2 : ℝ) : ℂ) + Y * I)‖ ^ 2 = Real.pi / Real.cosh (Real.pi * Y)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_half_norm_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_gamma_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_cosh_bounds",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_cosh_bounds",
+    "line": 386,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "|x| - Real.log 2 ≤ Real.log (Real.cosh x) ∧ Real.log (Real.cosh x) ≤ |x|",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_cosh_bounds",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_gamma_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_gamma_half",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_gamma_half",
+    "line": 407,
+    "why": "On the half line: `|log‖Γ(1/2+iY)‖ − (log π − π|Y|)/2| ≤ log 2 / 2`.",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "|Real.log ‖Complex.Gamma (((1 / 2 : ℝ) : ℂ) + Y * I)‖ - (Real.log Real.pi - Real.pi * |Y|) / 2| ≤ Real.log 2 / 2",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_gamma_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_half_norm_sq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_cosh_bounds"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_half_norm_sq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_cosh_bounds"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gModel",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gModel",
+    "line": 426,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "r Y : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gErr",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gErr",
+    "line": 432,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "r : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr_nonneg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_norm_Gamma_approx",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_norm_Gamma_approx",
+    "line": 436,
+    "why": "Stirling in the crude-explicit form, for `Re z > 0`, every height: `|log ‖Γ z‖ − gModel (Re z) (Im z)| ≤ gErr (Re z)`.",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re"
+    ],
+    "proves": "|Real.log ‖Complex.Gamma z‖ - gModel z.re z.im| ≤ gErr z.re",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_gamma_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gamma_rel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_gamma_half"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_norm_Gammaℝ",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_norm_Gammaℝ",
+    "line": 472,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < w.re"
+    ],
+    "proves": "Real.log ‖Gammaℝ w‖ = -(w.re / 2) * Real.log Real.pi + Real.log ‖Complex.Gamma (w / 2)‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "gRModel",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gRModel",
+    "line": 483,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "w : ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_norm_Gammaℝ_approx",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_norm_Gammaℝ_approx",
+    "line": 485,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < w.re"
+    ],
+    "proves": "|Real.log ‖Gammaℝ w‖ - gRModel w| ≤ gErr (w.re / 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "gErr_nonneg",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gErr_nonneg",
+    "line": 495,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hr : 0 < r"
+    ],
+    "proves": "0 ≤ gErr r",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "const_bound",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.const_bound",
+    "line": 502,
+    "why": "Uniform constants on a compact range of real parts.",
+    "sorry": false,
+    "needs": [
+     "hlo : 0 < lo"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ r : ℝ, lo ≤ r → r ≤ hi → |Real.log (Real.Gamma r)| ≤ K ∧ gErr r ≤ K",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lY_near",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY_near",
+    "line": 536,
+    "why": "`|ℓ(Y) − log(t/2)| ≤ 3` for `t ≥ 1`, `|Y − t/2| ≤ t/10`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t",
+     "hY : |Y - t / 2| ≤ t / 10"
+    ],
+    "proves": "|lY Y - Real.log (t / 2)| ≤ 3",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_one_sub_uA",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.re_one_sub_uA",
+    "line": 561,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(1 - uA α t).re = 1 / 2 - α.re",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_one_sub_uA",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.im_one_sub_uA",
+    "line": 563,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(1 - uA α t).im = -(α.im + t)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_uA",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_one_sub_vB",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.re_one_sub_vB",
+    "line": 565,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(1 - vB β t).re = 1 / 2 - β.re",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_one_sub_vB",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.im_one_sub_vB",
+    "line": 567,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(1 - vB β t).im = -(β.im - t)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_vB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gRModel_reflect",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gRModel_reflect",
+    "line": 571,
+    "why": "The model difference `gRModel(1−u) − gRModel(u)`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "a Y : ℝ",
+     "hre : w.re = 1 / 2 + a",
+     "him : w.im = Y",
+     "w' : ℂ",
+     "hre' : w'.re = 1 / 2 - a",
+     "him' : w'.im = -Y"
+    ],
+    "proves": "gRModel w' - gRModel w = a * Real.log Real.pi + Real.log (Real.Gamma ((1 / 2 - a) / 2)) - Real.log (Real.Gamma ((1 / 2 + a) / 2)) - a * lY (Y / 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "XY_log",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.XY_log",
+    "line": 581,
+    "why": "The log of `‖X_{α,β,t}‖` is `Re(α+β)·(log π − log(t/2))` up to a constant, uniformly for `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| ≤ K",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_vB",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel_reflect",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_vB",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_div_two_pi",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.log_div_two_pi",
+    "line": 646,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : 0 < t"
+    ],
+    "proves": "Real.log (t / (2 * Real.pi)) = Real.log (t / 2) - Real.log Real.pi",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_div_two_pi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "XY_size",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.XY_size",
+    "line": 654,
+    "why": "Target 1, Young's (4.2) in the bound form, both sides: for `‖α‖, ‖β‖ ≤ 1/10` and `t ≥ 1`, `‖X_{α,β,t}‖ ≤ C (t/2π)^(−Re(α+β))` and `(t/2π)^(−Re(α+β)) ≤ C ‖X_{α,β,t}‖`, with one `C`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C : ℝ, 0 < C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ‖XY α β t‖ ≤ C * (t / (2 * Real.pi)) ^ (-(α + β).re) ∧ (t / (2 * Real.pi)) ^ (-(α + β).re) ≤ C * ‖XY α β t‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_div_two_pi",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_div_two_pi",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "lY_lip",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY_lip",
+    "line": 691,
+    "why": "`|ℓ(Y + h) − ℓ(Y)| ≤ |h|`.",
+    "sorry": false,
+    "needs": [
+     "Y h : ℝ"
+    ],
+    "proves": "|lY (Y + h) - lY Y| ≤ |h|",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_lip",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gR_shift",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gR_shift",
+    "line": 725,
+    "why": "One factor of `g`: `log‖Gammaℝ(w+s)‖ − log‖Gammaℝ w‖` for `s = σ + iy`, `Re w = 1/2 + a`, `Im w = 2Y₀` with `ℓ(Y₀)` within `3` of `log(t/2)`.",
+    "sorry": false,
+    "needs": [
+     "hre : w.re = 1 / 2 + a",
+     "him : w.im = 2 * Y₀",
+     "ha : |a| ≤ 1 / 10",
+     "hY₀ : |lY Y₀ - Real.log (t / 2)| ≤ 3",
+     "hσ : -(2 / 5) < σ",
+     "hK : |Real.log (Real.Gamma ((1 / 2 + a) / 2))| ≤ K ∧ gErr ((1 / 2 + a) / 2) ≤ K",
+     "hK' : |Real.log (Real.Gamma ((1 / 2 + a + σ) / 2))| ≤ K' ∧ gErr ((1 / 2 + a + σ) / 2) ≤ K'"
+    ],
+    "proves": "Real.log ‖Gammaℝ (w + (σ + y * I))‖ - Real.log ‖Gammaℝ w‖ ≤ σ / 2 * (Real.log (t / 2) - Real.log Real.pi) + 2 * K + 2 * K' + 3 * |σ| / 2 + (Real.pi / 4 + |σ| / 4 + 1 / 4) * |y|",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_lip"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_lip"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gY_bound",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gY_bound",
+    "line": 786,
+    "why": "Young's `g_{α,β}(s,t) = (t/2π)^s (1 + …)` in the bound form, on a strip `σ₀ ≤ Re s ≤ σ₁` with `σ₀ > −2/5`: `‖g(σ+iy, t)‖ ≤ C (t/2π)^σ e^{B|y|}`, uniformly in `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "h0 : -(2 / 5) < σ₀"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → ‖gY α β t (σ + y * I)‖ ≤ C * (t / (2 * Real.pi)) ^ σ * Real.exp ((Real.pi / 2 + (|σ₀| + |σ₁|) / 2 + 1 / 2) * |y|)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_div_two_pi",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_near",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_div_two_pi",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gauss_absorb",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gauss_absorb",
+    "line": 849,
+    "why": "`e^(−y²)(1+y²)e^(B|y|) ≤ 4 e^(B²) e^(−y²/2)`.",
+    "sorry": false,
+    "needs": [
+     "B y : ℝ"
+    ],
+    "proves": "Real.exp (-y ^ 2) * (1 + y ^ 2) * Real.exp (B * |y|) ≤ 4 * Real.exp (B ^ 2) * Real.exp (-(1 / 2) * y ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gauss_absorb",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q_le",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.Q_le",
+    "line": 868,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n A : ℝ",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "(n ^ 2 + A) / n ^ 2 ≤ (A + 1) * (1 + 1 / n ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.Q_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_bound",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.integrand_bound",
+    "line": 883,
+    "why": "The integrand of `V` on a strip `σ₀ ≤ Re s ≤ σ₁`, `|Re s| ≥ δ > 0`: `‖G(s)/s·g(s,t)·x^(−s)‖ ≤ C (1 + ‖α+β‖^(−2)) (t/2π)^σ x^(−σ) e^(−y²/2)`.",
+    "sorry": false,
+    "needs": [
+     "h0 : -(2 / 5) < σ₀",
+     "hδ : 0 < δ"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → δ ≤ ‖(σ : ℂ) + y * I‖ → ‖KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ)) * Real.exp (-(1 / 2) * y ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.Q_le",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gauss_absorb",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.Q_le",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gauss_absorb",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_VY_le",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.norm_VY_le",
+    "line": 939,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "σ x t : ℝ"
+    ],
+    "proves": "‖VY α β σ x t‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_line_bound",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.VY_line_bound",
+    "line": 952,
+    "why": "`V` on one line `Re s = σ`, `σ ≠ 0`, `σ > −2/5`: `‖V_σ(x,t)‖ ≤ C (1 + ‖α+β‖^(−2)) (t/2π)^σ x^(−σ)`.",
+    "sorry": false,
+    "needs": [
+     "h0 : -(2 / 5) < σ",
+     "hσ : σ ≠ 0"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ‖VY α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_differentiableAt",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.integrand_differentiableAt",
+    "line": 979,
+    "why": "The integrand of `V` is holomorphic on `Re s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "hα : -(1 / 2) < α.re",
+     "hβ : -(1 / 2) < β.re",
+     "hs : 0 < s.re"
+    ],
+    "proves": "DifferentiableAt ℂ (fun s => KY α β t s * (x : ℂ) ^ (-s)) s",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_le_ends",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.rpow_le_ends",
+    "line": 993,
+    "why": "`b^σ ≤ b^σ₀ + b^σ₁` for `σ₀ ≤ σ ≤ σ₁`.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "h0 : σ₀ ≤ σ",
+     "h1 : σ ≤ σ₁"
+    ],
+    "proves": "b ^ σ ≤ b ^ σ₀ + b ^ σ₁",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rect_tendsto_ab",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.rect_tendsto_ab",
+    "line": 1003,
+    "why": "PNT+'s `RectangleIntegral_tendsTo_VerticalIntegral` for `[a, b]` (ApproxShift's `rect_tendsto` is the case `[−c, c]`).",
+    "sorry": false,
+    "needs": [
+     "hbot : Tendsto (fun y : ℝ => ∫ x : ℝ in a..b, f (x + y * I)) atBot (𝓝 0)",
+     "htop : Tendsto (fun y : ℝ => ∫ x : ℝ in a..b, f (x + y * I)) atTop (𝓝 0)",
+     "hleft : Integrable (fun y : ℝ => f (↑a + y * I))",
+     "hright : Integrable (fun y : ℝ => f (↑b + y * I))"
+    ],
+    "proves": "Tendsto (fun T : ℝ => RectangleIntegral f (↑a - I * T) (↑b + I * T)) atTop (𝓝 (VerticalIntegral f b - VerticalIntegral f a))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rect_tendsto_ab",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_line_eq",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.VY_line_eq",
+    "line": 1021,
+    "why": "`V` does not depend on the line: `V_c = V_{c'}` for `0 < c ≤ c'` (Cauchy on the rectangle `[c, c'] × [−T, T]`, the horizontal edges `→ 0` by the Gaussian).",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hcc : c ≤ c'",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t",
+     "hx : 0 < x"
+    ],
+    "proves": "VY α β c x t = VY α β c' x t",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rect_tendsto_ab",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atBot",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atTop"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rect_tendsto_ab",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atBot",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atTop"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_decay",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.VY_decay",
+    "line": 1095,
+    "why": "Target 3, the `j = 0` case of Young's (4.3) for `x ≥ t`, with the direction read off the integral: shifting right, `‖V_{α,β}(x,t)‖ ≤ C_A (1 + ‖α+β‖^(−2)) (t/x)^A` for every `A > 0`, on every line `c > 0` (so for Young's `c = 1`), uniformly in `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`, `x > 0`. Large `x/t` makes `V` small.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / x) ^ A",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_differentiableAt'",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.integrand_differentiableAt'",
+    "line": 1120,
+    "why": "The integrand of `V` is differentiable at `s ≠ 0` with `Re s > −2/5`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hs : -(2 / 5) < s.re",
+     "hs0 : s ≠ 0"
+    ],
+    "proves": "DifferentiableAt ℂ (fun s => KY α β t s * (x : ℂ) ^ (-s)) s",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_residue",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.VY_residue",
+    "line": 1135,
+    "why": "The residue at `s = 0`, moving left: `V_{1/4}(x,t) − V_{−1/4}(x,t) = G(0) g(0) = 1` for `α + β ≠ 0` (`ContourShift.residue_rectangle_of_local` on `[−1/4, 1/4] × [−T, T]`).",
+    "sorry": false,
+    "needs": [
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0",
+     "ht : 1 ≤ t",
+     "hx : 0 < x"
+    ],
+    "proves": "VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atBot",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atTop",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_simple",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.rect_mem_nhds",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.rect_tendsto",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_le_ends",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_analyticAt",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atBot",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.gauss_atTop",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_simple",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.rect_mem_nhds",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.rect_tendsto",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_quarter_le",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.rpow_quarter_le",
+    "line": 1269,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hb : 0 ≤ b"
+    ],
+    "proves": "b ^ (1 / 4 : ℝ) ≤ 1 + b",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_quarter_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VY_decay_young",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.VY_decay_young",
+    "line": 1281,
+    "why": "Target 3 in Young's form, the `j = 0` case of (4.3) with the direction the integral gives: `‖V_{α,β}(x,t)‖ ≤ C_A (1 + ‖α+β‖^(−2)) (1 + x/t)^(−A)` for every `A > 0`, every `x > 0`, every line `c > 0`, uniformly in `‖α‖, ‖β‖ ≤ 1/10` with `α + β ≠ 0`, `t ≥ 1`. For `x ≤ t` it is the residue `1` plus the line `−1/4` (`VY_residue`); for `x ≥ t`, `VY_decay`.",
+    "sorry": false,
+    "needs": [
+     "hA : 0 < A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (1 + x / t) ^ (-A)",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_quarter_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.rpow_quarter_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "lY_le_abs",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.lY_le_abs",
+    "line": 1357,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Y : ℝ"
+    ],
+    "proves": "lY Y ≤ |Y|",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_le_abs",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gR_lower",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.gR_lower",
+    "line": 1370,
+    "why": "A lower bound for `‖Gammaℝ w‖`, `Re w = 1/2 + a`, `Im w = 2Y₀`: `log ‖Gammaℝ w‖ ≥ −2K − |log Γ(1/2)| − (π/2 + 1)|Y₀|`.",
+    "sorry": false,
+    "needs": [
+     "hre : w.re = 1 / 2 + a",
+     "him : w.im = 2 * Y₀",
+     "ha : |a| ≤ 1 / 10",
+     "hK : |Real.log (Real.Gamma ((1 / 2 + a) / 2))| ≤ K ∧ gErr ((1 / 2 + a) / 2) ≤ K"
+    ],
+    "proves": "-(2 * K + |Real.log (Real.Gamma (1 / 2))|) - (Real.pi / 2 + 1) * |Y₀| ≤ Real.log ‖Gammaℝ w‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_le_abs",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_le_abs",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_term",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_term",
+    "line": 1398,
+    "why": "One term of `resY`: `‖G(s)/d · Λ(w)‖`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t",
+     "hM0 : 0 ≤ M",
+     "hM : ∀ w : ℂ, |w.re| ≤ 2 → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖)",
+     "hsre : |s.re| ≤ 1",
+     "hsim1 : t - 1 / 10 ≤ |s.im|",
+     "hsim2 : |s.im| ≤ t + 1 / 10",
+     "hd : 2 / 5 ≤ ‖d‖",
+     "hwre : |w.re| ≤ 2",
+     "hwim : 1 ≤ |w.im|",
+     "hwn : ‖w‖ ≤ 2 * t + 2"
+    ],
+    "proves": "‖GY α β s / d * completedRiemannZeta w‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 + 8 * t))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.Q_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.Q_le",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.GY_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "poly_exp_bound",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.poly_exp_bound",
+    "line": 1433,
+    "why": "The Gaussian beats the rest: for `t ≥ 1`, `e^(1−(t−1/10)²)(1+(t+1/10)²)(14+8t)e^((π/2+1)(t+1/10)) ≤ 14 e^(L²/2+2) e^(−t²/2)`, `L = π/2 + 5`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t"
+    ],
+    "proves": "Real.exp (1 - (t - 1 / 10) ^ 2) * (1 + (t + 1 / 10) ^ 2) * (14 + 8 * t) * Real.exp ((Real.pi / 2 + 1) * (t + 1 / 10)) ≤ 14 * Real.exp ((Real.pi / 2 + 5) ^ 2 / 2 + 2) * Real.exp (-(t ^ 2 / 2))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.poly_exp_bound",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_T1",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_T1",
+    "line": 1462,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hM0 : 0 ≤ M",
+     "hM : ∀ w : ℂ, |w.re| ≤ 2 → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖)",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "‖GY α β (1 - uA α t) / (1 - uA α t) * completedRiemannZeta (vB β t + 1 - uA α t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 + 8 * t))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_T2",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_T2",
+    "line": 1491,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hM0 : 0 ≤ M",
+     "hM : ∀ w : ℂ, |w.re| ≤ 2 → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖)",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "‖GY α β (-uA α t) / uA α t * completedRiemannZeta (vB β t - uA α t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 + 8 * t))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_T3",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_T3",
+    "line": 1520,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hM0 : 0 ≤ M",
+     "hM : ∀ w : ℂ, |w.re| ≤ 2 → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖)",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "‖GY α β (1 - vB β t) / (1 - vB β t) * completedRiemannZeta (uA α t + 1 - vB β t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 + 8 * t))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_T4",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_T4",
+    "line": 1549,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hM0 : 0 ≤ M",
+     "hM : ∀ w : ℂ, |w.re| ≤ 2 → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖)",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "‖GY α β (-vB β t) / vB β t * completedRiemannZeta (uA α t - vB β t)‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 + 8 * t))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_den",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_den",
+    "line": 1579,
+    "why": "The denominator of `resY`: `‖Gammaℝ(u) Gammaℝ(v)‖ ≥ e^(−2K₂ − (π/2+1)(t + 1/10))`.",
+    "sorry": false,
+    "needs": [
+     "hK : ∀ r : ℝ, 1 / 5 ≤ r → r ≤ 3 / 10 → |Real.log (Real.Gamma r)| ≤ K ∧ gErr r ≤ K",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "ht : 1 ≤ t"
+    ],
+    "proves": "Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Real.pi / 2 + 1) * (t + 1 / 10)) ≤ ‖Gammaℝ (uA α t) * Gammaℝ (vB β t)‖",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resY_small",
+    "ns": "ApproxBounds",
+    "full": "ApproxBounds.resY_small",
+    "line": 1612,
+    "why": "Target 2: `‖resY α β t‖ ≤ C (1 + ‖α+β‖^(−2)) e^(−t²/2)` for `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`. The Gaussian `G` at the four poles, height `≈ t`, beats the `Λ` values (polynomial, `ApproxShift.Lambda_bound`) and `1/‖Gammaℝ(u) Gammaℝ(v)‖ ≪ e^((π/2+1)t)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ‖resY α β t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * Real.exp (-(t ^ 2 / 2))",
+    "file": "lean_stage3/Stage3/ApproxBounds.lean",
+    "id": "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.poly_exp_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.Lambda_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.const_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.poly_exp_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.Lambda_bound"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ApproxFE.lean",
   "module": "Stage3.ApproxFE",
   "stem": "ApproxFE",
@@ -15749,6 +18081,20 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_uA",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
@@ -15806,6 +18152,20 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.im_one_sub_vB",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.re_one_sub_vB",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
@@ -15869,6 +18229,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
@@ -15897,6 +18259,14 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T1",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T3",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
@@ -15944,6 +18314,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -15982,6 +18355,13 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -16018,6 +18398,12 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.norm_VY_le",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE"
@@ -16088,6 +18474,14 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T2",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -16125,6 +18519,14 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_size",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_T4",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
@@ -16161,7 +18563,11 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+    ]
    },
    {
     "kind": "theorem",
@@ -16187,7 +18593,11 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.XY_log",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gY_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den"
+    ]
    },
    {
     "kind": "theorem",
@@ -16650,6 +19060,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_differentiableAt'",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line"
     ]
    },
@@ -17064,6 +19476,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero"
     ]
@@ -17097,6 +19510,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
     ]
    },
@@ -17176,6 +19590,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
@@ -17375,6 +19790,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_small",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound"
     ]
    },
@@ -17402,6 +19818,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.integrand_bound",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_term",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_bound"
     ]
    },
@@ -17658,6 +20076,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_horiz_tendsto"
     ]
    },
@@ -17679,6 +20099,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_line_eq",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_horiz_tendsto"
     ]
    },
@@ -17889,6 +20311,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.FL_differentiableAt",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
@@ -17964,6 +20387,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_pole_neg",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_pole_one",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.local_zero"
@@ -18130,6 +20554,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
     ]
    },
@@ -18156,6 +20581,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds"
     ]
    },
@@ -27477,6 +29903,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_residue",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.stmtShift_holds",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
@@ -101812,16 +104239,18 @@
    "Stage3.LevinsonWindow",
    "Stage3.LevinsonMultiple",
    "Stage3.ApproxFE",
-   "Stage3.ApproxShift"
+   "Stage3.ApproxShift",
+   "Stage3.ApproxBounds"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 226,
+  "lines": 227,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/Abscissa.lean",
    "lean_stage3/Stage3/AliasClass.lean",
+   "lean_stage3/Stage3/ApproxBounds.lean",
    "lean_stage3/Stage3/ApproxFE.lean",
    "lean_stage3/Stage3/ApproxShift.lean",
    "lean_stage3/Stage3/ArgCount.lean",

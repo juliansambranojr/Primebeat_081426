@@ -856,3 +856,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-25  hsimple REMOVED (unit 0529, `LevinsonMultiple`): levinson_count' / levinson_window' — the window's only named input is the mean square K. Unconditional otherwise.
 - [open]   2026-11-25  S12 piece 1 (unit 0530, `ApproxFE`): Young's Lemma 4 exactly, given the named contour shift StmtShift. Unconditional.
 - [open]   2026-11-25  Contour shift PROVED (unit 0531, `ApproxShift`): approxFE, Young's Lemma 4 exactly, no shift hypothesis. Unconditional.
+- [open]   2026-11-25  S12 piece 2a PROVED (unit 0532, `ApproxBounds`): Stirling on vertical lines; |X| ~ (t/2π)^(−Re(α+β)); V decays (1+x/t)^(−A); resY ≤ C e^(−t²/2). TRAPS rows 49–50 added.

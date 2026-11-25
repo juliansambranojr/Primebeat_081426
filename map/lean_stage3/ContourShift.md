@@ -52,10 +52,11 @@ flowchart LR
   x10(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
   x11(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
   x12(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x13(["<b>ApproxShift</b><br/>local_simple<br/>stmtShift_holds"]):::ext
-  x14(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x15(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x16(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x13(["<b>ApproxBounds</b><br/>VY_residue"]):::ext
+  x14(["<b>ApproxShift</b><br/>local_simple<br/>stmtShift_holds"]):::ext
+  x15(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x16(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x17(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -105,8 +106,9 @@ flowchart LR
   n1 -.-> x2
   n10 -.-> x0
   n10 -.-> x13
-  n11 -.-> x13
-  n12 -.-> x13
+  n10 -.-> x14
+  n11 -.-> x14
+  n12 -.-> x14
   n14 -.-> x6
   n14 -.-> x8
   n15 -.-> x0
@@ -115,7 +117,7 @@ flowchart LR
   n17 -.-> x0
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x14
+  n18 -.-> x15
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
@@ -134,8 +136,8 @@ flowchart LR
   n21 -.-> x0
   n21 -.-> x1
   n21 -.-> x11
-  n21 -.-> x15
   n21 -.-> x16
+  n21 -.-> x17
   n21 -.-> x2
   n21 -.-> x3
   n23 -.-> x0
@@ -540,8 +542,9 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 
   - [`ContourShift.residue_rectangle_multi`](#ContourShift-residue_rectangle_multi) — `` RectangleIntegral' f z w = ∑ p ∈ P, A p ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds) (ApproxShift) — `` StmtShift α β t c ``
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``

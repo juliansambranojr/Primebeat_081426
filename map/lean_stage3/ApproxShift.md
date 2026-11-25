@@ -7,7 +7,7 @@
 29 theorems, 3 definitions, 814 lines. 
 
 **Imports:** [`ApproxFE`](../lean_stage3/ApproxFE.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxBounds`](../lean_stage3/ApproxBounds.md)
 
 ## The picture
 
@@ -44,7 +44,8 @@ flowchart LR
   n28["<b>approxFE ■</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
   x0(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   x1(["<b>ApproxFE</b><br/>5 theorems"]):::ext
-  x2(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
+  x2(["<b>ApproxBounds</b><br/>5 theorems"]):::ext
+  x3(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n12
@@ -82,6 +83,14 @@ flowchart LR
   n8 --> n12
   n8 --> n13
   n8 --> n9
+  n10 -.-> x2
+  n11 -.-> x2
+  n18 -.-> x2
+  n2 -.-> x2
+  n20 -.-> x2
+  n25 -.-> x2
+  n26 -.-> x2
+  n3 -.-> x2
   x0 -.-> n0
   x1 -.-> n2
   x1 -.-> n21
@@ -89,8 +98,8 @@ flowchart LR
   x1 -.-> n28
   x1 -.-> n5
   x1 -.-> n8
-  x2 -.-> n20
-  x2 -.-> n27
+  x3 -.-> n20
+  x3 -.-> n27
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -212,8 +221,9 @@ line 94 · arrows read from text
   - [`ApproxShift.gammaR_bound`](#ApproxShift-gammaR_bound) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ w : ℂ, 1 / 2 ≤ w.re → w.re ≤ R → ‖Gammaℝ w‖ ≤ M ``
   - [`ApproxShift.zeta_norm_le_abs`](#ApproxShift-zeta_norm_le_abs) — `` ‖riemannZeta w‖ ≤ 2 + 4 * ‖w‖ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ApproxBounds.resY_small`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_small) (ApproxBounds) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ‖resY α β t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * Real.exp (-(t ^ 2 / 2)) ``
   - [`ApproxShift.FL_bound`](#ApproxShift-FL_bound) — `` ∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| → ‖FL α β t s‖ ≤ C * Real.exp (-(1 / 2) * s.im ^ 2) ``
 
 <a name="ApproxShift-GY_norm_le"></a>
@@ -239,8 +249,10 @@ line 116 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound) (ApproxBounds) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → δ ≤ ‖(σ : ℂ) + y * I‖ → ‖KY α… ``
+  - [`ApproxBounds.resY_term`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_term) (ApproxBounds) — `` ‖GY α β s / d * completedRiemannZeta w‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 … ``
   - [`ApproxShift.FL_bound`](#ApproxShift-FL_bound) — `` ∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| → ‖FL α β t s‖ ≤ C * Real.exp (-(1 / 2) * s.im ^ 2) ``
 
 <a name="ApproxShift-poly_gauss"></a>
@@ -432,8 +444,10 @@ Tendsto (fun y : ℝ => Real.exp (-(1 / 2) * y ^ 2)) atTop (𝓝 0)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq) (ApproxBounds) — `` VY α β c x t = VY α β c' x t ``
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.FL_horiz_tendsto`](#ApproxShift-FL_horiz_tendsto) — `` Tendsto (fun y : ℝ => ∫ x : ℝ in (-c)..c, FL α β t (x + y * I)) atTop (𝓝 0) ∧ Tendsto (fun y : ℝ => ∫ x : ℝ in (-c)..c, FL α β t (x + y * I)) atBot (𝓝… ``
 
 <a name="ApproxShift-gauss_atBot"></a>
@@ -453,8 +467,10 @@ Tendsto (fun y : ℝ => Real.exp (-(1 / 2) * y ^ 2)) atBot (𝓝 0)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`ApproxBounds.VY_line_eq`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_line_eq) (ApproxBounds) — `` VY α β c x t = VY α β c' x t ``
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.FL_horiz_tendsto`](#ApproxShift-FL_horiz_tendsto) — `` Tendsto (fun y : ℝ => ∫ x : ℝ in (-c)..c, FL α β t (x + y * I)) atTop (𝓝 0) ∧ Tendsto (fun y : ℝ => ∫ x : ℝ in (-c)..c, FL α β t (x + y * I)) atBot (𝓝… ``
 
 <a name="ApproxShift-FL_horiz_tendsto"></a>
@@ -651,8 +667,9 @@ AnalyticAt ℂ (GY α β) p
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.FL_differentiableAt`](#ApproxShift-FL_differentiableAt) — `` DifferentiableAt ℂ (FL α β t) s ``
   - [`ApproxShift.local_zero`](#ApproxShift-local_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
   - [`ApproxShift.stmtShift_holds`](#ApproxShift-stmtShift_holds) — `` StmtShift α β t c ``
@@ -716,8 +733,9 @@ line 433 · arrows read from text
   - [`ContourShift.analyticAt_dslope`](../lean_stage3/ContourShift.md#ContourShift-analyticAt_dslope) (ContourShift) — `` AnalyticAt ℂ (dslope f p) p ``
   - [`ContourShift.div_sub_eq_dslope`](../lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) (ContourShift) — `` f s / (s - p) = f p / (s - p) + dslope f p s ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.local_pole_neg`](#ApproxShift-local_pole_neg) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h (-w₁) ∧ ∀ᶠ s in 𝓝[≠] (-w₁), F s = h s + g (-w₁) / w₁ * completedRiemannZeta (w₂ - w₁) / D / (s - -w₁) ``
   - [`ApproxShift.local_pole_one`](#ApproxShift-local_pole_one) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h (1 - w₁) ∧ ∀ᶠ s in 𝓝[≠] (1 - w₁), F s = h s + g (1 - w₁) / (1 - w₁) * completedRiemannZeta (w₂ + 1 - w₁) / D / (s - (1 - w… ``
   - [`ApproxShift.local_zero`](#ApproxShift-local_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
@@ -872,8 +890,9 @@ Rectangle (↑(-c) - I * ↑T) (↑c + I * ↑T) ∈ 𝓝 p
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.stmtShift_holds`](#ApproxShift-stmtShift_holds) — `` StmtShift α β t c ``
 
 <a name="ApproxShift-rect_tendsto"></a>
@@ -900,8 +919,9 @@ Tendsto (fun T : ℝ => RectangleIntegral f (↑(-c) - I * T) (↑c + I * T)) at
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ApproxBounds.VY_residue`](../lean_stage3/ApproxBounds.md#ApproxBounds-VY_residue) (ApproxBounds) — `` VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 ``
   - [`ApproxShift.stmtShift_holds`](#ApproxShift-stmtShift_holds) — `` StmtShift α β t c ``
 
 <a name="ApproxShift-stmtShift_holds"></a>

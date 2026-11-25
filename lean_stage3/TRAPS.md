@@ -59,6 +59,8 @@ build, 2026-09-08.
 | 46 | `(h.const_mul c).congr_fun …` on `h : IntegrableOn f s` reports `Invalid field congr_fun … And.congr_fun` | `Integrable.const_mul` returns an `Integrable`, which dot notation reads as its unfolded conjunction, so the `IntegrableOn` namespace is not searched | write `IntegrableOn.congr_fun (h.const_mul c) …` in full (units 0396, 0401) |
 | 47 | `rw [Real.log_pow] at h` then `linarith` fails; `h` reads `(↑K + 1) * log 2 ≤ log (x ^ 2)` | `h : log T ≤ log (x ^ 2)` came from a hypothesis stated before `set T := 2 ^ (K + 1)`, so its left side is still a power and `rw` took the first match | state the side you want as its own `have h2 : Real.log (x ^ 2) = 2 * L` and let `linarith` combine (unit 0407) |
 | 48 | `Ambiguous term Li`, possible interpretations `_root_.Li` and `Stage3.Li`, at every use, in a module that opens `Stage3` from another namespace | upstream declares a root `Li`; inside `namespace Stage3` the local one wins, under `open Stage3` neither does | write `Stage3.Li` in full (unit 0427) |
+| 49 | `(deterministic) timeout at whnf` or `isDefEq` reported at a long declaration whose every step checks alone | the heartbeat budget is per declaration, so a long proof runs out even when no step is slow | split the proof into lemmas, one per part (`ApproxBounds.resY_T1`…`resY_T4`, `resY_den`), or raise `maxHeartbeats` above the docstring (unit 0532) |
+| 50 | `gcongr` makes no progress, or leaves side goals it should see, on a term built from a `set` name | `gcongr` matches the syntactic shape and does not unfold a `set` local | `unfold`, `rw [hdef]` or `simp only [name]` the `set` name before `gcongr` (unit 0532) |
 
 ## Bench and gate traps
 

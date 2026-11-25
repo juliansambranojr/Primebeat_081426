@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-i, the derivatives of V: `Stage3/ApproxDeriv.lean`
+
+    DONE        Young's (4.3) for j ≥ 1: `VY_deriv_bound`: for each j and A,
+                |t^j·∂_t^j V_{α,β}(x,t)| ≤ C_{j,A}·(1+1/‖α+β‖²)·(1 + x/t)^(−A), uniform for
+                ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1; at least j = 1 and j = 2, the cases the
+                integration by parts in Lemma 3 uses; with differentiability
+                of V in t; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it please" (log 0532, the
+                TRAPS rows, start piece 2b with the derivative bounds)
+    DEPENDS     `ApproxBounds` (Γ bounds, `VY_line_eq`, the kernel bound),
+                `ApproxFE`; Mathlib differentiation under the integral
+    OUT         the twisted moment (2b-ii), the asymptotic forms, pieces 3–4
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 2a, the sizes: `Stage3/ApproxBounds.lean`
 
     DONE        the sizes the twisted moment needs, for α, β with |α|, |β| ≤ 1/L
