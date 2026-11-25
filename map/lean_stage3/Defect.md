@@ -7,14 +7,14 @@ Defect — block S14 of `lean_stage3/design/stencil.md`, C1, the defect: the zer
 20 theorems, 3 definitions, 370 lines. 
 
 **Imports:** [`ArgCount`](../lean_stage3/ArgCount.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`FloorSum`](../lean_stage3/FloorSum.md), [`LineCount`](../lean_stage3/LineCount.md), [`SpiralLink`](../lean_stage3/SpiralLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TuringS`](../lean_stage3/TuringS.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
   n0["<b>defect_eq_offCount</b><br/>defect T = offCount T"]:::thm
-  n1["<b>defect_nonneg ■</b><br/>0 ≤ defect T"]:::thm
+  n1["<b>defect_nonneg</b><br/>0 ≤ defect T"]:::thm
   n2["<b>rh_iff_defect_zero ■</b><br/>RiemannHypothesis ↔ ∀ T : ℝ, defect T = 0"]:::thm
   n3["<b>N_eq_sum_lt</b><br/>riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : Nontrivial…"]:::thm
   n4["<b>allCount_cast</b><br/>(allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ…"]:::thm
@@ -29,15 +29,16 @@ flowchart LR
   n13["<b>mirrorZ_mirrorZ</b><br/>SpiralLink.mirrorZ (SpiralLink.mirrorZ ρ) = ρ"]:::thm
   n14["<b>offLine_pair</b><br/>SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZ…"]:::thm
   n15["<b>offCount_eq_two_mul</b><br/>offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : Nontrivial…"]:::thm
-  n16["<b>defect_even ■</b><br/>Even (defect T)"]:::thm
+  n16["<b>defect_even</b><br/>Even (defect T)"]:::thm
   n17["<b>defect_le_of_floor</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1…"]:::thm
   n18["<b>defect_le ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2…"]:::thm
   n19["<b>defectN_le ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → defectN T ≤ (2 / 3 …"]:::thm
-  x0(["<b>LineCount</b><br/>lineCount_le_allCount<br/>mem_zerosUpTo<br/>rh_iff_line_count"]):::ext
-  x1(["<b>ArgCount</b><br/>N_eq_sum"]):::ext
-  x2(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
-  x3(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
-  x4(["<b>FloorSum</b><br/>levinson_floor"]):::ext
+  x0(["<b>TuringCert</b><br/>5 theorems"]):::ext
+  x1(["<b>LineCount</b><br/>lineCount_le_allCount<br/>mem_zerosUpTo<br/>rh_iff_line_count"]):::ext
+  x2(["<b>ArgCount</b><br/>N_eq_sum"]):::ext
+  x3(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
+  x4(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
+  x5(["<b>FloorSum</b><br/>levinson_floor"]):::ext
   n0 --> n16
   n10 --> n11
   n12 --> n14
@@ -56,19 +57,26 @@ flowchart LR
   n7 --> n17
   n8 --> n9
   n9 --> n17
-  x0 -.-> n1
-  x0 -.-> n14
-  x0 -.-> n2
-  x0 -.-> n3
-  x0 -.-> n6
-  x0 -.-> n8
-  x0 -.-> n9
+  n0 -.-> x0
+  n1 -.-> x0
+  n16 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n7 -.-> x0
+  n9 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n14
+  x1 -.-> n2
   x1 -.-> n3
-  x2 -.-> n12
-  x3 -.-> n14
-  x3 -.-> n15
-  x4 -.-> n18
-  x4 -.-> n19
+  x1 -.-> n6
+  x1 -.-> n8
+  x1 -.-> n9
+  x2 -.-> n3
+  x3 -.-> n12
+  x4 -.-> n14
+  x4 -.-> n15
+  x5 -.-> n18
+  x5 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -92,7 +100,7 @@ The defect: the nontrivial zeros up to height `T` (closed) off the line, with mu
 
 - **Is:** `` defect (T : ℝ) : ℤ := allCount T - lineCount T ``
 - **Built from:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
-- **Used by 8:** [`Defect.defectN_eq`](#Defect-defectN_eq), [`Defect.defectN_le_defect`](#Defect-defectN_le_defect), [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.defect_even`](#Defect-defect_even), [`Defect.defect_le`](#Defect-defect_le), [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor), [`Defect.defect_nonneg`](#Defect-defect_nonneg), [`Defect.rh_iff_defect_zero`](#Defect-rh_iff_defect_zero)
+- **Used by 12:** [`Defect.defectN_eq`](#Defect-defectN_eq), [`Defect.defectN_le_defect`](#Defect-defectN_le_defect), [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.defect_even`](#Defect-defect_even), [`Defect.defect_le`](#Defect-defect_le), [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor), [`Defect.defect_nonneg`](#Defect-defect_nonneg), [`Defect.rh_iff_defect_zero`](#Defect-rh_iff_defect_zero), [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two), [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono), [`Turing.defect_zero_below`](../lean_stage3/TuringCert.md#Turing-defect_zero_below), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs)
 
 <a name="Defect-defectN"></a>
 ### `Defect.defectN`
@@ -114,7 +122,7 @@ The off-line count up to height `T`, with multiplicity.
 
 - **Is:** `` offCount (T : ℝ) : ℤ := ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2), riemannZeta.order (ρ : ℂ) ``
 - **Built from:** [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo)
-- **Used by 2:** [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.offCount_eq_two_mul`](#Defect-offCount_eq_two_mul)
+- **Used by 3:** [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.offCount_eq_two_mul`](#Defect-offCount_eq_two_mul), [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono)
 
 ## Theorems
 
@@ -139,9 +147,10 @@ defect T = offCount T
 
 **Definitions its proof touches:** [`Defect.defect`](#Defect-defect), [`Defect.offCount`](#Defect-offCount), [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Defect.defect_even`](#Defect-defect_even) — `` Even (defect T) ``
+  - [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono) (TuringCert) — `` defect T ≤ defect T' ``
 
 <a name="Defect-defect_nonneg"></a>
 ### `Defect.defect_nonneg`
@@ -168,7 +177,10 @@ line 95 · arrows read from text
 
 **Definitions its proof touches:** [`Defect.defect`](#Defect-defect)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two) (TuringCert) — `` defect T = 0 ``
+  - [`Turing.defect_zero_below`](../lean_stage3/TuringCert.md#Turing-defect_zero_below) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Defect-rh_iff_defect_zero"></a>
 ### `Defect.rh_iff_defect_zero`
@@ -219,11 +231,12 @@ riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (
 
 **Definitions its proof touches:** [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`Defect.N_eq_allCount_of_no_zero_at`](#Defect-N_eq_allCount_of_no_zero_at) — `` riemannZeta.N T = (allCount T : ℝ) ``
   - [`Defect.N_eq_allCount_right`](#Defect-N_eq_allCount_right) — `` riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T ``
   - [`Defect.N_le_allCount`](#Defect-N_le_allCount) — `` riemannZeta.N T ≤ (allCount T : ℝ) ``
+  - [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N) (TuringCert) — `` (allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u ``
 
 <a name="Defect-allCount_cast"></a>
 ### `Defect.allCount_cast`
@@ -246,11 +259,12 @@ line 134 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`Defect.N_eq_allCount_of_no_zero_at`](#Defect-N_eq_allCount_of_no_zero_at) — `` riemannZeta.N T = (allCount T : ℝ) ``
   - [`Defect.N_eq_allCount_right`](#Defect-N_eq_allCount_right) — `` riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T ``
   - [`Defect.N_le_allCount`](#Defect-N_le_allCount) — `` riemannZeta.N T ≤ (allCount T : ℝ) ``
+  - [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N) (TuringCert) — `` (allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u ``
 
 <a name="Defect-N_le_allCount"></a>
 ### `Defect.N_le_allCount`
@@ -332,9 +346,10 @@ line 156 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ) ``
+  - [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Defect-zerosUpTo_eq_right"></a>
 ### `Defect.zerosUpTo_eq_right`
@@ -393,9 +408,10 @@ riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T
 
 **Definitions its proof touches:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ) ``
+  - [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Defect-defectN_eq"></a>
 ### `Defect.defectN_eq`
@@ -595,7 +611,9 @@ Even (defect T)
 
 **Definitions its proof touches:** [`Defect.defect`](#Defect-defect)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two) (TuringCert) — `` defect T = 0 ``
 
 <a name="Defect-defect_le_of_floor"></a>
 ### `Defect.defect_le_of_floor`

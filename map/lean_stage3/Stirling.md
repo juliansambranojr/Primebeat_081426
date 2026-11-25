@@ -31,6 +31,8 @@ flowchart LR
   x0(["<b>ArgCount</b><br/>5 theorems"]):::ext
   x1(["<b>ArgIdentity</b><br/>gammaR_fold_eq_phaseTheta<br/>rvM_of_sFromLocal"]):::ext
   x2(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
+  x3(["<b>TuringAvg</b><br/>theta_sub_le"]):::ext
+  x4(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
   n0 --> n1
   n1 --> n4
   n10 --> n14
@@ -51,6 +53,8 @@ flowchart LR
   n1 -.-> x0
   n1 -.-> x1
   n1 -.-> x2
+  n1 -.-> x3
+  n1 -.-> x4
   n10 -.-> x1
   n10 -.-> x2
   n16 -.-> x0
@@ -77,7 +81,7 @@ def · line 50
 The phase integrand: `Re ψ(1/4 + it/2)`, the derivative of the continuous `Im log Γ` along the quarter-line.
 
 - **Is:** `` phasePoint (t : ℝ) : ℝ := (Complex.digamma ((1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I)).re ``
-- **Used by 18:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.phasePoint_bound_near`](../lean_stage3/ArgCount.md#ArgCount-phasePoint_bound_near), [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le), [`Stage3.gammaR_fold_eq_phaseTheta`](../lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta), [`LevinsonAvoid.factor_pos`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-factor_pos), [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq), [`LevinsonSize.re_logDeriv_gammaR_line`](../lean_stage3/LevinsonSize.md#LevinsonSize-re_logDeriv_gammaR_line), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le), [`Stage3.StmtDigammaLog`](#Stage3-StmtDigammaLog), [`Stage3.backlundPhase_of_digammaLog`](#Stage3-backlundPhase_of_digammaLog), [`Stage3.continuous_phasePoint`](#Stage3-continuous_phasePoint), [`Stage3.intervalIntegrable_phasePoint`](#Stage3-intervalIntegrable_phasePoint), [`Stage3.phasePoint_compact_le`](#Stage3-phasePoint_compact_le), [`Stage3.phasePoint_eq`](#Stage3-phasePoint_eq), [`Stage3.phaseTheta`](#Stage3-phaseTheta), [`Stage3.phaseTheta_zero`](#Stage3-phaseTheta_zero), [`Stage3.re_digamma_sub_log_le`](#Stage3-re_digamma_sub_log_le), [`Stage3.stmtDigammaLog_holds`](#Stage3-stmtDigammaLog_holds)
+- **Used by 20:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.phasePoint_bound_near`](../lean_stage3/ArgCount.md#ArgCount-phasePoint_bound_near), [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le), [`Stage3.gammaR_fold_eq_phaseTheta`](../lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta), [`LevinsonAvoid.factor_pos`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-factor_pos), [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq), [`LevinsonSize.re_logDeriv_gammaR_line`](../lean_stage3/LevinsonSize.md#LevinsonSize-re_logDeriv_gammaR_line), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le), [`Stage3.StmtDigammaLog`](#Stage3-StmtDigammaLog), [`Stage3.backlundPhase_of_digammaLog`](#Stage3-backlundPhase_of_digammaLog), [`Stage3.continuous_phasePoint`](#Stage3-continuous_phasePoint), [`Stage3.intervalIntegrable_phasePoint`](#Stage3-intervalIntegrable_phasePoint), [`Stage3.phasePoint_compact_le`](#Stage3-phasePoint_compact_le), [`Stage3.phasePoint_eq`](#Stage3-phasePoint_eq), [`Stage3.phaseTheta`](#Stage3-phaseTheta), [`Stage3.phaseTheta_zero`](#Stage3-phaseTheta_zero), [`Stage3.re_digamma_sub_log_le`](#Stage3-re_digamma_sub_log_le), [`Stage3.stmtDigammaLog_holds`](#Stage3-stmtDigammaLog_holds), [`Turing.theta_sub_le`](../lean_stage3/TuringAvg.md#Turing-theta_sub_le), [`Turing.continuous_phaseTheta`](../lean_stage3/TuringS.md#Turing-continuous_phaseTheta)
 
 <a name="Stage3-phaseTheta"></a>
 ### `Stage3.phaseTheta`
@@ -88,7 +92,7 @@ The continuous phase, by construction: the integral of the derivative, anchored 
 
 - **Is:** `` phaseTheta (T : ℝ) : ℝ := (1 / 2) * (∫ t in (0 : ℝ)..T, phasePoint t) - T / 2 * Real.log Real.pi ``
 - **Built from:** [`Stage3.phasePoint`](#Stage3-phasePoint)
-- **Used by 16:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Stage3.argS_eq_zetaArgContour`](../lean_stage3/ArgIdentity.md#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-backlundArg_of_sFromLocal), [`Stage3.gammaR_fold_eq_phaseTheta`](../lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta), [`Stage3.rvM_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](../lean_stage3/ArgIdentity.md#Stage3-stmtArgIdentity_holds), [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le), [`Stage3.backlundPhase_holds`](#Stage3-backlundPhase_holds), [`Stage3.backlundPhase_of_digammaLog`](#Stage3-backlundPhase_of_digammaLog), [`Stage3.phaseTheta_zero`](#Stage3-phaseTheta_zero)
+- **Used by 24:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Stage3.argS_eq_zetaArgContour`](../lean_stage3/ArgIdentity.md#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-backlundArg_of_sFromLocal), [`Stage3.gammaR_fold_eq_phaseTheta`](../lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta), [`Stage3.rvM_of_sFromLocal`](../lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](../lean_stage3/ArgIdentity.md#Stage3-stmtArgIdentity_holds), [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le), [`Stage3.backlundPhase_holds`](#Stage3-backlundPhase_holds), [`Stage3.backlundPhase_of_digammaLog`](#Stage3-backlundPhase_of_digammaLog), [`Stage3.phaseTheta_zero`](#Stage3-phaseTheta_zero), [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.theta_sub_le`](../lean_stage3/TuringAvg.md#Turing-theta_sub_le), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.S`](../lean_stage3/TuringS.md#Turing-S), [`Turing.continuous_phaseTheta`](../lean_stage3/TuringS.md#Turing-continuous_phaseTheta), [`Turing.intervalIntegrable_S`](../lean_stage3/TuringS.md#Turing-intervalIntegrable_S)
 
 <a name="Stage3-StmtDigammaLog"></a>
 ### `Stage3.StmtDigammaLog`
@@ -162,12 +166,14 @@ IntervalIntegrable phasePoint MeasureTheory.volume a b
 
   - [`Stage3.continuous_phasePoint`](#Stage3-continuous_phasePoint) — `` Continuous phasePoint ``
 
-**Feeds** (4 that use it)
+**Feeds** (6 that use it)
 
   - [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le) (ArgCount) — `` |Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2) ``
   - [`Stage3.gammaR_fold_eq_phaseTheta`](../lean_stage3/ArgIdentity.md#Stage3-gammaR_fold_eq_phaseTheta) (ArgIdentity) — `` (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im = phaseTheta T ``
   - [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq) (LevinsonSize) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
   - [`Stage3.backlundPhase_of_digammaLog`](#Stage3-backlundPhase_of_digammaLog) — `` StmtBacklundPhase phaseTheta C (C + 1) ``
+  - [`Turing.theta_sub_le`](../lean_stage3/TuringAvg.md#Turing-theta_sub_le) (TuringAvg) — `` Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * ((Real.log (u / 2) - Real.log Real.pi + 97 / t) / 2) ``
+  - [`Turing.continuous_phaseTheta`](../lean_stage3/TuringS.md#Turing-continuous_phaseTheta) (TuringS) — `` Continuous Stage3.phaseTheta ``
 
 <a name="Stage3-phaseTheta_zero"></a>
 ### `Stage3.phaseTheta_zero`
