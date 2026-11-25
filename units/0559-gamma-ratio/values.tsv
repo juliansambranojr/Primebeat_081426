@@ -1,0 +1,17 @@
+key	value	source
+module_lines	364	wc -l lean_stage3/Stage3/GrRatio.lean
+theorems_proved	13	grep -c ^theorem lean_stage3/Stage3/GrRatio.lean
+defs	1	grep -c ^def lean_stage3/Stage3/GrRatio.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/GrRatio.lean
+pins	3	gamma_ratio8, grR_sub, stmtGrRatio_holds
+errors_first	1	the worker's first build: a constant passed explicitly to div_const
+builds	2	the worker's report
+traps_added	1	lean_stage3/TRAPS.md row 108
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8973	lake build (full Stage3), Build completed successfully
+jobs_module	8869	run/build.log, lake build Stage3.GrRatio
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+trap_row	108	lean_stage3/TRAPS.md

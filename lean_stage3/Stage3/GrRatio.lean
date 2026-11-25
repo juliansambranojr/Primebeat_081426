@@ -213,7 +213,7 @@ theorem pow_shift {L : ℝ} (hL : L ≠ 0) {i j : ℕ} (hj : j ≤ i) :
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hj
   rw [Nat.add_sub_cancel_left, pow_add, mul_assoc, ← mul_pow,
     show (-1 / L) * (L / 2) = (-1 / 2 : ℝ) by field_simp]
-  ring
+  try ring
 
 /-- **The error, exactly**:
 `(−1/L)^i grR i w − (−1/2)^i = Σ_{j<i} C(i,j+1) (−1/2)^{i−j−1} (−1/L)^{j+1} h_w^{(j+1)}(w)`. -/

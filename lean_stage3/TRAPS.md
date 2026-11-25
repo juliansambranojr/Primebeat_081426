@@ -118,6 +118,7 @@ build, 2026-09-08.
 | 105 | `field_simp` leaves `(r / L) ^ k` unexpanded | `field_simp` does not distribute a power over a quotient | `rw [div_pow]` first (unit 0558) |
 | 106 | deprecation warnings at `integral_finset_sum`, `integrable_finset_sum` | renamed on this Mathlib (row 84's family) | `integral_finsetSum`, `integrable_finsetSum` (unit 0558) |
 | 107 | `simp` on `(1 - X : ℝ[X]).coeff 1 = -1` leaves `coeff 1 1 = 0` | `simp` does not close the constant polynomial's coefficient | `rw [coeff_sub, coeff_one, coeff_X_one]; norm_num` (unit 0558) |
+| 108 | `Function expected at AnalyticAt.div_const hGa` from `hGa.div_const (Gammaℝ w)` | `AnalyticAt.div_const` takes its constant implicitly on this Mathlib | `hGa.div_const (c := Gammaℝ w)` (unit 0559) |
 
 ## Bench and gate traps
 
