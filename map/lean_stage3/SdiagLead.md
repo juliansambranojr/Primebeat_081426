@@ -2,7 +2,7 @@
 
 > **Read from the source text.** This file changed after the last `python3 utilities/lean_map.py --dump`, so the arrows on this page are names occurring in each proof and have not been confirmed by Lean.
 
-# Stage3.SdiagLead — `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.
+# Stage3.SdiagLead — block S12 of `lean_stage3/design/stencil.md`: `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.
 
 2 theorems, 1 definition, 81 lines. 
 
