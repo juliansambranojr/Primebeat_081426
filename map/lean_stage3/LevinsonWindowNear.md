@@ -7,7 +7,7 @@ LevinsonWindowNear — block S12 of `lean_stage3/design/stencil.md`, the window 
 5 theorems, 0 definitions, 738 lines. 
 
 **Imports:** [`LevinsonMultiple`](../lean_stage3/LevinsonMultiple.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
 
 ## The picture
 
@@ -32,10 +32,12 @@ flowchart LR
   x11(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
   x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
   x13(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  x14(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n2
   n1 --> n4
   n2 --> n3
   n3 --> n4
+  n3 -.-> x14
   x0 -.-> n0
   x0 -.-> n2
   x1 -.-> n0
@@ -241,8 +243,9 @@ line 457 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli), [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonWindowNear.levinson_window_near`](#LevinsonWindowNear-levinson_window_near) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonWindowNear-levinson_window_near"></a>

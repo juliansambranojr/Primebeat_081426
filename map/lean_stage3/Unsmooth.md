@@ -7,7 +7,7 @@
 5 theorems, 0 definitions, 239 lines. 
 
 **Imports:** [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md), [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md), [`UnsmoothWin`](../lean_stage3/UnsmoothWin.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
 
 ## The picture
 
@@ -17,16 +17,18 @@ flowchart LR
   n1["<b>continuous_Gpsi</b><br/>Continuous fun t : ℝ =＞ ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a…"]:::thm
   n2["<b>norm_Gpsi_sq</b><br/>‖Gl L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖G…"]:::thm
   n3["<b>unsmooth_near</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
-  n4["<b>unsmooth_near_levinson ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Re…"]:::thm
+  n4["<b>unsmooth_near_levinson</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Re…"]:::thm
   x0(["<b>TwistedMoment</b><br/>continuous_msq<br/>msq_nonneg"]):::ext
   x1(["<b>OffDiagClose</b><br/>winC_nonneg"]):::ext
   x2(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
   x3(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
   x4(["<b>UnsmoothWin</b><br/>4 theorems"]):::ext
+  x5(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n4
+  n4 -.-> x5
   x0 -.-> n1
   x0 -.-> n3
   x1 -.-> n3
@@ -211,5 +213,7 @@ line 202 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`Operator.Gl`](../lean_stage3/OperatorInt.md#Operator-Gl), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.psi`](../lean_stage3/TwistedMoment.md#TwistedMoment-psi), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
 

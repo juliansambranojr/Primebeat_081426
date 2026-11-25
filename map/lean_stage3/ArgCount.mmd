@@ -26,8 +26,9 @@ flowchart LR
   x9(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
   x10(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
   x11(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x12(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x13(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x12(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
+  x13(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x14(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -52,6 +53,7 @@ flowchart LR
   n14 -.-> x11
   n14 -.-> x12
   n14 -.-> x13
+  n14 -.-> x14
   n3 -.-> x3
   n3 -.-> x4
   n3 -.-> x5
