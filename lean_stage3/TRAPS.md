@@ -108,6 +108,10 @@ build, 2026-09-08.
 | 95 | a rewrite stated with `fun z => ((f z)⁻¹)⁻¹` misses after `AnalyticAt.inv` | `.inv` builds the Pi inverse `(fun z => f z)⁻¹` (the family of rows 43 and 82) | state the equality in the Pi form (unit 0556) |
 | 96 | a line lemma passed to `simp` goes unused and the goal stays open | `simp` turns `1/2` into `2⁻¹` inside the argument of `completedRiemannZeta` | `rw [Complex.ofReal_im]; exact HardyZ.xi_line_real t` (unit 0556) |
 | 97 | `unterminated comment` at the end of a file built from a copied theorem | a `sed -n A,B` copy took in the opening `/--` of the next docstring | end the range before the next docstring, and check the copy's last lines (unit 0556) |
+| 98 | `linarith` fails with the bound in context as `abs_le.mp h` | `linarith` does not split a conjunction hypothesis | `obtain ⟨h1, h2⟩ := abs_le.mp h` first (unit 0557) |
+| 99 | `simp only [coeff_C_mul, coeff_C_mul_X_pow]` leaves `(X ^ k).coeff i` | `coeff_C_mul` fires first, so `coeff_C_mul_X_pow` no longer matches | `simp [coeff_X_pow, hi]` (unit 0557) |
+| 100 | `field_simp` leaves `\|q\| * (1/L)^j * M * L^j = \|q\| * M` | `field_simp` does not cancel `(1 / L) ^ j` against `L ^ j` | `rw [one_div_pow]` before `field_simp` (unit 0557) |
+| 101 | deprecation warnings at `Polynomial.eval_finset_sum`, `Polynomial.finset_sum_coeff` | renamed on this Mathlib | `Polynomial.eval_finsetSum`, `Polynomial.finsetSum_coeff` (unit 0557) |
 
 ## Bench and gate traps
 

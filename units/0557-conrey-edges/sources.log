@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-11-25T19:34:49Z
+# unit: 0557-conrey-edges
+# sources searched: 499
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2591
+  theorem right_edge_ge (Q : ℝ[X]) (hQ0 : Q.eval 0 = 1) {B T t : ℝ} (hB : 0 < B)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2592
+  (hBr : ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2263
+  1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2264
+  T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z.im - w.im| ≤ 1 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2595
+  ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(Real.log T / 2) * (z.re - w.re)) ≤ B)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2596
+  (hT : 200 ≤ T) (hL : 8 + 400 * KQ Q * B ≤ Real.log T) (ht : t ∈ Icc (T / 4) (2 * T)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2597
+  1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2644
+  theorem disc_le (Q : ℝ[X]) {B T t : ℝ} (hB : 0 < B)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2592
+  (hBr : ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2263
+  1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2264
+  T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z.im - w.im| ≤ 1 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2595
+  ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(Real.log T / 2) * (z.re - w.re)) ≤ B)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2649
+  (hT : 200 ≤ T) (hL : 8 ≤ Real.log T) (ht : t ∈ Icc (T / 4) (2 * T)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2650
+  ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77345
+  theorem stmtVEdges_holds (Q : ℝ[X]) (hQ0 : Q.eval 0 = 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aec31c28eb95316db.jsonl:2694
+  ∃ A T₀ : ℝ, 0 < A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A :=
+
+# 17 found, 0 missing

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	219	wc -l lean_stage3/Stage3/DigammaBound.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/DigammaBound.lean
+defs	0	grep -c ^def lean_stage3/Stage3/DigammaBound.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/DigammaBound.lean
+pins	3	right_edge_ge, disc_le, stmtVEdges_holds
+errors_first	2	the worker's first build of the identity file: a simp lemma that fired first and a simp that made no progress
+builds	7	the worker's report, builds over the three files
+traps_added	4	lean_stage3/TRAPS.md rows 98-101
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8965	lake build (full Stage3), Build completed successfully
+jobs_module	8825	run/build.log, lake build Stage3.DigammaBound
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	3	lean_stage3/Stage3/DigammaBound.lean, DigammaBoundIdentity.lean, DigammaBoundSize.lean
+trap_first	98	lean_stage3/TRAPS.md
+trap_last	101	lean_stage3/TRAPS.md
