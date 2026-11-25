@@ -131,6 +131,17 @@ build, 2026-09-08.
 | 118 | `LevinsonMollEdge.edge_le_gen` and `arg_term_le_of_pos` do not apply to Conrey's `V` | they ask analyticity on all of `ℂ ∖ {1}`, and `V` has the poles of the completed zeta at 0 and 1 | use the copies in `FloorQEdge` that ask `Im > 0` or `t ∈ [a, b]` (unit 0561) |
 | 119 | `Application type mismatch … expected ℝ` at `t + h`, and `linarith` fails on `t + ?m < t` | a `have h := …` shadowed the window length `h : ℝ` | name the hypothesis differently (unit 0563) |
 | 120 | `#check riemannZeta_order_pos_nontrivialZero` reports an unknown name | the upstream lemma is in namespace `Kadiri` (row 2's family) | `open Kadiri` or write `Kadiri.riemannZeta_order_pos_nontrivialZero` (unit 0563) |
+| 121 | ``Unknown identifier `intervalIntegrable_log'` `` | the lemma is in namespace `intervalIntegral` (row 2's family) | `intervalIntegral.intervalIntegrable_log'` (unit 0566) |
+| 122 | `convert h using 1` on `IntervalIntegrable.sum`'s output leaves an instance goal `NormedAddGroup.toENormedAddMonoid = …` | the lemma is stated over `ENormedAddCommMonoid ε`, and ℝ's instance path differs | a short `Finset.induction_on` helper with `IntervalIntegrable.add` (unit 0566) |
+| 123 | `Unknown constant Real.log_two_pos`, and `positivity` fails on terms with `Real.log 2` or `Real.log (84 * t)` | the name does not exist on this Mathlib, and `positivity` does not know the logarithm's sign there | `Real.log_pos (by norm_num : (1:ℝ) < 2)`, and pass the sign by `linarith [Real.log_pos …]` (unit 0566) |
+| 124 | `.re` sticks after `simp` on `((Real.log n : ℝ) : ℂ)` | the simp lemma `Complex.natCast_log` rewrites it to `Complex.log ↑n` | `simp [-Complex.natCast_log]` (unit 0566) |
+| 125 | an index type mismatch from `hasDerivAt_tsum (u := fun n => … Real.log n …)` | the binder elaborates as `ℝ` | annotate `fun n : ℕ` (unit 0566) |
+| 126 | `simpa` on a `ContinuousLinearMap.comp_hasDerivAt` result leaves `⇑reCLM ∘ Ψ` | simp does not match it to `fun t => (Ψ t).re` | `exact h`, which closes by defeq (unit 0566) |
+| 127 | `intervalIntegral.integral_eq_sub_of_hasDerivAt … ?_ ?_` inside a `have` cannot infer the endpoints | the holes leave `a`, `b` undetermined | pass `(a := …) (b := …)` (unit 0566) |
+| 128 | `field_simp` on `π * (1/π * X) = X` reorders `↑t * I` inside an integrand on one side only | `field_simp` normalizes under binders asymmetrically | `rw [← mul_assoc, mul_one_div_cancel Real.pi_ne_zero, one_mul]` (unit 0566) |
+| 129 | `Littlewood.order_ne_top` does not apply when ζ may vanish at the rectangle's corner | it assumes `f z ≠ 0` at the corner `z` | `TuringLWSplit.order_ne_top_of` with any nonvanishing point of the rectangle (unit 0566) |
+| 130 | `tsum_sub` is an unknown name | it is now only `Summable.tsum_sub` | `Summable.tsum_sub` (unit 0566) |
+| 131 | `positivity` fails on `(1 / Real.log 2) * (1/n^2 - 0)` | it does not know `0 < Real.log 2` and leaves the `- 0` | `sub_zero`, then `mul_nonneg (div_nonneg zero_le_one hl2.le) …` (unit 0566) |
 
 ## Bench and gate traps
 

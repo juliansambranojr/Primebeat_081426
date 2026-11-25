@@ -1,0 +1,21 @@
+key	value	source
+module_lines	31	wc -l lean_stage3/Stage3/TuringLW.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/TuringLW.lean
+defs	0	grep -c ^def lean_stage3/Stage3/TuringLW.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TuringLW.lean
+pins	1	littlewood_holds
+errors_first	0	the first build of the assembly file: none (the two workers' first builds are in their reports)
+builds	1	the build of the assembly file here
+traps_added	11	lean_stage3/TRAPS.md rows 121-131
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8992	lake build (full Stage3), Build completed successfully
+jobs_module	8874	run/build.log, lake build Stage3.TuringLW
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	6	lean_stage3/Stage3/TuringLW.lean, TuringLWSplit.lean, TuringLWSplitOsc.lean, TuringLWHoriz.lean, TuringLWHorizLog.lean, TuringLWHorizPoint.lean
+a2	102	TuringLWHoriz.horizLower_holds: StmtHorizLower 102 500
+b2	500	TuringLWHoriz.horizLower_holds
+trap_first	121	lean_stage3/TRAPS.md
+trap_last	131	lean_stage3/TRAPS.md

@@ -22,7 +22,7 @@ below with their outcome.
 
 ## Current
 
-### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, Littlewood's three pieces: `Stage3/TuringLW*.lean`
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, Littlewood's three pieces: `Stage3/TuringLW.lean` and `Stage3/TuringLW*.lean`
 
     DONE        `Turing.StmtSplit` (the imaginary part of the integrated argument
                 principle), `Turing.StmtOsc c₀` (∫ of the real part of ∫ ζ′/ζ on
