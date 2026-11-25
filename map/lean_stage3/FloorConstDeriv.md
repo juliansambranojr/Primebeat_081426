@@ -29,6 +29,7 @@ flowchart LR
   n13["<b>pab_cY</b><br/>pab (cY P M T) x y = Hxy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) …"]:::shp
   x0(["<b>OperatorCY</b><br/>cY_eq"]):::ext
   x1(["<b>FloorConstLimit</b><br/>dop_cY_eq"]):::ext
+  x2(["<b>FloorConstQLimit</b><br/>cY_eq_FF"]):::ext
   n0 --> n5
   n1 --> n6
   n1 --> n7
@@ -49,6 +50,7 @@ flowchart LR
   n12 -.-> x1
   n13 -.-> x1
   n8 -.-> x1
+  n8 -.-> x2
   x0 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -72,7 +74,7 @@ def · line 35
 `g = c₁ = A ℓ⁻¹ u⁻¹ + B + ℓ C x y u⁻¹`, `u = x + y`.
 
 - **Is:** `` gF (A B C ℓ : ℂ) (x y : ℂ) : ℂ := A * ℓ⁻¹ * (x + y)⁻¹ + B + ℓ * C * x * y * (x + y)⁻¹ ``
-- **Used by 8:** [`FloorConst.HF`](#FloorConst-HF), [`FloorConst.Hx`](#FloorConst-Hx), [`FloorConst.Hxy`](#FloorConst-Hxy), [`FloorConst.Hy`](#FloorConst-Hy), [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_gx`](#FloorConst-hasDerivAt_gx), [`FloorConst.hasDerivAt_gy`](#FloorConst-hasDerivAt_gy), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed)
+- **Used by 9:** [`FloorConst.HF`](#FloorConst-HF), [`FloorConst.Hx`](#FloorConst-Hx), [`FloorConst.Hxy`](#FloorConst-Hxy), [`FloorConst.Hy`](#FloorConst-Hy), [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_gx`](#FloorConst-hasDerivAt_gx), [`FloorConst.hasDerivAt_gy`](#FloorConst-hasDerivAt_gy), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF)
 
 <a name="FloorConst-EF"></a>
 ### `FloorConst.EF`
@@ -82,7 +84,7 @@ def · line 39
 `E = exp(λ · (−(x + y)))`, `T^(−α−β)` with `λ = log T`.
 
 - **Is:** `` EF (lam : ℂ) (x y : ℂ) : ℂ := cexp (lam * (-(x + y))) ``
-- **Used by 8:** [`FloorConst.HF`](#FloorConst-HF), [`FloorConst.Hx`](#FloorConst-Hx), [`FloorConst.Hxy`](#FloorConst-Hxy), [`FloorConst.Hy`](#FloorConst-Hy), [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_EFx`](#FloorConst-hasDerivAt_EFx), [`FloorConst.hasDerivAt_EFy`](#FloorConst-hasDerivAt_EFy), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed)
+- **Used by 9:** [`FloorConst.HF`](#FloorConst-HF), [`FloorConst.Hx`](#FloorConst-Hx), [`FloorConst.Hxy`](#FloorConst-Hxy), [`FloorConst.Hy`](#FloorConst-Hy), [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_EFx`](#FloorConst-hasDerivAt_EFx), [`FloorConst.hasDerivAt_EFy`](#FloorConst-hasDerivAt_EFy), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF)
 
 <a name="FloorConst-HF"></a>
 ### `FloorConst.HF`
@@ -93,7 +95,7 @@ def · line 42
 
 - **Is:** `` HF (A B C ℓ lam : ℂ) (x y : ℂ) : ℂ := gF A B C ℓ x y * (1 - EF lam x y) + 2 * B * EF lam x y ``
 - **Built from:** [`FloorConst.EF`](#FloorConst-EF), [`FloorConst.gF`](#FloorConst-gF)
-- **Used by 6:** [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_Hx`](#FloorConst-hasDerivAt_Hx), [`FloorConst.hasDerivAt_Hy`](#FloorConst-hasDerivAt_Hy), [`FloorConst.pa_cY`](#FloorConst-pa_cY), [`FloorConst.pb_cY`](#FloorConst-pb_cY), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed)
+- **Used by 7:** [`FloorConst.cY_eq_HF`](#FloorConst-cY_eq_HF), [`FloorConst.hasDerivAt_Hx`](#FloorConst-hasDerivAt_Hx), [`FloorConst.hasDerivAt_Hy`](#FloorConst-hasDerivAt_Hy), [`FloorConst.pa_cY`](#FloorConst-pa_cY), [`FloorConst.pb_cY`](#FloorConst-pb_cY), [`FloorConst.dop_closed`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_closed), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF)
 
 <a name="FloorConst-gx"></a>
 ### `FloorConst.gx`
@@ -401,11 +403,12 @@ cY P M T x y = HF (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (
 
 **Definitions its proof touches:** [`FloorConst.EF`](#FloorConst-EF), [`FloorConst.HF`](#FloorConst-HF), [`FloorConst.gF`](#FloorConst-gF), [`Operator.Aq`](../lean_stage3/OperatorCY.md#Operator-Aq), [`Operator.Bq`](../lean_stage3/OperatorCY.md#Operator-Bq), [`Operator.Cq`](../lean_stage3/OperatorCY.md#Operator-Cq), [`Operator.c1form`](../lean_stage3/OperatorCY.md#Operator-c1form), [`Operator.cYform`](../lean_stage3/OperatorCY.md#Operator-cYform), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`FloorConst.pa_cY`](#FloorConst-pa_cY) — `` pa (cY P M T) x y = Hx (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y ``
   - [`FloorConst.pb_cY`](#FloorConst-pb_cY) — `` pb (cY P M T) x y = Hy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y ``
   - [`FloorConst.dop_cY_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_cY_eq) (FloorConstLimit) — `` Dop (Real.log T) (cY P M T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ) = ((Kfl (Ar P) (Br P) (Cr P) (Real.log M / Real.log T) R : ℝ) … ``
+  - [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF) (FloorConstQLimit) — `` cY P M T x y = FF (Aq P) (Bq P) (Cq P) ((Real.log M / Real.log T : ℝ) : ℂ) ((Real.log T : ℝ) * x) ((Real.log T : ℝ) * y) ``
 
 <a name="FloorConst-nhds_ne_x"></a>
 ### `FloorConst.nhds_ne_x`

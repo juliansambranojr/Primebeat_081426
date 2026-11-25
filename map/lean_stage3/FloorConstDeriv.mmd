@@ -15,6 +15,7 @@ flowchart LR
   n13["<b>pab_cY</b><br/>pab (cY P M T) x y = Hxy (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) …"]:::shp
   x0(["<b>OperatorCY</b><br/>cY_eq"]):::ext
   x1(["<b>FloorConstLimit</b><br/>dop_cY_eq"]):::ext
+  x2(["<b>FloorConstQLimit</b><br/>cY_eq_FF"]):::ext
   n0 --> n5
   n1 --> n6
   n1 --> n7
@@ -35,6 +36,7 @@ flowchart LR
   n12 -.-> x1
   n13 -.-> x1
   n8 -.-> x1
+  n8 -.-> x2
   x0 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

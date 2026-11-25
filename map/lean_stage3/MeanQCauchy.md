@@ -7,7 +7,7 @@ MeanQCauchy — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mea
 12 theorems, 5 definitions, 243 lines. 
 
 **Imports:** [`OperatorCauchy`](../lean_stage3/OperatorCauchy.md)  
-**Imported by:** [`MeanQInt`](../lean_stage3/MeanQInt.md)
+**Imported by:** [`FloorConstQDeriv`](../lean_stage3/FloorConstQDeriv.md), [`MeanQInt`](../lean_stage3/MeanQInt.md)
 
 ## The picture
 
@@ -62,7 +62,7 @@ def · line 34
 `∂β^l ∂α^k f (α, β)`: `k` derivatives in the first variable at `α`, then `l` in the second.
 
 - **Is:** `` pkl (f : ℂ → ℂ → ℂ) (k l : ℕ) (α β : ℂ) : ℂ := iteratedDeriv l (fun y => iteratedDeriv k (fun x => f x y) α) β ``
-- **Used by 6:** [`MeanQ.DopQ`](#MeanQ-DopQ), [`MeanQ.DopQ_norm_le`](#MeanQ-DopQ_norm_le), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.pkl_norm_le`](#MeanQ-pkl_norm_le), [`MeanQ.pkl_sub_mul`](#MeanQ-pkl_sub_mul), [`MeanQ.pkl_Imom`](../lean_stage3/MeanQInt.md#MeanQ-pkl_Imom)
+- **Used by 9:** [`FloorConstQ.pkl_scale`](../lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_scale), [`FloorConstQ.pkl_sum`](../lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_sum), [`FloorConstQ.pkl_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-pkl_FF), [`MeanQ.DopQ`](#MeanQ-DopQ), [`MeanQ.DopQ_norm_le`](#MeanQ-DopQ_norm_le), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.pkl_norm_le`](#MeanQ-pkl_norm_le), [`MeanQ.pkl_sub_mul`](#MeanQ-pkl_sub_mul), [`MeanQ.pkl_Imom`](../lean_stage3/MeanQInt.md#MeanQ-pkl_Imom)
 
 <a name="MeanQ-qc"></a>
 ### `MeanQ.qc`
@@ -72,7 +72,7 @@ def · line 38
 `q_k (−1/L)^k`, `q_k = Q.coeff k`.
 
 - **Is:** `` qc (Q : ℝ[X]) (L : ℝ) (k : ℕ) : ℂ := ((Q.coeff k * (-1 / L) ^ k : ℝ) : ℂ) ``
-- **Used by 4:** [`MeanQ.DopQ`](#MeanQ-DopQ), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.norm_qc`](#MeanQ-norm_qc), [`MeanQ.mollMeanQ_eq`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ_eq)
+- **Used by 5:** [`FloorConstQ.dopQ_cY_eq`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-dopQ_cY_eq), [`MeanQ.DopQ`](#MeanQ-DopQ), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.norm_qc`](#MeanQ-norm_qc), [`MeanQ.mollMeanQ_eq`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ_eq)
 
 <a name="MeanQ-DopQ"></a>
 ### `MeanQ.DopQ`
@@ -83,7 +83,7 @@ The operator `Q(−∂α/L) Q(−∂β/L)`: `Σ_{k,l ≤ d} q_k q_l (−1/L)^{k+
 
 - **Is:** `` DopQ (Q : ℝ[X]) (L : ℝ) (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := ∑ k ∈ Finset.range (Q.natDegree + 1), ∑ l ∈ Finset.range (Q.natDegree + 1), qc Q L k * qc Q L l * pkl f k l α β ``
 - **Built from:** [`MeanQ.pkl`](#MeanQ-pkl), [`MeanQ.qc`](#MeanQ-qc)
-- **Used by 14:** [`GrRatio.window_V_lt_half'`](../lean_stage3/GrRatio.md#GrRatio-window_V_lt_half-), [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V), [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long), [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half), [`MeanQ.dopQ_cY_bdd`](../lean_stage3/MeanQBound.md#MeanQ-dopQ_cY_bdd), [`MeanQ.meanJ_bound`](../lean_stage3/MeanQBound.md#MeanQ-meanJ_bound), [`MeanQ.DopQ_norm_le`](#MeanQ-DopQ_norm_le), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.DopQ_sub_mul`](#MeanQ-DopQ_sub_mul), [`MeanQ.DopQ_Imom`](../lean_stage3/MeanQInt.md#MeanQ-DopQ_Imom), [`MeanQ.StmtMollMeanQ`](../lean_stage3/MeanQMean.md#MeanQ-StmtMollMeanQ), [`MeanQ.mollMeanQ_long`](../lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_long), [`MeanQ.StmtMollMeanV`](../lean_stage3/MeanQV.md#MeanQ-StmtMollMeanV), [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long)
+- **Used by 17:** [`FloorConstQ.floor_constQ`](../lean_stage3/FloorConstQ.md#FloorConstQ-floor_constQ), [`FloorConstQ.dopQ_cY_eq`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-dopQ_cY_eq), [`FloorConstQ.re_dopQ_tendsto`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-re_dopQ_tendsto), [`GrRatio.window_V_lt_half'`](../lean_stage3/GrRatio.md#GrRatio-window_V_lt_half-), [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V), [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long), [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half), [`MeanQ.dopQ_cY_bdd`](../lean_stage3/MeanQBound.md#MeanQ-dopQ_cY_bdd), [`MeanQ.meanJ_bound`](../lean_stage3/MeanQBound.md#MeanQ-meanJ_bound), [`MeanQ.DopQ_norm_le`](#MeanQ-DopQ_norm_le), [`MeanQ.DopQ_one_sub`](#MeanQ-DopQ_one_sub), [`MeanQ.DopQ_sub_mul`](#MeanQ-DopQ_sub_mul), [`MeanQ.DopQ_Imom`](../lean_stage3/MeanQInt.md#MeanQ-DopQ_Imom), [`MeanQ.StmtMollMeanQ`](../lean_stage3/MeanQMean.md#MeanQ-StmtMollMeanQ), [`MeanQ.mollMeanQ_long`](../lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_long), [`MeanQ.StmtMollMeanV`](../lean_stage3/MeanQV.md#MeanQ-StmtMollMeanV), [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long)
 
 <a name="MeanQ-Kq"></a>
 ### `MeanQ.Kq`
