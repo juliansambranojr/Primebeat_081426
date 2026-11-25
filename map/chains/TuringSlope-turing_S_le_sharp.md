@@ -1,16 +1,21 @@
-# What `LittlewoodSharp.littlewood_sharp` rests on
+# What `TuringSlope.turing_S_le_sharp` rests on
 
-[`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp) in `lean_stage3/Stage3/LittlewoodSharp.lean`, line 46.
+[`TuringSlope.turing_S_le_sharp`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le_sharp) in `lean_stage3/Stage3/TuringSlope.lean`, line 166.
 
-**Why.** Littlewood's bound on `∫ S`, sharper constants, unconditional.
+**Why.** Turing's lemma with the constants of `littlewood_sharp`.
 
 **Proves**
 
 ```lean
-Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) 2
+S t ≤ ((3 / 2 + 113 / 4) / Real.pi * Real.log (t + h) + (2 + (3 / 2) * Real.log 9 + 128) / Real.pi) / h + h * (Real.log ((t + h) / (2 * Real.pi)) / 2 + (4 / 5) / t) / (2 * Real.pi)
 ```
 
-Behind it: 145 theorems and 25 definitions in 14 files. Every one is listed below; Lean recorded each step.
+**Needs** (its hypotheses)
+
+  - `` ht : 80 ≤ t ``
+  - `` hh : 0 < h ``
+
+Behind it: 163 theorems and 25 definitions in 17 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -22,14 +27,17 @@ flowchart LR
   f3["<b>Littlewood</b><br/>9 used"]:::thm
   f4["<b>LittlewoodSharpLog</b><br/>15 used"]:::thm
   f5["<b>LittlewoodSharpPoint</b><br/>9 used"]:::thm
-  f6["<b>Stirling</b><br/>6 used"]:::thm
+  f6["<b>Stirling</b><br/>8 used"]:::thm
   f7["<b>ArgIdentity</b><br/>53 used"]:::thm
   f8["<b>TuringLWHoriz</b><br/>6 used"]:::thm
   f9["<b>TuringS</b><br/>15 used"]:::thm
   f10["<b>LittlewoodSharpHoriz</b><br/>9 used"]:::thm
-  f11["<b>TuringLWSplitOsc</b><br/>26 used"]:::thm
-  f12["<b>TuringLWSplit</b><br/>7 used"]:::thm
-  f13["<b>LittlewoodSharp</b><br/>littlewood_sharp"]:::end_
+  f11["<b>TuringAvg</b><br/>4 used"]:::thm
+  f12["<b>TuringLWSplitOsc</b><br/>26 used"]:::thm
+  f13["<b>TuringLWSplit</b><br/>7 used"]:::thm
+  f14["<b>LittlewoodSharp</b><br/>1 used"]:::thm
+  f15["<b>TuringSlopePoint</b><br/>7 used"]:::thm
+  f16["<b>TuringSlope</b><br/>turing_S_le_sharp"]:::end_
   f1 --> f5
   f4 --> f5
   f6 --> f7
@@ -40,10 +48,15 @@ flowchart LR
   f8 --> f10
   f9 --> f10
   f9 --> f11
-  f3 --> f12
-  f11 --> f12
-  f10 --> f13
+  f9 --> f12
+  f3 --> f13
   f12 --> f13
+  f10 --> f14
+  f13 --> f14
+  f6 --> f15
+  f11 --> f16
+  f14 --> f16
+  f15 --> f16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -126,7 +139,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LittlewoodSharp.norm_blaschke_mul_le`](../lean_stage3/LittlewoodSharpPoint.md#LittlewoodSharp-norm_blaschke_mul_le) — `` ‖BlaschkeB (25 / 32) (15 / 16) (jensenF T) z‖ * ∏ ρ ∈ zeroSet hT, ‖z - ρ‖ ^ analyticOrderNatAt (jensenF T) ρ ≤ ‖jensenF T z‖ * (25 / 16) ^ (∑ ρ ∈ zeroSet hT, an… ``
 - [`LittlewoodSharp.log_jensenF_ge`](../lean_stage3/LittlewoodSharpPoint.md#LittlewoodSharp-log_jensenF_ge) — `` -(2 * Real.log (84 * T) * ‖z‖ / (25 / 32 - ‖z‖)) - zeroMass hT * Real.log (25 / 16) + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ… ``
 
-### [`Stirling`](../lean_stage3/Stirling.md) — 6
+### [`Stirling`](../lean_stage3/Stirling.md) — 8
 
 - [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint) — *def*
 - [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta) — *def*
@@ -134,6 +147,8 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.intervalIntegrable_phasePoint`](../lean_stage3/Stirling.md#Stage3-intervalIntegrable_phasePoint) — `` IntervalIntegrable phasePoint MeasureTheory.volume a b ``
 - [`Stage3.zq`](../lean_stage3/Stirling.md#Stage3-zq) — *def*
 - [`Stage3.phasePoint_eq`](../lean_stage3/Stirling.md#Stage3-phasePoint_eq) — `` phasePoint t = (Complex.digamma (zq t)).re ``
+- [`Stage3.normSq_add_zq`](../lean_stage3/Stirling.md#Stage3-normSq_add_zq) — `` ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 ``
+- [`Stage3.add_zq_ne_zero`](../lean_stage3/Stirling.md#Stage3-add_zq_ne_zero) — `` (n : ℂ) + zq t ≠ 0 ``
 
 ### [`ArgIdentity`](../lean_stage3/ArgIdentity.md) — 53
 
@@ -202,10 +217,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`TuringS`](../lean_stage3/TuringS.md) — 15
 
-- [`Turing.S`](../lean_stage3/TuringS.md#Turing-S) — *def*
+- ★ [`Turing.S`](../lean_stage3/TuringS.md#Turing-S) — *def*
 - [`Turing.S₁`](../lean_stage3/TuringS.md#Turing-S-) — *def*
 - [`Turing.F`](../lean_stage3/TuringS.md#Turing-F) — *def*
-- ★ [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood) — *def*
+- [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood) — *def*
 - [`Turing.StmtSplit`](../lean_stage3/TuringS.md#Turing-StmtSplit) — *def*
 - [`Turing.StmtOsc`](../lean_stage3/TuringS.md#Turing-StmtOsc) — *def*
 - [`Turing.StmtHorizUpper`](../lean_stage3/TuringS.md#Turing-StmtHorizUpper) — *def*
@@ -228,7 +243,14 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LittlewoodSharp.intervalIntegrable_sumTerm`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-intervalIntegrable_sumTerm) — `` IntervalIntegrable (fun x => ∑ ρ ∈ zeroSet ht, (analyticOrderNatAt (jensenF t) ρ : ℝ) * (Real.log (x - TuringLW.beta ρ) - Real.log 2)) volume (1 / 2) 2 ``
 - [`LittlewoodSharp.intervalIntegrable_gLow`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-intervalIntegrable_gLow) — `` IntervalIntegrable (gLow ht) volume (1 / 2) 2 ``
 - [`LittlewoodSharp.integral_g_ge`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-integral_g_ge) — `` -(113 / 4 * Real.log t + 128) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x ``
-- ★ [`LittlewoodSharp.horizLower_sharp`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-horizLower_sharp) — `` Turing.StmtHorizLower (113 / 4) 128 ``
+- [`LittlewoodSharp.horizLower_sharp`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-horizLower_sharp) — `` Turing.StmtHorizLower (113 / 4) 128 ``
+
+### [`TuringAvg`](../lean_stage3/TuringAvg.md) — 4
+
+- [`Turing.avg_le`](../lean_stage3/TuringAvg.md#Turing-avg_le) — `` f t ≤ ((∫ u in t..t + h, f u) + ∫ u in t..t + h, e u) / h ``
+- [`Turing.integral_lin`](../lean_stage3/TuringAvg.md#Turing-integral_lin) — `` (∫ u in t..t + h, (u - t) * K / Real.pi) = K * h ^ 2 / (2 * Real.pi) ``
+- [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise) — `` S t ≤ S u + ((u - t) * K / Real.pi - c) ``
+- [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count) — `` S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h ``
 
 ### [`TuringLWSplitOsc`](../lean_stage3/TuringLWSplitOsc.md) — 26
 
@@ -267,5 +289,26 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
 - [`TuringLW.intervalIntegrable_log_zeta`](../lean_stage3/TuringLWSplit.md#TuringLW-intervalIntegrable_log_zeta) — `` IntervalIntegrable (fun x : ℝ => Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * I)‖) volume a b ``
 - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) — `` Turing.StmtSplit ``
-- ★ [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower) — `` Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
+- [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower) — `` Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 ``
+
+### [`LittlewoodSharp`](../lean_stage3/LittlewoodSharp.md) — 1
+
+- ★ [`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp) — `` Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) 2 ``
+
+### [`TuringSlopePoint`](../lean_stage3/TuringSlopePoint.md) — 7
+
+- [`TuringSlope.re_sub_log_norm_ge`](../lean_stage3/TuringSlopePoint.md#TuringSlope-re_sub_log_norm_ge) — `` -(‖w‖ ^ 2 / 2) ≤ w.re - Real.log ‖1 + w‖ ``
+- [`TuringSlope.a_term_ge`](../lean_stage3/TuringSlopePoint.md#TuringSlope-a_term_ge) — `` -((((n : ℝ) + 1 / 4) ^ 2 + (v / 2) ^ 2)⁻¹ / 2) ≤ (((n : ℂ) + zq v)⁻¹).re - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq v‖ - Real.log ‖(n : ℂ) + zq v‖) ``
+- [`TuringSlope.integral_quad_le`](../lean_stage3/TuringSlopePoint.md#TuringSlope-integral_quad_le) — `` (∫ x in (0 : ℝ)..N, (x ^ 2 + (v / 2) ^ 2)⁻¹) ≤ Real.pi / v ``
+- [`TuringSlope.quad_sum_le`](../lean_stage3/TuringSlopePoint.md#TuringSlope-quad_sum_le) — `` (∑ n ∈ Finset.range N, (((n : ℝ) + 1 / 4) ^ 2 + (v / 2) ^ 2)⁻¹) ≤ 4 / v ^ 2 + Real.pi / v ``
+- [`TuringSlope.re_digamma_sub_log_le_upper`](../lean_stage3/TuringSlopePoint.md#TuringSlope-re_digamma_sub_log_le_upper) — `` phasePoint t - Real.log ‖zq t‖ ≤ 2 / t ^ 2 + Real.pi / (2 * t) ``
+- [`TuringSlope.log_norm_zq_le`](../lean_stage3/TuringSlopePoint.md#TuringSlope-log_norm_zq_le) — `` Real.log ‖zq v‖ ≤ Real.log (v / 2) + 1 / (8 * v ^ 2) ``
+- [`TuringSlope.phasePoint_le`](../lean_stage3/TuringSlopePoint.md#TuringSlope-phasePoint_le) — `` phasePoint v ≤ Real.log (v / 2) + Real.pi / (2 * v) + 17 / (8 * v ^ 2) ``
+
+### [`TuringSlope`](../lean_stage3/TuringSlope.md) — 4
+
+- [`TuringSlope.theta_sub_le_sharp'`](../lean_stage3/TuringSlope.md#TuringSlope-theta_sub_le_sharp-) — `` Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * (Real.log (u / (2 * Real.pi)) / 2 + Real.pi / (4 * t) + 17 / (16 * t ^ 2)) ``
+- [`TuringSlope.slope_const_le`](../lean_stage3/TuringSlope.md#TuringSlope-slope_const_le) — `` Real.pi / (4 * t) + 17 / (16 * t ^ 2) ≤ c / t ``
+- [`TuringSlope.theta_sub_le_sharp80`](../lean_stage3/TuringSlope.md#TuringSlope-theta_sub_le_sharp80) — `` Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * (Real.log (u / (2 * Real.pi)) / 2 + (4 / 5) / t) ``
+- ★ [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-) — `` S t ≤ (a * Real.log (t + h) + b) / h + h * (Real.log ((t + h) / (2 * Real.pi)) / 2 + (4 / 5) / t) / (2 * Real.pi) ``
 

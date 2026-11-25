@@ -22,7 +22,8 @@ flowchart LR
   x0(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
   x1(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
   x2(["<b>TuringS</b><br/>S₁_sub<br/>intervalIntegrable_S"]):::ext
-  x3(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x3(["<b>TuringSlope</b><br/>defect_zero_of_signs'<br/>turing_S_le'"]):::ext
+  x4(["<b>ArgCount</b><br/>N_mono"]):::ext
   n0 --> n5
   n1 --> n4
   n2 --> n4
@@ -30,9 +31,10 @@ flowchart LR
   n4 --> n5
   n0 -.-> x1
   n4 -.-> x1
+  n4 -.-> x3
   x0 -.-> n0
   x2 -.-> n4
-  x3 -.-> n5
+  x4 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -191,10 +193,12 @@ S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * R
 
 **Definitions its proof touches:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta), [`Turing.S`](../lean_stage3/TuringS.md#Turing-S), [`Turing.S₁`](../lean_stage3/TuringS.md#Turing-S-)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`Turing.turing_S_le`](#Turing-turing_S_le) — `` S t ≤ (a * Real.log (t + h) + b) / h + h * ((Real.log ((t + h) / 2) - Real.log Real.pi + 97 / t) / 2) / (2 * Real.pi) ``
   - [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-) (TuringSlope) — `` S t ≤ (a * Real.log (t + h) + b) / h + h * (Real.log ((t + h) / (2 * Real.pi)) / 2 + (4 / 5) / t) / (2 * Real.pi) ``
 
 <a name="Turing-turing_S_le"></a>
 ### `Turing.turing_S_le`

@@ -8,7 +8,8 @@ flowchart LR
   x0(["<b>Stirling</b><br/>intervalIntegrable_phasePoint"]):::ext
   x1(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
   x2(["<b>TuringS</b><br/>S₁_sub<br/>intervalIntegrable_S"]):::ext
-  x3(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x3(["<b>TuringSlope</b><br/>defect_zero_of_signs'<br/>turing_S_le'"]):::ext
+  x4(["<b>ArgCount</b><br/>N_mono"]):::ext
   n0 --> n5
   n1 --> n4
   n2 --> n4
@@ -16,9 +17,10 @@ flowchart LR
   n4 --> n5
   n0 -.-> x1
   n4 -.-> x1
+  n4 -.-> x3
   x0 -.-> n0
   x2 -.-> n4
-  x3 -.-> n5
+  x4 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 7453.
+- **Theorems Lean has checked:** 7468.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
@@ -166,6 +166,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSFromLocal`](./lean_stage3/ArgCrude.md#Stage3-StmtSFromLocal) | **OPEN** | — | 5 |
 | [`Stage3.StmtSchoenfeld`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeld) | **OPEN** | — | 1 |
 | [`SwapX.StmtXStirling`](./lean_stage3/SwapX.md#SwapX-StmtXStirling) | **OPEN** | — | 2 |
+| [`TuringSlope.StmtClosingData'`](./lean_stage3/TuringSlope.md#TuringSlope-StmtClosingData-) | **OPEN** | — | 1 |
 | [`TwistedMoment.StmtLemma3`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtLemma3) | **OPEN** | — | 0 |
 | [`TwistedMoment.StmtOffDiag`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtOffDiag) | **OPEN** | — | 1 |
 | [`TwistedMoment.StmtX`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtX) | **OPEN** | — | 3 |
@@ -232,9 +233,9 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stirling.StmtXStirlingRel`](./lean_stage3/StirlingX.md#Stirling-StmtXStirlingRel) | proved | [`Stirling.stmtXStirlingRel_holds`](./lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds) ⊢ StmtXStirlingRel | 1 |
 | [`Turing.StmtHorizLower`](./lean_stage3/TuringS.md#Turing-StmtHorizLower) | proved | [`LittlewoodSharp.horizLower_sharp`](./lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-horizLower_sharp) ⊢ Turing.StmtHorizLower (113 / 4) 128<br/>[`TuringLW.horizLower_holds`](./lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) ⊢ Turing.StmtHorizLower 102 500 | 2 |
 | [`Turing.StmtHorizUpper`](./lean_stage3/TuringS.md#Turing-StmtHorizUpper) | proved | [`Turing.horizUpper_holds`](./lean_stage3/TuringS.md#Turing-horizUpper_holds) ⊢ StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9) | 0 |
-| [`Turing.StmtLittlewood`](./lean_stage3/TuringS.md#Turing-StmtLittlewood) | proved | [`LittlewoodSharp.littlewood_sharp`](./lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp) ⊢ Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Re…<br/>[`TuringLW.littlewood_holds`](./lean_stage3/TuringLW.md#TuringLW-littlewood_holds) ⊢ Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.p… | 2 |
+| [`Turing.StmtLittlewood`](./lean_stage3/TuringS.md#Turing-StmtLittlewood) | proved | [`LittlewoodSharp.littlewood_sharp`](./lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp) ⊢ Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Re…<br/>[`TuringLW.littlewood_holds`](./lean_stage3/TuringLW.md#TuringLW-littlewood_holds) ⊢ Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.p… | 4 |
 | [`Turing.StmtOsc`](./lean_stage3/TuringS.md#Turing-StmtOsc) | proved | [`TuringLW.stmtOsc_explicit`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_explicit) ⊢ Turing.StmtOsc (2 * (Real.pi ^ 2 / 6 - 1) / Real.log 2)<br/>[`TuringLW.stmtOsc_holds`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_holds) ⊢ Turing.StmtOsc 2 | 1 |
-| [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | proved | [`SignData.first_zero_signs`](./lean_stage3/SignData.md#SignData-first_zero_signs) ⊢ Turing.StmtSignData 1 ![14, 29 / 2]<br/>[`SignData.run_signs`](./lean_stage3/SignData.md#SignData-run_signs) ⊢ Turing.StmtSignData 9 ![14, 18, 23, 55 / 2, 63 / 2, 71 / 2, 39, 42, 91 / 2, 49] | 2 |
+| [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | proved | [`SignData.first_zero_signs`](./lean_stage3/SignData.md#SignData-first_zero_signs) ⊢ Turing.StmtSignData 1 ![14, 29 / 2]<br/>[`SignData.run_signs`](./lean_stage3/SignData.md#SignData-run_signs) ⊢ Turing.StmtSignData 9 ![14, 18, 23, 55 / 2, 63 / 2, 71 / 2, 39, 42, 91 / 2, 49] | 3 |
 | [`Turing.StmtSplit`](./lean_stage3/TuringS.md#Turing-StmtSplit) | proved | [`TuringLW.stmtSplit_holds`](./lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) ⊢ Turing.StmtSplit | 1 |
 
 ## Joints

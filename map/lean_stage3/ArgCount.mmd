@@ -27,15 +27,16 @@ flowchart LR
   x10(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
   x11(["<b>TuringAvg</b><br/>turing_S_le"]):::ext
   x12(["<b>TuringS</b><br/>S₁_crude<br/>intervalIntegrable_S"]):::ext
-  x13(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x14(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
-  x15(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x16(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x17(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x18(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x19(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
-  x20(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x21(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x13(["<b>TuringSlope</b><br/>turing_S_le'"]):::ext
+  x14(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x15(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x16(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x17(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x18(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x19(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x20(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
+  x21(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x22(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -55,19 +56,20 @@ flowchart LR
   n8 --> n12
   n9 --> n10
   n1 -.-> x3
-  n12 -.-> x14
+  n12 -.-> x15
   n12 -.-> x9
-  n14 -.-> x17
   n14 -.-> x18
   n14 -.-> x19
   n14 -.-> x20
   n14 -.-> x21
+  n14 -.-> x22
   n2 -.-> x4
   n2 -.-> x5
   n2 -.-> x6
   n3 -.-> x10
   n3 -.-> x11
   n3 -.-> x12
+  n3 -.-> x13
   n3 -.-> x4
   n3 -.-> x5
   n3 -.-> x6
@@ -76,20 +78,20 @@ flowchart LR
   n3 -.-> x9
   n7 -.-> x9
   n8 -.-> x12
-  n8 -.-> x14
+  n8 -.-> x15
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
   x1 -.-> n0
-  x13 -.-> n10
-  x13 -.-> n13
-  x13 -.-> n14
-  x13 -.-> n6
-  x13 -.-> n7
-  x15 -.-> n13
-  x15 -.-> n14
+  x14 -.-> n10
+  x14 -.-> n13
+  x14 -.-> n14
+  x14 -.-> n6
+  x14 -.-> n7
   x16 -.-> n13
   x16 -.-> n14
+  x17 -.-> n13
+  x17 -.-> n14
   x2 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

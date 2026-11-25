@@ -7,7 +7,7 @@ TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, st
 7 theorems, 3 definitions, 345 lines. 
 
 **Imports:** [`TuringAvg`](../lean_stage3/TuringAvg.md)  
-**Imported by:** [`SignData`](../lean_stage3/SignData.md), [`Turing`](../lean_stage3/Turing.md)
+**Imported by:** [`SignData`](../lean_stage3/SignData.md), [`Turing`](../lean_stage3/Turing.md), [`TuringSlope`](../lean_stage3/TuringSlope.md)
 
 ## The picture
 
@@ -22,17 +22,22 @@ flowchart LR
   n6["<b>defect_zero_of_signs</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
   x0(["<b>Defect</b><br/>7 theorems"]):::ext
   x1(["<b>LineCount</b><br/>mem_zerosUpTo<br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
-  x2(["<b>HardyZ</b><br/>re_line"]):::ext
-  x3(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
-  x4(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
-  x5(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
+  x2(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
+  x3(["<b>HardyZ</b><br/>re_line"]):::ext
+  x4(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
+  x5(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
+  x6(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
   n0 --> n2
   n1 --> n6
   n2 --> n6
   n3 --> n4
   n4 --> n6
   n5 --> n6
-  n6 -.-> x5
+  n1 -.-> x2
+  n2 -.-> x2
+  n4 -.-> x2
+  n5 -.-> x2
+  n6 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2
@@ -42,9 +47,9 @@ flowchart LR
   x1 -.-> n3
   x1 -.-> n4
   x1 -.-> n6
-  x2 -.-> n4
-  x3 -.-> n6
+  x3 -.-> n4
   x4 -.-> n6
+  x5 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -67,7 +72,7 @@ def · line 67
 The certificate's data: strict sign changes of `t ↦ Λ(1/2 + it)` (Hardy's `Z` up to a positive factor, `HardyZ`) between consecutive points of a strictly increasing run in `(0, ∞)`. A finite computation; its rigorous evaluation is not in this tree.
 
 - **Is:** `` StmtSignData (k : ℕ) (t : Fin (k + 1) → ℝ) : Prop := StrictMono t ∧ 0 < t 0 ∧ ∀ i : Fin k, (completedRiemannZeta (1/2 + t i.castSucc * I)).re * (completedRiemannZeta (1/2 + t i.succ * I)).re < 0 ``
-- **Used by 5:** [`SignData.StmtClosingData`](../lean_stage3/SignData.md#SignData-StmtClosingData), [`SignData.first_zero_signs`](../lean_stage3/SignData.md#SignData-first_zero_signs), [`SignData.run_signs`](../lean_stage3/SignData.md#SignData-run_signs), [`Turing.count_le_N_sub`](#Turing-count_le_N_sub), [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs)
+- **Used by 7:** [`SignData.StmtClosingData`](../lean_stage3/SignData.md#SignData-StmtClosingData), [`SignData.first_zero_signs`](../lean_stage3/SignData.md#SignData-first_zero_signs), [`SignData.run_signs`](../lean_stage3/SignData.md#SignData-run_signs), [`Turing.count_le_N_sub`](#Turing-count_le_N_sub), [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs), [`TuringSlope.StmtClosingData'`](../lean_stage3/TuringSlope.md#TuringSlope-StmtClosingData-), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-)
 
 <a name="Turing-turingK"></a>
 ### `Turing.turingK`
@@ -144,9 +149,10 @@ defect T = 0
 
 **Definitions its proof touches:** [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-defect_zero_below"></a>
 ### `Turing.defect_zero_below`
@@ -172,9 +178,10 @@ line 97 · arrows read from text
 
 **Definitions its proof touches:** [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-allCount_add_card_le_N"></a>
 ### `Turing.allCount_add_card_le_N`
@@ -240,9 +247,10 @@ line 134 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`Turing.StmtSignData`](#Turing-StmtSignData)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-integral_step"></a>
 ### `Turing.integral_step`
@@ -266,9 +274,10 @@ line 183 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
+  - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-defect_zero_of_signs"></a>
 ### `Turing.defect_zero_of_signs`
