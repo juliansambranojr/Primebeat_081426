@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's slope term: `Stage3/TuringSlope*.lean`
+
+    DONE        `Turing.theta_sub_le` sharpened through `StirlingSeries`: the
+                horizon's slope θ(u) − θ(t) ≤ (u − t)·(½ log(u/2π) + c/t) with c small
+                (target c ≤ 1); `turing_S_le` and `defect_zero_of_signs` restated with
+                it and with `LittlewoodSharp.littlewood_sharp`; the closing height
+                recomputed (target ≈ 432 ideal); a `StmtClosingData'` with the new
+                constants and `defect_zero_of_closing'`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0569, 0570, TRAPS
+                139–145, sharpen theta_sub_le, then the point run). Written
+                before the worker starts.
+    DEPENDS     `Turing*`, `TuringLW*`, `LittlewoodSharp*`, `StirlingSeries*`,
+                `SignData*`, `Stirling` (phaseTheta)
+    OUT         the point run up to the closing height (its own block next)
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing at scale: Stirling's series and sharper Littlewood constants: `Stage3/StirlingSeries*.lean`, `Stage3/LittlewoodSharp*.lean`
 
     DONE        (a) Stirling's series for log Γ(z) with an explicit remainder
