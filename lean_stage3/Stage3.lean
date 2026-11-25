@@ -251,6 +251,7 @@ import Stage3.TuringLWSplit
 import Stage3.TuringLW
 import Stage3.DiagLong
 import Stage3.SignData
+import Stage3.LittlewoodSharp
 
 namespace Stage3
 

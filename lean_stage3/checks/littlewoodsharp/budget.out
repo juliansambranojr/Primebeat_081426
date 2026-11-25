@@ -1,0 +1,51 @@
+theta check t=100: asymptotic - siegeltheta = -2.84e-14
+theta check t=1000: asymptotic - siegeltheta = -2.27e-13
+theta check t=14000: asymptotic - siegeltheta = 0.00e+00
+baseline a=32.9451 b=160.8407: ideal crossing T1 ~ 14070 (closing_height.out: 14063); Gram n, g_n ~ (41939, 34608.84277702034) (closing_height.out: 42284, 34860)
+
+1. one constant at a time, everything else as today (a, b of Littlewood):
+change                                                            a        b  T1 ideal  g_n Gram
+today (a2 = 102, b2 = 500)                                   32.945   160.84     14070     34609
+today's route, b2 as computed (98.9, 439.7)                  31.949   141.65     12452     30664
+97/t term -> 0                                               31.949   141.65      8140     22485
+upper side 3/2 -> 0 and (3/2) log 9 -> 0                     31.471   140.60     12158     29896
+Osc c0 = 2 -> 0                                              31.949   141.02     12419     30574
+per-zero int 7/2 -> 1.9315 (a2 76.1)                         24.712   109.59      7624     18406
+numerator 2 -> R + 3r/(4R) (a2 94.5)                         30.565   135.52     11427     28031
+BC pointwise in |z| (a2 84.7)                                27.432   121.64      9288     22625
+count 15 -> 1/log(15/14) = 14.494 (a2 98.9)                  31.949   141.65     12452     30664
+
+2. radii: r optimized at R = 15/16, with sharp int + numerator + pointwise BC:
+  best r = 0.7716: a2 = 26.69 (BC 8.04, c_z 3.633, count 5.133), b2 = 119.9
+  r = 0.7600: pointwise a2 =  27.43 b2 =  123.2   uniform BC a2 = 242.27
+  r = 0.7700: pointwise a2 =  26.70 b2 =  119.9   uniform BC a2 = 130.95
+  r = 0.7800: pointwise a2 =  26.95 b2 =  121.1   uniform BC a2 =  94.79
+  r = 0.7900: pointwise a2 =  27.73 b2 =  124.5   uniform BC a2 =  77.56
+  r = 0.8000: pointwise a2 =  28.92 b2 =  129.8   uniform BC a2 =  68.04
+  r = 0.8125: pointwise a2 =  30.94 b2 =  138.8   uniform BC a2 =  61.61
+  r = 0.8333: pointwise a2 =  35.91 b2 =  160.8   uniform BC a2 =  58.24
+  r = 0.8750: pointwise a2 =  57.60 b2 =  256.9   uniform BC a2 =  71.79
+
+3. cumulative (closing height after each):
+  today's route                    a2 =  98.87 b2 =  439.7  a = 31.949 b = 141.65  T1 ideal   12452  Gram n  36568 g_n   30664
+  + sharp per-zero int             a2 =  76.14 b2 =  339.0  a = 24.712 b = 109.59  T1 ideal    7624  Gram n  20455 g_n   18406
+  + numerator R + 3r/(4R)          a2 =  71.79 b2 =  319.7  a = 23.328 b = 103.46  T1 ideal    6843  Gram n  17983 g_n   16447
+  + pointwise BC, r = 7/8          a2 =  57.60 b2 =  256.9  a = 18.812 b =  83.45  T1 ideal    4618  Gram n  11208 g_n   10903
+  + r = 4/5                        a2 =  28.92 b2 =  129.8  a =  9.682 b =  42.99  T1 ideal    1507  Gram n   2805 g_n    3341
+  + r = 25/32                      a2 =  27.03 b2 =  121.4  a =  9.081 b =  40.33  T1 ideal    1363  Gram n   2469 g_n    3001
+
+4. what is left after section 3, each set to zero alone (from r = 25/32 line):
+  97/t -> 0            T1 ideal     374
+  upper 3/2 -> 0       T1 ideal    1273
+  c0 -> 0              T1 ideal    1350
+  K = 84 -> 24 (|zeta| <= 8T + 40, T large) T1 ideal    1152
+
+5. literature size (from memory, Trudgian 2011: a ~ 0.059, b ~ 2.07):
+  T1 ideal 18, Gram (10, 54.67523744685398)
+
+6. after the proof: the constants of LittlewoodSharp.littlewood_sharp (a2 = 113/4, b2 = 128),
+   and what the slope term of Turing.theta_sub_le (97/t, goal (a)) would still give:
+  a = 9.4697 b = 42.4294, slope term  97.0/t: T1 ideal   1463, Gram (2702, 3237.2280470049845)
+  a = 9.4697 b = 42.4294, slope term  10.0/t: T1 ideal    536, Gram (1039, 1466.325228592898)
+  a = 9.4697 b = 42.4294, slope term   1.0/t: T1 ideal    432, Gram (871, 1270.215290767215)
+  a = 9.4697 b = 42.4294, slope term   0.0/t: T1 ideal    420, Gram (852, 1247.6912825408922)
