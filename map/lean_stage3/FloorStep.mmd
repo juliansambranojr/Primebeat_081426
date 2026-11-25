@@ -1,12 +1,14 @@
 flowchart LR
   n0["<b>combine</b><br/>ND - lK / R * ND - ε * T * L ≤ LC"]:::shp
-  n1["<b>floor_step ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - …"]:::thm
+  n1["<b>floor_step</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - …"]:::thm
   x0(["<b>FloorStepCont</b><br/>hK_shift"]):::ext
   x1(["<b>FloorStepSize</b><br/>9 theorems"]):::ext
   x2(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
   x3(["<b>Unsmooth</b><br/>unsmooth_near_levinson"]):::ext
   x4(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x5(["<b>FloorSum</b><br/>step_X"]):::ext
   n0 --> n1
+  n1 -.-> x5
   x0 -.-> n1
   x1 -.-> n1
   x2 -.-> n1

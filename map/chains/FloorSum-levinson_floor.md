@@ -1,25 +1,16 @@
-# What `FloorStep.floor_step` rests on
+# What `FloorSum.levinson_floor` rests on
 
-[`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) in `lean_stage3/Stage3/FloorStep.lean`, line 127.
+[`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) in `lean_stage3/Stage3/FloorSum.lean`, line 132.
 
-**Why.** S12 piece 5b, Levinson's floor on one dyadic window. For `P(0) = 0`, `P(1) = 1`, `0 < θ < 1/2`, `R > 0`, every `ε > 0`: from some height on, the zeros on the line with height in `(T/2, T]` number at least `(1 − log K/R)(N T − N(T/2)) − ε T log T`, with `K = max 1 (Re D[c](−R/L, −R/L) + ε)`, `L = log T`.
+**Why.** S12 piece 5c, Levinson's floor. At `P(x) = x`, `θ = 49/100`, `R = 13/10`: for every `ε > 0`, from some height on, at least `(1/3 − ε) N T` of the zeros of `ζ` with height in `(0, T]` lie on the critical line, counted with multiplicity.
 
 **Proves**
 
 ```lean
-∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε)) / R * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ)
+∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ)
 ```
 
-**Needs** (its hypotheses)
-
-  - `` P : Polynomial ℝ ``
-  - `` hP0 : P.eval 0 = 0 ``
-  - `` hP1 : P.eval 1 = 1 ``
-  - `` hθ0 : 0 < θ ``
-  - `` hθ : θ < 1 / 2 ``
-  - `` hR : 0 < R ``
-
-Behind it: 650 theorems and 160 definitions in 57 files. Every one is listed below; Lean recorded each step.
+Behind it: 667 theorems and 162 definitions in 61 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -28,139 +19,147 @@ flowchart LR
   f0["<b>ApproxFE</b><br/>20 used"]:::thm
   f1["<b>ContourShift</b><br/>6 used"]:::thm
   f2["<b>DiagMainMu</b><br/>20 used"]:::thm
-  f3["<b>HardyZ</b><br/>3 used"]:::thm
-  f4["<b>JensenCount</b><br/>1 used"]:::thm
-  f5["<b>LevinsonArg</b><br/>4 used"]:::thm
-  f6["<b>LevinsonLine</b><br/>5 used"]:::thm
-  f7["<b>LineCount</b><br/>3 used"]:::thm
-  f8["<b>Littlewood</b><br/>29 used"]:::thm
-  f9["<b>LevinsonRight</b><br/>7 used"]:::thm
-  f10["<b>LevinsonTurn</b><br/>8 used"]:::thm
-  f11["<b>OperatorCauchy</b><br/>8 used"]:::thm
-  f12["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f13["<b>RvMCrude</b><br/>3 used"]:::thm
-  f14["<b>ArgCrude</b><br/>3 used"]:::thm
-  f15["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
-  f16["<b>Stirling</b><br/>20 used"]:::thm
-  f17["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f18["<b>ArgLegs</b><br/>10 used"]:::thm
-  f19["<b>ArgCount</b><br/>14 used"]:::thm
-  f20["<b>LevinsonSize</b><br/>9 used"]:::thm
-  f21["<b>LevinsonAvoid</b><br/>6 used"]:::thm
-  f22["<b>LevinsonEdge</b><br/>15 used"]:::thm
-  f23["<b>ApproxShift</b><br/>10 used"]:::thm
-  f24["<b>ApproxBounds</b><br/>37 used"]:::thm
-  f25["<b>ApproxDeriv</b><br/>32 used"]:::thm
-  f26["<b>LevinsonCount</b><br/>1 used"]:::thm
-  f27["<b>LevinsonMollEdge</b><br/>23 used"]:::thm
-  f28["<b>FloorStepCont</b><br/>7 used"]:::thm
-  f29["<b>LevinsonWindow</b><br/>9 used"]:::thm
-  f30["<b>LevinsonWindowNear</b><br/>3 used"]:::thm
-  f31["<b>StirlingLog</b><br/>9 used"]:::thm
-  f32["<b>TwistedMoment</b><br/>58 used"]:::thm
-  f33["<b>Diagonal</b><br/>6 used"]:::thm
-  f34["<b>DiagMainStmt</b><br/>2 used"]:::thm
-  f35["<b>DiagMain</b><br/>10 used"]:::thm
-  f36["<b>FloorStepSize</b><br/>10 used"]:::thm
-  f37["<b>OffDiagClose</b><br/>44 used"]:::thm
-  f38["<b>DiagonalO</b><br/>2 used"]:::thm
-  f39["<b>OperatorCY</b><br/>9 used"]:::thm
-  f40["<b>OperatorInt</b><br/>18 used"]:::thm
-  f41["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
-  f42["<b>SdiagLeadCop</b><br/>12 used"]:::thm
-  f43["<b>SdiagLeadCore</b><br/>8 used"]:::thm
-  f44["<b>SdiagLeadAd</b><br/>36 used"]:::thm
-  f45["<b>ArithBase</b><br/>42 used"]:::thm
-  f46["<b>ArithTail</b><br/>24 used"]:::thm
-  f47["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
-  f48["<b>SdiagLead</b><br/>3 used"]:::thm
-  f49["<b>Arith</b><br/>14 used"]:::thm
-  f50["<b>StirlingX</b><br/>20 used"]:::thm
-  f51["<b>Lemma3</b><br/>1 used"]:::thm
-  f52["<b>Operator</b><br/>4 used"]:::thm
-  f53["<b>UnsmoothCY</b><br/>3 used"]:::thm
-  f54["<b>UnsmoothWin</b><br/>14 used"]:::thm
-  f55["<b>Unsmooth</b><br/>5 used"]:::thm
-  f56["<b>FloorStep</b><br/>floor_step"]:::end_
-  f3 --> f6
-  f8 --> f9
-  f6 --> f10
-  f8 --> f10
-  f4 --> f12
-  f13 --> f14
-  f2 --> f15
-  f13 --> f16
-  f14 --> f17
+  f3["<b>FloorConstLimit</b><br/>1 used"]:::thm
+  f4["<b>FloorConst</b><br/>8 used"]:::thm
+  f5["<b>FloorSumTele</b><br/>4 used"]:::thm
+  f6["<b>HardyZ</b><br/>3 used"]:::thm
+  f7["<b>JensenCount</b><br/>1 used"]:::thm
+  f8["<b>LevinsonArg</b><br/>4 used"]:::thm
+  f9["<b>LevinsonLine</b><br/>5 used"]:::thm
+  f10["<b>LineCount</b><br/>3 used"]:::thm
+  f11["<b>Littlewood</b><br/>29 used"]:::thm
+  f12["<b>LevinsonRight</b><br/>7 used"]:::thm
+  f13["<b>LevinsonTurn</b><br/>8 used"]:::thm
+  f14["<b>OperatorCauchy</b><br/>8 used"]:::thm
+  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f16["<b>RvMCrude</b><br/>3 used"]:::thm
+  f17["<b>ArgCrude</b><br/>3 used"]:::thm
+  f18["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
+  f19["<b>Stirling</b><br/>20 used"]:::thm
+  f20["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f21["<b>ArgLegs</b><br/>10 used"]:::thm
+  f22["<b>ArgCount</b><br/>14 used"]:::thm
+  f23["<b>LevinsonSize</b><br/>9 used"]:::thm
+  f24["<b>LevinsonAvoid</b><br/>6 used"]:::thm
+  f25["<b>LevinsonEdge</b><br/>15 used"]:::thm
+  f26["<b>ApproxShift</b><br/>10 used"]:::thm
+  f27["<b>ApproxBounds</b><br/>37 used"]:::thm
+  f28["<b>ApproxDeriv</b><br/>32 used"]:::thm
+  f29["<b>LevinsonCount</b><br/>1 used"]:::thm
+  f30["<b>LevinsonMollEdge</b><br/>23 used"]:::thm
+  f31["<b>FloorStepCont</b><br/>7 used"]:::thm
+  f32["<b>LevinsonWindow</b><br/>9 used"]:::thm
+  f33["<b>LevinsonWindowNear</b><br/>4 used"]:::thm
+  f34["<b>StirlingLog</b><br/>9 used"]:::thm
+  f35["<b>TwistedMoment</b><br/>58 used"]:::thm
+  f36["<b>Diagonal</b><br/>6 used"]:::thm
+  f37["<b>DiagMainStmt</b><br/>2 used"]:::thm
+  f38["<b>DiagMain</b><br/>10 used"]:::thm
+  f39["<b>FloorStepSize</b><br/>10 used"]:::thm
+  f40["<b>OffDiagClose</b><br/>44 used"]:::thm
+  f41["<b>DiagonalO</b><br/>2 used"]:::thm
+  f42["<b>OperatorCY</b><br/>9 used"]:::thm
+  f43["<b>OperatorInt</b><br/>18 used"]:::thm
+  f44["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
+  f45["<b>SdiagLeadCop</b><br/>12 used"]:::thm
+  f46["<b>SdiagLeadCore</b><br/>8 used"]:::thm
+  f47["<b>SdiagLeadAd</b><br/>36 used"]:::thm
+  f48["<b>ArithBase</b><br/>42 used"]:::thm
+  f49["<b>ArithTail</b><br/>24 used"]:::thm
+  f50["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
+  f51["<b>SdiagLead</b><br/>3 used"]:::thm
+  f52["<b>Arith</b><br/>14 used"]:::thm
+  f53["<b>StirlingX</b><br/>20 used"]:::thm
+  f54["<b>Lemma3</b><br/>1 used"]:::thm
+  f55["<b>Operator</b><br/>4 used"]:::thm
+  f56["<b>UnsmoothCY</b><br/>3 used"]:::thm
+  f57["<b>UnsmoothWin</b><br/>14 used"]:::thm
+  f58["<b>Unsmooth</b><br/>5 used"]:::thm
+  f59["<b>FloorStep</b><br/>2 used"]:::thm
+  f60["<b>FloorSum</b><br/>levinson_floor"]:::end_
+  f3 --> f4
+  f6 --> f9
+  f11 --> f12
+  f9 --> f13
+  f11 --> f13
+  f7 --> f15
   f16 --> f17
-  f17 --> f18
-  f12 --> f19
-  f18 --> f19
-  f10 --> f20
+  f2 --> f18
+  f16 --> f19
+  f17 --> f20
   f19 --> f20
   f20 --> f21
-  f20 --> f22
-  f0 --> f23
-  f1 --> f23
+  f15 --> f22
+  f21 --> f22
+  f13 --> f23
   f22 --> f23
   f23 --> f24
-  f24 --> f25
-  f22 --> f26
-  f22 --> f27
+  f23 --> f25
+  f0 --> f26
+  f1 --> f26
+  f25 --> f26
+  f26 --> f27
   f27 --> f28
-  f7 --> f29
-  f9 --> f29
-  f27 --> f29
-  f5 --> f30
-  f21 --> f30
-  f26 --> f30
-  f29 --> f30
-  f25 --> f32
+  f25 --> f29
+  f25 --> f30
+  f30 --> f31
+  f10 --> f32
+  f12 --> f32
+  f30 --> f32
+  f8 --> f33
+  f24 --> f33
+  f29 --> f33
   f32 --> f33
-  f33 --> f34
-  f34 --> f35
-  f27 --> f36
-  f33 --> f36
-  f32 --> f37
-  f34 --> f38
+  f28 --> f35
+  f35 --> f36
+  f36 --> f37
   f37 --> f38
-  f11 --> f39
-  f32 --> f39
-  f11 --> f40
-  f32 --> f40
-  f33 --> f41
-  f15 --> f42
-  f41 --> f42
-  f15 --> f43
+  f30 --> f39
+  f36 --> f39
+  f35 --> f40
+  f37 --> f41
+  f40 --> f41
+  f14 --> f42
+  f35 --> f42
+  f14 --> f43
   f35 --> f43
-  f41 --> f43
-  f42 --> f44
-  f43 --> f44
+  f36 --> f44
+  f18 --> f45
   f44 --> f45
-  f45 --> f46
-  f44 --> f47
+  f18 --> f46
+  f38 --> f46
+  f44 --> f46
+  f45 --> f47
+  f46 --> f47
   f47 --> f48
-  f46 --> f49
   f48 --> f49
-  f31 --> f50
-  f37 --> f50
-  f38 --> f51
-  f49 --> f51
+  f47 --> f50
   f50 --> f51
-  f39 --> f52
-  f40 --> f52
+  f49 --> f52
   f51 --> f52
-  f35 --> f53
-  f39 --> f53
+  f34 --> f53
   f40 --> f53
-  f37 --> f54
-  f27 --> f55
-  f52 --> f55
-  f53 --> f55
+  f41 --> f54
+  f52 --> f54
+  f53 --> f54
+  f42 --> f55
+  f43 --> f55
   f54 --> f55
-  f28 --> f56
-  f30 --> f56
-  f36 --> f56
-  f55 --> f56
+  f38 --> f56
+  f42 --> f56
+  f43 --> f56
+  f40 --> f57
+  f30 --> f58
+  f55 --> f58
+  f56 --> f58
+  f57 --> f58
+  f31 --> f59
+  f33 --> f59
+  f39 --> f59
+  f58 --> f59
+  f4 --> f60
+  f5 --> f60
+  f59 --> f60
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -231,6 +230,28 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`DiagMain.tail_bound`](../lean_stage3/DiagMainMu.md#DiagMain-tail_bound) — `` |∑ n ∈ Ioc (N / Y) N, (μ n : ℝ) / n * rhoN N n| ≤ B * ((Y : ℝ) / N) * (Real.log Y + harmonic Y) ``
 - [`DiagMain.D_small`](../lean_stage3/DiagMainMu.md#DiagMain-D_small) — `` ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → |∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * rhoN N n| ≤ ε ``
 - [`DiagMain.psiMu_tendsto`](../lean_stage3/DiagMainMu.md#DiagMain-psiMu_tendsto) — `` Tendsto psiMu atTop (𝓝 1) ``
+
+### [`FloorConstLimit`](../lean_stage3/FloorConstLimit.md) — 1
+
+- [`FloorConst.Kfl`](../lean_stage3/FloorConstLimit.md#FloorConst-Kfl) — *def*
+
+### [`FloorConst`](../lean_stage3/FloorConst.md) — 8
+
+- [`FloorConst.kappaL`](../lean_stage3/FloorConst.md#FloorConst-kappaL) — *def*
+- [`FloorConst.exp_fifteenth_ge`](../lean_stage3/FloorConst.md#FloorConst-exp_fifteenth_ge) — `` 1 + 1 / 15 + 1 / 450 + 1 / 20250 ≤ Real.exp (1 / 15) ``
+- [`FloorConst.exp_mul_nat`](../lean_stage3/FloorConst.md#FloorConst-exp_mul_nat) — `` Real.exp (n * x) = Real.exp x ^ n ``
+- [`FloorConst.Kfl_levinson_eq`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_eq) — `` Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) = -760154441 / 645918000 + 3405769 / 12918360 * Real.exp (13 / 10) ^ 2 ``
+- [`FloorConst.exp_13_15_ge`](../lean_stage3/FloorConst.md#FloorConst-exp_13_15_ge) — `` (1 + 1 / 15 + 1 / 450 + 1 / 20250 : ℝ) ^ 13 ≤ Real.exp (13 / 15) ``
+- [`FloorConst.Kfl_levinson_le`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_le) — `` Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ≤ -760154441 / 645918000 + 3405769 / 12918360 * ((1 + 1 / 10 + 1 / 200 + 1 / 6000 + 1 / 192000 : ℝ) ^ 13) ^ 2 ``
+- [`FloorConst.Kfl_levinson_pos`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_pos) — `` 0 < Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ``
+- [`FloorConst.kappa_levinson_ge`](../lean_stage3/FloorConst.md#FloorConst-kappa_levinson_ge) — `` 1 / 3 ≤ kappaL (49 / 100) (13 / 10) ``
+
+### [`FloorSumTele`](../lean_stage3/FloorSumTele.md) — 4
+
+- [`FloorSum.half_pow_succ`](../lean_stage3/FloorSumTele.md#FloorSum-half_pow_succ) — `` T / 2 / 2 ^ n = T / 2 ^ (n + 1) ``
+- [`FloorSum.tele`](../lean_stage3/FloorSumTele.md#FloorSum-tele) — `` ∀ n : ℕ, ∀ T : ℝ, T₁ ≤ T / 2 ^ n → c * (g T - g (T / 2 ^ (n + 1))) - 2 * e * T * Real.log T ≤ f T - f (T / 2 ^ (n + 1)) ``
+- [`FloorSum.exists_halving`](../lean_stage3/FloorSumTele.md#FloorSum-exists_halving) — `` ∃ n : ℕ, T₁ ≤ T / 2 ^ n ∧ T / 2 ^ (n + 1) < T₁ ``
+- ★ [`FloorSum.tele_floor`](../lean_stage3/FloorSumTele.md#FloorSum-tele_floor) — `` ∀ T : ℝ, T₁ ≤ T → c * (g T - g T₁) - 2 * e * T * Real.log T ≤ f T ``
 
 ### [`HardyZ`](../lean_stage3/HardyZ.md) — 3
 
@@ -321,7 +342,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa) — *def*
 - [`Operator.pb`](../lean_stage3/OperatorCauchy.md#Operator-pb) — *def*
 - [`Operator.pab`](../lean_stage3/OperatorCauchy.md#Operator-pab) — *def*
-- ★ [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop) — *def*
+- [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop) — *def*
 - [`Operator.cauchy_bounds`](../lean_stage3/OperatorCauchy.md#Operator-cauchy_bounds) — `` ‖F α₀ β₀‖ ≤ S ∧ ‖pa F α₀ β₀‖ ≤ S / ρ ∧ ‖pb F α₀ β₀‖ ≤ S / ρ ∧ ‖pab F α₀ β₀‖ ≤ S / ρ / ρ ``
 - [`Operator.Dop_norm_le`](../lean_stage3/OperatorCauchy.md#Operator-Dop_norm_le) — `` ‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2) ``
 - [`Operator.Dop_sub_mul`](../lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) — `` Dop L (fun x y => A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c ``
@@ -497,8 +518,8 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.good`](../lean_stage3/ArgCount.md#ArgCount-good) — *def*
 - [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
 - [`ArgCount.N_eq_sum`](../lean_stage3/ArgCount.md#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
-- [`ArgCount.N_nonneg`](../lean_stage3/ArgCount.md#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
-- [`ArgCount.N_mono`](../lean_stage3/ArgCount.md#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
+- ★ [`ArgCount.N_nonneg`](../lean_stage3/ArgCount.md#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
+- ★ [`ArgCount.N_mono`](../lean_stage3/ArgCount.md#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
 - [`ArgCount.N_eq_of_no_zero_between`](../lean_stage3/ArgCount.md#ArgCount-N_eq_of_no_zero_between) — `` riemannZeta.N T = riemannZeta.N T₀ ``
 - [`ArgCount.exists_good_below`](../lean_stage3/ArgCount.md#ArgCount-exists_good_below) — `` ∃ T : ℝ, a < T ∧ T < T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False ``
 - [`ArgCount.phasePoint_bound_near`](../lean_stage3/ArgCount.md#ArgCount-phasePoint_bound_near) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M ``
@@ -643,7 +664,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md) — 23
 
 - [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli) — *def*
-- ★ [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta) — *def*
+- [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta) — *def*
 - [`LevinsonMollEdge.molli_norm_le`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli_norm_le) — `` ‖molli M β s‖ ≤ M * B ``
 - [`LevinsonMollEdge.molli_sub_one_le`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli_sub_one_le) — `` ‖molli M β s - 1‖ ≤ M * B / (2 : ℝ) ^ X ``
 - [`LevinsonMollEdge.molli_differentiable`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli_differentiable) — `` Differentiable ℂ (molli M β) ``
@@ -668,17 +689,17 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`FloorStepCont`](../lean_stage3/FloorStepCont.md) — 7
 
-- ★ [`FloorStep.Fint`](../lean_stage3/FloorStepCont.md#FloorStep-Fint) — *def*
+- [`FloorStep.Fint`](../lean_stage3/FloorStepCont.md#FloorStep-Fint) — *def*
 - [`FloorStep.continuous_molli`](../lean_stage3/FloorStepCont.md#FloorStep-continuous_molli) — `` Continuous (LevinsonMollEdge.molli M β) ``
 - [`FloorStep.continuousOn_Fint`](../lean_stage3/FloorStepCont.md#FloorStep-continuousOn_Fint) — `` ContinuousOn (fun p : ℝ × ℝ => Fint c M β p.1 p.2) {p | p.1 ≠ 1} ``
 - [`FloorStep.continuous_Fint`](../lean_stage3/FloorStepCont.md#FloorStep-continuous_Fint) — `` Continuous (Fint c M β σ) ``
 - [`FloorStep.Fint_shift`](../lean_stage3/FloorStepCont.md#FloorStep-Fint_shift) — `` ∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ σ ∈ Icc (σ₀ - δ) σ₀, ∀ t ∈ Icc A B, Fint c M β σ t ≤ Fint c M β σ₀ t + ε ``
 - [`FloorStep.mean_shift`](../lean_stage3/FloorStepCont.md#FloorStep-mean_shift) — `` (1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ (1 / (b' - a')) * (∫ t in a'..b', Fint c M β σ₀ t) + ε ``
-- ★ [`FloorStep.hK_shift`](../lean_stage3/FloorStepCont.md#FloorStep-hK_shift) — `` ∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', … ``
+- [`FloorStep.hK_shift`](../lean_stage3/FloorStepCont.md#FloorStep-hK_shift) — `` ∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', … ``
 
 ### [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md) — 9
 
-- ★ [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE) — *def*
+- [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE) — *def*
 - [`LevinsonWindow.border_cases`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-border_cases) — `` (p.im = z.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = z.re ∧ p.im ∈ Icc z.im w.im) ∨ (p.im = w.im ∧ p.re ∈ Icc z.re w.re) ∨ (p.re = w.re ∧ p.im ∈ Icc z.im w.im) ``
 - [`LevinsonWindow.analyticOnNhd_rect_of_im`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-analyticOnNhd_rect_of_im) — `` AnalyticOnNhd ℂ f (Rectangle z w) ``
 - [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le) — `` countRight f z w' σ ≤ countRight f z w σ ``
@@ -688,11 +709,12 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LevinsonWindow.tailDelta_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-tailDelta_nonneg) — `` 0 ≤ LevinsonMollEdge.tailDelta M B X ``
 - [`LevinsonWindow.windowE_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE_nonneg) — `` 0 ≤ windowE M B X T a b ``
 
-### [`LevinsonWindowNear`](../lean_stage3/LevinsonWindowNear.md) — 3
+### [`LevinsonWindowNear`](../lean_stage3/LevinsonWindowNear.md) — 4
 
 - [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a ``
+- ★ [`LevinsonWindowNear.lineCount_nonneg`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-lineCount_nonneg) — `` 0 ≤ lineCount T ``
 - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) -… ``
-- ★ [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount… ``
+- [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount… ``
 
 ### [`StirlingLog`](../lean_stage3/StirlingLog.md) — 9
 
@@ -757,11 +779,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`TwistedMoment.hk_dom`](../lean_stage3/TwistedMoment.md#TwistedMoment-hk_dom) — `` (∀ p : ℕ × ℕ, Integrable fun t => (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ => ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t… ``
 - [`TwistedMoment.summable_hk`](../lean_stage3/TwistedMoment.md#TwistedMoment-summable_hk) — `` Summable fun p : ℕ × ℕ => ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)‖ ``
 - [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum) — *def*
-- ★ [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof) — *def*
-- ★ [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0) — *def*
+- [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof) — *def*
+- [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0) — *def*
 - [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY) — *def*
 - [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y) — *def*
-- ★ [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY) — *def*
+- [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY) — *def*
 - [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime) — *def*
 - [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY) — *def*
 - [`TwistedMoment.Regime.small`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime-small) — `` ‖α‖ ≤ 1 / 10 ∧ ‖β‖ ≤ 1 / 10 ∧ α + β ≠ 0 ∧ 0 < Real.log T ``
@@ -796,16 +818,16 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`FloorStepSize`](../lean_stage3/FloorStepSize.md) — 10
 
-- ★ [`FloorStep.betaC`](../lean_stage3/FloorStepSize.md#FloorStep-betaC) — *def*
-- ★ [`FloorStep.molli_betaC`](../lean_stage3/FloorStepSize.md#FloorStep-molli_betaC) — `` LevinsonMollEdge.molli (Mof T θ) (betaC P T θ R) = LevinsonMollEdge.molli (Mof T θ) (aY P T θ R) ``
-- ★ [`FloorStep.betaC_one`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_one) — `` betaC P T θ R 1 = 1 ``
-- ★ [`FloorStep.betaC_bound`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_bound) — `` ∃ B : ℝ, 1 ≤ B ∧ ∀ (T θ R : ℝ), sig0 T R ≤ 1 / 2 → ∀ h : ℕ, ‖betaC P T θ R h‖ ≤ B ``
-- ★ [`FloorStep.tail_le`](../lean_stage3/FloorStepSize.md#FloorStep-tail_le) — `` LevinsonMollEdge.tailDelta M B X ≤ τ ``
-- ★ [`FloorStep.XMB_le`](../lean_stage3/FloorStepSize.md#FloorStep-XMB_le) — `` 32 * M * B ≤ (2 : ℝ) ^ X ``
-- ★ [`FloorStep.X_bounds`](../lean_stage3/FloorStepSize.md#FloorStep-X_bounds) — `` 3 ≤ Real.logb 2 (A * T) ∧ Real.logb 2 (A * T) ≤ 4 * Real.log T ``
-- ★ [`FloorStep.W2_le`](../lean_stage3/FloorStepSize.md#FloorStep-W2_le) — `` X * Real.pi + 2 * (X * (Real.pi * ((8 * X - 1) * (L + lM + lB + 8) + 1))) ≤ Real.pi * (12 + 256 * (10 + B)) * L ^ 3 ``
-- ★ [`FloorStep.eventually_logpow_le`](../lean_stage3/FloorStepSize.md#FloorStep-eventually_logpow_le) — `` ∀ᶠ T : ℝ in atTop, C * Real.log T ^ n ≤ T ``
-- ★ [`FloorStep.N_window_ge`](../lean_stage3/FloorStepSize.md#FloorStep-N_window_ge) — `` T * Real.log T / (4 * Real.pi) - (riemannZeta.N T - riemannZeta.N (T / 2)) ≤ T + 224 * Real.log T + 1396 ``
+- [`FloorStep.betaC`](../lean_stage3/FloorStepSize.md#FloorStep-betaC) — *def*
+- [`FloorStep.molli_betaC`](../lean_stage3/FloorStepSize.md#FloorStep-molli_betaC) — `` LevinsonMollEdge.molli (Mof T θ) (betaC P T θ R) = LevinsonMollEdge.molli (Mof T θ) (aY P T θ R) ``
+- [`FloorStep.betaC_one`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_one) — `` betaC P T θ R 1 = 1 ``
+- [`FloorStep.betaC_bound`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_bound) — `` ∃ B : ℝ, 1 ≤ B ∧ ∀ (T θ R : ℝ), sig0 T R ≤ 1 / 2 → ∀ h : ℕ, ‖betaC P T θ R h‖ ≤ B ``
+- [`FloorStep.tail_le`](../lean_stage3/FloorStepSize.md#FloorStep-tail_le) — `` LevinsonMollEdge.tailDelta M B X ≤ τ ``
+- [`FloorStep.XMB_le`](../lean_stage3/FloorStepSize.md#FloorStep-XMB_le) — `` 32 * M * B ≤ (2 : ℝ) ^ X ``
+- [`FloorStep.X_bounds`](../lean_stage3/FloorStepSize.md#FloorStep-X_bounds) — `` 3 ≤ Real.logb 2 (A * T) ∧ Real.logb 2 (A * T) ≤ 4 * Real.log T ``
+- [`FloorStep.W2_le`](../lean_stage3/FloorStepSize.md#FloorStep-W2_le) — `` X * Real.pi + 2 * (X * (Real.pi * ((8 * X - 1) * (L + lM + lB + 8) + 1))) ≤ Real.pi * (12 + 256 * (10 + B)) * L ^ 3 ``
+- [`FloorStep.eventually_logpow_le`](../lean_stage3/FloorStepSize.md#FloorStep-eventually_logpow_le) — `` ∀ᶠ T : ℝ in atTop, C * Real.log T ^ n ≤ T ``
+- [`FloorStep.N_window_ge`](../lean_stage3/FloorStepSize.md#FloorStep-N_window_ge) — `` T * Real.log T / (4 * Real.pi) - (riemannZeta.N T - riemannZeta.N (T / 2)) ≤ T + 224 * Real.log T + 1396 ``
 
 ### [`OffDiagClose`](../lean_stage3/OffDiagClose.md) — 44
 
@@ -1127,7 +1149,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 - [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le) — `` ‖c1form P M x y‖ ≤ ‖Aq P‖ / (‖x + y‖ * Real.log M) + ‖Bq P‖ + ‖x‖ * ‖y‖ * Real.log M * ‖Cq P‖ / ‖x + y‖ ``
 - [`Unsmooth.Tpow_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-Tpow_norm_le) — `` ‖(T : ℂ) ^ (-(x + y))‖ ≤ Real.exp (3 * R) ``
-- ★ [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
+- [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 ### [`UnsmoothWin`](../lean_stage3/UnsmoothWin.md) — 14
 
@@ -1152,9 +1174,17 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Unsmooth.continuous_Gpsi`](../lean_stage3/Unsmooth.md#Unsmooth-continuous_Gpsi) — `` Continuous fun t : ℝ => ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t ``
 - [`Unsmooth.norm_Gpsi_sq`](../lean_stage3/Unsmooth.md#Unsmooth-norm_Gpsi_sq) — `` ‖Gl L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t ``
 - [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Real.log T) … ``
-- ★ [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Real.log T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ … ``
+- [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Real.log T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ … ``
 
-### [`FloorStep`](../lean_stage3/FloorStep.md) — 1
+### [`FloorStep`](../lean_stage3/FloorStep.md) — 2
 
-- ★ [`FloorStep.combine`](../lean_stage3/FloorStep.md#FloorStep-combine) — `` ND - lK / R * ND - ε * T * L ≤ LC ``
+- [`FloorStep.combine`](../lean_stage3/FloorStep.md#FloorStep-combine) — `` ND - lK / R * ND - ε * T * L ≤ LC ``
+- [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / … ``
+
+### [`FloorSum`](../lean_stage3/FloorSum.md) — 4
+
+- [`FloorSum.K_ge_one`](../lean_stage3/FloorSum.md#FloorSum-K_ge_one) — `` 1 ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ``
+- [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le) — `` Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ≤ 13 / 15 ``
+- [`FloorSum.logmax_le`](../lean_stage3/FloorSum.md#FloorSum-logmax_le) — `` Real.log (max 1 x) / (13 / 10) ≤ 2 / 3 + 2 * ε₁ ``
+- ★ [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCou… ``
 

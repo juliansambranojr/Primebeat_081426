@@ -7,7 +7,7 @@
 13 theorems, 1 definition, 158 lines. 
 
 **Imports:** [`FloorConstLimit`](../lean_stage3/FloorConstLimit.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorSum`](../lean_stage3/FloorSum.md)
 
 ## The picture
 
@@ -26,7 +26,8 @@ flowchart LR
   n10["<b>log_Kfl_levinson_lt</b><br/>Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ＜ 13 / 10"]:::shp
   n11["<b>kappa_levinson_ge</b><br/>1 / 3 ≤ kappaL (49 / 100) (13 / 10)"]:::shp
   n12["<b>floor_const ■</b><br/>Tendsto (fun T =＞ (Dop (Real.log T) (cY Polynomial.X (Mof T (49 …"]:::shp
-  x0(["<b>FloorConstLimit</b><br/>re_dop_tendsto_X"]):::ext
+  x0(["<b>FloorSum</b><br/>K_ge_one<br/>log_K_le"]):::ext
+  x1(["<b>FloorConstLimit</b><br/>re_dop_tendsto_X"]):::ext
   n0 --> n5
   n1 --> n5
   n10 --> n12
@@ -42,7 +43,9 @@ flowchart LR
   n8 --> n10
   n8 --> n11
   n9 --> n10
-  x0 -.-> n12
+  n11 -.-> x0
+  n4 -.-> x0
+  x1 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -66,7 +69,7 @@ Levinson's proportion at `P(x) = x`: `κ = 1 − log K / R`.
 
 - **Is:** `` kappaL (θ R : ℝ) : ℝ := 1 - Real.log (Kfl 1 (1 / 2) (1 / 3) θ R) / R ``
 - **Built from:** [`FloorConst.Kfl`](../lean_stage3/FloorConstLimit.md#FloorConst-Kfl)
-- **Used by 2:** [`FloorConst.floor_const`](#FloorConst-floor_const), [`FloorConst.kappa_levinson_ge`](#FloorConst-kappa_levinson_ge)
+- **Used by 3:** [`FloorConst.floor_const`](#FloorConst-floor_const), [`FloorConst.kappa_levinson_ge`](#FloorConst-kappa_levinson_ge), [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le)
 
 ## Theorems
 
@@ -171,10 +174,11 @@ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) = -760154441 / 645918000 + 3405769 / 
 
 **Definitions its proof touches:** [`FloorConst.Kfl`](../lean_stage3/FloorConstLimit.md#FloorConst-Kfl)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`FloorConst.Kfl_levinson_le`](#FloorConst-Kfl_levinson_le) — `` Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ≤ -760154441 / 645918000 + 3405769 / 12918360 * ((1 + 1 / 10 + 1 / 200 + 1 / 6000 + 1 / 192000 : ℝ) ^ 13) ^… ``
   - [`FloorConst.Kfl_levinson_pos`](#FloorConst-Kfl_levinson_pos) — `` 0 < Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ``
+  - [`FloorSum.K_ge_one`](../lean_stage3/FloorSum.md#FloorSum-K_ge_one) (FloorSum) — `` 1 ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ``
 
 <a name="FloorConst-exp_13_10_bounds"></a>
 ### `FloorConst.exp_13_10_bounds`
@@ -345,9 +349,10 @@ line 120 · arrows read from text
 
 **Definitions its proof touches:** [`FloorConst.kappaL`](#FloorConst-kappaL), [`FloorConst.Kfl`](../lean_stage3/FloorConstLimit.md#FloorConst-Kfl)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.floor_const`](#FloorConst-floor_const) — `` Tendsto (fun T => (Dop (Real.log T) (cY Polynomial.X (Mof T (49 / 100)) T) ((-((13 / 10) / Real.log T) : ℝ) : ℂ) ((-((13 / 10) / Real.log T) : ℝ) : ℂ)… ``
+  - [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le) (FloorSum) — `` Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ≤ 13 / 15 ``
 
 <a name="FloorConst-floor_const"></a>
 ### `FloorConst.floor_const`

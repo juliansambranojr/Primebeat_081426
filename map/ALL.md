@@ -804,6 +804,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonAvoid.exists_good_abscissa`](./lean_stage3/LevinsonAvoid.md#LevinsonAvoid-exists_good_abscissa) | theorem | shape | `LevinsonAvoid` | ∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0 |
 | [`ArgCount.exists_good_below`](./lean_stage3/ArgCount.md#ArgCount-exists_good_below) | theorem | reads ζ | `ArgCount` | ∃ T : ℝ, a &lt; T ∧ T &lt; T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False |
 | [`LevinsonAvoid.exists_good_height`](./lean_stage3/LevinsonAvoid.md#LevinsonAvoid-exists_good_height) | theorem | shape | `LevinsonAvoid` | ∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0 |
+| [`FloorSum.exists_halving`](./lean_stage3/FloorSumTele.md#FloorSum-exists_halving) | theorem | counting | `FloorSumTele` | ∃ n : ℕ, T₁ ≤ T / 2 ^ n ∧ T / 2 ^ (n + 1) &lt; T₁ |
 | [`LandauTrig.exists_large_in_block`](./lean_stage3/LandauTrig.md#LandauTrig-exists_large_in_block) | theorem | shape | `LandauTrig` | ∃ τ : ℝ, 0 &lt; τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N → ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n |
 | [`LevinsonArg.exists_log_lift`](./lean_stage3/LevinsonArg.md#LevinsonArg-exists_log_lift) | theorem | shape | `LevinsonArg` | ∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, Complex.exp (L t) = F t |
 | [`Covering.exists_near_lattice`](./lean/Covering.md#Covering-exists_near_lattice) | theorem | shape | `Covering` | ∃ n : ℤ, \|u - n * L\| ≤ L / 2 |
@@ -1163,6 +1164,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonWindow.half_log_mean_le`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-half_log_mean_le) | theorem | shape | `LevinsonWindow` | (b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖F t‖ ^ 2) ≤ (b - a) / 2 * Real.log K |
 | [`RHPull.half_lt_σRH`](./lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem | shape | `LineBound` | (1:ℝ)/2 &lt; σRH X |
 | [`Stage3.half_lt_σθ`](./lean_stage3/ThetaPull.md#Stage3-half_lt_--) | theorem | shape | `ThetaPull` | (1:ℝ)/2 &lt; σθ θ X |
+| [`FloorSum.half_pow_succ`](./lean_stage3/FloorSumTele.md#FloorSum-half_pow_succ) | theorem | counting | `FloorSumTele` | T / 2 / 2 ^ n = T / 2 ^ (n + 1) |
 | [`Readings.half_regime_shares`](./lean_stage3/Readings.md#Readings-half_regime_shares) | theorem | shape | `Readings` | (Real.sqrt 2 * 2 ^ n - 2 ^ n) / 2 ^ n = Real.sqrt 2 - 1 ∧ (2 ^ (n + 1) - Real.sqrt 2 * 2 ^ n) / (2 : ℝ) ^ n = 2 - Real.sqrt 2 |
 | [`Readings.half_rung_ratio`](./lean_stage3/Readings.md#Readings-half_rung_ratio) | theorem | shape | `Readings` | ((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / Real.sqrt 2 |
 | [`StencilWeil.handshake_iff`](./lean_stage3/StencilWeil.md#StencilWeil-handshake_iff) | theorem | shape | `StencilWeil` | ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 |
@@ -1483,6 +1485,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StepsPeak.K`](./lean_stage3/StepsPeak.md#StepsPeak-K) | def | counting | `StepsPeak` | ℂ |
 | [`WeilPower.K`](./lean_stage3/WeilPower.md#WeilPower-K) | def | shape | `WeilPower` | ℂ |
 | [`StepsPeak.K_eq`](./lean_stage3/StepsPeak.md#StepsPeak-K_eq) | theorem | shape | `StepsPeak` | K N s a = s * ((N:ℂ) ^ (a - s) - 2 ^ (a - s)) / (a - s) - (s - 1) * ((N:ℂ) ^ (a - s + 1) - 2 ^ (a - s + 1)) / ((a - s + 1) * N) |
+| [`FloorSum.K_ge_one`](./lean_stage3/FloorSum.md#FloorSum-K_ge_one) | theorem | shape | `FloorSum` | 1 ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) |
 | [`WeilPower.K_mul_Q`](./lean_stage3/WeilPower.md#WeilPower-K_mul_Q) | theorem | shape | `WeilPower` | K m w * Q m w = (cK m : ℂ) * Complex.sinh w |
 | [`StepsBelow.K_one`](./lean_stage3/StepsBelow.md#StepsBelow-K_one) | theorem | shape | `StepsBelow` | K N s 1 = kap s * (N:ℂ) ^ (1 - s) + c0 s + c1 s / N |
 | [`WeilPower.K_one_mul`](./lean_stage3/WeilPower.md#WeilPower-K_one_mul) | theorem | shape | `WeilPower` | K 1 w * (w * (w ^ 2 + (Real.pi : ℂ) ^ 2)) = (Real.pi : ℂ) ^ 2 * Complex.sinh w |
@@ -1575,6 +1578,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonCount.levinson_count`](./lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) | theorem | reads ζ | `LevinsonCount` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
 | [`LevinsonMultiple.levinson_count'`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) | theorem | reads ζ | `LevinsonMultiple` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
 | [`LevinsonWindowNear.levinson_count_sub`](./lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) | theorem | reads ζ | `LevinsonWindowNear` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
+| [`FloorSum.levinson_floor`](./lean_stage3/FloorSum.md#FloorSum-levinson_floor) | theorem | reads ζ | `FloorSum` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) |
 | [`LevinsonRight.levinson_right`](./lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right) | theorem | shape | `LevinsonRight` | countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (1 / (2 * Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖G (↑σ₀ + ↑t * I) * M (↑σ₀ + ↑t * I)‖ ^ 2) - (… |
 | [`LevinsonWindow.levinson_window`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) | theorem | reads ζ | `LevinsonWindow` | (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ) |
 | [`LevinsonMultiple.levinson_window'`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) | theorem | reads ζ | `LevinsonMultiple` | (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ) |
@@ -1634,6 +1638,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointLadder.log_indep`](./lean/JointLadder.md#JointLadder-log_indep) | theorem | shape | `JointLadder` | l = 0 ∧ k = 0 |
 | [`LevinsonRight.log_integral_le`](./lean_stage3/LevinsonRight.md#LevinsonRight-log_integral_le) | theorem | shape | `LevinsonRight` | ∫ t in a..b, Real.log (g t) ≤ (b - a) * Real.log ((1 / (b - a)) * ∫ t in a..b, g t) |
 | [`LevinsonRight.log_integral_norm_le`](./lean_stage3/LevinsonRight.md#LevinsonRight-log_integral_norm_le) | theorem | shape | `LevinsonRight` | ∫ t in a..b, Real.log ‖F (↑σ₀ + ↑t * I)‖ ≤ (b - a) / 2 * Real.log ((1 / (b - a)) * ∫ t in a..b, ‖F (↑σ₀ + ↑t * I)‖ ^ 2) |
+| [`FloorSum.log_K_le`](./lean_stage3/FloorSum.md#FloorSum-log_K_le) | theorem | shape | `FloorSum` | Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ≤ 13 / 15 |
 | [`FloorConst.log_Kfl_levinson_lt`](./lean_stage3/FloorConst.md#FloorConst-log_Kfl_levinson_lt) | theorem | shape | `FloorConst` | Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) &lt; 13 / 10 |
 | [`Arith.log_le_sum_inv_Icc`](./lean_stage3/ArithBase.md#Arith-log_le_sum_inv_Icc) | theorem | shape | `ArithBase` | Real.log ((n : ℝ) + 1) ≤ ∑ b ∈ Icc 1 n, (1 : ℝ) / b |
 | [`Arith.log_nat_nonneg`](./lean_stage3/ArithBase.md#Arith-log_nat_nonneg) | theorem | shape | `ArithBase` | 0 ≤ Real.log n |
@@ -1697,6 +1702,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DiagMain.logM_ge`](./lean_stage3/DiagMain.md#DiagMain-logM_ge) | theorem | shape | `DiagMain` | θ * Real.log T / 2 ≤ Real.log (Mof T θ) |
 | [`FloorConst.logM_ge'`](./lean_stage3/FloorConstLimit.md#FloorConst-logM_ge-) | theorem | shape | `FloorConstLimit` | θ * Real.log T - Real.log 2 ≤ Real.log (Mof T θ) |
 | [`DiagMain.logM_le`](./lean_stage3/DiagMain.md#DiagMain-logM_le) | theorem | shape | `DiagMain` | Real.log (Mof T θ) ≤ θ * Real.log T |
+| [`FloorSum.logmax_le`](./lean_stage3/FloorSum.md#FloorSum-logmax_le) | theorem | shape | `FloorSum` | Real.log (max 1 x) / (13 / 10) ≤ 2 / 3 + 2 * ε₁ |
 | [`Diagonal.logpow_eps`](./lean_stage3/Diagonal.md#Diagonal-logpow_eps) | theorem | shape | `Diagonal` | Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε |
 | [`OffDiagClose.logpow_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-logpow_le) | theorem | shape | `OffDiagClose` | Real.log T ^ p ≤ (5 * ((p : ℝ) + 1)) ^ p * T ^ (1 / 5 : ℝ) |
 | [`LandauMellinG.logPrim`](./lean_stage3/LandauMellinG.md#LandauMellinG-logPrim) | def | shape | `LandauMellinG` | ℂ |
@@ -1904,6 +1910,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgCount.N_eq_of_no_zero_between`](./lean_stage3/ArgCount.md#ArgCount-N_eq_of_no_zero_between) | theorem | reads ζ | `ArgCount` | riemannZeta.N T = riemannZeta.N T₀ |
 | [`ArgCount.N_eq_sum`](./lean_stage3/ArgCount.md#ArgCount-N_eq_sum) | theorem | reads ζ | `ArgCount` | riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) |
 | [`Stage3.N_eq_sum`](./lean_stage3/ArgIdentity.md#Stage3-N_eq_sum) | theorem | reads ζ | `ArgIdentity` | riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (riemannZeta.order ρ : ℝ) |
+| [`FloorSum.N_ge`](./lean_stage3/FloorSum.md#FloorSum-N_ge) | theorem | reads ζ | `FloorSum` | ∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T |
 | [`OffDiagClose.N_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-N_le) | theorem | shape | `OffDiagClose` | 1 + 1 / ‖α + β‖ ^ 2 ≤ 1 + κ ^ 2 * Real.log T ^ 2 |
 | [`ArgCount.N_mono`](./lean_stage3/ArgCount.md#ArgCount-N_mono) | theorem | reads ζ | `ArgCount` | riemannZeta.N T ≤ riemannZeta.N T' |
 | [`ArgCount.N_nonneg`](./lean_stage3/ArgCount.md#ArgCount-N_nonneg) | theorem | reads ζ | `ArgCount` | 0 ≤ riemannZeta.N T |
@@ -2948,6 +2955,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StencilWeil.stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest) | def | shape | `StencilWeil` | ℝ → ℂ |
 | [`StencilWeil.stencilTest_zero_outside`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest_zero_outside) | theorem | shape | `StencilWeil` | stencilTest d φ u = 0 |
 | [`CellResidual.step_le`](./lean_stage3/CellResidual.md#CellResidual-step_le) | theorem | shape | `CellResidual` | \|resid a r - resid a (r - 1)\| ≤ C * cellSize r 0 |
+| [`FloorSum.step_X`](./lean_stage3/FloorSum.md#FloorSum-step_X) | theorem | reads ζ | `FloorSum` | ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ) |
 | [`StepsPole.steps_pole`](./lean_stage3/StepsPole.md#StepsPole-steps_pole) | theorem | reads ζ | `StepsPole` | Tendsto (fun s : ℂ =&gt; (s - (ρ : ℂ)) * (- deriv riemannZeta s / riemannZeta s / s)) (𝓝[≠] (ρ : ℂ)) (𝓝 (-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ))) |
 | [`StepsPole.steps_pole_ne_zero`](./lean_stage3/StepsPole.md#StepsPole-steps_pole_ne_zero) | theorem | reads ζ | `StepsPole` | -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0 |
 | [`StepsPole.steps_regular`](./lean_stage3/StepsPole.md#StepsPole-steps_regular) | theorem | reads ζ | `StepsPole` | AnalyticAt ℂ (fun t : ℂ =&gt; deriv riemannZeta t / riemannZeta t) s |
@@ -3286,6 +3294,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauPoleSub.taylor_coeff_sub_poles`](./lean_stage3/LandauPoleSub.md#LandauPoleSub-taylor_coeff_sub_poles) | theorem | shape | `LandauPoleSub` | ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k |
 | [`SdiagLead.taylor_n`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-taylor_n) | theorem | shape | `SdiagLeadSmooth` | ∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((max (Real.log (s / n)) 0 / s : ℝ) : ℂ) = Gp P β lM (Real.log (x / n)) - (Real.log (x / n) : ℂ) * G1 P β lM 0 |
 | [`ApproxDeriv.tel`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-tel) | def | counting | `ApproxDeriv` | ℝ |
+| [`FloorSum.tele`](./lean_stage3/FloorSumTele.md#FloorSum-tele) | theorem | shape | `FloorSumTele` | ∀ n : ℕ, ∀ T : ℝ, T₁ ≤ T / 2 ^ n → c * (g T - g (T / 2 ^ (n + 1))) - 2 * e * T * Real.log T ≤ f T - f (T / 2 ^ (n + 1)) |
+| [`FloorSum.tele_floor`](./lean_stage3/FloorSumTele.md#FloorSum-tele_floor) | theorem | shape | `FloorSumTele` | ∀ T : ℝ, T₁ ≤ T → c * (g T - g T₁) - 2 * e * T * Real.log T ≤ f T |
 | [`Isogeny.telescope`](./lean/Isogeny.md#Isogeny-telescope) | theorem | counting | `Isogeny` | ∑ j ∈ range k, (g (m + j + 1) - g (m + j)) = g (m + k) - g m |
 | [`FilterAttained.tendsto_full`](./lean_stage3/FilterAttained.md#FilterAttained-tendsto_full) | theorem | reads ζ | `FilterAttained` | Tendsto (fun k : ℕ =&gt; ∑' ρ, (S σ).indicator (fun ρ =&gt; LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) |
 | [`CountEuler.tendsto_Gc`](./lean_stage3/CountEuler.md#CountEuler-tendsto_Gc) | theorem | shape | `CountEuler` | Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0) |
