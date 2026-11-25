@@ -98,7 +98,7 @@ Littlewood's bound on `S₁`, the goal of step 1.
 
 - **Is:** `` StmtLittlewood (a b t₀ : ℝ) : Prop := ∀ t₁ t₂ : ℝ, t₀ ≤ t₁ → t₁ ≤ t₂ → |S₁ t₂ - S₁ t₁| ≤ a * Real.log t₂ + b ``
 - **Built from:** [`Turing.S₁`](#Turing-S-)
-- **Used by 5:** [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 6:** [`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 <a name="Turing-StmtSplit"></a>
 ### `Turing.StmtSplit`
@@ -140,7 +140,7 @@ def · line 117
 The lower side of the horizontal `log |ζ|` integral: the analytic core.
 
 - **Is:** `` StmtHorizLower (a₂ b₂ : ℝ) : Prop := ∀ t : ℝ, 2 ≤ t → -(a₂ * Real.log t + b₂) ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ``
-- **Used by 3:** [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
+- **Used by 4:** [`LittlewoodSharp.horizLower_sharp`](../lean_stage3/LittlewoodSharpHoriz.md#LittlewoodSharp-horizLower_sharp), [`TuringLW.horizLower_holds`](../lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds), [`TuringLW.littlewood_of_lower`](../lean_stage3/TuringLWSplit.md#TuringLW-littlewood_of_lower), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces)
 
 ## Theorems
 

@@ -7,7 +7,7 @@ TuringLWSplit — block S14 of `lean_stage3/design/stencil.md`, Turing's method,
 7 theorems, 0 definitions, 258 lines. 
 
 **Imports:** [`Littlewood`](../lean_stage3/Littlewood.md), [`TuringLWSplitOsc`](../lean_stage3/TuringLWSplitOsc.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TuringLW`](../lean_stage3/TuringLW.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LittlewoodSharp`](../lean_stage3/LittlewoodSharp.md), [`TuringLW`](../lean_stage3/TuringLW.md)
 
 ## The picture
 
@@ -24,7 +24,8 @@ flowchart LR
   x1(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour"]):::ext
   x2(["<b>TuringS</b><br/>S_eq_argS<br/>S₁_sub<br/>littlewood_of_pieces"]):::ext
   x3(["<b>TuringLWSplitOsc</b><br/>stmtOsc_holds"]):::ext
-  x4(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
+  x4(["<b>LittlewoodSharp</b><br/>littlewood_sharp"]):::ext
+  x5(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
   n0 --> n5
   n1 --> n5
   n2 --> n5
@@ -32,6 +33,7 @@ flowchart LR
   n4 --> n5
   n5 --> n6
   n6 -.-> x4
+  n6 -.-> x5
   x0 -.-> n3
   x0 -.-> n5
   x1 -.-> n5
@@ -247,7 +249,8 @@ Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b�
 
 **Definitions its proof touches:** [`Turing.StmtHorizLower`](../lean_stage3/TuringS.md#Turing-StmtHorizLower), [`Turing.StmtLittlewood`](../lean_stage3/TuringS.md#Turing-StmtLittlewood)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LittlewoodSharp.littlewood_sharp`](../lean_stage3/LittlewoodSharp.md#LittlewoodSharp-littlewood_sharp) (LittlewoodSharp) — `` Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) 2 ``
   - [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds) (TuringLW) — `` Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2 ``
 

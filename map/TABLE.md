@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>486 theorems counting,<br/>in 96 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>489 theorems counting,<br/>in 98 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>5234 theorems shape,<br/>in 224 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>5252 theorems shape,<br/>in 227 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1092 theorems reads ζ,<br/>in 198 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1103 theorems reads ζ,<br/>in 201 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 590 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 5485 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1113 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 593 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 5503 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1124 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 486 | 5234 | 1092 |
+| `lean_stage3/` | 489 | 5252 | 1103 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -810,6 +810,19 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 - [`Littlewood.top_mem_border`](./lean_stage3/Littlewood.md#Littlewood-top_mem_border) — `` (↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w ``
 - [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) — `` (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
 - [`Littlewood.right_mem_border`](./lean_stage3/Littlewood.md#Littlewood-right_mem_border) — `` (↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
+
+### [`LittlewoodSharpLog`](./lean_stage3/LittlewoodSharpLog.md) — 2
+
+LittlewoodSharpLog — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 1, the one-variable integrals and the numerals. 2026-11-25.
+
+- [`LittlewoodSharp.continuousOn_bcw`](./lean_stage3/LittlewoodSharpLog.md#LittlewoodSharp-continuousOn_bcw) — `` ContinuousOn bcw (Set.uIcc (1 / 2) 2) ``
+- [`LittlewoodSharp.intervalIntegrable_bcw`](./lean_stage3/LittlewoodSharpLog.md#LittlewoodSharp-intervalIntegrable_bcw) — `` IntervalIntegrable bcw volume (1 / 2) 2 ``
+
+### [`LittlewoodSharpPoint`](./lean_stage3/LittlewoodSharpPoint.md) — 1
+
+LittlewoodSharpPoint — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 2, the pointwise lower bound for `log|ζ|` with optimized radii. 2026-11-25.
+
+- [`LittlewoodSharp.h2532`](./lean_stage3/LittlewoodSharpPoint.md#LittlewoodSharp-h2532) — `` (25 : ℝ) / 32 < 1 ``
 
 ### [`MeanQ`](./lean_stage3/MeanQ.md) — 1
 
