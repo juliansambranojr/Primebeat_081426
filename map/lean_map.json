@@ -79762,7 +79762,7 @@
   "path": "lean_stage3/Stage3/SdiagLead.lean",
   "module": "Stage3.SdiagLead",
   "stem": "SdiagLead",
-  "header": "# Stage3.SdiagLead — `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.",
+  "header": "# Stage3.SdiagLead — block S12 of `lean_stage3/design/stencil.md`: `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.",
   "imports": [
    "Stage3.SdiagLeadDsum"
   ],
