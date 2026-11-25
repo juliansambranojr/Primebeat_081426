@@ -234,6 +234,7 @@ import Stage3.Operator
 import Stage3.LevinsonWindowNear
 import Stage3.Unsmooth
 import Stage3.FloorConst
+import Stage3.FloorStep
 
 namespace Stage3
 
