@@ -230,6 +230,7 @@ import Stage3.SdiagLead
 import Stage3.StirlingX
 import Stage3.Arith
 import Stage3.Lemma3
+import Stage3.Operator
 
 namespace Stage3
 
