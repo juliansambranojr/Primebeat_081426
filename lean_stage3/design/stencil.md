@@ -847,3 +847,50 @@ so that an off-line pair cannot hide in it. The next round is that
 derivation on paper: the error of `levinson_window_diff` as a function of the
 window length `H` (its terms `(b − a)·tailDelta`, `X²·log T`, `134 log T`), and
 the length at which each term drops below the step.
+
+### S14, C3: the local count's error, by its terms (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else. Read from `LevinsonCount.lean`'s header
+and `LevinsonWindowNear.levinson_window_diff` this session.
+
+**The terms.** On a window `[a, b]`, Levinson's count is
+`lineCount b − lineCount a ≥ (N b − N a) − 2·countG − E`, with `countG` the zeros of
+`G = ζ + ζ′/L` right of the line and `E` the rest:
+- the horizontal edges, `|horiz T| ≤ 21π log T + 133π` at each end
+  (`LevinsonEdge.horizontal_edge_le`): the turning of `G` along a horizontal segment;
+- the gamma part against the count, `30 log b + 150`
+  (`LevinsonSize.gamma_part_count_le_gt_two`): the turning of the horizon against
+  `N`, the term `S(b) − S(a)`;
+- the window's own terms, `(b − a)·tailDelta`, `X²·log T`, constant over `R/L`.
+
+**Against the step of 2.** Two sizes fail, and neither shrinks with the window.
+- `E ≥ 134 log T` in the window form: the edge terms are bounds on argument
+  changes at single heights. They are of the size of `S(t)`, which is unbounded
+  (from memory, not checked this session: Selberg's lower bounds for `S(t)`).
+  The shorter windows of a sum over windows do not remove them; each window
+  pays them at its ends.
+- `2·countG` is the window's share of the zeros of `G` right of the line. Feng
+  (arXiv 1003.0059, read this session, his remark (a)) records that `G` has a
+  positive proportion of its zeros near the line. In a short window around
+  one height that share is of the order of the window's zeros, and it is the
+  floor's own loss.
+So the local Levinson count cannot see one zero. This is the size of what the
+steps add up to, and by the repo's rule the C2 design is wrong.
+
+**What the window frame says exactly.** With `Z` Hardy's function and the
+horizon `θ`, `N b − N a = (θ(b) − θ(a))/π + S(b) − S(a)` (up to the `O(1/t)` of the
+count's main term), and `lineCount b − lineCount a` is the number of zeros of
+`Z` in `(a, b]` with order. So the window's defect is, exactly,
+`(θ(b) − θ(a))/π + S(b) − S(a) − (zeros of Z in (a, b])`. A face with no error term
+is this identity in every window: the zeros of `Z` keep pace with the turning
+of the horizon plus `S`. That is Julian's picture stated as an equality: every
+basin holds its zero.
+
+**The design question now.** Which property of the basins forces that pace in
+every window. Candidates, each a statement about `Z` on one window:
+- a sign change of `Z` in each interval where the horizon turns by `π`
+  (Gram's law; it fails at some Gram intervals, from memory);
+- a bound on `S(b) − S(a)` together with a lower count of sign changes of `Z`
+  from the turning of the horizon alone.
+Each is a statement about individual windows, of the kind C needs. Which one
+to derive first is Julian's choice.
