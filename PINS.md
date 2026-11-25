@@ -22,6 +22,34 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5b, one height: `Stage3/FloorStep*.lean`
+
+    DONE        for P with P(0) = 0, P(1) = 1, 0 < θ < 1/2, R > 0: for every ε > 0,
+                from some T on, lineCount T − lineCount (T/2) ≥
+                (N T − N (T/2)) − (log(Re D(cY)(T) + ε)/R)·(N T − N (T/2)) − ε·T·log T,
+                from `levinson_window_diff` at a = T/2, b = T with
+                `unsmooth_near_levinson`, the bound carried from σ₀ to
+                [σ₀ − δ(T), σ₀] by continuity in σ, β = aY (β 1 = P(1) = 1), and X
+                with tailDelta → 0 so windowE = o(T); or the largest honest piece,
+                the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0547, TRAPS 80–81,
+                start 5a and 5b). Written before the workers start.
+    DEPENDS     `Unsmooth`, `LevinsonWindowNear`, `LevinsonMollEdge`, `OffDiagClose`
+                (`aY_bound'`), `TwistedMoment`
+    OUT         5a; 5c, the sum over halvings and the liminf
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5a, the closed form: `Stage3/FloorConst*.lean`
+
+    DONE        Re D(cY)(T) → K(R, θ) as T → ∞ at P(x) = x, with K explicit:
+                (1 + ∂a)(1 + ∂b) of f(a,b) + e^(−(a+b)) f(−b,−a) at a = b = −R,
+                f(a,b) = (1/((a+b)θ)) ∫₀¹ (P′ + aθP)(P′ + bθP); and, at one rational
+                choice of R and θ < 1/2, a proved bound log K < R, with the value of
+                1 − (log K)/R computed; one unit
+    ASSUMED     as above
+    DEPENDS     `TwistedMoment` (`cY`, `c1Y`, `Mof`), `OperatorCauchy` (`Dop`),
+                `OperatorCY`, `UnsmoothCY`, `DiagMain` (`logM_ge`, `logM_le`)
+    OUT         5b; 5c
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 4, unsmoothing: `Stage3/Unsmooth*.lean`
 
     DONE        a `WeightAll T (log T)` family with w = 1 on [T/2 − 1, T], w = 0

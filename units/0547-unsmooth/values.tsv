@@ -1,0 +1,19 @@
+key	value	source
+module_lines	238	wc -l lean_stage3/Stage3/Unsmooth.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/Unsmooth.lean
+defs	0	grep -c ^def lean_stage3/Stage3/Unsmooth.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/Unsmooth.lean
+pins	3	mollMean_re, unsmooth_near, unsmooth_near_levinson
+errors_first	2	the worker's first build of the window file: a rewrite on the wrong smooth factor and a stuck measure
+builds	5	the worker's report, builds over the three files
+traps_added	2	lean_stage3/TRAPS.md rows 80-81
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8943	lake build (full Stage3), Build completed successfully
+jobs_module	8845	run/build.log, lake build Stage3.Unsmooth
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	3	lean_stage3/Stage3/Unsmooth.lean, UnsmoothWin.lean, UnsmoothCY.lean
+trap_first	80	lean_stage3/TRAPS.md
+trap_last	81	lean_stage3/TRAPS.md

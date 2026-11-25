@@ -178,7 +178,7 @@ theorem unsmooth_near (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ} (hθ0
       linarith
     have e : K * (3 * (T / Real.log T)) = (48 * K) * T / (16 * Real.log T) := by
       field_simp
-      ring
+      try ring
     rw [e, div_le_iff₀ (by positivity)]
     have e2 : ε * T / 16 * (16 * Real.log T) = (ε * Real.log T) * T := by ring
     rw [e2]
