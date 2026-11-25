@@ -38,7 +38,7 @@ for `x ≤ t`. The residue `1` there is constant in `t` and drops out of the der
 | (4.3) for `j ≥ 3` | the general `j` | OPEN, not stated |
 
 Differences from Young. (i) The direction is `(1 + x/t)^(−A)`, as in `VY_decay_young` (the
-scratchpad text reads `(1 + |t/x|)^(−A)`; `ApproxBounds`' header gives the reason).
+Young's arXiv text reads `(1 + |t/x|)^(−A)`; `ApproxBounds`' header gives the reason).
 (ii) The constant carries `N = 1 + ‖α+β‖^(−2)`, the `1/(α+β)²` of `p(s)`; Young's `≪_{A,j}`
 absorbs it under `|α+β| ≫ 1/L`. (iii) Uniform in `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`, `α + β ≠ 0`,
 where Young has `α, β ≪ 1/L` and `t` large. (iv) `j = 1, 2` only; Young states every `j`.

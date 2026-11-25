@@ -15,7 +15,7 @@ KflQ Q A B C (log M / log T) R` exactly and `Re DopQ c (T) → KflQ Q A B C θ R
 remainder) and on `e^(1203/1250)` (twelve terms) give `K < e^(R(1 − κ₀))` with `κ₀ = 224/625`.
 
 The choice comes from unit 0551's `kappa.py`, its cubic-`P`, cubic-`Q` branch rerun at
-`θ = 0.49` (scratchpad `fcq/opt.py`, Nelder–Mead from twelve starts): optimum `κ = 0.358595` at
+`θ = 0.49` (`lean_stage3/checks/fcq/opt.py`, Nelder–Mead from twelve starts): optimum `κ = 0.358595` at
 `R = 1.481`, `P ≈ 0.8713x − 0.0129x² + 0.1416x³`, `Q ≈ 1 − 0.5409x − 1.4532x² + 0.9688x³`;
 rounded as above, Python gives `K = 2.6178534098…`, `κ = 1 − log K / R = 0.3584302…`,
 and Young's (1.3) by quadrature gives the same `K` to 14 digits. Computed, not proved.

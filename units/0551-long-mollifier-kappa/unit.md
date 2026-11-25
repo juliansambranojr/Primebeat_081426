@@ -25,6 +25,6 @@ sealed: false
 - theta sixteen: `results.theta_16.0000_cubicP_Qcubic` 0.9777.
 With P(x) = x and Q(x) = 1 − x held fixed, the floor peaks at theta one, `results.theta_1.0000_linear_Qlin` 0.5195, and falls below zero by theta four, `results.theta_4.0000_linear_Qlin` -0.0004. So the polynomials have to change with the length, which is Farmer's picture of the theta equal to infinity conjecture (cited in Feng's paper; Farmer's paper not read).
 
-**A slip, recorded.** A first run let Q be any polynomial with Q(0) = 1 and gave a floor near one at theta one half. That Q breaks Levinson's lemma; the run above imposes Feng's condition. The first run is not kept.
+**A slip, recorded.** A first run let Q be any polynomial with Q(0) = 1 and gave a floor near one at theta one half. That Q breaks Levinson's lemma; the run above imposes Feng's condition. The first run's script is kept, and rerun, at `lean_stage3/checks/b2_unconstrained/b2.py`.
 
 **What it says for the goal.** Stage B's main term goes toward one with the length. What stands between is the named input of block S13, the error terms at length beyond one half, and a general Q in the Lean operator.

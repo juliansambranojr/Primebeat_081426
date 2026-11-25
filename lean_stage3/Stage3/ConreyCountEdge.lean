@@ -4,7 +4,7 @@ ConreyCountEdge — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the
 
 The three error terms of `LevinsonTurn.G_turn_eq` for `V = W/Gammaℝ` in place of `ζ + cζ′`.
 
-**Sizes, checked before proving** (scratchpad `conrey_sz/vsize.py`, mpmath, 30 digits). Write
+**Sizes, checked before proving** (`lean_stage3/checks/conrey_sz/vsize.py`, mpmath, 30 digits). Write
 `g = Gammaℝ′/Gammaℝ`. Then `Gammaℝ·D(Λ/Gammaℝ) = (D − g)Λ`, so `V = Q(1/2 − (D + g)/L) ζ`. On
 `Re s = 3`, `ζ^{(j)} = O_j(1)` and `g(3 + it) = ½ log(t/2π) + iπ/4 + O(1/t)`, so with `L = log T`
 and `t ∈ [T/4, 2T]`, `g/L = 1/2 + O(1/L)` and `V = ζ·Q(O(1/L)) + O_Q(1/L) = ζ + O_Q(1/L)`, near

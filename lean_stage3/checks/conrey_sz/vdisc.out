@@ -1,0 +1,6 @@
+# conrey_sz/vdisc.py, run 2026-11-25T21:21Z, python3 -I vdisc.py
+lev 1000.0 min ReV on edge 0.686 max |V|/t on disc circles 0.00376
+lev 100000.0 min ReV on edge 0.7857 max |V|/t on disc circles 9.481e-5
+cubic 1000.0 min ReV on edge 0.8924 max |V|/t on disc circles 0.004913
+cubic 100000.0 min ReV on edge 0.8907 max |V|/t on disc circles 0.0001692
+# exit 0

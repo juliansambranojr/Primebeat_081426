@@ -19,7 +19,7 @@ named `StmtGrRatio` (the digamma worker's domain, `Stage3/DigammaBound*.lean`; n
 
 **Sizes.** `|E| ≤ (K/L)·Σ_j |ζ^{(j)}|/L^j`: each `ζ^{(j)}/L^j` is the size the mean value
 carries (`O(T)` mean square), so `E` is `1/L` below the main term; the factor is `1/L`, a gain.
-Numeric check (scratchpad `meanq/check.py`, `Qcubic`, `R = 1.3`): `V` agrees with the exact
+Numeric check (`lean_stage3/checks/meanq/check.py`, `Qcubic`, `R = 1.3`): `V` agrees with the exact
 reduction to working precision, and `L·|E|/Σ|ζ^{(j)}|/L^j` stays bounded as `T` grows.
 
   | name               | statement                                                        | status |

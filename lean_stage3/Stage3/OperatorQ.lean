@@ -14,7 +14,7 @@ with `t` while `L` is fixed. So the zeros of `Re(Gammaℝ·V)` on the line are n
 of `ζ`. Numerically, with `Q(x) = 1 − x + 2((x − 1/2)³ + 1/8)` and `L = log 1000`,
 `Re(Gammaℝ·V) = 1.17e-7` at the first zero of `ζ` (the scale `|Gammaℝ·ζ'| = 1.38e-5`), and
 `1.90e-13` at the fifth (scale `7.54e-12`); for `Q = 1 − x` both are `0` to 35 digits
-(scratchpad `opq/linecheck.py`).
+(`lean_stage3/checks/opq/linecheck.py`).
 
 **What holds, proved here.** Put `W = Q(1/2 − (1/L) d/ds) Λ`, the operator applied to `Λ`
 with `Q` recentred at `1/2`: `W = Σ_k b_k (−1/L)^k Λ^{(k)}`, `b_k` the Taylor coefficients

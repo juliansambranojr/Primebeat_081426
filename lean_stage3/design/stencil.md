@@ -663,7 +663,7 @@ one named input, in the same way H is for the ladder.
 
 Read this session: Young, "A short proof of Levinson's theorem" (arXiv
 1002.4403), and Feng, "Zeros of the Riemann zeta function on the critical line"
-(arXiv 1003.0059). The text is in the session scratchpad.
+(arXiv 1003.0059, public). The texts were read from arXiv; they are not in the repo.
 
 **Corrections to S11.**
 - `L = log T` (Young §1), not `log(T/2π)`.
@@ -725,7 +725,7 @@ crossing of the imaginary axis by `F` is then a zero of `ζ` on the line, by
 ## S12 The mean value, the floor — design (2026-11-25, Julian: "start the next step")
 
 On paper, here, unchecked by anyone else. The target is Young's Theorem 1, his
-(1.2) and (1.3) (arXiv 1002.4403, text in the session scratchpad): the
+(1.2) and (1.3) (arXiv 1002.4403, public): the
 mean square of `Vψ` on `σ₀ = 1/2 − R/L` is `c(P,Q,R,θ)·T + o(T)` for `θ < 1/2`.
 Together with `LevinsonMultiple.levinson_window'`, it gives the first
 proportion of zeros on the line in Lean.
@@ -898,7 +898,7 @@ to derive first is Julian's choice.
 ### S14, C3 (a) and (b) tried (2026-11-25, Julian: "Try both please")
 
 Computed with mpmath, `siegelz` and `grampoint`, script in the session
-scratchpad (`c4/gram.py`): the Gram points `g_n`, `θ(g_n) = nπ`, for
+`units/0554-gram-rosser/run/gram.py`: the Gram points `g_n`, `θ(g_n) = nπ`, for
 `n = −1, …, 999`, up to height 1420. Not proved; the facts marked from memory
 were not checked this session.
 
@@ -932,7 +932,7 @@ method on a range), which the tree does not have.
 
 Read this session: Conrey, "Zeros of derivatives of Riemann's ξ-function on the
 critical line", J. Number Theory 16 (1983), 49–74, §4 (PDF from Julian; text in
-the session scratchpad, `papers/conrey/main.txt`). His Bulletin announcement of
+Julian's copy; not in the repo). His Bulletin announcement of
 two fifths (Bull. AMS 20 (1989)) was read too; it has no proofs.
 
 **What failed.** Levinson's line identity for `V = Q(−(1/L) d/ds) ζ` holds only for

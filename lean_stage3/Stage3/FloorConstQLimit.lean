@@ -13,7 +13,7 @@ Each `(−1/L)∂α` is `−∂a` (`pkl_scale`), so `MeanQ.DopQ Q L c` at `α = 
 + lk ph(l−1+(k−1))]`, with `ph n = φ^(n)(−2R)` (`FloorConstQDeriv.ph`) and
 `gB n = [n = 0] + (−1)^n e^(2R)`.
 
-Checked against Young's (1.3) before Lean (scratchpad `fcq/check.py`, 60-point Gauss–Legendre):
+Checked against Young's (1.3) before Lean (`lean_stage3/checks/fcq/check.py`, 60-point Gauss–Legendre):
 at `P = X`, `Q = 1 − X`, `θ = 1/2`, `R = 13/10` the three of Young's integral, the sympy derivative
 of `F` and this closed form agree to 13 digits (`2.35006777611844`), and likewise at a cubic `P`
 and cubic `Q` (`12.4170175579319`). At `Q = 1 − X` it is `FloorConst.Kfl`, proved (`KflQ_one_sub`).

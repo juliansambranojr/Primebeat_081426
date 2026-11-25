@@ -16,7 +16,7 @@ error `gErr`), the `Re`-shift of `log ‖Gammaℝ‖` at height `y` is `(Re z �
 `O(1)`, and `lY(y/2) = log T + O(1)` for `y ∈ [T/8, 3T]` (`lY_bounds`); the heights differ by at
 most `1`, so the `−π|y|/4` terms differ by `O(1)`. Hence the ratio times `T^{−Δ/2}` is at most a
 constant `B` (`gamma_ratio`): no factor growing with `T` is lost. (Computed before proving,
-scratchpad `digamma/hsize.py`, mpmath: the ratio is at most `6.0` at `T = 10², 10⁴, 10⁸` on
+`lean_stage3/checks/digamma/hsize.py`, mpmath: the ratio is at most `6.0` at `T = 10², 10⁴, 10⁸` on
 the circles used below.)
 
 * The right edge, `w = 3 + t i`, `R = 1`: the circle has `Re z ≥ 2`, `‖ζ‖ ≤ π²/6`

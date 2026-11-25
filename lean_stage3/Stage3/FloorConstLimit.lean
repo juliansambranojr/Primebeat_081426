@@ -11,7 +11,7 @@ with `f(−b,−a) = 2B − f(a,b)` and `c = f(1 − E) + 2BE`, `E = e^(−(a+b)
   `K(A,B,C,θ,R) = B − A/(2Rθ) − RθC/2 + θC/2 − A/(2R²θ) − θC/(4R) − A/(4R³θ)
                   + e^(2R) (θC/(4R) + A/(4R³θ))`.
 
-Checked against sympy before Lean (scratchpad `kfl.py`): the difference of the differentiated
+Checked against sympy before Lean (`lean_stage3/checks/kfl/kfl.py`): the difference of the differentiated
 expression and `Kfl` simplifies to `0`; at `(A,B,C) = (1,1/2,1/3)`, `θ = 1/2`, `R = 1.3`,
 `1 − log K / R = 0.34274`, Levinson's `0.342` with `P(x) = x`.
 

@@ -21,7 +21,7 @@ e^{−(L/2)(z − w)}` (`DigammaBoundIdentity.V_eq_sum_H`, from Leibniz and
 
 **Sizes, checked before proving.** On the circles used (radius `1` about `3 + t i`, radius
 `1/8` about the disc points), `‖Gammaℝ z/Gammaℝ w‖ T^{−(Re z − Re w)/2} ≤ 6.0` at
-`T = 10², 10⁴, 10⁸` (scratchpad `digamma/hsize.py`, mpmath), uniformly in `T`: no factor
+`T = 10², 10⁴, 10⁸` (`lean_stage3/checks/digamma/hsize.py`, mpmath), uniformly in `T`: no factor
 growing with `T` is lost; the proof's constant `B = e^{2|C| + 160}` is crude. The `j ≥ 1`
 terms carry `L^{−j}` against `R^{−j}`: with `R = 1` they are `O(1/L)` (the right edge), with
 `R = 1/8` and `L ≥ 8` they are `O(1)` (the discs). On the discs `‖ζ‖ ≤ 2 + 4‖z‖ ≤ 5t`

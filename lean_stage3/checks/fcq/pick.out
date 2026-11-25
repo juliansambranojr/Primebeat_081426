@@ -1,0 +1,6 @@
+# fcq/pick.py, run 2026-11-25T21:25Z, python3 -I pick.py
+Traceback (most recent call last):
+  File "/home/user/Primebeat_081426/lean_stage3/checks/fcq/pick.py", line 2, in <module>
+    from check import kfl_closed, young
+ModuleNotFoundError: No module named 'check'
+# exit 1

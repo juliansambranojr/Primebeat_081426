@@ -20,7 +20,7 @@ The device of `DigammaBoundIdentity`: with `a = L/2` and
 the circle about `σ = 1/4` reaches `Re = 1/8`). Cauchy's estimate gives
 `‖h_w^{(j)}(w)‖ ≤ j! B 8^j`, `8` fixed, so the `j`-th term is `C(i,j) j! B 8^j / L^j ≤ (…)/L`
 for `j ≥ 1`, `L ≥ 1`: the radius does not shrink with `T`, and no factor growing with `T` is
-lost. Numeric check before proving (scratchpad `grratio/check.py`, mpmath, `T = 10², 10⁴, 10⁸`,
+lost. Numeric check before proving (`lean_stage3/checks/grratio/check.py`, mpmath, `T = 10², 10⁴, 10⁸`,
 `i ≤ 4`): `L·‖(−1/L)^i grR i − (−1/2)^i‖ ≤ 1.80`, and `‖h_w‖ ≤ 1.26` on the circles, flat in `T`.
 
   | name                 | statement                                                          | status |
