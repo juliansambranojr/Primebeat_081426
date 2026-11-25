@@ -101,6 +101,9 @@ build, 2026-09-08.
 | 88 | a defect `riemannZeta.N T − lineCount T` comes out negative, and `N T = lineCount T` fails at some heights even under RH | `riemannZeta.N` counts the zeros with height below T (open), while `lineCount` and `allCount` count height at most T (closed) | define the defect from `allCount`, and move to just above T with `Defect.exists_right` and `N_eq_allCount_right` (unit 0552) |
 | 89 | the order symmetry under ρ ↦ 1 − conj ρ seems missing for `riemannZeta.order` | it is stated for `analyticOrderNatAt` as `ContourShift.zeta_order_reflect` | convert with `ContourShift.order_bridge` and `exact_mod_cast` (unit 0552) |
 | 90 | `grep one_sub` finds no mirror map on the zeros | it is named `SpiralLink.mirrorZ` | grep `mirror` (unit 0552) |
+| 91 | `Real.log_pow n T` is a type mismatch, `T` expected `ℕ` | the explicit arguments are `(x : ℝ) (n : ℕ)` | `Real.log_pow T n` (unit 0553) |
+| 92 | `rw [Metric.mem_ball] at hd` finds no pattern after `obtain` from `h.eventually (Metric.ball_mem_nhds _ one_pos)` | the membership is already unfolded to `dist … < 1` | `rw [Real.dist_eq] at hd` alone (unit 0553) |
+| 93 | `rw [h1, h2] at hX3 hX4` fails with did not find pattern | one of the hypotheses lacks one pattern, and the rewrite at several locations fails as a whole | split the `rw` per hypothesis (unit 0553) |
 
 ## Bench and gate traps
 

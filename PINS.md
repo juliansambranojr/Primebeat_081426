@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S13 of `design/stencil.md`, B4, the operator with a general Q: `Stage3/OperatorQ*.lean`
+
+    DONE        V = Q(−(1/L) d/ds) ζ for a real polynomial Q with Q(0) = 1 and
+                Q′(x) = Q′(1 − x): the operator Q(−∂α/L)Q(−∂β/L) on the twisted
+                moment, the mollified mean of Vψ, unsmoothing, Levinson's count
+                and window for V (the count needs the line identity
+                Re(Gammaℝ·V) on the line), the closed form of the main term for
+                general Q (Young (1.3)), and `floor_of_long_Q`; or the largest
+                honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0553, TRAPS 91–93,
+                start the general-Q operator and C3). Written before the worker
+                starts.
+    DEPENDS     `Operator*`, `Unsmooth*`, `FloorLong*`, `FloorConst*`,
+                `LevinsonLine`, `LevinsonArg`, `LevinsonWindowNear`
+    OUT         B3; C3 (on paper, here)
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, C1, the defect: `Stage3/Defect.lean`
 
     DONE        `defect T = N T − lineCount T`; `defect_nonneg`; `defect_even` (the
