@@ -30,8 +30,9 @@ flowchart LR
   n28["<b>FY_reflect</b><br/>FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s)"]:::thm
   n29["<b>gamma_ne_off</b><br/>Gammaℝ (w + -((c : ℂ) + y * I)) ≠ 0"]:::shp
   x0(["<b>ApproxBounds</b><br/>9 theorems"]):::ext
-  x1(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
-  x2(["<b>ApproxShift</b><br/>5 theorems"]):::ext
+  x1(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
+  x2(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
+  x3(["<b>ApproxShift</b><br/>5 theorems"]):::ext
   n0 --> n18
   n0 --> n20
   n0 --> n22
@@ -65,16 +66,20 @@ flowchart LR
   n0 -.-> x0
   n0 -.-> x1
   n0 -.-> x2
+  n0 -.-> x3
   n1 -.-> x0
   n1 -.-> x1
   n1 -.-> x2
+  n1 -.-> x3
   n19 -.-> x0
   n2 -.-> x0
-  n22 -.-> x1
-  n27 -.-> x2
-  n28 -.-> x1
-  n29 -.-> x1
+  n2 -.-> x1
+  n22 -.-> x2
+  n27 -.-> x3
+  n28 -.-> x2
+  n29 -.-> x2
   n3 -.-> x0
+  n3 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

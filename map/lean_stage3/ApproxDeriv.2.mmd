@@ -1,0 +1,69 @@
+flowchart LR
+  n0["<b>cont_dY</b><br/>Continuous fun y : ℝ =＞ dY α β t (σ + y * I)"]:::shp
+  n1["<b>meas_d2Y</b><br/>AEStronglyMeasurable (fun y : ℝ =＞ d2Y α β t (σ + y * I)) volume"]:::shp
+  n2["<b>norm_F_local</b><br/>‖KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))‖ ≤ C * x …"]:::shp
+  n3["<b>F_hasDerivAt</b><br/>HasDerivAt (fun t =＞ KY α β t s * (x : ℂ) ^ (-s)) (KY α β t s * …"]:::shp
+  n4["<b>VY_hasDerivAt</b><br/>HasDerivAt (fun t =＞ VY α β σ x t) (VY1 α β σ x t₀) t₀"]:::shp
+  n5["<b>VY1_hasDerivAt</b><br/>HasDerivAt (fun t =＞ VY1 α β σ x t) (VY2 α β σ x t₀) t₀"]:::shp
+  n6["<b>im_conds</b><br/>t / 5 ≤ |(uA α t / 2).im| ∧ t / 5 ≤ |(uA α t / 2 + ((σ : ℂ) + y …"]:::shp
+  n7["<b>b_facts</b><br/>t * (1 / (1 / 20 + t / 5)) ≤ 5 ∧ 1 + 1 / (1 / 20 + t / 5) ≤ 6"]:::cnt
+  n8["<b>dY_bound</b><br/>t * ‖dY α β t (σ + y * I)‖ ≤ 3360 * (1 + |σ|) * (1 + |y|) ^ 2"]:::shp
+  n9["<b>d2Y_bound</b><br/>t ^ 2 * ‖d2Y α β t (σ + y * I)‖ ≤ 268800 * (1 + |σ|) * (1 + |y|)…"]:::shp
+  n10["<b>d12_bound</b><br/>t ^ 2 * ‖dY α β t (σ + y * I) * dY α β t (σ + y * I) + d2Y α β t…"]:::shp
+  n11["<b>norm_VI_le</b><br/>‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * ∫ y : ℝ, ‖f (σ + y…"]:::shp
+  n12["<b>VI_gauss</b><br/>‖VerticalIntegral' f σ‖ ≤ 1 / (2 * Real.pi) * (B * Real.sqrt (Re…"]:::shp
+  n13["<b>VYj_line_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::shp
+  n14["<b>assemble</b><br/>z ≤ (8 * Cm * 2 ^ A + Ca * 2 ^ A) * N * (1 + x / t) ^ (-A)"]:::shp
+  n15["<b>deriv_eq_of_eq_Ici</b><br/>f' = g'"]:::cnt
+  n16["<b>VYj_lines</b><br/>VY1 α β c x t = VY1 α β A x t ∧ VY1 α β c x t = VY1 α β (-(1 / 4…"]:::thm
+  n17["<b>iteratedDeriv_VY</b><br/>iteratedDeriv 1 (fun t =＞ VY α β c x t) = (fun t =＞ VY1 α β c x …"]:::shp
+  n18["<b>VY_deriv_bound ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
+  x0(["<b>diagram 1</b><br/>15 theorems"]):::ext
+  x1(["<b>ApproxFE</b><br/>uA_im<br/>vB_im"]):::ext
+  x2(["<b>ApproxBounds</b><br/>4 theorems"]):::ext
+  n0 --> n4
+  n0 --> n5
+  n1 --> n5
+  n10 --> n13
+  n11 --> n12
+  n12 --> n13
+  n13 --> n18
+  n14 --> n18
+  n15 --> n16
+  n16 --> n18
+  n17 --> n18
+  n2 --> n4
+  n2 --> n5
+  n3 --> n4
+  n3 --> n5
+  n4 --> n16
+  n4 --> n17
+  n5 --> n16
+  n5 --> n17
+  n6 --> n8
+  n6 --> n9
+  n7 --> n8
+  n7 --> n9
+  n8 --> n10
+  n8 --> n13
+  n9 --> n10
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n13
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n5
+  x0 -.-> n8
+  x0 -.-> n9
+  x1 -.-> n6
+  x2 -.-> n13
+  x2 -.-> n14
+  x2 -.-> n16
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

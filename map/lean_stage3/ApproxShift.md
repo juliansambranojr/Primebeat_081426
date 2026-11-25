@@ -45,7 +45,8 @@ flowchart LR
   x0(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   x1(["<b>ApproxFE</b><br/>5 theorems"]):::ext
   x2(["<b>ApproxBounds</b><br/>5 theorems"]):::ext
-  x3(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
+  x3(["<b>ApproxDeriv</b><br/>KY_local"]):::ext
+  x4(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
   n0 --> n2
   n1 --> n2
   n10 --> n12
@@ -91,6 +92,7 @@ flowchart LR
   n25 -.-> x2
   n26 -.-> x2
   n3 -.-> x2
+  n3 -.-> x3
   x0 -.-> n0
   x1 -.-> n2
   x1 -.-> n21
@@ -98,8 +100,8 @@ flowchart LR
   x1 -.-> n28
   x1 -.-> n5
   x1 -.-> n8
-  x3 -.-> n20
-  x3 -.-> n27
+  x4 -.-> n20
+  x4 -.-> n27
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -249,10 +251,11 @@ line 116 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxBounds.integrand_bound`](../lean_stage3/ApproxBounds.md#ApproxBounds-integrand_bound) (ApproxBounds) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → δ ≤ ‖(σ : ℂ) + y * I‖ → ‖KY α… ``
   - [`ApproxBounds.resY_term`](../lean_stage3/ApproxBounds.md#ApproxBounds-resY_term) (ApproxBounds) — `` ‖GY α β s / d * completedRiemannZeta w‖ ≤ Real.exp (1 - (t - 1 / 10) ^ 2) * (9 * (1 + 1 / ‖α + β‖ ^ 2) * (1 + (t + 1 / 10) ^ 2)) * (5 / 2) * (M * (14 … ``
+  - [`ApproxDeriv.KY_local`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-KY_local) (ApproxDeriv) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (Real.exp (-y ^ 2) * (1 + y ^ 2)) ``
   - [`ApproxShift.FL_bound`](#ApproxShift-FL_bound) — `` ∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| → ‖FL α β t s‖ ≤ C * Real.exp (-(1 / 2) * s.im ^ 2) ``
 
 <a name="ApproxShift-poly_gauss"></a>
