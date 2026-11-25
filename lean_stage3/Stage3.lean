@@ -245,6 +245,7 @@ import Stage3.MeanQ
 import Stage3.GrRatio
 import Stage3.FloorConstQ
 import Stage3.FloorQ
+import Stage3.Turing
 
 namespace Stage3
 
