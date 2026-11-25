@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-25T23:11:18Z
+# unit: 0570-stirling-series
+# sources searched: 510
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80932
+  Yes to log and stirling
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-afb3faaa30249f5bc.jsonl:4195
+  theorem tendsto_A {z : ℂ} (hz : 0 ≤ z.re) (K : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-afb3faaa30249f5bc.jsonl:4196
+  Tendsto (seqA K z) atTop (𝓝 ((Real.log (2 * Real.pi) / 2 : ℝ) : ℂ)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81268
+  theorem stirling_series {z : ℂ} (hz : 0 < z.re) (hY : 1 / 2 ≤ |z.im|) {K : ℕ} (hK : 1 ≤ K) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81269
+  ‖Stirling.logG z - stirMain (K + 1) z - ((Real.log (2 * Real.pi) / 2 : ℝ) : ℂ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-afb3faaa30249f5bc.jsonl:4235
+  ≤ ZetaEM.bernBound (2 * K) / (2 * K) * (6 / |z.im|) / ‖z‖ ^ (2 * K - 2) :=
+
+# 7 found, 0 missing

@@ -37,7 +37,7 @@ below with their outcome.
                 `SignData*`, `Stirling` (phaseTheta)
     OUT         the point run up to the closing height (its own block next)
 
-### 2026-11-25 · block S14 of `design/stencil.md`, Turing at scale: Stirling's series and sharper Littlewood constants: `Stage3/StirlingSeries*.lean`, `Stage3/LittlewoodSharp*.lean`
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing at scale: Stirling's series and sharper Littlewood constants: `Stage3/StirlingSeriesLim.lean`, `Stage3/StirlingSeries*.lean`, `Stage3/LittlewoodSharp.lean`, `Stage3/LittlewoodSharp*.lean`
 
     DONE        (a) Stirling's series for log Γ(z) with an explicit remainder
                 (Re z > 0, |z| large: log Γ = (z−½)log z − z + ½ log 2π +

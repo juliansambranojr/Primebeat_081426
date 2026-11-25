@@ -1,0 +1,22 @@
+key	value	source
+module_lines	278	wc -l lean_stage3/Stage3/StirlingSeriesLim.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/StirlingSeriesLim.lean
+defs	2	grep -c ^def lean_stage3/Stage3/StirlingSeriesLim.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/StirlingSeriesLim.lean
+pins	2	tendsto_A, stirling_series
+errors_first	2	the worker's first build of the limit file: a ring after the goal closed and a deprecated name
+builds	14	the worker's report, builds over the files
+traps_added	5	lean_stage3/TRAPS.md rows 141-145
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	9023	lake build (full Stage3), Build completed successfully
+jobs_module	8679	run/build.log, lake build Stage3.StirlingSeriesLim
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	10	ls lean_stage3/Stage3/StirlingSeries*.lean
+balls_new	3	StirlingSeries, the gamma side per point
+balls_old_49	515	SignDataPt49, the gamma side
+balls_old_100	2051	the old route at height one hundred, run outside the tree by the worker
+trap_first	141	lean_stage3/TRAPS.md
+trap_last	145	lean_stage3/TRAPS.md

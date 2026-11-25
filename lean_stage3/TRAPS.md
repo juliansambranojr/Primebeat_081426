@@ -149,6 +149,13 @@ build, 2026-09-08.
 | 136 | `push_cast` unfolds `set`-bound locals inside casts (`↑φ`, `φ := (t/2)*L`), and real logs become `Complex.log` | `push_cast` sees through the `set`, then `Complex.natCast_log` fires | `simp only [Complex.ofReal_mul]` (unit 0568) |
 | 137 | `Complex.norm_exp_I_mul_ofReal_sub_one_le` is an unknown name | it is in namespace `Real`, though about complex numbers (row 2's family) | `Real.norm_exp_I_mul_ofReal_sub_one_le` (unit 0568) |
 | 138 | generated sums with literal offsets, `Finset.Icc 1 (7 + 1)`, `((2 + 1 : ℕ) : ℂ)`, look as if they need normalizing | they unify by defeq with `Icc 1 8` and `((3:ℕ):ℂ)` under `exact` | chain `Finset.sum_Icc_succ_top` and `Finset.prod_range_succ` with the offsets as they are (unit 0568) |
+| 139 | `field_simp; ring` fails on `(2−x)/(x−7/16) = 25/16·(x−7/16)⁻¹ − 1` with `hpos : x − 7/16 ≠ 0` in context | `field_simp` renormalizes the denominator to `-7 + x*16`, and the hypothesis no longer matches | `rw [eq_sub_iff_add_eq, div_add_one hpos, ← div_eq_mul_inv]; congr 1; ring` (unit 0569) |
+| 140 | the fourth of four `rw [← Real.exp_add]` fails with did not find pattern | one `rw` rewrites every instance of the instantiated pattern, so two identical factors merged in one step | count the distinct instances; three rewrites here (unit 0569) |
+| 141 | `failed to synthesize HMul (ℝ → Prop) ℂ`, then `unexpected token ')'` at `HasDerivAt F (a) * (b) x` | `(a)` parses as the derivative | parenthesize the whole derivative: `HasDerivAt F ((a) * (b)) x` (unit 0570) |
+| 142 | `(deterministic) timeout at whnf` at a declaration using `HasSum.of_nat_of_neg_add_one h1 h2` | the summand `f` is left for unification | pass `(f := fun n : ℤ => …)` (unit 0570) |
+| 143 | `Finset.Ico_succ_singleton` is an unknown name | not a lemma on this Mathlib | `Finset.sum_Ico_succ_top le_rfl, Finset.Ico_self, Finset.sum_empty` (unit 0570) |
+| 144 | rewriting `(w^3)⁻¹` to `(w⁻¹)^3` with `inv_pow` fails | `inv_pow` states `a⁻¹ ^ n = (a ^ n)⁻¹` | `← inv_pow` (unit 0570) |
+| 145 | `norm_num at h` pushes `↑(a/2)` to `↑a/2`, and `h.trans` stops matching (the family of row 52) | the cast is normalized in `h` only | normalize both sides, or state the bound with the cast already pushed (unit 0570) |
 
 ## Bench and gate traps
 

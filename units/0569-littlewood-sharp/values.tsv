@@ -1,0 +1,23 @@
+key	value	source
+module_lines	59	wc -l lean_stage3/Stage3/LittlewoodSharp.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/LittlewoodSharp.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LittlewoodSharp.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LittlewoodSharp.lean
+pins	1	littlewood_sharp
+errors_first	2	the worker's first build of the log file: a field_simp renormalization and a repeated rewrite
+builds	5	the worker's report, builds over the four files
+traps_added	2	lean_stage3/TRAPS.md rows 139-140
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	9013	lake build (full Stage3), Build completed successfully
+jobs_module	8877	run/build.log, lake build Stage3.LittlewoodSharp
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	4	lean_stage3/Stage3/LittlewoodSharp.lean, LittlewoodSharpLog.lean, LittlewoodSharpPoint.lean, LittlewoodSharpHoriz.lean
+a2_sharp	113/4	horizLower_sharp
+b2_sharp	128	horizLower_sharp
+closing_ideal	1462	lean_stage3/checks/littlewoodsharp/closing_height_sharp.out, ideal data; computed, not proved
+closing_ideal_before	14063	lean_stage3/checks/signdata/closing_height.out; computed
+trap_first	139	lean_stage3/TRAPS.md
+trap_last	140	lean_stage3/TRAPS.md
