@@ -242,6 +242,7 @@ import Stage3.OperatorQ
 import Stage3.ConreyCount
 import Stage3.DigammaBound
 import Stage3.MeanQ
+import Stage3.GrRatio
 
 namespace Stage3
 
