@@ -45756,6 +45756,202 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonAvoid.lean",
+  "module": "Stage3.LevinsonAvoid",
+  "stem": "LevinsonAvoid",
+  "header": "LevinsonAvoid — block S11 of `lean_stage3/design/stencil.md`, avoidance. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonSize",
+   "Stage3.Littlewood"
+  ],
+  "opens": [
+   "Complex",
+   "Interval",
+   "Set"
+  ],
+  "namespaces": [
+   "LevinsonAvoid"
+  ],
+  "lines": 155,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonSize.lean",
+   "lean_stage3/Stage3/Littlewood.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mem_rect_of",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.mem_rect_of",
+    "line": 38,
+    "why": "A point `x + y i` with `x`, `y` between the corners' parts lies in the rectangle.",
+    "sorry": false,
+    "needs": [
+     "hx : x ∈ [[z.re, w.re]]",
+     "hy : y ∈ [[z.im, w.im]]"
+    ],
+    "proves": "((x : ℂ) + y * I) ∈ Rectangle z w",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_ne_top_of_ne",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.order_ne_top_of_ne",
+    "line": 47,
+    "why": "Isolated zeros: analytic near a rectangle and nonzero at one point of it, the order is finite at every point of it.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hp : p ∈ Rectangle z w",
+     "hfp : f p ≠ 0"
+    ],
+    "proves": "∀ q ∈ Rectangle z w, meromorphicOrderAt f q ≠ ⊤",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.order_ne_top_of_ne",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeros_finite",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.zeros_finite",
+    "line": 63,
+    "why": "The zeros in the rectangle are finitely many.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hp : p ∈ Rectangle z w",
+     "hfp : f p ≠ 0"
+    ],
+    "proves": "{q | q ∈ Rectangle z w ∧ f q = 0}.Finite",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.order_ne_top_of_ne",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.order_ne_top_of_ne",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_good_height",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.exists_good_height",
+    "line": 73,
+    "why": "A good height. Analytic near `[σ₀, X] × [t₀, t₀ + 1]` and not identically zero there, some height `t ∈ [t₀, t₀ + 1]` has no zero on the horizontal segment `[σ₀, X] + t i`.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle ((σ₀ : ℂ) + t₀ * I) ((X : ℂ) + (t₀ + 1 : ℝ) * I))",
+     "hne : ∃ p ∈ Rectangle ((σ₀ : ℂ) + t₀ * I) ((X : ℂ) + (t₀ + 1 : ℝ) * I), f p ≠ 0"
+    ],
+    "proves": "∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_good_abscissa",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.exists_good_abscissa",
+    "line": 92,
+    "why": "A good abscissa. Analytic near `[σ₀ − δ, X] × [a, b]`, `δ > 0`, `σ₀ ≤ X`, and not identically zero there, some `σ ∈ [σ₀ − δ, σ₀]` has no zero on the vertical segment `σ + [a, b] i`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hX : σ₀ ≤ X",
+     "hf : AnalyticOnNhd ℂ f (Rectangle (((σ₀ - δ : ℝ) : ℂ) + a * I) ((X : ℂ) + b * I))",
+     "hne : ∃ p ∈ Rectangle (((σ₀ - δ : ℝ) : ℂ) + a * I) ((X : ℂ) + b * I), f p ≠ 0"
+    ],
+    "proves": "∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "factor_pos",
+    "ns": "LevinsonAvoid",
+    "full": "LevinsonAvoid.factor_pos",
+    "line": 111,
+    "why": "The real factor is positive. For `T ≥ e^26`, `c = 1/log T` and `4 ≤ t ≤ T`, `1 − c · Re(Gammaℝ'/Gammaℝ)(1/2 + t i) > 0`.",
+    "sorry": false,
+    "needs": [
+     "hT : Real.exp 26 ≤ T",
+     "ht : t ∈ Icc 4 T"
+    ],
+    "proves": "0 < 1 - (1 / Real.log T) * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re",
+    "file": "lean_stage3/Stage3/LevinsonAvoid.lean",
+    "id": "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LevinsonCount.lean",
   "module": "Stage3.LevinsonCount",
   "stem": "LevinsonCount",
@@ -47892,6 +48088,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
     ]
    },
@@ -51123,6 +51320,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
@@ -68621,6 +68819,7 @@
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phasePoint_bound_near",
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/Stirling.lean::Stage3.StmtDigammaLog",
@@ -97537,11 +97736,12 @@
    "Stage3.LevinsonEdge",
    "Stage3.LevinsonCount",
    "Stage3.LevinsonRight",
-   "Stage3.LevinsonMollEdge"
+   "Stage3.LevinsonMollEdge",
+   "Stage3.LevinsonAvoid"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 221,
+  "lines": 222,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -97620,6 +97820,7 @@
    "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LevinsonArg.lean",
+   "lean_stage3/Stage3/LevinsonAvoid.lean",
    "lean_stage3/Stage3/LevinsonCount.lean",
    "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",

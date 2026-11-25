@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S11 of `design/stencil.md`, the assembled window theorem: `Stage3/LevinsonWindow.lean`
+
+    DONE        `levinson_window`: for T ≥ e^26, c = 1/log T, a mollifier
+                `molli M β` (β 1 = 1, ‖β h‖ ≤ B), σ₀ ∈ [1/4, 1/2), X with the
+                right-edge conditions, and a window [a, b] ⊆ [4, T] of length
+                ≥ 3: if the mean square of G·ψ on the line σ₀ over the window
+                is at most K, then lineCount b ≥ (N b − N a) − (1/(π(1/2 − σ₀)))·
+                ((b−a)/2·log K + E) − (A·log b + B'), E and the constants
+                explicit; it chooses good heights within one of a and b and a
+                good abscissa just left of σ₀, and absorbs the shifts; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0527 and build the assembled
+                theorem). The mean square bound K is the one named hypothesis
+                (step 5); the asymptotic κ is not stated here
+    DEPENDS     `LevinsonCount`, `LevinsonRight`, `LevinsonMollEdge`,
+                `LevinsonAvoid`, `ArgCount`
+    OUT         the mean value (step 5); κ as a liminf over T
+
 ### 2026-11-25 · block S11 of `design/stencil.md`, avoidance: `Stage3/LevinsonAvoid.lean`
 
     DONE        `exists_good_height`: for f analytic and not identically zero

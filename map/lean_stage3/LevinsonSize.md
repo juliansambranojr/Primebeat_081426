@@ -7,7 +7,7 @@ LevinsonSize — block S11 of `lean_stage3/design/stencil.md`, step 1d (i), (iii
 11 theorems, 0 definitions, 310 lines. 
 
 **Imports:** [`ArgCount`](../lean_stage3/ArgCount.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md)
 
 ## The picture
 
@@ -31,7 +31,8 @@ flowchart LR
   x4(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
   x5(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x6(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x7(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x7(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
+  x8(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -44,6 +45,7 @@ flowchart LR
   n1 -.-> x1
   n10 -.-> x3
   n5 -.-> x3
+  n6 -.-> x7
   x2 -.-> n5
   x2 -.-> n7
   x4 -.-> n6
@@ -52,8 +54,8 @@ flowchart LR
   x5 -.-> n7
   x6 -.-> n6
   x6 -.-> n7
-  x7 -.-> n10
-  x7 -.-> n9
+  x8 -.-> n10
+  x8 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -253,8 +255,9 @@ line 198 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.zq`](../lean_stage3/Stirling.md#Stage3-zq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`LevinsonAvoid.factor_pos`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-factor_pos) (LevinsonAvoid) — `` 0 < 1 - (1 / Real.log T) * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ``
   - [`LevinsonSize.gamma_part_eq`](#LevinsonSize-gamma_part_eq) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
 
 <a name="LevinsonSize-gamma_part_eq"></a>

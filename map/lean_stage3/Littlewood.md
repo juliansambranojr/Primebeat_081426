@@ -7,7 +7,7 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 28 theorems, 2 definitions, 628 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)
 
 ## The picture
 
@@ -42,7 +42,8 @@ flowchart LR
   n26["<b>littlewood_rect</b><br/>2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toF…"]:::shp
   n27["<b>littlewood_rect_zero_free ■</b><br/>(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.i…"]:::shp
   x0(["<b>LevinsonRight</b><br/>4 theorems"]):::ext
-  x1(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  x1(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
+  x2(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -84,15 +85,16 @@ flowchart LR
   n8 --> n9
   n9 --> n11
   n1 -.-> x0
-  n17 -.-> x1
+  n17 -.-> x2
   n2 -.-> x0
   n24 -.-> x0
   n26 -.-> x0
   n3 -.-> x0
+  n3 -.-> x1
   n4 -.-> x0
   n5 -.-> x0
-  n5 -.-> x1
-  n7 -.-> x1
+  n5 -.-> x2
+  n7 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -229,8 +231,9 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`LevinsonAvoid.zeros_finite`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-zeros_finite) (LevinsonAvoid) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
   - [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq) (LevinsonRight) — `` countRight f z' w σ = countRight f z w σ ``
   - [`LevinsonRight.countRight_mul_ge`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_mul_ge) (LevinsonRight) — `` countRight G z w σ ≤ countRight (fun s => G s * M s) z w σ ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
