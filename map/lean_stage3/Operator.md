@@ -7,7 +7,7 @@
 3 theorems, 1 definition, 311 lines. 
 
 **Imports:** [`Lemma3`](../lean_stage3/Lemma3.md), [`OperatorCY`](../lean_stage3/OperatorCY.md), [`OperatorInt`](../lean_stage3/OperatorInt.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md)
 
 ## The picture
 
@@ -15,7 +15,7 @@
 flowchart LR
   n0["<b>pow_six_le_exp</b><br/>T ^ 6 ≤ 196608 * Real.exp (T ^ 2 / 32)"]:::shp
   n1["<b>Ires_o</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Rea…"]:::thm
-  n2["<b>stmtMollMeanO_holds ■</b><br/>StmtMollMeanO P θ R"]:::thm
+  n2["<b>stmtMollMeanO_holds</b><br/>StmtMollMeanO P θ R"]:::thm
   x0(["<b>OffDiagClose</b><br/>aY_bound"]):::ext
   x1(["<b>TwistedMoment</b><br/>Ires_small<br/>Regime.small"]):::ext
   x2(["<b>DiagonalO</b><br/>T_le_errO"]):::ext
@@ -23,8 +23,10 @@ flowchart LR
   x4(["<b>OperatorCY</b><br/>cY_partials"]):::ext
   x5(["<b>OperatorCauchy</b><br/>Dop_norm_le<br/>Dop_sub_mul"]):::ext
   x6(["<b>OperatorInt</b><br/>Dop_Imom<br/>Imom_partials<br/>norm_le_of_ball"]):::ext
+  x7(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
   n0 --> n1
   n1 --> n2
+  n2 -.-> x7
   x0 -.-> n1
   x1 -.-> n1
   x2 -.-> n2
@@ -154,5 +156,7 @@ StmtMollMeanO P θ R
 
 **Definitions its proof touches:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`Operator.StmtMollMeanO`](#Operator-StmtMollMeanO), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa), [`Operator.mollMean`](../lean_stage3/OperatorInt.md#Operator-mollMean), [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) (Unsmooth) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Re… ``
 

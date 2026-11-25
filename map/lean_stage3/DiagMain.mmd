@@ -9,7 +9,8 @@ flowchart LR
   n7["<b>stmtDiagMainO_of_lead</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SwapX</b><br/>c1Y_bound"]):::ext
   x1(["<b>SdiagLeadCore</b><br/>stmtDiagMainO_of_steps<br/>stmtSdiagLead_of_steps"]):::ext
-  x2(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
+  x2(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x3(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
   n0 --> n7
   n1 --> n7
   n2 --> n7
@@ -21,10 +22,12 @@ flowchart LR
   n1 -.-> x0
   n3 -.-> x0
   n3 -.-> x1
+  n3 -.-> x2
   n4 -.-> x0
   n4 -.-> x1
+  n4 -.-> x2
   n7 -.-> x1
-  n7 -.-> x2
+  n7 -.-> x3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

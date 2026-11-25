@@ -1,7 +1,7 @@
 flowchart LR
   n0["<b>pow_six_le_exp</b><br/>T ^ 6 ≤ 196608 * Real.exp (T ^ 2 / 32)"]:::shp
   n1["<b>Ires_o</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Rea…"]:::thm
-  n2["<b>stmtMollMeanO_holds ■</b><br/>StmtMollMeanO P θ R"]:::thm
+  n2["<b>stmtMollMeanO_holds</b><br/>StmtMollMeanO P θ R"]:::thm
   x0(["<b>OffDiagClose</b><br/>aY_bound"]):::ext
   x1(["<b>TwistedMoment</b><br/>Ires_small<br/>Regime.small"]):::ext
   x2(["<b>DiagonalO</b><br/>T_le_errO"]):::ext
@@ -9,8 +9,10 @@ flowchart LR
   x4(["<b>OperatorCY</b><br/>cY_partials"]):::ext
   x5(["<b>OperatorCauchy</b><br/>Dop_norm_le<br/>Dop_sub_mul"]):::ext
   x6(["<b>OperatorInt</b><br/>Dop_Imom<br/>Imom_partials<br/>norm_le_of_ball"]):::ext
+  x7(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
   n0 --> n1
   n1 --> n2
+  n2 -.-> x7
   x0 -.-> n1
   x1 -.-> n1
   x2 -.-> n2

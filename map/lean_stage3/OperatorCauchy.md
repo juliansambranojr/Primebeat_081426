@@ -18,11 +18,13 @@ flowchart LR
   n2["<b>Dop_sub_mul</b><br/>Dop L (fun x y =＞ A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop…"]:::cnt
   n3["<b>analytic_partials</b><br/>(∀ p ∈ U, DifferentiableAt ℂ (fun x =＞ f (x, p.2)) p.1) ∧ (∀ p ∈…"]:::cnt
   x0(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
-  x1(["<b>OperatorCY</b><br/>cY_partials"]):::ext
+  x1(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x2(["<b>OperatorCY</b><br/>cY_partials"]):::ext
   n0 --> n1
   n1 -.-> x0
+  n1 -.-> x1
   n2 -.-> x0
-  n3 -.-> x1
+  n3 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -45,7 +47,7 @@ def · line 31
 `∂α f (α, β)`.
 
 - **Is:** `` pa (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := deriv (fun x => f x β) α ``
-- **Used by 9:** [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.analytic_partials`](#Operator-analytic_partials), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.pab`](#Operator-pab), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials)
+- **Used by 10:** [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.analytic_partials`](#Operator-analytic_partials), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.pab`](#Operator-pab), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-pb"></a>
 ### `Operator.pb`
@@ -77,7 +79,7 @@ Levinson's operator with `Q(x) = 1 − x`: `D f = (1 + (1/L)∂α)(1 + (1/L)∂�
 
 - **Is:** `` Dop (L : ℝ) (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := f α β + 1 / (L : ℂ) * (pa f α β + pb f α β) + 1 / (L : ℂ) ^ 2 * pab f α β ``
 - **Built from:** [`Operator.pa`](#Operator-pa), [`Operator.pab`](#Operator-pab), [`Operator.pb`](#Operator-pb)
-- **Used by 5:** [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom)
+- **Used by 8:** [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 ## Theorems
 
@@ -142,9 +144,10 @@ line 88 · arrows read from text
 
 **Definitions its proof touches:** [`Operator.Dop`](#Operator-Dop), [`Operator.pa`](#Operator-pa), [`Operator.pab`](#Operator-pab), [`Operator.pb`](#Operator-pb)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="Operator-Dop_sub_mul"></a>
 ### `Operator.Dop_sub_mul`
