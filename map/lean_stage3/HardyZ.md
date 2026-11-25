@@ -25,8 +25,9 @@ flowchart LR
   x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>sum_order_le_lineCount"]):::ext
   x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>sum_order_le_lineCount_sub"]):::ext
   x5(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
-  x6(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
-  x7(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
+  x6(["<b>TuringCert</b><br/>count_le_N_sub"]):::ext
+  x7(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x8(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -39,10 +40,11 @@ flowchart LR
   n2 -.-> x3
   n2 -.-> x4
   n2 -.-> x5
+  n2 -.-> x6
   n3 -.-> x2
   n3 -.-> x5
-  n3 -.-> x6
   n3 -.-> x7
+  n3 -.-> x8
   n4 -.-> x5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -127,7 +129,7 @@ line 62 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (12 that use it)
+**Feeds** (13 that use it)
 
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`HardyZ.continuous_xi_line`](#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
@@ -141,6 +143,7 @@ line 62 · arrows read from text
   - [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub) (LevinsonWindowNear) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a ``
   - [`LineCount.signChanges_le_line_count`](../lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) (LineCount) — `` (k : ℤ) ≤ lineCount T ``
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
+  - [`Turing.count_le_N_sub`](../lean_stage3/TuringCert.md#Turing-count_le_N_sub) (TuringCert) — `` (∑ j : Fin m, if s j.succ < u then (1 : ℝ) else 0) ≤ riemannZeta.N u - (allCount T₁ : ℝ) ``
 
 <a name="HardyZ-xi_line_real"></a>
 ### `HardyZ.xi_line_real`

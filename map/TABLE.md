@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>462 theorems counting,<br/>in 86 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>464 theorems counting,<br/>in 88 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1561 theorems shape,<br/>in 202 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1562 theorems shape,<br/>in 203 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>995 theorems reads ζ,<br/>in 175 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1013 theorems reads ζ,<br/>in 178 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 566 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1812 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1016 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 568 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1813 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1034 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 462 | 1561 | 995 |
+| `lean_stage3/` | 464 | 1562 | 1013 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -1120,6 +1120,18 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 - [`SwapX.lin_comb`](./lean_stage3/SwapX.md#SwapX-lin_comb) — `` Integrable F ∧ ∫ t, F t = k * ((2 * (∫ t, fu t) - ∫ t, f t) + I * (2 * (∫ t, fv t) - ∫ t, f t)) `` Linearity: `∫ k((2f_u − f) + i(2f_v − f)) = k((2∫f_u − ∫f) + i(2∫f_v − ∫f))`.
 - [`SwapX.le_twC`](./lean_stage3/SwapX.md#SwapX-le_twC) — `` C j ≤ twC C j ``
 - [`SwapX.split_eq`](./lean_stage3/SwapX.md#SwapX-split_eq) — `` (∫ t, f2 t) - Tp * (∫ t, f t) = (∫ t, E t) + Tp * ∫ t, F t `` The split `I_X − T^z I₁ = ∫ w (X − T^z g) S₁ |ψ|² + T^z ∫ w (g − 1) S₁ |ψ|²`.
+
+### [`TuringAvg`](./lean_stage3/TuringAvg.md) — 1
+
+TuringAvg — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 2: Turing's lemma, the averaging of `S` over a length `h`. 2026-11-25.
+
+- [`Turing.avg_le`](./lean_stage3/TuringAvg.md#Turing-avg_le) — `` f t ≤ ((∫ u in t..t + h, f u) + ∫ u in t..t + h, e u) / h `` Averaging. A pointwise comparison on `[t, t + h]` averages to a bound at `t`.
+
+### [`TuringCert`](./lean_stage3/TuringCert.md) — 1
+
+TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 3: the certificate, signs of `Z` at finitely many points ⊢ the defect is `0` up to a height. 2026-11-25.
+
+- [`Turing.integral_step`](./lean_stage3/TuringCert.md#Turing-integral_step) — `` (∫ u in a..b, if s < u then (1 : ℝ) else 0) = b - s `` The step function `[s < u]` integrates to `b − s` over `[a, b] ∋ s`.
 
 ### [`TwistedMoment`](./lean_stage3/TwistedMoment.md) — 29
 

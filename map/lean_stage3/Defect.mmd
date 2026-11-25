@@ -1,6 +1,6 @@
 flowchart LR
   n0["<b>defect_eq_offCount</b><br/>defect T = offCount T"]:::thm
-  n1["<b>defect_nonneg ■</b><br/>0 ≤ defect T"]:::thm
+  n1["<b>defect_nonneg</b><br/>0 ≤ defect T"]:::thm
   n2["<b>rh_iff_defect_zero ■</b><br/>RiemannHypothesis ↔ ∀ T : ℝ, defect T = 0"]:::thm
   n3["<b>N_eq_sum_lt</b><br/>riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : Nontrivial…"]:::thm
   n4["<b>allCount_cast</b><br/>(allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ…"]:::thm
@@ -15,15 +15,16 @@ flowchart LR
   n13["<b>mirrorZ_mirrorZ</b><br/>SpiralLink.mirrorZ (SpiralLink.mirrorZ ρ) = ρ"]:::thm
   n14["<b>offLine_pair</b><br/>SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZ…"]:::thm
   n15["<b>offCount_eq_two_mul</b><br/>offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : Nontrivial…"]:::thm
-  n16["<b>defect_even ■</b><br/>Even (defect T)"]:::thm
+  n16["<b>defect_even</b><br/>Even (defect T)"]:::thm
   n17["<b>defect_le_of_floor</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1…"]:::thm
   n18["<b>defect_le ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2…"]:::thm
   n19["<b>defectN_le ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → defectN T ≤ (2 / 3 …"]:::thm
-  x0(["<b>LineCount</b><br/>lineCount_le_allCount<br/>mem_zerosUpTo<br/>rh_iff_line_count"]):::ext
-  x1(["<b>ArgCount</b><br/>N_eq_sum"]):::ext
-  x2(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
-  x3(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
-  x4(["<b>FloorSum</b><br/>levinson_floor"]):::ext
+  x0(["<b>TuringCert</b><br/>5 theorems"]):::ext
+  x1(["<b>LineCount</b><br/>lineCount_le_allCount<br/>mem_zerosUpTo<br/>rh_iff_line_count"]):::ext
+  x2(["<b>ArgCount</b><br/>N_eq_sum"]):::ext
+  x3(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
+  x4(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
+  x5(["<b>FloorSum</b><br/>levinson_floor"]):::ext
   n0 --> n16
   n10 --> n11
   n12 --> n14
@@ -42,19 +43,26 @@ flowchart LR
   n7 --> n17
   n8 --> n9
   n9 --> n17
-  x0 -.-> n1
-  x0 -.-> n14
-  x0 -.-> n2
-  x0 -.-> n3
-  x0 -.-> n6
-  x0 -.-> n8
-  x0 -.-> n9
+  n0 -.-> x0
+  n1 -.-> x0
+  n16 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n7 -.-> x0
+  n9 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n14
+  x1 -.-> n2
   x1 -.-> n3
-  x2 -.-> n12
-  x3 -.-> n14
-  x3 -.-> n15
-  x4 -.-> n18
-  x4 -.-> n19
+  x1 -.-> n6
+  x1 -.-> n8
+  x1 -.-> n9
+  x2 -.-> n3
+  x3 -.-> n12
+  x4 -.-> n14
+  x4 -.-> n15
+  x5 -.-> n18
+  x5 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

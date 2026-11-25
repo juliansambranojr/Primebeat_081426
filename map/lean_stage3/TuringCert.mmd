@@ -1,0 +1,39 @@
+flowchart LR
+  n0["<b>defect_mono</b><br/>defect T ≤ defect T'"]:::thm
+  n1["<b>defect_eq_zero_of_lt_two</b><br/>defect T = 0"]:::thm
+  n2["<b>defect_zero_below</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
+  n3["<b>allCount_add_card_le_N</b><br/>(allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u"]:::thm
+  n4["<b>count_le_N_sub</b><br/>(∑ j : Fin m, if s j.succ ＜ u then (1 : ℝ) else 0) ≤ riemannZeta…"]:::thm
+  n5["<b>integral_step</b><br/>(∫ u in a..b, if s ＜ u then (1 : ℝ) else 0) = b - s"]:::cnt
+  n6["<b>defect_zero_of_signs ■</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
+  x0(["<b>Defect</b><br/>7 theorems"]):::ext
+  x1(["<b>LineCount</b><br/>mem_zerosUpTo<br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
+  x2(["<b>HardyZ</b><br/>re_line"]):::ext
+  x3(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
+  x4(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
+  n0 --> n2
+  n1 --> n6
+  n2 --> n6
+  n3 --> n4
+  n4 --> n6
+  n5 --> n6
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n2
+  x0 -.-> n3
+  x0 -.-> n6
+  x1 -.-> n0
+  x1 -.-> n3
+  x1 -.-> n4
+  x1 -.-> n6
+  x2 -.-> n4
+  x3 -.-> n6
+  x4 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

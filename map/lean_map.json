@@ -25176,7 +25176,9 @@
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
-     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
     ]
    },
    {
@@ -25340,7 +25342,8 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds",
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.sCrude_holds_of_good_two",
-     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two"
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
     ]
    },
    {
@@ -27377,7 +27380,8 @@
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS"
     ]
    },
    {
@@ -42935,7 +42939,11 @@
      "lean_stage3/Stage3/Defect.lean::Defect.defect_le",
      "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
      "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg",
-     "lean_stage3/Stage3/Defect.lean::Defect.rh_iff_defect_zero"
+     "lean_stage3/Stage3/Defect.lean::Defect.rh_iff_defect_zero",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
     ]
    },
    {
@@ -42992,7 +43000,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
-     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
     ]
    },
    {
@@ -43027,7 +43036,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Defect.lean::Defect.defect_even"
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
     ]
    },
    {
@@ -43055,7 +43065,10 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below"
+    ]
    },
    {
     "kind": "theorem",
@@ -43112,7 +43125,8 @@
     "used_by": [
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
-     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount"
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N"
     ]
    },
    {
@@ -43143,7 +43157,8 @@
     "used_by": [
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
-     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount"
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N"
     ]
    },
    {
@@ -43228,7 +43243,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor"
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
     ]
    },
    {
@@ -43296,7 +43312,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor"
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
     ]
    },
    {
@@ -43525,7 +43542,9 @@
      "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two"
+    ]
    },
    {
     "kind": "theorem",
@@ -66513,7 +66532,8 @@
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub"
     ]
    },
    {
@@ -74513,7 +74533,8 @@
     "used_by": [
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.zeta_norm_le_abs",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
-     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le"
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_disc_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.log_zeta_le"
     ]
    },
    {
@@ -81071,7 +81092,8 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N"
     ]
    },
    {
@@ -81108,7 +81130,10 @@
      "lean_stage3/Stage3/Defect.lean::Defect.defect_le",
      "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
     ]
    },
    {
@@ -81170,7 +81195,8 @@
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
     ]
    },
    {
@@ -81204,7 +81230,9 @@
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
     ]
    },
    {
@@ -81236,7 +81264,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub"
     ]
    },
    {
@@ -81363,7 +81392,9 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
    }
   ]
  },
@@ -110644,7 +110675,9 @@
      "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
      "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta_zero",
      "lean_stage3/Stage3/Stirling.lean::Stage3.re_digamma_sub_log_le",
-     "lean_stage3/Stage3/Stirling.lean::Stage3.stmtDigammaLog_holds"
+     "lean_stage3/Stage3/Stirling.lean::Stage3.stmtDigammaLog_holds",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
     ]
    },
    {
@@ -110686,7 +110719,15 @@
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_holds",
      "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
-     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta_zero"
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta_zero",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
     ]
    },
    {
@@ -110745,7 +110786,9 @@
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.phaseTheta_sub_le",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
-     "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog"
+     "lean_stage3/Stage3/Stirling.lean::Stage3.backlundPhase_of_digammaLog",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
     ]
    },
    {
@@ -119809,6 +119852,1126 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.σθ",
      "lean_stage3/Stage3/LineBound.lean::RHPull.σRH",
      "lean_stage3/Stage3/ThetaPull.lean::Stage3.I37_power_log3_theta"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Turing.lean",
+  "module": "Stage3.Turing",
+  "stem": "Turing",
+  "header": "Turing — block S14 of `lean_stage3/design/stencil.md`, Turing's method, its analytic half. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringS",
+   "Stage3.TuringAvg",
+   "Stage3.TuringCert"
+  ],
+  "opens": [],
+  "namespaces": [],
+  "lines": 96,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringAvg.lean",
+   "lean_stage3/Stage3/TuringCert.lean",
+   "lean_stage3/Stage3/TuringS.lean"
+  ],
+  "decls": []
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringAvg.lean",
+  "module": "Stage3.TuringAvg",
+  "stem": "TuringAvg",
+  "header": "TuringAvg — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 2: Turing's lemma, the averaging of `S` over a length `h`. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringS"
+  ],
+  "opens": [
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "Turing"
+  ],
+  "lines": 178,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringS.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "theta_sub_le",
+    "ns": "Turing",
+    "full": "Turing.theta_sub_le",
+    "line": 51,
+    "why": "The slope of the horizon, from Stirling's digamma bound.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 ≤ t",
+     "htu : t ≤ u"
+    ],
+    "proves": "Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * ((Real.log (u / 2) - Real.log Real.pi + 97 / t) / 2)",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "avg_le",
+    "ns": "Turing",
+    "full": "Turing.avg_le",
+    "line": 78,
+    "why": "Averaging. A pointwise comparison on `[t, t + h]` averages to a bound at `t`.",
+    "sorry": false,
+    "needs": [
+     "hh : 0 < h",
+     "hf : IntervalIntegrable f volume t (t + h)",
+     "he : IntervalIntegrable e volume t (t + h)",
+     "hle : ∀ u ∈ Set.Icc t (t + h), f t ≤ f u + e u"
+    ],
+    "proves": "f t ≤ ((∫ u in t..t + h, f u) + ∫ u in t..t + h, e u) / h",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.avg_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_lin",
+    "ns": "Turing",
+    "full": "Turing.integral_lin",
+    "line": 92,
+    "why": "The linear weight integrates to `K h²/(2π)`.",
+    "sorry": false,
+    "needs": [
+     "t h K : ℝ"
+    ],
+    "proves": "(∫ u in t..t + h, (u - t) * K / Real.pi) = K * h ^ 2 / (2 * Real.pi)",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.integral_lin",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S_le_pointwise",
+    "ns": "Turing",
+    "full": "Turing.S_le_pointwise",
+    "line": 103,
+    "why": "The pointwise comparison behind Turing's lemma.",
+    "sorry": false,
+    "needs": [
+     "hθ : Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * K",
+     "hcN : c ≤ riemannZeta.N u - riemannZeta.N t"
+    ],
+    "proves": "S t ≤ S u + ((u - t) * K / Real.pi - c)",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S_le_of_count",
+    "ns": "Turing",
+    "full": "Turing.S_le_of_count",
+    "line": 115,
+    "why": "Turing's lemma, with a lower count.",
+    "sorry": false,
+    "needs": [
+     "hh : 0 < h",
+     "hK : ∀ u ∈ Set.Icc t (t + h), Stage3.phaseTheta u - Stage3.phaseTheta t ≤ (u - t) * K",
+     "hc : IntervalIntegrable c volume t (t + h)",
+     "hcN : ∀ u ∈ Set.Icc t (t + h), c u ≤ riemannZeta.N u - riemannZeta.N t"
+    ],
+    "proves": "S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.avg_le",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.integral_lin",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.avg_le",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.integral_lin",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "turing_S_le",
+    "ns": "Turing",
+    "full": "Turing.turing_S_le",
+    "line": 136,
+    "why": "Turing's lemma, the standard form: Littlewood's bound and the slope of the horizon bound `S` above at a point.",
+    "sorry": false,
+    "needs": [
+     "hL : StmtLittlewood a b t₀",
+     "ht₀ : t₀ ≤ t",
+     "ht : 1 ≤ t",
+     "hh : 0 < h"
+    ],
+    "proves": "S t ≤ (a * Real.log (t + h) + b) / h + h * ((Real.log ((t + h) / 2) - Real.log Real.pi + 97 / t) / 2) / (2 * Real.pi)",
+    "file": "lean_stage3/Stage3/TuringAvg.lean",
+    "id": "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringCert.lean",
+  "module": "Stage3.TuringCert",
+  "stem": "TuringCert",
+  "header": "TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 3: the certificate, signs of `Z` at finitely many points ⊢ the defect is `0` up to a height. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringAvg"
+  ],
+  "opens": [
+   "Classical",
+   "Complex",
+   "Defect",
+   "Kadiri",
+   "LineCount",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "Turing"
+  ],
+  "lines": 345,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringAvg.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtSignData",
+    "ns": "Turing",
+    "full": "Turing.StmtSignData",
+    "line": 67,
+    "why": "The certificate's data: strict sign changes of `t ↦ Λ(1/2 + it)` (Hardy's `Z` up to a positive factor, `HardyZ`) between consecutive points of a strictly increasing run in `(0, ∞)`. A finite computation; its rigorous evaluation is not in this tree.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "t : Fin (k + 1) → ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.StmtSignData",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "turingK",
+    "ns": "Turing",
+    "full": "Turing.turingK",
+    "line": 73,
+    "why": "The slope of the horizon on `[T₁, T₁ + 1 + h]`.",
+    "sorry": false,
+    "needs": [
+     "T₁ h : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.turingK",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingErr"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "turingErr",
+    "ns": "Turing",
+    "full": "Turing.turingErr",
+    "line": 76,
+    "why": "Turing's error at `T₁`, window `h`, Littlewood constants `a, b`, sign points `s` above.",
+    "sorry": false,
+    "needs": [
+     "a b h T₁ : ℝ",
+     "s : Fin (m + 1) → ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.turingErr",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingK"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingK"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_mono",
+    "ns": "Turing",
+    "full": "Turing.defect_mono",
+    "line": 82,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : T ≤ T'"
+    ],
+    "proves": "defect T ≤ defect T'",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_eq_zero_of_lt_two",
+    "ns": "Turing",
+    "full": "Turing.defect_eq_zero_of_lt_two",
+    "line": 92,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : defect T < 2"
+    ],
+    "proves": "defect T = 0",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_zero_below",
+    "ns": "Turing",
+    "full": "Turing.defect_zero_below",
+    "line": 97,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : defect T₁ = 0"
+    ],
+    "proves": "∀ T ≤ T₁, defect T = 0",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "allCount_add_card_le_N",
+    "ns": "Turing",
+    "full": "Turing.allCount_add_card_le_N",
+    "line": 104,
+    "why": "Zeros strictly between `T₁` and `u` add to the closed count at `T₁`, below `N u`.",
+    "sorry": false,
+    "needs": [
+     "hT₁ : 0 ≤ T₁",
+     "hu : T₁ < u",
+     "Z : Finset NontrivialZeros",
+     "hZ : ∀ ρ ∈ Z, T₁ < (ρ : ℂ).im ∧ (ρ : ℂ).im < u"
+    ],
+    "proves": "(allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "count_le_N_sub",
+    "ns": "Turing",
+    "full": "Turing.count_le_N_sub",
+    "line": 134,
+    "why": "The count above `T₁`. Sign changes on `(s_j, s_{j+1})` above `T₁` give `#{j : s_{j+1} < u} ≤ N u − allCount T₁`.",
+    "sorry": false,
+    "needs": [
+     "hT₁ : 0 ≤ T₁",
+     "hs : StmtSignData m s",
+     "hsT : T₁ < s 0",
+     "hu : T₁ < u"
+    ],
+    "proves": "(∑ j : Fin m, if s j.succ < u then (1 : ℝ) else 0) ≤ riemannZeta.N u - (allCount T₁ : ℝ)",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.StmtSignData",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.StmtSignData",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.allCount_add_card_le_N"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_step",
+    "ns": "Turing",
+    "full": "Turing.integral_step",
+    "line": 183,
+    "why": "The step function `[s < u]` integrates to `b − s` over `[a, b] ∋ s`.",
+    "sorry": false,
+    "needs": [
+     "has : a ≤ s",
+     "hsb : s ≤ b"
+    ],
+    "proves": "(∫ u in a..b, if s < u then (1 : ℝ) else 0) = b - s",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.integral_step",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_zero_of_signs",
+    "ns": "Turing",
+    "full": "Turing.defect_zero_of_signs",
+    "line": 214,
+    "why": "Turing's method, the analytic half. Strict sign changes of `Z` at `k + 1` points up to `T₁` and at `m + 1` points in `(T₁, T₁ + h]`, with Littlewood's bound on `S₁`, give the defect `0` at every height up to `T₁`, once `θ T₁/π + 1 + E < k + 2`.",
+    "sorry": false,
+    "needs": [
+     "hbelow : StmtSignData k t",
+     "htT : t (Fin.last k) ≤ T₁",
+     "habove : StmtSignData m s",
+     "hsT : T₁ < s 0",
+     "hsh : s (Fin.last m) ≤ T₁ + h",
+     "hL : StmtLittlewood a b t₀",
+     "ha : 0 ≤ a",
+     "ht₀ : t₀ ≤ T₁",
+     "h1 : 1 ≤ T₁",
+     "hh : 0 < h",
+     "hnum : Stage3.phaseTheta T₁ / Real.pi + 1 + turingErr a b h T₁ s < k + 2"
+    ],
+    "proves": "∀ T ≤ T₁, defect T = 0",
+    "file": "lean_stage3/Stage3/TuringCert.lean",
+    "id": "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.exists_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.StmtSignData",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.integral_step",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingErr",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingK",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.exists_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.theta_sub_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.StmtSignData",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.count_le_N_sub",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.integral_step",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingErr",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.turingK",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringS.lean",
+  "module": "Stage3.TuringS",
+  "stem": "TuringS",
+  "header": "TuringS — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 1: `S`, `S₁` and Littlewood's bound on `∫ S`. 2026-11-25.",
+  "imports": [
+   "Stage3.Defect",
+   "Stage3.LevinsonEdge"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "Turing"
+  ],
+  "lines": 240,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Defect.lean",
+   "lean_stage3/Stage3/LevinsonEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "S",
+    "ns": "Turing",
+    "full": "Turing.S",
+    "line": 86,
+    "why": "`S(t) = N(t) − θ(t)/π − 1`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.S",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S₁",
+    "ns": "Turing",
+    "full": "Turing.S₁",
+    "line": 89,
+    "why": "`S₁(T) = ∫_0^T S`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "F",
+    "ns": "Turing",
+    "full": "Turing.F",
+    "line": 92,
+    "why": "The right-edge term: `Re ∫_0^t ζ′/ζ (2 + iu) du`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.F",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtLittlewood",
+    "ns": "Turing",
+    "full": "Turing.StmtLittlewood",
+    "line": 96,
+    "why": "Littlewood's bound on `S₁`, the goal of step 1.",
+    "sorry": false,
+    "needs": [
+     "a b t₀ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtSplit",
+    "ns": "Turing",
+    "full": "Turing.StmtSplit",
+    "line": 100,
+    "why": "The imaginary component of the integrated argument principle on `[1/2, 2] × [t₁, t₂]`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtOsc",
+    "ns": "Turing",
+    "full": "Turing.StmtOsc",
+    "line": 107,
+    "why": "The right edge oscillates: its integral is bounded uniformly.",
+    "sorry": false,
+    "needs": [
+     "c₀ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtHorizUpper",
+    "ns": "Turing",
+    "full": "Turing.StmtHorizUpper",
+    "line": 111,
+    "why": "The upper side of the horizontal `log |ζ|` integral.",
+    "sorry": false,
+    "needs": [
+     "a₁ b₁ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizUpper",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtHorizLower",
+    "ns": "Turing",
+    "full": "Turing.StmtHorizLower",
+    "line": 117,
+    "why": "The lower side of the horizontal `log |ζ|` integral: the analytic core.",
+    "sorry": false,
+    "needs": [
+     "a₂ b₂ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S_eq_argS",
+    "ns": "Turing",
+    "full": "Turing.S_eq_argS",
+    "line": 124,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "S t = Stage3.argS t",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_phaseTheta",
+    "ns": "Turing",
+    "full": "Turing.continuous_phaseTheta",
+    "line": 126,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous Stage3.phaseTheta",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Stirling.lean::Stage3.intervalIntegrable_phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phasePoint",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_S",
+    "ns": "Turing",
+    "full": "Turing.intervalIntegrable_S",
+    "line": 134,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "IntervalIntegrable S volume a b",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.continuous_phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S₁_sub",
+    "ns": "Turing",
+    "full": "Turing.S₁_sub",
+    "line": 142,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t₁ t₂ : ℝ"
+    ],
+    "proves": "S₁ t₂ - S₁ t₁ = ∫ t in t₁..t₂, S t",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S₁_crude",
+    "ns": "Turing",
+    "full": "Turing.S₁_crude",
+    "line": 148,
+    "why": "The crude bound, from the pointwise `|S| ≤ 15 log t + 75`. It carries the factor `t₂ − t₁`, the lost factor of step 1.",
+    "sorry": false,
+    "needs": [
+     "h2 : 2 < t₁",
+     "h12 : t₁ ≤ t₂"
+    ],
+    "proves": "|S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75)",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_gt_two",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "log_zeta_le",
+    "ns": "Turing",
+    "full": "Turing.log_zeta_le",
+    "line": 164,
+    "why": "The pointwise bound behind the upper side: `log ‖ζ(x + it)‖ ≤ log 9 + log t`.",
+    "sorry": false,
+    "needs": [
+     "hx1 : 1 / 2 ≤ x",
+     "hx2 : x ≤ 2",
+     "ht : 2 ≤ t"
+    ],
+    "proves": "Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤ Real.log 9 + Real.log t",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.log_zeta_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.zeta_norm_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizUpper_holds",
+    "ns": "Turing",
+    "full": "Turing.horizUpper_holds",
+    "line": 186,
+    "why": "The upper side, proved.",
+    "sorry": false,
+    "needs": [],
+    "proves": "StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9)",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizUpper",
+     "lean_stage3/Stage3/TuringS.lean::Turing.log_zeta_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizUpper",
+     "lean_stage3/Stage3/TuringS.lean::Turing.log_zeta_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "littlewood_of_pieces",
+    "ns": "Turing",
+    "full": "Turing.littlewood_of_pieces",
+    "line": 201,
+    "why": "Littlewood's bound from its pieces.",
+    "sorry": false,
+    "needs": [
+     "hsplit : StmtSplit",
+     "hosc : StmtOsc c₀",
+     "hlow : StmtHorizLower a₂ b₂",
+     "ha₂ : 0 ≤ a₂"
+    ],
+    "proves": "StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2",
+    "file": "lean_stage3/Stage3/TuringS.lean",
+    "id": "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds"
     ],
     "layer": "zeta",
     "used_by": []
@@ -147685,11 +148848,12 @@
    "Stage3.MeanQ",
    "Stage3.GrRatio",
    "Stage3.FloorConstQ",
-   "Stage3.FloorQ"
+   "Stage3.FloorQ",
+   "Stage3.Turing"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 256,
+  "lines": 257,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -147860,6 +149024,7 @@
    "lean_stage3/Stage3/ThetaPi.lean",
    "lean_stage3/Stage3/ThetaPsi.lean",
    "lean_stage3/Stage3/ThetaPull.lean",
+   "lean_stage3/Stage3/Turing.lean",
    "lean_stage3/Stage3/TwistedMoment.lean",
    "lean_stage3/Stage3/Unsmooth.lean",
    "lean_stage3/Stage3/VonKochScaffold.lean",

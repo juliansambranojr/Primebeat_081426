@@ -18,14 +18,15 @@ flowchart LR
   n2["<b>conj_mem</b><br/>conj (ρ : ℂ) ∈ NontrivialZeros"]:::thm
   n3["<b>lineCount_le_allCount</b><br/>lineCount T ≤ allCount T"]:::thm
   n4["<b>rh_iff_line_count</b><br/>RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T"]:::thm
-  n5["<b>signChanges_le_line_count ■</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
+  n5["<b>signChanges_le_line_count</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
   x0(["<b>Defect</b><br/>7 theorems"]):::ext
   x1(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
   x2(["<b>LevinsonMultiple</b><br/>sum_order_le_lineCount"]):::ext
   x3(["<b>LevinsonWindowNear</b><br/>sum_order_le_lineCount_sub"]):::ext
-  x4(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
-  x5(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
-  x6(["<b>CountModes</b><br/>im_ne_zero"]):::ext
+  x4(["<b>TuringCert</b><br/>4 theorems"]):::ext
+  x5(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
+  x6(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x7(["<b>CountModes</b><br/>im_ne_zero"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -34,12 +35,15 @@ flowchart LR
   n0 -.-> x1
   n0 -.-> x2
   n0 -.-> x3
+  n0 -.-> x4
+  n1 -.-> x4
   n3 -.-> x0
   n4 -.-> x0
-  x4 -.-> n1
-  x4 -.-> n5
-  x5 -.-> n4
+  n5 -.-> x4
+  x5 -.-> n1
+  x5 -.-> n5
   x6 -.-> n4
+  x7 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -60,7 +64,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 50
 
 - **Is:** `` zerosUpTo (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite (T + 1)).toFinset.filter (fun ρ => 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T) noncomputable ``
-- **Used by 15:** [`Defect.N_eq_sum_lt`](../lean_stage3/Defect.md#Defect-N_eq_sum_lt), [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.offCount`](../lean_stage3/Defect.md#Defect-offCount), [`Defect.offCount_eq_two_mul`](../lean_stage3/Defect.md#Defect-offCount_eq_two_mul), [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair), [`Defect.zerosUpTo_eq_right`](../lean_stage3/Defect.md#Defect-zerosUpTo_eq_right), [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub), [`LineCount.allCount`](#LineCount-allCount), [`LineCount.lineCount`](#LineCount-lineCount), [`LineCount.mem_zerosUpTo`](#LineCount-mem_zerosUpTo), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
+- **Used by 16:** [`Defect.N_eq_sum_lt`](../lean_stage3/Defect.md#Defect-N_eq_sum_lt), [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.offCount`](../lean_stage3/Defect.md#Defect-offCount), [`Defect.offCount_eq_two_mul`](../lean_stage3/Defect.md#Defect-offCount_eq_two_mul), [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair), [`Defect.zerosUpTo_eq_right`](../lean_stage3/Defect.md#Defect-zerosUpTo_eq_right), [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub), [`LineCount.allCount`](#LineCount-allCount), [`LineCount.lineCount`](#LineCount-lineCount), [`LineCount.mem_zerosUpTo`](#LineCount-mem_zerosUpTo), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count), [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N)
 
 <a name="LineCount-allCount"></a>
 ### `LineCount.allCount`
@@ -69,7 +73,7 @@ def · line 56
 
 - **Is:** `` allCount (T : ℝ) : ℤ := ∑ ρ ∈ zerosUpTo T, riemannZeta.order (ρ : ℂ) noncomputable ``
 - **Built from:** [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
-- **Used by 11:** [`Defect.N_eq_allCount_of_no_zero_at`](../lean_stage3/Defect.md#Defect-N_eq_allCount_of_no_zero_at), [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right), [`Defect.N_le_allCount`](../lean_stage3/Defect.md#Defect-N_le_allCount), [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast), [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect), [`Defect.defectN_eq`](../lean_stage3/Defect.md#Defect-defectN_eq), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.defect_le`](../lean_stage3/Defect.md#Defect-defect_le), [`Defect.defect_le_of_floor`](../lean_stage3/Defect.md#Defect-defect_le_of_floor), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count)
+- **Used by 14:** [`Defect.N_eq_allCount_of_no_zero_at`](../lean_stage3/Defect.md#Defect-N_eq_allCount_of_no_zero_at), [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right), [`Defect.N_le_allCount`](../lean_stage3/Defect.md#Defect-N_le_allCount), [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast), [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect), [`Defect.defectN_eq`](../lean_stage3/Defect.md#Defect-defectN_eq), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.defect_le`](../lean_stage3/Defect.md#Defect-defect_le), [`Defect.defect_le_of_floor`](../lean_stage3/Defect.md#Defect-defect_le_of_floor), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N), [`Turing.count_le_N_sub`](../lean_stage3/TuringCert.md#Turing-count_le_N_sub), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs)
 
 <a name="LineCount-lineCount"></a>
 ### `LineCount.lineCount`
@@ -78,7 +82,7 @@ def · line 61
 
 - **Is:** `` lineCount (T : ℝ) : ℤ := ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (ρ : ℂ).re = 1 / 2), riemannZeta.order (ρ : ℂ) ``
 - **Built from:** [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
-- **Used by 36:** [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.lineCount_ge_argW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineCount_ge_argW), [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right), [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect), [`Defect.defectN`](../lean_stage3/Defect.md#Defect-defectN), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.defect_le_of_floor`](../lean_stage3/Defect.md#Defect-defect_le_of_floor), [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long), [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorQ.levinson_floorQ`](../lean_stage3/FloorQ.md#FloorQ-levinson_floorQ), [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ), [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor), [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X), [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.lineCount_mono`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-lineCount_mono), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near), [`LevinsonWindowNear.lineCount_nonneg`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-lineCount_nonneg), [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
+- **Used by 37:** [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.lineCount_ge_argW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineCount_ge_argW), [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right), [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect), [`Defect.defectN`](../lean_stage3/Defect.md#Defect-defectN), [`Defect.defect_eq_offCount`](../lean_stage3/Defect.md#Defect-defect_eq_offCount), [`Defect.defect_le_of_floor`](../lean_stage3/Defect.md#Defect-defect_le_of_floor), [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long), [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorQ.levinson_floorQ`](../lean_stage3/FloorQ.md#FloorQ-levinson_floorQ), [`FloorQ.stepQ`](../lean_stage3/FloorQ.md#FloorQ-stepQ), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ), [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor), [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X), [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.lineCount_mono`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-lineCount_mono), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near), [`LevinsonWindowNear.lineCount_nonneg`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-lineCount_nonneg), [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs)
 
 ## Theorems
 
@@ -99,7 +103,7 @@ line 67 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
 
-**Feeds** (10 that use it)
+**Feeds** (12 that use it)
 
   - [`Defect.N_eq_allCount_of_no_zero_at`](../lean_stage3/Defect.md#Defect-N_eq_allCount_of_no_zero_at) (Defect) — `` riemannZeta.N T = (allCount T : ℝ) ``
   - [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right) (Defect) — `` riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T ``
@@ -111,6 +115,8 @@ line 67 · arrows read from text
   - [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub) (LevinsonWindowNear) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a ``
   - [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count) — `` RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T ``
   - [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count) — `` (k : ℤ) ≤ lineCount T ``
+  - [`Turing.allCount_add_card_le_N`](../lean_stage3/TuringCert.md#Turing-allCount_add_card_le_N) (TuringCert) — `` (allCount T₁ : ℝ) + Z.card ≤ riemannZeta.N u ``
+  - [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono) (TuringCert) — `` defect T ≤ defect T' ``
 
 <a name="LineCount-strictSignChange_zero_on_line"></a>
 ### `LineCount.strictSignChange_zero_on_line`
@@ -138,9 +144,10 @@ line 80 · arrows read from text
   - [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) (HardyZ) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
   - [`HardyZ.xi_line_real`](../lean_stage3/HardyZ.md#HardyZ-xi_line_real) (HardyZ) — `` (completedRiemannZeta (1/2 + t * Complex.I)).im = 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count) — `` (k : ℤ) ≤ lineCount T ``
+  - [`Turing.count_le_N_sub`](../lean_stage3/TuringCert.md#Turing-count_le_N_sub) (TuringCert) — `` (∑ j : Fin m, if s j.succ < u then (1 : ℝ) else 0) ≤ riemannZeta.N u - (allCount T₁ : ℝ) ``
 
 <a name="LineCount-conj_mem"></a>
 ### `LineCount.conj_mem`
@@ -253,5 +260,7 @@ line 155 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.lineCount`](#LineCount-lineCount), [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs) (TuringCert) — `` ∀ T ≤ T₁, defect T = 0 ``
 

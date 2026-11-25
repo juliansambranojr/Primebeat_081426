@@ -37,15 +37,17 @@ flowchart LR
   x8(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
   x9(["<b>LevinsonWindow</b><br/>N_step_le<br/>levinson_window"]):::ext
   x10(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
-  x11(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
-  x12(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
-  x13(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
-  x14(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
-  x15(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x16(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
-  x17(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
-  x18(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x19(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x11(["<b>TuringAvg</b><br/>turing_S_le"]):::ext
+  x12(["<b>TuringS</b><br/>S₁_crude<br/>intervalIntegrable_S"]):::ext
+  x13(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x14(["<b>LevinsonSize</b><br/>gamma_part_count_le<br/>gamma_part_count_le_gt_two"]):::ext
+  x15(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x16(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x17(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x18(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x19(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
+  x20(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x21(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -65,17 +67,19 @@ flowchart LR
   n8 --> n12
   n9 --> n10
   n1 -.-> x3
-  n12 -.-> x12
+  n12 -.-> x14
   n12 -.-> x9
-  n14 -.-> x15
-  n14 -.-> x16
   n14 -.-> x17
   n14 -.-> x18
   n14 -.-> x19
+  n14 -.-> x20
+  n14 -.-> x21
   n2 -.-> x4
   n2 -.-> x5
   n2 -.-> x6
   n3 -.-> x10
+  n3 -.-> x11
+  n3 -.-> x12
   n3 -.-> x4
   n3 -.-> x5
   n3 -.-> x6
@@ -84,19 +88,20 @@ flowchart LR
   n3 -.-> x9
   n7 -.-> x9
   n8 -.-> x12
+  n8 -.-> x14
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14
   x1 -.-> n0
-  x11 -.-> n10
-  x11 -.-> n13
-  x11 -.-> n14
-  x11 -.-> n6
-  x11 -.-> n7
+  x13 -.-> n10
   x13 -.-> n13
   x13 -.-> n14
-  x14 -.-> n13
-  x14 -.-> n14
+  x13 -.-> n6
+  x13 -.-> n7
+  x15 -.-> n13
+  x15 -.-> n14
+  x16 -.-> n13
+  x16 -.-> n14
   x2 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -244,7 +249,7 @@ riemannZeta.N T ≤ riemannZeta.N T'
 
   - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
 
-**Feeds** (10 that use it)
+**Feeds** (12 that use it)
 
   - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
   - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
@@ -256,6 +261,8 @@ riemannZeta.N T ≤ riemannZeta.N T'
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
+  - [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le) (TuringAvg) — `` S t ≤ (a * Real.log (t + h) + b) / h + h * ((Real.log ((t + h) / 2) - Real.log Real.pi + 97 / t) / 2) / (2 * Real.pi) ``
+  - [`Turing.intervalIntegrable_S`](../lean_stage3/TuringS.md#Turing-intervalIntegrable_S) (TuringS) — `` IntervalIntegrable S volume a b ``
 
 <a name="ArgCount-N_eq_of_no_zero_between"></a>
 ### `ArgCount.N_eq_of_no_zero_between`
@@ -404,11 +411,12 @@ line 216
 
 **Definitions its proof touches:** [`ArgCount.good`](#ArgCount-good), [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
   - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
   - [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two) (LevinsonSize) — `` |(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (riemannZeta.N b - riemannZeta.N a)| ≤ Real.pi * (30 * Real.log b + 150) ``
+  - [`Turing.S₁_crude`](../lean_stage3/TuringS.md#Turing-S-_crude) (TuringS) — `` |S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75) ``
 
 <a name="ArgCount-mainTerm_abs_le"></a>
 ### `ArgCount.mainTerm_abs_le`
