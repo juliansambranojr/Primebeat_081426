@@ -7,7 +7,7 @@
 82 theorems, 33 definitions, 1811 lines. 
 
 **Imports:** [`ApproxDeriv`](../lean_stage3/ApproxDeriv.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxDerivAll`](../lean_stage3/ApproxDerivAll.md)
 
 ## The picture
 
@@ -46,9 +46,10 @@ flowchart LR
   n28["<b>ratio_cpow_eq</b><br/>((p : ℂ) / (q : ℂ)) ^ (-((t : ℂ) * I)) = eL (Real.log (p / q)) t"]:::shp
   n29["<b>log_ratio_ge</b><br/>1 / (2 * (p : ℝ)) ≤ Real.log ((q : ℝ) / p)"]:::shp
   x0(["<b>ApproxDeriv</b><br/>5 theorems"]):::ext
-  x1(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
-  x2(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
-  x3(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
+  x1(["<b>ApproxDerivAll</b><br/>ibp_iter_chain"]):::ext
+  x2(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
+  x3(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
+  x4(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
   n11 --> n14
   n12 --> n14
   n13 --> n16
@@ -67,11 +68,12 @@ flowchart LR
   n25 --> n26
   n26 --> n27
   n8 --> n9
-  n20 -.-> x1
+  n14 -.-> x1
   n20 -.-> x2
-  n27 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
+  n20 -.-> x3
+  n27 -.-> x2
+  n28 -.-> x2
+  n29 -.-> x2
   x0 -.-> n12
   x0 -.-> n17
   x0 -.-> n18
@@ -79,7 +81,7 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n22
   x0 -.-> n26
-  x3 -.-> n26
+  x4 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -301,7 +303,7 @@ def · line 102
 def · line 159
 
 - **Is:** `` eL (l t : ℝ) : ℂ := cexp ((t : ℂ) * (-(l : ℂ) * I)) ``
-- **Used by 8:** [`TwistedMoment.continuous_eL`](#TwistedMoment-continuous_eL), [`TwistedMoment.eL_hasDerivAt`](#TwistedMoment-eL_hasDerivAt), [`TwistedMoment.ibp_bound`](#TwistedMoment-ibp_bound), [`TwistedMoment.ibp_once`](#TwistedMoment-ibp_once), [`TwistedMoment.ibp_twice`](#TwistedMoment-ibp_twice), [`TwistedMoment.norm_eL`](#TwistedMoment-norm_eL), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.ratio_cpow_eq`](#TwistedMoment-ratio_cpow_eq)
+- **Used by 10:** [`ApproxDerivAll.ibp_iter`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter), [`ApproxDerivAll.ibp_iter_chain`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter_chain), [`TwistedMoment.continuous_eL`](#TwistedMoment-continuous_eL), [`TwistedMoment.eL_hasDerivAt`](#TwistedMoment-eL_hasDerivAt), [`TwistedMoment.ibp_bound`](#TwistedMoment-ibp_bound), [`TwistedMoment.ibp_once`](#TwistedMoment-ibp_once), [`TwistedMoment.ibp_twice`](#TwistedMoment-ibp_twice), [`TwistedMoment.norm_eL`](#TwistedMoment-norm_eL), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.ratio_cpow_eq`](#TwistedMoment-ratio_cpow_eq)
 
 <a name="TwistedMoment-Fw"></a>
 ### `TwistedMoment.Fw`
@@ -888,8 +890,9 @@ line 182 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.eL`](#TwistedMoment-eL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ApproxDerivAll.ibp_iter_chain`](../lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter_chain) (ApproxDerivAll) — `` ∀ F : ℕ → ℝ → ℂ, (∀ k < j, ∀ t, HasDerivAt (F k) (F (k + 1) t) t) → IntervalIntegrable (F j) volume a b → (∀ k < j, F k a = 0) → (∀ k < j, F k b = 0) … ``
   - [`TwistedMoment.ibp_twice`](#TwistedMoment-ibp_twice) — `` ∫ t in a..b, F t * eL l t = -(1 / (l : ℂ) ^ 2) * ∫ t in a..b, F2 t * eL l t ``
 
 <a name="TwistedMoment-ibp_twice"></a>
