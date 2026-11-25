@@ -7,7 +7,7 @@
 8 theorems, 3 definitions, 334 lines. 
 
 **Imports:** [`DiagMainMu`](../lean_stage3/DiagMainMu.md), [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SwapX`](../lean_stage3/SwapX.md)
 
 ## The picture
 
@@ -21,6 +21,7 @@ flowchart LR
   n5["<b>key_bound</b><br/>‖z * (I / lm + E) - 1 / (s * lm) * I‖ ≤ Cz * (CI / lm + e / L) +…"]:::shp
   n6["<b>final_real</b><br/>Cz * (CI / lm + e / L) + κ * e ≤ ε"]:::cnt
   n7["<b>stmtDiagMainO_of_lead ■</b><br/>StmtDiagMainO P θ R κ"]:::thm
+  x0(["<b>SwapX</b><br/>c1Y_bound"]):::ext
   n0 --> n7
   n1 --> n7
   n2 --> n7
@@ -28,6 +29,10 @@ flowchart LR
   n4 --> n7
   n5 --> n7
   n6 --> n7
+  n0 -.-> x0
+  n1 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -98,9 +103,10 @@ c1Y P M α β = 1 / ((α + β) * Real.log M) * IY P M α β
 
 **Definitions its proof touches:** [`DiagMain.IY`](#DiagMain-IY), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
+  - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
 
 <a name="DiagMain-IY_bound"></a>
 ### `DiagMain.IY_bound`
@@ -126,9 +132,10 @@ line 77 · arrows read from text
 
 **Definitions its proof touches:** [`DiagMain.IY`](#DiagMain-IY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
+  - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
 
 <a name="DiagMain-zeta_taylor"></a>
 ### `DiagMain.zeta_taylor`
@@ -173,9 +180,10 @@ Real.log (Mof T θ) ≤ θ * Real.log T
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
+  - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
 
 <a name="DiagMain-logM_ge"></a>
 ### `DiagMain.logM_ge`
@@ -200,9 +208,10 @@ line 141 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
+  - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
 
 <a name="DiagMain-key_bound"></a>
 ### `DiagMain.key_bound`

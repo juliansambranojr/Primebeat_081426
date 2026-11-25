@@ -132,7 +132,8 @@ flowchart LR
   x6(["<b>Diagonal</b><br/>4 theorems"]):::ext
   x7(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
   x8(["<b>OffDiagClose</b><br/>VY_iter_bound0"]):::ext
-  x9(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
+  x9(["<b>SwapX</b><br/>S1_sharp"]):::ext
+  x10(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
   n0 --> n3
   n0 --> n5
   n1 --> n3
@@ -182,12 +183,13 @@ flowchart LR
   n21 -.-> x4
   n22 -.-> x0
   n22 -.-> x8
-  n24 -.-> x9
-  n25 -.-> x9
-  n26 -.-> x9
-  n27 -.-> x9
-  n28 -.-> x9
-  n29 -.-> x9
+  n22 -.-> x9
+  n24 -.-> x10
+  n25 -.-> x10
+  n26 -.-> x10
+  n27 -.-> x10
+  n28 -.-> x10
+  n29 -.-> x10
   x1 -.-> n2
   x1 -.-> n24
   x1 -.-> n3
@@ -1864,9 +1866,10 @@ line 1281 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`OffDiagClose.VY_iter_bound0`](../lean_stage3/OffDiagClose.md#OffDiagClose-VY_iter_bound0) (OffDiagClose) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖(t : ℂ) ^ r * iteratedDeriv … ``
+  - [`SwapX.S1_sharp`](../lean_stage3/SwapX.md#SwapX-S1_sharp) (SwapX) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ‖α‖ ≤ η → ‖β‖ ≤ η → ∀ t : ℝ, 1 ≤ t → ‖S1 α β 1 t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * … ``
   - [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound) (TwistedMoment) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="ApproxBounds-lY_le_abs"></a>

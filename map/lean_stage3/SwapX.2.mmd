@@ -1,0 +1,29 @@
+flowchart LR
+  n0["<b>I1_X_bound</b><br/>‖I1 X.toWeight M a σ₀ α β 1‖ ≤ 2 * T * (Cc + 1) + Cd * (T / Real…"]:::shp
+  n1["<b>J_alg</b><br/>‖((K / L : ℝ) : ℂ) * ((2 * u - w) + I * (2 * v - w))‖ ≤ 2 * K * …"]:::shp
+  n2["<b>split_eq</b><br/>(∫ t, f2 t) - Tp * (∫ t, f t) = (∫ t, E t) + Tp * ∫ t, F t"]:::cnt
+  n3["<b>stmtXAll_of</b><br/>StmtXAll P θ R κ"]:::thm
+  n4["<b>lemma3_resO_of_partsAll</b><br/>StmtLemma3resO P θ R κ"]:::thm
+  n5["<b>lemma3_resO_of_mainO ■</b><br/>StmtLemma3resO P θ R κ"]:::thm
+  x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
+  x1(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
+  x2(["<b>diagram 1</b><br/>16 theorems"]):::ext
+  n0 --> n3
+  n1 --> n3
+  n2 --> n3
+  n3 --> n5
+  n4 --> n5
+  x0 -.-> n0
+  x0 -.-> n3
+  x0 -.-> n4
+  x1 -.-> n3
+  x1 -.-> n5
+  x2 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -17680,6 +17680,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.VY_iter_bound0",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
     ]
    },
@@ -22118,6 +22119,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
@@ -22225,6 +22227,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
@@ -22273,6 +22276,10 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
      "lean_stage3/Stage3/ApproxShift.lean::ApproxShift.approxFE",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.approxFE_small",
@@ -22520,6 +22527,7 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.VY_iter_bound0",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.VY_iter_on_supp",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offdiag_term_iter",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2",
@@ -22626,6 +22634,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
@@ -22681,6 +22690,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuousAt_resY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom"
@@ -23082,6 +23092,7 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.zeta_dirichlet_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1_term_bound"
     ]
    },
@@ -23108,6 +23119,7 @@
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
      "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.summable_major6",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_major"
     ]
    },
@@ -38292,7 +38304,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
    {
@@ -38320,7 +38333,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
    {
@@ -38369,7 +38383,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
    {
@@ -38398,7 +38413,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
    {
@@ -69065,7 +69081,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.weightAll_exists",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum_nonneg"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.wsum_nonneg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
     ]
    },
    {
@@ -70691,7 +70711,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll"
     ]
    },
    {
@@ -70744,7 +70765,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
     ]
    },
    {
@@ -70796,7 +70818,9 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X"
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
     ]
    }
   ]
@@ -86270,6 +86294,1725 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SwapX.lean",
+  "module": "Stage3.SwapX",
+  "stem": "SwapX",
+  "header": "# SwapX — block S12 of `lean_stage3/design/stencil.md`, Part 5 of the twisted moment, the X-term. 2026-11-25.",
+  "imports": [
+   "Stage3.DiagonalO",
+   "Stage3.DiagMain"
+  ],
+  "opens": [
+   "ApproxBounds",
+   "ApproxFE",
+   "Complex",
+   "ContDiff",
+   "Filter",
+   "MeasureTheory",
+   "OffDiagClose",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "SwapX"
+  ],
+  "lines": 1275,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMain.lean",
+   "lean_stage3/Stage3/DiagonalO.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Gk",
+    "ns": "SwapX",
+    "full": "SwapX.Gk",
+    "line": 84,
+    "why": "`G_k(t) = exp((s − k) log t)`, so `G_k(t) = t^(s−k)` for `t > 0`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "k : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk_hasDerivAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_cG",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_contDiffAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Dk",
+    "ns": "SwapX",
+    "full": "SwapX.Dk",
+    "line": 87,
+    "why": "`D_k = s(s−1)⋯(s−k+1)`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "ℕ → ℂ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_Dk_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cT",
+    "ns": "SwapX",
+    "full": "SwapX.cT",
+    "line": 92,
+    "why": "The constant `c_T = exp(−s log(2πT))`, so `c_T G_0(t) = (t/(2πT))^s`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "T : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_cG",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gk_hasDerivAt",
+    "ns": "SwapX",
+    "full": "SwapX.Gk_hasDerivAt",
+    "line": 94,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "k : ℕ",
+     "ht : 0 < t"
+    ],
+    "proves": "HasDerivAt (Gk s k) ((s - k) * Gk s (k + 1) t) t",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.Gk_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Dk_le",
+    "ns": "SwapX",
+    "full": "SwapX.norm_Dk_le",
+    "line": 110,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hs : ‖s‖ ≤ 1",
+     "k : ℕ"
+    ],
+    "proves": "‖Dk s (k + 1)‖ ≤ ‖s‖ * ((k + 1).factorial : ℝ)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.norm_Dk_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "phi",
+    "ns": "SwapX",
+    "full": "SwapX.phi",
+    "line": 129,
+    "why": "The real twist `φ(t) = a + b·ℓ(c·G_0(t))`, `ℓ` a real-linear functional (`re` or `im`).",
+    "sorry": false,
+    "needs": [
+     "ℓ : ℂ →L[ℝ] ℝ",
+     "c s : ℂ",
+     "a b : ℝ",
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_contDiffAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lin_hasDerivAt",
+    "ns": "SwapX",
+    "full": "SwapX.lin_hasDerivAt",
+    "line": 131,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ℓ : ℂ →L[ℝ] ℝ",
+     "c : ℂ",
+     "b : ℝ",
+     "hF : HasDerivAt F F' t"
+    ],
+    "proves": "HasDerivAt (fun t => b * ℓ (c * F t)) (b * ℓ (c * F')) t",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.lin_hasDerivAt",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iter_phi",
+    "ns": "SwapX",
+    "full": "SwapX.iter_phi",
+    "line": 136,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ℓ : ℂ →L[ℝ] ℝ",
+     "c s : ℂ",
+     "a b : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "Set.EqOn (iteratedDeriv (k + 1) (phi ℓ c s a b)) (fun t => b * ℓ (c * (Dk s (k + 1) * Gk s (k + 1) t))) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk_hasDerivAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lin_hasDerivAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk_hasDerivAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lin_hasDerivAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_contDiffAt",
+    "ns": "SwapX",
+    "full": "SwapX.phi_contDiffAt",
+    "line": 161,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ℓ : ℂ →L[ℝ] ℝ",
+     "c s : ℂ",
+     "a b : ℝ",
+     "ht : t ≠ 0"
+    ],
+    "proves": "ContDiffAt ℝ ∞ (phi ℓ c s a b) t",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.phi_contDiffAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "twC",
+    "ns": "SwapX",
+    "full": "SwapX.twC",
+    "line": 171,
+    "why": "The twisted constants `C'_j = Σ_{i ≤ j} C(j,i) C_i (j−i)! 4^(j−i)`.",
+    "sorry": false,
+    "needs": [
+     "C : ℕ → ℝ",
+     "j : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.twC",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.le_twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_mono",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "twC_nonneg",
+    "ns": "SwapX",
+    "full": "SwapX.twC_nonneg",
+    "line": 174,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hC : ∀ j, 0 ≤ C j",
+     "j : ℕ"
+    ],
+    "proves": "0 ≤ twC C j",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "twC_mono",
+    "ns": "SwapX",
+    "full": "SwapX.twC_mono",
+    "line": 177,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : ∀ j, C j ≤ C' j",
+     "j : ℕ"
+    ],
+    "proves": "twC C j ≤ twC C' j",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.twC_mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_iter_le",
+    "ns": "SwapX",
+    "full": "SwapX.phi_iter_le",
+    "line": 188,
+    "why": "The derivative bounds of `φ` on the support: `|φ^(k)| ≤ k! 4^k Δ^(−k)`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "h01 : ∀ t ∈ Set.Icc (T / 4) (2 * T), 0 ≤ phi ℓ c s a b t ∧ phi ℓ c s a b t ≤ 1",
+     "hder : ∀ k : ℕ, ∀ t ∈ Set.Icc (T / 4) (2 * T), |b * ℓ (c * (Dk s (k + 1) * Gk s (k + 1) t))| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹",
+     "k : ℕ",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "|iteratedDeriv k (phi ℓ c s a b) t| ≤ (k.factorial : ℝ) * 4 ^ k * ((T / L) ^ k)⁻¹",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.iter_phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "twist",
+    "ns": "SwapX",
+    "full": "SwapX.twist",
+    "line": 205,
+    "why": "The twisted weight `w·φ`, a `WeightAll T L`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "hΔ : 0 < T / L",
+     "h01 : ∀ t ∈ Set.Icc (T / 4) (2 * T), 0 ≤ phi ℓ c s a b t ∧ phi ℓ c s a b t ≤ 1",
+     "hder : ∀ k : ℕ, ∀ t ∈ Set.Icc (T / 4) (2 * T), |b * ℓ (c * (Dk s (k + 1) * Gk s (k + 1) t))| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹"
+    ],
+    "proves": "WeightAll T L",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.twist",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_contDiffAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_contDiffAt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi_iter_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logratio_le",
+    "ns": "SwapX",
+    "full": "SwapX.logratio_le",
+    "line": 287,
+    "why": "`|log(t/(2πT))| ≤ 26` on `[T/4, 2T]`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "|Real.log t - Real.log (2 * Real.pi * T)| ≤ 26",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.logratio_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cG_eq",
+    "ns": "SwapX",
+    "full": "SwapX.cG_eq",
+    "line": 310,
+    "why": "`c_T G_0(t) = exp(s (log t − log(2πT)))`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "T t : ℝ"
+    ],
+    "proves": "cT s T * Gk s 0 t = cexp (s * ((Real.log t - Real.log (2 * Real.pi * T) : ℝ) : ℂ))",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cG",
+    "ns": "SwapX",
+    "full": "SwapX.norm_cG",
+    "line": 319,
+    "why": "`‖c_T G_k(t)‖ = e^(Re s (log t − log(2πT))) t^(−k)`, `t > 0`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "T : ℝ",
+     "k : ℕ",
+     "ht : 0 < t"
+    ],
+    "proves": "‖cT s T * Gk s k t‖ = Real.exp (s.re * (Real.log t - Real.log (2 * Real.pi * T))) * (t⁻¹) ^ k",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.norm_cG",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Kt",
+    "ns": "SwapX",
+    "full": "SwapX.Kt",
+    "line": 341,
+    "why": "The size constant `K = 104κ`: `‖(t/(2πT))^s − 1‖ ≤ K/L` on the support.",
+    "sorry": false,
+    "needs": [
+     "κ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sl_le",
+    "ns": "SwapX",
+    "full": "SwapX.sl_le",
+    "line": 343,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT : 0 < T",
+     "hL : 52 * κ ≤ L",
+     "hs : ‖s‖ ≤ 2 * κ / L",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "‖s * ((Real.log t - Real.log (2 * Real.pi * T) : ℝ) : ℂ)‖ ≤ 52 * κ / L",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.logratio_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.logratio_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "g_sub_one",
+    "ns": "SwapX",
+    "full": "SwapX.g_sub_one",
+    "line": 353,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT : 0 < T",
+     "hL : 52 * κ ≤ L",
+     "hs : ‖s‖ ≤ 2 * κ / L",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "‖cT s T * Gk s 0 t - 1‖ ≤ Kt κ / L",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hder_of",
+    "ns": "SwapX",
+    "full": "SwapX.hder_of",
+    "line": 366,
+    "why": "The derivative bound `hder` of `twist`, for any `ℓ` with `|ℓ z| ≤ ‖z‖`, `b = L/(2K)`.",
+    "sorry": false,
+    "needs": [
+     "ℓ : ℂ →L[ℝ] ℝ",
+     "hℓ : ∀ z, |ℓ z| ≤ ‖z‖",
+     "hκ : 0 < κ",
+     "hT : 0 < T",
+     "hL1 : 1 ≤ L",
+     "hL : 52 * κ ≤ L",
+     "hs : ‖s‖ ≤ 2 * κ / L",
+     "k : ℕ",
+     "t : ℝ",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "|L / (2 * Kt κ) * ℓ (cT s T * (Dk s (k + 1) * Gk s (k + 1) t))| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_Dk_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_cG",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_t_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Dk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_Dk_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.norm_cG",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sl_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.inv_t_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "h01_re",
+    "ns": "SwapX",
+    "full": "SwapX.h01_re",
+    "line": 419,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT : 0 < T",
+     "hL : 52 * κ ≤ L",
+     "hs : ‖s‖ ≤ 2 * κ / L",
+     "t : ℝ",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "0 ≤ phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t ∧ phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t ≤ 1",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "h01_im",
+    "ns": "SwapX",
+    "full": "SwapX.h01_im",
+    "line": 443,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hT : 0 < T",
+     "hL : 52 * κ ≤ L",
+     "hs : ‖s‖ ≤ 2 * κ / L",
+     "t : ℝ",
+     "ht : t ∈ Set.Icc (T / 4) (2 * T)"
+    ],
+    "proves": "0 ≤ phi Complex.imCLM (cT s T) s (1 / 2) (L / (2 * Kt κ)) t ∧ phi Complex.imCLM (cT s T) s (1 / 2) (L / (2 * Kt κ)) t ≤ 1",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.g_sub_one",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "decomp",
+    "ns": "SwapX",
+    "full": "SwapX.decomp",
+    "line": 467,
+    "why": "The pointwise decomposition: `w (g − 1) = (K/L) ((2 w φ_re − w) + i (2 w φ_im − w))`.",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hL0 : 0 < L",
+     "w : ℝ",
+     "t : ℝ"
+    ],
+    "proves": "(w : ℂ) * (cT s T * Gk s 0 t - 1) = ((Kt κ / L : ℝ) : ℂ) * (((2 * (w * phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t) - w : ℝ) : ℂ) + I * (((2 * (w * phi Complex.imCLM (cT s T) s (1 / 2) (L / (2 * Kt κ)) t) - w : ℝ) : ℂ)))",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S1_term_sharp",
+    "ns": "SwapX",
+    "full": "SwapX.S1_term_sharp",
+    "line": 493,
+    "why": "A term of `S1` on Young's range: `≤ C_V N t^(1/2+2η) ((m+1)(n+1))^(−1−η)`.",
+    "sorry": false,
+    "needs": [
+     "hη : 0 < η",
+     "hη4 : η ≤ 1 / 4",
+     "hCV0 : 0 ≤ CV",
+     "hαη : ‖α‖ ≤ η",
+     "hβη : ‖β‖ ≤ η",
+     "ht : 1 ≤ t",
+     "hV : ∀ x : ℝ, 0 < x → ‖VY α β 1 x t‖ ≤ CV * (1 + 1 / ‖α + β‖ ^ 2) * (1 + x / t) ^ (-(1 : ℝ))",
+     "p : ℕ × ℕ"
+    ],
+    "proves": "‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β 1 (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t‖ ≤ CV * (1 + 1 / ‖α + β‖ ^ 2) * t ^ (1 / 2 + 2 * η) * (((p.1 : ℝ) + 1) ^ (-(1 + η)) * ((p.2 : ℝ) + 1) ^ (-(1 + η)))",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S1_sharp",
+    "ns": "SwapX",
+    "full": "SwapX.S1_sharp",
+    "line": 562,
+    "why": "`S1` pointwise, sharp in the range: for `‖α‖, ‖β‖ ≤ η ≤ 1/4`, `‖S1(α,β,1,t)‖ ≤ C N t^(1/2+2η)` (the exponent `1/2 + ‖α‖` of each sum, the decay traded at `(mn)^(−1−η)`). The `‖α‖ ≤ 1/10` bound `S1_term_bound` gives `t^(3/5+…)`, too large here.",
+    "sorry": false,
+    "needs": [
+     "hη : 0 < η",
+     "hη4 : η ≤ 1 / 4"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ‖α‖ ≤ η → ‖β‖ ≤ η → ∀ t : ℝ, 1 ≤ t → ‖S1 α β 1 t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * t ^ (1 / 2 + 2 * η)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.VY_decay_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_term_sharp",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_half_sq",
+    "ns": "SwapX",
+    "full": "SwapX.sum_half_sq",
+    "line": 590,
+    "why": "`(Σ_{h ≤ M} h^(−1/2))² ≤ M (1 + log M)` (Cauchy–Schwarz and `harm_le`).",
+    "sorry": false,
+    "needs": [
+     "M : ℕ"
+    ],
+    "proves": "(∑ h ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ)) ^ 2 ≤ (M : ℝ) * (1 + Real.log M)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.sum_half_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "msq_young",
+    "ns": "SwapX",
+    "full": "SwapX.msq_young",
+    "line": 604,
+    "why": "Young's mollifier: `|ψ(σ₀+it)|² ≤ B² M (1 + log M)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R t : ℝ), msq (Mof T θ) (aY P T θ R) (sig0 T R) t ≤ B ^ 2 * ((Mof T θ : ℝ) * (1 + Real.log (Mof T θ)))",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sum_half_sq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.sum_half_sq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "etaX",
+    "ns": "SwapX",
+    "full": "SwapX.etaX",
+    "line": 624,
+    "why": "The exponent margin `η = (1/2 − θ⁺)/8`.",
+    "sorry": false,
+    "needs": [
+     "θ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.etaX",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.size_X",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "etaX_pos",
+    "ns": "SwapX",
+    "full": "SwapX.etaX_pos",
+    "line": 626,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hθ : θ < 1 / 2"
+    ],
+    "proves": "0 < etaX θ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.size_X",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "etaX_le",
+    "ns": "SwapX",
+    "full": "SwapX.etaX_le",
+    "line": 631,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "etaX θ ≤ 1 / 16",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "size_X",
+    "ns": "SwapX",
+    "full": "SwapX.size_X",
+    "line": 638,
+    "why": "The size of the `O(1/t)` part: `N (2T)^(1/2+2η) M (1 + log M) ≤ C T/L`, `θ < 1/2`, `η = etaX θ`. The power of `T` is `1 − (3/4)(1/2 − θ⁺) < 1`; the logs are absorbed.",
+    "sorry": false,
+    "needs": [
+     "hθ : θ < 1 / 2",
+     "κ : ℝ"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * (2 * T) ^ (1 / 2 + 2 * etaX θ) * ((M : ℝ) * (1 + Real.log M)) ≤ C * (T / Real.log T)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.size_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c1Y_bound",
+    "ns": "SwapX",
+    "full": "SwapX.c1Y_bound",
+    "line": 697,
+    "why": "`‖c₁(α,β)‖ ≤ C` on the range: `1/((α+β) log M) ≤ 2κ/θ` and `IY_bound` for `θ > 0`; `log M = 0`, so `c₁ = 0`, for `θ ≤ 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "hκ : 0 < κ"
+    ],
+    "proves": "∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtXStirling",
+    "ns": "SwapX",
+    "full": "SwapX.StmtXStirling",
+    "line": 755,
+    "why": "OPEN, (4.2) in its asymptotic form, with the phase: `X_{α,β,t} = (t/2π)^(−α−β) + O(1/t)`, uniformly in `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1`. `XY_size` gives only the size, `log_norm_Gamma_approx` only `log‖Γ‖` up to `O(1)`, PNT+'s `StripBounds` upper bounds; none carries the argument. Route: `X = π^(α+β) Γ(z−α/2)Γ(z̄'−β/2)/(Γ(z+α/2)Γ(z̄'+β/2))`, `z = 1/4 − it/2`; each ratio is `exp(−∫_{−a}^{a} ψ(z+u) du)` along the segment, and `ψ(w) = log w + O(1/|w|)` on `1/5 ≤ Re w ≤ 3/10` from the digamma series (`digamma_eq_tsum`, PNT+ `DigammaSeries`, with no open proofs), the `Stirling.lean` comparison (`re_digam…",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Tp_g",
+    "ns": "SwapX",
+    "full": "SwapX.Tp_g",
+    "line": 760,
+    "why": "`T^z (t/(2πT))^z = (t/2π)^z`.",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "ht : 0 < t",
+     "z : ℂ"
+    ],
+    "proves": "(T : ℂ) ^ z * (cT z T * Gk z 0 t) = (((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cG_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_IX",
+    "ns": "SwapX",
+    "full": "SwapX.integrable_IX",
+    "line": 772,
+    "why": "The `X`-integrand is integrable (as in `I_split`).",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 4 ≤ T",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "hαβ : α + β ≠ 0"
+    ],
+    "proves": "Integrable fun t => (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lin_comb",
+    "ns": "SwapX",
+    "full": "SwapX.lin_comb",
+    "line": 785,
+    "why": "Linearity: `∫ k((2f_u − f) + i(2f_v − f)) = k((2∫f_u − ∫f) + i(2∫f_v − ∫f))`.",
+    "sorry": false,
+    "needs": [
+     "hf : Integrable f",
+     "hfu : Integrable fu",
+     "hfv : Integrable fv",
+     "k : ℂ",
+     "h : ∀ t, F t = k * ((2 * fu t - f t) + I * (2 * fv t - f t))"
+    ],
+    "proves": "Integrable F ∧ ∫ t, F t = k * ((2 * (∫ t, fu t) - ∫ t, f t) + I * (2 * (∫ t, fv t) - ∫ t, f t))",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.lin_comb",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_bound",
+    "ns": "SwapX",
+    "full": "SwapX.E_bound",
+    "line": 800,
+    "why": "The `O(1/t)` part, bounded with the pointwise `S1` and `|ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "hT8 : 8 ≤ T",
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hCst : 0 ≤ Cst",
+     "hCS : 0 ≤ CS",
+     "hN : 0 ≤ N",
+     "hBm : 0 ≤ Bm",
+     "he : 0 ≤ e",
+     "hst : ∀ t : ℝ, 1 ≤ t → ‖XY α β t - (((t / (2 * Real.pi) : ℝ)) : ℂ) ^ (-(α + β))‖ ≤ Cst / t",
+     "hS1 : ∀ t : ℝ, 1 ≤ t → ‖S1 (-β) (-α) 1 t‖ ≤ CS * N * t ^ e",
+     "hmsq : ∀ t, msq M a σ₀ t ≤ Bm"
+    ],
+    "proves": "‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * CS * N * (2 * T) ^ e * Bm",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Tp_g",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "le_twC",
+    "ns": "SwapX",
+    "full": "SwapX.le_twC",
+    "line": 841,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hC : ∀ j, 0 ≤ C j",
+     "j : ℕ"
+    ],
+    "proves": "C j ≤ twC C j",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.le_twC",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "I1_X_bound",
+    "ns": "SwapX",
+    "full": "SwapX.I1_X_bound",
+    "line": 850,
+    "why": "`‖I₁‖ ≤ 2T(C_c+1) + C_d T/L + C_o errY` for one weight, from the diagonal, the main term bounded, and the off-diagonal.",
+    "sorry": false,
+    "needs": [
+     "hT8 : 8 ≤ T",
+     "X : WeightAll T (Real.log T)",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "hα : ‖α‖ ≤ 1 / 10",
+     "hβ : ‖β‖ ≤ 1 / 10",
+     "bd : ‖diagSum X.toWeight M a σ₀ α β 1 - (what0 X.toWeight : ℂ) * Z‖ ≤ Cd * (T / Real.log T)",
+     "bo : ‖offSum X.toWeight M a σ₀ α β 1‖ ≤ Co * errY X.toWeight",
+     "hZ : ‖Z‖ ≤ Cc + 1"
+    ],
+    "proves": "‖I1 X.toWeight M a σ₀ α β 1‖ ≤ 2 * T * (Cc + 1) + Cd * (T / Real.log T) + Co * errY X.toWeight",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "J_alg",
+    "ns": "SwapX",
+    "full": "SwapX.J_alg",
+    "line": 874,
+    "why": "The algebra of the twisted part: `(K/L)((2u − w) + i(2v − w))` with each `‖·‖ = O(T)`.",
+    "sorry": false,
+    "needs": [
+     "hK : 0 ≤ K",
+     "hL1 : 1 ≤ L",
+     "hT : 0 ≤ T",
+     "hCc : 0 ≤ Cc",
+     "hCd : 0 ≤ Cd",
+     "hCo : 0 ≤ Co",
+     "hCu : 0 ≤ Cu",
+     "hu : ‖u‖ ≤ 2 * T * (Cc + 1) + Cd * (T / L) + Co * eu",
+     "hv : ‖v‖ ≤ 2 * T * (Cc + 1) + Cd * (T / L) + Co * ev",
+     "hw : ‖w‖ ≤ 2 * T * (Cc + 1) + Cd * (T / L) + Co * eW",
+     "heu : eu ≤ Cu * (T / L)",
+     "hev : ev ≤ Cu * (T / L)",
+     "hTL : T / L ≤ eW"
+    ],
+    "proves": "‖((K / L : ℝ) : ℂ) * ((2 * u - w) + I * (2 * v - w))‖ ≤ 2 * K * (6 * (Cc + 1) + 3 * Cd + 2 * Co * Cu + Co) * eW",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.J_alg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "split_eq",
+    "ns": "SwapX",
+    "full": "SwapX.split_eq",
+    "line": 928,
+    "why": "The split `I_X − T^z I₁ = ∫ w (X − T^z g) S₁ |ψ|² + T^z ∫ w (g − 1) S₁ |ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "Tp : ℂ",
+     "i2 : Integrable f2",
+     "i1 : Integrable f",
+     "iF : Integrable F",
+     "h : ∀ t, E t = f2 t - (Tp * f t + Tp * F t)"
+    ],
+    "proves": "(∫ t, f2 t) - Tp * (∫ t, f t) = (∫ t, E t) + Tp * ∫ t, F t",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.split_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtXAll",
+    "ns": "SwapX",
+    "full": "SwapX.StmtXAll",
+    "line": 940,
+    "why": "The X-term over `WeightAll` (the shape of `StmtOffDiagAll`): `I_X(α,β) = T^(−α−β) I₁(−β,−α) + O(T/L)`, the constant depending on a family `Cs` fixed first.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtXAll_of",
+    "ns": "SwapX",
+    "full": "SwapX.stmtXAll_of",
+    "line": 953,
+    "why": "The X-term, from Stirling's phase and the main term. For `θ < 1/2`, `κ > 0`: the twist `(t/(2πT))^(−α−β) = 1 + O(1/L)` is carried by two weights `w φ_re`, `w φ_im` of the same class (`twist`), so `T^(−α−β) ∫ w ((t/(2πT))^(−α−β) − 1) S₁(−β,−α) |ψ|²` is `(K/L)` times three `I₁`'s, each `O(T)` by `diag_young`, `stmtOffDiag_holds` and `‖ζ(1−α−β) S(−β,−α,0)‖ ≤ ‖c₁‖ + 1` (`StmtDiagMainO`, `c1Y_bound`); the Stirling remainder `O(1/t)` against the pointwise `S1_sharp` and `msq_young` is `O(L³ T^(1 − (3/4)(1/2−θ⁺)))` (`size_X`).",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hS : StmtXStirling",
+     "hmain : StmtDiagMainO P θ R κ"
+    ],
+    "proves": "StmtXAll P θ R κ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.J_alg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.le_twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lin_comb",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.size_X",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.split_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_mono",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Gk",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.J_alg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.Kt",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.cT",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.decomp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.etaX_pos",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_im",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.h01_re",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.le_twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lin_comb",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.phi",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.size_X",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.split_eq",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_mono",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twC_nonneg",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.S1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_resO_of_partsAll",
+    "ns": "SwapX",
+    "full": "SwapX.lemma3_resO_of_partsAll",
+    "line": 1119,
+    "why": "The assembly, `o(T)`, with the X-term over `WeightAll`: `lemma3_resO_of_parts` with `StmtXAll` in place of `StmtX` (the weights there are already `WeightAll`).",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hD : StmtDiagO P θ R κ",
+     "hO : StmtOffDiagAll P θ R κ",
+     "hX : StmtXAll P θ R κ"
+    ],
+    "proves": "StmtLemma3resO P θ R κ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_resO_of_mainO",
+    "ns": "SwapX",
+    "full": "SwapX.lemma3_resO_of_mainO",
+    "line": 1196,
+    "why": "Lemma 3 up to `I_res`, `o(T)`, from the main term and Stirling's phase: the diagonal by `stmtDiagO_of_mainO`, the off-diagonal by `stmtOffDiag_holds`, the X-term by `stmtXAll_of`, for `θ < 1/2`, `κ > 0`. `lemma3_resO_of_mainO_X` with its X-hypothesis discharged.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hS : StmtXStirling",
+     "hmain : StmtDiagMainO P θ R κ"
+    ],
+    "proves": "StmtLemma3resO P θ R κ",
+    "file": "lean_stage3/Stage3/SwapX.lean",
+    "id": "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_mainO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXStirling",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/TableDepths.lean",
   "module": "Stage3.TableDepths",
   "stem": "TableDepths",
@@ -92198,6 +93941,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
@@ -92259,6 +94004,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -93086,6 +94833,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.VY_iter_on_supp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.hder_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound"
     ]
    },
@@ -93383,6 +95131,10 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
@@ -93429,6 +95181,10 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.S1_sharp",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
@@ -93468,6 +95224,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -93499,6 +95256,10 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
@@ -93533,6 +95294,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -93564,6 +95328,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -93684,6 +95449,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
     ]
    },
@@ -93713,6 +95479,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
     ]
    },
@@ -93930,6 +95697,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
     ]
    },
@@ -94049,6 +95817,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom",
@@ -94108,6 +95877,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
     ]
    },
@@ -94288,6 +96058,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
     ]
    },
@@ -94474,6 +96245,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/SwapX.lean::SwapX.integrable_IX",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split"
     ]
    },
@@ -94534,6 +96307,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -94563,6 +96337,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
     ]
@@ -95163,6 +96938,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -95196,6 +96973,8 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offSum_bound_iter",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
@@ -95284,6 +97063,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -95588,6 +97369,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -95632,6 +97418,10 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -95684,6 +97474,10 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -95721,6 +97515,9 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -95755,6 +97552,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -95789,6 +97587,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.swap",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
@@ -95828,6 +97628,10 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -96131,6 +97935,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
+     "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -118655,11 +120461,12 @@
    "Stage3.DiagMainStmt",
    "Stage3.DiagonalO",
    "Stage3.DiagMainMu",
-   "Stage3.DiagMain"
+   "Stage3.DiagMain",
+   "Stage3.SwapX"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 236,
+  "lines": 237,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -118803,6 +120610,7 @@
    "lean_stage3/Stage3/StepsPole.lean",
    "lean_stage3/Stage3/StepsRate.lean",
    "lean_stage3/Stage3/Stirling.lean",
+   "lean_stage3/Stage3/SwapX.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",
    "lean_stage3/Stage3/Target.lean",
