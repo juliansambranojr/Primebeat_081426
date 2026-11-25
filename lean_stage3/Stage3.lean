@@ -215,6 +215,7 @@ import Stage3.LevinsonWindow
 import Stage3.LevinsonMultiple
 import Stage3.ApproxFE
 import Stage3.ApproxShift
+import Stage3.ApproxBounds
 
 namespace Stage3
 
