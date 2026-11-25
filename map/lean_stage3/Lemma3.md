@@ -7,15 +7,17 @@
 1 theorem, 0 definitions, 35 lines. 
 
 **Imports:** [`Arith`](../lean_stage3/Arith.md), [`StirlingX`](../lean_stage3/StirlingX.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Operator`](../lean_stage3/Operator.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>lemma3_resO_holds ■</b><br/>StmtLemma3resO P θ R κ"]:::thm
+  n0["<b>lemma3_resO_holds</b><br/>StmtLemma3resO P θ R κ"]:::thm
   x0(["<b>Arith</b><br/>stmtDiagMainO_holds'"]):::ext
   x1(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'"]):::ext
+  x2(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  n0 -.-> x2
   x0 -.-> n0
   x1 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -63,5 +65,7 @@ StmtLemma3resO P θ R κ
 
 **Definitions its proof touches:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
 

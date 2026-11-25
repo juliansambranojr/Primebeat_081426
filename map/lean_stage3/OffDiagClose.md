@@ -115,10 +115,11 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
   x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
-  x3(["<b>Diagonal</b><br/>diag_young"]):::ext
-  x4(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
-  x5(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
-  x6(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
+  x3(["<b>Operator</b><br/>Ires_o"]):::ext
+  x4(["<b>Diagonal</b><br/>diag_young"]):::ext
+  x5(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
+  x6(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
+  x7(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
   n0 --> n1
   n1 --> n6
   n10 --> n13
@@ -131,12 +132,13 @@ flowchart LR
   n7 --> n13
   n8 --> n10
   n9 --> n10
-  n12 -.-> x3
   n12 -.-> x4
   n12 -.-> x5
-  n13 -.-> x4
+  n12 -.-> x6
   n13 -.-> x5
   n13 -.-> x6
+  n13 -.-> x7
+  n7 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n5
@@ -169,7 +171,7 @@ Young's admissible weight (2.1)–(2.3) with (2.3) for every `j`: `|w^(j)(t)| �
 
 - **Is:** `` WeightAll (T L : ℝ) extends Weight T L where Cj : ℕ → ℝ Cj_nonneg : ∀ j, 0 ≤ Cj j dj : ∀ j t, |iteratedDeriv j w t| ≤ Cj j * ((T / L) ^ j)⁻¹ ``
 - **Built from:** [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
-- **Used by 17:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg), [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`SwapX.twist`](../lean_stage3/SwapX.md#SwapX-twist)
+- **Used by 18:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg), [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`SwapX.twist`](../lean_stage3/SwapX.md#SwapX-twist)
 
 <a name="OffDiagClose-phiB"></a>
 ### `OffDiagClose.phiB`
@@ -1349,9 +1351,10 @@ line 791 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds) — `` StmtOffDiagAll P θ R κ ``
+  - [`Operator.Ires_o`](../lean_stage3/Operator.md#Operator-Ires_o) (Operator) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Ires W (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ≤… ``
 
 <a name="OffDiagClose-logpow_le"></a>
 ### `OffDiagClose.logpow_le`
