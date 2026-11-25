@@ -9,7 +9,7 @@ flowchart LR
   f7["<b>JensenCount</b><br/>1 used"]:::thm
   f8["<b>LevinsonArg</b><br/>4 used"]:::thm
   f9["<b>LevinsonLine</b><br/>5 used"]:::thm
-  f10["<b>LineCount</b><br/>3 used"]:::thm
+  f10["<b>LineCount</b><br/>4 used"]:::thm
   f11["<b>Littlewood</b><br/>29 used"]:::thm
   f12["<b>LevinsonRight</b><br/>7 used"]:::thm
   f13["<b>LevinsonTurn</b><br/>8 used"]:::thm
@@ -59,7 +59,8 @@ flowchart LR
   f57["<b>UnsmoothWin</b><br/>14 used"]:::thm
   f58["<b>Unsmooth</b><br/>5 used"]:::thm
   f59["<b>FloorStep</b><br/>2 used"]:::thm
-  f60["<b>FloorSum</b><br/>levinson_floor"]:::end_
+  f60["<b>FloorSum</b><br/>5 used"]:::thm
+  f61["<b>Defect</b><br/>defect_le"]:::end_
   f3 --> f4
   f6 --> f9
   f11 --> f12
@@ -143,6 +144,7 @@ flowchart LR
   f4 --> f60
   f5 --> f60
   f59 --> f60
+  f60 --> f61
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

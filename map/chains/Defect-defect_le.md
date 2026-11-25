@@ -1,16 +1,16 @@
-# What `FloorSum.levinson_floor` rests on
+# What `Defect.defect_le` rests on
 
-[`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) in `lean_stage3/Stage3/FloorSum.lean`, line 132.
+[`Defect.defect_le`](../lean_stage3/Defect.md#Defect-defect_le) in `lean_stage3/Stage3/Defect.lean`, line 314.
 
-**Why.** S12 piece 5c, Levinson's floor. At `P(x) = x`, `θ = 49/100`, `R = 13/10`: for every `ε > 0`, from some height on, at least `(1/3 − ε) N T` of the zeros of `ζ` with height in `(0, T]` lie on the critical line, counted with multiplicity.
+**Why.** The defect at most `(2/3 + ε)` of the count, from Levinson's floor.
 
 **Proves**
 
 ```lean
-∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ)
+∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2 / 3 + ε) * (allCount T : ℝ)
 ```
 
-Behind it: 667 theorems and 162 definitions in 61 files. Every one is listed below; Lean recorded each step.
+Behind it: 674 theorems and 164 definitions in 62 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -26,7 +26,7 @@ flowchart LR
   f7["<b>JensenCount</b><br/>1 used"]:::thm
   f8["<b>LevinsonArg</b><br/>4 used"]:::thm
   f9["<b>LevinsonLine</b><br/>5 used"]:::thm
-  f10["<b>LineCount</b><br/>3 used"]:::thm
+  f10["<b>LineCount</b><br/>4 used"]:::thm
   f11["<b>Littlewood</b><br/>29 used"]:::thm
   f12["<b>LevinsonRight</b><br/>7 used"]:::thm
   f13["<b>LevinsonTurn</b><br/>8 used"]:::thm
@@ -76,7 +76,8 @@ flowchart LR
   f57["<b>UnsmoothWin</b><br/>14 used"]:::thm
   f58["<b>Unsmooth</b><br/>5 used"]:::thm
   f59["<b>FloorStep</b><br/>2 used"]:::thm
-  f60["<b>FloorSum</b><br/>levinson_floor"]:::end_
+  f60["<b>FloorSum</b><br/>5 used"]:::thm
+  f61["<b>Defect</b><br/>defect_le"]:::end_
   f3 --> f4
   f6 --> f9
   f11 --> f12
@@ -160,6 +161,7 @@ flowchart LR
   f4 --> f60
   f5 --> f60
   f59 --> f60
+  f60 --> f61
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -251,7 +253,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FloorSum.half_pow_succ`](../lean_stage3/FloorSumTele.md#FloorSum-half_pow_succ) — `` T / 2 / 2 ^ n = T / 2 ^ (n + 1) ``
 - [`FloorSum.tele`](../lean_stage3/FloorSumTele.md#FloorSum-tele) — `` ∀ n : ℕ, ∀ T : ℝ, T₁ ≤ T / 2 ^ n → c * (g T - g (T / 2 ^ (n + 1))) - 2 * e * T * Real.log T ≤ f T - f (T / 2 ^ (n + 1)) ``
 - [`FloorSum.exists_halving`](../lean_stage3/FloorSumTele.md#FloorSum-exists_halving) — `` ∃ n : ℕ, T₁ ≤ T / 2 ^ n ∧ T / 2 ^ (n + 1) < T₁ ``
-- ★ [`FloorSum.tele_floor`](../lean_stage3/FloorSumTele.md#FloorSum-tele_floor) — `` ∀ T : ℝ, T₁ ≤ T → c * (g T - g T₁) - 2 * e * T * Real.log T ≤ f T ``
+- [`FloorSum.tele_floor`](../lean_stage3/FloorSumTele.md#FloorSum-tele_floor) — `` ∀ T : ℝ, T₁ ≤ T → c * (g T - g T₁) - 2 * e * T * Real.log T ≤ f T ``
 
 ### [`HardyZ`](../lean_stage3/HardyZ.md) — 3
 
@@ -278,10 +280,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LevinsonLine.re_gammaR_G_line`](../lean_stage3/LevinsonLine.md#LevinsonLine-re_gammaR_G_line) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (deriv Gammaℝ… ``
 - [`LevinsonLine.zeta_line_zero_iff`](../lean_stage3/LevinsonLine.md#LevinsonLine-zeta_line_zero_iff) — `` riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = 0 ``
 
-### [`LineCount`](../lean_stage3/LineCount.md) — 3
+### [`LineCount`](../lean_stage3/LineCount.md) — 4
 
 - [`LineCount.zerosUpTo`](../lean_stage3/LineCount.md#LineCount-zerosUpTo) — *def*
-- ★ [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount) — *def*
+- ★ [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount) — *def*
+- [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount) — *def*
 - [`LineCount.mem_zerosUpTo`](../lean_stage3/LineCount.md#LineCount-mem_zerosUpTo) — `` ρ ∈ zerosUpTo T ↔ 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T ``
 
 ### [`Littlewood`](../lean_stage3/Littlewood.md) — 29
@@ -518,8 +521,8 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.good`](../lean_stage3/ArgCount.md#ArgCount-good) — *def*
 - [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
 - [`ArgCount.N_eq_sum`](../lean_stage3/ArgCount.md#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
-- ★ [`ArgCount.N_nonneg`](../lean_stage3/ArgCount.md#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
-- ★ [`ArgCount.N_mono`](../lean_stage3/ArgCount.md#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
+- [`ArgCount.N_nonneg`](../lean_stage3/ArgCount.md#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
+- [`ArgCount.N_mono`](../lean_stage3/ArgCount.md#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
 - [`ArgCount.N_eq_of_no_zero_between`](../lean_stage3/ArgCount.md#ArgCount-N_eq_of_no_zero_between) — `` riemannZeta.N T = riemannZeta.N T₀ ``
 - [`ArgCount.exists_good_below`](../lean_stage3/ArgCount.md#ArgCount-exists_good_below) — `` ∃ T : ℝ, a < T ∧ T < T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False ``
 - [`ArgCount.phasePoint_bound_near`](../lean_stage3/ArgCount.md#ArgCount-phasePoint_bound_near) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M ``
@@ -712,7 +715,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`LevinsonWindowNear`](../lean_stage3/LevinsonWindowNear.md) — 4
 
 - [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a ``
-- ★ [`LevinsonWindowNear.lineCount_nonneg`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-lineCount_nonneg) — `` 0 ≤ lineCount T ``
+- [`LevinsonWindowNear.lineCount_nonneg`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-lineCount_nonneg) — `` 0 ≤ lineCount T ``
 - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) -… ``
 - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount… ``
 
@@ -1181,10 +1184,21 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FloorStep.combine`](../lean_stage3/FloorStep.md#FloorStep-combine) — `` ND - lK / R * ND - ε * T * L ≤ LC ``
 - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / … ``
 
-### [`FloorSum`](../lean_stage3/FloorSum.md) — 4
+### [`FloorSum`](../lean_stage3/FloorSum.md) — 5
 
 - [`FloorSum.K_ge_one`](../lean_stage3/FloorSum.md#FloorSum-K_ge_one) — `` 1 ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) ``
 - [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le) — `` Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ≤ 13 / 15 ``
 - [`FloorSum.logmax_le`](../lean_stage3/FloorSum.md#FloorSum-logmax_le) — `` Real.log (max 1 x) / (13 / 10) ≤ 2 / 3 + 2 * ε₁ ``
-- ★ [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCou… ``
+- [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCou… ``
+- ★ [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
+
+### [`Defect`](../lean_stage3/Defect.md) — 7
+
+- ★ [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect) — *def*
+- [`Defect.N_eq_sum_lt`](../lean_stage3/Defect.md#Defect-N_eq_sum_lt) — `` riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (ρ : ℂ).im < T), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
+- [`Defect.allCount_cast`](../lean_stage3/Defect.md#Defect-allCount_cast) — `` (allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
+- [`Defect.exists_right`](../lean_stage3/Defect.md#Defect-exists_right) — `` ∃ T' : ℝ, T < T' ∧ ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im ``
+- [`Defect.zerosUpTo_eq_right`](../lean_stage3/Defect.md#Defect-zerosUpTo_eq_right) — `` zerosUpTo T' = zerosUpTo T ``
+- [`Defect.N_eq_allCount_right`](../lean_stage3/Defect.md#Defect-N_eq_allCount_right) — `` riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T ``
+- ★ [`Defect.defect_le_of_floor`](../lean_stage3/Defect.md#Defect-defect_le_of_floor) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ) ``
 

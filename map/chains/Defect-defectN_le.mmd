@@ -1,0 +1,155 @@
+flowchart LR
+  f0["<b>ApproxFE</b><br/>20 used"]:::thm
+  f1["<b>ContourShift</b><br/>6 used"]:::thm
+  f2["<b>DiagMainMu</b><br/>20 used"]:::thm
+  f3["<b>FloorConstLimit</b><br/>1 used"]:::thm
+  f4["<b>FloorConst</b><br/>8 used"]:::thm
+  f5["<b>FloorSumTele</b><br/>4 used"]:::thm
+  f6["<b>HardyZ</b><br/>3 used"]:::thm
+  f7["<b>JensenCount</b><br/>1 used"]:::thm
+  f8["<b>LevinsonArg</b><br/>4 used"]:::thm
+  f9["<b>LevinsonLine</b><br/>5 used"]:::thm
+  f10["<b>LineCount</b><br/>3 used"]:::thm
+  f11["<b>Littlewood</b><br/>29 used"]:::thm
+  f12["<b>LevinsonRight</b><br/>7 used"]:::thm
+  f13["<b>LevinsonTurn</b><br/>8 used"]:::thm
+  f14["<b>OperatorCauchy</b><br/>8 used"]:::thm
+  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f16["<b>RvMCrude</b><br/>3 used"]:::thm
+  f17["<b>ArgCrude</b><br/>3 used"]:::thm
+  f18["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
+  f19["<b>Stirling</b><br/>20 used"]:::thm
+  f20["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f21["<b>ArgLegs</b><br/>10 used"]:::thm
+  f22["<b>ArgCount</b><br/>14 used"]:::thm
+  f23["<b>LevinsonSize</b><br/>9 used"]:::thm
+  f24["<b>LevinsonAvoid</b><br/>6 used"]:::thm
+  f25["<b>LevinsonEdge</b><br/>15 used"]:::thm
+  f26["<b>ApproxShift</b><br/>10 used"]:::thm
+  f27["<b>ApproxBounds</b><br/>37 used"]:::thm
+  f28["<b>ApproxDeriv</b><br/>32 used"]:::thm
+  f29["<b>LevinsonCount</b><br/>1 used"]:::thm
+  f30["<b>LevinsonMollEdge</b><br/>23 used"]:::thm
+  f31["<b>FloorStepCont</b><br/>7 used"]:::thm
+  f32["<b>LevinsonWindow</b><br/>9 used"]:::thm
+  f33["<b>LevinsonWindowNear</b><br/>4 used"]:::thm
+  f34["<b>StirlingLog</b><br/>9 used"]:::thm
+  f35["<b>TwistedMoment</b><br/>58 used"]:::thm
+  f36["<b>Diagonal</b><br/>6 used"]:::thm
+  f37["<b>DiagMainStmt</b><br/>2 used"]:::thm
+  f38["<b>DiagMain</b><br/>10 used"]:::thm
+  f39["<b>FloorStepSize</b><br/>10 used"]:::thm
+  f40["<b>OffDiagClose</b><br/>44 used"]:::thm
+  f41["<b>DiagonalO</b><br/>2 used"]:::thm
+  f42["<b>OperatorCY</b><br/>9 used"]:::thm
+  f43["<b>OperatorInt</b><br/>18 used"]:::thm
+  f44["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
+  f45["<b>SdiagLeadCop</b><br/>12 used"]:::thm
+  f46["<b>SdiagLeadCore</b><br/>8 used"]:::thm
+  f47["<b>SdiagLeadAd</b><br/>36 used"]:::thm
+  f48["<b>ArithBase</b><br/>42 used"]:::thm
+  f49["<b>ArithTail</b><br/>24 used"]:::thm
+  f50["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
+  f51["<b>SdiagLead</b><br/>3 used"]:::thm
+  f52["<b>Arith</b><br/>14 used"]:::thm
+  f53["<b>StirlingX</b><br/>20 used"]:::thm
+  f54["<b>Lemma3</b><br/>1 used"]:::thm
+  f55["<b>Operator</b><br/>4 used"]:::thm
+  f56["<b>UnsmoothCY</b><br/>3 used"]:::thm
+  f57["<b>UnsmoothWin</b><br/>14 used"]:::thm
+  f58["<b>Unsmooth</b><br/>5 used"]:::thm
+  f59["<b>FloorStep</b><br/>2 used"]:::thm
+  f60["<b>FloorSum</b><br/>5 used"]:::thm
+  f61["<b>Defect</b><br/>defectN_le"]:::end_
+  f3 --> f4
+  f6 --> f9
+  f11 --> f12
+  f9 --> f13
+  f11 --> f13
+  f7 --> f15
+  f16 --> f17
+  f2 --> f18
+  f16 --> f19
+  f17 --> f20
+  f19 --> f20
+  f20 --> f21
+  f15 --> f22
+  f21 --> f22
+  f13 --> f23
+  f22 --> f23
+  f23 --> f24
+  f23 --> f25
+  f0 --> f26
+  f1 --> f26
+  f25 --> f26
+  f26 --> f27
+  f27 --> f28
+  f25 --> f29
+  f25 --> f30
+  f30 --> f31
+  f10 --> f32
+  f12 --> f32
+  f30 --> f32
+  f8 --> f33
+  f24 --> f33
+  f29 --> f33
+  f32 --> f33
+  f28 --> f35
+  f35 --> f36
+  f36 --> f37
+  f37 --> f38
+  f30 --> f39
+  f36 --> f39
+  f35 --> f40
+  f37 --> f41
+  f40 --> f41
+  f14 --> f42
+  f35 --> f42
+  f14 --> f43
+  f35 --> f43
+  f36 --> f44
+  f18 --> f45
+  f44 --> f45
+  f18 --> f46
+  f38 --> f46
+  f44 --> f46
+  f45 --> f47
+  f46 --> f47
+  f47 --> f48
+  f48 --> f49
+  f47 --> f50
+  f50 --> f51
+  f49 --> f52
+  f51 --> f52
+  f34 --> f53
+  f40 --> f53
+  f41 --> f54
+  f52 --> f54
+  f53 --> f54
+  f42 --> f55
+  f43 --> f55
+  f54 --> f55
+  f38 --> f56
+  f42 --> f56
+  f43 --> f56
+  f40 --> f57
+  f30 --> f58
+  f55 --> f58
+  f56 --> f58
+  f57 --> f58
+  f31 --> f59
+  f33 --> f59
+  f39 --> f59
+  f58 --> f59
+  f4 --> f60
+  f5 --> f60
+  f59 --> f60
+  f60 --> f61
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
