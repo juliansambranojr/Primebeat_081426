@@ -22,6 +22,33 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S15 of `design/stencil.md`, the chain to the goal from no right zeros: `Stage3/BasinChain*.lean`
+
+    DONE        `StmtNoRightZeros Q`: for every T ≥ T₀ the zeros of
+                `ConreyCount.V Q (log T)` with Re s > 1/2 and Im s in [T/4, 2T]
+                are none; the count with no losses (`conrey_count_sub` with the
+                countRight term zero); Littlewood for arg V on the line (as
+                `TuringLW` for ζ); Turing's averaging with the defect monotone
+                and even; and `rh_of_noRightZeros : StmtNoRightZeros Q →
+                RiemannHypothesis` (with `Defect.rh_iff_defect_zero` and a finite
+                base below T₀ if the chain needs one, named); one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (the measurement of V's
+                zeros right of 1/2, and steps 3–5 in Lean). Written before the
+                workers start.
+    DEPENDS     `ConreyCount*`, `DigammaBound*`, `TuringLW*`, `LittlewoodSharp*`,
+                `TuringAvg`, `TuringCert`, `TuringSlope`, `Defect`
+    OUT         step 2 itself (`StmtNoRightZeros`)
+
+### 2026-11-25 · block S15 of `design/stencil.md`, the right zeros of V, measured: `units/0572-*` (run)
+
+    DONE        on test stretches (T = 10³, 10⁴, 10⁵ or as cost allows), the zeros
+                of V_Q with Re s > 1/2 for Levinson's Q = 1 − x, Conrey's Q₀ and a
+                search over symmetric Q with Q(0) = 1; whether some Q has none;
+                exploratory, one unit
+    ASSUMED     as above
+    DEPENDS     `units/0562-basin-floor/run/basin.py`, `lean_stage3/checks/conrey_sz/`
+    OUT         the Lean chain
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing's point run: `Stage3/TuringRun*.lean`
 
     DONE        `TuringSlope.StmtClosingData' T₁ h` proved at one T₁ near 440: the
