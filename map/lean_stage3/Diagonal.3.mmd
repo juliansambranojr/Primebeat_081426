@@ -12,7 +12,8 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
   x1(["<b>diagram 2</b><br/>4 theorems"]):::ext
   x2(["<b>OffDiagClose</b><br/>N_le"]):::ext
-  x3(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
+  x3(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
+  x4(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
   n0 --> n5
   n1 --> n2
   n1 --> n4
@@ -23,6 +24,7 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n8 --> n9
+  n8 -.-> x3
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n5
@@ -30,7 +32,7 @@ flowchart LR
   x1 -.-> n5
   x1 -.-> n8
   x2 -.-> n8
-  x3 -.-> n9
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

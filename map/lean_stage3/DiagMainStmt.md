@@ -7,7 +7,7 @@
 0 theorems, 2 definitions, 35 lines. 
 
 **Imports:** [`Diagonal`](../lean_stage3/Diagonal.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DiagonalO`](../lean_stage3/DiagonalO.md)
 
 ## Definitions
 
@@ -18,7 +18,7 @@ def · line 25
 
 - **Is:** `` StmtDiagMainO (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖riemannZeta (1 + α + β) * Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0 - c1Y P (Mof T θ) α β‖ ≤ ε noncomputable ``
 - **Built from:** [`Diagonal.Sdiag`](../lean_stage3/Diagonal.md#Diagonal-Sdiag), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
-- **Used by 0:** nothing
+- **Used by 2:** [`DiagonalO.lemma3_resO_of_mainO_X`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO)
 
 <a name="DiagMainStmt-errO"></a>
 ### `DiagMainStmt.errO`
@@ -27,5 +27,5 @@ def · line 32
 
 - **Is:** `` errO {T L : ℝ} (W : Weight T L) : ℝ := (1 + W.C1 + W.C2) * T ``
 - **Built from:** [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
-- **Used by 0:** nothing
+- **Used by 6:** [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.T_le_errO`](../lean_stage3/DiagonalO.md#DiagonalO-T_le_errO), [`DiagonalO.errY_absorb`](../lean_stage3/DiagonalO.md#DiagonalO-errY_absorb), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO)
 

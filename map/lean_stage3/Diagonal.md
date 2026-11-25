@@ -256,7 +256,8 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
   x1(["<b>diagram 2</b><br/>4 theorems"]):::ext
   x2(["<b>OffDiagClose</b><br/>N_le"]):::ext
-  x3(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
+  x3(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
+  x4(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
   n0 --> n5
   n1 --> n2
   n1 --> n4
@@ -267,6 +268,7 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n8 --> n9
+  n8 -.-> x3
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n5
@@ -274,7 +276,7 @@ flowchart LR
   x1 -.-> n5
   x1 -.-> n8
   x2 -.-> n8
-  x3 -.-> n9
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -312,7 +314,7 @@ def · line 95
 
 - **Is:** `` Sdiag (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, Chk a σ₀ h k * Rhk α β h k s noncomputable ``
 - **Built from:** [`Diagonal.Chk`](#Diagonal-Chk), [`Diagonal.Rhk`](#Diagonal-Rhk)
-- **Used by 11:** [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main)
+- **Used by 12:** [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO)
 
 <a name="Diagonal-Zd"></a>
 ### `Diagonal.Zd`
@@ -2517,9 +2519,10 @@ line 1737 · arrows read from text
 
 **Definitions its proof touches:** [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.diagSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-diagSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main) — `` StmtDiag P θ R κ ``
+  - [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO) (DiagonalO) — `` StmtDiagO P θ R κ ``
 
 <a name="Diagonal-stmtDiag_of_main"></a>
 ### `Diagonal.stmtDiag_of_main`

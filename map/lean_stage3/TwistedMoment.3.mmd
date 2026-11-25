@@ -26,6 +26,7 @@ flowchart LR
   x2(["<b>diagram 1</b><br/>continuous_VY"]):::ext
   x3(["<b>OffDiagClose</b><br/>offSum_bound_iter"]):::ext
   x4(["<b>Diagonal</b><br/>inner_hk"]):::ext
+  x5(["<b>DiagonalO</b><br/>lemma3_resO_of_parts"]):::ext
   n1 --> n4
   n11 --> n21
   n12 --> n14
@@ -48,6 +49,8 @@ flowchart LR
   n8 --> n17
   n9 --> n11
   n10 -.-> x4
+  n11 -.-> x5
+  n20 -.-> x5
   n8 -.-> x3
   x0 -.-> n0
   x0 -.-> n6
