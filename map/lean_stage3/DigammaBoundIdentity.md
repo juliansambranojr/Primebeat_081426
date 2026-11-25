@@ -21,7 +21,8 @@ flowchart LR
   n5["<b>xi_eventually_eq</b><br/>completedRiemannZeta =ᶠ[𝓝 w] fun z =＞ Gammaℝ w * (H L w z * cexp…"]:::thm
   n6["<b>V_eq_sum_H</b><br/>ConreyCount.V Q L w = ∑ j ∈ Finset.range (Q.natDegree + 1), ((Q.…"]:::thm
   x0(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge"]):::ext
-  x1(["<b>DigammaBoundSize</b><br/>V_norm_le<br/>V_sub_le"]):::ext
+  x1(["<b>GrRatio</b><br/>grR_eq"]):::ext
+  x2(["<b>DigammaBoundSize</b><br/>V_norm_le<br/>V_sub_le"]):::ext
   n0 --> n1
   n1 --> n6
   n2 --> n3
@@ -29,7 +30,8 @@ flowchart LR
   n4 --> n6
   n5 --> n6
   n2 -.-> x0
-  n6 -.-> x1
+  n4 -.-> x1
+  n6 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -197,9 +199,10 @@ iteratedDeriv m (fun z => cexp (a * (z - w))) w = a ^ m
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DigammaBound.V_eq_sum_H`](#DigammaBound-V_eq_sum_H) — `` ConreyCount.V Q L w = ∑ j ∈ Finset.range (Q.natDegree + 1), ((Q.coeff j * (-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j (H L w) w ``
+  - [`GrRatio.grR_eq`](../lean_stage3/GrRatio.md#GrRatio-grR_eq) (GrRatio) — `` MeanQ.grR i w = ∑ j ∈ Finset.range (i + 1), (i.choose j : ℂ) * iteratedDeriv j (hw L w) w * (((L / 2 : ℝ) : ℂ)) ^ (i - j) ``
 
 <a name="DigammaBound-xi_eventually_eq"></a>
 ### `DigammaBound.xi_eventually_eq`

@@ -16287,7 +16287,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_neg",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY_nonneg",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.lY_bounds"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.lY_bounds",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
     ]
    },
    {
@@ -16551,7 +16552,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
     ]
    },
    {
@@ -16581,7 +16583,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gamma_approx",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.resY_den",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gErr_le"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gErr_le",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gErr_le16"
     ]
    },
    {
@@ -16668,7 +16671,8 @@
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_lower",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gR_shift",
      "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.log_norm_Gammaℝ_approx",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
     ]
    },
    {
@@ -37758,6 +37762,7 @@
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
@@ -48448,7 +48453,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H"
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq"
     ]
    },
    {
@@ -48578,7 +48584,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
     ]
    },
    {
@@ -48651,7 +48658,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
     ]
    },
    {
@@ -61565,6 +61573,480 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.stmtEF_split_num"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/GrRatio.lean",
+  "module": "Stage3.GrRatio",
+  "stem": "GrRatio",
+  "header": "GrRatio — block S13 of `lean_stage3/design/stencil.md`, B4, the gamma ratio. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQ",
+   "Stage3.DigammaBoundSize"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeanQ",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "GrRatio"
+  ],
+  "lines": 365,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DigammaBoundSize.lean",
+   "lean_stage3/Stage3/MeanQ.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "gErr_le16",
+    "ns": "GrRatio",
+    "full": "GrRatio.gErr_le16",
+    "line": 53,
+    "why": "The Stirling error is bounded on `[1/16, 7/2]`.",
+    "sorry": false,
+    "needs": [
+     "h1 : 1 / 16 ≤ r",
+     "h2 : r ≤ 7 / 2"
+    ],
+    "proves": "ApproxBounds.gErr r ≤ 110",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.gErr_le16",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gErr"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logGamma_bound16",
+    "ns": "GrRatio",
+    "full": "GrRatio.logGamma_bound16",
+    "line": 75,
+    "why": "`log Γ` is bounded on `[1/16, 7/2]`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C : ℝ, ∀ r ∈ Set.Icc (1 / 16 : ℝ) (7 / 2), |Real.log (Real.Gamma r)| ≤ C",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.logGamma_bound16",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_ratio8",
+    "ns": "GrRatio",
+    "full": "GrRatio.gamma_ratio8",
+    "line": 88,
+    "why": "The ratio of `Gammaℝ` at nearby heights, with the shift taken out, on `Re ∈ [1/8, 7]`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 8 ≤ z.re → z.re ≤ 7 → 1 / 8 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z.im - w.im| ≤ 1 → ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(Real.log T / 2) * (z.re - w.re)) ≤ B",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.lY_bounds",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.mul_le_of_abs",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gErr_le16",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.logGamma_bound16"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.gRModel",
+     "lean_stage3/Stage3/ApproxBounds.lean::ApproxBounds.lY",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.lY_bounds",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.mul_le_of_abs",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gErr_le16",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.logGamma_bound16"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "hw",
+    "ns": "GrRatio",
+    "full": "GrRatio.hw",
+    "line": 163,
+    "why": "`h_w(z) = Gammaℝ(z)/Gammaℝ(w) · e^{−(L/2)(z − w)}`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "w z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.Gammaℝ_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw_self",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.norm_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gammaℝ_eq",
+    "ns": "GrRatio",
+    "full": "GrRatio.Gammaℝ_eq",
+    "line": 166,
+    "why": "`Gammaℝ = Gammaℝ(w) · h_w · e^{(L/2)(· − w)}`, exactly.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "hGw : Gammaℝ w ≠ 0"
+    ],
+    "proves": "Gammaℝ = fun z => Gammaℝ w * (hw L w z * cexp (((L / 2 : ℝ) : ℂ) * (z - w)))",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.Gammaℝ_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_hw",
+    "ns": "GrRatio",
+    "full": "GrRatio.analyticAt_hw",
+    "line": 177,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "w : ℂ",
+     "hz : 0 < z.re"
+    ],
+    "proves": "AnalyticAt ℂ (hw L w) z",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hw_self",
+    "ns": "GrRatio",
+    "full": "GrRatio.hw_self",
+    "line": 182,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "hw0 : 0 < w.re"
+    ],
+    "proves": "hw L w w = 1",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw_self",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_hw",
+    "ns": "GrRatio",
+    "full": "GrRatio.norm_hw",
+    "line": 187,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "w z : ℂ"
+    ],
+    "proves": "‖hw L w z‖ = ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(L / 2) * (z.re - w.re))",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.norm_hw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "grR_eq",
+    "ns": "GrRatio",
+    "full": "GrRatio.grR_eq",
+    "line": 195,
+    "why": "Leibniz: `grR i w = Σ_j C(i,j) h_w^{(j)}(w) (L/2)^{i−j}`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "i : ℕ",
+     "hw0 : 0 < w.re"
+    ],
+    "proves": "MeanQ.grR i w = ∑ j ∈ Finset.range (i + 1), (i.choose j : ℂ) * iteratedDeriv j (hw L w) w * (((L / 2 : ℝ) : ℂ)) ^ (i - j)",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.iteratedDeriv_E",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.iteratedDeriv_E",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_shift",
+    "ns": "GrRatio",
+    "full": "GrRatio.pow_shift",
+    "line": 211,
+    "why": "The scalar identity `(−1/L)^{j+k} (L/2)^k = (−1/2)^k (−1/L)^j`.",
+    "sorry": false,
+    "needs": [
+     "hL : L ≠ 0",
+     "hj : j ≤ i"
+    ],
+    "proves": "(-1 / L) ^ i * (L / 2) ^ (i - j) = (-1 / 2 : ℝ) ^ (i - j) * (-1 / L) ^ j",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.pow_shift",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "grR_sub",
+    "ns": "GrRatio",
+    "full": "GrRatio.grR_sub",
+    "line": 220,
+    "why": "The error, exactly: `(−1/L)^i grR i w − (−1/2)^i = Σ_{j<i} C(i,j+1) (−1/2)^{i−j−1} (−1/L)^{j+1} h_w^{(j+1)}(w)`.",
+    "sorry": false,
+    "needs": [
+     "hL : L ≠ 0",
+     "i : ℕ",
+     "hw0 : 0 < w.re"
+    ],
+    "proves": "(((-1 / L) ^ i : ℝ) : ℂ) * MeanQ.grR i w - (((-1 / 2 : ℝ) ^ i : ℝ) : ℂ) = ∑ j ∈ Finset.range i, (i.choose (j + 1) : ℂ) * (((-1 / 2 : ℝ) ^ (i - (j + 1)) : ℝ) : ℂ) * ((((-1 / L) ^ (j + 1) : ℝ) : ℂ) * iteratedDeriv (j + 1) (hw L w) w)",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw_self",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.pow_shift",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw_self",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.pow_shift",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtGrRatio_holds",
+    "ns": "GrRatio",
+    "full": "GrRatio.stmtGrRatio_holds",
+    "line": 243,
+    "why": "`StmtGrRatio`, discharged.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "MeanQ.StmtGrRatio n",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.norm_hw",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.analyticAt_hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.gamma_ratio8",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.hw",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.norm_hw",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.mollMeanV_long'",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "window_V_lt_half'",
+    "ns": "GrRatio",
+    "full": "GrRatio.window_V_lt_half'",
+    "line": 324,
+    "why": "`window_V_lt_half` without `hG`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ) (aY P T θ R) ((sig0 T R : ℂ) + t * I)‖ ^ 2 ≤ (DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanV_long'",
+    "ns": "GrRatio",
+    "full": "GrRatio.mollMeanV_long'",
+    "line": 337,
+    "why": "`mollMeanV_long` without `hG`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)"
+    ],
+    "proves": "StmtMollMeanV Q P θ R",
+    "file": "lean_stage3/Stage3/GrRatio.lean",
+    "id": "lean_stage3/Stage3/GrRatio.lean::GrRatio.mollMeanV_long'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -78506,7 +78988,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'"
+    ]
    }
   ]
  },
@@ -78943,6 +79427,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
@@ -80335,6 +80820,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_eq",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.grR_sub",
      "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
      "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
      "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
@@ -80572,6 +81059,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.stmtGrRatio_holds",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
      "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
@@ -80911,6 +81399,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.mollMeanV_long'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
     ]
@@ -81055,6 +81544,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.mollMeanV_long'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long"
     ]
    }
@@ -116666,6 +117156,7 @@
     "used_by": [
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
@@ -119022,6 +119513,7 @@
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
@@ -119104,6 +119596,7 @@
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
@@ -119189,6 +119682,7 @@
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
@@ -119311,6 +119805,7 @@
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
@@ -143261,11 +143756,12 @@
    "Stage3.OperatorQ",
    "Stage3.ConreyCount",
    "Stage3.DigammaBound",
-   "Stage3.MeanQ"
+   "Stage3.MeanQ",
+   "Stage3.GrRatio"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 253,
+  "lines": 254,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -143331,6 +143827,7 @@
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",
    "lean_stage3/Stage3/GlueNum.lean",
+   "lean_stage3/Stage3/GrRatio.lean",
    "lean_stage3/Stage3/HalfSieve.lean",
    "lean_stage3/Stage3/HardyZ.lean",
    "lean_stage3/Stage3/HolyChannel.lean",

@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 3297.
+- **Theorems Lean has checked:** 3310.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
@@ -159,7 +159,6 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`ConreyCount.StmtVRight`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight) | **OPEN** | — | 2 |
 | [`Diagonal.StmtDiagMain`](./lean_stage3/Diagonal.md#Diagonal-StmtDiagMain) | **OPEN** | — | 1 |
 | [`FloorLong.StmtDiagErr`](./lean_stage3/FloorLongErr.md#FloorLong-StmtDiagErr) | **OPEN** | — | 1 |
-| [`MeanQ.StmtGrRatio`](./lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio) | **OPEN** | — | 4 |
 | [`Schoenfeld.StmtSchoenfeld`](./lean/Schoenfeld.md#Schoenfeld-StmtSchoenfeld) | **OPEN** | — | 2 |
 | [`Stage3.StmtExplicitFormula`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormula) | **OPEN** | — | 0 |
 | [`Stage3.StmtExplicitFormulaPoly`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | **OPEN** | — | 2 |
@@ -191,8 +190,9 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`DiagonalO.StmtLemma3resO`](./lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO) | from a hypothesis | [`DiagonalO.lemma3_resO_of_mainO_X`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) ⊢ StmtLemma3resO P θ R κ<br/>[`DiagonalO.lemma3_resO_of_parts`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) ⊢ StmtLemma3resO P θ R κ<br/>[`FloorLong.lemma3_of_long`](./lean_stage3/FloorLongErr.md#FloorLong-lemma3_of_long) ⊢ StmtLemma3resO P θ R κ<br/>[`Lemma3.lemma3_resO_holds`](./lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) ⊢ StmtLemma3resO P θ R κ | 1 |
 | [`FloorLong.StmtLongErr`](./lean_stage3/FloorLongErr.md#FloorLong-StmtLongErr) | from a hypothesis | [`FloorLong.longErr_of_lt_half`](./lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) ⊢ StmtLongErr P θ R | 2 |
 | [`JointDialGate.StmtRelErrWindow`](./lean_stage3/JointDialGate.md#JointDialGate-StmtRelErrWindow) | from a hypothesis | [`JointDialGate.powerSaving_relErr`](./lean_stage3/JointDialGate.md#JointDialGate-powerSaving_relErr) ⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))<br/>[`JointDialGate.relErrWindow_of_theta`](./lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_theta) ⊢ StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * (2 : ℝ) ^ (((r : …<br/>[`JointFloorGate.weakWindow_relErr`](./lean_stage3/JointFloorGate.md#JointFloorGate-weakWindow_relErr) ⊢ JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 : ℝ) ^ (-(((r : ℝ) -…<br/>[`RouteNum.relErrWindow_route_num`](./lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) ⊢ JointDialGate.StmtRelErrWindow (fun m : ℤ =&gt; (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))… | 0 |
+| [`MeanQ.StmtGrRatio`](./lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio) | from a hypothesis | [`GrRatio.stmtGrRatio_holds`](./lean_stage3/GrRatio.md#GrRatio-stmtGrRatio_holds) ⊢ MeanQ.StmtGrRatio n | 4 |
 | [`MeanQ.StmtMollMeanQ`](./lean_stage3/MeanQMean.md#MeanQ-StmtMollMeanQ) | from a hypothesis | [`MeanQ.mollMeanQ_long`](./lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_long) ⊢ StmtMollMeanQ Q P θ R<br/>[`MeanQ.mollMeanQ_lt_half`](./lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_lt_half) ⊢ StmtMollMeanQ Q P θ R | 0 |
-| [`MeanQ.StmtMollMeanV`](./lean_stage3/MeanQV.md#MeanQ-StmtMollMeanV) | from a hypothesis | [`MeanQ.mollMeanV_long`](./lean_stage3/MeanQV.md#MeanQ-mollMeanV_long) ⊢ StmtMollMeanV Q P θ R | 1 |
+| [`MeanQ.StmtMollMeanV`](./lean_stage3/MeanQV.md#MeanQ-StmtMollMeanV) | from a hypothesis | [`GrRatio.mollMeanV_long'`](./lean_stage3/GrRatio.md#GrRatio-mollMeanV_long-) ⊢ StmtMollMeanV Q P θ R<br/>[`MeanQ.mollMeanV_long`](./lean_stage3/MeanQV.md#MeanQ-mollMeanV_long) ⊢ StmtMollMeanV Q P θ R | 1 |
 | [`Nonvanishing.StmtSchoenfeldWindow`](./lean/Nonvanishing.md#Nonvanishing-StmtSchoenfeldWindow) | from a hypothesis | [`Schoenfeld.window_of_global`](./lean/Schoenfeld.md#Schoenfeld-window_of_global) ⊢ Nonvanishing.StmtSchoenfeldWindow f L r n | 6 |
 | [`OffDiagClose.StmtOffDiagAll`](./lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll) | from a hypothesis | [`OffDiagClose.stmtOffDiag_holds`](./lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds) ⊢ StmtOffDiagAll P θ R κ | 2 |
 | [`Operator.StmtMollMeanO`](./lean_stage3/Operator.md#Operator-StmtMollMeanO) | from a hypothesis | [`Operator.stmtMollMeanO_holds`](./lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) ⊢ StmtMollMeanO P θ R | 1 |

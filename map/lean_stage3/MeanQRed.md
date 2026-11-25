@@ -56,7 +56,7 @@ def · line 100
 `Gammaℝ^{(i)}/Gammaℝ`.
 
 - **Is:** `` grR (i : ℕ) (s : ℂ) : ℂ := iteratedDeriv i Gammaℝ s / Gammaℝ s ``
-- **Used by 6:** [`MeanQ.Acoef`](#MeanQ-Acoef), [`MeanQ.Acoef_sub`](#MeanQ-Acoef_sub), [`MeanQ.E_bound`](#MeanQ-E_bound), [`MeanQ.StmtGrRatio`](#MeanQ-StmtGrRatio), [`MeanQ.V_eq_sum`](#MeanQ-V_eq_sum), [`MeanQ.xi_div_eq`](#MeanQ-xi_div_eq)
+- **Used by 8:** [`GrRatio.grR_eq`](../lean_stage3/GrRatio.md#GrRatio-grR_eq), [`GrRatio.grR_sub`](../lean_stage3/GrRatio.md#GrRatio-grR_sub), [`MeanQ.Acoef`](#MeanQ-Acoef), [`MeanQ.Acoef_sub`](#MeanQ-Acoef_sub), [`MeanQ.E_bound`](#MeanQ-E_bound), [`MeanQ.StmtGrRatio`](#MeanQ-StmtGrRatio), [`MeanQ.V_eq_sum`](#MeanQ-V_eq_sum), [`MeanQ.xi_div_eq`](#MeanQ-xi_div_eq)
 
 <a name="MeanQ-Acoef"></a>
 ### `MeanQ.Acoef`
@@ -88,7 +88,7 @@ OPEN, the `Gammaℝ` ratio: for `i ≤ n`, uniformly on `σ ∈ [1/4, 1]`, `t �
 
 - **Is:** `` StmtGrRatio (n : ℕ) : Prop := ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ i ≤ n, ∀ σ ∈ Set.Icc (1/4 : ℝ) 1, ∀ t ∈ Set.Icc (T / 4) (2 * T), ‖(((-1 / Real.log T) ^ i : ℝ) : ℂ) * grR i ((σ : ℂ) + t * I) - (((-1/2 : ℝ) ^ i : ℝ) : ℂ)‖ ≤ C / Real.log T ``
 - **Built from:** [`MeanQ.grR`](#MeanQ-grR)
-- **Used by 4:** [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long), [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half), [`MeanQ.E_bound`](#MeanQ-E_bound), [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long)
+- **Used by 5:** [`GrRatio.stmtGrRatio_holds`](../lean_stage3/GrRatio.md#GrRatio-stmtGrRatio_holds), [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long), [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half), [`MeanQ.E_bound`](#MeanQ-E_bound), [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long)
 
 ## Theorems
 

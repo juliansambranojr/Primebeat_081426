@@ -30,6 +30,7 @@ flowchart LR
   x5(["<b>MeanQMean</b><br/>mollMeanQ_long"]):::ext
   x6(["<b>MeanQRed</b><br/>E_bound"]):::ext
   x7(["<b>TwistedMoment</b><br/>continuous_msq<br/>msq_nonneg"]):::ext
+  x8(["<b>GrRatio</b><br/>mollMeanV_long'"]):::ext
   n0 --> n8
   n1 --> n8
   n2 --> n8
@@ -41,6 +42,7 @@ flowchart LR
   n7 --> n8
   n5 -.-> x3
   n8 -.-> x3
+  n8 -.-> x8
   x0 -.-> n1
   x0 -.-> n8
   x1 -.-> n4
@@ -83,7 +85,7 @@ The mollified mean of `V` at `o(T)`: for every `Cs` and `ε > 0`, from some heig
 
 - **Is:** `` StmtMollMeanV (Q P : ℝ[X]) (θ R : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → |mollMeanV W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) Q (Real.log T) - (DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re * what0 W.toWeight| ≤ ε * errO W.toWeight ``
 - **Built from:** [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`MeanQ.mollMeanV`](#MeanQ-mollMeanV), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
-- **Used by 2:** [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V), [`MeanQ.mollMeanV_long`](#MeanQ-mollMeanV_long)
+- **Used by 3:** [`GrRatio.mollMeanV_long'`](../lean_stage3/GrRatio.md#GrRatio-mollMeanV_long-), [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V), [`MeanQ.mollMeanV_long`](#MeanQ-mollMeanV_long)
 
 ## Theorems
 
@@ -371,7 +373,8 @@ StmtMollMeanV Q P θ R
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`MeanQ.mollMeanQ`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ), [`MeanQ.StmtGrRatio`](../lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio), [`MeanQ.VQ`](../lean_stage3/MeanQRed.md#MeanQ-VQ), [`MeanQ.StmtMollMeanV`](#MeanQ-StmtMollMeanV), [`MeanQ.mollMeanV`](#MeanQ-mollMeanV), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`GrRatio.mollMeanV_long'`](../lean_stage3/GrRatio.md#GrRatio-mollMeanV_long-) (GrRatio) — `` StmtMollMeanV Q P θ R ``
   - [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long) (MeanQ) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Conrey… ``
 

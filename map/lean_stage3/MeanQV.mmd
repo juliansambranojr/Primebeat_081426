@@ -16,6 +16,7 @@ flowchart LR
   x5(["<b>MeanQMean</b><br/>mollMeanQ_long"]):::ext
   x6(["<b>MeanQRed</b><br/>E_bound"]):::ext
   x7(["<b>TwistedMoment</b><br/>continuous_msq<br/>msq_nonneg"]):::ext
+  x8(["<b>GrRatio</b><br/>mollMeanV_long'"]):::ext
   n0 --> n8
   n1 --> n8
   n2 --> n8
@@ -27,6 +28,7 @@ flowchart LR
   n7 --> n8
   n5 -.-> x3
   n8 -.-> x3
+  n8 -.-> x8
   x0 -.-> n1
   x0 -.-> n8
   x1 -.-> n4

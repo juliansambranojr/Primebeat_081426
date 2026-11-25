@@ -7,7 +7,7 @@ MeanQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean valu
 4 theorems, 0 definitions, 235 lines. 
 
 **Imports:** [`MeanQV`](../lean_stage3/MeanQV.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GrRatio`](../lean_stage3/GrRatio.md)
 
 ## The picture
 
@@ -16,14 +16,16 @@ flowchart LR
   n0["<b>norm_Vpsi_sq</b><br/>‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t *…"]:::cnt
   n1["<b>unsmooth_V</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::shp
   n2["<b>window_V_long</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
-  n3["<b>window_V_lt_half ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
+  n3["<b>window_V_lt_half</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
   x0(["<b>MeanQBound</b><br/>dopQ_cY_bdd"]):::ext
   x1(["<b>MeanQV</b><br/>continuous_V_line<br/>mollMeanV_long"]):::ext
   x2(["<b>TwistedMoment</b><br/>continuous_msq<br/>msq_nonneg"]):::ext
   x3(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
+  x4(["<b>GrRatio</b><br/>window_V_lt_half'"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
+  n3 -.-> x4
   x0 -.-> n1
   x1 -.-> n1
   x1 -.-> n2
@@ -175,5 +177,7 @@ line 209 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`MeanQ.DopQ`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ), [`MeanQ.StmtGrRatio`](../lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.psi`](../lean_stage3/TwistedMoment.md#TwistedMoment-psi), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`GrRatio.window_V_lt_half'`](../lean_stage3/GrRatio.md#GrRatio-window_V_lt_half-) (GrRatio) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Conrey… ``
 
