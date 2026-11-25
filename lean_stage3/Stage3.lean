@@ -223,6 +223,8 @@ import Stage3.OffDiagClose
 import Stage3.Diagonal
 import Stage3.DiagMainStmt
 import Stage3.DiagonalO
+import Stage3.DiagMainMu
+import Stage3.DiagMain
 
 namespace Stage3
 
