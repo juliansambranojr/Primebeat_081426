@@ -98,6 +98,9 @@ build, 2026-09-08.
 | 85 | `whnf` timeout at `exact continuousOn_univ.mp (h.comp hmap.continuousOn _)` | Lean unifies the composition `(fun p => F p.1 p.2) ∘ (fun t => (σ, t))` with the applied definition `F σ` by unfolding | state the `∘` form as a `have`, prove the equality by `rfl`, and `rw` it (unit 0549) |
 | 86 | `apply mul_le_mul_of_nonneg_left` fails on `π * x ≤ π * C * L^3` | the right side associates as `(π * C) * L^3` | `rw [mul_assoc]` first (unit 0549) |
 | 87 | `don't know how to synthesize implicit argument` from `eventually_ge_atTop _` inside a long `Eventually.and` chain | the bound is left for unification across the chain and its `.mono` | pass each bound explicitly (unit 0549) |
+| 88 | a defect `riemannZeta.N T − lineCount T` comes out negative, and `N T = lineCount T` fails at some heights even under RH | `riemannZeta.N` counts the zeros with height below T (open), while `lineCount` and `allCount` count height at most T (closed) | define the defect from `allCount`, and move to just above T with `Defect.exists_right` and `N_eq_allCount_right` (unit 0552) |
+| 89 | the order symmetry under ρ ↦ 1 − conj ρ seems missing for `riemannZeta.order` | it is stated for `analyticOrderNatAt` as `ContourShift.zeta_order_reflect` | convert with `ContourShift.order_bridge` and `exact_mod_cast` (unit 0552) |
+| 90 | `grep one_sub` finds no mirror map on the zeros | it is named `SpiralLink.mirrorZ` | grep `mirror` (unit 0552) |
 
 ## Bench and gate traps
 
