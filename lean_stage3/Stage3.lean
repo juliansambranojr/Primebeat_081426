@@ -231,6 +231,7 @@ import Stage3.StirlingX
 import Stage3.Arith
 import Stage3.Lemma3
 import Stage3.Operator
+import Stage3.LevinsonWindowNear
 
 namespace Stage3
 
