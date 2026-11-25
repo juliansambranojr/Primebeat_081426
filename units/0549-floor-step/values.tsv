@@ -1,0 +1,19 @@
+key	value	source
+module_lines	267	wc -l lean_stage3/Stage3/FloorStep.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/FloorStep.lean
+defs	0	grep -c ^def lean_stage3/Stage3/FloorStep.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FloorStep.lean
+pins	2	combine, floor_step
+errors_first	4	the worker's scratch runs: an unknown name, a whnf timeout on a composition, an association, an implicit bound in a chain
+builds	4	the worker's report, the three modules and one rebuild
+traps_added	4	lean_stage3/TRAPS.md rows 84-87
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8949	lake build (full Stage3), Build completed successfully
+jobs_module	8852	run/build.log, lake build Stage3.FloorStep
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	3	lean_stage3/Stage3/FloorStep.lean, FloorStepSize.lean, FloorStepCont.lean
+trap_first	84	lean_stage3/TRAPS.md
+trap_last	87	lean_stage3/TRAPS.md

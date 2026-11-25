@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5c, the sum: `Stage3/FloorSum*.lean`
+
+    DONE        at P(x) = x, θ = 49/100, R = 13/10: for every ε > 0, from some T on,
+                lineCount T ≥ (1/3 − ε)·N T, from `FloorStep.floor_step` on the
+                windows [T/2^(k+1), T/2^k] down to a fixed height, with
+                `FloorConst.floor_const` (log K / R ≤ 2/3, Re D(cY)(T) → K), the
+                errors summed to ≤ 2ε T log T and N T ≍ T log T/(2π) by the
+                Riemann–von Mangoldt bound in the tree; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0549, TRAPS 84–87,
+                start 5c). Written before the worker starts.
+    DEPENDS     `FloorStep`, `FloorConst`, `ArgCount` (`rvM_crude`), `LineCount`
+    OUT         stage B (proportion → 1) and stage C
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 5b, one height: `Stage3/FloorStep*.lean`
 
     DONE        for P with P(0) = 0, P(1) = 1, 0 < θ < 1/2, R > 0: for every ε > 0,

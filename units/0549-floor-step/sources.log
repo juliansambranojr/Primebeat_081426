@@ -1,0 +1,59 @@
+# check_prose_source.py  2026-11-25T17:39:41Z
+# unit: 0549-floor-step
+# sources searched: 493
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:429
+  theorem combine {ND LC L T lK Kb R ε td Wp τ Cw : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:430
+  (hL1 : 1 ≤ L) (hT0 : 0 < T) (hR : 0 < R) (hε : 0 < ε)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:431
+  (hwin : ND - (1 / (Real.pi * (R / L))) * ((T - T / 2) / 2 * lK + ((T - T / 2) * (2 * td) + Wp))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:433
+  (htd : td ≤ τ) (hτ : τ ≤ ε * Real.pi * R / 4)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:434
+  (hWp : Wp ≤ Real.pi * Cw * L ^ 3) (hCw : 4 * Cw / (R * ε) * L ^ 3 ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:435
+  (hN : T * L / (4 * Real.pi) - ND ≤ T + 224 * L + 1396)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:436
+  (hlK0 : 0 ≤ lK) (hlK : lK ≤ Kb) (hT224 : 224 * L + 1396 ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:437
+  (hKbL : 8 * Kb / (R * ε) ≤ L) (h134 : 4 * 3052 / ε ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:438
+  ND - lK / R * ND - ε * T * L ≤ LC :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73668
+  theorem floor_step (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) (hP1 : P.eval 1 = 1) {θ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73669
+  (hθ0 : 0 < θ) (hθ : θ < 1 / 2) {R : ℝ} (hR : 0 < R) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70323
+  ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73671
+  (riemannZeta.N T - riemannZeta.N (T / 2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73672
+  - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73673
+  ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε)) / R
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:73674
+  * (riemannZeta.N T - riemannZeta.N (T / 2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2019cefb08a179c0.jsonl:505
+  ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ) :=
+
+# 18 found, 0 missing

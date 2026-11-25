@@ -94,6 +94,10 @@ build, 2026-09-08.
 | 81 | `rw [Real.smoothTransition.zero_of_nonpos (… (by linarith))]` on a product of two `smoothTransition`s leaves a failing side goal | the rewrite unifies with the first factor, so the inline proof is about the other factor's sign (the family of row 58) | state the argument as a named `have h3 : … ≤ 0` and `rw [… h3]` (unit 0547) |
 | 82 | `field_simp; ring` leaves unsolved goals on a derivative built with `HasDerivAt.inv` and `.mul` | the derivative carries `(fun y => x + y)⁻¹ y` unreduced, a Pi inverse (the family of row 43) | `simp only [Pi.inv_apply]` before `field_simp; ring` (unit 0548) |
 | 83 | a numeric bound from `Real.exp_bound'` fails at `le_of_eq` | the stated Taylor remainder `x^n (n+1)/(n! n)` was typed wrong | compute the rational in Python first and paste it (unit 0548) |
+| 84 | `continuous_finset_sum` warns deprecated; `continuous_iff_continuousOn_univ` is an unknown name | renamed on this Mathlib | `continuous_finsetSum`; `continuousOn_univ.mp` (unit 0549) |
+| 85 | `whnf` timeout at `exact continuousOn_univ.mp (h.comp hmap.continuousOn _)` | Lean unifies the composition `(fun p => F p.1 p.2) ∘ (fun t => (σ, t))` with the applied definition `F σ` by unfolding | state the `∘` form as a `have`, prove the equality by `rfl`, and `rw` it (unit 0549) |
+| 86 | `apply mul_le_mul_of_nonneg_left` fails on `π * x ≤ π * C * L^3` | the right side associates as `(π * C) * L^3` | `rw [mul_assoc]` first (unit 0549) |
+| 87 | `don't know how to synthesize implicit argument` from `eventually_ge_atTop _` inside a long `Eventually.and` chain | the bound is left for unification across the chain and its `.mono` | pass each bound explicitly (unit 0549) |
 
 ## Bench and gate traps
 
