@@ -2,7 +2,7 @@
 
 > **Read from the source text.** This file changed after the last `python3 utilities/lean_map.py --dump`, so the arrows on this page are names occurring in each proof and have not been confirmed by Lean.
 
-# DiagonalO — the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
+# DiagonalO — block S12 of `lean_stage3/design/stencil.md`, the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
 
 7 theorems, 2 definitions, 261 lines. 
 

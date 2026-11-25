@@ -420,7 +420,7 @@ CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its sectio
 
 ### [`DiagMain`](./lean_stage3/DiagMain.md) — 1
 
-# Stage3.DiagMain — the diagonal's main term, little-o (Young's Lemma 7): the reduction and the Möbius input. 2026-11-25.
+# Stage3.DiagMain — block S12 of `lean_stage3/design/stencil.md`, the diagonal's main term, little-o (Young's Lemma 7): the reduction and the Möbius input. 2026-11-25.
 
 - [`DiagMain.final_real`](./lean_stage3/DiagMain.md#DiagMain-final_real) — `` Cz * (CI / lm + e / L) + κ * e ≤ ε `` The real arithmetic closing the reduction: the three pieces are each `≤ ε/3`.
 
@@ -459,7 +459,7 @@ CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its sectio
 
 ### [`DiagonalO`](./lean_stage3/DiagonalO.md) — 1
 
-# DiagonalO — the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
+# DiagonalO — block S12 of `lean_stage3/design/stencil.md`, the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
 
 - [`DiagonalO.T_le_errO`](./lean_stage3/DiagonalO.md#DiagonalO-T_le_errO) — `` T ≤ errO W `` `T ≤ errO W` for `T ≥ 0`.
 
