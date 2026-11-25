@@ -1,0 +1,87 @@
+flowchart LR
+  n0["<b>zeta_norm_le_abs</b><br/>‖riemannZeta w‖ ≤ 2 + 4 * ‖w‖"]:::thm
+  n1["<b>gammaR_bound</b><br/>∃ M : ℝ, 0 ≤ M ∧ ∀ w : ℂ, 1 / 2 ≤ w.re → w.re ≤ R → ‖Gammaℝ w‖ ≤…"]:::shp
+  n2["<b>Lambda_bound</b><br/>∃ M : ℝ, 0 ≤ M ∧ ∀ w : ℂ, |w.re| ≤ R → 1 ≤ |w.im| → ‖completedRi…"]:::thm
+  n3["<b>GY_norm_le</b><br/>‖GY α β s‖ ≤ Real.exp (c ^ 2 - s.im ^ 2) * ((‖α + β‖ ^ 2 + 4 * c…"]:::shp
+  n4["<b>poly_gauss</b><br/>(1 + y ^ 2) ^ 3 * Real.exp (-y ^ 2) ≤ 216 * Real.exp (-(1 / 2) *…"]:::shp
+  n5["<b>FY_eq_FL</b><br/>FY α β t s = FL α β t s"]:::thm
+  n6["<b>Gammaℝ_ne_of_im ■</b><br/>Gammaℝ w ≠ 0"]:::cnt
+  n7["<b>abs_le_add_abs</b><br/>|y| ≤ |a + y| + |a|"]:::cnt
+  n8["<b>FL_bound</b><br/>∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| →…"]:::thm
+  n9["<b>FY_horiz_bound ■</b><br/>∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| →…"]:::thm
+  n10["<b>gauss_atTop</b><br/>Tendsto (fun y : ℝ =＞ Real.exp (-(1 / 2) * y ^ 2)) atTop (𝓝 0)"]:::shp
+  n11["<b>gauss_atBot</b><br/>Tendsto (fun y : ℝ =＞ Real.exp (-(1 / 2) * y ^ 2)) atBot (𝓝 0)"]:::shp
+  n12["<b>FL_horiz_tendsto</b><br/>Tendsto (fun y : ℝ =＞ ∫ x : ℝ in (-c)..c, FL α β t (x + y * I)) …"]:::thm
+  n13["<b>FL_line_integrable</b><br/>Integrable fun y : ℝ =＞ FL α β t (σ + y * I)"]:::thm
+  n14["<b>vertInt_FY_eq_FL</b><br/>VerticalIntegral' (FY α β t) σ = VerticalIntegral' (FL α β t) σ"]:::thm
+  n15["<b>Lam_differentiableAt</b><br/>DifferentiableAt ℂ (fun s =＞ completedRiemannZeta (w + s)) s"]:::cnt
+  n16["<b>Lam_analyticAt</b><br/>AnalyticAt ℂ (fun s =＞ completedRiemannZeta (w + s)) p"]:::shp
+  n17["<b>Lam0_analyticAt</b><br/>AnalyticAt ℂ (fun s =＞ completedRiemannZeta₀ (w + s)) p"]:::cnt
+  n18["<b>GY_analyticAt</b><br/>AnalyticAt ℂ (GY α β) p"]:::cnt
+  n19["<b>FL_differentiableAt</b><br/>DifferentiableAt ℂ (FL α β t) s"]:::cnt
+  n20["<b>local_simple</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in 𝓝[≠] p, f s = h s + A / …"]:::shp
+  n21["<b>local_zero</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s…"]:::thm
+  n22["<b>local_pole_one</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h (1 - w₁) ∧ ∀ᶠ s in 𝓝[≠] (1 - w₁), F …"]:::shp
+  n23["<b>local_pole_neg</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h (-w₁) ∧ ∀ᶠ s in 𝓝[≠] (-w₁), F s = h …"]:::shp
+  n24["<b>ne_of_re_ne ■</b><br/>z ≠ w"]:::cnt
+  n25["<b>rect_mem_nhds</b><br/>Rectangle (↑(-c) - I * ↑T) (↑c + I * ↑T) ∈ 𝓝 p"]:::shp
+  n26["<b>rect_tendsto</b><br/>Tendsto (fun T : ℝ =＞ RectangleIntegral f (↑(-c) - I * T) (↑c + …"]:::cnt
+  n27["<b>stmtShift_holds</b><br/>StmtShift α β t c"]:::thm
+  n28["<b>approxFE ■</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
+  x0(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  x1(["<b>ApproxFE</b><br/>5 theorems"]):::ext
+  x2(["<b>ContourShift</b><br/>analyticAt_dslope<br/>div_sub_eq_dslope<br/>residue_rectangle_of_local"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n10 --> n12
+  n11 --> n12
+  n12 --> n27
+  n13 --> n27
+  n14 --> n27
+  n15 --> n16
+  n15 --> n19
+  n16 --> n21
+  n16 --> n22
+  n16 --> n23
+  n17 --> n22
+  n17 --> n23
+  n18 --> n19
+  n18 --> n21
+  n18 --> n27
+  n19 --> n27
+  n2 --> n8
+  n20 --> n21
+  n20 --> n22
+  n20 --> n23
+  n21 --> n27
+  n22 --> n27
+  n23 --> n27
+  n25 --> n27
+  n26 --> n27
+  n27 --> n28
+  n3 --> n8
+  n4 --> n8
+  n5 --> n14
+  n5 --> n9
+  n7 --> n8
+  n7 --> n9
+  n8 --> n12
+  n8 --> n13
+  n8 --> n9
+  x0 -.-> n0
+  x1 -.-> n2
+  x1 -.-> n21
+  x1 -.-> n27
+  x1 -.-> n28
+  x1 -.-> n5
+  x1 -.-> n8
+  x2 -.-> n20
+  x2 -.-> n27
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -7,7 +7,7 @@
 35 theorems, 10 definitions, 766 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md)
 
 ## The picture
 
@@ -46,6 +46,7 @@ flowchart LR
   n28["<b>FY_reflect</b><br/>FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s)"]:::thm
   n29["<b>gamma_ne_off</b><br/>Gammaℝ (w + -((c : ℂ) + y * I)) ≠ 0"]:::shp
   x0(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
+  x1(["<b>ApproxShift</b><br/>5 theorems"]):::ext
   n0 --> n18
   n0 --> n20
   n0 --> n22
@@ -77,8 +78,11 @@ flowchart LR
   n8 --> n10
   n8 --> n9
   n0 -.-> x0
+  n0 -.-> x1
   n1 -.-> x0
+  n1 -.-> x1
   n22 -.-> x0
+  n27 -.-> x1
   n28 -.-> x0
   n29 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -99,11 +103,14 @@ flowchart LR
   n1["<b>GY_zero</b><br/>GY α β 0 = 1"]:::cnt
   n2["<b>gY_zero</b><br/>gY α β t 0 = 1"]:::cnt
   n3["<b>residue_zero ■</b><br/>Tendsto (fun s =＞ s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α…"]:::thm
-  n4["<b>approxFE_of_shift ■</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
+  n4["<b>approxFE_of_shift</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
   x0(["<b>diagram 1</b><br/>5 theorems"]):::ext
+  x1(["<b>ApproxShift</b><br/>approxFE<br/>local_zero"]):::ext
   n0 --> n4
   n1 --> n3
   n2 --> n3
+  n1 -.-> x1
+  n4 -.-> x1
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n4
@@ -127,7 +134,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 51
 
 - **Is:** `` uA (α : ℂ) (t : ℝ) : ℂ := 1 / 2 + α + t * I noncomputable ``
-- **Used by 23:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_im`](#ApproxFE-uA_im), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.uA_re`](#ApproxFE-uA_re), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe)
+- **Used by 34:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_im`](#ApproxFE-uA_im), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.uA_re`](#ApproxFE-uA_re), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL), [`ApproxShift.FY_horiz_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FY_horiz_bound), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE), [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero), [`ApproxShift.poles`](../lean_stage3/ApproxShift.md#ApproxShift-poles), [`ApproxShift.resA`](../lean_stage3/ApproxShift.md#ApproxShift-resA), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds), [`ApproxShift.vertInt_FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-vertInt_FY_eq_FL)
 
 <a name="ApproxFE-vB"></a>
 ### `ApproxFE.vB`
@@ -135,7 +142,7 @@ def · line 51
 def · line 55
 
 - **Is:** `` vB (β : ℂ) (t : ℝ) : ℂ := 1 / 2 + β - t * I noncomputable ``
-- **Used by 23:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.vB_im`](#ApproxFE-vB_im), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vB_re`](#ApproxFE-vB_re), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe)
+- **Used by 34:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.coef_eq_young`](#ApproxFE-coef_eq_young), [`ApproxFE.gY`](#ApproxFE-gY), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.uA_neg`](#ApproxFE-uA_neg), [`ApproxFE.vB_im`](#ApproxFE-vB_im), [`ApproxFE.vB_neg`](#ApproxFE-vB_neg), [`ApproxFE.vB_re`](#ApproxFE-vB_re), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL), [`ApproxShift.FY_horiz_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FY_horiz_bound), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE), [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero), [`ApproxShift.poles`](../lean_stage3/ApproxShift.md#ApproxShift-poles), [`ApproxShift.resA`](../lean_stage3/ApproxShift.md#ApproxShift-resA), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds), [`ApproxShift.vertInt_FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-vertInt_FY_eq_FL)
 
 <a name="ApproxFE-XY"></a>
 ### `ApproxFE.XY`
@@ -144,7 +151,7 @@ def · line 59
 
 - **Is:** `` XY (α β : ℂ) (t : ℝ) : ℂ := Gammaℝ (1 - uA α t) * Gammaℝ (1 - vB β t) / (Gammaℝ (uA α t) * Gammaℝ (vB β t)) noncomputable ``
 - **Built from:** [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 5:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe)
+- **Used by 6:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.XY_eq_young`](#ApproxFE-XY_eq_young), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE)
 
 <a name="ApproxFE-GY"></a>
 ### `ApproxFE.GY`
@@ -152,7 +159,7 @@ def · line 59
 def · line 64
 
 - **Is:** `` GY (α β s : ℂ) : ℂ := cexp (s ^ 2) * (((α + β) ^ 2 - (2 * s) ^ 2) / (α + β) ^ 2) noncomputable ``
-- **Used by 9:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.GY_neg`](#ApproxFE-GY_neg), [`ApproxFE.GY_swap`](#ApproxFE-GY_swap), [`ApproxFE.GY_zero`](#ApproxFE-GY_zero), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero)
+- **Used by 17:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.GY_neg`](#ApproxFE-GY_neg), [`ApproxFE.GY_swap`](#ApproxFE-GY_swap), [`ApproxFE.GY_zero`](#ApproxFE-GY_zero), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FL`](../lean_stage3/ApproxShift.md#ApproxShift-FL), [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound), [`ApproxShift.FL_differentiableAt`](../lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt), [`ApproxShift.GY_analyticAt`](../lean_stage3/ApproxShift.md#ApproxShift-GY_analyticAt), [`ApproxShift.GY_norm_le`](../lean_stage3/ApproxShift.md#ApproxShift-GY_norm_le), [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero), [`ApproxShift.resA`](../lean_stage3/ApproxShift.md#ApproxShift-resA), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds)
 
 <a name="ApproxFE-gY"></a>
 ### `ApproxFE.gY`
@@ -161,7 +168,7 @@ def · line 68
 
 - **Is:** `` gY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := Gammaℝ (uA α t + s) * Gammaℝ (vB β t + s) / (Gammaℝ (uA α t) * Gammaℝ (vB β t)) noncomputable ``
 - **Built from:** [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 7:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero)
+- **Used by 8:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.gY_eq_young`](#ApproxFE-gY_eq_young), [`ApproxFE.gY_zero`](#ApproxFE-gY_zero), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
 
 <a name="ApproxFE-KY"></a>
 ### `ApproxFE.KY`
@@ -170,7 +177,7 @@ def · line 73
 
 - **Is:** `` KY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := GY α β s / s * gY α β t s noncomputable ``
 - **Built from:** [`ApproxFE.GY`](#ApproxFE-GY), [`ApproxFE.gY`](#ApproxFE-gY)
-- **Used by 8:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.VY`](#ApproxFE-VY), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero)
+- **Used by 9:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.KY_bound`](#ApproxFE-KY_bound), [`ApproxFE.KY_continuous_line`](#ApproxFE-KY_continuous_line), [`ApproxFE.KY_differentiableAt`](#ApproxFE-KY_differentiableAt), [`ApproxFE.VY`](#ApproxFE-VY), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL)
 
 <a name="ApproxFE-VY"></a>
 ### `ApproxFE.VY`
@@ -179,7 +186,7 @@ def · line 77
 
 - **Is:** `` VY (α β : ℂ) (c x t : ℝ) : ℂ := VerticalIntegral' (fun s => KY α β t s * (x : ℂ) ^ (-s)) c noncomputable ``
 - **Built from:** [`ApproxFE.KY`](#ApproxFE-KY)
-- **Used by 2:** [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum)
+- **Used by 3:** [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE)
 
 <a name="ApproxFE-FY"></a>
 ### `ApproxFE.FY`
@@ -188,7 +195,7 @@ def · line 82
 
 - **Is:** `` FY (α β : ℂ) (t : ℝ) (s : ℂ) : ℂ := KY α β t s * (riemannZeta (uA α t + s) * riemannZeta (vB β t + s)) ``
 - **Built from:** [`ApproxFE.KY`](#ApproxFE-KY), [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 5:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect)
+- **Used by 8:** [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect), [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.mellin_double_sum`](#ApproxFE-mellin_double_sum), [`ApproxFE.residue_zero`](#ApproxFE-residue_zero), [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect), [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL), [`ApproxShift.FY_horiz_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FY_horiz_bound), [`ApproxShift.vertInt_FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-vertInt_FY_eq_FL)
 
 <a name="ApproxFE-resY"></a>
 ### `ApproxFE.resY`
@@ -197,7 +204,7 @@ def · line 679
 
 - **Is:** `` resY (α β : ℂ) (t : ℝ) : ℂ := (GY α β (1 - uA α t) / (1 - uA α t) * completedRiemannZeta (vB β t + 1 - uA α t) + GY α β (-uA α t) / uA α t * completedRiemannZeta (vB β t - uA α t) + GY α β (1 - vB β t) / (1 - vB β t) * completedRiemannZeta (uA α t + 1 - vB β t) + GY α β (-vB β t) / vB β t * completedRiemannZeta (uA α t - vB β t)) / (Gammaℝ (uA α t) * Gammaℝ (vB β t)) noncomputable ``
 - **Built from:** [`ApproxFE.GY`](#ApproxFE-GY), [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 2:** [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift)
+- **Used by 4:** [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds)
 
 <a name="ApproxFE-StmtShift"></a>
 ### `ApproxFE.StmtShift`
@@ -206,7 +213,7 @@ def · line 695
 
 - **Is:** `` StmtShift (α β : ℂ) (t c : ℝ) : Prop := VerticalIntegral' (FY α β t) c - VerticalIntegral' (FY α β t) (-c) = riemannZeta (uA α t) * riemannZeta (vB β t) + resY α β t ``
 - **Built from:** [`ApproxFE.FY`](#ApproxFE-FY), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
-- **Used by 1:** [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift)
+- **Used by 2:** [`ApproxFE.approxFE_of_shift`](#ApproxFE-approxFE_of_shift), [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds)
 
 ## Theorems
 
@@ -232,7 +239,7 @@ line 85 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.uA`](#ApproxFE-uA)
 
-**Feeds** (8 that use it)
+**Feeds** (10 that use it)
 
   - [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect) — `` FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) ``
   - [`ApproxFE.Gammaℝ_uA_ne`](#ApproxFE-Gamma-_uA_ne) — `` Gammaℝ (uA α t) ≠ 0 ``
@@ -242,6 +249,8 @@ line 85 · arrows read from text
   - [`ApproxFE.residue_zero`](#ApproxFE-residue_zero) — `` Tendsto (fun s => s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α t) * riemannZeta (vB β t))) ``
   - [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect) — `` VerticalIntegral' (FY α β t) (-c) = -(XY α β t * VerticalIntegral' (FY (-β) (-α) t) c) ``
   - [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe) — `` riemannZeta (uA α t) * riemannZeta (vB β t) = XY α β t * (riemannZeta (1 / 2 - α - t * I) * riemannZeta (1 / 2 - β + t * I)) ``
+  - [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound) (ApproxShift) — `` ∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| → ‖FL α β t s‖ ≤ C * Real.exp (-(1 / 2) * s.im ^ 2) ``
+  - [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds) (ApproxShift) — `` StmtShift α β t c ``
 
 <a name="ApproxFE-vB_re"></a>
 ### `ApproxFE.vB_re`
@@ -265,7 +274,7 @@ line 88 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.vB`](#ApproxFE-vB)
 
-**Feeds** (8 that use it)
+**Feeds** (10 that use it)
 
   - [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect) — `` FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) ``
   - [`ApproxFE.Gammaℝ_vB_ne`](#ApproxFE-Gamma-_vB_ne) — `` Gammaℝ (vB β t) ≠ 0 ``
@@ -275,6 +284,8 @@ line 88 · arrows read from text
   - [`ApproxFE.residue_zero`](#ApproxFE-residue_zero) — `` Tendsto (fun s => s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α t) * riemannZeta (vB β t))) ``
   - [`ApproxFE.vertInt_reflect`](#ApproxFE-vertInt_reflect) — `` VerticalIntegral' (FY α β t) (-c) = -(XY α β t * VerticalIntegral' (FY (-β) (-α) t) c) ``
   - [`ApproxFE.zeta_prod_fe`](#ApproxFE-zeta_prod_fe) — `` riemannZeta (uA α t) * riemannZeta (vB β t) = XY α β t * (riemannZeta (1 / 2 - α - t * I) * riemannZeta (1 / 2 - β + t * I)) ``
+  - [`ApproxShift.FL_bound`](../lean_stage3/ApproxShift.md#ApproxShift-FL_bound) (ApproxShift) — `` ∃ C Y₀ : ℝ, 0 ≤ C ∧ 1 ≤ Y₀ ∧ ∀ s : ℂ, |s.re| ≤ c → Y₀ ≤ |s.im| → ‖FL α β t s‖ ≤ C * Real.exp (-(1 / 2) * s.im ^ 2) ``
+  - [`ApproxShift.stmtShift_holds`](../lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds) (ApproxShift) — `` StmtShift α β t c ``
 
 <a name="ApproxFE-uA_im"></a>
 ### `ApproxFE.uA_im`
@@ -995,9 +1006,12 @@ Gammaℝ w * riemannZeta w = completedRiemannZeta w
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxFE.FY_reflect`](#ApproxFE-FY_reflect) — `` FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s) ``
+  - [`ApproxShift.FY_eq_FL`](../lean_stage3/ApproxShift.md#ApproxShift-FY_eq_FL) (ApproxShift) — `` FY α β t s = FL α β t s ``
+  - [`ApproxShift.Lambda_bound`](../lean_stage3/ApproxShift.md#ApproxShift-Lambda_bound) (ApproxShift) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ w : ℂ, |w.re| ≤ R → 1 ≤ |w.im| → ‖completedRiemannZeta w‖ ≤ M * (6 + 4 * ‖w‖) ``
+  - [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero) (ApproxShift) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
 
 <a name="ApproxFE-FY_reflect"></a>
 ### `ApproxFE.FY_reflect`
@@ -1126,9 +1140,10 @@ GY α β 0 = 1
 
 **Definitions its proof touches:** [`ApproxFE.GY`](#ApproxFE-GY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ApproxFE.residue_zero`](#ApproxFE-residue_zero) — `` Tendsto (fun s => s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α t) * riemannZeta (vB β t))) ``
+  - [`ApproxShift.local_zero`](../lean_stage3/ApproxShift.md#ApproxShift-local_zero) (ApproxShift) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] 0, FL α β t s = h s + riemannZeta (uA α t) * riemannZeta (vB β t) / (s - 0) ``
 
 <a name="ApproxFE-gY_zero"></a>
 ### `ApproxFE.gY_zero`
@@ -1224,5 +1239,7 @@ riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p.1 : �
 
 **Definitions its proof touches:** [`ApproxFE.StmtShift`](#ApproxFE-StmtShift), [`ApproxFE.VY`](#ApproxFE-VY), [`ApproxFE.XY`](#ApproxFE-XY), [`ApproxFE.resY`](#ApproxFE-resY), [`ApproxFE.uA`](#ApproxFE-uA), [`ApproxFE.vB`](#ApproxFE-vB)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ApproxShift.approxFE`](../lean_stage3/ApproxShift.md#ApproxShift-approxFE) (ApproxShift) — `` riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * (… ``
 

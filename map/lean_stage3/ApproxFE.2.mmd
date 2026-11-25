@@ -3,11 +3,14 @@ flowchart LR
   n1["<b>GY_zero</b><br/>GY α β 0 = 1"]:::cnt
   n2["<b>gY_zero</b><br/>gY α β t 0 = 1"]:::cnt
   n3["<b>residue_zero ■</b><br/>Tendsto (fun s =＞ s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α…"]:::thm
-  n4["<b>approxFE_of_shift ■</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
+  n4["<b>approxFE_of_shift</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p…"]:::thm
   x0(["<b>diagram 1</b><br/>5 theorems"]):::ext
+  x1(["<b>ApproxShift</b><br/>approxFE<br/>local_zero"]):::ext
   n0 --> n4
   n1 --> n3
   n2 --> n3
+  n1 -.-> x1
+  n4 -.-> x1
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n4
