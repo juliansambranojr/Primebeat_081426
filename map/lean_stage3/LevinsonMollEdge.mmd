@@ -22,10 +22,11 @@ flowchart LR
   n20["<b>horizontal_terms_le</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
   x0(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
   x1(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x2(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
-  x3(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
-  x4(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x5(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x2(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x3(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x4(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x5(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
   n0 --> n20
   n1 --> n4
   n10 --> n11
@@ -55,21 +56,27 @@ flowchart LR
   n9 --> n12
   n12 -.-> x0
   n12 -.-> x1
+  n12 -.-> x2
   n2 -.-> x0
   n2 -.-> x1
+  n2 -.-> x2
   n20 -.-> x0
   n20 -.-> x1
+  n20 -.-> x2
   n4 -.-> x0
   n4 -.-> x1
+  n4 -.-> x2
   n5 -.-> x0
   n5 -.-> x1
+  n5 -.-> x2
   n8 -.-> x0
   n8 -.-> x1
-  x2 -.-> n3
-  x3 -.-> n18
-  x3 -.-> n8
-  x4 -.-> n10
-  x5 -.-> n19
+  n8 -.-> x2
+  x3 -.-> n3
+  x4 -.-> n18
+  x4 -.-> n8
+  x5 -.-> n10
+  x6 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

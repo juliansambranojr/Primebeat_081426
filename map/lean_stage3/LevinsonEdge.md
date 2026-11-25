@@ -31,8 +31,9 @@ flowchart LR
   x2(["<b>LevinsonMollEdge</b><br/>f_analyticAt<br/>real_zero_count_gen"]):::ext
   x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
   x4(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x5(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x6(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
+  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x7(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -51,16 +52,18 @@ flowchart LR
   n0 -.-> x0
   n12 -.-> x1
   n12 -.-> x3
+  n12 -.-> x5
   n4 -.-> x1
   n4 -.-> x2
   n4 -.-> x3
   n4 -.-> x4
+  n4 -.-> x5
   n6 -.-> x2
   n7 -.-> x2
   n8 -.-> x2
   n9 -.-> x2
-  x5 -.-> n11
-  x6 -.-> n12
+  x6 -.-> n11
+  x7 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -229,13 +232,14 @@ AnalyticAt ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) w
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`LevinsonCount.G_analyticOnNhd_rect`](../lean_stage3/LevinsonCount.md#LevinsonCount-G_analyticOnNhd_rect) (LevinsonCount) — `` AnalyticOnNhd ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)) ``
   - [`LevinsonEdge.horizontal_edge_le`](#LevinsonEdge-horizontal_edge_le) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi ``
   - [`LevinsonMollEdge.f_analyticAt`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-f_analyticAt) (LevinsonMollEdge) — `` AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) w ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
+  - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonEdge-G_disc_le"></a>
 ### `LevinsonEdge.G_disc_le`
@@ -481,8 +485,9 @@ line 455 · arrows read from text
   - [`LevinsonEdge.edge_le_of_bound`](#LevinsonEdge-edge_le_of_bound) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
   - [`LevinsonSize.norm_G_sub_one_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-norm_G_sub_one_le) (LevinsonSize) — `` ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1 ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
+  - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
