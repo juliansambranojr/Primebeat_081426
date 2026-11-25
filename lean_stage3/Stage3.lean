@@ -211,6 +211,7 @@ import Stage3.LevinsonCount
 import Stage3.LevinsonRight
 import Stage3.LevinsonMollEdge
 import Stage3.LevinsonAvoid
+import Stage3.LevinsonWindow
 
 namespace Stage3
 
