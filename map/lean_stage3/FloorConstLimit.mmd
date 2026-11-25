@@ -13,8 +13,10 @@ flowchart LR
   n11["<b>Cr_X</b><br/>Cr Polynomial.X = 1 / 3"]:::cnt
   n12["<b>re_dop_tendsto_X</b><br/>Tendsto (fun T =＞ (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T…"]:::shp
   x0(["<b>FloorConstDeriv</b><br/>4 theorems"]):::ext
-  x1(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
-  x2(["<b>FloorConst</b><br/>floor_const"]):::ext
+  x1(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
+  x2(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
+  x3(["<b>FloorLong</b><br/>floor_of_long<br/>levinson_floor_of_long"]):::ext
+  x4(["<b>FloorConst</b><br/>floor_const"]):::ext
   n0 --> n4
   n1 --> n4
   n10 --> n12
@@ -27,10 +29,17 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n12
-  n12 -.-> x2
+  n10 -.-> x3
+  n11 -.-> x3
+  n12 -.-> x4
+  n4 -.-> x1
+  n6 -.-> x1
+  n7 -.-> x1
+  n8 -.-> x3
+  n9 -.-> x3
   x0 -.-> n4
-  x1 -.-> n6
-  x1 -.-> n8
+  x2 -.-> n6
+  x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

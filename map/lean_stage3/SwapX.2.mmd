@@ -8,11 +8,13 @@ flowchart LR
   x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
   x1(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
   x2(["<b>diagram 1</b><br/>16 theorems"]):::ext
+  x3(["<b>FloorLongErr</b><br/>lemma3_of_long"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n5
   n4 --> n5
+  n4 -.-> x3
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n4

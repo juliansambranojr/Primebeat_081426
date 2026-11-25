@@ -19,7 +19,8 @@ flowchart LR
   n3["<b>Fint_shift</b><br/>∃ δ : ℝ, 0 ＜ δ ∧ δ ≤ 1 / 8 ∧ ∀ σ ∈ Icc (σ₀ - δ) σ₀, ∀ t ∈ Icc A …"]:::thm
   n4["<b>mean_shift</b><br/>(1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ (1 / (b' - a')…"]:::thm
   n5["<b>hK_shift</b><br/>∃ δ : ℝ, 0 ＜ δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / …"]:::thm
-  x0(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x0(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x1(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n3
@@ -27,6 +28,7 @@ flowchart LR
   n3 --> n5
   n4 --> n5
   n5 -.-> x0
+  n5 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -48,7 +50,7 @@ def · line 32
 
 - **Is:** `` Fint (c : ℝ) (M : ℕ) (β : ℕ → ℂ) (σ t : ℝ) : ℝ := ‖(riemannZeta (↑σ + ↑t * I) + c * deriv riemannZeta (↑σ + ↑t * I)) * LevinsonMollEdge.molli M β (↑σ + ↑t * I)‖ ^ 2 ``
 - **Built from:** [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli)
-- **Used by 6:** [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorStep.Fint_shift`](#FloorStep-Fint_shift), [`FloorStep.continuousOn_Fint`](#FloorStep-continuousOn_Fint), [`FloorStep.continuous_Fint`](#FloorStep-continuous_Fint), [`FloorStep.hK_shift`](#FloorStep-hK_shift), [`FloorStep.mean_shift`](#FloorStep-mean_shift)
+- **Used by 7:** [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorStep.Fint_shift`](#FloorStep-Fint_shift), [`FloorStep.continuousOn_Fint`](#FloorStep-continuousOn_Fint), [`FloorStep.continuous_Fint`](#FloorStep-continuous_Fint), [`FloorStep.hK_shift`](#FloorStep-hK_shift), [`FloorStep.mean_shift`](#FloorStep-mean_shift)
 
 ## Theorems
 
@@ -237,7 +239,8 @@ line 122 · arrows read from text
 
 **Definitions its proof touches:** [`FloorStep.Fint`](#FloorStep-Fint)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long) (FloorLongStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
 

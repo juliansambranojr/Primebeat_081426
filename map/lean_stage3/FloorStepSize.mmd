@@ -8,22 +8,32 @@ flowchart LR
   n6["<b>W2_le</b><br/>X * Real.pi + 2 * (X * (Real.pi * ((8 * X - 1) * (L + lM + lB + …"]:::shp
   n7["<b>eventually_logpow_le</b><br/>∀ᶠ T : ℝ in atTop, C * Real.log T ^ n ≤ T"]:::shp
   n8["<b>N_window_ge</b><br/>T * Real.log T / (4 * Real.pi) - (riemannZeta.N T - riemannZeta.…"]:::thm
-  x0(["<b>FloorStep</b><br/>floor_step"]):::ext
-  x1(["<b>Diagonal</b><br/>aY_bound'"]):::ext
-  x2(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x3(["<b>FloorSum</b><br/>N_ge"]):::ext
+  x0(["<b>FloorLongStep</b><br/>W2_long<br/>floor_step_long"]):::ext
+  x1(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x2(["<b>Diagonal</b><br/>aY_bound'"]):::ext
+  x3(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x4(["<b>FloorSum</b><br/>N_ge"]):::ext
   n0 -.-> x0
+  n0 -.-> x1
   n1 -.-> x0
+  n1 -.-> x1
   n2 -.-> x0
+  n2 -.-> x1
   n3 -.-> x0
+  n3 -.-> x1
   n4 -.-> x0
+  n4 -.-> x1
   n5 -.-> x0
+  n5 -.-> x1
   n6 -.-> x0
+  n6 -.-> x1
   n7 -.-> x0
+  n7 -.-> x1
   n8 -.-> x0
-  n8 -.-> x3
-  x1 -.-> n2
-  x2 -.-> n8
+  n8 -.-> x1
+  n8 -.-> x4
+  x2 -.-> n2
+  x3 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -7,7 +7,7 @@
 5 theorems, 0 definitions, 239 lines. 
 
 **Imports:** [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md), [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md), [`UnsmoothWin`](../lean_stage3/UnsmoothWin.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorLongMean`](../lean_stage3/FloorLongMean.md), [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
 
 ## The picture
 

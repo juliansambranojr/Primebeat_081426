@@ -18,7 +18,8 @@ flowchart LR
   x1(["<b>SdiagLeadSwap</b><br/>natcpow_ne"]):::ext
   x2(["<b>SdiagLeadAd</b><br/>4 theorems"]):::ext
   x3(["<b>SdiagLeadSmooth</b><br/>hasDerivAt_logdiv"]):::ext
-  x4(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  x4(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x5(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
   n0 --> n3
   n1 --> n3
   n10 --> n14
@@ -36,6 +37,7 @@ flowchart LR
   n9 --> n10
   n9 --> n14
   n14 -.-> x4
+  n14 -.-> x5
   x0 -.-> n0
   x1 -.-> n0
   x1 -.-> n3
