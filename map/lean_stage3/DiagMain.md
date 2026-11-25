@@ -26,9 +26,10 @@ flowchart LR
   x2(["<b>MeanQBound</b><br/>cY_sup_bound"]):::ext
   x3(["<b>SdiagLeadCore</b><br/>stmtDiagMainO_of_steps<br/>stmtSdiagLead_of_steps"]):::ext
   x4(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
-  x5(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
-  x6(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
-  x7(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
+  x5(["<b>FloorConstQLimit</b><br/>re_dopQ_tendsto"]):::ext
+  x6(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
+  x7(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x8(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
   n0 --> n7
   n1 --> n7
   n2 --> n7
@@ -49,9 +50,10 @@ flowchart LR
   n4 -.-> x3
   n4 -.-> x4
   n4 -.-> x5
+  n4 -.-> x6
   n7 -.-> x3
-  n7 -.-> x6
   n7 -.-> x7
+  n7 -.-> x8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -231,10 +233,11 @@ line 141 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
   - [`FloorConst.re_dop_tendsto`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto) (FloorConstLimit) — `` Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (C… ``
+  - [`FloorConstQ.re_dopQ_tendsto`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-re_dopQ_tendsto) (FloorConstQLimit) — `` Tendsto (fun T => (MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (KflQ Q (Flo… ``
   - [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long) (FloorLongMean) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
   - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`SdiagLead.stmtSdiagLead_of_steps`](../lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) (SdiagLeadCore) — `` StmtSdiagLead P θ R κ ``

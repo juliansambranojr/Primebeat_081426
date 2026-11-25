@@ -1,0 +1,100 @@
+flowchart LR
+  n0["<b>P0_zero ■</b><br/>P0.eval 0 = 0"]:::cnt
+  n1["<b>P0_one ■</b><br/>P0.eval 1 = 1"]:::cnt
+  n2["<b>Q0_zero ■</b><br/>Q0.eval 0 = 1"]:::cnt
+  n3["<b>Q0_deriv_symm ■</b><br/>Q0.derivative.eval x = Q0.derivative.eval (1 - x)"]:::cnt
+  n4["<b>integral_poly</b><br/>∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0"]:::cnt
+  n5["<b>Ar_P0</b><br/>FloorConst.Ar P0 = 152147 / 150000"]:::cnt
+  n6["<b>Br_P0</b><br/>FloorConst.Br P0 = 1 / 2"]:::cnt
+  n7["<b>Cr_P0</b><br/>FloorConst.Cr P0 = 89707 / 300000"]:::cnt
+  n8["<b>Q0_natDegree</b><br/>Q0.natDegree = 3"]:::cnt
+  n9["<b>Q0_c0</b><br/>Q0.coeff 0 = 1"]:::cnt
+  n10["<b>Q0_c1</b><br/>Q0.coeff 1 = -27 / 50"]:::cnt
+  n11["<b>Q0_c2</b><br/>Q0.coeff 2 = -36 / 25"]:::cnt
+  n12["<b>Q0_c3</b><br/>Q0.coeff 3 = 24 / 25"]:::cnt
+  n13["<b>ph0</b><br/>ph (3 / 2) 0 = -1 / 3 + 1 / 3 * Real.exp 3"]:::shp
+  n14["<b>ph_succ</b><br/>ph R (n + 1) = (-(-1) ^ (n + 1) * Real.exp (2 * R) - ((n : ℝ) + …"]:::shp
+  n15["<b>ph1</b><br/>ph (3 / 2) 1 = -1 / 9 - 2 / 9 * Real.exp 3"]:::shp
+  n16["<b>ph2</b><br/>ph (3 / 2) 2 = -2 / 27 + 5 / 27 * Real.exp 3"]:::shp
+  n17["<b>ph3</b><br/>ph (3 / 2) 3 = -2 / 27 - 4 / 27 * Real.exp 3"]:::shp
+  n18["<b>ph4</b><br/>ph (3 / 2) 4 = -8 / 81 + 11 / 81 * Real.exp 3"]:::shp
+  n19["<b>ph5</b><br/>ph (3 / 2) 5 = -40 / 243 - 26 / 243 * Real.exp 3"]:::shp
+  n20["<b>ph6</b><br/>ph (3 / 2) 6 = -80 / 243 + 29 / 243 * Real.exp 3"]:::shp
+  n21["<b>SB_Q0</b><br/>SB Q0 (3 / 2) = 1 + 1 / 2500 * Real.exp 3"]:::shp
+  n22["<b>SA_Q0</b><br/>SA Q0 (3 / 2) = -29197 / 33750 + 5657 / 67500 * Real.exp 3"]:::shp
+  n23["<b>SC_Q0</b><br/>SC Q0 (3 / 2) = -26057 / 15000 + 6877 / 30000 * Real.exp 3"]:::shp
+  n24["<b>KflQ_eq</b><br/>KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0)…"]:::shp
+  n25["<b>exp_half_le</b><br/>Real.exp (1 / 2) ≤ 45381251 / 27525120"]:::shp
+  n26["<b>exp_half_ge</b><br/>354541 / 215040 ≤ Real.exp (1 / 2)"]:::shp
+  n27["<b>exp_three_eq</b><br/>Real.exp 3 = Real.exp (1 / 2) ^ 6"]:::shp
+  n28["<b>exp_y_ge</b><br/>∑ i ∈ Finset.range 12, (1203 / 1250 : ℝ) ^ i / i.factorial ≤ Rea…"]:::shp
+  n29["<b>KflQ_pos</b><br/>0 ＜ KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr…"]:::shp
+  x0(["<b>FloorConstQLimit</b><br/>KflQ_lin"]):::ext
+  x1(["<b>diagram 2</b><br/>KflQ_lt<br/>log_KflQ_lt"]):::ext
+  n10 --> n21
+  n10 --> n22
+  n10 --> n23
+  n11 --> n21
+  n11 --> n22
+  n11 --> n23
+  n12 --> n21
+  n12 --> n22
+  n12 --> n23
+  n13 --> n15
+  n13 --> n22
+  n13 --> n23
+  n14 --> n15
+  n14 --> n16
+  n14 --> n17
+  n14 --> n18
+  n14 --> n19
+  n14 --> n20
+  n15 --> n16
+  n15 --> n22
+  n15 --> n23
+  n16 --> n17
+  n16 --> n22
+  n16 --> n23
+  n17 --> n18
+  n17 --> n22
+  n17 --> n23
+  n18 --> n19
+  n18 --> n22
+  n18 --> n23
+  n19 --> n20
+  n19 --> n22
+  n19 --> n23
+  n20 --> n22
+  n20 --> n23
+  n21 --> n24
+  n22 --> n24
+  n23 --> n24
+  n24 --> n29
+  n26 --> n29
+  n27 --> n29
+  n4 --> n5
+  n4 --> n6
+  n4 --> n7
+  n5 --> n24
+  n6 --> n24
+  n7 --> n24
+  n8 --> n21
+  n8 --> n22
+  n8 --> n23
+  n9 --> n21
+  n9 --> n22
+  n9 --> n23
+  n24 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x1
+  n28 -.-> x1
+  n29 -.-> x1
+  x0 -.-> n24
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

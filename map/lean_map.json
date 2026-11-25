@@ -43810,6 +43810,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
      "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
@@ -56478,7 +56479,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.hasDerivAt_gx",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.hasDerivAt_gy",
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF"
     ]
    },
    {
@@ -56509,7 +56511,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.hasDerivAt_EFx",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.hasDerivAt_EFy",
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF"
     ]
    },
    {
@@ -56544,7 +56547,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.hasDerivAt_Hy",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pa_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF"
     ]
    },
    {
@@ -57028,7 +57032,8 @@
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pa_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF"
     ]
    },
    {
@@ -57291,6 +57296,7 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.tendsto_Kfl",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.levinson_floor_of_long",
@@ -57325,6 +57331,16 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
@@ -57354,6 +57370,16 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
@@ -57383,6 +57409,16 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_lt_half",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
@@ -57414,7 +57450,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
     ]
    },
    {
@@ -57443,7 +57480,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
     ]
    },
    {
@@ -57472,7 +57510,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
     ]
    },
    {
@@ -57636,6 +57675,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long"
     ]
    },
@@ -57838,6 +57878,2514 @@
     "used_by": [
      "lean_stage3/Stage3/FloorConst.lean::FloorConst.floor_const"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorConstQ.lean",
+  "module": "Stage3.FloorConstQ",
+  "stem": "FloorConstQ",
+  "header": "# FloorConstQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the limit and its value at a cubic Q. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorConstQLimit"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorConstQ"
+  ],
+  "lines": 269,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorConstQLimit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "P0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.P0",
+    "line": 45,
+    "why": "`P₀(x) = (7/50)x³ − (1/100)x² + (87/100)x`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ[X]",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_one",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_zero",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Q0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0",
+    "line": 48,
+    "why": "`Q₀(x) = (24/25)x³ − (36/25)x² − (27/50)x + 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ[X]",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_deriv_symm",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_zero",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "kappaQ",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.kappaQ",
+    "line": 51,
+    "why": "The proportion `κ = 1 − log K / R` at `P₀`, `Q₀`.",
+    "sorry": false,
+    "needs": [
+     "θ R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "P0_zero",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.P0_zero",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "P0.eval 0 = 0",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "P0_one",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.P0_one",
+    "line": 58,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "P0.eval 1 = 1",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_zero",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_zero",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.eval 0 = 1",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_deriv_symm",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_deriv_symm",
+    "line": 64,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "Q0.derivative.eval x = Q0.derivative.eval (1 - x)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_deriv_symm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_poly",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.integral_poly",
+    "line": 70,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "S F : ℝ[X]",
+     "h : ∀ x, F.derivative.eval x = S.eval x"
+    ],
+    "proves": "∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ar_P0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Ar_P0",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "FloorConst.Ar P0 = 152147 / 150000",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Br_P0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Br_P0",
+    "line": 89,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "FloorConst.Br P0 = 1 / 2",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Cr_P0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Cr_P0",
+    "line": 101,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "FloorConst.Cr P0 = 89707 / 300000",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.integral_poly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_natDegree",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_natDegree",
+    "line": 115,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.natDegree = 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_c0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_c0",
+    "line": 117,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.coeff 0 = 1",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_c1",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_c1",
+    "line": 118,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.coeff 1 = -27 / 50",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_c2",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_c2",
+    "line": 119,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.coeff 2 = -36 / 25",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Q0_c3",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.Q0_c3",
+    "line": 120,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Q0.coeff 3 = 24 / 25",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph0",
+    "line": 122,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 0 = -1 / 3 + 1 / 3 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph_succ",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph_succ",
+    "line": 127,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "R : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "ph R (n + 1) = (-(-1) ^ (n + 1) * Real.exp (2 * R) - ((n : ℝ) + 1) * ph R n) / (-(2 * R))",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph1",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph1",
+    "line": 131,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 1 = -1 / 9 - 2 / 9 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph2",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph2",
+    "line": 134,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 2 = -2 / 27 + 5 / 27 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph3",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph3",
+    "line": 137,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 3 = -2 / 27 - 4 / 27 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph4",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph4",
+    "line": 140,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 4 = -8 / 81 + 11 / 81 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph5",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph5",
+    "line": 143,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 5 = -40 / 243 - 26 / 243 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ph6",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph6",
+    "line": 146,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ph (3 / 2) 6 = -80 / 243 + 29 / 243 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "SB_Q0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SB_Q0",
+    "line": 149,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "SB Q0 (3 / 2) = 1 + 1 / 2500 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "SA_Q0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SA_Q0",
+    "line": 156,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "SA Q0 (3 / 2) = -29197 / 33750 + 5657 / 67500 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "SC_Q0",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SC_Q0",
+    "line": 163,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "SC Q0 (3 / 2) = -26057 / 15000 + 6877 / 30000 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_c3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0_natDegree",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KflQ_eq",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ_eq",
+    "line": 171,
+    "why": "`K = r + c e³` at `P₀`, `Q₀`, `θ = 49/100`, `R = 3/2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2) = -43809258948013 / 28350000000000 + 82265943397751 / 396900000000000 * Real.exp 3",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Ar_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Br_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Cr_P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp_half_le",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.exp_half_le",
+    "line": 179,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.exp (1 / 2) ≤ 45381251 / 27525120",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp_half_ge",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.exp_half_ge",
+    "line": 185,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "354541 / 215040 ≤ Real.exp (1 / 2)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp_three_eq",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.exp_three_eq",
+    "line": 191,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.exp 3 = Real.exp (1 / 2) ^ 6",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_three_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp_y_ge",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.exp_y_ge",
+    "line": 195,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "∑ i ∈ Finset.range 12, (1203 / 1250 : ℝ) ^ i / i.factorial ≤ Real.exp (1203 / 1250)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_y_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KflQ_pos",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ_pos",
+    "line": 199,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 < KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_ge",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_three_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_ge",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_three_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KflQ_lt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ_lt",
+    "line": 209,
+    "why": "`K < e^(R(1 − κ₀))`, `R(1 − κ₀) = 1203/1250`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2) < Real.exp (1203 / 1250)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_le",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_three_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_y_ge",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_half_le",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_three_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.exp_y_ge",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_KflQ_lt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.log_KflQ_lt",
+    "line": 224,
+    "why": "`log K < R(1 − κ₀)` at `P₀`, `Q₀`, `θ = 49/100`, `R = 3/2`, `κ₀ = 224/625`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log (KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2)) < 3 / 2 * (1 - 224 / 625)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kappaQ_gt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.kappaQ_gt",
+    "line": 231,
+    "why": "`κ > κ₀ = 224/625 > 1/3`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "1 / 3 < (224 / 625 : ℝ) ∧ 224 / 625 < kappaQ (49 / 100) (3 / 2)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "floor_constQ",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.floor_constQ",
+    "line": 243,
+    "why": "B4 step 4: at `P₀`, `Q₀`, `θ = 49/100`, `R = 3/2`, `Re DopQ c (T) → K` with `log K < R(1 − κ₀)`, `κ₀ = 224/625 > 1/3`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Tendsto (fun T => (MeanQ.DopQ Q0 (Real.log T) (cY P0 (Mof T (49 / 100)) T) ((-((3 / 2) / Real.log T) : ℝ) : ℂ) ((-((3 / 2) / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2))) ∧ Real.log (KflQ Q0 (FloorConst.Ar P0) (FloorConst.Br P0) (FloorConst.Cr P0) (49 / 100) (3 / 2)) < 3 / 2 * (1 - 224 / 625) ∧ 1 / 3 < (224 / 625 : ℝ)",
+    "file": "lean_stage3/Stage3/FloorConstQ.lean",
+    "id": "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.P0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.Q0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+  "module": "Stage3.FloorConstQDeriv",
+  "stem": "FloorConstQDeriv",
+  "header": "# FloorConstQDeriv — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the iterated partials. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQCauchy"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Topology"
+  ],
+  "namespaces": [
+   "FloorConstQ"
+  ],
+  "lines": 275,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/MeanQCauchy.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "phi",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.phi",
+    "line": 40,
+    "why": "`φ(u) = (1 − e^(−u))/u`.",
+    "sorry": false,
+    "needs": [
+     "u : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ph",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.ph",
+    "line": 44,
+    "why": "`φ^(n)(−2R)` as a real recursion: `ph 0 = (1 − e^(2R))/(−2R)`, `ph (n+1) = (−(−1)^(n+1) e^(2R) − (n+1) ph n)/(−2R)`.",
+    "sorry": false,
+    "needs": [
+     "R : ℝ"
+    ],
+    "proves": "ℕ → ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph0",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph1",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph2",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph3",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph4",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph5",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph6",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.ph_succ",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_comp_mul",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_comp_mul",
+    "line": 51,
+    "why": "Scaling, with no smoothness hypothesis.",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "c : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "iteratedDeriv n (fun x => f (c * x)) = fun x => c ^ n * iteratedDeriv n f (c * x)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_comp_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_scale"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_iteratedDeriv'",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_iteratedDeriv'",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ",
+     "k l : ℕ"
+    ],
+    "proves": "iteratedDeriv l (iteratedDeriv k f) = iteratedDeriv (l + k) f",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_iteratedDeriv'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_id_mul",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_id_mul",
+    "line": 69,
+    "why": "Leibniz for `x·ψ(x)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "h : ContDiffAt ℂ n ψ x"
+    ],
+    "proves": "iteratedDeriv n (fun z => z * ψ z) x = x * iteratedDeriv n ψ x + n * iteratedDeriv (n - 1) ψ x",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inner_sum",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.inner_sum",
+    "line": 79,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h1 : AnalyticAt ℂ g1 (x0 + y)",
+     "h2 : AnalyticAt ℂ g2 (x0 + y)",
+     "k : ℕ"
+    ],
+    "proves": "iteratedDeriv k (fun x => g1 (x + y) + x * y * g2 (x + y)) x0 = iteratedDeriv k g1 (x0 + y) + y * (x0 * iteratedDeriv k g2 (x0 + y) + k * iteratedDeriv (k - 1) g2 (x0 + y))",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_iteratedDeriv",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.analyticAt_iteratedDeriv",
+    "line": 102,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : AnalyticAt ℂ g u",
+     "k : ℕ"
+    ],
+    "proves": "AnalyticAt ℂ (iteratedDeriv k g) u",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.analyticAt_iteratedDeriv",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "outer_lin",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.outer_lin",
+    "line": 107,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h2 : AnalyticAt ℂ g2 (x0 + y0)",
+     "k j : ℕ"
+    ],
+    "proves": "iteratedDeriv j (fun y => x0 * iteratedDeriv k g2 (x0 + y) + (k : ℂ) * iteratedDeriv (k - 1) g2 (x0 + y)) y0 = x0 * iteratedDeriv (j + k) g2 (x0 + y0) + k * iteratedDeriv (j + (k - 1)) g2 (x0 + y0)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.analyticAt_iteratedDeriv",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_iteratedDeriv'",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.analyticAt_iteratedDeriv",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_iteratedDeriv'",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_sum",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.pkl_sum",
+    "line": 129,
+    "why": "The partials of `g₁(x+y) + x y g₂(x+y)`, `g₁, g₂` analytic at `x₀ + y₀`.",
+    "sorry": false,
+    "needs": [
+     "h1 : AnalyticAt ℂ g1 (x0 + y0)",
+     "h2 : AnalyticAt ℂ g2 (x0 + y0)",
+     "k l : ℕ"
+    ],
+    "proves": "MeanQ.pkl (fun x y => g1 (x + y) + x * y * g2 (x + y)) k l x0 y0 = iteratedDeriv (l + k) g1 (x0 + y0) + (y0 * (x0 * iteratedDeriv (l + k) g2 (x0 + y0) + k * iteratedDeriv (l + (k - 1)) g2 (x0 + y0)) + l * (x0 * iteratedDeriv (l - 1 + k) g2 (x0 + y0) + k * iteratedDeriv (l - 1 + (k - 1)) g2 (x0 + y0)))",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.analyticAt_iteratedDeriv",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_iteratedDeriv'",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.analyticAt_iteratedDeriv",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_iteratedDeriv'",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_scale",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.pkl_scale",
+    "line": 168,
+    "why": "Scaling of `pkl`: if `f(x,y) = g(cx, cy)` near `(α₀, β₀)`, the partials scale by `c^(k+l)`.",
+    "sorry": false,
+    "needs": [
+     "h : ∀ᶠ y in 𝓝 β0, ∀ᶠ x in 𝓝 α0, f x y = g (c * x) (c * y)",
+     "k l : ℕ"
+    ],
+    "proves": "MeanQ.pkl f k l α0 β0 = c ^ k * c ^ l * MeanQ.pkl g k l (c * α0) (c * β0)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_scale",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_comp_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_comp_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_analyticAt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.phi_analyticAt",
+    "line": 188,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hu : u ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ phi u",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_analyticAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_exp_neg",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_exp_neg",
+    "line": 192,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "u : ℂ"
+    ],
+    "proves": "iteratedDeriv n (fun z => cexp (-z)) u = (-1) ^ n * cexp (-u)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_exp_neg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_add_exp",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_sub_exp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_one_sub_exp",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_one_sub_exp",
+    "line": 201,
+    "why": "`(1 − e^(−u))^(n) = [n = 0] − (−1)^n e^(−u)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "u : ℂ"
+    ],
+    "proves": "iteratedDeriv n (fun z => 1 - cexp (-z)) u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_sub_exp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_exp_neg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_exp_neg"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_one_add_exp",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.iteratedDeriv_one_add_exp",
+    "line": 211,
+    "why": "`(1 + e^(−u))^(n) = [n = 0] + (−1)^n e^(−u)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "u : ℂ"
+    ],
+    "proves": "iteratedDeriv n (fun z => 1 + cexp (-z)) u = (if n = 0 then 1 else 0) + (-1) ^ n * cexp (-u)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_add_exp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_exp_neg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_exp_neg"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_rec",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.phi_rec",
+    "line": 221,
+    "why": "The recursion: `u φ^(n)(u) + n φ^(n−1)(u) = [n = 0] − (−1)^n e^(−u)`, `u ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hu : u ≠ 0",
+     "n : ℕ"
+    ],
+    "proves": "u * iteratedDeriv n phi u + n * iteratedDeriv (n - 1) phi u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_sub_exp",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_id_mul",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_sub_exp",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "phi_iter_real",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.phi_iter_real",
+    "line": 232,
+    "why": "`φ^(n)(−2R) = ph R n`, `R ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hR : R ≠ 0",
+     "n : ℕ"
+    ],
+    "proves": "iteratedDeriv n phi ((-(2 * R) : ℝ) : ℂ) = ((ph R n : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/FloorConstQDeriv.lean",
+    "id": "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_rec"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorConstQLimit.lean",
+  "module": "Stage3.FloorConstQLimit",
+  "stem": "FloorConstQLimit",
+  "header": "# FloorConstQLimit — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the identity and the limit. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorConstQDeriv",
+   "Stage3.FloorConstLimit"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorConstQ"
+  ],
+  "lines": 297,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorConstLimit.lean",
+   "lean_stage3/Stage3/FloorConstQDeriv.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "g1",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g1",
+    "line": 44,
+    "why": "`g₁(u) = B(1 + e^(−u)) + A θ⁻¹ φ(u)`.",
+    "sorry": false,
+    "needs": [
+     "A B θ : ℂ",
+     "u : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "g2",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g2",
+    "line": 47,
+    "why": "`g₂(u) = θ C φ(u)`.",
+    "sorry": false,
+    "needs": [
+     "C θ : ℂ",
+     "u : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.inner_sum",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.outer_lin",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "FF",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.FF",
+    "line": 50,
+    "why": "`F(a,b) = g₁(a+b) + a b g₂(a+b)`, Young's `c` in the variables `a = Lα`, `b = Lβ`.",
+    "sorry": false,
+    "needs": [
+     "A B C θ : ℂ",
+     "a b : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gB",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.gB",
+    "line": 53,
+    "why": "`gB n = [n = 0] + (−1)^n e^(2R)`, the partials of `1 + E` at `(−R, −R)`.",
+    "sorry": false,
+    "needs": [
+     "R : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "XF",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.XF",
+    "line": 56,
+    "why": "`∂b^l ∂a^k F` at `(−R, −R)`.",
+    "sorry": false,
+    "needs": [
+     "A B C θ R : ℝ",
+     "k l : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "KflQ",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ",
+    "line": 63,
+    "why": "Levinson–Conrey's constant for a general `Q`: `Q(−∂a)Q(−∂b)F` at `a = b = −R`, `Σ_{k,l ≤ deg Q} q_k q_l (−1)^(k+l) ∂b^l ∂a^k F(−R,−R)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "A B C θ R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_pos",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.kappaQ_gt",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.log_KflQ_lt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "SB",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SB",
+    "line": 68,
+    "why": "The `θ`-free parts: `SB`, `SA`, `SC`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SB_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "SA",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SA",
+    "line": 72,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SA_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "SC",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.SC",
+    "line": 76,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "R : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.SC_Q0",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cY_eq_FF",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.cY_eq_FF",
+    "line": 85,
+    "why": "`c` in the variables `a = Lx`, `b = Ly`, off `x + y = 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "hT : 1 < T",
+     "hℓ : Real.log M ≠ 0",
+     "h : x + y ≠ 0"
+    ],
+    "proves": "cY P M T x y = FF (Aq P) (Bq P) (Cq P) ((Real.log M / Real.log T : ℝ) : ℂ) ((Real.log T : ℝ) * x) ((Real.log T : ℝ) * y)",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.EF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.HF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.gF",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.EF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.HF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
+     "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.gF",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "g1_analyticAt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g1_analyticAt",
+    "line": 108,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "A B θ : ℂ",
+     "hu : u ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ (g1 A B θ) u",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_analyticAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "g2_analyticAt",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g2_analyticAt",
+    "line": 113,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "C θ : ℂ",
+     "hu : u ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ (g2 C θ) u",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_analyticAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "g1_iter",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g1_iter",
+    "line": 118,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "A B θ : ℝ",
+     "hR : R ≠ 0",
+     "n : ℕ"
+    ],
+    "proves": "iteratedDeriv n (g1 A B θ) ((-(2 * R) : ℝ) : ℂ) = ((B * gB R n + A / θ * ph R n : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_add_exp",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.iteratedDeriv_one_add_exp",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_analyticAt",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "g2_iter",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.g2_iter",
+    "line": 143,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "C θ : ℝ",
+     "hR : R ≠ 0",
+     "n : ℕ"
+    ],
+    "proves": "iteratedDeriv n (g2 C θ) ((-(2 * R) : ℝ) : ℂ) = ((θ * C * ph R n : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.phi_iter_real",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_FF",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.pkl_FF",
+    "line": 153,
+    "why": "The partials of `F` at `(−R, −R)`.",
+    "sorry": false,
+    "needs": [
+     "A B C θ : ℝ",
+     "hR : R ≠ 0",
+     "k l : ℕ"
+    ],
+    "proves": "MeanQ.pkl (FF A B C θ) k l ((-R : ℝ) : ℂ) ((-R : ℝ) : ℂ) = ((XF A B C θ R k l : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g1_iter",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_analyticAt",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.g2_iter",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "neg_inv_pow_mul",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.neg_inv_pow_mul",
+    "line": 172,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hL : L ≠ 0",
+     "k : ℕ"
+    ],
+    "proves": "(-1 / L) ^ k * L ^ k = (-1) ^ k",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.neg_inv_pow_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dopQ_cY_eq",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.dopQ_cY_eq",
+    "line": 179,
+    "why": "`DopQ(c)` in closed form: `DopQ Q L c (−R/L, −R/L) = KflQ Q A B C θ' R`, `θ' = log M / log T`, exactly, for `T > 1`, `log M ≠ 0`, `R ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "P : Polynomial ℝ",
+     "hT : 1 < T",
+     "hℓ : Real.log M ≠ 0",
+     "hR : R ≠ 0"
+    ],
+    "proves": "MeanQ.DopQ Q (Real.log T) (cY P M T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ) = ((KflQ Q (FloorConst.Ar P) (FloorConst.Br P) (FloorConst.Cr P) (Real.log M / Real.log T) R : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Aq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Bq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_scale",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.neg_inv_pow_mul",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Aq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Bq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cq_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_scale",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.neg_inv_pow_mul",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KflQ_lin",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ_lin",
+    "line": 230,
+    "why": "`KflQ` is affine in `B`, `A/θ`, `θC`, with `θ`-free coefficients.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "A B C θ R : ℝ"
+    ],
+    "proves": "KflQ Q A B C θ R = B * SB Q R + A / θ * SA Q R + θ * C * SC Q R",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SA",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SB",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.SC",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.KflQ_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_KflQ",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.tendsto_KflQ",
+    "line": 239,
+    "why": "`KflQ` is continuous in `θ ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "A B C R : ℝ",
+     "hθ : θ ≠ 0",
+     "h : Tendsto f l (𝓝 θ)"
+    ],
+    "proves": "Tendsto (fun t => KflQ Q A B C (f t) R) l (𝓝 (KflQ Q A B C θ R))",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_lin"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_dopQ_tendsto",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.re_dopQ_tendsto",
+    "line": 248,
+    "why": "The limit for a general `Q`: `Re DopQ c (−R/L, −R/L) → KflQ Q A B C θ R` as `T → ∞`, `M = ⌊T^θ⌋`, for `θ > 0`, `R ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "P : Polynomial ℝ",
+     "hθ : 0 < θ",
+     "hR : R ≠ 0"
+    ],
+    "proves": "Tendsto (fun T => (MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (KflQ Q (FloorConst.Ar P) (FloorConst.Br P) (FloorConst.Cr P) θ R))",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.theta_tendsto",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Ar",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Br",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cr",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.theta_tendsto",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.tendsto_KflQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KflQ_one_sub",
+    "ns": "FloorConstQ",
+    "full": "FloorConstQ.KflQ_one_sub",
+    "line": 266,
+    "why": "The check at Levinson's `Q = 1 − X`: `KflQ = FloorConst.Kfl`.",
+    "sorry": false,
+    "needs": [
+     "A B C θ R : ℝ",
+     "hθ : θ ≠ 0",
+     "hR : R ≠ 0"
+    ],
+    "proves": "KflQ (1 - X) A B C θ R = FloorConst.Kfl A B C θ R",
+    "file": "lean_stage3/Stage3/FloorConstQLimit.lean",
+    "id": "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ_one_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.ph",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.KflQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.XF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.gB"
+    ],
+    "layer": "shape",
+    "used_by": []
    }
   ]
  },
@@ -79362,6 +81910,9 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_scale",
+     "lean_stage3/Stage3/FloorConstQDeriv.lean::FloorConstQ.pkl_sum",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.pkl_FF",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
@@ -79392,6 +81943,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
      "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.norm_qc",
@@ -79427,6 +81979,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/GrRatio.lean::GrRatio.window_V_lt_half'",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
      "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
@@ -85463,6 +88018,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Aq_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
@@ -85495,6 +88052,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Bq_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
@@ -85527,6 +88086,8 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cq_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
      "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
@@ -119499,6 +122060,8 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.theta_tendsto",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.StmtDiagErr",
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.diagO_of_err",
@@ -119797,6 +122360,10 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
+     "lean_stage3/Stage3/FloorConstQ.lean::FloorConstQ.floor_constQ",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.cY_eq_FF",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.dopQ_cY_eq",
+     "lean_stage3/Stage3/FloorConstQLimit.lean::FloorConstQ.re_dopQ_tendsto",
      "lean_stage3/Stage3/FloorLong.lean::FloorLong.floor_of_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long",
@@ -143757,11 +146324,12 @@
    "Stage3.ConreyCount",
    "Stage3.DigammaBound",
    "Stage3.MeanQ",
-   "Stage3.GrRatio"
+   "Stage3.GrRatio",
+   "Stage3.FloorConstQ"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 254,
+  "lines": 255,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -143820,6 +146388,7 @@
    "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/FixedRowTwo.lean",
    "lean_stage3/Stage3/FloorConst.lean",
+   "lean_stage3/Stage3/FloorConstQ.lean",
    "lean_stage3/Stage3/FloorLong.lean",
    "lean_stage3/Stage3/FloorStep.lean",
    "lean_stage3/Stage3/FloorSum.lean",

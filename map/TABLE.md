@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>432 theorems counting,<br/>in 82 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>461 theorems counting,<br/>in 85 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1513 theorems shape,<br/>in 194 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1544 theorems shape,<br/>in 197 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -94,8 +94,8 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 536 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1764 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Counting** (green), 565 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1795 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 1010 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
@@ -103,7 +103,7 @@ A file sits in the highest layer any of its theorems reaches; its box says how m
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 432 | 1513 | 989 |
+| `lean_stage3/` | 461 | 1544 | 989 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -610,6 +610,50 @@ FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The fi
 - [`FloorConst.Ar_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Ar_X) — `` Ar Polynomial.X = 1 ``
 - [`FloorConst.Br_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Br_X) — `` Br Polynomial.X = 1 / 2 ``
 - [`FloorConst.Cr_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Cr_X) — `` Cr Polynomial.X = 1 / 3 ``
+
+### [`FloorConstQ`](./lean_stage3/FloorConstQ.md) — 13
+
+# FloorConstQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the limit and its value at a cubic Q. 2026-11-25.
+
+- [`FloorConstQ.P0_zero`](./lean_stage3/FloorConstQ.md#FloorConstQ-P0_zero) — `` P0.eval 0 = 0 ``
+- [`FloorConstQ.P0_one`](./lean_stage3/FloorConstQ.md#FloorConstQ-P0_one) — `` P0.eval 1 = 1 ``
+- [`FloorConstQ.Q0_zero`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_zero) — `` Q0.eval 0 = 1 ``
+- [`FloorConstQ.Q0_deriv_symm`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_deriv_symm) — `` Q0.derivative.eval x = Q0.derivative.eval (1 - x) ``
+- [`FloorConstQ.integral_poly`](./lean_stage3/FloorConstQ.md#FloorConstQ-integral_poly) — `` ∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0 ``
+- [`FloorConstQ.Ar_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Ar_P0) — `` FloorConst.Ar P0 = 152147 / 150000 ``
+- [`FloorConstQ.Br_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Br_P0) — `` FloorConst.Br P0 = 1 / 2 ``
+- [`FloorConstQ.Cr_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Cr_P0) — `` FloorConst.Cr P0 = 89707 / 300000 ``
+- [`FloorConstQ.Q0_natDegree`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_natDegree) — `` Q0.natDegree = 3 ``
+- [`FloorConstQ.Q0_c0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c0) — `` Q0.coeff 0 = 1 ``
+- [`FloorConstQ.Q0_c1`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c1) — `` Q0.coeff 1 = -27 / 50 ``
+- [`FloorConstQ.Q0_c2`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c2) — `` Q0.coeff 2 = -36 / 25 ``
+- [`FloorConstQ.Q0_c3`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c3) — `` Q0.coeff 3 = 24 / 25 ``
+
+### [`FloorConstQDeriv`](./lean_stage3/FloorConstQDeriv.md) — 13
+
+# FloorConstQDeriv — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the iterated partials. 2026-11-25.
+
+- [`FloorConstQ.iteratedDeriv_comp_mul`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_comp_mul) — `` iteratedDeriv n (fun x => f (c * x)) = fun x => c ^ n * iteratedDeriv n f (c * x) `` Scaling, with no smoothness hypothesis.
+- [`FloorConstQ.iteratedDeriv_iteratedDeriv'`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_iteratedDeriv-) — `` iteratedDeriv l (iteratedDeriv k f) = iteratedDeriv (l + k) f ``
+- [`FloorConstQ.iteratedDeriv_id_mul`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_id_mul) — `` iteratedDeriv n (fun z => z * ψ z) x = x * iteratedDeriv n ψ x + n * iteratedDeriv (n - 1) ψ x `` Leibniz for `x·ψ(x)`.
+- [`FloorConstQ.inner_sum`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-inner_sum) — `` iteratedDeriv k (fun x => g1 (x + y) + x * y * g2 (x + y)) x0 = iteratedDeriv k g1 (x0 + y) + y * (x0 * iteratedDeriv k g2 (x0 + y) + k * iteratedDeri… ``
+- [`FloorConstQ.analyticAt_iteratedDeriv`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-analyticAt_iteratedDeriv) — `` AnalyticAt ℂ (iteratedDeriv k g) u ``
+- [`FloorConstQ.outer_lin`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-outer_lin) — `` iteratedDeriv j (fun y => x0 * iteratedDeriv k g2 (x0 + y) + (k : ℂ) * iteratedDeriv (k - 1) g2 (x0 + y)) y0 = x0 * iteratedDeriv (j + k) g2 (x0 + y0)… ``
+- [`FloorConstQ.pkl_sum`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_sum) — `` MeanQ.pkl (fun x y => g1 (x + y) + x * y * g2 (x + y)) k l x0 y0 = iteratedDeriv (l + k) g1 (x0 + y0) + (y0 * (x0 * iteratedDeriv (l + k) g2 (x0 + y0)… `` The partials of `g₁(x+y) + x y g₂(x+y)`, `g₁, g₂` analytic at `x₀ + y₀`.
+- [`FloorConstQ.pkl_scale`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_scale) — `` MeanQ.pkl f k l α0 β0 = c ^ k * c ^ l * MeanQ.pkl g k l (c * α0) (c * β0) `` Scaling of `pkl`: if `f(x,y) = g(cx, cy)` near `(α₀, β₀)`, the partials scale by `c^(k+l)`.
+- [`FloorConstQ.phi_analyticAt`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-phi_analyticAt) — `` AnalyticAt ℂ phi u ``
+- [`FloorConstQ.iteratedDeriv_exp_neg`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_exp_neg) — `` iteratedDeriv n (fun z => cexp (-z)) u = (-1) ^ n * cexp (-u) ``
+- [`FloorConstQ.iteratedDeriv_one_sub_exp`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_one_sub_exp) — `` iteratedDeriv n (fun z => 1 - cexp (-z)) u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u) `` `(1 − e^(−u))^(n) = [n = 0] − (−1)^n e^(−u)`.
+- [`FloorConstQ.iteratedDeriv_one_add_exp`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_one_add_exp) — `` iteratedDeriv n (fun z => 1 + cexp (-z)) u = (if n = 0 then 1 else 0) + (-1) ^ n * cexp (-u) `` `(1 + e^(−u))^(n) = [n = 0] + (−1)^n e^(−u)`.
+- [`FloorConstQ.phi_rec`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-phi_rec) — `` u * iteratedDeriv n phi u + n * iteratedDeriv (n - 1) phi u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u) `` The recursion: `u φ^(n)(u) + n φ^(n−1)(u) = [n = 0] − (−1)^n e^(−u)`, `u ≠ 0`.
+
+### [`FloorConstQLimit`](./lean_stage3/FloorConstQLimit.md) — 3
+
+# FloorConstQLimit — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the identity and the limit. 2026-11-25.
+
+- [`FloorConstQ.g1_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g1_analyticAt) — `` AnalyticAt ℂ (g1 A B θ) u ``
+- [`FloorConstQ.g2_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g2_analyticAt) — `` AnalyticAt ℂ (g2 C θ) u ``
+- [`FloorConstQ.neg_inv_pow_mul`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-neg_inv_pow_mul) — `` (-1 / L) ^ k * L ^ k = (-1) ^ k ``
 
 ### [`FloorStepCont`](./lean_stage3/FloorStepCont.md) — 1
 
