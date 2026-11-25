@@ -1,0 +1,32 @@
+flowchart LR
+  n0["<b>prod_le_G</b><br/>∏ p ∈ b.primeFactors, y p ≤ G b"]:::cnt
+  n1["<b>hA_hasSum</b><br/>HasSum (fun k =＞ hA (p ^ k) / ((p ^ k : ℕ) : ℝ)) (1 + xg p / p)"]:::cnt
+  n2["<b>sum_hA_le</b><br/>∑ a ∈ Icc 1 N, hA a / a ≤ CM"]:::shp
+  n3["<b>mean_G</b><br/>∑ b ∈ (Icc 1 N).filter (fun b =＞ N ＜ b * K), G b / b ≤ CM * (1 +…"]:::shp
+  n4["<b>log_succ_le</b><br/>1 + Real.log ((M : ℝ) + 1) ≤ 2 * (1 + Real.log M)"]:::shp
+  n5["<b>filter_all</b><br/>(Icc 1 M).filter (fun b =＞ M ＜ b * (M + 1)) = Icc 1 M"]:::cnt
+  n6["<b>mean_G_all</b><br/>∑ b ∈ Icc 1 M, G b / b ≤ 2 * CM * (1 + Real.log M)"]:::shp
+  x0(["<b>diagram 1</b><br/>12 theorems"]):::ext
+  x1(["<b>Arith</b><br/>4 theorems"]):::ext
+  x2(["<b>ArithTail</b><br/>inner_le<br/>sig2_le_G<br/>tailFixed"]):::ext
+  n1 --> n2
+  n2 --> n3
+  n3 --> n6
+  n4 --> n6
+  n5 --> n6
+  n0 -.-> x1
+  n0 -.-> x2
+  n3 -.-> x2
+  n4 -.-> x2
+  n6 -.-> x1
+  x0 -.-> n0
+  x0 -.-> n2
+  x0 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>327 theorems counting,<br/>in 58 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>364 theorems counting,<br/>in 61 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1355 theorems shape,<br/>in 162 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1402 theorems shape,<br/>in 165 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>871 theorems reads ζ,<br/>in 142 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>873 theorems reads ζ,<br/>in 144 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 431 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1606 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 892 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 468 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1653 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 894 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 327 | 1355 | 871 |
+| `lean_stage3/` | 364 | 1402 | 873 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -359,6 +359,58 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 - [`ApproxShift.FL_differentiableAt`](./lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt) — `` DifferentiableAt ℂ (FL α β t) s ``
 - [`ApproxShift.ne_of_re_ne`](./lean_stage3/ApproxShift.md#ApproxShift-ne_of_re_ne) — `` z ≠ w `` `z ≠ w` from their real parts.
 - [`ApproxShift.rect_tendsto`](./lean_stage3/ApproxShift.md#ApproxShift-rect_tendsto) — `` Tendsto (fun T : ℝ => RectangleIntegral f (↑(-c) - I * T) (↑c + I * T)) atTop (𝓝 (VerticalIntegral f c - VerticalIntegral f (-c))) `` PNT+'s `RectangleIntegral_tendsTo_VerticalIntegral` (in `PerronFormula`, not built at the pin), re-proved here for `[−c, c]`.
+
+### [`Arith`](./lean_stage3/Arith.md) — 6
+
+# Stage3.Arith — S12 (`design/stencil.md` § S12), `SdiagLead.StmtArith` proved, and `StmtDiagMainO`. 2026-11-25.
+
+- [`Arith.rsAF_apply`](./lean_stage3/Arith.md#Arith-rsAF_apply) — `` rsAF a = 1 / √(a : ℝ) ``
+- [`Arith.f_ne`](./lean_stage3/Arith.md#Arith-f_ne) — `` Squarefree k ∧ m ≠ 0 ∧ m.primeFactors ⊆ k.primeFactors ``
+- [`Arith.f_val`](./lean_stage3/Arith.md#Arith-f_val) — `` ((μ k : ℤ) : ℝ) ^ 2 / k * (((chiAF k m : ℤ) : ℝ) / m) = 1 / ((k * m : ℕ) : ℝ) ``
+- [`Arith.rad_mul_of`](./lean_stage3/Arith.md#Arith-rad_mul_of) — `` rad' (k * m) = k ``
+- [`Arith.sum_sdm_eq`](./lean_stage3/Arith.md#Arith-sum_sdm_eq) — `` ∑ k ∈ Icc 1 M, ((μ k : ℤ) : ℝ) ^ 2 / k * Sdm k (M / k) = ∑ n ∈ Icc 1 M, (1 : ℝ) / n `` The bijection `n ↦ (rad n, n/rad n)`: `Σ_{k ≤ M} (μ²(k)/k) S_k(M/k) = Σ_{n ≤ M} 1/n`.
+- [`Arith.gmu_eq`](./lean_stage3/Arith.md#Arith-gmu_eq) — `` gmu k = ((μ k : ℤ) : ℝ) ^ 2 / k * Sdm k X + ((μ k : ℤ) : ℝ) ^ 2 / k * Tl k X ``
+
+### [`ArithBase`](./lean_stage3/ArithBase.md) — 18
+
+# Stage3.ArithBase — S12 (`design/stencil.md` § S12), the arithmetic tools for `StmtArith`. 2026-11-25.
+
+- [`Arith.sig_eq_prod`](./lean_stage3/ArithBase.md#Arith-sig_eq_prod) — `` sig d = ∏ p ∈ d.primeFactors, sp p ``
+- [`Arith.sig_mul`](./lean_stage3/ArithBase.md#Arith-sig_mul) — `` sig (m * n) = sig m * sig n ``
+- [`Arith.sp_eq`](./lean_stage3/ArithBase.md#Arith-sp_eq) — `` sp p = (p : ℝ) / ((p : ℝ) - 1) ``
+- [`Arith.sp_bounds`](./lean_stage3/ArithBase.md#Arith-sp_bounds) — `` 1 ≤ sp p ∧ sp p ≤ 2 ∧ sp p - 1 ≤ 2 / p ``
+- [`Arith.sig_ge_one`](./lean_stage3/ArithBase.md#Arith-sig_ge_one) — `` 1 ≤ sig d ``
+- [`Arith.sig_nonneg`](./lean_stage3/ArithBase.md#Arith-sig_nonneg) — `` 0 ≤ sig d ``
+- [`Arith.sig_pf`](./lean_stage3/ArithBase.md#Arith-sig_pf) — `` sig m = sig n ``
+- [`Arith.musq_of_sq`](./lean_stage3/ArithBase.md#Arith-musq_of_sq) — `` ((μ a : ℤ) : ℝ) ^ 2 = 1 ``
+- [`Arith.musq_of_not`](./lean_stage3/ArithBase.md#Arith-musq_of_not) — `` ((μ a : ℤ) : ℝ) ^ 2 = 0 ``
+- [`Arith.musq_mul`](./lean_stage3/ArithBase.md#Arith-musq_mul) — `` ((μ (m * n) : ℤ) : ℝ) ^ 2 = ((μ m : ℤ) : ℝ) ^ 2 * ((μ n : ℤ) : ℝ) ^ 2 ``
+- [`Arith.musq_nonneg`](./lean_stage3/ArithBase.md#Arith-musq_nonneg) — `` 0 ≤ ((μ a : ℤ) : ℝ) ^ 2 ``
+- [`Arith.prod_pf_mul`](./lean_stage3/ArithBase.md#Arith-prod_pf_mul) — `` ∏ p ∈ (m * n).primeFactors, x p = (∏ p ∈ m.primeFactors, x p) * ∏ p ∈ n.primeFactors, x p ``
+- [`Arith.zs_nonneg`](./lean_stage3/ArithBase.md#Arith-zs_nonneg) — `` 0 ≤ zs ``
+- [`Arith.sum_primes_le_zs`](./lean_stage3/ArithBase.md#Arith-sum_primes_le_zs) — `` ∑ p ∈ N.primesBelow, e p ≤ c * zs ``
+- [`Arith.G_eq_sum`](./lean_stage3/ArithBase.md#Arith-G_eq_sum) — `` G b = ∑ a ∈ b.divisors, hA a ``
+- [`Arith.prod_le_G`](./lean_stage3/ArithBase.md#Arith-prod_le_G) — `` ∏ p ∈ b.primeFactors, y p ≤ G b `` A product over the primes of a squarefree `b` with factors `≤ 1 + x(p)` is `≤ G(b)`.
+- [`Arith.hA_hasSum`](./lean_stage3/ArithBase.md#Arith-hA_hasSum) — `` HasSum (fun k => hA (p ^ k) / ((p ^ k : ℕ) : ℝ)) (1 + xg p / p) ``
+- [`Arith.filter_all`](./lean_stage3/ArithBase.md#Arith-filter_all) — `` (Icc 1 M).filter (fun b => M < b * (M + 1)) = Icc 1 M ``
+
+### [`ArithTail`](./lean_stage3/ArithTail.md) — 13
+
+# Stage3.ArithTail — S12 (`design/stencil.md` § S12), the two tails `StmtTailFixed`, `StmtTailAvg`. 2026-11-25.
+
+- [`Arith.rad_pos`](./lean_stage3/ArithTail.md#Arith-rad_pos) — `` 0 < rad' m ``
+- [`Arith.rad_pf`](./lean_stage3/ArithTail.md#Arith-rad_pf) — `` (rad' m).primeFactors = m.primeFactors ``
+- [`Arith.rad_mul`](./lean_stage3/ArithTail.md#Arith-rad_mul) — `` rad' (m * n) = rad' m * rad' n ``
+- [`Arith.rad_prime_pow`](./lean_stage3/ArithTail.md#Arith-rad_prime_pow) — `` rad' (p ^ k) = p ``
+- [`Arith.rad_dvd`](./lean_stage3/ArithTail.md#Arith-rad_dvd) — `` rad' m ∣ m ``
+- [`Arith.rad_squarefree`](./lean_stage3/ArithTail.md#Arith-rad_squarefree) — `` Squarefree (rad' n) ``
+- [`Arith.sig_prime_pow`](./lean_stage3/ArithTail.md#Arith-sig_prime_pow) — `` sig (p ^ k) = sp p ``
+- [`Arith.sp_nonneg`](./lean_stage3/ArithTail.md#Arith-sp_nonneg) — `` 0 ≤ sp p ``
+- [`Arith.fV_nonneg`](./lean_stage3/ArithTail.md#Arith-fV_nonneg) — `` 0 ≤ fV m ``
+- [`Arith.fV_one`](./lean_stage3/ArithTail.md#Arith-fV_one) — `` fV 1 = 1 ``
+- [`Arith.tailF_le`](./lean_stage3/ArithTail.md#Arith-tailF_le) — `` tailF d X m ≤ (if P ∧ m.primeFactors ⊆ d.primeFactors then (1 : ℝ) else 0) / m ``
+- [`Arith.tailF_zero`](./lean_stage3/ArithTail.md#Arith-tailF_zero) — `` tailF d X 0 = 0 ``
+- [`Arith.w_nonneg`](./lean_stage3/ArithTail.md#Arith-w_nonneg) — `` 0 ≤ ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 / d `` The weight `μ²σ²/d` is nonnegative.
 
 ### [`BandJoin`](./lean_stage3/BandJoin.md) — 2
 

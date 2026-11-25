@@ -64,7 +64,7 @@ def · line 140
 
 - **Is:** `` StmtLemma3resO (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ α β : ℂ, Regime κ T α β → ‖Imom W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β - cY P (Mof T θ) T α β * (what0 W.toWeight : ℂ)‖ ≤ ε * errO W.toWeight + ‖Ires W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ``
 - **Built from:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom), [`TwistedMoment.Ires`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
-- **Used by 2:** [`DiagonalO.lemma3_resO_of_mainO_X`](#DiagonalO-lemma3_resO_of_mainO_X), [`DiagonalO.lemma3_resO_of_parts`](#DiagonalO-lemma3_resO_of_parts)
+- **Used by 3:** [`DiagonalO.lemma3_resO_of_mainO_X`](#DiagonalO-lemma3_resO_of_mainO_X), [`DiagonalO.lemma3_resO_of_parts`](#DiagonalO-lemma3_resO_of_parts), [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds)
 
 ## Theorems
 

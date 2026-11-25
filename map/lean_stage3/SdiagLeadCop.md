@@ -23,9 +23,12 @@ flowchart LR
   n7["<b>copAF_eq</b><br/>copAF d = chiAF d * μ"]:::cnt
   n8["<b>sum_conv_weight</b><br/>∑ n ∈ Ioc 0 N, (((f * g) n : ℤ) : ℂ) * w n = ∑ m ∈ Ioc 0 N, ((f …"]:::cnt
   n9["<b>Ad_eq</b><br/>Ad P M d γ = ((μ d : ℤ) : ℂ) * ∑ m ∈ Ioc 0 (M / d), ((chiAF d m …"]:::shp
-  x0(["<b>SdiagLeadAd</b><br/>AA_eq<br/>chi_cases<br/>sum_div_le_Sdm"]):::ext
-  x1(["<b>SdiagLeadSwap</b><br/>sum_dvd_reindex"]):::ext
-  x2(["<b>Diagonal</b><br/>ncpow_mul"]):::ext
+  x0(["<b>Arith</b><br/>f_ne<br/>f_val"]):::ext
+  x1(["<b>ArithBase</b><br/>hasSum_chi"]):::ext
+  x2(["<b>ArithTail</b><br/>tailF_le"]):::ext
+  x3(["<b>SdiagLeadAd</b><br/>AA_eq<br/>chi_cases<br/>sum_div_le_Sdm"]):::ext
+  x4(["<b>SdiagLeadSwap</b><br/>sum_dvd_reindex"]):::ext
+  x5(["<b>Diagonal</b><br/>ncpow_mul"]):::ext
   n0 --> n2
   n0 --> n5
   n0 --> n7
@@ -40,9 +43,12 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n0 -.-> x0
-  n9 -.-> x0
-  x1 -.-> n8
-  x2 -.-> n9
+  n0 -.-> x1
+  n0 -.-> x2
+  n0 -.-> x3
+  n9 -.-> x3
+  x4 -.-> n8
+  x5 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -65,7 +71,7 @@ def · line 34
 `1_{⟨d⟩}(m)`: `m ≠ 0` and every prime of `m` divides `d`.
 
 - **Is:** `` chiAF (d : ℕ) : ArithmeticFunction ℤ := ⟨fun m => if m ≠ 0 ∧ m.primeFactors ⊆ d.primeFactors then 1 else 0, by simp⟩ ``
-- **Used by 16:** [`SdiagLead.Sdm`](../lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm), [`SdiagLead.ad`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad), [`SdiagLead.ad_bound`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad_bound), [`SdiagLead.ad_err`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad_err), [`SdiagLead.chi_cases`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_cases), [`SdiagLead.chi_le_one`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_le_one), [`SdiagLead.chi_nonneg`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_nonneg), [`SdiagLead.chi_term_nonneg`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_term_nonneg), [`SdiagLead.norm_chi_mul`](../lean_stage3/SdiagLeadAd.md#SdiagLead-norm_chi_mul), [`SdiagLead.sum_above_le`](../lean_stage3/SdiagLeadAd.md#SdiagLead-sum_above_le), [`SdiagLead.sum_div_le_Sdm`](../lean_stage3/SdiagLeadAd.md#SdiagLead-sum_div_le_Sdm), [`SdiagLead.Ad_eq`](#SdiagLead-Ad_eq), [`SdiagLead.chiAF_apply`](#SdiagLead-chiAF_apply), [`SdiagLead.chiAF_mult`](#SdiagLead-chiAF_mult), [`SdiagLead.chiAF_prime_pow`](#SdiagLead-chiAF_prime_pow), [`SdiagLead.copAF_eq`](#SdiagLead-copAF_eq)
+- **Used by 21:** [`Arith.f_ne`](../lean_stage3/Arith.md#Arith-f_ne), [`Arith.f_val`](../lean_stage3/Arith.md#Arith-f_val), [`Arith.hasSum_chi`](../lean_stage3/ArithBase.md#Arith-hasSum_chi), [`Arith.hasSum_tail`](../lean_stage3/ArithTail.md#Arith-hasSum_tail), [`Arith.tailF`](../lean_stage3/ArithTail.md#Arith-tailF), [`SdiagLead.Sdm`](../lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm), [`SdiagLead.ad`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad), [`SdiagLead.ad_bound`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad_bound), [`SdiagLead.ad_err`](../lean_stage3/SdiagLeadAd.md#SdiagLead-ad_err), [`SdiagLead.chi_cases`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_cases), [`SdiagLead.chi_le_one`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_le_one), [`SdiagLead.chi_nonneg`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_nonneg), [`SdiagLead.chi_term_nonneg`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_term_nonneg), [`SdiagLead.norm_chi_mul`](../lean_stage3/SdiagLeadAd.md#SdiagLead-norm_chi_mul), [`SdiagLead.sum_above_le`](../lean_stage3/SdiagLeadAd.md#SdiagLead-sum_above_le), [`SdiagLead.sum_div_le_Sdm`](../lean_stage3/SdiagLeadAd.md#SdiagLead-sum_div_le_Sdm), [`SdiagLead.Ad_eq`](#SdiagLead-Ad_eq), [`SdiagLead.chiAF_apply`](#SdiagLead-chiAF_apply), [`SdiagLead.chiAF_mult`](#SdiagLead-chiAF_mult), [`SdiagLead.chiAF_prime_pow`](#SdiagLead-chiAF_prime_pow), [`SdiagLead.copAF_eq`](#SdiagLead-copAF_eq)
 
 <a name="SdiagLead-copAF"></a>
 ### `SdiagLead.copAF`
@@ -100,8 +106,12 @@ chiAF d m = if m ≠ 0 ∧ m.primeFactors ⊆ d.primeFactors then 1 else 0
 
 **Definitions its proof touches:** [`SdiagLead.chiAF`](#SdiagLead-chiAF)
 
-**Feeds** (5 that use it)
+**Feeds** (9 that use it)
 
+  - [`Arith.f_ne`](../lean_stage3/Arith.md#Arith-f_ne) (Arith) — `` Squarefree k ∧ m ≠ 0 ∧ m.primeFactors ⊆ k.primeFactors ``
+  - [`Arith.f_val`](../lean_stage3/Arith.md#Arith-f_val) (Arith) — `` ((μ k : ℤ) : ℝ) ^ 2 / k * (((chiAF k m : ℤ) : ℝ) / m) = 1 / ((k * m : ℕ) : ℝ) ``
+  - [`Arith.hasSum_chi`](../lean_stage3/ArithBase.md#Arith-hasSum_chi) (ArithBase) — `` HasSum (fun m => ((chiAF d m : ℤ) : ℝ) / m) (sig d) ``
+  - [`Arith.tailF_le`](../lean_stage3/ArithTail.md#Arith-tailF_le) (ArithTail) — `` tailF d X m ≤ (if P ∧ m.primeFactors ⊆ d.primeFactors then (1 : ℝ) else 0) / m ``
   - [`SdiagLead.chi_cases`](../lean_stage3/SdiagLeadAd.md#SdiagLead-chi_cases) (SdiagLeadAd) — `` ((chiAF d m : ℤ) : ℝ) = 0 ∨ ((chiAF d m : ℤ) : ℝ) = 1 ``
   - [`SdiagLead.sum_div_le_Sdm`](../lean_stage3/SdiagLeadAd.md#SdiagLead-sum_div_le_Sdm) (SdiagLeadAd) — `` ∑ a ∈ d.divisors, (1 : ℝ) / a ≤ Sdm d d ``
   - [`SdiagLead.chiAF_mult`](#SdiagLead-chiAF_mult) — `` (chiAF d).IsMultiplicative ``

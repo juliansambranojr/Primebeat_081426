@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 2929.
+- **Theorems Lean has checked:** 3015.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 12.
@@ -156,13 +156,6 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 |---|---|---|---|
 | [`Diagonal.StmtDiagMain`](./lean_stage3/Diagonal.md#Diagonal-StmtDiagMain) | **OPEN** | — | 1 |
 | [`Schoenfeld.StmtSchoenfeld`](./lean/Schoenfeld.md#Schoenfeld-StmtSchoenfeld) | **OPEN** | — | 2 |
-| [`SdiagLead.StmtArith`](./lean_stage3/SdiagLead.md#SdiagLead-StmtArith) | **OPEN** | — | 2 |
-| [`SdiagLead.StmtDivLog`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtDivLog) | **OPEN** | — | 1 |
-| [`SdiagLead.StmtGmuLog`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtGmuLog) | **OPEN** | — | 2 |
-| [`SdiagLead.StmtMeanSig3`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtMeanSig3) | **OPEN** | — | 1 |
-| [`SdiagLead.StmtSdmLe`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtSdmLe) | **OPEN** | — | 7 |
-| [`SdiagLead.StmtTailAvg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailAvg) | **OPEN** | — | 1 |
-| [`SdiagLead.StmtTailFixed`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailFixed) | **OPEN** | — | 1 |
 | [`Stage3.StmtExplicitFormula`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormula) | **OPEN** | — | 0 |
 | [`Stage3.StmtExplicitFormulaPoly`](./lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | **OPEN** | — | 2 |
 | [`Stage3.StmtPsiWeakTheta`](./lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) | **OPEN** | — | 9 |
@@ -187,9 +180,9 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Chain.StmtC3lower`](./lean/Chain.md#Chain-StmtC3lower) | from a hypothesis | [`Chain.C3lower`](./lean/Chain.md#Chain-C3lower) ⊢ StmtC3lower b<br/>[`Chain.C3lower_of_A4_C2`](./lean/Chain.md#Chain-C3lower_of_A4_C2) ⊢ StmtC3lower b | 0 |
 | [`DiagMain.StmtMuSmooth`](./lean_stage3/DiagMain.md#DiagMain-StmtMuSmooth) | from a hypothesis | [`SdiagLead.stmtMuSmooth_holds`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-stmtMuSmooth_holds) ⊢ StmtMuSmooth P κ | 0 |
 | [`DiagMain.StmtSdiagLead`](./lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead) | from a hypothesis | [`SdiagLead.stmtSdiagLead_holds`](./lean_stage3/SdiagLead.md#SdiagLead-stmtSdiagLead_holds) ⊢ StmtSdiagLead P θ R κ<br/>[`SdiagLead.stmtSdiagLead_of_steps`](./lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) ⊢ StmtSdiagLead P θ R κ | 1 |
-| [`DiagMainStmt.StmtDiagMainO`](./lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO) | from a hypothesis | [`DiagMain.stmtDiagMainO_of_lead`](./lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead) ⊢ StmtDiagMainO P θ R κ<br/>[`SdiagLead.stmtDiagMainO_holds`](./lean_stage3/SdiagLead.md#SdiagLead-stmtDiagMainO_holds) ⊢ StmtDiagMainO P θ R κ<br/>[`SdiagLead.stmtDiagMainO_of_steps`](./lean_stage3/SdiagLeadCore.md#SdiagLead-stmtDiagMainO_of_steps) ⊢ StmtDiagMainO P θ R κ | 2 |
+| [`DiagMainStmt.StmtDiagMainO`](./lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO) | from a hypothesis | [`Arith.stmtDiagMainO_holds'`](./lean_stage3/Arith.md#Arith-stmtDiagMainO_holds-) ⊢ StmtDiagMainO P θ R κ<br/>[`DiagMain.stmtDiagMainO_of_lead`](./lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead) ⊢ StmtDiagMainO P θ R κ<br/>[`SdiagLead.stmtDiagMainO_holds`](./lean_stage3/SdiagLead.md#SdiagLead-stmtDiagMainO_holds) ⊢ StmtDiagMainO P θ R κ<br/>[`SdiagLead.stmtDiagMainO_of_steps`](./lean_stage3/SdiagLeadCore.md#SdiagLead-stmtDiagMainO_of_steps) ⊢ StmtDiagMainO P θ R κ | 2 |
 | [`DiagonalO.StmtDiagO`](./lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO) | from a hypothesis | [`DiagonalO.stmtDiagO_of_mainO`](./lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO) ⊢ StmtDiagO P θ R κ | 1 |
-| [`DiagonalO.StmtLemma3resO`](./lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO) | from a hypothesis | [`DiagonalO.lemma3_resO_of_mainO_X`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) ⊢ StmtLemma3resO P θ R κ<br/>[`DiagonalO.lemma3_resO_of_parts`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) ⊢ StmtLemma3resO P θ R κ | 0 |
+| [`DiagonalO.StmtLemma3resO`](./lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO) | from a hypothesis | [`DiagonalO.lemma3_resO_of_mainO_X`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) ⊢ StmtLemma3resO P θ R κ<br/>[`DiagonalO.lemma3_resO_of_parts`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) ⊢ StmtLemma3resO P θ R κ<br/>[`Lemma3.lemma3_resO_holds`](./lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) ⊢ StmtLemma3resO P θ R κ | 0 |
 | [`JointDialGate.StmtRelErrWindow`](./lean_stage3/JointDialGate.md#JointDialGate-StmtRelErrWindow) | from a hypothesis | [`JointDialGate.powerSaving_relErr`](./lean_stage3/JointDialGate.md#JointDialGate-powerSaving_relErr) ⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))<br/>[`JointDialGate.relErrWindow_of_theta`](./lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_theta) ⊢ StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * (2 : ℝ) ^ (((r : …<br/>[`JointFloorGate.weakWindow_relErr`](./lean_stage3/JointFloorGate.md#JointFloorGate-weakWindow_relErr) ⊢ JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 : ℝ) ^ (-(((r : ℝ) -…<br/>[`RouteNum.relErrWindow_route_num`](./lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) ⊢ JointDialGate.StmtRelErrWindow (fun m : ℤ =&gt; (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))… | 0 |
 | [`Nonvanishing.StmtSchoenfeldWindow`](./lean/Nonvanishing.md#Nonvanishing-StmtSchoenfeldWindow) | from a hypothesis | [`Schoenfeld.window_of_global`](./lean/Schoenfeld.md#Schoenfeld-window_of_global) ⊢ Nonvanishing.StmtSchoenfeldWindow f L r n | 6 |
 | [`OffDiagClose.StmtOffDiagAll`](./lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll) | from a hypothesis | [`OffDiagClose.stmtOffDiag_holds`](./lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds) ⊢ StmtOffDiagAll P θ R κ | 2 |
@@ -210,6 +203,13 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Chain.StmtA2`](./lean/Chain.md#Chain-StmtA2) | proved | [`Chain.A2`](./lean/Chain.md#Chain-A2) ⊢ StmtA2 | 0 |
 | [`Chain.StmtA3`](./lean/Chain.md#Chain-StmtA3) | proved | [`Chain.A3`](./lean/Chain.md#Chain-A3) ⊢ StmtA3 | 0 |
 | [`LandauWindow.StmtLandauWindow`](./lean_stage3/LandauWindow.md#LandauWindow-StmtLandauWindow) | proved | [`LandauCriterion.stmtLandauWindow`](./lean_stage3/LandauCriterion.md#LandauCriterion-stmtLandauWindow) ⊢ LandauWindow.StmtLandauWindow | 2 |
+| [`SdiagLead.StmtArith`](./lean_stage3/SdiagLead.md#SdiagLead-StmtArith) | proved | [`Arith.stmtArith_holds`](./lean_stage3/Arith.md#Arith-stmtArith_holds) ⊢ StmtArith | 2 |
+| [`SdiagLead.StmtDivLog`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtDivLog) | proved | [`Arith.divLog`](./lean_stage3/Arith.md#Arith-divLog) ⊢ StmtDivLog | 1 |
+| [`SdiagLead.StmtGmuLog`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtGmuLog) | proved | [`Arith.gmuLog`](./lean_stage3/Arith.md#Arith-gmuLog) ⊢ StmtGmuLog | 2 |
+| [`SdiagLead.StmtMeanSig3`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtMeanSig3) | proved | [`Arith.meanSig3`](./lean_stage3/Arith.md#Arith-meanSig3) ⊢ StmtMeanSig3 | 1 |
+| [`SdiagLead.StmtSdmLe`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtSdmLe) | proved | [`Arith.sdmLe`](./lean_stage3/ArithBase.md#Arith-sdmLe) ⊢ StmtSdmLe | 7 |
+| [`SdiagLead.StmtTailAvg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailAvg) | proved | [`Arith.tailAvg`](./lean_stage3/ArithTail.md#Arith-tailAvg) ⊢ StmtTailAvg | 1 |
+| [`SdiagLead.StmtTailFixed`](./lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailFixed) | proved | [`Arith.tailFixed`](./lean_stage3/ArithTail.md#Arith-tailFixed) ⊢ StmtTailFixed | 1 |
 | [`Stage3.StmtArgIdentity`](./lean_stage3/ArgCrude.md#Stage3-StmtArgIdentity) | proved | [`Stage3.stmtArgIdentity_holds`](./lean_stage3/ArgIdentity.md#Stage3-stmtArgIdentity_holds) ⊢ StmtArgIdentity phaseTheta argS | 3 |
 | [`Stage3.StmtBacklundPhase`](./lean_stage3/RvMCrude.md#Stage3-StmtBacklundPhase) | proved | [`Stage3.backlundPhase_holds`](./lean_stage3/Stirling.md#Stage3-backlundPhase_holds) ⊢ StmtBacklundPhase phaseTheta 97 98 | 2 |
 | [`Stage3.StmtDigammaLog`](./lean_stage3/Stirling.md#Stage3-StmtDigammaLog) | proved | [`Stage3.stmtDigammaLog_holds`](./lean_stage3/Stirling.md#Stage3-stmtDigammaLog_holds) ⊢ StmtDigammaLog 97 | 1 |

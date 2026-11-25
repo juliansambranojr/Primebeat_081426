@@ -7,7 +7,7 @@
 17 theorems, 3 definitions, 544 lines. 
 
 **Imports:** [`StirlingLog`](../lean_stage3/StirlingLog.md), [`SwapX`](../lean_stage3/SwapX.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Lemma3`](../lean_stage3/Lemma3.md)
 
 ## The picture
 
@@ -29,11 +29,12 @@ flowchart LR
   n13["<b>norm_main_le</b><br/>‖(((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z‖ ≤ Real.exp (10 * κ)"]:::shp
   n14["<b>E_bound'</b><br/>‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α…"]:::shp
   n15["<b>stmtXAll_of'</b><br/>StmtXAll P θ R κ"]:::thm
-  n16["<b>lemma3_resO_of_mainO' ■</b><br/>StmtLemma3resO P θ R κ"]:::thm
+  n16["<b>lemma3_resO_of_mainO'</b><br/>StmtLemma3resO P θ R κ"]:::thm
   x0(["<b>ApproxFE</b><br/>XY_eq_young"]):::ext
   x1(["<b>StirlingLog</b><br/>exp_logG<br/>logG_shift"]):::ext
   x2(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
   x3(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
+  x4(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
   n0 --> n11
   n0 --> n6
   n0 --> n7
@@ -55,6 +56,7 @@ flowchart LR
   n7 --> n11
   n8 --> n12
   n9 --> n10
+  n16 -.-> x4
   x0 -.-> n6
   x1 -.-> n11
   x1 -.-> n6
@@ -616,5 +618,7 @@ StmtLemma3resO P θ R κ
   - [`Stirling.stmtXAll_of'`](#Stirling-stmtXAll_of-) — `` StmtXAll P θ R κ ``
   - [`Stirling.stmtXStirlingRel_holds`](#Stirling-stmtXStirlingRel_holds) — `` StmtXStirlingRel ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) (Lemma3) — `` StmtLemma3resO P θ R κ ``
 
