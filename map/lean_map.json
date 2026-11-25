@@ -68193,6 +68193,7 @@
     "used_by": [
      "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
      "lean_stage3/Stage3/LineBound.lean::Slice4.logDerivZeta_compact",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
@@ -68250,6 +68251,7 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
      "lean_stage3/Stage3/LineBound.lean::Slice4.logDerivZeta_compact",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/ThetaLine.lean::Stage3.logDerivZeta_compact_theta",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
@@ -68440,6 +68442,16 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow",
@@ -68510,6 +68522,9 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
@@ -68545,6 +68560,9 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
@@ -68582,6 +68600,11 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_jensenF_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.norm_blaschke_mul_le",
@@ -68622,6 +68645,8 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.logDerivZeta_crude_theta",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/LineBound.lean::Slice3.logDerivZeta_crude",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.log_blaschke_ge",
      "lean_stage3/Stage3/TuringLWHorizPoint.lean::TuringLW.zeroMass_le"
     ]
@@ -83571,6 +83596,1189 @@
     ],
     "layer": "shape",
     "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LittlewoodSharp.lean",
+  "module": "Stage3.LittlewoodSharp",
+  "stem": "LittlewoodSharp",
+  "header": "# LittlewoodSharp — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper constants in Littlewood's bound. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringLWSplit",
+   "Stage3.LittlewoodSharpHoriz"
+  ],
+  "opens": [],
+  "namespaces": [
+   "LittlewoodSharp"
+  ],
+  "lines": 60,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+   "lean_stage3/Stage3/TuringLWSplit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "littlewood_sharp",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.littlewood_sharp",
+    "line": 46,
+    "why": "Littlewood's bound on `∫ S`, sharper constants, unconditional.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharp.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+  "module": "Stage3.LittlewoodSharpHoriz",
+  "stem": "LittlewoodSharpHoriz",
+  "header": "LittlewoodSharpHoriz — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 3, the lower side `Turing.StmtHorizLower (113/4) 128`. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringLWHoriz",
+   "Stage3.LittlewoodSharpPoint"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Stage3"
+  ],
+  "namespaces": [
+   "LittlewoodSharp"
+  ],
+  "lines": 214,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+   "lean_stage3/Stage3/TuringLWHoriz.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "gLow",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.gLow",
+    "line": 49,
+    "why": "The lower function, sharper radii.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "x : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_zx_eq",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.norm_zx_eq",
+    "line": 55,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx2 : x ≤ 2"
+    ],
+    "proves": "‖TuringLW.zx x‖ = (2 - x) / 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.norm_zx_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bc_eq",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.bc_eq",
+    "line": 61,
+    "why": "The pointwise Borel–Carathéodory term on the segment is `2M · bcw x`.",
+    "sorry": false,
+    "needs": [
+     "hx1 : 1 / 2 ≤ x",
+     "hx2 : x ≤ 2"
+    ],
+    "proves": "2 * M * ‖TuringLW.zx x‖ / (25 / 32 - ‖TuringLW.zx x‖) = 2 * M * bcw x",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.norm_zx_eq",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.norm_zx_eq",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_zeta_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log_zeta_ge",
+    "line": 69,
+    "why": "The pointwise lower bound on the segment.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "hx1 : 1 / 2 ≤ x",
+     "hx2 : x ≤ 2",
+     "hxE : x ∉ (zeroSet ht).image TuringLW.beta"
+    ],
+    "proves": "gLow ht x ≤ Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_lower",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_ne_zero",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_lower",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_centre_ne_zero",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.zx_arg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_term",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.intervalIntegrable_term",
+    "line": 112,
+    "why": "The per-zero terms are integrable.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "IntervalIntegrable (fun x => (analyticOrderNatAt (jensenF t) ρ : ℝ) * (Real.log (x - TuringLW.beta ρ) - Real.log 2)) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_sumTerm",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.intervalIntegrable_sumTerm",
+    "line": 117,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "IntervalIntegrable (fun x => ∑ ρ ∈ zeroSet ht, (analyticOrderNatAt (jensenF t) ρ : ℝ) * (Real.log (x - TuringLW.beta ρ) - Real.log 2)) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_sum'"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_gLow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_gLow",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.intervalIntegrable_gLow",
+    "line": 123,
+    "why": "The lower function is integrable on the segment.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "IntervalIntegrable (gLow ht) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_gLow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_g_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.integral_g_ge",
+    "line": 129,
+    "why": "The integral of the lower function.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "-(113 / 4 * Real.log t + 128) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_bcw",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_two",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log2516_le",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log25_le",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log3_le'",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log84_le'",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_bcw",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_two",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_log_sub",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log2516_le",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log25_le",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log3_le'",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log84_le'",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "horizLower_sharp",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.horizLower_sharp",
+    "line": 181,
+    "why": "The lower side, sharper. `StmtHorizLower (113/4) 128`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtHorizLower (113 / 4) 128",
+    "file": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.beta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+  "module": "Stage3.LittlewoodSharpLog",
+  "stem": "LittlewoodSharpLog",
+  "header": "LittlewoodSharpLog — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 1, the one-variable integrals and the numerals. 2026-11-25.",
+  "imports": [],
+  "opens": [
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "LittlewoodSharp"
+  ],
+  "lines": 222,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mul_log_ge_tangent",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.mul_log_ge_tangent",
+    "line": 45,
+    "why": "`x log x − x log c ≥ x − c` for `x, c > 0`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "hc : 0 < c"
+    ],
+    "proves": "x * Real.log c + x - c ≤ x * Real.log x",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_ge_tangent",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_sub_ge_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sharp_of_nonneg",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.sharp_of_nonneg",
+    "line": 54,
+    "why": "The case `0 ≤ a ≤ b`: superadditivity, then `log(b − a) ≥ log((b − a)/2)`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 ≤ a",
+     "hab : a ≤ b"
+    ],
+    "proves": "(b - a) * Real.log ((b - a) / 2) ≤ b * Real.log b - a * Real.log a",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.sharp_of_nonneg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_sub_ge_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_log_sub_ge_sharp",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.mul_log_sub_ge_sharp",
+    "line": 69,
+    "why": "The sharp two-point bound. `(b − a) log((b − a)/2) ≤ b log b − a log a` for `a ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b"
+    ],
+    "proves": "(b - a) * Real.log ((b - a) / 2) ≤ b * Real.log b - a * Real.log a",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_sub_ge_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_ge_tangent",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.sharp_of_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_ge_tangent",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.sharp_of_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_sharp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_log_sub",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.intervalIntegrable_log_sub",
+    "line": 84,
+    "why": "`x ↦ log(x − β)` is integrable on `[1/2, 2]`.",
+    "sorry": false,
+    "needs": [
+     "β : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun x : ℝ => Real.log (x - β)) volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_log_sub",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_log_sub_ge_sharp",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.integral_log_sub_ge_sharp",
+    "line": 90,
+    "why": "One zero's singularity, sharp.",
+    "sorry": false,
+    "needs": [
+     "β : ℝ"
+    ],
+    "proves": "-((3 / 2) * (1 + Real.log (4 / 3))) ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log (x - β)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_sharp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_sub_ge_sharp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.mul_log_sub_ge_sharp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log43_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log43_le",
+    "line": 101,
+    "why": "`log(4/3) ≤ 1/3`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log (4 / 3) ≤ 1 / 3",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log43_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_log_sub_ge_two",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.integral_log_sub_ge_two",
+    "line": 106,
+    "why": "`−2 ≤ ∫_{1/2}^{2} log(x − β)`.",
+    "sorry": false,
+    "needs": [
+     "β : ℝ"
+    ],
+    "proves": "-2 ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log (x - β)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_sharp",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log43_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_log_sub_ge_sharp",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log43_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "bcw",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.bcw",
+    "line": 113,
+    "why": "The pointwise Borel–Carathéodory weight on the segment, outer radius `25/32`.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.continuousOn_bcw",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_bcw",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_bcw"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_bcw",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.continuousOn_bcw",
+    "line": 115,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ContinuousOn bcw (Set.uIcc (1 / 2) 2)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.continuousOn_bcw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_bcw",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.intervalIntegrable_bcw",
+    "line": 123,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "IntervalIntegrable bcw volume (1 / 2) 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.intervalIntegrable_bcw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_bcw",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.integral_bcw",
+    "line": 127,
+    "why": "The weight integrated. `∫_{1/2}^{2} (2 − x)/(x − 7/16) dx = (25/16) log 25 − 3/2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∫ x in (1 / 2 : ℝ)..2, bcw x = (25 / 16) * Real.log 25 - 3 / 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.integral_bcw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.bcw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exp2_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.exp2_ge",
+    "line": 148,
+    "why": "`exp 1 ^ 2 ≥ 7.389`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(7389 / 1000 : ℝ) ≤ Real.exp 1 * Real.exp 1",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.exp2_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log25_le",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log84_le'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log25_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log25_le",
+    "line": 153,
+    "why": "`log 25 ≤ 13/4`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log 25 ≤ 13 / 4",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log25_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.exp2_ge"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.exp2_ge"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log84_le'",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log84_le'",
+    "line": 165,
+    "why": "`log 84 ≤ 89/20`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log 84 ≤ 89 / 20",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log84_le'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.exp2_ge"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.exp2_ge"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log3_le'",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log3_le'",
+    "line": 177,
+    "why": "`log 3 ≤ 11/10`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log 3 ≤ 11 / 10",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log3_le'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log2516_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log2516_le",
+    "line": 187,
+    "why": "`log(25/16) ≤ 1/2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log (25 / 16) ≤ 1 / 2",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log2516_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log65_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log65_ge",
+    "line": 194,
+    "why": "`9/50 ≤ log(6/5)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(9 / 50 : ℝ) ≤ Real.log (6 / 5)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpLog.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log65_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+  "module": "Stage3.LittlewoodSharpPoint",
+  "stem": "LittlewoodSharpPoint",
+  "header": "LittlewoodSharpPoint — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 2, the pointwise lower bound for `log|ζ|` with optimized radii. 2026-11-25.",
+  "imports": [
+   "Stage3.JensenCount",
+   "Stage3.LittlewoodSharpLog"
+  ],
+  "opens": [
+   "Complex",
+   "Stage3"
+  ],
+  "namespaces": [
+   "LittlewoodSharp"
+  ],
+  "lines": 224,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/JensenCount.lean",
+   "lean_stage3/Stage3/LittlewoodSharpLog.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "h2532",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.h2532",
+    "line": 51,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "(25 : ℝ) / 32 < 1",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zeroSet",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.zeroSet",
+    "line": 54,
+    "why": "The zeros of `jensenF T` in `‖z‖ ≤ 25/32`.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "Finset ℂ",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zeroMass",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.zeroMass",
+    "line": 58,
+    "why": "Their total order.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log84T_pos",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log84T_pos",
+    "line": 61,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "0 < Real.log (84 * T)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroMass_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.zeroMass_le",
+    "line": 65,
+    "why": "The zero count at the radii `25/32 < 15/16`.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T"
+    ],
+    "proves": "zeroMass hT ≤ 50 / 9 * Real.log (84 * T)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log65_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpLog.lean::LittlewoodSharp.log65_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_blaschke_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log_blaschke_ge",
+    "line": 82,
+    "why": "Borel–Carathéodory at the point, on the Blaschke quotient.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4"
+    ],
+    "proves": "-(2 * Real.log (84 * T) * ‖z‖ / (25 / 32 - ‖z‖)) ≤ Real.log ‖BlaschkeB (25 / 32) (15 / 16) (jensenF T) z‖",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_bound",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log84T_pos"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_numer_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.norm_numer_le",
+    "line": 127,
+    "why": "Each Blaschke numerator factor is at most `25/16` on `‖z‖ ≤ 3/4`.",
+    "sorry": false,
+    "needs": [
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hρ : ‖ρ‖ ≤ 25 / 32"
+    ],
+    "proves": "‖((15 / 16 : ℝ) : ℂ) - z * (starRingEnd ℂ) ρ / ((15 / 16 : ℝ) : ℂ)‖ ≤ 25 / 16",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_numer_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_blaschke_mul_le",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.norm_blaschke_mul_le",
+    "line": 143,
+    "why": "Unfolding the Blaschke quotient off the zeros.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hfz : jensenF T z ≠ 0"
+    ],
+    "proves": "‖BlaschkeB (25 / 32) (15 / 16) (jensenF T) z‖ * ∏ ρ ∈ zeroSet hT, ‖z - ρ‖ ^ analyticOrderNatAt (jensenF T) ρ ≤ ‖jensenF T z‖ * (25 / 16) ^ (∑ ρ ∈ zeroSet hT, analyticOrderNatAt (jensenF T) ρ)",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_numer_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.h2532",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_numer_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_jensenF_ge",
+    "ns": "LittlewoodSharp",
+    "full": "LittlewoodSharp.log_jensenF_ge",
+    "line": 178,
+    "why": "The pointwise lower bound in the model's coordinates, sharper radii.",
+    "sorry": false,
+    "needs": [
+     "hT : 2 ≤ T",
+     "hz : ‖z‖ ≤ 3 / 4",
+     "hfz : jensenF T z ≠ 0"
+    ],
+    "proves": "-(2 * Real.log (84 * T) * ‖z‖ / (25 / 32 - ‖z‖)) - zeroMass hT * Real.log (25 / 16) + ∑ ρ ∈ zeroSet hT, (analyticOrderNatAt (jensenF T) ρ : ℝ) * Real.log ‖z - ρ‖ ≤ Real.log ‖jensenF T z‖",
+    "file": "lean_stage3/Stage3/LittlewoodSharpPoint.lean",
+    "id": "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_jensenF_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_analytic",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zero_eq_one",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.jensenF_zeros_finite",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.log_blaschke_ge",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.norm_blaschke_mul_le",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroMass",
+     "lean_stage3/Stage3/LittlewoodSharpPoint.lean::LittlewoodSharp.zeroSet"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge"
+    ]
    }
   ]
  },
@@ -259227,6 +260435,9 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.bc_eq",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.norm_zx_eq",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_sub_le",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.norm_zx",
@@ -259253,6 +260464,12 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.gLow",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.integral_g_ge",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_term",
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.gLow",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
@@ -259322,6 +260539,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
    },
@@ -259350,6 +260568,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
    },
@@ -259379,6 +260598,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.log_zeta_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.log_zeta_ge"
     ]
    },
@@ -259454,6 +260674,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.intervalIntegrable_sumTerm",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.integral_g_ge",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.intervalIntegrable_gLow"
     ]
@@ -260403,6 +261624,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp",
      "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds"
     ]
    }
@@ -261637,6 +262859,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
      "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds",
@@ -261744,6 +262967,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LittlewoodSharpHoriz.lean::LittlewoodSharp.horizLower_sharp",
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
@@ -289914,11 +291138,12 @@
    "Stage3.TuringLWSplit",
    "Stage3.TuringLW",
    "Stage3.DiagLong",
-   "Stage3.SignData"
+   "Stage3.SignData",
+   "Stage3.LittlewoodSharp"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 262,
+  "lines": 263,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -290034,6 +291259,7 @@
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/Littlewood.lean",
+   "lean_stage3/Stage3/LittlewoodSharp.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/MeanQ.lean",

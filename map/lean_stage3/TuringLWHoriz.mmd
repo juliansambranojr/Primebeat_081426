@@ -8,10 +8,11 @@ flowchart LR
   n6["<b>log3_le</b><br/>Real.log 3 ≤ 2"]:::shp
   n7["<b>integral_g_ge</b><br/>-(102 * Real.log t + 500) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x"]:::thm
   n8["<b>horizLower_holds</b><br/>Turing.StmtHorizLower 102 500"]:::thm
-  x0(["<b>JensenCount</b><br/>zeta_centre_lower<br/>zeta_centre_ne_zero"]):::ext
-  x1(["<b>TuringLWHorizPoint</b><br/>5 theorems"]):::ext
-  x2(["<b>TuringLWHorizLog</b><br/>integral_log_sub_ge<br/>intervalIntegrable_log_sub"]):::ext
-  x3(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
+  x0(["<b>LittlewoodSharpHoriz</b><br/>intervalIntegrable_sumTerm<br/>log_zeta_ge"]):::ext
+  x1(["<b>JensenCount</b><br/>zeta_centre_lower<br/>zeta_centre_ne_zero"]):::ext
+  x2(["<b>TuringLWHorizPoint</b><br/>5 theorems"]):::ext
+  x3(["<b>TuringLWHorizLog</b><br/>integral_log_sub_ge<br/>intervalIntegrable_log_sub"]):::ext
+  x4(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
@@ -21,12 +22,16 @@ flowchart LR
   n5 --> n8
   n6 --> n7
   n7 --> n8
-  n8 -.-> x3
-  x0 -.-> n3
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n4 -.-> x0
+  n8 -.-> x4
   x1 -.-> n3
-  x1 -.-> n7
-  x2 -.-> n5
+  x2 -.-> n3
   x2 -.-> n7
+  x3 -.-> n5
+  x3 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

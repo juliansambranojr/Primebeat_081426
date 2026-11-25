@@ -1,0 +1,42 @@
+flowchart LR
+  n0["<b>mul_log_ge_tangent</b><br/>x * Real.log c + x - c ≤ x * Real.log x"]:::shp
+  n1["<b>sharp_of_nonneg</b><br/>(b - a) * Real.log ((b - a) / 2) ≤ b * Real.log b - a * Real.log…"]:::shp
+  n2["<b>mul_log_sub_ge_sharp</b><br/>(b - a) * Real.log ((b - a) / 2) ≤ b * Real.log b - a * Real.log…"]:::shp
+  n3["<b>intervalIntegrable_log_sub</b><br/>IntervalIntegrable (fun x : ℝ =＞ Real.log (x - β)) volume (1 / 2…"]:::shp
+  n4["<b>integral_log_sub_ge_sharp</b><br/>-((3 / 2) * (1 + Real.log (4 / 3))) ≤ ∫ x in (1 / 2 : ℝ)..2, Rea…"]:::shp
+  n5["<b>log43_le</b><br/>Real.log (4 / 3) ≤ 1 / 3"]:::shp
+  n6["<b>integral_log_sub_ge_two</b><br/>-2 ≤ ∫ x in (1 / 2 : ℝ)..2, Real.log (x - β)"]:::shp
+  n7["<b>continuousOn_bcw ■</b><br/>ContinuousOn bcw (Set.uIcc (1 / 2) 2)"]:::cnt
+  n8["<b>intervalIntegrable_bcw ■</b><br/>IntervalIntegrable bcw volume (1 / 2) 2"]:::cnt
+  n9["<b>integral_bcw</b><br/>∫ x in (1 / 2 : ℝ)..2, bcw x = (25 / 16) * Real.log 25 - 3 / 2"]:::shp
+  n10["<b>exp2_ge</b><br/>(7389 / 1000 : ℝ) ≤ Real.exp 1 * Real.exp 1"]:::shp
+  n11["<b>log25_le</b><br/>Real.log 25 ≤ 13 / 4"]:::shp
+  n12["<b>log84_le'</b><br/>Real.log 84 ≤ 89 / 20"]:::shp
+  n13["<b>log3_le'</b><br/>Real.log 3 ≤ 11 / 10"]:::shp
+  n14["<b>log2516_le</b><br/>Real.log (25 / 16) ≤ 1 / 2"]:::shp
+  n15["<b>log65_ge</b><br/>(9 / 50 : ℝ) ≤ Real.log (6 / 5)"]:::shp
+  x0(["<b>LittlewoodSharpHoriz</b><br/>integral_g_ge<br/>intervalIntegrable_term"]):::ext
+  x1(["<b>LittlewoodSharpPoint</b><br/>zeroMass_le"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n10 --> n11
+  n10 --> n12
+  n2 --> n4
+  n4 --> n6
+  n5 --> n6
+  n11 -.-> x0
+  n12 -.-> x0
+  n13 -.-> x0
+  n14 -.-> x0
+  n15 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  n9 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
