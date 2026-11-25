@@ -20,10 +20,12 @@ flowchart LR
   x1(["<b>OperatorCY</b><br/>c1Y_eq<br/>cY_partials"]):::ext
   x2(["<b>OperatorCauchy</b><br/>Dop_norm_le"]):::ext
   x3(["<b>OperatorInt</b><br/>norm_le_of_ball"]):::ext
-  x4(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x4(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x5(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
   n0 --> n2
   n1 --> n2
   n2 -.-> x4
+  n2 -.-> x5
   x0 -.-> n2
   x1 -.-> n2
   x2 -.-> n2
@@ -133,7 +135,8 @@ line 62 · arrows read from text
 
 **Definitions its proof touches:** [`Operator.Aq`](../lean_stage3/OperatorCY.md#Operator-Aq), [`Operator.Bq`](../lean_stage3/OperatorCY.md#Operator-Bq), [`Operator.Cq`](../lean_stage3/OperatorCY.md#Operator-Cq), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) (Unsmooth) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Re… ``
 

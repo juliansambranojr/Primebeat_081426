@@ -6,10 +6,12 @@ flowchart LR
   x1(["<b>OperatorCY</b><br/>c1Y_eq<br/>cY_partials"]):::ext
   x2(["<b>OperatorCauchy</b><br/>Dop_norm_le"]):::ext
   x3(["<b>OperatorInt</b><br/>norm_le_of_ball"]):::ext
-  x4(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x4(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x5(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
   n0 --> n2
   n1 --> n2
   n2 -.-> x4
+  n2 -.-> x5
   x0 -.-> n2
   x1 -.-> n2
   x2 -.-> n2

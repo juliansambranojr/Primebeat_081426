@@ -18,10 +18,12 @@ flowchart LR
   x11(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
   x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
   x13(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  x14(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n2
   n1 --> n4
   n2 --> n3
   n3 --> n4
+  n3 -.-> x14
   x0 -.-> n0
   x0 -.-> n2
   x1 -.-> n0

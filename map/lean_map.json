@@ -25532,6 +25532,7 @@
     "used_by": [
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.schoenfeldWeak_floor_of_RH",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -45155,7 +45156,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound"
     ]
    },
    {
@@ -54817,6 +54819,745 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConst.lean::FloorConst.floor_const"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorStep.lean",
+  "module": "Stage3.FloorStep",
+  "stem": "FloorStep",
+  "header": "# FloorStep — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: Levinson's floor on `[T/2, T]`. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorStepSize",
+   "Stage3.FloorStepCont"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorStep"
+  ],
+  "lines": 268,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorStepCont.lean",
+   "lean_stage3/Stage3/FloorStepSize.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "combine",
+    "ns": "FloorStep",
+    "full": "FloorStep.combine",
+    "line": 57,
+    "why": "The arithmetic of the floor. The window's inequality with its terms bounded: each of the four error terms costs at most `(ε/4) T L`.",
+    "sorry": false,
+    "needs": [
+     "hL1 : 1 ≤ L",
+     "hT0 : 0 < T",
+     "hR : 0 < R",
+     "hε : 0 < ε",
+     "hwin : ND - (1 / (Real.pi * (R / L))) * ((T - T / 2) / 2 * lK + ((T - T / 2) * (2 * td) + Wp)) - (134 * L + 2918) ≤ LC",
+     "htd : td ≤ τ",
+     "hτ : τ ≤ ε * Real.pi * R / 4",
+     "hWp : Wp ≤ Real.pi * Cw * L ^ 3",
+     "hCw : 4 * Cw / (R * ε) * L ^ 3 ≤ T",
+     "hN : T * L / (4 * Real.pi) - ND ≤ T + 224 * L + 1396",
+     "hlK0 : 0 ≤ lK",
+     "hlK : lK ≤ Kb",
+     "hT224 : 224 * L + 1396 ≤ T",
+     "hKbL : 8 * Kb / (R * ε) ≤ L",
+     "h134 : 4 * 3052 / ε ≤ T"
+    ],
+    "proves": "ND - lK / R * ND - ε * T * L ≤ LC",
+    "file": "lean_stage3/Stage3/FloorStep.lean",
+    "id": "lean_stage3/Stage3/FloorStep.lean::FloorStep.combine",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "floor_step",
+    "ns": "FloorStep",
+    "full": "FloorStep.floor_step",
+    "line": 127,
+    "why": "S12 piece 5b, Levinson's floor on one dyadic window. For `P(0) = 0`, `P(1) = 1`, `0 < θ < 1/2`, `R > 0`, every `ε > 0`: from some height on, the zeros on the line with height in `(T/2, T]` number at least `(1 − log K/R)(N T − N(T/2)) − ε T log T`, with `K = max 1 (Re D[c](−R/L, −R/L) + ε)`, `L = log T`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hP1 : P.eval 1 = 1",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε)) / R * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ)",
+    "file": "lean_stage3/Stage3/FloorStep.lean",
+    "id": "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.combine",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.W2_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.XMB_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.X_bounds",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.eventually_logpow_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.combine",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.W2_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.XMB_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.X_bounds",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.eventually_logpow_le",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorStepCont.lean",
+  "module": "Stage3.FloorStepCont",
+  "stem": "FloorStepCont",
+  "header": "# FloorStepCont — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: continuity in `σ`. 2026-11-25.",
+  "imports": [
+   "Stage3.Unsmooth",
+   "Stage3.LevinsonWindowNear"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "FloorStep"
+  ],
+  "lines": 162,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonWindowNear.lean",
+   "lean_stage3/Stage3/Unsmooth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Fint",
+    "ns": "FloorStep",
+    "full": "FloorStep.Fint",
+    "line": 32,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "σ t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint_shift",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.mean_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_molli",
+    "ns": "FloorStep",
+    "full": "FloorStep.continuous_molli",
+    "line": 36,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "β : ℕ → ℂ"
+    ],
+    "proves": "Continuous (LevinsonMollEdge.molli M β)",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_Fint",
+    "ns": "FloorStep",
+    "full": "FloorStep.continuousOn_Fint",
+    "line": 43,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ"
+    ],
+    "proves": "ContinuousOn (fun p : ℝ × ℝ => Fint c M β p.1 p.2) {p | p.1 ≠ 1}",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint_shift",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_Fint"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_Fint",
+    "ns": "FloorStep",
+    "full": "FloorStep.continuous_Fint",
+    "line": 58,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hσ : σ ≠ 1"
+    ],
+    "proves": "Continuous (Fint c M β σ)",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_Fint",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.mean_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fint_shift",
+    "ns": "FloorStep",
+    "full": "FloorStep.Fint_shift",
+    "line": 70,
+    "why": "Continuity in `σ`, uniform in `t`.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hσ₀ : σ₀ < 1",
+     "hε : 0 < ε"
+    ],
+    "proves": "∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ σ ∈ Icc (σ₀ - δ) σ₀, ∀ t ∈ Icc A B, Fint c M β σ t ≤ Fint c M β σ₀ t + ε",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mean_shift",
+    "ns": "FloorStep",
+    "full": "FloorStep.mean_shift",
+    "line": 98,
+    "why": "A pointwise shift by `ε` on `[a′, b′]` moves the mean by at most `ε`.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hσ : σ ≠ 1",
+     "hσ₀ : σ₀ ≠ 1",
+     "hab : a' < b'",
+     "h : ∀ t ∈ Icc a' b', Fint c M β σ t ≤ Fint c M β σ₀ t + ε"
+    ],
+    "proves": "(1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ (1 / (b' - a')) * (∫ t in a'..b', Fint c M β σ₀ t) + ε",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.mean_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_Fint"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_Fint"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hK_shift",
+    "ns": "FloorStep",
+    "full": "FloorStep.hK_shift",
+    "line": 122,
+    "why": "`hK` from `σ₀` to `[σ₀ − δ, σ₀]`. If the mean at `σ₀` is at most `V + ε/2` on every window `[a′, b′]`, `a′ ∈ [T/2, T/2 + 1]`, `b′ ∈ [T − 1, T]`, then for some `δ ∈ (0, 1/8]` the mean at every `σ ∈ [σ₀ − δ, σ₀]` is at most `V + ε` on the same windows.",
+    "sorry": false,
+    "needs": [
+     "c : ℝ",
+     "M : ℕ",
+     "β : ℕ → ℂ",
+     "hσ₀ : σ₀ < 1",
+     "hε : 0 < ε",
+     "h0 : ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ₀ t ≤ V + ε / 2"
+    ],
+    "proves": "∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ V + ε",
+    "file": "lean_stage3/Stage3/FloorStepCont.lean",
+    "id": "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.hK_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint_shift",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.mean_shift"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint_shift",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.mean_shift"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorStepSize.lean",
+  "module": "Stage3.FloorStepSize",
+  "stem": "FloorStepSize",
+  "header": "# FloorStepSize — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: the sizes. 2026-11-25.",
+  "imports": [
+   "Stage3.Unsmooth",
+   "Stage3.LevinsonWindowNear",
+   "Stage3.Diagonal"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Set",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorStep"
+  ],
+  "lines": 267,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Diagonal.lean",
+   "lean_stage3/Stage3/LevinsonWindowNear.lean",
+   "lean_stage3/Stage3/Unsmooth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "betaC",
+    "ns": "FloorStep",
+    "full": "FloorStep.betaC",
+    "line": 43,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "h : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "molli_betaC",
+    "ns": "FloorStep",
+    "full": "FloorStep.molli_betaC",
+    "line": 46,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ"
+    ],
+    "proves": "LevinsonMollEdge.molli (Mof T θ) (betaC P T θ R) = LevinsonMollEdge.molli (Mof T θ) (aY P T θ R)",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "betaC_one",
+    "ns": "FloorStep",
+    "full": "FloorStep.betaC_one",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP1 : P.eval 1 = 1",
+     "hM : 2 ≤ Mof T θ"
+    ],
+    "proves": "betaC P T θ R 1 = 1",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "betaC_bound",
+    "ns": "FloorStep",
+    "full": "FloorStep.betaC_bound",
+    "line": 65,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 1 ≤ B ∧ ∀ (T θ R : ℝ), sig0 T R ≤ 1 / 2 → ∀ h : ℕ, ‖betaC P T θ R h‖ ≤ B",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tail_le",
+    "ns": "FloorStep",
+    "full": "FloorStep.tail_le",
+    "line": 93,
+    "why": "`tailDelta ≤ τ` once `2^X = A T` with `64 (B + 1) ≤ A τ`, `M ≤ T`.",
+    "sorry": false,
+    "needs": [
+     "hB : 0 ≤ B",
+     "hτ : 0 < τ",
+     "hτ1 : τ ≤ 1",
+     "hA : 64 * (B + 1) ≤ A * τ",
+     "hT : 1 ≤ T",
+     "hMT : (M : ℝ) ≤ T",
+     "hq : (2 : ℝ) ^ X = A * T"
+    ],
+    "proves": "LevinsonMollEdge.tailDelta M B X ≤ τ",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "XMB_le",
+    "ns": "FloorStep",
+    "full": "FloorStep.XMB_le",
+    "line": 117,
+    "why": "`32 M B ≤ 2^X` under the same choice.",
+    "sorry": false,
+    "needs": [
+     "hB : 0 ≤ B",
+     "hτ : 0 < τ",
+     "hτ1 : τ ≤ 1",
+     "hA : 64 * (B + 1) ≤ A * τ",
+     "hMT : (M : ℝ) ≤ T",
+     "hq : (2 : ℝ) ^ X = A * T"
+    ],
+    "proves": "32 * M * B ≤ (2 : ℝ) ^ X",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.XMB_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "X_bounds",
+    "ns": "FloorStep",
+    "full": "FloorStep.X_bounds",
+    "line": 133,
+    "why": "`X = log₂(A T)` lies in `[3, 4 log T]` once `8 ≤ A T` and `log A ≤ log T`.",
+    "sorry": false,
+    "needs": [
+     "hA : 1 ≤ A",
+     "hT : 1 ≤ T",
+     "h8 : 8 ≤ A * T",
+     "hAL : Real.log A ≤ Real.log T"
+    ],
+    "proves": "3 ≤ Real.logb 2 (A * T) ∧ Real.logb 2 (A * T) ≤ 4 * Real.log T",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.X_bounds",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "W2_le",
+    "ns": "FloorStep",
+    "full": "FloorStep.W2_le",
+    "line": 148,
+    "why": "The window's polynomial edge terms, size `O(L³)`.",
+    "sorry": false,
+    "needs": [
+     "hX3 : 3 ≤ X",
+     "hX : X ≤ 4 * L",
+     "hL : 1 ≤ L",
+     "hlM0 : 0 ≤ lM",
+     "hlM : lM ≤ L",
+     "hlB0 : 0 ≤ lB",
+     "hlB : lB ≤ B"
+    ],
+    "proves": "X * Real.pi + 2 * (X * (Real.pi * ((8 * X - 1) * (L + lM + lB + 8) + 1))) ≤ Real.pi * (12 + 256 * (10 + B)) * L ^ 3",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.W2_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "eventually_logpow_le",
+    "ns": "FloorStep",
+    "full": "FloorStep.eventually_logpow_le",
+    "line": 176,
+    "why": "`C (log T)^n ≤ T` from some height on.",
+    "sorry": false,
+    "needs": [
+     "C : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "∀ᶠ T : ℝ in atTop, C * Real.log T ^ n ≤ T",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.eventually_logpow_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_window_ge",
+    "ns": "FloorStep",
+    "full": "FloorStep.N_window_ge",
+    "line": 196,
+    "why": "Riemann–von Mangoldt on `[T/2, T]`. `T log T/(4π) − (N T − N(T/2)) ≤ T + 224 log T + 1396`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T"
+    ],
+    "proves": "T * Real.log T / (4 * Real.pi) - (riemannZeta.N T - riemannZeta.N (T / 2)) ≤ T + 224 * Real.log T + 1396",
+    "file": "lean_stage3/Stage3/FloorStepSize.lean",
+    "id": "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
     ]
    }
   ]
@@ -65796,6 +66537,10 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuousOn_Fint",
+     "lean_stage3/Stage3/FloorStepCont.lean::FloorStep.continuous_molli",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
@@ -65833,6 +66578,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.tail_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
@@ -68523,6 +69270,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
@@ -69170,6 +69918,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
     ]
    },
@@ -71652,6 +72401,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
@@ -77531,6 +78281,7 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
@@ -110484,6 +111235,10 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.theta_tendsto",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -110546,6 +111301,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -110612,6 +111369,10 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -110715,6 +111476,7 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_cY_eq",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
@@ -111449,7 +112211,9 @@
      "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+    ]
    }
   ]
  },
@@ -111599,6 +112363,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ]
    }
@@ -134634,11 +135399,12 @@
    "Stage3.Operator",
    "Stage3.LevinsonWindowNear",
    "Stage3.Unsmooth",
-   "Stage3.FloorConst"
+   "Stage3.FloorConst",
+   "Stage3.FloorStep"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 245,
+  "lines": 246,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -134694,6 +135460,7 @@
    "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/FixedRowTwo.lean",
    "lean_stage3/Stage3/FloorConst.lean",
+   "lean_stage3/Stage3/FloorStep.lean",
    "lean_stage3/Stage3/GateEval.lean",
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",

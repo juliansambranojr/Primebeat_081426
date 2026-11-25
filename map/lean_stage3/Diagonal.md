@@ -7,7 +7,7 @@
 70 theorems, 12 definitions, 1891 lines. 
 
 **Imports:** [`OffDiagClose`](../lean_stage3/OffDiagClose.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)
 
 ## The picture
 
@@ -166,6 +166,7 @@ flowchart LR
   x5(["<b>ApproxFE</b><br/>gY_zero<br/>uA_re<br/>vB_re"]):::ext
   x6(["<b>ApproxShift</b><br/>local_simple"]):::ext
   x7(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
+  x8(["<b>FloorStepSize</b><br/>betaC_bound"]):::ext
   n0 --> n10
   n1 --> n5
   n1 --> n6
@@ -205,6 +206,7 @@ flowchart LR
   n26 -.-> x7
   n27 -.-> x7
   n28 -.-> x7
+  n28 -.-> x8
   n29 -.-> x7
   x0 -.-> n1
   x0 -.-> n10
@@ -2241,9 +2243,10 @@ line 1369 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Diagonal.SB_young`](#Diagonal-SB_young) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 < T → θ < 1 / 2 → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SB (Mof T θ) (aY P T θ R) (sig0 T R) α … ``
+  - [`FloorStep.betaC_bound`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_bound) (FloorStepSize) — `` ∃ B : ℝ, 1 ≤ B ∧ ∀ (T θ R : ℝ), sig0 T R ≤ 1 / 2 → ∀ h : ℕ, ‖betaC P T θ R h‖ ≤ B ``
 
 <a name="Diagonal-Chk_norm"></a>
 ### `Diagonal.Chk_norm`
