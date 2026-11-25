@@ -219,6 +219,7 @@ import Stage3.ApproxBounds
 import Stage3.ApproxDeriv
 import Stage3.TwistedMoment
 import Stage3.ApproxDerivAll
+import Stage3.OffDiagClose
 
 namespace Stage3
 
