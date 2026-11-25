@@ -22,6 +22,32 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 4, unsmoothing: `Stage3/Unsmooth*.lean`
+
+    DONE        a `WeightAll T (log T)` family with w = 1 on [T/2 − 1, T], w = 0
+                off [T/2 − 2T/L, T + T/L], derivative constants fixed before T;
+                then from `Operator.stmtMollMeanO_holds`: for every ε > 0, from some
+                T on, for a′ ∈ [T/2, T/2 + 1], b′ ∈ [T − 1, T],
+                (1/(b′−a′)) ∫_{a′}^{b′} ‖Gl(σ₀+it)·psi(σ₀+it)‖² dt ≤ Re D(cY) + ε,
+                the one-sided bound Levinson needs; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0545, TRAPS 76–79, start
+                step 4 and the `levinson_window'` restatement side by side).
+                Written before the workers start.
+    DEPENDS     `Operator`, `OffDiagClose` (`WeightAll`, `winW`), `Lemma3`
+    OUT         the window restatement; the liminf assembly (piece 5): continuity
+                of the mean in σ for the abscissa δ, P(1) = 1 for β 1 = 1, the
+                closed form of D(cY) and κ
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the window restated: `Stage3/LevinsonWindowNear.lean`
+
+    DONE        `levinson_window'` with its mean hypothesis only on the windows
+                its proof uses (a ≤ a′ ≤ a + 1, b − 1 ≤ b′ ≤ b), and, if its proof
+                gives it, the difference form with lineCount b − lineCount a on the
+                left; one unit (with unsmoothing or its own)
+    ASSUMED     as above
+    DEPENDS     `LevinsonMultiple`, `LevinsonWindow`, `LevinsonAvoid`, `LineCount`
+    OUT         unsmoothing; piece 5
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 3, the operator: `Stage3/Operator*.lean`
 
     DONE        the mollified mean of Levinson's G = ζ + ζ′/L at σ₀ = 1/2 − R/L:

@@ -86,6 +86,10 @@ build, 2026-09-08.
 | 73 | after `rintro ⟨k, m⟩` on a `Σ _ : ℕ, ℕ`, a later `rw` finds no `k` | hypotheses keep `⟨k, m⟩.fst`, and lemmas applied with implicit arguments carry that form on | pass `(k := k) (m := m)` explicitly (unit 0544) |
 | 74 | `failed to synthesize MulLeftMono ℝ` from `Finset.one_le_prod'` | that lemma is for ordered monoids that ℝ is not | `prod_le_prod (fun _ _ => zero_le_one) h` after rewriting `1 = ∏ _, 1` (unit 0544) |
 | 75 | bare `sum_range_succ` rewrites the wrong pattern, `∑ i ∈ range ?n, ?a (i + 1)` | under `open Finset SdiagLead` the name resolves to another lemma | write `Finset.sum_range_succ` (unit 0544) |
+| 76 | `unexpected token 'Σ'; expected '_' or identifier` at a name like `Σs` or `hΣ0` | `Σ` is the sigma-type binder token and cannot start or sit in an identifier | use ASCII or another letter, `Sψ` (unit 0545) |
+| 77 | `fun_prop` on `AnalyticAt ℂ (fun q : ℂ × ℂ => …) q` fails with `No theorems found for Prod.fst` | the projections are not registered for analyticity | add `theorem afst {q : ℂ × ℂ} : AnalyticAt ℂ (fun p : ℂ × ℂ => p.1) q := analyticAt_fst` and its `snd` twin, `attribute [local fun_prop] afst asnd`, and `fun_prop (disch := assumption)` for nonzero denominators (unit 0545) |
+| 78 | `Unknown constant one_div_pow.symm` from `rw [one_div_pow.symm]` | `.symm` on a lemma with implicit arguments is not resolved as a constant | `rw [← one_div_pow]` (unit 0545) |
+| 79 | `rw [integral_add (j1.add …) …]` finds no pattern | `Integrable.add` states the Pi sum `(f + g) a` while the goal has a lambda (the family of row 42) | rewrite with bare `integral_add` and close the side goals after: `all_goals first \| exact j1 \| exact j2.const_mul _` (unit 0545) |
 
 ## Bench and gate traps
 

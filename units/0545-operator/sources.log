@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-25T17:10:19Z
+# unit: 0545-operator
+# sources searched: 490
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:72673
+  theorem Ires_o (P : Polynomial ℝ) {θ : ℝ} (hθ1 : θ ≤ 1) (R : ℝ) {κ : ℝ} (hκ : 0 < κ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70475
+  ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a81cdb766ef3bd6a9.jsonl:2349
+  Regime κ T α β → ‖Ires W (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ≤ ε * T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:72677
+  theorem stmtMollMeanO_holds (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ} (hθ0 : 0 < θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4cae9210d35d7ba3.jsonl:581
+  (hθ : θ < 1 / 2) {R : ℝ} (hR : 0 < R) : StmtMollMeanO P θ R :=
+
+# 6 found, 0 missing

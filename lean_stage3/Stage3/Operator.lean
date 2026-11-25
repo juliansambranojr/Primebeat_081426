@@ -184,7 +184,7 @@ theorem stmtMollMeanO_holds (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ}
     rw [hnα₀, hρ] at h
     have e : R / Real.log T + R / (2 * Real.log T) = 3 * R / (2 * Real.log T) := by
       field_simp
-      ring
+      try ring
     linarith
   have hlt : ∀ x ∈ closedBall α₀ (r / Real.log T), ‖x‖ < 1 / 2 := fun x hx =>
     (hnorm x hx).trans_lt hsmall
@@ -205,7 +205,7 @@ theorem stmtMollMeanO_holds (P : Polynomial ℝ) (hP0 : P.eval 0 = 0) {θ : ℝ}
     have e : 2 * (R / Real.log T) - R / (2 * Real.log T) - R / (2 * Real.log T) =
         R / Real.log T := by
       field_simp
-      ring
+      try ring
     linarith
   have hne : ∀ x ∈ closedBall α₀ (r / Real.log T), ∀ y ∈ closedBall α₀ (r / Real.log T),
       x + y ≠ 0 := by
