@@ -1,0 +1,5 @@
+t =   49.00  N = 19  zeta balls 57  gamma balls: old 515 (n = 512), new 3  phase 25.429335275467 +- 2.45e-08 (mpmath 25.429335275382)  Re X = 6.970776e-01  r = 9.595e-02  margin 7.26
+t =  100.00  N = 29  zeta balls 87  gamma balls: old 2051 (n = 2048), new 3  phase 87.972165230795 +- 5.00e-08 (mpmath 87.972165231787)  Re X = 2.695609e+00  r = 3.047e-01  margin 8.85
+t =   49.00  Im log Gamma(1/4 + it/2) = 53.475217478443732 +- 1.84e-08  (Stirling part 10/t^7 = 1.5e-11; mpmath 53.475217478692)
+t =  100.00  Im log Gamma(1/4 + it/2) = 145.208659522765259 +- 3.75e-08  (Stirling part 10/t^7 = 1.0e-13; mpmath 145.208659524257)
+written: ['StirlingSeriesLog.lean', 'StirlingSeriesPt49.lean', 'StirlingSeriesPt100.lean', 'StirlingSeriesGammaPhase.lean']
