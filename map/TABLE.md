@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>468 theorems counting,<br/>in 92 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>471 theorems counting,<br/>in 93 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1596 theorems shape,<br/>in 208 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1605 theorems shape,<br/>in 209 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1037 theorems reads ζ,<br/>in 183 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1047 theorems reads ζ,<br/>in 184 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 572 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1847 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1058 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 575 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1856 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1068 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 468 | 1596 | 1037 |
+| `lean_stage3/` | 471 | 1605 | 1047 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -494,6 +494,14 @@ CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its sectio
 
 - [`CountEuler.binom_shift`](./lean_stage3/CountEuler.md#CountEuler-binom_shift) — `` ∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * ζ ^ (j + 1) = ζ * (ζ - c) ^ m `` The binomial identity of the transform. For any `ζ`, `c` and `m`, `Σ_{j≤m} C(m,j)·(−c)^(m−j)·ζ^(j+1) = ζ·(ζ − c)^m`.
 - [`CountEuler.lor_nonneg`](./lean_stage3/CountEuler.md#CountEuler-lor_nonneg) — `` 0 ≤ lor w s `` The Cauchy weight is nonnegative.
+
+### [`DiagLong`](./lean_stage3/DiagLong.md) — 3
+
+# DiagLong — block S13 of `lean_stage3/design/stencil.md`, B3 step 1, the diagonal at any length. 2026-11-25.
+
+- [`DiagLong.Sdiag_split`](./lean_stage3/DiagLong.md#DiagLong-Sdiag_split) — `` Sdiag M a σ₀ α β s = Sc M (cF a σ₀ X) α β s + Sc M (cG a σ₀ X) α β s ``
+- [`DiagLong.Sc_differentiable`](./lean_stage3/DiagLong.md#DiagLong-Sc_differentiable) — `` Differentiable ℂ (Sc M c α β) ``
+- [`DiagLong.SBc_nonneg`](./lean_stage3/DiagLong.md#DiagLong-SBc_nonneg) — `` 0 ≤ SBc M c α β σ ``
 
 ### [`DiagMain`](./lean_stage3/DiagMain.md) — 1
 

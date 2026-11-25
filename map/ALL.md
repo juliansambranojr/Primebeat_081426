@@ -350,11 +350,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilTiles.centre`](./lean_stage3/WeilTiles.md#WeilTiles-centre) | def | shape | `WeilTiles` | ℝ |
 | [`Saddle.centre_iff`](./lean_stage3/Saddle.md#Saddle-centre_iff) | theorem | shape | `Saddle` | stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2 |
 | [`Saddle.centre_of_noRunaway`](./lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) | theorem | reads ζ | `Saddle` | stretch ρ = 1 |
+| [`DiagLong.cF`](./lean_stage3/DiagLong.md#DiagLong-cF) | def | counting | `DiagLong` | ℂ |
 | [`WeilSeries.cFar`](./lean_stage3/WeilSeries.md#WeilSeries-cFar) | def | shape | `WeilSeries` | ℝ |
 | [`WeilSeries.cFar_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-cFar_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ cFar |
 | [`WeilPowerBands.cFarM`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM) | def | shape | `WeilPowerBands` | ℝ |
 | [`WeilPowerBands.cFarM_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_le) | theorem | shape | `WeilPowerBands` | cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2 |
 | [`WeilPowerBands.cFarM_nonneg`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_nonneg) | theorem | shape | `WeilPowerBands` | 0 ≤ cFarM m |
+| [`DiagLong.cG`](./lean_stage3/DiagLong.md#DiagLong-cG) | def | counting | `DiagLong` | ℂ |
 | [`SwapX.cG_eq`](./lean_stage3/SwapX.md#SwapX-cG_eq) | theorem | shape | `SwapX` | cT s T * Gk s 0 t = cexp (s * ((Real.log t - Real.log (2 * Real.pi * T) : ℝ) : ℂ)) |
 | [`HolyChannel.channel_iff_self_mirror`](./lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror) | theorem | reads ζ | `HolyChannel` | (ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ |
 | [`SdiagLead.chi_cases`](./lean_stage3/SdiagLeadAd.md#SdiagLead-chi_cases) | theorem | counting | `SdiagLeadAd` | ((chiAF d m : ℤ) : ℝ) = 0 ∨ ((chiAF d m : ℤ) : ℝ) = 1 |
@@ -697,6 +699,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Diagonal.diag_per_t`](./lean_stage3/Diagonal.md#Diagonal-diag_per_t) | theorem | reads ζ | `Diagonal` | diagSum W M a σ₀ α β c = ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s =&gt; KY α β t s * Zd M a σ₀ α β s) c |
 | [`Diagonal.diag_reindex`](./lean_stage3/Diagonal.md#Diagonal-diag_reindex) | theorem | counting | `Diagonal` | ∑' p : ℕ × ℕ, (if h * (p.1 + 1) = k * (p.2 + 1) then F (p.1 + 1) (p.2 + 1) else 0) = ∑' l : ℕ, F (k / Nat.gcd h k * (l + 1)) (h / Nat.gcd h k * (l + 1)) |
 | [`Diagonal.diag_shift`](./lean_stage3/Diagonal.md#Diagonal-diag_shift) | theorem | reads ζ | `Diagonal` | diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s =&gt; KY α β t s * Zd M a σ₀ α β s) (-(1 / 4)) |
+| [`DiagLong.diag_split`](./lean_stage3/DiagLong.md#DiagLong-diag_split) | theorem | reads ζ | `DiagLong` | diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + (Jsh W α β (Zc M (cF a σ₀ X) α β) + Jsh W α β (Zc M (cG a σ₀ X) α β)) |
 | [`Diagonal.diag_young`](./lean_stage3/Diagonal.md#Diagonal-diag_young) | theorem | reads ζ | `Diagonal` | ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag (Mo… |
 | [`FloorLong.diagO_of_err`](./lean_stage3/FloorLongErr.md#FloorLong-diagO_of_err) | theorem | reads ζ | `FloorLongErr` | StmtDiagO P θ R κ |
 | [`EulerFactorChain.diagonal_cell`](./lean/EulerFactorChain.md#EulerFactorChain-diagonal_cell) | theorem | shape | `EulerFactorChain` | (b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : ℂ) * ρ) * ((b : ℂ) ^ ρ - 1) ^ d |
@@ -1008,6 +1011,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DiagMain.final_real`](./lean_stage3/DiagMain.md#DiagMain-final_real) | theorem | counting | `DiagMain` | Cz * (CI / lm + e / L) + κ * e ≤ ε |
 | [`OffDiagClose.final_size`](./lean_stage3/OffDiagClose.md#OffDiagClose-final_size) | theorem | shape | `OffDiagClose` | ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ Mr : ℝ, 0 ≤ Mr → Mr ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * ((T / Real.log T) ^ (2 * r))⁻¹ * Mr ^ (2 * r + 2) * (2 * T) ^ ((r : ℝ) + 4 / 5) ≤ C * (T /… |
 | [`Diagonal.final_size_diag`](./lean_stage3/Diagonal.md#Diagonal-final_size_diag) | theorem | shape | `Diagonal` | ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * ((M : ℝ) ^ (1 / 2 : ℝ) * (1 + Real.log M) ^ 3) ≤ C * (T … |
+| [`DiagLong.final_size_long`](./lean_stage3/DiagLong.md#DiagLong-final_size_long) | theorem | shape | `DiagLong` | ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * ((T ^ (1 - η)) ^ (1 / 4 : ℝ) * (1 + Real.log M) ^ 3) ≤ C… |
 | [`Slice3.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice3-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
 | [`Slice4.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice4-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
 | [`FilterAccum.finite_accumulation_false`](./lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) | theorem | reads ζ | `FilterAccum` | False |
@@ -1179,6 +1183,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CountEuler.Gc`](./lean_stage3/CountEuler.md#CountEuler-Gc) | def | shape | `CountEuler` | ℂ |
 | [`Diagonal.gcd_facts`](./lean_stage3/Diagonal.md#Diagonal-gcd_facts) | theorem | counting | `Diagonal` | 0 &lt; Nat.gcd h k ∧ h = Nat.gcd h k * (h / Nat.gcd h k) ∧ k = Nat.gcd h k * (k / Nat.gcd h k) ∧ 1 ≤ h / Nat.gcd h k ∧ 1 ≤ k / Nat.gcd h k ∧ h / Nat.gcd h k ≤ h ∧ k / Nat.gcd h k ≤ k |
 | [`Diagonal.gcd_sum`](./lean_stage3/Diagonal.md#Diagonal-gcd_sum) | theorem | shape | `Diagonal` | ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ)) ≤ (M : ℝ… |
+| [`DiagLong.gcd_sum1`](./lean_stage3/DiagLong.md#DiagLong-gcd_sum1) | theorem | shape | `DiagLong` | ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ((Nat.gcd h k : ℕ) : ℝ)⁻¹ * (((h / Nat.gcd h k : ℕ) : ℝ)⁻¹ * ((k / Nat.gcd h k : ℕ) : ℝ)⁻¹) ≤ (1 + Real.log M) ^ 3 |
 | [`SdiagLead.gcd_swap`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-gcd_swap) | theorem | counting | `SdiagLeadSwap` | ∑ h ∈ Icc 1 M, ∑ k ∈ Icc 1 M, F h * G k * ∑ d ∈ (Nat.gcd h k).divisors, J d = ∑ d ∈ Icc 1 M, J d * (∑ h ∈ (Icc 1 M).filter (d ∣ ·), F h) * (∑ k ∈ (Icc 1 M).filter (d ∣ ·), G k) |
 | [`Diagonal.gcd_term`](./lean_stage3/Diagonal.md#Diagonal-gcd_term) | theorem | shape | `Diagonal` | (h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ)) = ((Nat.gcd h k : ℕ) : ℝ)⁻¹ * (((h / Nat.gcd h k : ℕ… |
 | [`ClosedLoopChain.generalized_at_half`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-generalized_at_half) | theorem | shape | `ClosedLoopChain` | generalizedPrimeBeat N (1 / 2) t = primeBeat N t |
@@ -1375,6 +1380,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.hk_dom`](./lean_stage3/TwistedMoment.md#TwistedMoment-hk_dom) | theorem | shape | `TwistedMoment` | (∀ p : ℕ × ℕ, Integrable fun t =&gt; (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ =&gt; ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t‖ |
 | [`FloorStep.hK_shift`](./lean_stage3/FloorStepCont.md#FloorStep-hK_shift) | theorem | reads ζ | `FloorStepCont` | ∃ δ : ℝ, 0 &lt; δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' &lt; b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', Fint c M β σ t ≤ V + ε |
 | [`FloorQ.hK_shiftV`](./lean_stage3/FloorQCont.md#FloorQ-hK_shiftV) | theorem | shape | `FloorQCont` | ∃ δ : ℝ, 0 &lt; δ ∧ δ ≤ 1 / 8 ∧ ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → a' &lt; b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', FintV Q L M β σ t ≤ K + ε |
+| [`DiagLong.hkr`](./lean_stage3/DiagLong.md#DiagLong-hkr) | def | counting | `DiagLong` | ℕ |
 | [`NoHoles.holes_err_trivial`](./lean_stage3/NoHoles.md#NoHoles-holes_err_trivial) | theorem | shape | `NoHoles` | \|∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k)\| ≤ ∑ k ∈ Icc 1 N, \|e (N / k)\| |
 | [`NoHoles.holes_resid`](./lean_stage3/NoHoles.md#NoHoles-holes_resid) | theorem | shape | `NoHoles` | Chebyshev.psi (N : ℝ) = ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * S (N / k) + ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * e (N / k) |
 | [`RHPull.holo_logDerivZeta_of_RH`](./lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | theorem | reads ζ | `LineBound` | HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) |
@@ -1627,7 +1633,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxDerivAll.IYk_hasDerivAt`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_hasDerivAt) | theorem | shape | `ApproxDerivAll` | HasDerivAt (fun t =&gt; IYk α β x j t s) (IYk α β x (j + 1) t s) t |
 | [`ApproxDerivAll.IYk_local`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_local) | theorem | shape | `ApproxDerivAll` | ∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β x j t (σ + y * I)‖ ≤ K * Real.exp (-(1 / 4) * y ^ 2) |
 | [`CountModes.J`](./lean_stage3/CountModes.md#CountModes-J) | def | shape | `CountModes` | ℂ |
+| [`DiagLong.J_add`](./lean_stage3/DiagLong.md#DiagLong-J_add) | theorem | shape | `DiagLong` | Jsh W α β (fun s =&gt; Z1 s + Z2 s) = Jsh W α β Z1 + Jsh W α β Z2 |
 | [`SwapX.J_alg`](./lean_stage3/SwapX.md#SwapX-J_alg) | theorem | shape | `SwapX` | ‖((K / L : ℝ) : ℂ) * ((2 * u - w) + I * (2 * v - w))‖ ≤ 2 * K * (6 * (Cc + 1) + 3 * Cd + 2 * Co * Cu + Co) * eW |
+| [`DiagLong.J_bound`](./lean_stage3/DiagLong.md#DiagLong-J_bound) | theorem | shape | `DiagLong` | ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ (Z : ℂ → ℂ) (KZ : ℝ), (∀ y : ℝ, ‖Z (((-(1 / 4) : ℝ) : ℂ) + y * I)‖ ≤ KZ * Real.exp (2 * \|y\|)) → ‖Jsh… |
 | [`CountModes.J_eq_segment`](./lean_stage3/CountModes.md#CountModes-J_eq_segment) | theorem | shape | `CountModes` | J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ k / (w - s) |
 | [`CountEuler.J_eq_zeta`](./lean_stage3/CountEuler.md#CountEuler-J_eq_zeta) | theorem | shape | `CountEuler` | CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s) |
 | [`CountModes.J_sub`](./lean_stage3/CountModes.md#CountModes-J_sub) | theorem | shape | `CountModes` | J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ) |
@@ -1654,6 +1662,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointLadder.JointAliases`](./lean/JointLadder.md#JointLadder-JointAliases) | def | shape | `JointLadder` | Prop |
 | [`JointLadder.jointAliases_iff_eq`](./lean/JointLadder.md#JointLadder-jointAliases_iff_eq) | theorem | shape | `JointLadder` | JointAliases γ γ' ↔ γ = γ' |
 | [`JointLadder.jointSample`](./lean/JointLadder.md#JointLadder-jointSample) | def | shape | `JointLadder` | ℝ |
+| [`DiagLong.Jsh`](./lean_stage3/DiagLong.md#DiagLong-Jsh) | def | counting | `DiagLong` | ℂ |
 | [`SdiagLead.Jz`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-Jz) | def | counting | `SdiagLeadSwap` | ℂ |
 | [`SdiagLead.Jz_sum`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-Jz_sum) | theorem | counting | `SdiagLeadSwap` | ∑ d ∈ n.divisors, Jz z d = (n : ℂ) ^ z |
 | [`ResidueRoute.K`](./lean_stage3/ResidueRoute.md#ResidueRoute-K) | def | counting | `ResidueRoute` | Set ℂ |
@@ -1786,6 +1795,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SwapX.lin_hasDerivAt`](./lean_stage3/SwapX.md#SwapX-lin_hasDerivAt) | theorem | counting | `SwapX` | HasDerivAt (fun t =&gt; b * ℓ (c * F t)) (b * ℓ (c * F')) t |
 | [`LevinsonLine.line_facts`](./lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) | theorem | shape | `LevinsonLine` | ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 &lt; ((1/2 : ℂ) + t * I).re |
 | [`ConreyCount.line_identity`](./lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) | theorem | reads ζ | `ConreyCountOrder` | ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1/2 + t * I))).re : ℝ) : ℂ) |
+| [`DiagLong.line_int`](./lean_stage3/DiagLong.md#DiagLong-line_int) | theorem | shape | `DiagLong` | Integrable fun y : ℝ =&gt; KY α β t (((-(1 / 4) : ℝ) : ℂ) + y * I) * Z (((-(1 / 4) : ℝ) : ℂ) + y * I) |
 | [`Diagonal.line_integrable`](./lean_stage3/Diagonal.md#Diagonal-line_integrable) | theorem | shape | `Diagonal` | Integrable fun y : ℝ =&gt; KY α β t (c + y * I) * Z (c + y * I) |
 | [`OperatorQ.line_mem`](./lean_stage3/OperatorQ.md#OperatorQ-line_mem) | theorem | shape | `OperatorQ` | ((1/2 : ℂ) + t * I) ∈ domXi |
 | [`MeanQ.line_ne_one`](./lean_stage3/MeanQV.md#MeanQ-line_ne_one) | theorem | shape | `MeanQV` | (σ₀ : ℂ) + t * I ≠ 1 |
@@ -2658,6 +2668,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TableDepths.pow_lower`](./lean_stage3/TableDepths.md#TableDepths-pow_lower) | theorem | shape | `TableDepths` | (0.6931:ℝ) ^ k ≤ Real.log 2 ^ k |
 | [`CountReduction.pow_rpow`](./lean_stage3/CountReduction.md#CountReduction-pow_rpow) | theorem | shape | `CountReduction` | ((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b) |
 | [`GrRatio.pow_shift`](./lean_stage3/GrRatio.md#GrRatio-pow_shift) | theorem | counting | `GrRatio` | (-1 / L) ^ i * (L / 2) ^ (i - j) = (-1 / 2 : ℝ) ^ (i - j) * (-1 / L) ^ j |
+| [`DiagLong.pow_shift_gen`](./lean_stage3/DiagLong.md#DiagLong-pow_shift_gen) | theorem | shape | `DiagLong` | (j : ℝ) ^ (-(1 / 2 + x + -(1 / 4))) ≤ Real.exp (θ * κ) * (j : ℝ) ^ (-(1 / 4) : ℝ) |
 | [`Diagonal.pow_shift_le`](./lean_stage3/Diagonal.md#Diagonal-pow_shift_le) | theorem | shape | `Diagonal` | (j : ℝ) ^ (-(1 / 2 + x + -(1 / 4))) ≤ Real.exp (κ / 2) * (j : ℝ) ^ (-(1 / 4) : ℝ) |
 | [`Operator.pow_six_le_exp`](./lean_stage3/Operator.md#Operator-pow_six_le_exp) | theorem | shape | `Operator` | T ^ 6 ≤ 196608 * Real.exp (T ^ 2 / 32) |
 | [`JointDialGate.powerSaving_relErr`](./lean_stage3/JointDialGate.md#JointDialGate-powerSaving_relErr) | theorem | shape | `JointDialGate` | StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1))) |
@@ -3057,7 +3068,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`Diagonal.SB_nonneg`](./lean_stage3/Diagonal.md#Diagonal-SB_nonneg) | theorem | counting | `Diagonal` | 0 ≤ SB M a σ₀ α β σ |
 | [`FloorConstQ.SB_Q0`](./lean_stage3/FloorConstQ.md#FloorConstQ-SB_Q0) | theorem | shape | `FloorConstQ` | SB Q0 (3 / 2) = 1 + 1 / 2500 * Real.exp 3 |
 | [`Diagonal.SB_young`](./lean_stage3/Diagonal.md#Diagonal-SB_young) | theorem | shape | `Diagonal` | ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 &lt; T → θ &lt; 1 / 2 → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SB (Mof T θ) (aY P T θ R) (sig0 T R) α β (-(1 / 4)) ≤ B ^ 2 * Real.exp κ * (((Mof T θ : ℕ… |
+| [`DiagLong.SBc`](./lean_stage3/DiagLong.md#DiagLong-SBc) | def | counting | `DiagLong` | ℝ |
+| [`DiagLong.SBc_nonneg`](./lean_stage3/DiagLong.md#DiagLong-SBc_nonneg) | theorem | counting | `DiagLong` | 0 ≤ SBc M c α β σ |
+| [`DiagLong.SBF_young`](./lean_stage3/DiagLong.md#DiagLong-SBF_young) | theorem | shape | `DiagLong` | ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ X : ℝ), 1 &lt; T → 0 ≤ θ → 0 &lt; X → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SBc (Mof T θ) (cF (aY P T θ R) (sig0 T R) X) α β (-(1 / 4)) ≤ B ^ 2 * Real.exp (2 *… |
+| [`DiagLong.Sc`](./lean_stage3/DiagLong.md#DiagLong-Sc) | def | counting | `DiagLong` | ℂ |
 | [`FloorConstQ.SC`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-SC) | def | shape | `FloorConstQLimit` | ℝ |
+| [`DiagLong.Sc_differentiable`](./lean_stage3/DiagLong.md#DiagLong-Sc_differentiable) | theorem | counting | `DiagLong` | Differentiable ℂ (Sc M c α β) |
+| [`DiagLong.Sc_norm_le`](./lean_stage3/DiagLong.md#DiagLong-Sc_norm_le) | theorem | shape | `DiagLong` | ‖Sc M c α β (σ + y * I)‖ ≤ SBc M c α β σ' |
 | [`FloorConstQ.SC_Q0`](./lean_stage3/FloorConstQ.md#FloorConstQ-SC_Q0) | theorem | shape | `FloorConstQ` | SC Q0 (3 / 2) = -26057 / 15000 + 6877 / 30000 * Real.exp 3 |
 | [`Stage3.schoenfeld_iff_weak`](./lean_stage3/Statement.md#Stage3-schoenfeld_iff_weak) | theorem | shape | `Statement` | StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 2657 pi li |
 | [`HalfSieve.schoenfeld_of_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-schoenfeld_of_wobble) | theorem | shape | `HalfSieve` | ∃ K : ℝ, StmtSchoenfeldWeak K 1 2 (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
@@ -3081,6 +3098,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Diagonal.Sdiag`](./lean_stage3/Diagonal.md#Diagonal-Sdiag) | def | counting | `Diagonal` | ℂ |
 | [`Diagonal.Sdiag_differentiable`](./lean_stage3/Diagonal.md#Diagonal-Sdiag_differentiable) | theorem | counting | `Diagonal` | Differentiable ℂ (Sdiag M a σ₀ α β) |
 | [`Diagonal.Sdiag_norm_le`](./lean_stage3/Diagonal.md#Diagonal-Sdiag_norm_le) | theorem | shape | `Diagonal` | ‖Sdiag M a σ₀ α β (σ + y * I)‖ ≤ SB M a σ₀ α β σ' |
+| [`DiagLong.Sdiag_split`](./lean_stage3/DiagLong.md#DiagLong-Sdiag_split) | theorem | counting | `DiagLong` | Sdiag M a σ₀ α β s = Sc M (cF a σ₀ X) α β s + Sc M (cG a σ₀ X) α β s |
 | [`SdiagLead.Sdiag_swap`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap) | theorem | shape | `SdiagLeadSwap` | Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0 = ∑ d ∈ Icc 1 (Mof T θ), Jz (1 + α + β) d * (d : ℂ) ^ (-(2 + α + β)) * Ad P (Mof T θ) d β * Ad P (Mof T θ) d α |
 | [`SdiagLead.Sdm`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm) | def | counting | `SdiagLeadAd` | ℝ |
 | [`SdiagLead.Sdm_mono`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm_mono) | theorem | counting | `SdiagLeadAd` | Sdm d X ≤ Sdm d X' |
@@ -3122,6 +3140,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerNear.shellSum_nonneg_abs`](./lean_stage3/WeilPowerNear.md#WeilPowerNear-shellSum_nonneg_abs) | theorem | shape | `WeilPowerNear` | 0 ≤ WeilPowerShell.shellSum e' D e lam a b |
 | [`Diagonal.shift_t`](./lean_stage3/Diagonal.md#Diagonal-shift_t) | theorem | reads ζ | `Diagonal` | VerticalIntegral' (fun s =&gt; KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) 1 = riemannZeta (1 + α + β) * Z 0 + VerticalIntegral' (fun s =&gt; KY α β t s * (riemannZeta (1 + α + β + 2 * s) * Z s)) … |
 | [`Diagonal.shifted_bound`](./lean_stage3/Diagonal.md#Diagonal-shifted_bound) | theorem | reads ζ | `Diagonal` | ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s =&gt; KY α β t s * Zd M a σ₀ … |
+| [`DiagLong.short_fac`](./lean_stage3/DiagLong.md#DiagLong-short_fac) | theorem | shape | `DiagLong` | (a : ℝ) ^ (-(3 / 4) : ℝ) * (b : ℝ) ^ (-(3 / 4) : ℝ) ≤ X ^ (1 / 4 : ℝ) * ((a : ℝ)⁻¹ * (b : ℝ)⁻¹) |
+| [`DiagLong.short_part`](./lean_stage3/DiagLong.md#DiagLong-short_part) | theorem | reads ζ | `DiagLong` | ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Jsh W α β (Zc (Mof T θ) (cF (aY P T θ R) (sig0 T R) (T ^ (1 - η))) α β)‖ ≤ C * (T / Real.log T) |
 | [`MirrorArea.side_eq_sqrt_iff`](./lean_stage3/MirrorArea.md#MirrorArea-side_eq_sqrt_iff) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ = Real.sqrt b ↔ ρ.re = 1 / 2 |
 | [`SieveExact.sieve_by_level`](./lean_stage3/SieveExact.md#SieveExact-sieve_by_level) | theorem | counting | `SieveExact` | ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) = ∑ k ∈ Finset.range ((smallPrimes N).card + 1), ∑ T ∈ (smallPrimes N).powersetCard k, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T,… |
 | [`SieveExact.sieve_by_level_sign`](./lean_stage3/SieveExact.md#SieveExact-sieve_by_level_sign) | theorem | counting | `SieveExact` | ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) = ∑ k ∈ Finset.range ((smallPrimes N).card + 1), (-1 : ℤ) ^ k * ∑ T ∈ (smallPrimes N).powersetCard k, ((N / ∏ p ∈ T, p : … |
@@ -3304,6 +3324,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.StmtDiag`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtDiag) | def | shape | `TwistedMoment` | Prop |
 | [`Diagonal.stmtDiag_of_main`](./lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main) | theorem | reads ζ | `Diagonal` | StmtDiag P θ R κ |
 | [`FloorLong.StmtDiagErr`](./lean_stage3/FloorLongErr.md#FloorLong-StmtDiagErr) | def | reads ζ | `FloorLongErr` | Prop |
+| [`DiagLong.stmtDiagErr_holds`](./lean_stage3/DiagLong.md#DiagLong-stmtDiagErr_holds) | theorem | reads ζ | `DiagLong` | FloorLong.StmtDiagErr P θ R κ |
+| [`DiagLong.stmtDiagErr_of_tail`](./lean_stage3/DiagLong.md#DiagLong-stmtDiagErr_of_tail) | theorem | reads ζ | `DiagLong` | FloorLong.StmtDiagErr P θ R κ |
 | [`Diagonal.StmtDiagMain`](./lean_stage3/Diagonal.md#Diagonal-StmtDiagMain) | def | reads ζ | `Diagonal` | Prop |
 | [`DiagMainStmt.StmtDiagMainO`](./lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO) | def | reads ζ | `DiagMainStmt` | Prop |
 | [`SdiagLead.stmtDiagMainO_holds`](./lean_stage3/SdiagLead.md#SdiagLead-stmtDiagMainO_holds) | theorem | reads ζ | `SdiagLead` | StmtDiagMainO P θ R κ |
@@ -3312,6 +3334,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`SdiagLead.stmtDiagMainO_of_steps`](./lean_stage3/SdiagLeadCore.md#SdiagLead-stmtDiagMainO_of_steps) | theorem | reads ζ | `SdiagLeadCore` | StmtDiagMainO P θ R κ |
 | [`DiagonalO.StmtDiagO`](./lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO) | def | shape | `DiagonalO` | Prop |
 | [`DiagonalO.stmtDiagO_of_mainO`](./lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO) | theorem | reads ζ | `DiagonalO` | StmtDiagO P θ R κ |
+| [`DiagLong.StmtDiagTail`](./lean_stage3/DiagLong.md#DiagLong-StmtDiagTail) | def | reads ζ | `DiagLong` | Prop |
+| [`DiagLong.stmtDiagTail_of_le`](./lean_stage3/DiagLong.md#DiagLong-stmtDiagTail_of_le) | theorem | reads ζ | `DiagLong` | StmtDiagTail P θ R κ η |
 | [`Stage3.StmtDigammaLog`](./lean_stage3/Stirling.md#Stage3-StmtDigammaLog) | def | shape | `Stirling` | Prop |
 | [`Stage3.stmtDigammaLog_holds`](./lean_stage3/Stirling.md#Stage3-stmtDigammaLog_holds) | theorem | reads ζ | `Stirling` | StmtDigammaLog 97 |
 | [`SdiagLead.StmtDivLog`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtDivLog) | def | shape | `SdiagLeadDsum` | Prop |
@@ -3607,6 +3631,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`FloorStep.tail_le`](./lean_stage3/FloorStepSize.md#FloorStep-tail_le) | theorem | counting | `FloorStepSize` | LevinsonMollEdge.tailDelta M B X ≤ τ |
 | [`WindowsOfRH.tail_le`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-tail_le) | theorem | shape | `WindowsOfRH` | ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, max x₀ 1 ≤ y → \|r y\| ≤ K * y ^ θ' |
 | [`ZetaGrowth.tail_norm_le`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-tail_norm_le) | theorem | shape | `ZetaGrowth` | ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖ ≤ (1/4) * (N:ℝ) ^ (-s.re - 1) |
+| [`DiagLong.tail_of_stmtDiagErr`](./lean_stage3/DiagLong.md#DiagLong-tail_of_stmtDiagErr) | theorem | reads ζ | `DiagLong` | StmtDiagTail P θ R κ η |
 | [`CountReduction.tail_rate`](./lean_stage3/CountReduction.md#CountReduction-tail_rate) | theorem | reads ζ | `CountReduction` | ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' &lt; 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ \|(ρ:ℂ).im\|) → ∑ ρ ∈ v, ((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖ … |
 | [`Arith.tailAvg`](./lean_stage3/ArithTail.md#Arith-tailAvg) | theorem | shape | `ArithTail` | StmtTailAvg |
 | [`LevinsonMollEdge.tailDelta`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta) | def | counting | `LevinsonMollEdge` | ℝ |
@@ -4044,9 +4069,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`Crossover.yterm`](./lean/Crossover.md#Crossover-yterm) | def | shape | `Crossover` | ℝ |
 | [`PiFixedRow.Z2`](./lean_stage3/PiFixedRow.md#PiFixedRow-Z2) | def | reads ζ | `PiFixedRow` | ℝ |
 | [`PiFixedRow.Z2_nonneg`](./lean_stage3/PiFixedRow.md#PiFixedRow-Z2_nonneg) | theorem | reads ζ | `PiFixedRow` | 0 ≤ Z2 |
+| [`DiagLong.Zc`](./lean_stage3/DiagLong.md#DiagLong-Zc) | def | reads ζ | `DiagLong` | ℂ |
+| [`DiagLong.Zc_cG_zero`](./lean_stage3/DiagLong.md#DiagLong-Zc_cG_zero) | theorem | reads ζ | `DiagLong` | Zc (Mof T θ) (cG a σ₀ X) α β = fun _ =&gt; 0 |
+| [`DiagLong.Zc_cont`](./lean_stage3/DiagLong.md#DiagLong-Zc_cont) | theorem | reads ζ | `DiagLong` | Continuous fun y : ℝ =&gt; Zc M c α β (σ + y * I) |
+| [`DiagLong.Zc_left`](./lean_stage3/DiagLong.md#DiagLong-Zc_left) | theorem | reads ζ | `DiagLong` | ∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ (M : ℕ) (c : ℕ → ℕ → ℂ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ y : ℝ, ‖Zc M c α β (((-(1 / 4) : ℝ) : ℂ) + y * I)‖ ≤ Cz * SBc M c α β (-(1 / 4)) * Real.exp (2 * \|y\|) |
 | [`Diagonal.Zd`](./lean_stage3/Diagonal.md#Diagonal-Zd) | def | reads ζ | `Diagonal` | ℂ |
 | [`Diagonal.Zd_cont`](./lean_stage3/Diagonal.md#Diagonal-Zd_cont) | theorem | reads ζ | `Diagonal` | Continuous fun y : ℝ =&gt; Zd M a σ₀ α β (σ + y * I) |
 | [`Diagonal.Zd_le`](./lean_stage3/Diagonal.md#Diagonal-Zd_le) | theorem | reads ζ | `Diagonal` | ‖Zd M a σ₀ α β (c + y * I)‖ ≤ Kz α β c * SB M a σ₀ α β c |
+| [`DiagLong.Zd_split`](./lean_stage3/DiagLong.md#DiagLong-Zd_split) | theorem | reads ζ | `DiagLong` | Zd M a σ₀ α β = fun s =&gt; Zc M (cF a σ₀ X) α β s + Zc M (cG a σ₀ X) α β s |
 | [`Zeros.zero_20_6`](./lean/Zeros.md#Zeros-zero_20_6) | theorem | counting | `Zeros` | Construction.tableFrom dyadicRow 20 6 = 0 |
 | [`Zeros.zero_2_1`](./lean/Zeros.md#Zeros-zero_2_1) | theorem | counting | `Zeros` | Construction.tableFrom dyadicRow 2 1 = 0 |
 | [`Zeros.zero_4_1`](./lean/Zeros.md#Zeros-zero_4_1) | theorem | counting | `Zeros` | Construction.tableFrom dyadicRow 4 1 = 0 |
