@@ -25123,7 +25123,9 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.N_ge",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
     ]
    },
    {
@@ -25151,6 +25153,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
@@ -53075,7 +53079,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConst.lean::FloorConst.floor_const",
-     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappa_levinson_ge"
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappa_levinson_ge",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le"
     ]
    },
    {
@@ -53189,7 +53194,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConst.lean::FloorConst.Kfl_levinson_le",
-     "lean_stage3/Stage3/FloorConst.lean::FloorConst.Kfl_levinson_pos"
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.Kfl_levinson_pos",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.K_ge_one"
     ]
    },
    {
@@ -53388,7 +53394,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/FloorConst.lean::FloorConst.floor_const"
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.floor_const",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le"
     ]
    },
    {
@@ -54296,7 +54303,11 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.dop_closed",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
-     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.tendsto_Kfl"
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.tendsto_Kfl",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.K_ge_one",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X"
     ]
    },
    {
@@ -54961,7 +54972,9 @@
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X"
+    ]
    }
   ]
  },
@@ -55557,7 +55570,356 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step"
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.N_ge"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorSum.lean",
+  "module": "Stage3.FloorSum",
+  "stem": "FloorSum",
+  "header": "# FloorSum — block S12 of `lean_stage3/design/stencil.md`, piece 5c, the sum: a positive proportion of the zeros on the line. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorStep",
+   "Stage3.FloorConst",
+   "Stage3.FloorSumTele"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "FloorConst",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "FloorSum"
+  ],
+  "lines": 195,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorConst.lean",
+   "lean_stage3/Stage3/FloorStep.lean",
+   "lean_stage3/Stage3/FloorSumTele.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "K_ge_one",
+    "ns": "FloorSum",
+    "full": "FloorSum.K_ge_one",
+    "line": 47,
+    "why": "`1 ≤ K` at `P(x) = x`, `θ = 49/100`, `R = 13/10`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "1 ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.K_ge_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.Kfl_levinson_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.Kfl_levinson_eq",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_K_le",
+    "ns": "FloorSum",
+    "full": "FloorSum.log_K_le",
+    "line": 57,
+    "why": "`log K ≤ 13/15`, from `1/3 ≤ κ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.log (Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10)) ≤ 13 / 15",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappaL",
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappa_levinson_ge",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappaL",
+     "lean_stage3/Stage3/FloorConst.lean::FloorConst.kappa_levinson_ge",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logmax_le",
+    "ns": "FloorSum",
+    "full": "FloorSum.logmax_le",
+    "line": 66,
+    "why": "The `max 1` and the `ε₁` of `floor_step`, priced: `log (max 1 x) / R ≤ 2/3 + 2ε₁`.",
+    "sorry": false,
+    "needs": [
+     "hε₁ : 0 < ε₁",
+     "hx : x ≤ Kfl 1 (1 / 2) (1 / 3) (49 / 100) (13 / 10) + 2 * ε₁"
+    ],
+    "proves": "Real.log (max 1 x) / (13 / 10) ≤ 2 / 3 + 2 * ε₁",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.K_ge_one",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.K_ge_one",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.log_K_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "step_X",
+    "ns": "FloorSum",
+    "full": "FloorSum.step_X",
+    "line": 88,
+    "why": "The window floor at `P = X`. For `ε₁ > 0`, from some height `T₁ ≥ 1` on, `(1/3 − 2ε₁)(N T − N(T/2)) − ε₁ T log T ≤ lineCount T − lineCount(T/2)`.",
+    "sorry": false,
+    "needs": [
+     "hε₁ : 0 < ε₁"
+    ],
+    "proves": "∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) - (LineCount.lineCount (T / 2) : ℝ)",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Kfl",
+     "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.logmax_le",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_ge",
+    "ns": "FloorSum",
+    "full": "FloorSum.N_ge",
+    "line": 114,
+    "why": "`N T ≥ T log T / 20` eventually, from the Riemann–von Mangoldt bound in the tree.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.N_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.N_window_ge"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_floor",
+    "ns": "FloorSum",
+    "full": "FloorSum.levinson_floor",
+    "line": 132,
+    "why": "S12 piece 5c, Levinson's floor. At `P(x) = x`, `θ = 49/100`, `R = 13/10`: for every `ε > 0`, from some height on, at least `(1/3 − ε) N T` of the zeros of `ζ` with height in `(0, T]` lie on the critical line, counted with multiplicity.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ)",
+    "file": "lean_stage3/Stage3/FloorSum.lean",
+    "id": "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FloorSumTele.lean",
+  "module": "Stage3.FloorSumTele",
+  "stem": "FloorSumTele",
+  "header": "# FloorSumTele — block S12 of `lean_stage3/design/stencil.md`, piece 5c, the sum: the telescoping over halvings. 2026-11-25.",
+  "imports": [],
+  "opens": [],
+  "namespaces": [
+   "FloorSum"
+  ],
+  "lines": 115,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "half_pow_succ",
+    "ns": "FloorSum",
+    "full": "FloorSum.half_pow_succ",
+    "line": 24,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "T / 2 / 2 ^ n = T / 2 ^ (n + 1)",
+    "file": "lean_stage3/Stage3/FloorSumTele.lean",
+    "id": "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.half_pow_succ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tele",
+    "ns": "FloorSum",
+    "full": "FloorSum.tele",
+    "line": 28,
+    "why": "The telescoping. The window floors at `T, T/2, …, T/2^n` sum, with error `2 e T log T`.",
+    "sorry": false,
+    "needs": [
+     "hT₁ : 1 ≤ T₁",
+     "he : 0 ≤ e",
+     "hstep : ∀ T : ℝ, T₁ ≤ T → c * (g T - g (T / 2)) - e * T * Real.log T ≤ f T - f (T / 2)"
+    ],
+    "proves": "∀ n : ℕ, ∀ T : ℝ, T₁ ≤ T / 2 ^ n → c * (g T - g (T / 2 ^ (n + 1))) - 2 * e * T * Real.log T ≤ f T - f (T / 2 ^ (n + 1))",
+    "file": "lean_stage3/Stage3/FloorSumTele.lean",
+    "id": "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.half_pow_succ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.half_pow_succ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_halving",
+    "ns": "FloorSum",
+    "full": "FloorSum.exists_halving",
+    "line": 67,
+    "why": "The bottom of the halvings.",
+    "sorry": false,
+    "needs": [
+     "hT₁ : 0 < T₁",
+     "hT : T₁ ≤ T"
+    ],
+    "proves": "∃ n : ℕ, T₁ ≤ T / 2 ^ n ∧ T / 2 ^ (n + 1) < T₁",
+    "file": "lean_stage3/Stage3/FloorSumTele.lean",
+    "id": "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.exists_halving",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tele_floor",
+    "ns": "FloorSum",
+    "full": "FloorSum.tele_floor",
+    "line": 90,
+    "why": "The floor from the window floors.",
+    "sorry": false,
+    "needs": [
+     "hT₁ : 1 ≤ T₁",
+     "he : 0 ≤ e",
+     "hc : 0 ≤ c",
+     "hf : ∀ T : ℝ, 0 ≤ f T",
+     "hg : Monotone g",
+     "hstep : ∀ T : ℝ, T₁ ≤ T → c * (g T - g (T / 2)) - e * T * Real.log T ≤ f T - f (T / 2)"
+    ],
+    "proves": "∀ T : ℝ, T₁ ≤ T → c * (g T - g T₁) - 2 * e * T * Real.log T ≤ f T",
+    "file": "lean_stage3/Stage3/FloorSumTele.lean",
+    "id": "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele_floor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.exists_halving",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.exists_halving",
+     "lean_stage3/Stage3/FloorSumTele.lean::FloorSum.tele"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
     ]
    }
   ]
@@ -69755,6 +70117,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
     ]
    },
@@ -72402,6 +72765,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
@@ -78282,6 +78647,7 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
@@ -111239,6 +111605,7 @@
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -111477,6 +111844,7 @@
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto_X",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
@@ -135400,11 +135768,12 @@
    "Stage3.LevinsonWindowNear",
    "Stage3.Unsmooth",
    "Stage3.FloorConst",
-   "Stage3.FloorStep"
+   "Stage3.FloorStep",
+   "Stage3.FloorSum"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 246,
+  "lines": 247,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -135461,6 +135830,7 @@
    "lean_stage3/Stage3/FixedRowTwo.lean",
    "lean_stage3/Stage3/FloorConst.lean",
    "lean_stage3/Stage3/FloorStep.lean",
+   "lean_stage3/Stage3/FloorSum.lean",
    "lean_stage3/Stage3/GateEval.lean",
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",

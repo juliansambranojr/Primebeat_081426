@@ -11,6 +11,7 @@ flowchart LR
   x0(["<b>FloorStep</b><br/>floor_step"]):::ext
   x1(["<b>Diagonal</b><br/>aY_bound'"]):::ext
   x2(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x3(["<b>FloorSum</b><br/>N_ge"]):::ext
   n0 -.-> x0
   n1 -.-> x0
   n2 -.-> x0
@@ -20,6 +21,7 @@ flowchart LR
   n6 -.-> x0
   n7 -.-> x0
   n8 -.-> x0
+  n8 -.-> x3
   x1 -.-> n2
   x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111

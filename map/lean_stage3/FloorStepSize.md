@@ -25,6 +25,7 @@ flowchart LR
   x0(["<b>FloorStep</b><br/>floor_step"]):::ext
   x1(["<b>Diagonal</b><br/>aY_bound'"]):::ext
   x2(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x3(["<b>FloorSum</b><br/>N_ge"]):::ext
   n0 -.-> x0
   n1 -.-> x0
   n2 -.-> x0
@@ -34,6 +35,7 @@ flowchart LR
   n6 -.-> x0
   n7 -.-> x0
   n8 -.-> x0
+  n8 -.-> x3
   x1 -.-> n2
   x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -312,7 +314,8 @@ T * Real.log T / (4 * Real.pi) - (riemannZeta.N T - riemannZeta.N (T / 2)) ≤ T
 
   - [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude) (ArgCount) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
+  - [`FloorSum.N_ge`](../lean_stage3/FloorSum.md#FloorSum-N_ge) (FloorSum) — `` ∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T ``
 
