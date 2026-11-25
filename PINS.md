@@ -22,6 +22,32 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's sign data: `Stage3/SignData*.lean`
+
+    DONE        a certified evaluation of Λ(1/2 + it) at given rational t in Lean:
+                Euler–Maclaurin (`ZetaEM.zeta_eq_em`, explicit remainder) with
+                rigorous rational enclosures of log n, cos, sin, exp and the gamma
+                factor; the sign of Re Λ(1/2 + it) at chosen points proved; a first
+                certificate `StmtSignData` instance across the first zero (t ≈ 14.13)
+                and, if feasible, the points `defect_zero_of_signs` needs for a small
+                height; or the pipeline at one point with a cost estimate; one unit
+    ASSUMED     Julian, 2026-11-25: "Start the sign data and the diagonal please".
+                Written before the workers start.
+    DEPENDS     `ZetaEM`, `Turing*`, `TuringLW`, `HardyZ`, Mathlib's Taylor bounds
+                for exp, cos, sin, log
+    OUT         B3; C's core
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B3 step 1, the diagonal at any length: `Stage3/DiagLong*.lean`
+
+    DONE        `FloorLong.StmtDiagErr P θ R κ` for the largest range of θ the
+                diagonal's own route reaches (target: every θ > 0, as in Young §6 by
+                moving u, v and s), with the shifted integrals' sizes checked before
+                proving; or the largest honest range, with the obstruction named;
+                one unit
+    ASSUMED     as above
+    DEPENDS     `Diagonal`, `FloorLongErr`, `ZetaGrowth`, `SdiagLead*`, `Arith`
+    OUT         the off-diagonal and the swapped term at θ ≥ 1/2
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, Littlewood's three pieces: `Stage3/TuringLW.lean` and `Stage3/TuringLW*.lean`
 
     DONE        `Turing.StmtSplit` (the imaginary part of the integrated argument
