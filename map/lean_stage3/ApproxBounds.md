@@ -47,6 +47,7 @@ flowchart LR
   n29["<b>im_one_sub_uA</b><br/>(1 - uA α t).im = -(α.im + t)"]:::cnt
   x0(["<b>diagram 2</b><br/>5 theorems"]):::ext
   x1(["<b>diagram 3</b><br/>resY_small"]):::ext
+  x2(["<b>TwistedMoment</b><br/>continuousAt_resY"]):::ext
   n0 --> n5
   n10 --> n13
   n11 --> n13
@@ -76,6 +77,7 @@ flowchart LR
   n26 -.-> x1
   n27 -.-> x0
   n28 -.-> x0
+  n28 -.-> x2
   n29 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -113,7 +115,7 @@ flowchart LR
   n19["<b>integrand_differentiableAt'</b><br/>DifferentiableAt ℂ (fun s =＞ KY α β t s * (x : ℂ) ^ (-s)) s"]:::shp
   n20["<b>VY_residue</b><br/>VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1"]:::thm
   n21["<b>rpow_quarter_le</b><br/>b ^ (1 / 4 : ℝ) ≤ 1 + b"]:::shp
-  n22["<b>VY_decay_young ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
+  n22["<b>VY_decay_young</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β …"]:::thm
   n23["<b>lY_le_abs</b><br/>lY Y ≤ |Y|"]:::shp
   n24["<b>gR_lower</b><br/>-(2 * K + |Real.log (Real.Gamma (1 / 2))|) - (Real.pi / 2 + 1) *…"]:::shp
   n25["<b>resY_term</b><br/>‖GY α β s / d * completedRiemannZeta w‖ ≤ Real.exp (1 - (t - 1 /…"]:::shp
@@ -121,12 +123,13 @@ flowchart LR
   n27["<b>resY_T1</b><br/>‖GY α β (1 - uA α t) / (1 - uA α t) * completedRiemannZeta (vB β…"]:::shp
   n28["<b>resY_T2</b><br/>‖GY α β (-uA α t) / uA α t * completedRiemannZeta (vB β t - uA α…"]:::shp
   n29["<b>resY_T3</b><br/>‖GY α β (1 - vB β t) / (1 - vB β t) * completedRiemannZeta (uA α…"]:::shp
-  x0(["<b>diagram 1</b><br/>6 theorems"]):::ext
-  x1(["<b>ApproxFE</b><br/>7 theorems"]):::ext
-  x2(["<b>ApproxShift</b><br/>7 theorems"]):::ext
-  x3(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
-  x4(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
-  x5(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
+  x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
+  x1(["<b>diagram 1</b><br/>6 theorems"]):::ext
+  x2(["<b>ApproxFE</b><br/>7 theorems"]):::ext
+  x3(["<b>ApproxShift</b><br/>7 theorems"]):::ext
+  x4(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
+  x5(["<b>ContourShift</b><br/>residue_rectangle_of_local"]):::ext
+  x6(["<b>diagram 3</b><br/>resY_T4<br/>resY_den<br/>resY_small"]):::ext
   n0 --> n3
   n0 --> n5
   n1 --> n3
@@ -160,34 +163,37 @@ flowchart LR
   n7 --> n8
   n8 --> n11
   n9 --> n11
-  n11 -.-> x3
-  n17 -.-> x3
-  n19 -.-> x3
-  n20 -.-> x3
-  n21 -.-> x3
-  n24 -.-> x5
-  n25 -.-> x5
-  n26 -.-> x5
-  n27 -.-> x5
-  n28 -.-> x5
-  n29 -.-> x5
-  x0 -.-> n2
-  x0 -.-> n24
-  x0 -.-> n3
-  x0 -.-> n5
-  x0 -.-> n8
-  x1 -.-> n14
-  x1 -.-> n19
-  x1 -.-> n20
-  x1 -.-> n28
+  n0 -.-> x0
+  n11 -.-> x4
+  n17 -.-> x4
+  n18 -.-> x0
+  n19 -.-> x4
+  n20 -.-> x4
+  n21 -.-> x4
+  n22 -.-> x0
+  n24 -.-> x6
+  n25 -.-> x6
+  n26 -.-> x6
+  n27 -.-> x6
+  n28 -.-> x6
+  n29 -.-> x6
+  x1 -.-> n2
+  x1 -.-> n24
   x1 -.-> n3
   x1 -.-> n5
   x1 -.-> n8
-  x2 -.-> n11
-  x2 -.-> n17
+  x2 -.-> n14
+  x2 -.-> n19
   x2 -.-> n20
-  x2 -.-> n25
-  x4 -.-> n20
+  x2 -.-> n28
+  x2 -.-> n3
+  x2 -.-> n5
+  x2 -.-> n8
+  x3 -.-> n11
+  x3 -.-> n17
+  x3 -.-> n20
+  x3 -.-> n25
+  x5 -.-> n20
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -204,13 +210,15 @@ flowchart LR
 flowchart LR
   n0["<b>resY_T4</b><br/>‖GY α β (-vB β t) / vB β t * completedRiemannZeta (uA α t - vB β…"]:::shp
   n1["<b>resY_den</b><br/>Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Re…"]:::shp
-  n2["<b>resY_small ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::thm
+  n2["<b>resY_small</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::thm
   x0(["<b>diagram 2</b><br/>6 theorems"]):::ext
   x1(["<b>ApproxFE</b><br/>4 theorems"]):::ext
   x2(["<b>diagram 1</b><br/>const_bound"]):::ext
   x3(["<b>ApproxShift</b><br/>Lambda_bound"]):::ext
+  x4(["<b>TwistedMoment</b><br/>Ires_small"]):::ext
   n0 --> n2
   n1 --> n2
+  n2 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2
@@ -1086,10 +1094,11 @@ line 561 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.XY_log`](#ApproxBounds-XY_log) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
   - [`ApproxBounds.XY_size`](#ApproxBounds-XY_size) — `` ∃ C : ℝ, 0 < C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ‖XY α β t‖ ≤ C * (t / (2 * Real.pi)) ^ (-(α + β).re) ∧ (t / (2 * Real.pi)) … ``
+  - [`TwistedMoment.continuousAt_resY`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuousAt_resY) (TwistedMoment) — `` ContinuousAt (fun t => resY α β t) t ``
 
 <a name="ApproxBounds-im_one_sub_uA"></a>
 ### `ApproxBounds.im_one_sub_uA`
@@ -1139,10 +1148,11 @@ line 565 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.XY_log`](#ApproxBounds-XY_log) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| … ``
   - [`ApproxBounds.XY_size`](#ApproxBounds-XY_size) — `` ∃ C : ℝ, 0 < C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ‖XY α β t‖ ≤ C * (t / (2 * Real.pi)) ^ (-(α + β).re) ∧ (t / (2 * Real.pi)) … ``
+  - [`TwistedMoment.continuousAt_resY`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuousAt_resY) (TwistedMoment) — `` ContinuousAt (fun t => resY α β t) t ``
 
 <a name="ApproxBounds-im_one_sub_vB"></a>
 ### `ApproxBounds.im_one_sub_vB`
@@ -1693,9 +1703,11 @@ line 1095 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`ApproxBounds.VY_decay_young`](#ApproxBounds-VY_decay_young) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ‖VY α β c x t‖ ≤ C * (1 + 1 /… ``
+  - [`TwistedMoment.continuousOn_S1`](../lean_stage3/TwistedMoment.md#TwistedMoment-continuousOn_S1) (TwistedMoment) — `` ContinuousOn (fun t => S1 α β c t) (Set.Icc 1 B) ``
+  - [`TwistedMoment.hk_dom`](../lean_stage3/TwistedMoment.md#TwistedMoment-hk_dom) (TwistedMoment) — `` (∀ p : ℕ × ℕ, Integrable fun t => (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ => ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Eh… ``
 
 <a name="ApproxBounds-integrand_differentiableAt-"></a>
 ### `ApproxBounds.integrand_differentiableAt'`
@@ -1833,7 +1845,9 @@ line 1281 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`TwistedMoment.Fw2_bound`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw2_bound) (TwistedMoment) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="ApproxBounds-lY_le_abs"></a>
 ### `ApproxBounds.lY_le_abs`
@@ -2150,5 +2164,7 @@ line 1612 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.resY`](../lean_stage3/ApproxFE.md#ApproxFE-resY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`TwistedMoment.Ires_small`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires_small) (TwistedMoment) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C… ``
 

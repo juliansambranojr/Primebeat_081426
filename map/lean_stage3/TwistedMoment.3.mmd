@@ -1,0 +1,65 @@
+flowchart LR
+  n0["<b>Ires_small ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ)…"]:::thm
+  n1["<b>coef4</b><br/>(h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) * (k : ℂ) ^ (-((σ₀ : ℂ) - t * I)…"]:::shp
+  n2["<b>continuous_Ehk</b><br/>Continuous (Ehk σ₀ h k)"]:::cnt
+  n3["<b>norm_Ehk</b><br/>‖Ehk σ₀ h k t‖ = (h : ℝ) ^ (-σ₀) * (k : ℝ) ^ (-σ₀)"]:::shp
+  n4["<b>term_integral</b><br/>a h * (starRingEnd ℂ) (a k) * ∫ t, (W.w t : ℂ) * S1term α β c t …"]:::shp
+  n5["<b>continuous_S1term</b><br/>Continuous fun t =＞ S1term α β c t p"]:::shp
+  n6["<b>hk_dom</b><br/>(∀ p : ℕ × ℕ, Integrable fun t =＞ (W.w t : ℂ) * S1term α β c t p…"]:::shp
+  n7["<b>integral_hk</b><br/>∫ t, (W.w t : ℂ) * S1 α β c t * Ehk σ₀ h k t = ∑' p : ℕ × ℕ, ∫ t…"]:::shp
+  n8["<b>summable_hk</b><br/>Summable fun p : ℕ × ℕ =＞ ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1…"]:::shp
+  n9["<b>I1_expand</b><br/>I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, …"]:::shp
+  n10["<b>Jint_diag ■</b><br/>Jint W α β c h k m n = ∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n)…"]:::shp
+  n11["<b>I1_diag_off</b><br/>I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β…"]:::shp
+  n12["<b>offTerm_nonneg</b><br/>0 ≤ offTerm T p"]:::cnt
+  n13["<b>offTerm_le</b><br/>offTerm T p ≤ (2 * T) ^ (3 : ℝ) * (((p.1 : ℝ) + 1) ^ (-(12 / 5) …"]:::shp
+  n14["<b>summable_offTerm</b><br/>Summable (offTerm T)"]:::shp
+  n15["<b>rpow_mul_self</b><br/>x ^ s * x = x ^ (s + 1)"]:::shp
+  n16["<b>off_term_le</b><br/>‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 …"]:::shp
+  n17["<b>offSum_bound ■</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀…"]:::thm
+  n18["<b>Regime.swap ■</b><br/>Regime κ T (-β) (-α)"]:::shp
+  n19["<b>Regime.small ■</b><br/>‖α‖ ≤ 1 / 10 ∧ ‖β‖ ≤ 1 / 10 ∧ α + β ≠ 0 ∧ 0 ＜ Real.log T"]:::shp
+  n20["<b>norm_Tpow_le</b><br/>‖(T : ℂ) ^ (-(α + β))‖ ≤ Real.exp (2 * κ)"]:::shp
+  n21["<b>lemma3_res_of_parts ■</b><br/>StmtLemma3res P θ R κ"]:::thm
+  x0(["<b>ApproxBounds</b><br/>VY_decay<br/>resY_small"]):::ext
+  x1(["<b>diagram 2</b><br/>13 theorems"]):::ext
+  x2(["<b>diagram 1</b><br/>continuous_VY"]):::ext
+  n1 --> n4
+  n11 --> n21
+  n12 --> n14
+  n12 --> n17
+  n13 --> n14
+  n14 --> n17
+  n15 --> n16
+  n16 --> n17
+  n2 --> n6
+  n2 --> n9
+  n20 --> n21
+  n3 --> n6
+  n4 --> n8
+  n4 --> n9
+  n5 --> n6
+  n6 --> n7
+  n6 --> n8
+  n7 --> n9
+  n8 --> n11
+  n8 --> n17
+  n9 --> n11
+  x0 -.-> n0
+  x0 -.-> n6
+  x1 -.-> n0
+  x1 -.-> n16
+  x1 -.-> n17
+  x1 -.-> n21
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n9
+  x2 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

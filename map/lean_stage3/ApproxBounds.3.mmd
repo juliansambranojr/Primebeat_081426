@@ -1,13 +1,15 @@
 flowchart LR
   n0["<b>resY_T4</b><br/>‖GY α β (-vB β t) / vB β t * completedRiemannZeta (uA α t - vB β…"]:::shp
   n1["<b>resY_den</b><br/>Real.exp (-(2 * (2 * K + |Real.log (Real.Gamma (1 / 2))|)) - (Re…"]:::shp
-  n2["<b>resY_small ■</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::thm
+  n2["<b>resY_small</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : …"]:::thm
   x0(["<b>diagram 2</b><br/>6 theorems"]):::ext
   x1(["<b>ApproxFE</b><br/>4 theorems"]):::ext
   x2(["<b>diagram 1</b><br/>const_bound"]):::ext
   x3(["<b>ApproxShift</b><br/>Lambda_bound"]):::ext
+  x4(["<b>TwistedMoment</b><br/>Ires_small"]):::ext
   n0 --> n2
   n1 --> n2
+  n2 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2

@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>206 theorems counting,<br/>in 43 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>235 theorems counting,<br/>in 44 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1104 theorems shape,<br/>in 145 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1147 theorems shape,<br/>in 146 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>813 theorems reads ζ,<br/>in 132 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>823 theorems reads ζ,<br/>in 133 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 310 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1355 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 834 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 339 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1398 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 844 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 206 | 1104 | 813 |
+| `lean_stage3/` | 235 | 1147 | 823 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -691,6 +691,40 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 
 - [`StepsPeak.uIcc_sub`](./lean_stage3/StepsPeak.md#StepsPeak-uIcc_sub) — `` Set.uIcc (2:ℝ) N ⊆ Set.Ioi 0 ``
 - [`StepsPeak.h0_not_mem`](./lean_stage3/StepsPeak.md#StepsPeak-h0_not_mem) — `` (0:ℝ) ∉ Set.uIcc (2:ℝ) N ``
+
+### [`TwistedMoment`](./lean_stage3/TwistedMoment.md) — 29
+
+# TwistedMoment — block S12 of `lean_stage3/design/stencil.md`, piece 2b-ii, the twisted moment. 2026-11-25.
+
+- [`TwistedMoment.Weight.differentiable`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-differentiable) — `` Differentiable ℝ W.w ``
+- [`TwistedMoment.Weight.smooth1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-smooth1) — `` ContDiff ℝ ∞ (deriv W.w) ``
+- [`TwistedMoment.Weight.differentiable1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-differentiable1) — `` Differentiable ℝ (deriv W.w) ``
+- [`TwistedMoment.Weight.hasDerivAt1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-hasDerivAt1) — `` HasDerivAt W.w (deriv W.w t) t ``
+- [`TwistedMoment.Weight.hasDerivAt2`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-hasDerivAt2) — `` HasDerivAt (deriv W.w) (deriv (deriv W.w) t) t ``
+- [`TwistedMoment.Weight.cont`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont) — `` Continuous W.w ``
+- [`TwistedMoment.Weight.cont1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont1) — `` Continuous (deriv W.w) ``
+- [`TwistedMoment.Weight.cont2`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont2) — `` Continuous (deriv (deriv W.w)) ``
+- [`TwistedMoment.Weight.deriv_zero_on`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-deriv_zero_on) — `` ∀ s ∈ U, deriv f s = 0 `` A function vanishing on an open set has derivative zero there.
+- [`TwistedMoment.Weight.zero_out`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-zero_out) — `` W.w t = 0 ∧ deriv W.w t = 0 ∧ deriv (deriv W.w) t = 0 ``
+- [`TwistedMoment.Weight.abs_le_one`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-abs_le_one) — `` |W.w t| ≤ 1 ``
+- [`TwistedMoment.continuous_eL`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_eL) — `` Continuous (eL l) ``
+- [`TwistedMoment.eL_hasDerivAt`](./lean_stage3/TwistedMoment.md#TwistedMoment-eL_hasDerivAt) — `` HasDerivAt (eL l) (eL l t * (-(l : ℂ) * I)) t ``
+- [`TwistedMoment.norm_eL`](./lean_stage3/TwistedMoment.md#TwistedMoment-norm_eL) — `` ‖eL l t‖ = 1 ``
+- [`TwistedMoment.ibp_once`](./lean_stage3/TwistedMoment.md#TwistedMoment-ibp_once) — `` ∫ t in a..b, F t * eL l t = (1 / ((l : ℂ) * I)) * ∫ t in a..b, F1 t * eL l t `` One integration by parts: `∫_a^b F e_λ = (1/(iλ)) ∫_a^b F' e_λ` when `F(a) = F(b) = 0`.
+- [`TwistedMoment.ibp_twice`](./lean_stage3/TwistedMoment.md#TwistedMoment-ibp_twice) — `` ∫ t in a..b, F t * eL l t = -(1 / (l : ℂ) ^ 2) * ∫ t in a..b, F2 t * eL l t `` Two integrations by parts: `∫_a^b F e_λ = −(1/λ²) ∫_a^b F'' e_λ` when `F` and `F'` vanish at `a` and `b`.
+- [`TwistedMoment.Fw_zero_out`](./lean_stage3/TwistedMoment.md#TwistedMoment-Fw_zero_out) — `` Fw W α β c x t = 0 ∧ Fw1 W α β c x t = 0 ∧ Fw2 W α β c x t = 0 ``
+- [`TwistedMoment.inv_t_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-inv_t_le) — `` t⁻¹ ≤ 4 * (T / L)⁻¹ `` `t⁻¹ ≤ 4Δ⁻¹` on the support, `Δ = T/L ≤ T`.
+- [`TwistedMoment.msq_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_nonneg) — `` 0 ≤ msq M a σ₀ t ``
+- [`TwistedMoment.continuous_msq`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_msq) — `` Continuous (msq M a σ₀) ``
+- [`TwistedMoment.continuous_uA`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_uA) — `` Continuous fun t : ℝ => uA α t ``
+- [`TwistedMoment.continuous_vB`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_vB) — `` Continuous fun t : ℝ => vB β t ``
+- [`TwistedMoment.integrable_of_Icc`](./lean_stage3/TwistedMoment.md#TwistedMoment-integrable_of_Icc) — `` Integrable f `` A function that vanishes off `[a, b]` and is continuous on it is integrable.
+- [`TwistedMoment.w_zero_mul`](./lean_stage3/TwistedMoment.md#TwistedMoment-w_zero_mul) — `` (W.w t : ℂ) * F * G = 0 `` The `I` integrand vanishes off the support.
+- [`TwistedMoment.resY_term_cAt`](./lean_stage3/TwistedMoment.md#TwistedMoment-resY_term_cAt) — `` ContinuousAt (fun t => GY α β (f t) / d t * completedRiemannZeta (g t)) t `` One term of `resY`, continuous in `t` where its pieces are defined.
+- [`TwistedMoment.ne_zero_of_re_pos`](./lean_stage3/TwistedMoment.md#TwistedMoment-ne_zero_of_re_pos) — `` z ≠ 0 ``
+- [`TwistedMoment.ne_of_im_ne`](./lean_stage3/TwistedMoment.md#TwistedMoment-ne_of_im_ne) — `` z ≠ w ``
+- [`TwistedMoment.continuous_Ehk`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_Ehk) — `` Continuous (Ehk σ₀ h k) ``
+- [`TwistedMoment.offTerm_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-offTerm_nonneg) — `` 0 ≤ offTerm T p ``
 
 ### [`WeilPowerClean`](./lean_stage3/WeilPowerClean.md) — 1
 

@@ -1,13 +1,17 @@
 flowchart LR
-  f0["<b>ApproxFE</b><br/>13 used"]:::thm
+  f0["<b>ApproxFE</b><br/>32 used"]:::thm
   f1["<b>ContourShift</b><br/>6 used"]:::thm
-  f2["<b>ApproxShift</b><br/>7 used"]:::thm
-  f3["<b>ApproxBounds</b><br/>22 used"]:::thm
-  f4["<b>ApproxDeriv</b><br/>VY_deriv_bound"]:::end_
-  f0 --> f2
-  f1 --> f2
+  f2["<b>LevinsonEdge</b><br/>1 used"]:::thm
+  f3["<b>ApproxShift</b><br/>29 used"]:::thm
+  f4["<b>ApproxBounds</b><br/>25 used"]:::thm
+  f5["<b>ApproxDeriv</b><br/>29 used"]:::thm
+  f6["<b>TwistedMoment</b><br/>lemma3_res_of_parts"]:::end_
+  f0 --> f3
+  f1 --> f3
   f2 --> f3
   f3 --> f4
+  f4 --> f5
+  f5 --> f6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
