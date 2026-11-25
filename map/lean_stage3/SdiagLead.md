@@ -7,19 +7,21 @@
 2 theorems, 1 definition, 81 lines. 
 
 **Imports:** [`SdiagLeadDsum`](../lean_stage3/SdiagLeadDsum.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Arith`](../lean_stage3/Arith.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
   n0["<b>stmtSdiagLead_holds</b><br/>StmtSdiagLead P θ R κ"]:::shp
-  n1["<b>stmtDiagMainO_holds ■</b><br/>StmtDiagMainO P θ R κ"]:::thm
+  n1["<b>stmtDiagMainO_holds</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SdiagLeadAd</b><br/>stmtAdApprox_of_arith"]):::ext
   x1(["<b>SdiagLeadCore</b><br/>stmtSdiagLead_of_steps"]):::ext
   x2(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith"]):::ext
   x3(["<b>DiagMain</b><br/>stmtDiagMainO_of_lead"]):::ext
+  x4(["<b>Arith</b><br/>stmtDiagMainO_holds'"]):::ext
   n0 --> n1
+  n1 -.-> x4
   x0 -.-> n0
   x1 -.-> n0
   x2 -.-> n0
@@ -47,7 +49,7 @@ OPEN, the six arithmetic facts the leading term rests on.
 
 - **Is:** `` StmtArith : Prop := StmtSdmLe ∧ StmtMeanSig3 ∧ StmtTailFixed ∧ StmtTailAvg ∧ StmtGmuLog ∧ StmtDivLog ``
 - **Built from:** [`SdiagLead.StmtMeanSig3`](../lean_stage3/SdiagLeadAd.md#SdiagLead-StmtMeanSig3), [`SdiagLead.StmtSdmLe`](../lean_stage3/SdiagLeadAd.md#SdiagLead-StmtSdmLe), [`SdiagLead.StmtTailAvg`](../lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailAvg), [`SdiagLead.StmtTailFixed`](../lean_stage3/SdiagLeadAd.md#SdiagLead-StmtTailFixed), [`SdiagLead.StmtDivLog`](../lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtDivLog), [`SdiagLead.StmtGmuLog`](../lean_stage3/SdiagLeadDsum.md#SdiagLead-StmtGmuLog)
-- **Used by 2:** [`SdiagLead.stmtDiagMainO_holds`](#SdiagLead-stmtDiagMainO_holds), [`SdiagLead.stmtSdiagLead_holds`](#SdiagLead-stmtSdiagLead_holds)
+- **Used by 3:** [`Arith.stmtArith_holds`](../lean_stage3/Arith.md#Arith-stmtArith_holds), [`SdiagLead.stmtDiagMainO_holds`](#SdiagLead-stmtDiagMainO_holds), [`SdiagLead.stmtSdiagLead_holds`](#SdiagLead-stmtSdiagLead_holds)
 
 ## Theorems
 
@@ -120,5 +122,7 @@ StmtDiagMainO P θ R κ
 
 **Definitions its proof touches:** [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`SdiagLead.StmtArith`](#SdiagLead-StmtArith)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Arith.stmtDiagMainO_holds'`](../lean_stage3/Arith.md#Arith-stmtDiagMainO_holds-) (Arith) — `` StmtDiagMainO P θ R κ ``
 

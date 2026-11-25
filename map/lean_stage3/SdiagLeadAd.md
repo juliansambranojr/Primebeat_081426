@@ -44,10 +44,12 @@ flowchart LR
   n28["<b>final_arith</b><br/>K₀ / lM ^ 2 * ((Real.exp A * ε + Cs * lZ / lM) * S2 + Cs * S3 + …"]:::shp
   n29["<b>stmtAdApprox_of_arith</b><br/>StmtAdApprox P A"]:::shp
   x0(["<b>SdiagLeadCop</b><br/>Ad_eq<br/>chiAF_apply"]):::ext
-  x1(["<b>Diagonal</b><br/>norm_cpow_nat"]):::ext
-  x2(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith<br/>weight_err"]):::ext
-  x3(["<b>SdiagLeadSmooth</b><br/>muSmoothR<br/>muSmooth_crude"]):::ext
-  x4(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  x1(["<b>ArithBase</b><br/>sdmLe"]):::ext
+  x2(["<b>Arith</b><br/>gmuLog"]):::ext
+  x3(["<b>Diagonal</b><br/>norm_cpow_nat"]):::ext
+  x4(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith<br/>weight_err"]):::ext
+  x5(["<b>SdiagLeadSmooth</b><br/>muSmoothR<br/>muSmooth_crude"]):::ext
+  x6(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
   n0 --> n1
   n0 --> n2
   n0 --> n21
@@ -94,18 +96,20 @@ flowchart LR
   n8 --> n22
   n8 --> n24
   n9 --> n14
-  n10 -.-> x2
-  n13 -.-> x2
-  n18 -.-> x2
-  n29 -.-> x4
-  n9 -.-> x2
+  n10 -.-> x4
+  n13 -.-> x4
+  n18 -.-> x4
+  n29 -.-> x6
+  n3 -.-> x1
+  n5 -.-> x2
+  n9 -.-> x4
   x0 -.-> n0
   x0 -.-> n16
   x0 -.-> n25
-  x1 -.-> n17
-  x1 -.-> n8
-  x3 -.-> n15
-  x3 -.-> n29
+  x3 -.-> n17
+  x3 -.-> n8
+  x5 -.-> n15
+  x5 -.-> n29
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -129,7 +133,7 @@ def · line 46
 
 - **Is:** `` Sdm (d X : ℕ) : ℝ := ∑ m ∈ Ioc 0 X, ((chiAF d m : ℤ) : ℝ) / m ``
 - **Built from:** [`SdiagLead.chiAF`](../lean_stage3/SdiagLeadCop.md#SdiagLead-chiAF)
-- **Used by 8:** [`SdiagLead.Sdm_mono`](#SdiagLead-Sdm_mono), [`SdiagLead.Sdm_nonneg`](#SdiagLead-Sdm_nonneg), [`SdiagLead.StmtSdmLe`](#SdiagLead-StmtSdmLe), [`SdiagLead.Tl`](#SdiagLead-Tl), [`SdiagLead.ad_bound`](#SdiagLead-ad_bound), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le), [`SdiagLead.sum_div_le_Sdm`](#SdiagLead-sum_div_le_Sdm)
+- **Used by 12:** [`Arith.gmu_eq`](../lean_stage3/Arith.md#Arith-gmu_eq), [`Arith.sum_sdm_eq`](../lean_stage3/Arith.md#Arith-sum_sdm_eq), [`Arith.sdmLe`](../lean_stage3/ArithBase.md#Arith-sdmLe), [`Arith.hasSum_tail`](../lean_stage3/ArithTail.md#Arith-hasSum_tail), [`SdiagLead.Sdm_mono`](#SdiagLead-Sdm_mono), [`SdiagLead.Sdm_nonneg`](#SdiagLead-Sdm_nonneg), [`SdiagLead.StmtSdmLe`](#SdiagLead-StmtSdmLe), [`SdiagLead.Tl`](#SdiagLead-Tl), [`SdiagLead.ad_bound`](#SdiagLead-ad_bound), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le), [`SdiagLead.sum_div_le_Sdm`](#SdiagLead-sum_div_le_Sdm)
 
 <a name="SdiagLead-Tl"></a>
 ### `SdiagLead.Tl`
@@ -140,7 +144,7 @@ def · line 49
 
 - **Is:** `` Tl (d X : ℕ) : ℝ := sig d - Sdm d X ``
 - **Built from:** [`SdiagLead.Sdm`](#SdiagLead-Sdm), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 8:** [`SdiagLead.StmtTailAvg`](#SdiagLead-StmtTailAvg), [`SdiagLead.StmtTailFixed`](#SdiagLead-StmtTailFixed), [`SdiagLead.Tl_anti`](#SdiagLead-Tl_anti), [`SdiagLead.Tl_nonneg`](#SdiagLead-Tl_nonneg), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.perd_bound`](#SdiagLead-perd_bound), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le)
+- **Used by 12:** [`Arith.gmuLog`](../lean_stage3/Arith.md#Arith-gmuLog), [`Arith.gmu_eq`](../lean_stage3/Arith.md#Arith-gmu_eq), [`Arith.hasSum_tail`](../lean_stage3/ArithTail.md#Arith-hasSum_tail), [`Arith.hasSum_tails`](../lean_stage3/ArithTail.md#Arith-hasSum_tails), [`SdiagLead.StmtTailAvg`](#SdiagLead-StmtTailAvg), [`SdiagLead.StmtTailFixed`](#SdiagLead-StmtTailFixed), [`SdiagLead.Tl_anti`](#SdiagLead-Tl_anti), [`SdiagLead.Tl_nonneg`](#SdiagLead-Tl_nonneg), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.perd_bound`](#SdiagLead-perd_bound), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le)
 
 <a name="SdiagLead-StmtSdmLe"></a>
 ### `SdiagLead.StmtSdmLe`
@@ -151,7 +155,7 @@ OPEN, the finite Euler product: `S_d(X) ≤ d/φ(d)`.
 
 - **Is:** `` StmtSdmLe : Prop := ∀ d X : ℕ, 1 ≤ d → Sdm d X ≤ sig d ``
 - **Built from:** [`SdiagLead.Sdm`](#SdiagLead-Sdm), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 8:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.Tl_nonneg`](#SdiagLead-Tl_nonneg), [`SdiagLead.Wd_bound`](#SdiagLead-Wd_bound), [`SdiagLead.ad_bound`](#SdiagLead-ad_bound), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.perd_bound`](#SdiagLead-perd_bound), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le)
+- **Used by 9:** [`Arith.sdmLe`](../lean_stage3/ArithBase.md#Arith-sdmLe), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.Tl_nonneg`](#SdiagLead-Tl_nonneg), [`SdiagLead.Wd_bound`](#SdiagLead-Wd_bound), [`SdiagLead.ad_bound`](#SdiagLead-ad_bound), [`SdiagLead.ad_err`](#SdiagLead-ad_err), [`SdiagLead.perd_bound`](#SdiagLead-perd_bound), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith), [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le)
 
 <a name="SdiagLead-StmtMeanSig3"></a>
 ### `SdiagLead.StmtMeanSig3`
@@ -162,7 +166,7 @@ OPEN, the mean of `σ³`: `Σ_{d ≤ M} μ²(d) σ(d)³/d ≤ C(1 + log M)`.
 
 - **Is:** `` StmtMeanSig3 : Prop := ∃ C : ℝ, 0 ≤ C ∧ ∀ M : ℕ, ∑ d ∈ Icc 1 M, ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 3 / d ≤ C * (1 + Real.log M) ``
 - **Built from:** [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 2:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
+- **Used by 3:** [`Arith.meanSig3`](../lean_stage3/Arith.md#Arith-meanSig3), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
 
 <a name="SdiagLead-StmtTailFixed"></a>
 ### `SdiagLead.StmtTailFixed`
@@ -173,7 +177,7 @@ OPEN, the tail beyond a fixed `Z`, on average: `≤ η(1 + log M)` once `Z = Z(�
 
 - **Is:** `` StmtTailFixed : Prop := ∀ η : ℝ, 0 < η → ∃ Z : ℕ, ∀ M : ℕ, ∑ d ∈ Icc 1 M, ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 * Tl d Z / d ≤ η * (1 + Real.log M) ``
 - **Built from:** [`SdiagLead.Tl`](#SdiagLead-Tl), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 2:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
+- **Used by 3:** [`Arith.tailFixed`](../lean_stage3/ArithTail.md#Arith-tailFixed), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
 
 <a name="SdiagLead-StmtTailAvg"></a>
 ### `SdiagLead.StmtTailAvg`
@@ -184,7 +188,7 @@ OPEN, the tail beyond `M/(dY)`, on average: `≤ C(1 + log Y)`.
 
 - **Is:** `` StmtTailAvg : Prop := ∃ C : ℝ, 0 ≤ C ∧ ∀ M Y : ℕ, 1 ≤ Y → ∑ d ∈ Icc 1 M, ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 * Tl d (M / d / Y) / d ≤ C * (1 + Real.log Y) ``
 - **Built from:** [`SdiagLead.Tl`](#SdiagLead-Tl), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 2:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
+- **Used by 3:** [`Arith.tailAvg`](../lean_stage3/ArithTail.md#Arith-tailAvg), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtAdApprox_of_arith`](#SdiagLead-stmtAdApprox_of_arith)
 
 <a name="SdiagLead-ad"></a>
 ### `SdiagLead.ad`
@@ -316,8 +320,9 @@ line 77 · arrows read from text
 
 **Definitions its proof touches:** [`SdiagLead.chiAF`](../lean_stage3/SdiagLeadCop.md#SdiagLead-chiAF)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`Arith.sdmLe`](../lean_stage3/ArithBase.md#Arith-sdmLe) (ArithBase) — `` StmtSdmLe ``
   - [`SdiagLead.Sdm_mono`](#SdiagLead-Sdm_mono) — `` Sdm d X ≤ Sdm d X' ``
   - [`SdiagLead.Sdm_nonneg`](#SdiagLead-Sdm_nonneg) — `` 0 ≤ Sdm d X ``
   - [`SdiagLead.ad_err`](#SdiagLead-ad_err) — `` ‖ad P M d γ - ahat0 P M d γ‖ ≤ (Real.exp A * ε * sig d + Cs * Real.log Z / Real.log M * sig d + Cs * Tl d Z + (Real.exp A * Cc + Cm) * Tl d (M / d / Y… ``
@@ -374,8 +379,9 @@ line 85 · arrows read from text
 
 **Definitions its proof touches:** [`SdiagLead.StmtSdmLe`](#SdiagLead-StmtSdmLe), [`SdiagLead.Tl`](#SdiagLead-Tl)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`Arith.gmuLog`](../lean_stage3/Arith.md#Arith-gmuLog) (Arith) — `` StmtGmuLog ``
   - [`SdiagLead.ad_err`](#SdiagLead-ad_err) — `` ‖ad P M d γ - ahat0 P M d γ‖ ≤ (Real.exp A * ε * sig d + Cs * Real.log Z / Real.log M * sig d + Cs * Tl d Z + (Real.exp A * Cc + Cm) * Tl d (M / d / Y… ``
   - [`SdiagLead.perd_bound`](#SdiagLead-perd_bound) — `` ‖Wd α β d‖ * ‖Ad P M d β * Ad P M d α - Ahat P M d β * Ahat P M d α‖ ≤ 2 * Real.exp (2 * A) * (Real.exp A * CS + Cm + 1) / Real.log M ^ 2 * (((μ d : ℤ… ``
   - [`SdiagLead.sum_above_le`](#SdiagLead-sum_above_le) — `` ∑ m ∈ Ioc 0 N, (if m ≤ K then (0 : ℝ) else ((chiAF d m : ℤ) : ℝ) / m) ≤ Tl d K ``
