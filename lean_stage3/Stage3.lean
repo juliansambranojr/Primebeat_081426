@@ -221,6 +221,7 @@ import Stage3.TwistedMoment
 import Stage3.ApproxDerivAll
 import Stage3.OffDiagClose
 import Stage3.Diagonal
+import Stage3.DiagMainStmt
 
 namespace Stage3
 
