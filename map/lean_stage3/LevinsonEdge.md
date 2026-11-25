@@ -7,7 +7,7 @@ LevinsonEdge — block S11 of `lean_stage3/design/stencil.md`, step 1d (ii). 202
 13 theorems, 2 definitions, 517 lines. 
 
 **Imports:** [`LevinsonSize`](../lean_stage3/LevinsonSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md)
 
 ## The picture
 
@@ -27,8 +27,9 @@ flowchart LR
   n11["<b>edge_le_of_bound</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (…"]:::shp
   n12["<b>horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (fun s =＞ riemannZeta s + c * deri…"]:::thm
   x0(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect<br/>levinson_count"]):::ext
-  x1(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x2(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x1(["<b>LevinsonMollEdge</b><br/>f_analyticAt<br/>real_zero_count_gen"]):::ext
+  x2(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x3(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -46,8 +47,13 @@ flowchart LR
   n9 --> n10
   n12 -.-> x0
   n4 -.-> x0
-  x1 -.-> n11
-  x2 -.-> n12
+  n4 -.-> x1
+  n6 -.-> x1
+  n7 -.-> x1
+  n8 -.-> x1
+  n9 -.-> x1
+  x2 -.-> n11
+  x3 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -68,7 +74,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 192
 
 - **Is:** `` symm (g : ℂ → ℂ) (z : ℂ) : ℂ := (g z + (starRingEnd ℂ) (g ((starRingEnd ℂ) z))) / 2 noncomputable ``
-- **Used by 6:** [`LevinsonEdge.model`](#LevinsonEdge-model), [`LevinsonEdge.norm_symm_le`](#LevinsonEdge-norm_symm_le), [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count), [`LevinsonEdge.symm_differentiableOn`](#LevinsonEdge-symm_differentiableOn), [`LevinsonEdge.symm_real`](#LevinsonEdge-symm_real), [`LevinsonEdge.symm_zero`](#LevinsonEdge-symm_zero)
+- **Used by 7:** [`LevinsonEdge.model`](#LevinsonEdge-model), [`LevinsonEdge.norm_symm_le`](#LevinsonEdge-norm_symm_le), [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count), [`LevinsonEdge.symm_differentiableOn`](#LevinsonEdge-symm_differentiableOn), [`LevinsonEdge.symm_real`](#LevinsonEdge-symm_real), [`LevinsonEdge.symm_zero`](#LevinsonEdge-symm_zero), [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen)
 
 <a name="LevinsonEdge-model"></a>
 ### `LevinsonEdge.model`
@@ -77,7 +83,7 @@ def · line 197
 
 - **Is:** `` model (g : ℂ → ℂ) (z : ℂ) : ℂ := symm g z / symm g 0 ``
 - **Built from:** [`LevinsonEdge.symm`](#LevinsonEdge-symm)
-- **Used by 1:** [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count)
+- **Used by 2:** [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count), [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen)
 
 ## Theorems
 
@@ -215,10 +221,11 @@ AnalyticAt ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) w
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonCount.G_analyticOnNhd_rect`](../lean_stage3/LevinsonCount.md#LevinsonCount-G_analyticOnNhd_rect) (LevinsonCount) — `` AnalyticOnNhd ℂ (fun s => riemannZeta s + c * deriv riemannZeta s) (Rectangle ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I)) ``
   - [`LevinsonEdge.horizontal_edge_le`](#LevinsonEdge-horizontal_edge_le) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi ``
+  - [`LevinsonMollEdge.f_analyticAt`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-f_analyticAt) (LevinsonMollEdge) — `` AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) w ``
 
 <a name="LevinsonEdge-G_disc_le"></a>
 ### `LevinsonEdge.G_disc_le`
@@ -275,10 +282,11 @@ symm g (x : ℂ) = ((g x).re : ℂ)
 
 **Definitions its proof touches:** [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 21 * Real.log (M / m) ``
   - [`LevinsonEdge.symm_zero`](#LevinsonEdge-symm_zero) — `` symm g 0 = ((g 0).re : ℂ) ``
+  - [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen) (LevinsonMollEdge) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m) ``
 
 <a name="LevinsonEdge-symm_zero"></a>
 ### `LevinsonEdge.symm_zero`
@@ -305,9 +313,10 @@ symm g 0 = ((g 0).re : ℂ)
 
 **Definitions its proof touches:** [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 21 * Real.log (M / m) ``
+  - [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen) (LevinsonMollEdge) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m) ``
 
 <a name="LevinsonEdge-symm_differentiableOn"></a>
 ### `LevinsonEdge.symm_differentiableOn`
@@ -332,9 +341,10 @@ DifferentiableOn ℂ (symm g) (Metric.ball (0 : ℂ) ρ)
 
 **Definitions its proof touches:** [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 21 * Real.log (M / m) ``
+  - [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen) (LevinsonMollEdge) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m) ``
 
 <a name="LevinsonEdge-norm_symm_le"></a>
 ### `LevinsonEdge.norm_symm_le`
@@ -360,9 +370,10 @@ line 230 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LevinsonEdge.real_zero_count`](#LevinsonEdge-real_zero_count) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ 5 / 6 → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 21 * Real.log (M / m) ``
+  - [`LevinsonMollEdge.real_zero_count_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-real_zero_count_gen) (LevinsonMollEdge) — `` ∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.card : ℝ) ≤ 1 / Real.log (R / r) * Real.log (M / m) ``
 
 <a name="LevinsonEdge-real_zero_count"></a>
 ### `LevinsonEdge.real_zero_count`

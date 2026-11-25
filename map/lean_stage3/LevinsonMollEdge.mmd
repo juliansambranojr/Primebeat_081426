@@ -1,0 +1,66 @@
+flowchart LR
+  n0["<b>molli_norm_le</b><br/>‖molli M β s‖ ≤ M * B"]:::shp
+  n1["<b>molli_sub_one_le</b><br/>‖molli M β s - 1‖ ≤ M * B / (2 : ℝ) ^ X"]:::shp
+  n2["<b>molli_differentiable</b><br/>Differentiable ℂ (molli M β)"]:::cnt
+  n3["<b>norm_G_sub_one_le_X</b><br/>‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ 8 / (2 : ℝ) ^ X"]:::thm
+  n4["<b>f_sub_one_le</b><br/>‖(riemannZeta s + c * deriv riemannZeta s) * molli M β s - 1‖ ≤ …"]:::thm
+  n5["<b>tailDelta_le_half</b><br/>tailDelta M B X ≤ 1 / 2"]:::cnt
+  n6["<b>log_norm_abs_le</b><br/>|Real.log ‖z‖| ≤ 2 * δ"]:::shp
+  n7["<b>hasDerivAt_line_comp</b><br/>HasDerivAt (fun y : ℝ =＞ f (↑X + ↑y * I)) (deriv f (↑X + ↑t * I)…"]:::cnt
+  n8["<b>f_analyticAt</b><br/>AnalyticAt ℂ (fun s =＞ (riemannZeta s + c * deriv riemannZeta s)…"]:::thm
+  n9["<b>right_log_term_le</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
+  n10["<b>arg_term_le_of_pos</b><br/>|(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi"]:::shp
+  n11["<b>right_arg_term_le</b><br/>|(∫ t in a..b, logDeriv (fun s =＞ (riemannZeta s + c * deriv rie…"]:::thm
+  n12["<b>right_terms_le ■</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
+  n13["<b>zeta_norm_le_sixteenth</b><br/>‖riemannZeta u‖ ≤ 2 + 16 * ‖u‖"]:::thm
+  n14["<b>disc_facts_X</b><br/>X - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + X + T"]:::shp
+  n15["<b>zeta_disc_X</b><br/>‖riemannZeta u‖ ≤ 33 * T"]:::thm
+  n16["<b>deriv_zeta_disc_X</b><br/>‖deriv riemannZeta w‖ ≤ 528 * T"]:::thm
+  n17["<b>G_disc_X</b><br/>‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 561 * T"]:::thm
+  n18["<b>real_zero_count_gen</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.c…"]:::shp
+  n19["<b>edge_le_gen</b><br/>|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1…"]:::shp
+  n20["<b>horizontal_terms_le ■</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
+  x0(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x1(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x2(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x3(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  n0 --> n20
+  n1 --> n4
+  n10 --> n11
+  n11 --> n12
+  n13 --> n15
+  n14 --> n15
+  n14 --> n16
+  n14 --> n20
+  n15 --> n16
+  n15 --> n17
+  n16 --> n17
+  n17 --> n20
+  n18 --> n19
+  n19 --> n20
+  n2 --> n8
+  n3 --> n4
+  n4 --> n11
+  n4 --> n20
+  n4 --> n9
+  n5 --> n11
+  n5 --> n20
+  n5 --> n9
+  n6 --> n9
+  n7 --> n10
+  n8 --> n11
+  n8 --> n20
+  n9 --> n12
+  x0 -.-> n3
+  x1 -.-> n18
+  x1 -.-> n8
+  x2 -.-> n10
+  x3 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

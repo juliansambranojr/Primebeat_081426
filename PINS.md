@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S11 of `design/stencil.md`, avoidance: `Stage3/LevinsonAvoid.lean`
+
+    DONE        `exists_good_height`: for f analytic and not identically zero
+                near [σ₀, X]×[t₀, t₀+1], some t ∈ [t₀, t₀+1] has f ≠ 0 on
+                [σ₀, X] + it (the zeros in a compact rectangle are finite);
+                `exists_good_abscissa`: likewise some σ ∈ [σ₀ − δ, σ₀] has f ≠ 0
+                on σ + i[a, b]; `factor_pos`: for c = 1/log T and 4 ≤ t ≤ T,
+                1 − c·Re(Gammaℝ'/Gammaℝ)(1/2 + it) > 0; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes log it and avoidance". Moving a
+                height by at most one changes N by O(log T) (`ArgCount`)
+    DEPENDS     `Littlewood.divisor_support_rectangle_finite` use, the
+                tree's digamma / phasePoint bounds (`Stirling`, `ArgCount`)
+    OUT         the assembled theorem; the mean value (step 5)
+
 ### 2026-11-24 · block S11 of `design/stencil.md`, the mollifier's edge terms: `Stage3/LevinsonMollEdge.lean`
 
     DONE        for a Dirichlet polynomial ψ(s) = Σ_{h=1}^{M} b_h h^(−s), b_1 = 1,
