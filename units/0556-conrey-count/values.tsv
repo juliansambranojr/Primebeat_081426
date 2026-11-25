@@ -1,0 +1,19 @@
+key	value	source
+module_lines	469	wc -l lean_stage3/Stage3/ConreyCount.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/ConreyCount.lean
+defs	0	grep -c ^def lean_stage3/Stage3/ConreyCount.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ConreyCount.lean
+pins	2	conrey_count_sub, conrey_count_window
+errors_first	0	the worker's first build of the top file: none (the four companion files had one error class each)
+builds	11	the worker's report, builds over the five files
+traps_added	4	lean_stage3/TRAPS.md rows 94-97
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8962	lake build (full Stage3), Build completed successfully
+jobs_module	8819	run/build.log, lake build Stage3.ConreyCount
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	5	lean_stage3/Stage3/ConreyCount.lean, ConreyCountIdentity.lean, ConreyCountLine.lean, ConreyCountOrder.lean, ConreyCountEdge.lean
+trap_first	94	lean_stage3/TRAPS.md
+trap_last	97	lean_stage3/TRAPS.md

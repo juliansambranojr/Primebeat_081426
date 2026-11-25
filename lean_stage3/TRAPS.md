@@ -104,6 +104,10 @@ build, 2026-09-08.
 | 91 | `Real.log_pow n T` is a type mismatch, `T` expected `ℕ` | the explicit arguments are `(x : ℝ) (n : ℕ)` | `Real.log_pow T n` (unit 0553) |
 | 92 | `rw [Metric.mem_ball] at hd` finds no pattern after `obtain` from `h.eventually (Metric.ball_mem_nhds _ one_pos)` | the membership is already unfolded to `dist … < 1` | `rw [Real.dist_eq] at hd` alone (unit 0553) |
 | 93 | `rw [h1, h2] at hX3 hX4` fails with did not find pattern | one of the hypotheses lacks one pattern, and the rewrite at several locations fails as a whole | split the `rw` per hypothesis (unit 0553) |
+| 94 | a type mismatch and a sorry cascade at `(Q.eval (1/2) : ℂ)` for `Q : ℝ[X]` | the ascription makes Lean elaborate `eval` at `ℂ[X]` (the family of row 54) | cast outside: `((Q.eval (1/2 : ℝ) : ℝ) : ℂ)` (unit 0556) |
+| 95 | a rewrite stated with `fun z => ((f z)⁻¹)⁻¹` misses after `AnalyticAt.inv` | `.inv` builds the Pi inverse `(fun z => f z)⁻¹` (the family of rows 43 and 82) | state the equality in the Pi form (unit 0556) |
+| 96 | a line lemma passed to `simp` goes unused and the goal stays open | `simp` turns `1/2` into `2⁻¹` inside the argument of `completedRiemannZeta` | `rw [Complex.ofReal_im]; exact HardyZ.xi_line_real t` (unit 0556) |
+| 97 | `unterminated comment` at the end of a file built from a copied theorem | a `sed -n A,B` copy took in the opening `/--` of the next docstring | end the range before the next docstring, and check the copy's last lines (unit 0556) |
 
 ## Bench and gate traps
 

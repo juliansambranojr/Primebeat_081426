@@ -22,6 +22,30 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 3, the mean value with a general Q: `Stage3/MeanQ*.lean`
+
+    DONE        the mollified mean of V = W/Gammaℝ (V = Q(1/2 − (D + g)/L) ζ) at
+                σ₀ = 1/2 − R/L: ∫ w |Vψ|² = DopQ(cY)·ŵ(0) + o(T) from the Lemma-3
+                level (`FloorLong`'s form, any θ), with DopQ the operator for Q
+                and the g-shift paid as O(T/L); then unsmoothing and the window
+                hypothesis of `conrey_count_window`; or the largest honest piece;
+                one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0556, TRAPS 94–97, start
+                the digamma bound and the general-Q mean value). Written before
+                the workers start.
+    DEPENDS     `ConreyCount`, `OperatorQ`, `Operator*`, `FloorLongMean`, `Lemma3`
+    OUT         `StmtVEdges` (the digamma worker); the closed form
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 2, the digamma bound and V's edges: `Stage3/DigammaBound*.lean`
+
+    DONE        ψ(z) − log z and ψ′(z) bounded off Re z = 1/4 (Re z ≥ 1/8, |Im z|
+                large: |ψ(z) − log z| ≤ C/|z|, |ψ^(k)(z)| ≤ C_k/|z|^k), from
+                `StirlingLog` or PNT+'s digamma; then `ConreyCount.StmtVEdges Q T A`
+                for T ≥ T₀(Q); then `conrey_count_window` unconditional; one unit
+    ASSUMED     as above
+    DEPENDS     `StirlingLog`, `StirlingX`, `ConreyCountEdge`, PNT+ digamma
+    OUT         the mean value; the closed form
+
 ### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 1, Conrey's identity and count: `Stage3/ConreyCount*.lean`
 
     DONE        `conrey_identity`: W(s) + W(1 − s) = 2·Q(1/2)·Λ(s) for W of

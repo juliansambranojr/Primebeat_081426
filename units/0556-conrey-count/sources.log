@@ -1,0 +1,74 @@
+# check_prose_source.py  2026-11-25T19:13:35Z
+# unit: 0556-conrey-count
+# sources searched: 499
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77043
+  theorem conrey_count_sub {Q : ℝ[X]}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77045
+  (hQh : Q.eval (1/2) ≠ 0) {L a b M : ℝ} (ha : 4 ≤ a) (hab : a < b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77046
+  (hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑a * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77047
+  (hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑b * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:72972
+  (hζa : riemannZeta (1/2 + a * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77049
+  (hR : StmtVRight Q L a b) (hMa : StmtVDisc Q L a M) (hMb : StmtVDisc Q L b M) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65060
+  (riemannZeta.N b - riemannZeta.N a)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77051
+  - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77052
+  - (30 * Real.log b + 42 * Real.log (3 * M) + 154)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2a983c1b809c9315.jsonl:551
+  ≤ (lineCount b : ℝ) - (lineCount a : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77055
+  theorem conrey_count_window {Q : ℝ[X]}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77057
+  (hQh : Q.eval (1/2) ≠ 0) {T A a b : ℝ} (hA : 0 < A)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77058
+  (hTa : T / 4 ≤ a) (ha : 4 ≤ a) (hab : a < b) (hbT : b ≤ 2 * T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77060
+  (hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑a * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77061
+  (hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑b * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:72972
+  (hζa : riemannZeta (1/2 + a * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:65060
+  (riemannZeta.N b - riemannZeta.N a)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77064
+  - 2 * Littlewood.countRight (V Q (Real.log T)) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77065
+  - (72 * Real.log b + 42 * Real.log (3 * A) + 154)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a2a983c1b809c9315.jsonl:551
+  ≤ (lineCount b : ℝ) - (lineCount a : ℝ) :=
+
+# 23 found, 0 missing
