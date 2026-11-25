@@ -228,6 +228,8 @@ import Stage3.DiagMain
 import Stage3.SwapX
 import Stage3.SdiagLead
 import Stage3.StirlingX
+import Stage3.Arith
+import Stage3.Lemma3
 
 namespace Stage3
 
