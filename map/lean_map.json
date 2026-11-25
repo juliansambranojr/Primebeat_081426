@@ -15709,6 +15709,1515 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ApproxFE.lean",
+  "module": "Stage3.ApproxFE",
+  "stem": "ApproxFE",
+  "header": "# ApproxFE — block S12 of `lean_stage3/design/stencil.md`, piece 1. 2026-11-25. Young's Lemma 4 (arXiv 1002.4403, §4): the approximate functional equation for `ζ(1/2+α+it)·ζ(1/2+β−it)` with the smoothing `G(s) = e^(s²)·p(s)`, `p(s) = ((α+β)² − (2s)²)/(α+β)²`.",
+  "imports": [],
+  "opens": [
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "ApproxFE"
+  ],
+  "lines": 766,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "uA",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.uA",
+    "line": 51,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.coef_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "vB",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.vB",
+    "line": 55,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.coef_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "XY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.XY",
+    "line": 59,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "GY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.GY",
+    "line": 64,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.gY",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "KY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.KY",
+    "line": 73,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "VY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.VY",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "c x t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "FY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.FY",
+    "line": 82,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uA_re",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.uA_re",
+    "line": 85,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(uA α t).re = 1 / 2 + α.re",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vB_re",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.vB_re",
+    "line": 88,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(vB β t).re = 1 / 2 + β.re",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uA_im",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.uA_im",
+    "line": 91,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(uA α t).im = α.im + t",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "vB_im",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.vB_im",
+    "line": 94,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "(vB β t).im = β.im - t",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_fe",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.zeta_fe",
+    "line": 100,
+    "why": "The functional equation in Young's shape: `ζ s = Gammaℝ(1−s)/Gammaℝ s · ζ(1−s)`.",
+    "sorry": false,
+    "needs": [
+     "hs : Gammaℝ s ≠ 0",
+     "h1 : 0 < (1 - s).re"
+    ],
+    "proves": "riemannZeta s = Gammaℝ (1 - s) / Gammaℝ s * riemannZeta (1 - s)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_fe",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_prod_fe",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.zeta_prod_fe",
+    "line": 117,
+    "why": "Piece 1. For `Re α, Re β < 1/2`, `ζ(1/2+α+it) ζ(1/2+β−it) = X_{α,β,t} · ζ(1/2−α−it) ζ(1/2−β+it)`.",
+    "sorry": false,
+    "needs": [
+     "hα : α.re < 1 / 2",
+     "hβ : β.re < 1 / 2",
+     "hu : Gammaℝ (uA α t) ≠ 0",
+     "hv : Gammaℝ (vB β t) ≠ 0"
+    ],
+    "proves": "riemannZeta (uA α t) * riemannZeta (vB β t) = XY α β t * (riemannZeta (1 / 2 - α - t * I) * riemannZeta (1 / 2 - β + t * I))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_prod_fe",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_fe"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.zeta_fe"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Gammaℝ_uA_ne",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.Gammaℝ_uA_ne",
+    "line": 141,
+    "why": "`Gammaℝ (uA α t) ≠ 0` once `Re α > −1/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "hα : -(1 / 2) < α.re"
+    ],
+    "proves": "Gammaℝ (uA α t) ≠ 0",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_uA_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Gammaℝ_vB_ne",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.Gammaℝ_vB_ne",
+    "line": 145,
+    "why": "`Gammaℝ (vB β t) ≠ 0` once `Re β > −1/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "hβ : -(1 / 2) < β.re"
+    ],
+    "proves": "Gammaℝ (vB β t) ≠ 0",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.Gammaℝ_vB_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "ratio_aux",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.ratio_aux",
+    "line": 149,
+    "why": "A ratio of four `π`-powers times Gamma values.",
+    "sorry": false,
+    "needs": [
+     "P A B C D a b c d k : ℂ",
+     "hP : P ≠ 0",
+     "hk : a + b = k + (c + d)"
+    ],
+    "proves": "P ^ a * A * (P ^ b * B) / (P ^ c * C * (P ^ d * D)) = P ^ k * (A * B) / (C * D)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.ratio_aux",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "XY_eq_young",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.XY_eq_young",
+    "line": 165,
+    "why": "Young's form of `X_{α,β,t}`: `π^(α+β) Γ((1/2−α−it)/2) Γ((1/2−β+it)/2) / (Γ((1/2+α+it)/2) Γ((1/2+β−it)/2))`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "XY α β t = (Real.pi : ℂ) ^ (α + β) * (Gamma ((1 / 2 - α - t * I) / 2) * Gamma ((1 / 2 - β + t * I) / 2)) / (Gamma ((1 / 2 + α + t * I) / 2) * Gamma ((1 / 2 + β - t * I) / 2))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY_eq_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.ratio_aux",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.ratio_aux",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "gY_eq_young",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.gY_eq_young",
+    "line": 183,
+    "why": "Young's form of `g_{α,β}(s,t)`: `π^(−s) Γ((u+s)/2) Γ((v+s)/2) / (Γ(u/2) Γ(v/2))`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "gY α β t s = (Real.pi : ℂ) ^ (-s) * (Gamma ((1 / 2 + α + s + t * I) / 2) * Gamma ((1 / 2 + β + s - t * I) / 2)) / (Gamma ((1 / 2 + α + t * I) / 2) * Gamma ((1 / 2 + β - t * I) / 2))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_eq_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.ratio_aux",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.ratio_aux",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "coef_eq_young",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.coef_eq_young",
+    "line": 201,
+    "why": "The coefficients in Young's form: for `x, y > 0`, `x^(−u) y^(−v) = x^(−1/2−α) y^(−1/2−β) (x/y)^(−it)`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ",
+     "hx : 0 < x",
+     "hy : 0 < y"
+    ],
+    "proves": "(x : ℂ) ^ (-uA α t) * (y : ℂ) ^ (-vB β t) = (x : ℂ) ^ (-(1 / 2 + α)) * (y : ℂ) ^ (-(1 / 2 + β)) * ((x / y : ℝ) : ℂ) ^ (-(t * I))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.coef_eq_young",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Gamma_le",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.norm_Gamma_le",
+    "line": 219,
+    "why": "`‖Γ z‖ ≤ Γ(Re z)` right of zero (the Euler integral; PNT+ `norm_le_Gamma_re`).",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.re"
+    ],
+    "proves": "‖Gamma z‖ ≤ Real.Gamma z.re",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_Gamma_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_Gammaℝ_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Gammaℝ_le",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.norm_Gammaℝ_le",
+    "line": 235,
+    "why": "`‖Gammaℝ w‖ ≤ π^(−Re w/2) Γ(Re w/2)` right of zero.",
+    "sorry": false,
+    "needs": [
+     "hw : 0 < w.re"
+    ],
+    "proves": "‖Gammaℝ w‖ ≤ Real.pi ^ (-w.re / 2) * Real.Gamma (w.re / 2)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_Gammaℝ_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_Gamma_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_Gamma_le"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableAt_Gammaℝ",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.differentiableAt_Gammaℝ",
+    "line": 246,
+    "why": "`Gammaℝ` is differentiable wherever it does not vanish.",
+    "sorry": false,
+    "needs": [
+     "hs : Gammaℝ s ≠ 0"
+    ],
+    "proves": "DifferentiableAt ℂ Gammaℝ s",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.differentiableAt_Gammaℝ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_succ_cpow",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.norm_succ_cpow",
+    "line": 254,
+    "why": "The norm of a shifted natural power.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "‖((m : ℂ) + 1) ^ z‖ = ((m : ℝ) + 1) ^ z.re",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_succ_rpow",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.summable_succ_rpow",
+    "line": 260,
+    "why": "`Σ (m+1)^r` converges for `r < −1`.",
+    "sorry": false,
+    "needs": [
+     "hr : r < -1"
+    ],
+    "proves": "Summable fun m : ℕ => ((m : ℝ) + 1) ^ r",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_zeta_norm",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.summable_zeta_norm",
+    "line": 268,
+    "why": "The Dirichlet series of `ζ` converges absolutely for `Re w > 1`.",
+    "sorry": false,
+    "needs": [
+     "hw : 1 < w.re"
+    ],
+    "proves": "Summable fun n : ℕ => ‖1 / ((n : ℂ) + 1) ^ w‖",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_bound",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.KY_bound",
+    "line": 275,
+    "why": "On `Re s = c > 0` with `Re(u+s), Re(v+s) > 0`, the kernel `G(s)/s·g(s,t)` is at most a constant times `e^(−y²/2)`.",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hu : 0 < 1 / 2 + α.re + c",
+     "hv : 0 < 1 / 2 + β.re + c"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ y : ℝ, ‖KY α β t (c + y * I)‖ ≤ C * Real.exp (-(1 / 2) * y ^ 2)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_differentiableAt",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.KY_differentiableAt",
+    "line": 366,
+    "why": "The kernel is differentiable at `s ≠ 0` where `Gammaℝ(u+s), Gammaℝ(v+s) ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hs : s ≠ 0",
+     "h1 : Gammaℝ (uA α t + s) ≠ 0",
+     "h2 : Gammaℝ (vB β t + s) ≠ 0"
+    ],
+    "proves": "DifferentiableAt ℂ (KY α β t) s",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "KY_continuous_line",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.KY_continuous_line",
+    "line": 383,
+    "why": "On `Re s = c > 0` with `Re(u+s), Re(v+s) > 0`, the kernel is continuous in `y`.",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hu : 0 < 1 / 2 + α.re + c",
+     "hv : 0 < 1 / 2 + β.re + c"
+    ],
+    "proves": "Continuous fun y : ℝ => KY α β t (c + y * I)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_differentiableAt",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tsum_pointwise",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.tsum_pointwise",
+    "line": 402,
+    "why": "The pointwise sum: `Σ m^(−u) n^(−v) K(s) (mn)^(−s) = K(s) ζ(u+s) ζ(v+s)`.",
+    "sorry": false,
+    "needs": [
+     "h1 : 1 < (u + s).re",
+     "h2 : 1 < (v + s).re"
+    ],
+    "proves": "∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-u) * ((p.2 : ℂ) + 1) ^ (-v) * (K * ((((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1) : ℝ) : ℂ) ^ (-s)) = K * (riemannZeta (u + s) * riemannZeta (v + s))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_zeta_norm"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mellin_double_sum",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.mellin_double_sum",
+    "line": 426,
+    "why": "Piece 2. For `c > 0` with `c + Re α > 1/2` and `c + Re β > 1/2`, `Σ_{m,n} m^(−1/2−α−it) n^(−1/2−β+it) V_c(mn,t) = (1/2πi) ∫_(c) G(s)/s g(s,t) ζ(u+s) ζ(v+s) ds`.",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hu : 1 / 2 < c + α.re",
+     "hv : 1 / 2 < c + β.re"
+    ],
+    "proves": "∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t = VerticalIntegral' (FY α β t) c",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_bound",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY_continuous_line",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.norm_succ_cpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.summable_succ_rpow",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.tsum_pointwise",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GY_neg",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.GY_neg",
+    "line": 499,
+    "why": "`G` is even.",
+    "sorry": false,
+    "needs": [
+     "α β s : ℂ"
+    ],
+    "proves": "GY α β (-s) = GY α β s",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GY_swap",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.GY_swap",
+    "line": 504,
+    "why": "`G` for `(−β,−α)` is `G` for `(α,β)`.",
+    "sorry": false,
+    "needs": [
+     "α β s : ℂ"
+    ],
+    "proves": "GY (-β) (-α) s = GY α β s",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uA_neg",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.uA_neg",
+    "line": 509,
+    "why": "The swap `(α,β) ↦ (−β,−α)` sends `u` to `1 − v`.",
+    "sorry": false,
+    "needs": [
+     "β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "uA (-β) t = 1 - vB β t",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_neg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vB_neg",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.vB_neg",
+    "line": 514,
+    "why": "The swap `(α,β) ↦ (−β,−α)` sends `v` to `1 − u`.",
+    "sorry": false,
+    "needs": [
+     "α : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "vB (-α) t = 1 - uA α t",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_neg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_mul_zeta",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.gamma_mul_zeta",
+    "line": 519,
+    "why": "`Gammaℝ w · ζ w = Λ w` where `Gammaℝ w ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : Gammaℝ w ≠ 0"
+    ],
+    "proves": "Gammaℝ w * riemannZeta w = completedRiemannZeta w",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_mul_zeta",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "FY_reflect",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.FY_reflect",
+    "line": 529,
+    "why": "The left line in terms of the right: `FY(−s) = −X_{α,β,t} · FY_{−β,−α}(s)`.",
+    "sorry": false,
+    "needs": [
+     "hα : α.re < 1 / 2",
+     "hβ : β.re < 1 / 2",
+     "hu : Gammaℝ (uA α t) ≠ 0",
+     "hv : Gammaℝ (vB β t) ≠ 0",
+     "hs0 : s ≠ 0",
+     "h1 : 0 < (1 - uA α t + s).re",
+     "h2 : 0 < (1 - vB β t + s).re",
+     "hg1 : Gammaℝ (uA α t + -s) ≠ 0",
+     "hg2 : Gammaℝ (vB β t + -s) ≠ 0"
+    ],
+    "proves": "FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_mul_zeta",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_swap",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_mul_zeta",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_neg",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_ne_off",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.gamma_ne_off",
+    "line": 568,
+    "why": "Off the two heights `y = Im u` and `y = Im v`, the reflection's hypotheses hold on `Re s = c`.",
+    "sorry": false,
+    "needs": [
+     "hy : y ≠ w.im"
+    ],
+    "proves": "Gammaℝ (w + -((c : ℂ) + y * I)) ≠ 0",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_ne_off",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vertInt_reflect",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.vertInt_reflect",
+    "line": 577,
+    "why": "The left line: `(1/2πi)∫_(−c) FY = −X_{α,β,t} · (1/2πi)∫_(c) FY_{−β,−α}`.",
+    "sorry": false,
+    "needs": [
+     "hc : 0 < c",
+     "hα : α.re < 1 / 2",
+     "hβ : β.re < 1 / 2",
+     "hu : Gammaℝ (uA α t) ≠ 0",
+     "hv : Gammaℝ (vB β t) ≠ 0"
+    ],
+    "proves": "VerticalIntegral' (FY α β t) (-c) = -(XY α β t * VerticalIntegral' (FY (-β) (-α) t) c)",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_ne_off",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY_reflect",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gamma_ne_off",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "GY_zero",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.GY_zero",
+    "line": 613,
+    "why": "`G(0) = 1` once `α + β ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "h : α + β ≠ 0"
+    ],
+    "proves": "GY α β 0 = 1",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gY_zero",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.gY_zero",
+    "line": 619,
+    "why": "`g(0,t) = 1` once `Gammaℝ u, Gammaℝ v ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hu : Gammaℝ (uA α t) ≠ 0",
+     "hv : Gammaℝ (vB β t) ≠ 0"
+    ],
+    "proves": "gY α β t 0 = 1",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "residue_zero",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.residue_zero",
+    "line": 627,
+    "why": "The residue at `s = 0`: `s · FY(s) → ζ(u) ζ(v)`.",
+    "sorry": false,
+    "needs": [
+     "hαβ : α + β ≠ 0",
+     "hα : α.re < 1 / 2",
+     "hβ : β.re < 1 / 2",
+     "hu : Gammaℝ (uA α t) ≠ 0",
+     "hv : Gammaℝ (vB β t) ≠ 0"
+    ],
+    "proves": "Tendsto (fun s => s * FY α β t s) (𝓝[≠] 0) (𝓝 (riemannZeta (uA α t) * riemannZeta (vB β t)))",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.residue_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.KY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.gY_zero",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA_re",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "resY",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.resY",
+    "line": 679,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.GY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtShift",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.StmtShift",
+    "line": 695,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "t c : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.FY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "approxFE_of_shift",
+    "ns": "ApproxFE",
+    "full": "ApproxFE.approxFE_of_shift",
+    "line": 704,
+    "why": "Young's Lemma 4, exact, given the shift. For `|Re α|, |Re β| < 1/2`, `c` with `c > 1/2 + |Re α|, 1/2 + |Re β|`: `ζ(1/2+α+it) ζ(1/2+β−it) = Σ_{m,n} m^(−1/2−α−it) n^(−1/2−β+it) V_{α,β}(mn,t) + X_{α,β,t} Σ_{m,n} m^(−1/2+β−it) n^(−1/2+α+it) V_{−β,−α}(mn,t) − resY`, both `V` read on the line `Re s = c`.",
+    "sorry": false,
+    "needs": [
+     "hα : α.re < 1 / 2",
+     "hβ : β.re < 1 / 2",
+     "hα' : -(1 / 2) < α.re",
+     "hβ' : -(1 / 2) < β.re",
+     "hcα : 1 / 2 + |α.re| < c",
+     "hcβ : 1 / 2 + |β.re| < c",
+     "hshift : StmtShift α β t c"
+    ],
+    "proves": "riemannZeta (uA α t) * riemannZeta (vB β t) = (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t) + XY α β t * (∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA (-β) t) * ((p.2 : ℂ) + 1) ^ (-vB (-α) t) * VY (-β) (-α) c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t) - resY α β t",
+    "file": "lean_stage3/Stage3/ApproxFE.lean",
+    "id": "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.approxFE_of_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.StmtShift",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.VY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.XY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.mellin_double_sum",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.resY",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vertInt_reflect"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ArgCount.lean",
   "module": "Stage3.ArgCount",
   "stem": "ArgCount",
@@ -99171,16 +100680,18 @@
    "Stage3.LevinsonMollEdge",
    "Stage3.LevinsonAvoid",
    "Stage3.LevinsonWindow",
-   "Stage3.LevinsonMultiple"
+   "Stage3.LevinsonMultiple",
+   "Stage3.ApproxFE"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 224,
+  "lines": 225,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/Abscissa.lean",
    "lean_stage3/Stage3/AliasClass.lean",
+   "lean_stage3/Stage3/ApproxFE.lean",
    "lean_stage3/Stage3/ArgCount.lean",
    "lean_stage3/Stage3/ArgCrude.lean",
    "lean_stage3/Stage3/ArgIdentity.lean",
