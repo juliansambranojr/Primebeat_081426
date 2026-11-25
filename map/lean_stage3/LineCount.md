@@ -20,18 +20,20 @@ flowchart LR
   n4["<b>rh_iff_line_count ■</b><br/>RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T"]:::thm
   n5["<b>signChanges_le_line_count ■</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
   x0(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
-  x1(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
-  x2(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
-  x3(["<b>CountModes</b><br/>im_ne_zero"]):::ext
+  x1(["<b>LevinsonMultiple</b><br/>sum_order_le_lineCount"]):::ext
+  x2(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
+  x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x4(["<b>CountModes</b><br/>im_ne_zero"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
   n2 --> n4
   n0 -.-> x0
-  x1 -.-> n1
-  x1 -.-> n5
-  x2 -.-> n4
+  n0 -.-> x1
+  x2 -.-> n1
+  x2 -.-> n5
   x3 -.-> n4
+  x4 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -52,7 +54,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 50
 
 - **Is:** `` zerosUpTo (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite (T + 1)).toFinset.filter (fun ρ => 0 < (ρ : ℂ).im ∧ (ρ : ℂ).im ≤ T) noncomputable ``
-- **Used by 6:** [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LineCount.allCount`](#LineCount-allCount), [`LineCount.lineCount`](#LineCount-lineCount), [`LineCount.mem_zerosUpTo`](#LineCount-mem_zerosUpTo), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
+- **Used by 7:** [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LineCount.allCount`](#LineCount-allCount), [`LineCount.lineCount`](#LineCount-lineCount), [`LineCount.mem_zerosUpTo`](#LineCount-mem_zerosUpTo), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
 
 <a name="LineCount-allCount"></a>
 ### `LineCount.allCount`
@@ -70,7 +72,7 @@ def · line 61
 
 - **Is:** `` lineCount (T : ℝ) : ℤ := ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (ρ : ℂ).re = 1 / 2), riemannZeta.order (ρ : ℂ) ``
 - **Built from:** [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
-- **Used by 8:** [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.lineCount_mono`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-lineCount_mono), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
+- **Used by 11:** [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount), [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.lineCount_mono`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-lineCount_mono), [`LineCount.lineCount_le_allCount`](#LineCount-lineCount_le_allCount), [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count), [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count)
 
 ## Theorems
 
@@ -91,9 +93,10 @@ line 67 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.zerosUpTo`](#LineCount-zerosUpTo)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`LevinsonArg.distinct_line_zeros_le_lineCount`](../lean_stage3/LevinsonArg.md#LevinsonArg-distinct_line_zeros_le_lineCount) (LevinsonArg) — `` (k : ℤ) ≤ lineCount T ``
+  - [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount) (LevinsonMultiple) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount T ``
   - [`LineCount.rh_iff_line_count`](#LineCount-rh_iff_line_count) — `` RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T ``
   - [`LineCount.signChanges_le_line_count`](#LineCount-signChanges_le_line_count) — `` (k : ℤ) ≤ lineCount T ``
 

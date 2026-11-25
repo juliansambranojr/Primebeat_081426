@@ -15880,6 +15880,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -38282,6 +38283,8 @@
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
@@ -45590,7 +45593,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    },
    {
@@ -45646,7 +45650,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    },
    {
@@ -45807,6 +45812,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -45894,6 +45900,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -45926,6 +45933,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -45956,6 +45964,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    }
@@ -46010,7 +46019,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    },
    {
@@ -46305,6 +46315,7 @@
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -46622,7 +46633,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    }
   ]
@@ -46679,6 +46691,7 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
@@ -46822,6 +46835,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne"
     ]
    }
@@ -46886,6 +46900,7 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -46914,6 +46929,7 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
@@ -47005,6 +47021,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -47077,6 +47094,7 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -47109,6 +47127,7 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -47192,6 +47211,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -47348,6 +47368,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -47629,8 +47650,922 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonMultiple.lean",
+  "module": "Stage3.LevinsonMultiple",
+  "stem": "LevinsonMultiple",
+  "header": "LevinsonMultiple — block S11 of `lean_stage3/design/stencil.md`, removing `hsimple` by counting. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonWindow"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "Kadiri",
+   "LevinsonWindow",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "LevinsonMultiple"
+  ],
+  "lines": 1129,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonWindow.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "analyticAt_dslope",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.analyticAt_dslope",
+    "line": 83,
+    "why": "`dslope f a` is analytic wherever `f` is, given `f` analytic at `a`.",
+    "sorry": false,
+    "needs": [
+     "ha : AnalyticAt ℂ f a",
+     "hz : AnalyticAt ℂ f z"
+    ],
+    "proves": "AnalyticAt ℂ (dslope f a) z",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticAt_dslope",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_pow_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticOrderAt_sub_self",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.analyticOrderAt_sub_self",
+    "line": 100,
+    "why": "`s − ρ` has order one at `ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "analyticOrderAt (fun z : ℂ => z - ρ) ρ = 1",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticOrderAt_sub_self",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_pow_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_pow_mul",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.exists_pow_mul",
+    "line": 106,
+    "why": "One factor. Order at least `k` at `ρ ∈ S` divides out `(s − ρ)^k`, by `dslope`.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ∈ S",
+     "k : ℕ"
+    ],
+    "proves": "∀ f : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ f z) → (k : ℕ∞) ≤ analyticOrderAt f ρ → ∃ g : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ g z) ∧ ∀ z, f z = (z - ρ) ^ k * g z",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_pow_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticAt_dslope",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticOrderAt_sub_self"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticAt_dslope",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.analyticOrderAt_sub_self"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "polyP",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP",
+    "line": 147,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "D : Finset ℂ",
+     "n : ℂ → ℕ",
+     "z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_ne_zero",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_order"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "polyP_analyticAt",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP_analyticAt",
+    "line": 152,
+    "why": "`P` is analytic everywhere.",
+    "sorry": false,
+    "needs": [
+     "D : Finset ℂ",
+     "n : ℂ → ℕ",
+     "z : ℂ"
+    ],
+    "proves": "AnalyticAt ℂ (polyP D n) z",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_order"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "polyP_ne_zero",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP_ne_zero",
+    "line": 157,
+    "why": "`P` is nonzero off `D`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "hz : z ∉ D"
+    ],
+    "proves": "polyP D n z ≠ 0",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "polyP_order",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP_order",
+    "line": 162,
+    "why": "`P` has order `n ρ` at `ρ ∈ D`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "hρ : ρ ∈ D"
+    ],
+    "proves": "analyticOrderAt (polyP D n) ρ = n ρ",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_order",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_polyP",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.logDeriv_polyP",
+    "line": 173,
+    "why": "The logarithmic derivative of `P` off `D`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "hz : z ∉ D"
+    ],
+    "proves": "logDeriv (polyP D n) z = ∑ ρ ∈ D, (n ρ : ℂ) * (1 / (z - ρ))",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.logDeriv_polyP",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "polyP_line",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP_line",
+    "line": 186,
+    "why": "On the line, with `D` on the line, `P = i^K × real`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "hD : ∀ ρ ∈ D, ρ.re = 1/2",
+     "t : ℝ"
+    ],
+    "proves": "polyP D n (1/2 + t * I) = I ^ (∑ ρ ∈ D, n ρ) * ((∏ ρ ∈ D, (t - ρ.im) ^ n ρ : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_turn_segment",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.arg_turn_segment",
+    "line": 197,
+    "why": "A segment in the slit plane. `Im ∫ v/(z₀ + u v)` is the change of `arg`.",
+    "sorry": false,
+    "needs": [
+     "hu : u₁ ≤ u₂",
+     "hS : ∀ u ∈ Icc u₁ u₂, z₀ + u * v ∈ slitPlane"
+    ],
+    "proves": "(∫ u in u₁..u₂, v / (z₀ + u * v)).im = arg (z₀ + u₂ * v) - arg (z₀ + u₁ * v)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_mul_I_neg",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.arg_mul_I_neg",
+    "line": 218,
+    "why": "`arg (r i) = −π/2` for `r < 0`.",
+    "sorry": false,
+    "needs": [
+     "hr : r < 0"
+    ],
+    "proves": "arg (r * I) = -(Real.pi / 2)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_neg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_mul_I_pos",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.arg_mul_I_pos",
+    "line": 223,
+    "why": "`arg (r i) = π/2` for `r > 0`.",
+    "sorry": false,
+    "needs": [
+     "hr : 0 < r"
+    ],
+    "proves": "arg (r * I) = Real.pi / 2",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_prod_mul",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.exists_prod_mul",
+    "line": 228,
+    "why": "All factors. Orders at least `n ρ` on a finite `D ⊆ S` divide out `polyP D n`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "D : Finset ℂ"
+    ],
+    "proves": "∀ f : ℂ → ℂ, (∀ ρ ∈ D, ρ ∈ S) → (∀ z ∈ S, AnalyticAt ℂ f z) → (∀ ρ ∈ D, (n ρ : ℕ∞) ≤ analyticOrderAt f ρ) → ∃ g : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ g z) ∧ ∀ z, f z = polyP D n z * g z",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_pow_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_pow_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G_order_add_one",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.G_order_add_one",
+    "line": 257,
+    "why": "`ζ + c ζ'` has order one less than `ζ` at a zero of `ζ`, for `c ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hc : c ≠ 0",
+     "hρ1 : ρ ≠ 1",
+     "hz : riemannZeta ρ = 0",
+     "hfin : analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ ≠ ⊤"
+    ],
+    "proves": "analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ + 1 = analyticOrderAt riemannZeta ρ",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.G_order_add_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.zeta_order_ge"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_order_ge",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.zeta_order_ge",
+    "line": 294,
+    "why": "The order of `ζ` at a zero of `ζ + c ζ'` on the line.",
+    "sorry": false,
+    "needs": [
+     "hc : c ≠ 0",
+     "hρ1 : ρ ≠ 1",
+     "hz : riemannZeta ρ = 0",
+     "hfin : analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ ≠ ⊤"
+    ],
+    "proves": "((analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ).toNat : ℤ) + 1 ≤ riemannZeta.order ρ",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.zeta_order_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.G_order_add_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.G_order_add_one"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_order_le_lineCount",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.sum_order_le_lineCount",
+    "line": 313,
+    "why": "Distinct heights in `(0, T]` carrying zeros of `ζ` on the line, weighted by order.",
+    "sorry": false,
+    "needs": [
+     "E : Finset ℝ",
+     "hpos : ∀ γ ∈ E, 0 < γ",
+     "hT : ∀ γ ∈ E, γ ≤ T",
+     "hζ : ∀ γ ∈ E, riemannZeta (1/2 + γ * I) = 0"
+    ],
+    "proves": "∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount T",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "divisor_eq_of_mul",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.divisor_eq_of_mul",
+    "line": 352,
+    "why": "Dividing by a factor nonzero at `p` leaves the divisor at `p` unchanged.",
+    "sorry": false,
+    "needs": [
+     "hGU : ∀ z ∈ U, AnalyticAt ℂ G z",
+     "hHU : ∀ z ∈ U, AnalyticAt ℂ H z",
+     "hP : AnalyticAt ℂ P p",
+     "hPp : P p ≠ 0",
+     "heq : G = P * H",
+     "hp : p ∈ U"
+    ],
+    "proves": "MeromorphicOn.divisor G U p = MeromorphicOn.divisor H U p",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.divisor_eq_of_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "countRight_eq_of_mul",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.countRight_eq_of_mul",
+    "line": 362,
+    "why": "The count right of `σ` is unchanged by a factor with no zero right of `σ`.",
+    "sorry": false,
+    "needs": [
+     "hG : AnalyticOnNhd ℂ G (Rectangle z w)",
+     "hH : AnalyticOnNhd ℂ H (Rectangle z w)",
+     "hP : ∀ p, AnalyticAt ℂ P p",
+     "hPne : ∀ p ∈ Rectangle z w, σ < p.re → P p ≠ 0",
+     "heq : G = P * H",
+     "hGz : G z ≠ 0",
+     "hHz : H z ≠ 0"
+    ],
+    "proves": "Littlewood.countRight G z w σ = Littlewood.countRight H z w σ",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.divisor_eq_of_mul",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.divisor_eq_of_mul",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_logDeriv_mul",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.integral_logDeriv_mul",
+    "line": 394,
+    "why": "The split of `∫ logDeriv (P · H)` along a path where both are analytic and nonzero.",
+    "sorry": false,
+    "needs": [
+     "hu : u₁ ≤ u₂",
+     "hq : Continuous q",
+     "hP : ∀ u ∈ Icc u₁ u₂, AnalyticAt ℂ P (q u)",
+     "hH : ∀ u ∈ Icc u₁ u₂, AnalyticAt ℂ H (q u)",
+     "hP0 : ∀ u ∈ Icc u₁ u₂, P (q u) ≠ 0",
+     "hH0 : ∀ u ∈ Icc u₁ u₂, H (q u) ≠ 0"
+    ],
+    "proves": "(∫ u in u₁..u₂, logDeriv (fun s => P s * H s) (q u)) = (∫ u in u₁..u₂, logDeriv P (q u)) + ∫ u in u₁..u₂, logDeriv H (q u)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousAt_logDeriv"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "factor_turn",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.factor_turn",
+    "line": 419,
+    "why": "The turning of `s − ρ` around the bottom, the right side and the top of the rectangle `[1/2, 3] × [a, b]`, for `ρ` on the left edge strictly between `a` and `b`, is `π`.",
+    "sorry": false,
+    "needs": [
+     "hre : ρ.re = 1/2",
+     "ha : a < ρ.im",
+     "hb : ρ.im < b"
+    ],
+    "proves": "(∫ x in (1/2:ℝ)..3, 1 / ((x:ℂ) + a * I - ρ)).im - (∫ x in (1/2:ℝ)..3, 1 / ((x:ℂ) + b * I - ρ)).im + (∫ t in a..b, 1 / ((3:ℂ) + t * I - ρ)).re = Real.pi",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_neg",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_pos",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_neg",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_mul_I_pos",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_logDeriv_polyP",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.integral_logDeriv_polyP",
+    "line": 471,
+    "why": "Along a path missing `D`, `∫ logDeriv P` is the weighted sum of `∫ 1/(q − ρ)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℂ → ℕ",
+     "hu : u₁ ≤ u₂",
+     "hq : Continuous q",
+     "hD : ∀ u ∈ Icc u₁ u₂, q u ∉ D"
+    ],
+    "proves": "(∫ u in u₁..u₂, logDeriv (polyP D n) (q u)) = ∑ ρ ∈ D, (n ρ : ℂ) * ∫ u in u₁..u₂, 1 / (q u - ρ)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natCast_mul_im'",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.natCast_mul_im'",
+    "line": 491,
+    "why": "`Im (m w) = m Im w`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "((m : ℂ) * w).im = m * w.im",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_im'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natCast_mul_re'",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.natCast_mul_re'",
+    "line": 493,
+    "why": "`Re (m w) = m Re w`.",
+    "sorry": false,
+    "needs": [
+     "m : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "((m : ℂ) * w).re = m * w.re",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_re'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "polyP_edges",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.polyP_edges",
+    "line": 497,
+    "why": "The turning of `P` around the three edges. For `D` on the open left edge, the bottom, right and top terms of `∫ logDeriv P` add up to `π K`, `K = Σ n ρ`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "n : ℂ → ℕ",
+     "hD : ∀ ρ ∈ D, ρ.re = 1/2 ∧ a < ρ.im ∧ ρ.im < b"
+    ],
+    "proves": "(∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑b * I)).im + (∫ t in a..b, logDeriv (polyP D n) (3 + ↑t * I)).re = Real.pi * ∑ ρ ∈ D, (n ρ : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_im'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_re'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.factor_turn",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_im'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.natCast_mul_re'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_count'",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.levinson_count'",
+    "line": 532,
+    "why": "S11, removing `hsimple`: Levinson's count. For `0 < c ≤ 1`, `4 ≤ a < b`, `G = ζ + c ζ'` nonzero on the bottom `[1/2, 3] + a i` and the top `[1/2, 3] + b i`, and the real factor `1 − c · Re(Gammaℝ'/Gammaℝ)` nonzero along `[1/2 + a i, 1/2 + b i]`: with no hypothesis on the left edge, the zeros of `ζ` on the line up to height `b`, with order, number at least `(N b − N a) − 2 · (zeros of G right of the line in the rectangle, with order) − (72 log b + 418)`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 < c",
+     "hc1 : c ≤ 1",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, riemannZeta (↑x + ↑a * I) + c * deriv riemannZeta (↑x + ↑a * I) ≠ 0",
+     "hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, riemannZeta (↑x + ↑b * I) + c * deriv riemannZeta (↑x + ↑b * I) ≠ 0",
+     "hfac : ∀ t ∈ Icc a b, 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_ne_zero",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_order",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.zeta_order_ge",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_analyticAt",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_edges",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_ne_zero",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_order",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.zeta_order_ge",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_window'",
+    "ns": "LevinsonMultiple",
+    "full": "LevinsonMultiple.levinson_window'",
+    "line": 873,
+    "why": "S11, the window theorem with no `hsimple`. `LevinsonWindow.levinson_window` with the hypothesis that every zero of `ζ` on `1/2 + [a, b] i` is simple removed: its step 4 is `levinson_count'`, which divides the zeros of `G` on the line out and counts them.",
+    "sorry": false,
+    "needs": [
+     "hT : Real.exp 26 ≤ T",
+     "hc : c = 1 / Real.log T",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hσ₀ : σ₀ < 1 / 2",
+     "hδ : 0 < δ",
+     "hσδ : 1 / 4 ≤ σ₀ - δ",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hXa : 2 * X ≤ a",
+     "hab : a + 3 ≤ b",
+     "hbT : b ≤ T",
+     "hK1 : 1 ≤ K",
+     "hK : ∀ a' b' : ℝ, a ≤ a' → a' < b' → b' ≤ b → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑σ + ↑t * I) + c * deriv riemannZeta (↑σ + ↑t * I)) * LevinsonMollEdge.molli M β (↑σ + ↑t * I)‖ ^ 2 ≤ K"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonMultiple.lean",
+    "id": "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -47900,6 +48835,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    }
@@ -48009,6 +48945,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
@@ -48085,7 +49022,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    },
    {
@@ -48254,7 +49192,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    }
   ]
@@ -48340,6 +49279,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral"
     ]
@@ -48418,6 +49358,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
     ]
    },
@@ -48498,6 +49439,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
     ]
    },
@@ -48598,7 +49540,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count"
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    }
   ]
@@ -48658,6 +49601,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
     ]
@@ -48684,6 +49628,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48709,6 +49655,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48746,6 +49693,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48773,6 +49721,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48810,6 +49759,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48864,6 +49814,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -48891,6 +49842,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
     ]
@@ -48927,6 +49879,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
     ]
    },
@@ -51397,6 +52350,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
@@ -51459,6 +52413,9 @@
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
@@ -51489,6 +52446,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
     ]
@@ -51748,6 +52706,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
@@ -51781,6 +52741,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
@@ -51879,6 +52841,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
@@ -52241,6 +53206,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_mul",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuousOn_logDeriv_line",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp"
     ]
@@ -98204,11 +99170,12 @@
    "Stage3.LevinsonRight",
    "Stage3.LevinsonMollEdge",
    "Stage3.LevinsonAvoid",
-   "Stage3.LevinsonWindow"
+   "Stage3.LevinsonWindow",
+   "Stage3.LevinsonMultiple"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 223,
+  "lines": 224,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -98292,6 +99259,7 @@
    "lean_stage3/Stage3/LevinsonEdge.lean",
    "lean_stage3/Stage3/LevinsonLine.lean",
    "lean_stage3/Stage3/LevinsonMollEdge.lean",
+   "lean_stage3/Stage3/LevinsonMultiple.lean",
    "lean_stage3/Stage3/LevinsonRight.lean",
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",

@@ -1,0 +1,95 @@
+# check_prose_source.py  2026-11-25T01:36:55Z
+# unit: 0529-levinson-multiple
+# sources searched: 72
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3594
+  theorem exists_prod_mul {S : Set ℂ} (n : ℂ → ℕ) (D : Finset ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3595
+  ∀ f : ℂ → ℂ, (∀ ρ ∈ D, ρ ∈ S) → (∀ z ∈ S, AnalyticAt ℂ f z) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3596
+  (∀ ρ ∈ D, (n ρ : ℕ∞) ≤ analyticOrderAt f ρ) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3597
+  ∃ g : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ g z) ∧ ∀ z, f z = polyP D n z * g z :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3623
+  theorem G_order_add_one {c : ℝ} (hc : c ≠ 0) {ρ : ℂ} (hρ1 : ρ ≠ 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3625
+  (hfin : analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ ≠ ⊤) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3626
+  analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ + 1
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3627
+  = analyticOrderAt riemannZeta ρ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3660
+  theorem zeta_order_ge {c : ℝ} (hc : c ≠ 0) {ρ : ℂ} (hρ1 : ρ ≠ 1) (hz : riemannZeta ρ = 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3625
+  (hfin : analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ ≠ ⊤) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3662
+  ((analyticOrderAt (fun s => riemannZeta s + c * deriv riemannZeta s) ρ).toNat : ℤ) + 1
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3683
+  theorem sum_order_le_lineCount {T : ℝ} (E : Finset ℝ) (hpos : ∀ γ ∈ E, 0 < γ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3684
+  (hT : ∀ γ ∈ E, γ ≤ T) (hζ : ∀ γ ∈ E, riemannZeta (1/2 + γ * I) = 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3685
+  ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3732
+  theorem countRight_eq_of_mul {G P H : ℂ → ℂ} {z w : ℂ} {σ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3733
+  (hG : AnalyticOnNhd ℂ G (Rectangle z w)) (hH : AnalyticOnNhd ℂ H (Rectangle z w))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3734
+  (hP : ∀ p, AnalyticAt ℂ P p) (hPne : ∀ p ∈ Rectangle z w, σ < p.re → P p ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3735
+  (heq : G = P * H) (hGz : G z ≠ 0) (hHz : H z ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3736
+  Littlewood.countRight G z w σ = Littlewood.countRight H z w σ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3980
+  theorem factor_turn {a b : ℝ} {ρ : ℂ} (hre : ρ.re = 1/2) (ha : a < ρ.im) (hb : ρ.im < b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3981
+  (∫ x in (1/2:ℝ)..3, 1 / ((x:ℂ) + a * I - ρ)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3982
+  - (∫ x in (1/2:ℝ)..3, 1 / ((x:ℂ) + b * I - ρ)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:3983
+  + (∫ t in a..b, 1 / ((3:ℂ) + t * I - ρ)).re = Real.pi :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4058
+  theorem polyP_edges {a b : ℝ} (hab : a ≤ b) {D : Finset ℂ} (n : ℂ → ℕ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4059
+  (hD : ∀ ρ ∈ D, ρ.re = 1/2 ∧ a < ρ.im ∧ ρ.im < b) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4060
+  (∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑a * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4061
+  - (∫ x in (1/2:ℝ)..3, logDeriv (polyP D n) (↑x + ↑b * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4062
+  + (∫ t in a..b, logDeriv (polyP D n) (3 + ↑t * I)).re
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a8e3d4d907458f86c.jsonl:4063
+  = Real.pi * ∑ ρ ∈ D, (n ρ : ℝ) :=
+
+# 30 found, 0 missing

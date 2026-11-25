@@ -1,0 +1,16 @@
+key	value	source
+module_lines	1128	wc -l lean_stage3/Stage3/LevinsonMultiple.lean
+theorems_proved	25	grep -c ^theorem lean_stage3/Stage3/LevinsonMultiple.lean
+defs	1	grep -A1 noncomputable (polyP)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LevinsonMultiple.lean
+pins	7	exists_prod_mul, G_order_add_one, zeta_order_ge, sum_order_le_lineCount, countRight_eq_of_mul, factor_turn, polyP_edges
+errors_first	1	the worker's first test: a rewrite whose pattern the elaborated function did not match
+builds	2	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8906	lake build (full Stage3), Build completed successfully
+jobs_module	8812	run/build.log, lake build Stage3.LevinsonMultiple
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s11	Levinson's lemma
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
