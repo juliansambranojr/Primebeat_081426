@@ -27,6 +27,7 @@ flowchart LR
   x3(["<b>OffDiagClose</b><br/>offSum_bound_iter"]):::ext
   x4(["<b>Diagonal</b><br/>inner_hk"]):::ext
   x5(["<b>DiagonalO</b><br/>lemma3_resO_of_parts"]):::ext
+  x6(["<b>SwapX</b><br/>I1_X_bound<br/>lemma3_resO_of_partsAll<br/>stmtXAll_of"]):::ext
   n1 --> n4
   n11 --> n21
   n12 --> n14
@@ -50,7 +51,9 @@ flowchart LR
   n9 --> n11
   n10 -.-> x4
   n11 -.-> x5
+  n11 -.-> x6
   n20 -.-> x5
+  n20 -.-> x6
   n8 -.-> x3
   x0 -.-> n0
   x0 -.-> n6

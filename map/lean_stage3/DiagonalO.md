@@ -7,7 +7,7 @@
 7 theorems, 2 definitions, 261 lines. 
 
 **Imports:** [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SwapX`](../lean_stage3/SwapX.md)
 
 ## The picture
 

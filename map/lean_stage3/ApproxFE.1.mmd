@@ -35,8 +35,9 @@ flowchart LR
   x3(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
   x4(["<b>ApproxShift</b><br/>5 theorems"]):::ext
   x5(["<b>Diagonal</b><br/>7 theorems"]):::ext
-  x6(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
-  x7(["<b>OffDiagClose</b><br/>summable_major6"]):::ext
+  x6(["<b>SwapX</b><br/>S1_sharp<br/>S1_term_sharp"]):::ext
+  x7(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
+  x8(["<b>OffDiagClose</b><br/>summable_major6"]):::ext
   n0 --> n18
   n0 --> n20
   n0 --> n22
@@ -74,6 +75,7 @@ flowchart LR
   n0 -.-> x4
   n0 -.-> x5
   n0 -.-> x6
+  n0 -.-> x7
   n1 -.-> x0
   n1 -.-> x1
   n1 -.-> x2
@@ -81,16 +83,19 @@ flowchart LR
   n1 -.-> x4
   n1 -.-> x5
   n1 -.-> x6
+  n1 -.-> x7
   n15 -.-> x5
   n15 -.-> x6
+  n15 -.-> x7
   n16 -.-> x6
   n16 -.-> x7
+  n16 -.-> x8
   n17 -.-> x5
   n18 -.-> x5
   n19 -.-> x0
   n2 -.-> x0
   n2 -.-> x1
-  n2 -.-> x6
+  n2 -.-> x7
   n20 -.-> x5
   n22 -.-> x3
   n27 -.-> x4
@@ -98,7 +103,7 @@ flowchart LR
   n29 -.-> x3
   n3 -.-> x0
   n3 -.-> x1
-  n3 -.-> x6
+  n3 -.-> x7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

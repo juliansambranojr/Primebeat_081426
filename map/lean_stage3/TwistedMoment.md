@@ -51,7 +51,8 @@ flowchart LR
   x3(["<b>Diagonal</b><br/>inner_t"]):::ext
   x4(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
   x5(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
-  x6(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
+  x6(["<b>SwapX</b><br/>hder_of"]):::ext
+  x7(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
   n11 --> n14
   n12 --> n14
   n13 --> n16
@@ -77,6 +78,7 @@ flowchart LR
   n20 -.-> x4
   n20 -.-> x5
   n24 -.-> x1
+  n24 -.-> x6
   n25 -.-> x1
   n27 -.-> x4
   n28 -.-> x1
@@ -89,7 +91,7 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n22
   x0 -.-> n26
-  x6 -.-> n26
+  x7 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -137,11 +139,12 @@ flowchart LR
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>OffDiagClose</b><br/>off_term_iter_le<br/>offdiag_term_iter_young"]):::ext
   x2(["<b>diagram 3</b><br/>7 theorems"]):::ext
-  x3(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x4(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
-  x5(["<b>Diagonal</b><br/>4 theorems"]):::ext
-  x6(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
-  x7(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
+  x3(["<b>SwapX</b><br/>5 theorems"]):::ext
+  x4(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x5(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
+  x6(["<b>Diagonal</b><br/>4 theorems"]):::ext
+  x7(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
+  x8(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
   n0 --> n1
   n10 --> n11
   n11 --> n12
@@ -182,35 +185,44 @@ flowchart LR
   n9 --> n21
   n0 -.-> x1
   n1 -.-> x2
+  n12 -.-> x3
   n13 -.-> x2
   n14 -.-> x2
   n15 -.-> x2
-  n15 -.-> x5
+  n15 -.-> x6
   n16 -.-> x2
+  n16 -.-> x3
+  n17 -.-> x3
+  n22 -.-> x3
   n25 -.-> x2
   n26 -.-> x2
+  n27 -.-> x3
   n28 -.-> x2
-  n28 -.-> x7
+  n28 -.-> x3
+  n28 -.-> x8
   n29 -.-> x2
-  n29 -.-> x5
-  n29 -.-> x7
+  n29 -.-> x3
+  n29 -.-> x6
+  n29 -.-> x8
   n3 -.-> x2
   n5 -.-> x2
+  n5 -.-> x3
   n6 -.-> x2
+  n6 -.-> x3
   n8 -.-> x1
   n8 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n26
-  x3 -.-> n10
-  x3 -.-> n17
-  x3 -.-> n21
-  x3 -.-> n23
-  x3 -.-> n25
-  x4 -.-> n11
-  x4 -.-> n18
-  x6 -.-> n21
-  x6 -.-> n26
+  x4 -.-> n10
+  x4 -.-> n17
+  x4 -.-> n21
+  x4 -.-> n23
+  x4 -.-> n25
+  x5 -.-> n11
+  x5 -.-> n18
+  x7 -.-> n21
+  x7 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -253,6 +265,7 @@ flowchart LR
   x3(["<b>OffDiagClose</b><br/>offSum_bound_iter"]):::ext
   x4(["<b>Diagonal</b><br/>inner_hk"]):::ext
   x5(["<b>DiagonalO</b><br/>lemma3_resO_of_parts"]):::ext
+  x6(["<b>SwapX</b><br/>I1_X_bound<br/>lemma3_resO_of_partsAll<br/>stmtXAll_of"]):::ext
   n1 --> n4
   n11 --> n21
   n12 --> n14
@@ -276,7 +289,9 @@ flowchart LR
   n9 --> n11
   n10 -.-> x4
   n11 -.-> x5
+  n11 -.-> x6
   n20 -.-> x5
+  n20 -.-> x6
   n8 -.-> x3
   x0 -.-> n0
   x0 -.-> n6
@@ -310,7 +325,7 @@ structure · line 84
 Young's admissible weight (2.1)–(2.3), `Δ = T/L`, the derivative bounds for `j ≤ 2`.
 
 - **Is:** `` Weight (T L : ℝ) where w : ℝ → ℝ smooth : ContDiff ℝ ∞ w supp : ∀ t, w t ≠ 0 → T / 4 ≤ t ∧ t ≤ 2 * T nonneg : ∀ t, 0 ≤ w t le_one : ∀ t, w t ≤ 1 C1 : ℝ C2 : ℝ C1_nonneg : 0 ≤ C1 C2_nonneg : 0 ≤ C2 d1 : ∀ t, |deriv w t| ≤ C1 * (T / L)⁻¹ d2 : ∀ t, |deriv (deriv w) t| ≤ C2 * ((T / L) ^ 2)⁻¹ noncomputable ``
-- **Used by 44:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`Diagonal.Wg`](../lean_stage3/Diagonal.md#Diagonal-Wg), [`Diagonal.diag_mellin`](../lean_stage3/Diagonal.md#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](../lean_stage3/Diagonal.md#Diagonal-diag_per_t), [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.inner_hk`](../lean_stage3/Diagonal.md#Diagonal-inner_hk), [`Diagonal.inner_t`](../lean_stage3/Diagonal.md#Diagonal-inner_t), [`Diagonal.joint_integrable`](../lean_stage3/Diagonal.md#Diagonal-joint_integrable), [`Diagonal.shifted_bound`](../lean_stage3/Diagonal.md#Diagonal-shifted_bound), [`Diagonal.wVI_integrable`](../lean_stage3/Diagonal.md#Diagonal-wVI_integrable), [`Diagonal.wVI_swap`](../lean_stage3/Diagonal.md#Diagonal-wVI_swap), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.T_le_errO`](../lean_stage3/DiagonalO.md#DiagonalO-T_le_errO), [`DiagonalO.errY_absorb`](../lean_stage3/DiagonalO.md#DiagonalO-errY_absorb), [`DiagonalO.what0_le`](../lean_stage3/DiagonalO.md#DiagonalO-what0_le), [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.errY`](#TwistedMoment-errY), [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), [`TwistedMoment.offdiag_term`](#TwistedMoment-offdiag_term), [`TwistedMoment.offdiag_term_young`](#TwistedMoment-offdiag_term_young), and 4 more (full list in `map/lean_map.json`)
+- **Used by 46:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`Diagonal.Wg`](../lean_stage3/Diagonal.md#Diagonal-Wg), [`Diagonal.diag_mellin`](../lean_stage3/Diagonal.md#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](../lean_stage3/Diagonal.md#Diagonal-diag_per_t), [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.inner_hk`](../lean_stage3/Diagonal.md#Diagonal-inner_hk), [`Diagonal.inner_t`](../lean_stage3/Diagonal.md#Diagonal-inner_t), [`Diagonal.joint_integrable`](../lean_stage3/Diagonal.md#Diagonal-joint_integrable), [`Diagonal.shifted_bound`](../lean_stage3/Diagonal.md#Diagonal-shifted_bound), [`Diagonal.wVI_integrable`](../lean_stage3/Diagonal.md#Diagonal-wVI_integrable), [`Diagonal.wVI_swap`](../lean_stage3/Diagonal.md#Diagonal-wVI_swap), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.T_le_errO`](../lean_stage3/DiagonalO.md#DiagonalO-T_le_errO), [`DiagonalO.errY_absorb`](../lean_stage3/DiagonalO.md#DiagonalO-errY_absorb), [`DiagonalO.what0_le`](../lean_stage3/DiagonalO.md#DiagonalO-what0_le), [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound), [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX), [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Jint_diag`](#TwistedMoment-Jint_diag), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.errY`](#TwistedMoment-errY), [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound), [`TwistedMoment.off_term_le`](#TwistedMoment-off_term_le), and 6 more (full list in `map/lean_map.json`)
 
 <a name="TwistedMoment-what0"></a>
 ### `TwistedMoment.what0`
@@ -319,7 +334,7 @@ def · line 102
 
 - **Is:** `` what0 {T L : ℝ} (W : Weight T L) : ℝ := ∫ t, W.w t ``
 - **Built from:** [`TwistedMoment.Weight`](#TwistedMoment-Weight)
-- **Used by 12:** [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`DiagonalO.what0_le`](../lean_stage3/DiagonalO.md#DiagonalO-what0_le), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 14:** [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`DiagonalO.what0_le`](../lean_stage3/DiagonalO.md#DiagonalO-what0_le), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-eL"></a>
 ### `TwistedMoment.eL`
@@ -371,7 +386,7 @@ def · line 627
 
 - **Is:** `` msq (M : ℕ) (a : ℕ → ℂ) (σ₀ t : ℝ) : ℝ := ‖psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 noncomputable ``
 - **Built from:** [`TwistedMoment.psi`](#TwistedMoment-psi)
-- **Used by 15:** [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.IX`](#TwistedMoment-IX), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Imom`](#TwistedMoment-Imom), [`TwistedMoment.Ires`](#TwistedMoment-Ires), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.continuous_msq`](#TwistedMoment-continuous_msq), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.msq_expand`](#TwistedMoment-msq_expand), [`TwistedMoment.msq_le`](#TwistedMoment-msq_le), [`TwistedMoment.msq_nonneg`](#TwistedMoment-msq_nonneg)
+- **Used by 19:** [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound), [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX), [`SwapX.msq_young`](../lean_stage3/SwapX.md#SwapX-msq_young), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.IX`](#TwistedMoment-IX), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Imom`](#TwistedMoment-Imom), [`TwistedMoment.Ires`](#TwistedMoment-Ires), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.continuous_msq`](#TwistedMoment-continuous_msq), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integrable_Imom`](#TwistedMoment-integrable_Imom), [`TwistedMoment.integrable_Ires`](#TwistedMoment-integrable_Ires), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split), [`TwistedMoment.msq_expand`](#TwistedMoment-msq_expand), [`TwistedMoment.msq_le`](#TwistedMoment-msq_le), [`TwistedMoment.msq_nonneg`](#TwistedMoment-msq_nonneg)
 
 <a name="TwistedMoment-S1"></a>
 ### `TwistedMoment.S1`
@@ -380,7 +395,7 @@ def · line 632
 
 - **Is:** `` S1 (α β : ℂ) (c t : ℝ) : ℂ := ∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t ``
 - **Built from:** [`ApproxFE.VY`](../lean_stage3/ApproxFE.md#ApproxFE-VY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
-- **Used by 9:** [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.IX`](#TwistedMoment-IX), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.approxFE_small`](#TwistedMoment-approxFE_small), [`TwistedMoment.continuousOn_S1`](#TwistedMoment-continuousOn_S1), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split)
+- **Used by 13:** [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound), [`SwapX.S1_sharp`](../lean_stage3/SwapX.md#SwapX-S1_sharp), [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.IX`](#TwistedMoment-IX), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.approxFE_small`](#TwistedMoment-approxFE_small), [`TwistedMoment.continuousOn_S1`](#TwistedMoment-continuousOn_S1), [`TwistedMoment.integrable_I1`](#TwistedMoment-integrable_I1), [`TwistedMoment.integral_hk`](#TwistedMoment-integral_hk), [`TwistedMoment.integrand_split`](#TwistedMoment-integrand_split)
 
 <a name="TwistedMoment-Imom"></a>
 ### `TwistedMoment.Imom`
@@ -389,7 +404,7 @@ def · line 642
 
 - **Is:** `` Imom : ℂ := ∫ t, (W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β t)) * (msq M a σ₀ t : ℂ) noncomputable ``
 - **Built from:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`TwistedMoment.msq`](#TwistedMoment-msq)
-- **Used by 6:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 7:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-I1"></a>
 ### `TwistedMoment.I1`
@@ -398,7 +413,7 @@ def · line 647
 
 - **Is:** `` I1 : ℂ := ∫ t, (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ) noncomputable ``
 - **Built from:** [`TwistedMoment.S1`](#TwistedMoment-S1), [`TwistedMoment.msq`](#TwistedMoment-msq)
-- **Used by 6:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 10:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-IX"></a>
 ### `TwistedMoment.IX`
@@ -407,7 +422,7 @@ def · line 651
 
 - **Is:** `` IX : ℂ := ∫ t, (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) c t) * (msq M a σ₀ t : ℂ) noncomputable ``
 - **Built from:** [`ApproxFE.XY`](../lean_stage3/ApproxFE.md#ApproxFE-XY), [`TwistedMoment.S1`](#TwistedMoment-S1), [`TwistedMoment.msq`](#TwistedMoment-msq)
-- **Used by 4:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 7:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-Ires"></a>
 ### `TwistedMoment.Ires`
@@ -416,7 +431,7 @@ def · line 655
 
 - **Is:** `` Ires : ℂ := ∫ t, (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ) ``
 - **Built from:** [`ApproxFE.resY`](../lean_stage3/ApproxFE.md#ApproxFE-resY), [`TwistedMoment.msq`](#TwistedMoment-msq)
-- **Used by 6:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 7:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.I_split`](#TwistedMoment-I_split), [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-coefY"></a>
 ### `TwistedMoment.coefY`
@@ -459,7 +474,7 @@ def · line 1249
 
 - **Is:** `` diagSum : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, if h * (p.1 + 1) = k * (p.2 + 1) then coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) else 0 noncomputable ``
 - **Built from:** [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.coefY`](#TwistedMoment-coefY)
-- **Used by 11:** [`Diagonal.diag_mellin`](../lean_stage3/Diagonal.md#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](../lean_stage3/Diagonal.md#Diagonal-diag_per_t), [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 13:** [`Diagonal.diag_mellin`](../lean_stage3/Diagonal.md#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](../lean_stage3/Diagonal.md#Diagonal-diag_per_t), [`Diagonal.diag_shift`](../lean_stage3/Diagonal.md#Diagonal-diag_shift), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-offSum"></a>
 ### `TwistedMoment.offSum`
@@ -468,7 +483,7 @@ def · line 1256
 
 - **Is:** `` offSum : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, if h * (p.1 + 1) = k * (p.2 + 1) then 0 else coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) ``
 - **Built from:** [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.coefY`](#TwistedMoment-coefY)
-- **Used by 8:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound)
+- **Used by 10:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-offSum_bound_iter), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.I1_diag_off`](#TwistedMoment-I1_diag_off), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts), [`TwistedMoment.offSum_bound`](#TwistedMoment-offSum_bound)
 
 <a name="TwistedMoment-offTerm"></a>
 ### `TwistedMoment.offTerm`
@@ -493,7 +508,7 @@ def · line 1310
 def · line 1509
 
 - **Is:** `` Mof (T θ : ℝ) : ℕ := ⌊T ^ θ⌋₊ noncomputable ``
-- **Used by 24:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.logM_ge`](../lean_stage3/DiagMain.md#DiagMain-logM_ge), [`DiagMain.logM_le`](../lean_stage3/DiagMain.md#DiagMain-logM_le), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 29:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.logM_ge`](../lean_stage3/DiagMain.md#DiagMain-logM_ge), [`DiagMain.logM_le`](../lean_stage3/DiagMain.md#DiagMain-logM_le), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.msq_young`](../lean_stage3/SwapX.md#SwapX-msq_young), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-sig0"></a>
 ### `TwistedMoment.sig0`
@@ -501,7 +516,7 @@ def · line 1509
 def · line 1513
 
 - **Is:** `` sig0 (T R : ℝ) : ℝ := 1 / 2 - R / Real.log T noncomputable ``
-- **Used by 22:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 26:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.msq_young`](../lean_stage3/SwapX.md#SwapX-msq_young), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.aY`](#TwistedMoment-aY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-aY"></a>
 ### `TwistedMoment.aY`
@@ -510,7 +525,7 @@ def · line 1518
 
 - **Is:** `` aY (P : Polynomial ℝ) (T θ R : ℝ) (h : ℕ) : ℂ := ((ArithmeticFunction.moebius h : ℤ) : ℂ) * ((P.eval (Real.log ((Mof T θ : ℝ) / h) / Real.log (Mof T θ)) : ℝ) : ℂ) * (((h : ℝ) ^ (sig0 T R - 1 / 2) : ℝ) : ℂ) noncomputable ``
 - **Built from:** [`TwistedMoment.Mof`](#TwistedMoment-Mof), [`TwistedMoment.sig0`](#TwistedMoment-sig0)
-- **Used by 21:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 25:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.SB_young`](../lean_stage3/Diagonal.md#Diagonal-SB_young), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.aY_bound'`](../lean_stage3/Diagonal.md#Diagonal-aY_bound-), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.aY_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-aY_bound), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.msq_young`](../lean_stage3/SwapX.md#SwapX-msq_young), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-c1Y"></a>
 ### `TwistedMoment.c1Y`
@@ -518,7 +533,7 @@ def · line 1518
 def · line 1525
 
 - **Is:** `` c1Y (P : Polynomial ℝ) (M : ℕ) (α β : ℂ) : ℂ := 1 / ((α + β) * Real.log M) * ∫ u in (0 : ℝ)..1, (((P.derivative.eval u : ℝ) : ℂ) + α * Real.log M * (P.eval u : ℝ)) * (((P.derivative.eval u : ℝ) : ℂ) + β * Real.log M * (P.eval u : ℝ)) noncomputable ``
-- **Used by 10:** [`DiagMain.c1Y_eq`](../lean_stage3/DiagMain.md#DiagMain-c1Y_eq), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.cY`](#TwistedMoment-cY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 13:** [`DiagMain.c1Y_eq`](../lean_stage3/DiagMain.md#DiagMain-c1Y_eq), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.cY`](#TwistedMoment-cY), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-cY"></a>
 ### `TwistedMoment.cY`
@@ -527,7 +542,7 @@ def · line 1533
 
 - **Is:** `` cY (P : Polynomial ℝ) (M : ℕ) (T : ℝ) (α β : ℂ) : ℂ := c1Y P M α β + (T : ℂ) ^ (-(α + β)) * c1Y P M (-β) (-α) noncomputable ``
 - **Built from:** [`TwistedMoment.c1Y`](#TwistedMoment-c1Y)
-- **Used by 5:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 6:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-Regime"></a>
 ### `TwistedMoment.Regime`
@@ -535,7 +550,7 @@ def · line 1533
 def · line 1538
 
 - **Is:** `` Regime (κ T : ℝ) (α β : ℂ) : Prop := ‖α‖ ≤ κ / Real.log T ∧ ‖β‖ ≤ κ / Real.log T ∧ 1 / (κ * Real.log T) ≤ ‖α + β‖ noncomputable ``
-- **Used by 16:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.N_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-N_le), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`TwistedMoment.Regime.small`](#TwistedMoment-Regime-small), [`TwistedMoment.Regime.swap`](#TwistedMoment-Regime-swap), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.norm_Tpow_le`](#TwistedMoment-norm_Tpow_le)
+- **Used by 18:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.StmtDiagMain`](../lean_stage3/Diagonal.md#Diagonal-StmtDiagMain), [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young), [`DiagonalO.StmtDiagO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtDiagO), [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.N_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-N_le), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound), [`TwistedMoment.Regime.small`](#TwistedMoment-Regime-small), [`TwistedMoment.Regime.swap`](#TwistedMoment-Regime-swap), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.norm_Tpow_le`](#TwistedMoment-norm_Tpow_le)
 
 <a name="TwistedMoment-errY"></a>
 ### `TwistedMoment.errY`
@@ -544,7 +559,7 @@ def · line 1543
 
 - **Is:** `` errY {T L : ℝ} (W : Weight T L) : ℝ := (1 + W.C1 + W.C2) * (T / L) noncomputable ``
 - **Built from:** [`TwistedMoment.Weight`](#TwistedMoment-Weight)
-- **Used by 11:** [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.errY_absorb`](../lean_stage3/DiagonalO.md#DiagonalO-errY_absorb), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
+- **Used by 15:** [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main), [`DiagonalO.errY_absorb`](../lean_stage3/DiagonalO.md#DiagonalO-errY_absorb), [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.stmtOffDiag_holds`](../lean_stage3/OffDiagClose.md#OffDiagClose-stmtOffDiag_holds), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`TwistedMoment.StmtDiag`](#TwistedMoment-StmtDiag), [`TwistedMoment.StmtLemma3`](#TwistedMoment-StmtLemma3), [`TwistedMoment.StmtLemma3res`](#TwistedMoment-StmtLemma3res), [`TwistedMoment.StmtOffDiag`](#TwistedMoment-StmtOffDiag), [`TwistedMoment.StmtX`](#TwistedMoment-StmtX), [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts)
 
 <a name="TwistedMoment-StmtDiag"></a>
 ### `TwistedMoment.StmtDiag`
@@ -1234,9 +1249,10 @@ t⁻¹ ≤ 4 * (T / L)⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`OffDiagClose.VY_iter_on_supp`](../lean_stage3/OffDiagClose.md#OffDiagClose-VY_iter_on_supp) (OffDiagClose) — `` ‖iteratedDeriv r (fun t => VY α β c x t) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (4 * (T / L)⁻¹) ^ r * (1 + x / (2 * T)) ^ (-A) ``
+  - [`SwapX.hder_of`](../lean_stage3/SwapX.md#SwapX-hder_of) (SwapX) — `` |L / (2 * Kt κ) * ℓ (cT s T * (Dk s (k + 1) * Gk s (k + 1) t))| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹ ``
   - [`TwistedMoment.Fw2_bound`](#TwistedMoment-Fw2_bound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 0 < T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → … ``
 
 <a name="TwistedMoment-decay_le"></a>
@@ -1562,8 +1578,9 @@ msq M a σ₀ t ≤ (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀))
 
 **Definitions its proof touches:** [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SwapX.msq_young`](../lean_stage3/SwapX.md#SwapX-msq_young) (SwapX) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R t : ℝ), msq (Mof T θ) (aY P T θ R) (sig0 T R) t ≤ B ^ 2 * ((Mof T θ : ℝ) * (1 + Real.log (Mof T θ))) ``
   - [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C… ``
 
 <a name="TwistedMoment-msq_nonneg"></a>
@@ -1589,8 +1606,9 @@ line 699 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound) (SwapX) — `` ‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * C… ``
   - [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C… ``
 
 <a name="TwistedMoment-continuous_msq"></a>
@@ -1774,8 +1792,9 @@ line 741 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.XY`](../lean_stage3/ApproxFE.md#ApproxFE-XY), [`ApproxFE.resY`](../lean_stage3/ApproxFE.md#ApproxFE-resY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`TwistedMoment.S1`](#TwistedMoment-S1), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX) (SwapX) — `` Integrable fun t => (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ) ``
   - [`TwistedMoment.I_split`](#TwistedMoment-I_split) — `` Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β ``
 
 <a name="TwistedMoment-continuous_uA"></a>
@@ -1891,8 +1910,9 @@ line 770 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Weight`](#TwistedMoment-Weight)
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound) (SwapX) — `` ‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * C… ``
   - [`TwistedMoment.I1_expand`](#TwistedMoment-I1_expand) — `` I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2… ``
   - [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C… ``
   - [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom) — `` (∀ p : ℕ × ℕ, Integrable fun t => (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ => ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Eh… ``
@@ -1935,8 +1955,9 @@ Integrable fun t => (W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β 
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX) (SwapX) — `` Integrable fun t => (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ) ``
   - [`TwistedMoment.I_split`](#TwistedMoment-I_split) — `` Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β ``
 
 <a name="TwistedMoment-resY_term_cAt"></a>
@@ -2092,8 +2113,9 @@ Integrable fun t => (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ)
 
 **Definitions its proof touches:** [`ApproxFE.resY`](../lean_stage3/ApproxFE.md#ApproxFE-resY), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX) (SwapX) — `` Integrable fun t => (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ) ``
   - [`TwistedMoment.I_split`](#TwistedMoment-I_split) — `` Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β ``
 
 <a name="TwistedMoment-summable_major"></a>
@@ -2256,8 +2278,10 @@ Integrable fun t => (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ)
 
 **Definitions its proof touches:** [`TwistedMoment.S1`](#TwistedMoment-S1), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`SwapX.integrable_IX`](../lean_stage3/SwapX.md#SwapX-integrable_IX) (SwapX) — `` Integrable fun t => (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ) ``
+  - [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of) (SwapX) — `` StmtXAll P θ R κ ``
   - [`TwistedMoment.I_split`](#TwistedMoment-I_split) — `` Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β ``
 
 <a name="TwistedMoment-I_split"></a>
@@ -2296,9 +2320,10 @@ Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires 
 
 **Definitions its proof touches:** [`ApproxFE.XY`](../lean_stage3/ApproxFE.md#ApproxFE-XY), [`ApproxFE.resY`](../lean_stage3/ApproxFE.md#ApproxFE-resY), [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.IX`](#TwistedMoment-IX), [`TwistedMoment.Imom`](#TwistedMoment-Imom), [`TwistedMoment.Ires`](#TwistedMoment-Ires), [`TwistedMoment.S1`](#TwistedMoment-S1), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.msq`](#TwistedMoment-msq)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) (DiagonalO) — `` StmtLemma3resO P θ R κ ``
+  - [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll) (SwapX) — `` StmtLemma3resO P θ R κ ``
   - [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts) — `` StmtLemma3res P θ R κ ``
 
 <a name="TwistedMoment-norm_integral_le_Icc"></a>
@@ -2324,12 +2349,13 @@ line 982 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`Diagonal.inner_t`](../lean_stage3/Diagonal.md#Diagonal-inner_t) (Diagonal) — `` ∑' l : ℕ, ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * ∫ t, (W.w t : ℂ) * VY α β c (((A * (l + 1) : ℕ) : ℝ) *… ``
   - [`Diagonal.shifted_bound`](../lean_stage3/Diagonal.md#Diagonal-shifted_bound) (Diagonal) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * V… ``
   - [`Diagonal.stmtDiag_of_main`](../lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main) (Diagonal) — `` StmtDiag P θ R κ ``
   - [`DiagonalO.what0_le`](../lean_stage3/DiagonalO.md#DiagonalO-what0_le) (DiagonalO) — `` ‖(what0 W : ℂ)‖ ≤ 2 * T ``
+  - [`SwapX.E_bound`](../lean_stage3/SwapX.md#SwapX-E_bound) (SwapX) — `` ‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * C… ``
   - [`TwistedMoment.Ires_small`](#TwistedMoment-Ires_small) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖Ires W M a σ₀ α β‖ ≤ C… ``
   - [`TwistedMoment.hk_dom`](#TwistedMoment-hk_dom) — `` (∀ p : ℕ × ℕ, Integrable fun t => (W.w t : ℂ) * S1term α β c t p * Ehk σ₀ h k t) ∧ Summable fun p : ℕ × ℕ => ∫ t, ‖(W.w t : ℂ) * S1term α β c t p * Eh… ``
 
@@ -2744,9 +2770,11 @@ I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β 
 
 **Definitions its proof touches:** [`TwistedMoment.I1`](#TwistedMoment-I1), [`TwistedMoment.Jint`](#TwistedMoment-Jint), [`TwistedMoment.Weight`](#TwistedMoment-Weight), [`TwistedMoment.coefY`](#TwistedMoment-coefY), [`TwistedMoment.diagSum`](#TwistedMoment-diagSum), [`TwistedMoment.offSum`](#TwistedMoment-offSum)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) (DiagonalO) — `` StmtLemma3resO P θ R κ ``
+  - [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound) (SwapX) — `` ‖I1 X.toWeight M a σ₀ α β 1‖ ≤ 2 * T * (Cc + 1) + Cd * (T / Real.log T) + Co * errY X.toWeight ``
+  - [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll) (SwapX) — `` StmtLemma3resO P θ R κ ``
   - [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts) — `` StmtLemma3res P θ R κ ``
 
 <a name="TwistedMoment-offTerm_nonneg"></a>
@@ -2997,9 +3025,11 @@ line 1616 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Regime`](#TwistedMoment-Regime)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) (DiagonalO) — `` StmtLemma3resO P θ R κ ``
+  - [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll) (SwapX) — `` StmtLemma3resO P θ R κ ``
+  - [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of) (SwapX) — `` StmtXAll P θ R κ ``
   - [`TwistedMoment.lemma3_res_of_parts`](#TwistedMoment-lemma3_res_of_parts) — `` StmtLemma3res P θ R κ ``
 
 <a name="TwistedMoment-lemma3_res_of_parts"></a>

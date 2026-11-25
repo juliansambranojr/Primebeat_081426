@@ -228,6 +228,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ExplicitTwo.c1t`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) | def | reads ζ | `ExplicitTwo` | ℝ |
 | [`FixedRowTwo.c1t_nonneg`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) | theorem | reads ζ | `FixedRowTwo` | 0 ≤ ExplicitTwo.c1t |
 | [`TwistedMoment.c1Y`](./lean_stage3/TwistedMoment.md#TwistedMoment-c1Y) | def | shape | `TwistedMoment` | ℂ |
+| [`SwapX.c1Y_bound`](./lean_stage3/SwapX.md#SwapX-c1Y_bound) | theorem | shape | `SwapX` | ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C |
 | [`DiagMain.c1Y_eq`](./lean_stage3/DiagMain.md#DiagMain-c1Y_eq) | theorem | shape | `DiagMain` | c1Y P M α β = 1 / ((α + β) * Real.log M) * IY P M α β |
 | [`Chain.C2`](./lean/Chain.md#Chain-C2) | theorem | shape | `Chain` | StmtC2 b |
 | [`Chain.C2_ceiling_attained`](./lean/Chain.md#Chain-C2_ceiling_attained) | theorem | shape | `Chain` | ∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2 |
@@ -304,6 +305,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerBands.cFarM`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM) | def | shape | `WeilPowerBands` | ℝ |
 | [`WeilPowerBands.cFarM_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_le) | theorem | shape | `WeilPowerBands` | cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2 |
 | [`WeilPowerBands.cFarM_nonneg`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_nonneg) | theorem | shape | `WeilPowerBands` | 0 ≤ cFarM m |
+| [`SwapX.cG_eq`](./lean_stage3/SwapX.md#SwapX-cG_eq) | theorem | shape | `SwapX` | cT s T * Gk s 0 t = cexp (s * ((Real.log t - Real.log (2 * Real.pi * T) : ℝ) : ℂ)) |
 | [`HolyChannel.channel_iff_self_mirror`](./lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror) | theorem | reads ζ | `HolyChannel` | (ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ |
 | [`PiRemainder.Chigh`](./lean_stage3/PiRemainder.md#PiRemainder-Chigh) | def | reads ζ | `PiRemainder` | ℝ |
 | [`PiRemainder.Chigh_nonneg`](./lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | theorem | reads ζ | `PiRemainder` | 0 ≤ Chigh |
@@ -494,6 +496,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.Csn_le`](./lean_stage3/RouteNum.md#RouteNum-Csn_le) | theorem | shape | `RouteNum` | Glue.Csn ≤ 1136 |
 | [`Glue.Csn_pos`](./lean_stage3/GlueNum.md#Glue-Csn_pos) | theorem | shape | `GlueNum` | 0 &lt; Csn |
 | [`CountModes.cst`](./lean_stage3/CountModes.md#CountModes-cst) | def | shape | `CountModes` | ℂ |
+| [`SwapX.cT`](./lean_stage3/SwapX.md#SwapX-cT) | def | shape | `SwapX` | ℂ |
 | [`JointSymbol.cutG`](./lean_stage3/JointSymbol.md#JointSymbol-cutG) | def | shape | `JointSymbol` | ℂ |
 | [`TwistedMoment.cY`](./lean_stage3/TwistedMoment.md#TwistedMoment-cY) | def | shape | `TwistedMoment` | ℂ |
 | [`StepsBelow.D`](./lean_stage3/StepsBelow.md#StepsBelow-D) | def | counting | `StepsBelow` | ℂ |
@@ -523,6 +526,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointSymbol.dd_iter_rule`](./lean_stage3/JointSymbol.md#JointSymbol-dd_iter_rule) | theorem | shape | `JointSymbol` | (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2) |
 | [`TwistedMoment.decay_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-decay_le) | theorem | shape | `TwistedMoment` | (1 + x / t) ^ (-A) ≤ (1 + x / (2 * T)) ^ (-A) |
 | [`OffDiagClose.decay_trade`](./lean_stage3/OffDiagClose.md#OffDiagClose-decay_trade) | theorem | shape | `OffDiagClose` | y ^ r * y ^ (-(2 / 5) : ℝ) * (1 + y / (2 * T)) ^ (-((r : ℝ) + 4 / 5)) ≤ (2 * T) ^ ((r : ℝ) + 4 / 5) * y ^ (-(6 / 5) : ℝ) |
+| [`SwapX.decomp`](./lean_stage3/SwapX.md#SwapX-decomp) | theorem | shape | `SwapX` | (w : ℂ) * (cT s T * Gk s 0 t - 1) = ((Kt κ / L : ℝ) : ℂ) * (((2 * (w * phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t) - w : ℝ) : ℂ) + I * (((2 * (w * phi Complex.imCLM (cT s… |
 | [`DeepZeroBand.deep_cell_15_6`](./lean/DeepZeroBand.md#DeepZeroBand-deep_cell_15_6) | theorem | counting | `DeepZeroBand` | tableFrom Zeros.dyadicRow 15 6 = -112 |
 | [`DeepZeroBand.deep_zero_inverse_on_inner_circle`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_on_inner_circle) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share compRow 20 6 13 : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) |
 | [`DeepZeroBand.deep_zero_inverse_share`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_share) | theorem | shape | `DeepZeroBand` | share compRow 20 6 13 = 1 |
@@ -598,6 +602,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonMultiple.divisor_eq_of_mul`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-divisor_eq_of_mul) | theorem | counting | `LevinsonMultiple` | MeromorphicOn.divisor G U p = MeromorphicOn.divisor H U p |
 | [`LevinsonRight.divisor_nonneg_real`](./lean_stage3/LevinsonRight.md#LevinsonRight-divisor_nonneg_real) | theorem | counting | `LevinsonRight` | (0 : ℝ) ≤ ((MeromorphicOn.divisor f U p : ℤ) : ℝ) |
 | [`ApproxDerivAll.Dk`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-Dk) | def | counting | `ApproxDerivAll` | ℝ |
+| [`SwapX.Dk`](./lean_stage3/SwapX.md#SwapX-Dk) | def | counting | `SwapX` | ℕ → ℂ |
 | [`ApproxDerivAll.Dk_nonneg`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-Dk_nonneg) | theorem | counting | `ApproxDerivAll` | 0 ≤ Dk k |
 | [`Glue.Dln`](./lean_stage3/GlueNum.md#Glue-Dln) | def | reads ζ | `GlueNum` | ℝ |
 | [`RouteNum.Dln_le`](./lean_stage3/RouteNum.md#RouteNum-Dln_le) | theorem | reads ζ | `RouteNum` | Glue.Dln ≤ 89846200 |
@@ -629,6 +634,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`VonKoch.E`](./lean_stage3/VonKochScaffold.md#VonKoch-E) | def | reads ζ | `VonKochScaffold` | ℝ |
 | [`WindowsOfRH.E`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E) | def | counting | `WindowsOfRH` | ℝ |
 | [`NoHoles.e_bound`](./lean_stage3/NoHoles.md#NoHoles-e_bound) | theorem | shape | `NoHoles` | \|e M\| ≤ Real.log (M : ℝ) + 1 |
+| [`SwapX.E_bound`](./lean_stage3/SwapX.md#SwapX-E_bound) | theorem | shape | `SwapX` | ‖∫ t, (W.w t : ℂ) * ((XY α β t - (T : ℂ) ^ (-(α + β)) * (cT (-(α + β)) T * Gk (-(α + β)) 0 t)) * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ)‖ ≤ 8 * Cst * CS * N * (2 * T) ^ e * Bm |
 | [`WindowsOfRH.E_div_integrableOn`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_integrableOn) | theorem | shape | `WindowsOfRH` | IntegrableOn (fun t : ℝ =&gt; E t / t ^ 2) (Set.Ioi 1) |
 | [`WindowsOfRH.E_div_le`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_le) | theorem | shape | `WindowsOfRH` | ∃ A : ℝ, 0 ≤ A ∧ ∀ t : ℝ, max x₀ 1 ≤ t → \|E t / t ^ 2\| ≤ A * t ^ (θ' - 2) |
 | [`WindowsOfRH.E_div_measurable`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-E_div_measurable) | theorem | counting | `WindowsOfRH` | Measurable (fun t : ℝ =&gt; E t / t ^ 2) |
@@ -692,6 +698,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nonvanishing.error_bound`](./lean/Nonvanishing.md#Nonvanishing-error_bound) | theorem | shape | `Nonvanishing` | \|stencilR n (fun x =&gt; f x - L x) r\| ≤ Ehigh r n |
 | [`TwistedMoment.errY`](./lean_stage3/TwistedMoment.md#TwistedMoment-errY) | def | counting | `TwistedMoment` | ℝ |
 | [`DiagonalO.errY_absorb`](./lean_stage3/DiagonalO.md#DiagonalO-errY_absorb) | theorem | shape | `DiagonalO` | K * errY W ≤ ε * errO W |
+| [`SwapX.etaX`](./lean_stage3/SwapX.md#SwapX-etaX) | def | counting | `SwapX` | ℝ |
+| [`SwapX.etaX_le`](./lean_stage3/SwapX.md#SwapX-etaX_le) | theorem | counting | `SwapX` | etaX θ ≤ 1 / 16 |
+| [`SwapX.etaX_pos`](./lean_stage3/SwapX.md#SwapX-etaX_pos) | theorem | counting | `SwapX` | 0 &lt; etaX θ |
 | [`VonKoch.Etr`](./lean_stage3/VonKochScaffold.md#VonKoch-Etr) | def | reads ζ | `VonKochScaffold` | ℝ → ℂ |
 | [`VonKoch.Etr_locallyIntegrable`](./lean_stage3/VonKochScaffold.md#VonKoch-Etr_locallyIntegrable) | theorem | reads ζ | `VonKochScaffold` | MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0) |
 | [`VonKoch.Etr_measurable`](./lean_stage3/VonKochScaffold.md#VonKoch-Etr_measurable) | theorem | reads ζ | `VonKochScaffold` | Measurable Etr |
@@ -883,6 +892,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerPhase.g_ne_zero`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-g_ne_zero) | theorem | shape | `WeilPowerPhase` | g w j ≠ 0 |
 | [`LevinsonMultiple.G_order_add_one`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-G_order_add_one) | theorem | reads ζ | `LevinsonMultiple` | analyticOrderAt (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ρ + 1 = analyticOrderAt riemannZeta ρ |
 | [`ReZetaCount.G_real`](./lean_stage3/ReZetaCount.md#ReZetaCount-G_real) | theorem | reads ζ | `ReZetaCount` | G T (x : ℂ) = ((2 * (riemannZeta (2 * (x : ℂ) + 2 + Complex.I * (T : ℂ))).re : ℝ) : ℂ) |
+| [`SwapX.g_sub_one`](./lean_stage3/SwapX.md#SwapX-g_sub_one) | theorem | shape | `SwapX` | ‖cT s T * Gk s 0 t - 1‖ ≤ Kt κ / L |
 | [`LevinsonTurn.G_turn_eq`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq) | theorem | shape | `LevinsonTurn` | (∫ t in a..b, logDeriv G (1/2 + t * I)).re = -(2 * Real.pi * Littlewood.countRight G ((1/2 : ℂ) + a * I) ((X : ℂ) + b * I) (1/2)) + (∫ x in (1/2 : ℝ)..X, logDeriv G (↑x + ↑a * I)).im - (∫ x in (1/2 : … |
 | [`ReZetaCount.G_zero_eq`](./lean_stage3/ReZetaCount.md#ReZetaCount-G_zero_eq) | theorem | reads ζ | `ReZetaCount` | G T 0 = ((2 * (riemannZeta (2 + Complex.I * (T : ℂ))).re : ℝ) : ℂ) |
 | [`ReZetaCount.G_zero_ne`](./lean_stage3/ReZetaCount.md#ReZetaCount-G_zero_ne) | theorem | reads ζ | `ReZetaCount` | G T 0 ≠ 0 |
@@ -959,6 +969,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOffLine.ghat_neg`](./lean_stage3/WeilOffLine.md#WeilOffLine-ghat_neg) | theorem | shape | `WeilOffLine` | ghat h γ (-z) = -ghat h γ z |
 | [`WeilTransform.ghat_offline`](./lean_stage3/WeilTransform.md#WeilTransform-ghat_offline) | theorem | shape | `WeilTransform` | ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ)) + (WeilWindow.Sigma (ε * h) : ℂ)) |
 | [`WeilTransform.ghat_ofReal_I`](./lean_stage3/WeilTransform.md#WeilTransform-ghat_ofReal_I) | theorem | shape | `WeilTransform` | ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((Psi (h * (t + γ)) : ℂ) + (Psi (h * (t - γ)) : ℂ)) |
+| [`SwapX.Gk`](./lean_stage3/SwapX.md#SwapX-Gk) | def | shape | `SwapX` | ℂ |
+| [`SwapX.Gk_hasDerivAt`](./lean_stage3/SwapX.md#SwapX-Gk_hasDerivAt) | theorem | shape | `SwapX` | HasDerivAt (Gk s k) ((s - k) * Gk s (k + 1) t) t |
 | [`ApproxBounds.gModel`](./lean_stage3/ApproxBounds.md#ApproxBounds-gModel) | def | shape | `ApproxBounds` | ℝ |
 | [`ArgCount.good`](./lean_stage3/ArgCount.md#ArgCount-good) | def | reads ζ | `ArgCount` | Prop |
 | [`ContourShift.goodT_exists`](./lean_stage3/ContourShift.md#ContourShift-goodT_exists) | theorem | reads ζ | `ContourShift` | ∃ T' ∈ Set.Icc T (T+1), ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 &lt; ρ.re → zeroGap T ≤ \|ρ.im - T'\| |
@@ -998,6 +1010,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`EdgeBound.gz_zeros_ball_finite`](./lean_stage3/EdgeBound.md#EdgeBound-gz_zeros_ball_finite) | theorem | reads ζ | `EdgeBound` | {w : ℂ \| gz w = 0 ∧ ‖w - c0 T'‖ ≤ ρ}.Finite |
 | [`Chain.h`](./lean/Chain.md#Chain-h) | def | shape | `Chain` | ℂ |
 | [`EulerFactorChain.h`](./lean/EulerFactorChain.md#EulerFactorChain-h) | def | shape | `EulerFactorChain` | ℂ |
+| [`SwapX.h01_im`](./lean_stage3/SwapX.md#SwapX-h01_im) | theorem | shape | `SwapX` | 0 ≤ phi Complex.imCLM (cT s T) s (1 / 2) (L / (2 * Kt κ)) t ∧ phi Complex.imCLM (cT s T) s (1 / 2) (L / (2 * Kt κ)) t ≤ 1 |
+| [`SwapX.h01_re`](./lean_stage3/SwapX.md#SwapX-h01_re) | theorem | shape | `SwapX` | 0 ≤ phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t ∧ phi Complex.reCLM (cT s T) s (1 / 2 - L / (2 * Kt κ)) (L / (2 * Kt κ)) t ≤ 1 |
 | [`StepsPeak.h0_not_mem`](./lean_stage3/StepsPeak.md#StepsPeak-h0_not_mem) | theorem | counting | `StepsPeak` | (0:ℝ) ∉ Set.uIcc (2:ℝ) N |
 | [`EulerFactorChain.h_eq_gain_pow_on_critical_line`](./lean/EulerFactorChain.md#EulerFactorChain-h_eq_gain_pow_on_critical_line) | theorem | shape | `EulerFactorChain` | h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))‖ : ℝ) ^ (2 * N) : ℝ) |
 | [`EulerFactorChain.h_functional_equation`](./lean/EulerFactorChain.md#EulerFactorChain-h_functional_equation) | theorem | shape | `EulerFactorChain` | h b N (1 - s) = h b N s |
@@ -1063,6 +1077,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxDeriv.hasSum_tau`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasSum_tau) | theorem | shape | `ApproxDeriv` | HasSum (tau h w) (digamma (w + h) - digamma w) |
 | [`ApproxDeriv.hasSum_tel`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasSum_tel) | theorem | counting | `ApproxDeriv` | HasSum (tel b) (1 / b) |
 | [`Expansion.hD_of_window`](./lean/Expansion.md#Expansion-hD_of_window) | theorem | shape | `Expansion` | ∀ y ∈ Icc ((r : ℝ) - (d + 1)) r, Nonvanishing.Mlow r d ≤ iteratedDeriv (d + 1) G y |
+| [`SwapX.hder_of`](./lean_stage3/SwapX.md#SwapX-hder_of) | theorem | shape | `SwapX` | \|L / (2 * Kt κ) * ℓ (cT s T * (Dk s (k + 1) * Gk s (k + 1) t))\| ≤ ((k + 1).factorial : ℝ) * 4 ^ (k + 1) * ((T / L) ^ (k + 1))⁻¹ |
 | [`DiagMain.head_bound`](./lean_stage3/DiagMainMu.md#DiagMain-head_bound) | theorem | shape | `DiagMainMu` | \|∑ n ∈ Ioc 0 (N / Y), (μ n : ℝ) / n * rhoN N n\| ≤ 2 / Y |
 | [`Diagonal.Hf`](./lean_stage3/Diagonal.md#Diagonal-Hf) | def | reads ζ | `Diagonal` | ℂ |
 | [`Diagonal.Hf_differentiableAt`](./lean_stage3/Diagonal.md#Diagonal-Hf_differentiableAt) | theorem | reads ζ | `Diagonal` | DifferentiableAt ℂ (Hf α β t Z) s |
@@ -1091,6 +1106,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.I1`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1) | def | counting | `TwistedMoment` | ℂ |
 | [`TwistedMoment.I1_diag_off`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1_diag_off) | theorem | shape | `TwistedMoment` | I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β c |
 | [`TwistedMoment.I1_expand`](./lean_stage3/TwistedMoment.md#TwistedMoment-I1_expand) | theorem | shape | `TwistedMoment` | I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ, coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) |
+| [`SwapX.I1_X_bound`](./lean_stage3/SwapX.md#SwapX-I1_X_bound) | theorem | shape | `SwapX` | ‖I1 X.toWeight M a σ₀ α β 1‖ ≤ 2 * T * (Cc + 1) + Cd * (T / Real.log T) + Co * errY X.toWeight |
 | [`RHPull.I2_norm_le`](./lean_stage3/LineBound.md#RHPull-I2_norm_le) | theorem | reads ζ | `LineBound` | ‖I₂ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X) * M * X ^ (1 + 1 / Real.log X)) |
 | [`Stage3.I2_norm_le_theta`](./lean_stage3/ThetaPsi.md#Stage3-I2_norm_le_theta) | theorem | reads ζ | `ThetaPsi` | ‖I₂ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X) * M * X ^ (1 + 1 / Real.log X)) |
 | [`RHPull.I37_norm_le`](./lean_stage3/LineBound.md#RHPull-I37_norm_le) | theorem | reads ζ | `LineBound` | ‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (2 * T) * (11100 * (Real.log X) ^ 2 * M * X ^ (σRH X)) |
@@ -1150,6 +1166,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.integrable_I1`](./lean_stage3/TwistedMoment.md#TwistedMoment-integrable_I1) | theorem | shape | `TwistedMoment` | Integrable fun t =&gt; (W.w t : ℂ) * S1 α β c t * (msq M a σ₀ t : ℂ) |
 | [`TwistedMoment.integrable_Imom`](./lean_stage3/TwistedMoment.md#TwistedMoment-integrable_Imom) | theorem | reads ζ | `TwistedMoment` | Integrable fun t =&gt; (W.w t : ℂ) * (riemannZeta (uA α t) * riemannZeta (vB β t)) * (msq M a σ₀ t : ℂ) |
 | [`TwistedMoment.integrable_Ires`](./lean_stage3/TwistedMoment.md#TwistedMoment-integrable_Ires) | theorem | shape | `TwistedMoment` | Integrable fun t =&gt; (W.w t : ℂ) * resY α β t * (msq M a σ₀ t : ℂ) |
+| [`SwapX.integrable_IX`](./lean_stage3/SwapX.md#SwapX-integrable_IX) | theorem | reads ζ | `SwapX` | Integrable fun t =&gt; (W.w t : ℂ) * (XY α β t * S1 (-β) (-α) 1 t) * (msq M a σ₀ t : ℂ) |
 | [`CountModes.integrable_J`](./lean_stage3/CountModes.md#CountModes-integrable_J) | theorem | shape | `CountModes` | IntegrableOn (fun s : ℝ =&gt; Complex.exp ((k:ℂ) * (w - s)) / (w - s)) (Set.Ioi 0) |
 | [`CountEuler.integrable_lor`](./lean_stage3/CountEuler.md#CountEuler-integrable_lor) | theorem | shape | `CountEuler` | Integrable (lor w) |
 | [`PiZeros.integrable_mul_wt`](./lean_stage3/PiZeros.md#PiZeros-integrable_mul_wt) | theorem | shape | `PiZeros` | IntervalIntegrable (fun t =&gt; f t * wt t) volume 2 x |
@@ -1250,6 +1267,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nonvanishing.iter_bdiffZ_eq_stencilR`](./lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_stencilR) | theorem | shape | `Nonvanishing` | (bdiffZ^[n]) g r = stencilR n g r |
 | [`CellBdiff.iter_bdZ_eq_fwdDiff`](./lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_fwdDiff) | theorem | shape | `CellBdiff` | (bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r |
 | [`CellBdiff.iter_bdZ_eq_stencil`](./lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil) | theorem | shape | `CellBdiff` | (bdZ^[n]) a r = CellZeros.stencil n a r |
+| [`SwapX.iter_phi`](./lean_stage3/SwapX.md#SwapX-iter_phi) | theorem | shape | `SwapX` | Set.EqOn (iteratedDeriv (k + 1) (phi ℓ c s a b)) (fun t =&gt; b * ℓ (c * (Dk s (k + 1) * Gk s (k + 1) t))) (Set.Ioi 0) |
 | [`MainTerm.iteratedDeriv_bdiffR`](./lean/MainTerm.md#MainTerm-iteratedDeriv_bdiffR) | theorem | shape | `MainTerm` | iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g) |
 | [`ApproxDerivAll.iteratedDeriv_dY`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-iteratedDeriv_dY) | theorem | shape | `ApproxDerivAll` | iteratedDeriv k (fun t =&gt; dY α β t s) = fun t =&gt; dYk α β k t s |
 | [`Expansion.iteratedDeriv_f2x`](./lean/Expansion.md#Expansion-iteratedDeriv_f2x) | theorem | shape | `Expansion` | ∀ x ∈ Ioi (0 : ℝ), iteratedDeriv d f2x x = F d x |
@@ -1267,6 +1285,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxDerivAll.IYk_hasDerivAt`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_hasDerivAt) | theorem | shape | `ApproxDerivAll` | HasDerivAt (fun t =&gt; IYk α β x j t s) (IYk α β x (j + 1) t s) t |
 | [`ApproxDerivAll.IYk_local`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-IYk_local) | theorem | shape | `ApproxDerivAll` | ∃ K : ℝ, 0 ≤ K ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖IYk α β x j t (σ + y * I)‖ ≤ K * Real.exp (-(1 / 4) * y ^ 2) |
 | [`CountModes.J`](./lean_stage3/CountModes.md#CountModes-J) | def | shape | `CountModes` | ℂ |
+| [`SwapX.J_alg`](./lean_stage3/SwapX.md#SwapX-J_alg) | theorem | shape | `SwapX` | ‖((K / L : ℝ) : ℂ) * ((2 * u - w) + I * (2 * v - w))‖ ≤ 2 * K * (6 * (Cc + 1) + 3 * Cd + 2 * Co * Cu + Co) * eW |
 | [`CountModes.J_eq_segment`](./lean_stage3/CountModes.md#CountModes-J_eq_segment) | theorem | shape | `CountModes` | J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ k / (w - s) |
 | [`CountEuler.J_eq_zeta`](./lean_stage3/CountEuler.md#CountEuler-J_eq_zeta) | theorem | shape | `CountEuler` | CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s) |
 | [`CountModes.J_sub`](./lean_stage3/CountModes.md#CountModes-J_sub) | theorem | shape | `CountModes` | J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ) |
@@ -1320,6 +1339,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.kOfM`](./lean_bridge/WeilBridge.md#Bridge-kOfM) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`WeilBridgeLeaf.kOfM`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-kOfM) | def | shape | `WeilBridgeLeaf` | ℝ → ℂ |
 | [`Bridge.kOfM_eq`](./lean_bridge/WeilBridge.md#Bridge-kOfM_eq) | theorem | shape | `WeilBridge` | kOfM G = kOf G |
+| [`SwapX.Kt`](./lean_stage3/SwapX.md#SwapX-Kt) | def | counting | `SwapX` | ℝ |
 | [`ApproxFE.KY`](./lean_stage3/ApproxFE.md#ApproxFE-KY) | def | counting | `ApproxFE` | ℂ |
 | [`Diagonal.KY_bd`](./lean_stage3/Diagonal.md#Diagonal-KY_bd) | theorem | shape | `Diagonal` | ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ y : ℝ, ‖KY α β t (σ + y * I)‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / (2 * Real.pi)) ^ σ * Real.exp (-(1 / 2) * y ^ 2) |
 | [`ApproxFE.KY_bound`](./lean_stage3/ApproxFE.md#ApproxFE-KY_bound) | theorem | shape | `ApproxFE` | ∃ C : ℝ, 0 ≤ C ∧ ∀ y : ℝ, ‖KY α β t (c + y * I)‖ ≤ C * Real.exp (-(1 / 2) * y ^ 2) |
@@ -1351,6 +1371,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Elephant.lattice_step`](./lean/Elephant.md#Elephant-lattice_step) | theorem | shape | `Elephant` | Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ Sym b (((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ ((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b) - (k … |
 | [`Transform.latticeBasis`](./lean/Transform.md#Transform-latticeBasis) | def | shape | `Transform` | Module.Basis (Fin 2) ℝ ℂ |
 | [`Diagonal.le_exp_mul`](./lean_stage3/Diagonal.md#Diagonal-le_exp_mul) | theorem | shape | `Diagonal` | K ≤ K * Real.exp (2 * \|y\|) |
+| [`SwapX.le_twC`](./lean_stage3/SwapX.md#SwapX-le_twC) | theorem | counting | `SwapX` | C j ≤ twC C j |
 | [`CompositeSplit.least_prime_fiber`](./lean_stage3/CompositeSplit.md#CompositeSplit-least_prime_fiber) | theorem | counting | `CompositeSplit` | (Icc 2 N).filter (fun n =&gt; n.minFac = p) = ((Icc 1 (N / p)).filter (fun m =&gt; ∀ q : ℕ, q.Prime → q &lt; p → ¬ q ∣ m)).image (fun m =&gt; p * m) |
 | [`LeftSmooth.left_edge_bound`](./lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound) | theorem | reads ζ | `LeftSmooth` | ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) |
 | [`ExplicitTwo.left_edge_bound_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) | theorem | reads ζ | `ExplicitTwo` | ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) |
@@ -1358,8 +1379,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) | theorem | counting | `Littlewood` | (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w |
 | [`ApproxDerivAll.leib_bound`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-leib_bound) | theorem | counting | `ApproxDerivAll` | ∃ M : ℝ, 0 ≤ M ∧ ∀ (H d : ℕ → ℂ) (G a q : ℝ), 1 ≤ a → 0 ≤ q → ‖H 0‖ ≤ G → (∀ j, H (j + 1) = ∑ i ∈ Finset.range (j + 1), (j.choose i : ℂ) * H i * d (j - i)) → (∀ m, ‖d m‖ ≤ D m * a * q ^ (m + 1)) → ∀ i… |
 | [`TwistedMoment.lemma3_res_of_parts`](./lean_stage3/TwistedMoment.md#TwistedMoment-lemma3_res_of_parts) | theorem | reads ζ | `TwistedMoment` | StmtLemma3res P θ R κ |
+| [`SwapX.lemma3_resO_of_mainO`](./lean_stage3/SwapX.md#SwapX-lemma3_resO_of_mainO) | theorem | reads ζ | `SwapX` | StmtLemma3resO P θ R κ |
 | [`DiagonalO.lemma3_resO_of_mainO_X`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) | theorem | reads ζ | `DiagonalO` | StmtLemma3resO P θ R κ |
 | [`DiagonalO.lemma3_resO_of_parts`](./lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts) | theorem | reads ζ | `DiagonalO` | StmtLemma3resO P θ R κ |
+| [`SwapX.lemma3_resO_of_partsAll`](./lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll) | theorem | reads ζ | `SwapX` | StmtLemma3resO P θ R κ |
 | [`SieveExact.level_card`](./lean_stage3/SieveExact.md#SieveExact-level_card) | theorem | counting | `SieveExact` | ((smallPrimes N).powersetCard k).card = ((smallPrimes N).card).choose k |
 | [`LevinsonCount.levinson_count`](./lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) | theorem | reads ζ | `LevinsonCount` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
 | [`LevinsonMultiple.levinson_count'`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) | theorem | reads ζ | `LevinsonMultiple` | (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s =&gt; riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b … |
@@ -1373,6 +1396,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiToPsi.Li_two`](./lean_stage3/PiToPsi.md#PiToPsi-Li_two) | theorem | shape | `PiToPsi` | Stage3.Li 2 = 2 / Real.log 2 |
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | shape | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
 | [`LevinsonTurn.lift_turn_eq_integral`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-lift_turn_eq_integral) | theorem | shape | `LevinsonTurn` | φ b - φ a = (∫ t in a..b, F' t / F t).im |
+| [`SwapX.lin_comb`](./lean_stage3/SwapX.md#SwapX-lin_comb) | theorem | counting | `SwapX` | Integrable F ∧ ∫ t, F t = k * ((2 * (∫ t, fu t) - ∫ t, f t) + I * (2 * (∫ t, fv t) - ∫ t, f t)) |
+| [`SwapX.lin_hasDerivAt`](./lean_stage3/SwapX.md#SwapX-lin_hasDerivAt) | theorem | counting | `SwapX` | HasDerivAt (fun t =&gt; b * ℓ (c * F t)) (b * ℓ (c * F')) t |
 | [`LevinsonLine.line_facts`](./lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) | theorem | shape | `LevinsonLine` | ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 &lt; ((1/2 : ℂ) + t * I).re |
 | [`Diagonal.line_integrable`](./lean_stage3/Diagonal.md#Diagonal-line_integrable) | theorem | shape | `Diagonal` | Integrable fun y : ℝ =&gt; KY α β t (c + y * I) * Z (c + y * I) |
 | [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | reads ζ | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
@@ -1471,6 +1496,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Diagonal.logpow_eps`](./lean_stage3/Diagonal.md#Diagonal-logpow_eps) | theorem | shape | `Diagonal` | Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε |
 | [`OffDiagClose.logpow_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-logpow_le) | theorem | shape | `OffDiagClose` | Real.log T ^ p ≤ (5 * ((p : ℝ) + 1)) ^ p * T ^ (1 / 5 : ℝ) |
 | [`LandauMellinG.logPrim`](./lean_stage3/LandauMellinG.md#LandauMellinG-logPrim) | def | shape | `LandauMellinG` | ℂ |
+| [`SwapX.logratio_le`](./lean_stage3/SwapX.md#SwapX-logratio_le) | theorem | shape | `SwapX` | \|Real.log t - Real.log (2 * Real.pi * T)\| ≤ 26 |
 | [`MirrorArea.long_side_of_off_line`](./lean_stage3/MirrorArea.md#MirrorArea-long_side_of_off_line) | theorem | shape | `MirrorArea` | Real.sqrt b &lt; max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖ |
 | [`CountEuler.lor`](./lean_stage3/CountEuler.md#CountEuler-lor) | def | counting | `CountEuler` | ℝ |
 | [`CountEuler.lor_eq`](./lean_stage3/CountEuler.md#CountEuler-lor_eq) | theorem | shape | `CountEuler` | lor w s = Real.pi / \|w.im\| * ProbabilityTheory.cauchyPDFReal w.re ‖w.im‖₊ s |
@@ -1645,6 +1671,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.msq_expand`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_expand) | theorem | shape | `TwistedMoment` | ((msq M a σ₀ t : ℝ) : ℂ) = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) * (k : ℂ) ^ (-((σ₀ : ℂ) - t * I))) |
 | [`TwistedMoment.msq_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_le) | theorem | shape | `TwistedMoment` | msq M a σ₀ t ≤ (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^ 2 |
 | [`TwistedMoment.msq_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_nonneg) | theorem | counting | `TwistedMoment` | 0 ≤ msq M a σ₀ t |
+| [`SwapX.msq_young`](./lean_stage3/SwapX.md#SwapX-msq_young) | theorem | shape | `SwapX` | ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R t : ℝ), msq (Mof T θ) (aY P T θ R) (sig0 T R) t ≤ B ^ 2 * ((Mof T θ : ℝ) * (1 + Real.log (Mof T θ))) |
 | [`WindowsOfRH.mul_cpow_eq`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-mul_cpow_eq) | theorem | shape | `WindowsOfRH` | (y : ℂ) * (y : ℂ) ^ (-(σ : ℂ) - 1) = (y : ℂ) ^ (-(σ : ℂ)) |
 | [`WeilWindow.mul_sinh_ge`](./lean_stage3/WeilWindow.md#WeilWindow-mul_sinh_ge) | theorem | shape | `WeilWindow` | s * x ^ 2 ≤ x * Real.sinh (s * x) |
 | [`NoHoles.multiples_eq_image`](./lean_stage3/NoHoles.md#NoHoles-multiples_eq_image) | theorem | counting | `NoHoles` | (Icc 1 N).filter (fun m =&gt; k ∣ m) = (Icc 1 (N / k)).image (fun j =&gt; k * j) |
@@ -1697,6 +1724,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.nonzero_19_6`](./lean/Zeros.md#Zeros-nonzero_19_6) | theorem | counting | `Zeros` | Construction.tableFrom dyadicRow 19 6 = 343 |
 | [`Zeros.nonzero_7_3`](./lean/Zeros.md#Zeros-nonzero_7_3) | theorem | counting | `Zeros` | Construction.tableFrom dyadicRow 7 3 = 5 |
 | [`WeilPowerPhase.norm_A_sq`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-norm_A_sq) | theorem | shape | `WeilPowerPhase` | ‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w‖ ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) |
+| [`SwapX.norm_cG`](./lean_stage3/SwapX.md#SwapX-norm_cG) | theorem | shape | `SwapX` | ‖cT s T * Gk s k t‖ = Real.exp (s.re * (Real.log t - Real.log (2 * Real.pi * T))) * (t⁻¹) ^ k |
 | [`WeilPowerShell.norm_coef`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_coef) | theorem | shape | `WeilPowerShell` | ‖coef e' D e‖ = (e' ^ 2 + D ^ 2) / e ^ 2 |
 | [`ZeroSummable.norm_coef`](./lean_stage3/ZeroSummable.md#ZeroSummable-norm_coef) | theorem | reads ζ | `ZeroSummable` | ‖LadderMean.coef ρ‖ = w ρ |
 | [`WeilPowerGeom.norm_corr_le`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_corr_le) | theorem | shape | `WeilPowerGeom` | ‖Complex.exp (z * (u m : ℂ)) - Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2)‖ ≤ Real.exp (z.re * ((m : ℝ) + 1 / 2) / Real.pi ^ 2) * (2 * ‖z‖) * (u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2) |
@@ -1710,6 +1738,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ApproxDeriv.norm_d2term_le`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2term_le) | theorem | shape | `ApproxDeriv` | ‖-(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t / 2) n)‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n |
 | [`ApproxDeriv.norm_d2Y_le`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_d2Y_le) | theorem | shape | `ApproxDeriv` | ‖d2Y α β t s‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) |
 | [`WeilPowerPhase.norm_delta_le`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-norm_delta_le) | theorem | shape | `WeilPowerPhase` | ‖delta m w n‖ ≤ q m w |
+| [`SwapX.norm_Dk_le`](./lean_stage3/SwapX.md#SwapX-norm_Dk_le) | theorem | shape | `SwapX` | ‖Dk s (k + 1)‖ ≤ ‖s‖ * ((k + 1).factorial : ℝ) |
 | [`ApproxDeriv.norm_dterm_le`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dterm_le) | theorem | shape | `ApproxDeriv` | ‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) n)‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * tel (1 / 20 + Y) n |
 | [`ApproxDeriv.norm_dY_le`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_dY_le) | theorem | shape | `ApproxDeriv` | ‖dY α β t s‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) |
 | [`ApproxDerivAll.norm_dYk_le`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_dYk_le) | theorem | shape | `ApproxDerivAll` | ‖dYk α β k t s‖ ≤ 4 * ((k + 1).factorial : ℝ) * ‖s / 2‖ * (1 / (1 / 20 + Y)) ^ k * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / 20 + Y)) |
@@ -2027,11 +2056,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgCount.phaseTheta_sub_le`](./lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le) | theorem | reads ζ | `ArgCount` | \|Stage3.phaseTheta T₀ - Stage3.phaseTheta T\| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2) |
 | [`Stage3.phaseTheta_zero`](./lean_stage3/Stirling.md#Stage3-phaseTheta_zero) | theorem | shape | `Stirling` | phaseTheta 0 = 0 |
 | [`LandauMellinG.Phi`](./lean_stage3/LandauMellinG.md#LandauMellinG-Phi) | def | reads ζ | `LandauMellinG` | ℂ |
+| [`SwapX.phi`](./lean_stage3/SwapX.md#SwapX-phi) | def | shape | `SwapX` | ℝ |
 | [`WeilBackground.phi`](./lean_stage3/WeilBackground.md#WeilBackground-phi) | def | shape | `WeilBackground` | ℝ |
 | [`OffDiagClose.phi_contDiff`](./lean_stage3/OffDiagClose.md#OffDiagClose-phi_contDiff) | theorem | shape | `OffDiagClose` | ContDiff ℝ ∞ Real.smoothTransition |
+| [`SwapX.phi_contDiffAt`](./lean_stage3/SwapX.md#SwapX-phi_contDiffAt) | theorem | shape | `SwapX` | ContDiffAt ℝ ∞ (phi ℓ c s a b) t |
 | [`OffDiagClose.phi_deriv_compact`](./lean_stage3/OffDiagClose.md#OffDiagClose-phi_deriv_compact) | theorem | shape | `OffDiagClose` | HasCompactSupport (deriv Real.smoothTransition) |
 | [`OffDiagClose.phi_iter_bdd`](./lean_stage3/OffDiagClose.md#OffDiagClose-phi_iter_bdd) | theorem | shape | `OffDiagClose` | ∃ B : ℝ, 0 ≤ B ∧ ∀ s, \|iteratedDeriv i Real.smoothTransition s\| ≤ B |
 | [`OffDiagClose.phi_iter_compact`](./lean_stage3/OffDiagClose.md#OffDiagClose-phi_iter_compact) | theorem | shape | `OffDiagClose` | HasCompactSupport (iteratedDeriv k (deriv Real.smoothTransition)) |
+| [`SwapX.phi_iter_le`](./lean_stage3/SwapX.md#SwapX-phi_iter_le) | theorem | shape | `SwapX` | \|iteratedDeriv k (phi ℓ c s a b) t\| ≤ (k.factorial : ℝ) * 4 ^ k * ((T / L) ^ k)⁻¹ |
 | [`OffDiagClose.phi_pos_of_ne`](./lean_stage3/OffDiagClose.md#OffDiagClose-phi_pos_of_ne) | theorem | shape | `OffDiagClose` | 0 &lt; x |
 | [`LandauPoleLocal.Phi_principal_part`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) | theorem | reads ζ | `LandauPoleLocal` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) |
 | [`LandauPoleLocal.Phi_regular_at_one`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_regular_at_one) | theorem | reads ζ | `LandauPoleLocal` | ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s |
@@ -2391,7 +2423,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`StepsPeak.S`](./lean_stage3/StepsPeak.md#StepsPeak-S) | def | counting | `StepsPeak` | ℂ |
 | [`WeilOddPower.S`](./lean_stage3/WeilOddPower.md#WeilOddPower-S) | def | shape | `WeilOddPower` | ℂ |
 | [`TwistedMoment.S1`](./lean_stage3/TwistedMoment.md#TwistedMoment-S1) | def | counting | `TwistedMoment` | ℂ |
+| [`SwapX.S1_sharp`](./lean_stage3/SwapX.md#SwapX-S1_sharp) | theorem | reads ζ | `SwapX` | ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ‖α‖ ≤ η → ‖β‖ ≤ η → ∀ t : ℝ, 1 ≤ t → ‖S1 α β 1 t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * t ^ (1 / 2 + 2 * η) |
 | [`TwistedMoment.S1_term_bound`](./lean_stage3/TwistedMoment.md#TwistedMoment-S1_term_bound) | theorem | shape | `TwistedMoment` | ‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β c (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * B ^ 2 * (((p.1 : ℝ) + 1) ^ (-(12 / 5) : ℝ) * ((p.2 : ℝ) + 1) … |
+| [`SwapX.S1_term_sharp`](./lean_stage3/SwapX.md#SwapX-S1_term_sharp) | theorem | shape | `SwapX` | ‖((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-vB β t) * VY α β 1 (((p.1 : ℝ) + 1) * ((p.2 : ℝ) + 1)) t‖ ≤ CV * (1 + 1 / ‖α + β‖ ^ 2) * t ^ (1 / 2 + 2 * η) * (((p.1 : ℝ) + 1) ^ (-(1 + η)) * ((p.2 … |
 | [`TwistedMoment.S1term`](./lean_stage3/TwistedMoment.md#TwistedMoment-S1term) | def | counting | `TwistedMoment` | ℂ |
 | [`WeilOddPower.S_eq`](./lean_stage3/WeilOddPower.md#WeilOddPower-S_eq) | theorem | shape | `WeilOddPower` | S m w = 2 * w * K (m + 1) w / (((m : ℂ) + 1) * (Real.pi : ℂ)) |
 | [`Expansion.S_eq_alt`](./lean/Expansion.md#Expansion-S_eq_alt) | theorem | shape | `Expansion` | S d x = ∑ j ∈ range (d + 1), (-1 : ℝ) ^ j * t d j x |
@@ -2516,7 +2550,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGeomGen.sin_im_ge_gen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-sin_im_ge_gen) | theorem | shape | `WeilPowerGeomGen` | 2 * (z.im * α) / Real.pi ≤ Real.sin (z.im * α) |
 | [`WeilOddPower.sin_pi_mul`](./lean_stage3/WeilOddPower.md#WeilOddPower-sin_pi_mul) | theorem | shape | `WeilOddPower` | Real.sin (Real.pi * x) = 2 * Real.sin (Real.pi * x / 2) * c x |
 | [`WeilPowerBounds.sinh_ge`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-sinh_ge) | theorem | shape | `WeilPowerBounds` | Real.exp s / 4 ≤ Real.sinh s |
+| [`SwapX.size_X`](./lean_stage3/SwapX.md#SwapX-size_X) | theorem | shape | `SwapX` | ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * (2 * T) ^ (1 / 2 + 2 * etaX θ) * ((M : ℝ) * (1 + Real.log M)) ≤ C * (T / Real.log T) |
 | [`LeftSmooth.sL`](./lean_stage3/LeftSmooth.md#LeftSmooth-sL) | def | shape | `LeftSmooth` | ℂ |
+| [`SwapX.sl_le`](./lean_stage3/SwapX.md#SwapX-sl_le) | theorem | shape | `SwapX` | ‖s * ((Real.log t - Real.log (2 * Real.pi * T) : ℝ) : ℂ)‖ ≤ 52 * κ / L |
 | [`LeftSmooth.sL_ne`](./lean_stage3/LeftSmooth.md#LeftSmooth-sL_ne) | theorem | shape | `LeftSmooth` | sL t ≠ 0 |
 | [`LeftSmooth.sL_ne_one`](./lean_stage3/LeftSmooth.md#LeftSmooth-sL_ne_one) | theorem | shape | `LeftSmooth` | sL t ≠ 1 |
 | [`AttainedPi.slack`](./lean_stage3/AttainedPi.md#AttainedPi-slack) | def | reads ζ | `AttainedPi` | ℝ |
@@ -2548,6 +2584,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`OneChain.spiralLink_of_finite`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_finite) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
 | [`OneChain.spiralLink_of_finite_accumulation`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_finite_accumulation) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
 | [`HalfSieve.spiralLink_of_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-spiralLink_of_wobble) | theorem | reads ζ | `HalfSieve` | SpiralLink.SpiralLink |
+| [`SwapX.split_eq`](./lean_stage3/SwapX.md#SwapX-split_eq) | theorem | counting | `SwapX` | (∫ t, f2 t) - Tp * (∫ t, f t) = (∫ t, E t) + Tp * ∫ t, F t |
 | [`Crossover.spread_is_non_monotone`](./lean/Crossover.md#Crossover-spread_is_non_monotone) | theorem | shape | `Crossover` | (0.0591885 : ℝ) &lt; 0.3026405 ∧ (0.0219312 : ℝ) &lt; 0.3026405 |
 | [`Crossover.spread_prime`](./lean/Crossover.md#Crossover-spread_prime) | def | shape | `Crossover` | List ℝ |
 | [`Crossover.spread_smooth`](./lean/Crossover.md#Crossover-spread_smooth) | def | shape | `Crossover` | List ℝ |
@@ -2677,6 +2714,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.stmtWeilBridge_holds`](./lean_bridge/WeilBridge.md#Bridge-stmtWeilBridge_holds) | theorem | reads ζ | `WeilBridge` | StmtWeilBridge |
 | [`WeilDetect.StmtWeilPositive`](./lean_stage3/WeilDetect.md#WeilDetect-StmtWeilPositive) | def | reads ζ | `WeilDetect` | Prop |
 | [`TwistedMoment.StmtX`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtX) | def | shape | `TwistedMoment` | Prop |
+| [`SwapX.StmtXAll`](./lean_stage3/SwapX.md#SwapX-StmtXAll) | def | shape | `SwapX` | Prop |
+| [`SwapX.stmtXAll_of`](./lean_stage3/SwapX.md#SwapX-stmtXAll_of) | theorem | reads ζ | `SwapX` | StmtXAll P θ R κ |
+| [`SwapX.StmtXStirling`](./lean_stage3/SwapX.md#SwapX-StmtXStirling) | def | shape | `SwapX` | Prop |
 | [`Stage3.StmtZeroFreeRight`](./lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) | def | reads ζ | `Abscissa` | Prop |
 | [`Saddle.stretch`](./lean_stage3/Saddle.md#Saddle-stretch) | def | shape | `Saddle` | ℝ |
 | [`Saddle.stretch_eq`](./lean_stage3/Saddle.md#Saddle-stretch_eq) | theorem | shape | `Saddle` | stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re |
@@ -2701,6 +2741,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DiagMain.sum_divisors_mu`](./lean_stage3/DiagMainMu.md#DiagMain-sum_divisors_mu) | theorem | counting | `DiagMainMu` | ∑ d ∈ n.divisors, (μ d : ℝ) = if n = 1 then 1 else 0 |
 | [`ApproxBounds.sum_fY_ge`](./lean_stage3/ApproxBounds.md#ApproxBounds-sum_fY_ge) | theorem | shape | `ApproxBounds` | LY Y x / 2 - LY Y (x + ((n + 1 : ℕ) : ℝ)) / 2 ≤ ∑ j ∈ Finset.range (n + 1), fY Y (x + j) |
 | [`ApproxBounds.sum_fY_le`](./lean_stage3/ApproxBounds.md#ApproxBounds-sum_fY_le) | theorem | shape | `ApproxBounds` | ∑ j ∈ Finset.range (n + 1), fY Y (x + j) ≤ fY Y x + LY Y x / 2 |
+| [`SwapX.sum_half_sq`](./lean_stage3/SwapX.md#SwapX-sum_half_sq) | theorem | shape | `SwapX` | (∑ h ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ)) ^ 2 ≤ (M : ℝ) * (1 + Real.log M) |
 | [`WeilPowerTail.sum_hterm_sq_le`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-sum_hterm_sq_le) | theorem | shape | `WeilPowerTail` | ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3) |
 | [`VonKoch.sum_Icc_vonMangoldt`](./lean_stage3/VonKochScaffold.md#VonKoch-sum_Icc_vonMangoldt) | theorem | reads ζ | `VonKochScaffold` | ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k = ψ n |
 | [`Mollified.sum_Ico_dyadic`](./lean_stage3/Mollified.md#Mollified-sum_Ico_dyadic) | theorem | shape | `Mollified` | ∑ n ∈ Ico X (2 ^ J * X), f n = ∑ j ∈ range J, ∑ n ∈ Ico (2 ^ j * X) (2 ^ (j + 1) * X), f n |
@@ -2952,6 +2993,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.torus_shift`](./lean/Transform.md#Transform-torus_shift) | theorem | shape | `Transform` | ((s + 1 : ℂ) : Torus b) = (s : Torus b) |
 | [`PairIdentity.total_const_on_diagonal`](./lean/PairIdentity.md#PairIdentity-total_const_on_diagonal) | theorem | counting | `PairIdentity` | (∀ d₁ d₂ : ℕ, (b - 1) ^ (d₁ + 1) * b ^ e = (b - 1) ^ (d₂ + 1) * b ^ e) ↔ b = 2 |
 | [`PairIdentity.total_eq_pow_iff_base_two`](./lean/PairIdentity.md#PairIdentity-total_eq_pow_iff_base_two) | theorem | counting | `PairIdentity` | (b - 1) ^ (d + 1) * b ^ e = b ^ e ↔ b = 2 |
+| [`SwapX.Tp_g`](./lean_stage3/SwapX.md#SwapX-Tp_g) | theorem | shape | `SwapX` | (T : ℂ) ^ z * (cT z T * Gk z 0 t) = (((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z |
 | [`OffDiagClose.Tpow_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-Tpow_le) | theorem | shape | `OffDiagClose` | T * ((T / L) ^ (2 * r))⁻¹ * Mr ^ (2 * r + 2) * (2 * T) ^ ((r : ℝ) + 4 / 5) ≤ (2 : ℝ) ^ ((r : ℝ) + 4 / 5) * L ^ (2 * r) * T ^ (4 / 5 : ℝ) |
 | [`PiZeros.tr`](./lean_stage3/PiZeros.md#PiZeros-tr) | def | shape | `PiZeros` | ℂ |
 | [`WeilPowerGauss.Tr`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-Tr) | def | shape | `WeilPowerGauss` | ℝ |
@@ -2983,8 +3025,12 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilSeries.tsum_upper_le_explicit'`](./lean_stage3/WeilSeries.md#WeilSeries-tsum_upper_le_explicit-) | theorem | reads ζ | `WeilSeries` | ∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2) * (Real.pi ^ 2 / 6) |
 | [`PerronKernel.tsum_vonMangoldt_div_cpow`](./lean_stage3/PerronKernel.md#PerronKernel-tsum_vonMangoldt_div_cpow) | theorem | reads ζ | `PerronKernel` | (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ) : ℂ) ^ s) = (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s |
 | [`LevinsonTurn.turn_split`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-turn_split) | theorem | shape | `LevinsonTurn` | (∫ t in a..b, logDeriv (fun s =&gt; Gammaℝ s * G s) (1/2 + t * I)).re = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv G (1/2 + t * I)).re |
+| [`SwapX.twC`](./lean_stage3/SwapX.md#SwapX-twC) | def | counting | `SwapX` | ℝ |
+| [`SwapX.twC_mono`](./lean_stage3/SwapX.md#SwapX-twC_mono) | theorem | counting | `SwapX` | twC C j ≤ twC C' j |
+| [`SwapX.twC_nonneg`](./lean_stage3/SwapX.md#SwapX-twC_nonneg) | theorem | counting | `SwapX` | 0 ≤ twC C j |
 | [`TwinLattice.twin_lower_mod_six`](./lean/TwinLattice.md#TwinLattice-twin_lower_mod_six) | theorem | counting | `TwinLattice` | p % 6 = 5 |
 | [`TwinLattice.twin_pocket`](./lean/TwinLattice.md#TwinLattice-twin_pocket) | theorem | counting | `TwinLattice` | (p + 1) % 6 = 0 |
+| [`SwapX.twist`](./lean_stage3/SwapX.md#SwapX-twist) | def | shape | `SwapX` | WeightAll T L |
 | [`RunTheorems.two_cpow`](./lean_stage3/RunTheorems.md#RunTheorems-two_cpow) | theorem | shape | `RunTheorems` | (2:ℂ) ^ ρ = Complex.exp (ρ * (Real.log 2 : ℂ)) |
 | [`CountEuler.two_cpow_eq`](./lean_stage3/CountEuler.md#CountEuler-two_cpow_eq) | theorem | shape | `CountEuler` | (2:ℂ) ^ ρ = Complex.exp (ρ * Real.log 2) |
 | [`CellZeros.two_cpow_ne_zero`](./lean_stage3/CellZeros.md#CellZeros-two_cpow_ne_zero) | theorem | shape | `CellZeros` | (2:ℂ) ^ ρ ≠ 0 |

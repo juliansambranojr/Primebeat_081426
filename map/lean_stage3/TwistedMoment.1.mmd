@@ -35,7 +35,8 @@ flowchart LR
   x3(["<b>Diagonal</b><br/>inner_t"]):::ext
   x4(["<b>diagram 2</b><br/>continuousOn_S1<br/>inv_log_sq_le<br/>offdiag_term_young"]):::ext
   x5(["<b>diagram 3</b><br/>continuous_S1term"]):::ext
-  x6(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
+  x6(["<b>SwapX</b><br/>hder_of"]):::ext
+  x7(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
   n11 --> n14
   n12 --> n14
   n13 --> n16
@@ -61,6 +62,7 @@ flowchart LR
   n20 -.-> x4
   n20 -.-> x5
   n24 -.-> x1
+  n24 -.-> x6
   n25 -.-> x1
   n27 -.-> x4
   n28 -.-> x1
@@ -73,7 +75,7 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n22
   x0 -.-> n26
-  x6 -.-> n26
+  x7 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
