@@ -16,8 +16,12 @@ flowchart LR
   n0["<b>lemma3_resO_holds</b><br/>StmtLemma3resO P θ R κ"]:::thm
   x0(["<b>Arith</b><br/>stmtDiagMainO_holds'"]):::ext
   x1(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'"]):::ext
-  x2(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x2(["<b>MeanQ</b><br/>window_V_lt_half"]):::ext
+  x3(["<b>MeanQMean</b><br/>mollMeanQ_lt_half"]):::ext
+  x4(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
   n0 -.-> x2
+  n0 -.-> x3
+  n0 -.-> x4
   x0 -.-> n0
   x1 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -65,7 +69,9 @@ StmtLemma3resO P θ R κ
 
 **Definitions its proof touches:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half) (MeanQ) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Conrey… ``
+  - [`MeanQ.mollMeanQ_lt_half`](../lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_lt_half) (MeanQMean) — `` StmtMollMeanQ Q P θ R ``
   - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
 

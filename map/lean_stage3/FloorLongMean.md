@@ -7,7 +7,7 @@
 6 theorems, 0 definitions, 493 lines. 
 
 **Imports:** [`FloorConstLimit`](../lean_stage3/FloorConstLimit.md), [`FloorLongErr`](../lean_stage3/FloorLongErr.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)  
-**Imported by:** [`FloorLongStep`](../lean_stage3/FloorLongStep.md)
+**Imported by:** [`FloorLongStep`](../lean_stage3/FloorLongStep.md), [`MeanQMean`](../lean_stage3/MeanQMean.md)
 
 ## The picture
 
@@ -20,23 +20,27 @@ flowchart LR
   n4["<b>unsmooth_near_long</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::shp
   n5["<b>unsmooth_near_levinson_long</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Re…"]:::thm
   x0(["<b>TwistedMoment</b><br/>Ires_small<br/>Regime.small<br/>msq_nonneg"]):::ext
-  x1(["<b>DiagonalO</b><br/>T_le_errO"]):::ext
-  x2(["<b>FloorLong</b><br/>floor_of_long"]):::ext
-  x3(["<b>DiagMain</b><br/>logM_ge"]):::ext
-  x4(["<b>FloorConstLimit</b><br/>dop_cY_eq<br/>tendsto_Kfl<br/>theta_tendsto"]):::ext
-  x5(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x1(["<b>MeanQBound</b><br/>Imom_sup"]):::ext
+  x2(["<b>MeanQMean</b><br/>mollMeanQ_long"]):::ext
+  x3(["<b>DiagonalO</b><br/>T_le_errO"]):::ext
+  x4(["<b>FloorLong</b><br/>floor_of_long"]):::ext
+  x5(["<b>DiagMain</b><br/>logM_ge"]):::ext
+  x6(["<b>FloorConstLimit</b><br/>dop_cY_eq<br/>tendsto_Kfl<br/>theta_tendsto"]):::ext
+  x7(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
   n0 --> n1
   n1 --> n2
   n3 --> n4
   n4 --> n5
-  n2 -.-> x2
-  n3 -.-> x5
-  n5 -.-> x5
+  n1 -.-> x1
+  n1 -.-> x2
+  n2 -.-> x4
+  n3 -.-> x7
+  n5 -.-> x7
   x0 -.-> n1
   x0 -.-> n4
-  x1 -.-> n2
-  x3 -.-> n3
-  x4 -.-> n3
+  x3 -.-> n2
+  x5 -.-> n3
+  x6 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -106,9 +110,11 @@ line 50 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Ires`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`FloorLong.mollMean_long`](#FloorLong-mollMean_long) — `` StmtMollMeanO P θ R ``
+  - [`MeanQ.Imom_sup`](../lean_stage3/MeanQBound.md#MeanQ-Imom_sup) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (… ``
+  - [`MeanQ.mollMeanQ_long`](../lean_stage3/MeanQMean.md#MeanQ-mollMeanQ_long) (MeanQMean) — `` StmtMollMeanQ Q P θ R ``
 
 <a name="FloorLong-mollMean_long"></a>
 ### `FloorLong.mollMean_long`

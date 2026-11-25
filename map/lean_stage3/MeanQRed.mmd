@@ -1,0 +1,30 @@
+flowchart LR
+  n0["<b>coeff_taylor</b><br/>(taylor r p).coeff j = ∑ k ∈ Finset.range (p.natDegree + 1), p.c…"]:::cnt
+  n1["<b>coeff_eq_shift</b><br/>Q.coeff j = ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 :…"]:::cnt
+  n2["<b>zeta_analyticAt</b><br/>AnalyticAt ℂ riemannZeta s"]:::thm
+  n3["<b>xi_eventually</b><br/>completedRiemannZeta =ᶠ[𝓝 s] fun z =＞ Gammaℝ z * riemannZeta z"]:::thm
+  n4["<b>iteratedDeriv_xi</b><br/>iteratedDeriv k completedRiemannZeta s = ∑ i ∈ Finset.range (k +…"]:::thm
+  n5["<b>xi_div_eq</b><br/>iteratedDeriv k completedRiemannZeta s / Gammaℝ s = ∑ j ∈ Finset…"]:::thm
+  n6["<b>V_eq_sum</b><br/>ConreyCount.V Q L s = ∑ j ∈ Finset.range (Q.natDegree + 1), Acoe…"]:::thm
+  n7["<b>V_sub_VQ</b><br/>ConreyCount.V Q L s - VQ Q L s = ∑ j ∈ Finset.range (Q.natDegree…"]:::thm
+  n8["<b>Acoef_sub</b><br/>Acoef Q L j s - (Q.coeff j : ℂ) = ∑ k ∈ Finset.range (Q.natDegre…"]:::cnt
+  n9["<b>E_bound</b><br/>∃ K T₀ : ℝ, 0 ≤ K ∧ ∀ T : ℝ, T₀ ≤ T → ∀ σ ∈ Set.Icc (1/4 : ℝ) 1,…"]:::thm
+  x0(["<b>MeanQV</b><br/>mollMeanV_long"]):::ext
+  n0 --> n1
+  n1 --> n8
+  n2 --> n4
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n9
+  n8 --> n9
+  n9 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

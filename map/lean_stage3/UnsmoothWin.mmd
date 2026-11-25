@@ -13,8 +13,10 @@ flowchart LR
   n11["<b>integral_le_of_one</b><br/>∫ t in a..b, f t ≤ ∫ t, W.w t * f t"]:::cnt
   x0(["<b>OffDiagClose</b><br/>5 theorems"]):::ext
   x1(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x2(["<b>MeanQV</b><br/>intg_w"]):::ext
   n10 --> n11
   n5 --> n6
+  n10 -.-> x2
   n11 -.-> x1
   n4 -.-> x1
   n5 -.-> x1

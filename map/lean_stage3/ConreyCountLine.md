@@ -7,7 +7,7 @@ ConreyCountLine — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the
 10 theorems, 2 definitions, 191 lines. 
 
 **Imports:** [`ConreyCountIdentity`](../lean_stage3/ConreyCountIdentity.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)  
-**Imported by:** [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md)
+**Imported by:** [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md), [`MeanQRed`](../lean_stage3/MeanQRed.md)
 
 ## The picture
 
@@ -24,12 +24,13 @@ flowchart LR
   n8["<b>logDeriv_W_eq</b><br/>logDeriv (OperatorQ.W Q L) s = logDeriv (fun z =＞ Gammaℝ z * V Q…"]:::shp
   n9["<b>lineW_turn_eq ■</b><br/>φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫…"]:::shp
   x0(["<b>ConreyCountEdge</b><br/>analyticAt_V_upper"]):::ext
-  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x2(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
-  x3(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x4(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>distinct_line_zeros_le_lineCount"]):::ext
-  x5(["<b>OperatorQ</b><br/>zeta_line_zero_iff_W"]):::ext
-  x6(["<b>LevinsonTurn</b><br/>line_turn_eq_integral<br/>turn_split"]):::ext
+  x1(["<b>MeanQV</b><br/>continuous_V_line"]):::ext
+  x2(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x3(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x4(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x5(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>distinct_line_zeros_le_lineCount"]):::ext
+  x6(["<b>OperatorQ</b><br/>zeta_line_zero_iff_W"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>line_turn_eq_integral<br/>turn_split"]):::ext
   n0 --> n2
   n0 --> n5
   n2 --> n9
@@ -39,13 +40,14 @@ flowchart LR
   n5 --> n9
   n8 --> n9
   n2 -.-> x0
-  n4 -.-> x1
+  n2 -.-> x1
   n4 -.-> x2
-  x3 -.-> n5
-  x3 -.-> n9
-  x4 -.-> n7
+  n4 -.-> x3
+  x4 -.-> n5
+  x4 -.-> n9
   x5 -.-> n7
-  x6 -.-> n9
+  x6 -.-> n7
+  x7 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -69,7 +71,7 @@ Conrey's `V = W/Gammaℝ`, the analogue of `G = ζ + cζ′`: `V = Q(1/2 − (D 
 
 - **Is:** `` V (Q : ℝ[X]) (L : ℝ) (s : ℂ) : ℂ := OperatorQ.W Q L s / Gammaℝ s ``
 - **Built from:** [`OperatorQ.W`](../lean_stage3/OperatorQ.md#OperatorQ-W)
-- **Used by 20:** [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVDisc`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc), [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges), [`ConreyCount.StmtVRight`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight), [`ConreyCount.V_horizontal_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_horizontal_edge_le), [`ConreyCount.V_right_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_right_edge_le), [`ConreyCount.analyticAt_V_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-analyticAt_V_upper), [`ConreyCount.W_eq_gammaR_mul_V`](#ConreyCount-W_eq_gammaR_mul_V), [`ConreyCount.analyticAt_V`](#ConreyCount-analyticAt_V), [`ConreyCount.lineW_turn_eq`](#ConreyCount-lineW_turn_eq), [`ConreyCount.logDeriv_W_eq`](#ConreyCount-logDeriv_W_eq), [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line), [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.V_eq_sum_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-V_eq_sum_H), [`DigammaBound.V_norm_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_sub_le)
+- **Used by 30:** [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVDisc`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc), [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges), [`ConreyCount.StmtVRight`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight), [`ConreyCount.V_horizontal_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_horizontal_edge_le), [`ConreyCount.V_right_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_right_edge_le), [`ConreyCount.analyticAt_V_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-analyticAt_V_upper), [`ConreyCount.W_eq_gammaR_mul_V`](#ConreyCount-W_eq_gammaR_mul_V), [`ConreyCount.analyticAt_V`](#ConreyCount-analyticAt_V), [`ConreyCount.lineW_turn_eq`](#ConreyCount-lineW_turn_eq), [`ConreyCount.logDeriv_W_eq`](#ConreyCount-logDeriv_W_eq), [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line), [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.V_eq_sum_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-V_eq_sum_H), [`DigammaBound.V_norm_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_sub_le), [`MeanQ.norm_Vpsi_sq`](../lean_stage3/MeanQ.md#MeanQ-norm_Vpsi_sq), [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V), [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long), [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half), [`MeanQ.E_bound`](../lean_stage3/MeanQRed.md#MeanQ-E_bound), [`MeanQ.V_eq_sum`](../lean_stage3/MeanQRed.md#MeanQ-V_eq_sum), [`MeanQ.V_sub_VQ`](../lean_stage3/MeanQRed.md#MeanQ-V_sub_VQ), [`MeanQ.continuous_V_line`](../lean_stage3/MeanQV.md#MeanQ-continuous_V_line), [`MeanQ.mollMeanV`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV), [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long)
 
 <a name="ConreyCount-lineW"></a>
 ### `ConreyCount.lineW`
@@ -167,10 +169,11 @@ AnalyticAt ℂ (V Q L) s
 
 **Definitions its proof touches:** [`ConreyCount.V`](#ConreyCount-V)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ConreyCount.analyticAt_V_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-analyticAt_V_upper) (ConreyCountEdge) — `` AnalyticAt ℂ (V Q L) w ``
   - [`ConreyCount.lineW_turn_eq`](#ConreyCount-lineW_turn_eq) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (V Q L) (1/2 + t * I)).re ``
+  - [`MeanQ.continuous_V_line`](../lean_stage3/MeanQV.md#MeanQ-continuous_V_line) (MeanQV) — `` Continuous fun t : ℝ => ConreyCount.V Q L ((σ₀ : ℂ) + t * I) ``
 
 <a name="ConreyCount-Gamma-_ne_of_im"></a>
 ### `ConreyCount.Gammaℝ_ne_of_im`
