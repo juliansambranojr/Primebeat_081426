@@ -7,7 +7,7 @@
 44 theorems, 10 definitions, 1102 lines. 
 
 **Imports:** [`ApproxDerivAll`](../lean_stage3/ApproxDerivAll.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Diagonal`](../lean_stage3/Diagonal.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Diagonal`](../lean_stage3/Diagonal.md), [`UnsmoothWin`](../lean_stage3/UnsmoothWin.md)
 
 ## The picture
 
@@ -45,9 +45,11 @@ flowchart LR
   n27["<b>Fw_iter_zero_out</b><br/>iteratedDeriv k (Fw W.toWeight α β c x) t = 0"]:::cnt
   n28["<b>Fw_iter_leibniz</b><br/>iteratedDeriv j (Fw W.toWeight α β c x) t = ∑ i ∈ Finset.range (…"]:::shp
   n29["<b>Fw_iter_bound</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 4 ≤ T → 1 ≤ L …"]:::thm
-  x0(["<b>diagram 2</b><br/>4 theorems"]):::ext
-  x1(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
-  x2(["<b>TwistedMoment</b><br/>Fw_zero_out<br/>decay_le<br/>inv_t_le"]):::ext
+  x0(["<b>UnsmoothWin</b><br/>winG_iter_le<br/>winNY_contDiff"]):::ext
+  x1(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x2(["<b>diagram 2</b><br/>4 theorems"]):::ext
+  x3(["<b>ApproxBounds</b><br/>VY_decay_young"]):::ext
+  x4(["<b>TwistedMoment</b><br/>Fw_zero_out<br/>decay_le<br/>inv_t_le"]):::ext
   n0 --> n3
   n0 --> n9
   n1 --> n2
@@ -77,13 +79,19 @@ flowchart LR
   n8 --> n15
   n9 --> n10
   n9 --> n11
-  n21 -.-> x0
-  n26 -.-> x0
-  n27 -.-> x0
-  n29 -.-> x0
-  x1 -.-> n24
-  x2 -.-> n25
-  x2 -.-> n27
+  n12 -.-> x0
+  n13 -.-> x0
+  n21 -.-> x2
+  n26 -.-> x2
+  n27 -.-> x2
+  n29 -.-> x2
+  n4 -.-> x0
+  n6 -.-> x1
+  n7 -.-> x0
+  n8 -.-> x0
+  x3 -.-> n24
+  x4 -.-> n25
+  x4 -.-> n27
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -171,7 +179,7 @@ Young's admissible weight (2.1)–(2.3) with (2.3) for every `j`: `|w^(j)(t)| �
 
 - **Is:** `` WeightAll (T L : ℝ) extends Weight T L where Cj : ℕ → ℝ Cj_nonneg : ∀ j, 0 ≤ Cj j dj : ∀ j t, |iteratedDeriv j w t| ≤ Cj j * ((T / L) ^ j)⁻¹ ``
 - **Built from:** [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
-- **Used by 18:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg), [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`SwapX.twist`](../lean_stage3/SwapX.md#SwapX-twist)
+- **Used by 20:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg), [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-), [`SwapX.I1_X_bound`](../lean_stage3/SwapX.md#SwapX-I1_X_bound), [`SwapX.StmtXAll`](../lean_stage3/SwapX.md#SwapX-StmtXAll), [`SwapX.stmtXAll_of`](../lean_stage3/SwapX.md#SwapX-stmtXAll_of), [`SwapX.twist`](../lean_stage3/SwapX.md#SwapX-twist), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.winNear`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNear)
 
 <a name="OffDiagClose-phiB"></a>
 ### `OffDiagClose.phiB`
@@ -180,7 +188,7 @@ def · line 130
 
 - **Is:** `` phiB (i : ℕ) : ℝ := Classical.choose (phi_iter_bdd i) ``
 - **Built from:** [`OffDiagClose.phi_iter_bdd`](#OffDiagClose-phi_iter_bdd)
-- **Used by 6:** [`OffDiagClose.edgeDn_iter_le`](#OffDiagClose-edgeDn_iter_le), [`OffDiagClose.edgeUp_iter_le`](#OffDiagClose-edgeUp_iter_le), [`OffDiagClose.phiB_bound`](#OffDiagClose-phiB_bound), [`OffDiagClose.phiB_nonneg`](#OffDiagClose-phiB_nonneg), [`OffDiagClose.winC`](#OffDiagClose-winC), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le)
+- **Used by 7:** [`OffDiagClose.edgeDn_iter_le`](#OffDiagClose-edgeDn_iter_le), [`OffDiagClose.edgeUp_iter_le`](#OffDiagClose-edgeUp_iter_le), [`OffDiagClose.phiB_bound`](#OffDiagClose-phiB_bound), [`OffDiagClose.phiB_nonneg`](#OffDiagClose-phiB_nonneg), [`OffDiagClose.winC`](#OffDiagClose-winC), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le)
 
 <a name="OffDiagClose-winC"></a>
 ### `OffDiagClose.winC`
@@ -189,7 +197,7 @@ def · line 139
 
 - **Is:** `` winC (j : ℕ) : ℝ := ∑ i ∈ Finset.range (j + 1), (j.choose i : ℝ) * phiB i * phiB (j - i) ``
 - **Built from:** [`OffDiagClose.phiB`](#OffDiagClose-phiB)
-- **Used by 4:** [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winC_nonneg`](#OffDiagClose-winC_nonneg), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le)
+- **Used by 8:** [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winC_nonneg`](#OffDiagClose-winC_nonneg), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le), [`Unsmooth.winNear`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNear), [`Unsmooth.winNear_Cj`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNear_Cj)
 
 <a name="OffDiagClose-edgeUp"></a>
 ### `OffDiagClose.edgeUp`
@@ -197,7 +205,7 @@ def · line 139
 def · line 150
 
 - **Is:** `` edgeUp (c a t : ℝ) : ℝ := Real.smoothTransition (c * (t - a)) noncomputable ``
-- **Used by 7:** [`OffDiagClose.edgeUp_contDiff`](#OffDiagClose-edgeUp_contDiff), [`OffDiagClose.edgeUp_iter`](#OffDiagClose-edgeUp_iter), [`OffDiagClose.edgeUp_iter_le`](#OffDiagClose-edgeUp_iter_le), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winY`](#OffDiagClose-winY), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`OffDiagClose.winY_supp`](#OffDiagClose-winY_supp)
+- **Used by 11:** [`OffDiagClose.edgeUp_contDiff`](#OffDiagClose-edgeUp_contDiff), [`OffDiagClose.edgeUp_iter`](#OffDiagClose-edgeUp_iter), [`OffDiagClose.edgeUp_iter_le`](#OffDiagClose-edgeUp_iter_le), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winY`](#OffDiagClose-winY), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`OffDiagClose.winY_supp`](#OffDiagClose-winY_supp), [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le), [`Unsmooth.winNY`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY), [`Unsmooth.winNY_one`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_one), [`Unsmooth.winNY_zero`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_zero)
 
 <a name="OffDiagClose-edgeDn"></a>
 ### `OffDiagClose.edgeDn`
@@ -205,7 +213,7 @@ def · line 150
 def · line 154
 
 - **Is:** `` edgeDn (c b t : ℝ) : ℝ := Real.smoothTransition (c * (b - t)) noncomputable ``
-- **Used by 7:** [`OffDiagClose.edgeDn_contDiff`](#OffDiagClose-edgeDn_contDiff), [`OffDiagClose.edgeDn_iter`](#OffDiagClose-edgeDn_iter), [`OffDiagClose.edgeDn_iter_le`](#OffDiagClose-edgeDn_iter_le), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winY`](#OffDiagClose-winY), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`OffDiagClose.winY_supp`](#OffDiagClose-winY_supp)
+- **Used by 11:** [`OffDiagClose.edgeDn_contDiff`](#OffDiagClose-edgeDn_contDiff), [`OffDiagClose.edgeDn_iter`](#OffDiagClose-edgeDn_iter), [`OffDiagClose.edgeDn_iter_le`](#OffDiagClose-edgeDn_iter_le), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winY`](#OffDiagClose-winY), [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le), [`OffDiagClose.winY_supp`](#OffDiagClose-winY_supp), [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le), [`Unsmooth.winNY`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY), [`Unsmooth.winNY_one`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_one), [`Unsmooth.winNY_zero`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_zero)
 
 <a name="OffDiagClose-winY"></a>
 ### `OffDiagClose.winY`
@@ -374,10 +382,11 @@ line 132 · arrows read from text
 
 **Definitions its proof touches:** [`OffDiagClose.phiB`](#OffDiagClose-phiB)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`OffDiagClose.winC_nonneg`](#OffDiagClose-winC_nonneg) — `` 0 ≤ winC j ``
   - [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le) — `` |iteratedDeriv j (winY T L) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) (UnsmoothWin) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
 
 <a name="OffDiagClose-phiB_bound"></a>
 ### `OffDiagClose.phiB_bound`
@@ -431,10 +440,12 @@ line 141 · arrows read from text
 
 **Definitions its proof touches:** [`OffDiagClose.winC`](#OffDiagClose-winC)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists) — `` ∃ Cs : ℕ → ℝ, (∀ j, 0 ≤ Cs j) ∧ ∀ T L : ℝ, 8 ≤ T → 1 ≤ L → ∃ W : WeightAll T L, W.Cj = Cs ∧ W.C1 = Cs 1 ∧ W.C2 = Cs 2 ∧ ∀ t, W.w t = Real.smoothTransi… ``
   - [`OffDiagClose.winW`](#OffDiagClose-winW) — def
+  - [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) (Unsmooth) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Re… ``
+  - [`Unsmooth.winNear`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNear) (UnsmoothWin) — def
 
 <a name="OffDiagClose-edgeUp_contDiff"></a>
 ### `OffDiagClose.edgeUp_contDiff`
@@ -457,10 +468,12 @@ ContDiff ℝ ∞ (edgeUp c a)
 
 **Definitions its proof touches:** [`OffDiagClose.edgeUp`](#OffDiagClose-edgeUp)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`OffDiagClose.winY_contDiff`](#OffDiagClose-winY_contDiff) — `` ContDiff ℝ ∞ (winY T L) ``
   - [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le) — `` |iteratedDeriv j (winY T L) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) (UnsmoothWin) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winNY_contDiff`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_contDiff) (UnsmoothWin) — `` ContDiff ℝ ∞ (winNY T L) ``
 
 <a name="OffDiagClose-edgeDn_contDiff"></a>
 ### `OffDiagClose.edgeDn_contDiff`
@@ -483,10 +496,12 @@ ContDiff ℝ ∞ (edgeDn c b)
 
 **Definitions its proof touches:** [`OffDiagClose.edgeDn`](#OffDiagClose-edgeDn)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`OffDiagClose.winY_contDiff`](#OffDiagClose-winY_contDiff) — `` ContDiff ℝ ∞ (winY T L) ``
   - [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le) — `` |iteratedDeriv j (winY T L) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) (UnsmoothWin) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winNY_contDiff`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_contDiff) (UnsmoothWin) — `` ContDiff ℝ ∞ (winNY T L) ``
 
 <a name="OffDiagClose-phi_scale_iter"></a>
 ### `OffDiagClose.phi_scale_iter`
@@ -600,9 +615,10 @@ line 184 · arrows read from text
 
 **Definitions its proof touches:** [`OffDiagClose.edgeUp`](#OffDiagClose-edgeUp), [`OffDiagClose.phiB`](#OffDiagClose-phiB)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le) — `` |iteratedDeriv j (winY T L) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) (UnsmoothWin) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
 
 <a name="OffDiagClose-edgeDn_iter_le"></a>
 ### `OffDiagClose.edgeDn_iter_le`
@@ -631,9 +647,10 @@ line 189 · arrows read from text
 
 **Definitions its proof touches:** [`OffDiagClose.edgeDn`](#OffDiagClose-edgeDn), [`OffDiagClose.phiB`](#OffDiagClose-phiB)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`OffDiagClose.winY_iter_le`](#OffDiagClose-winY_iter_le) — `` |iteratedDeriv j (winY T L) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+  - [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) (UnsmoothWin) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
 
 <a name="OffDiagClose-winY_contDiff"></a>
 ### `OffDiagClose.winY_contDiff`

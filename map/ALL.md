@@ -236,6 +236,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`StepsBelow.c1`](./lean_stage3/StepsBelow.md#StepsBelow-c1) | def | counting | `StepsBelow` | ℂ |
 | [`StepsPeak.C1`](./lean_stage3/StepsPeak.md#StepsPeak-C1) | def | reads ζ | `StepsPeak` | ℝ |
 | [`Operator.c1form`](./lean_stage3/OperatorCY.md#Operator-c1form) | def | shape | `OperatorCY` | ℂ |
+| [`Unsmooth.c1form_norm_le`](./lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le) | theorem | shape | `UnsmoothCY` | ‖c1form P M x y‖ ≤ ‖Aq P‖ / (‖x + y‖ * Real.log M) + ‖Bq P‖ + ‖x‖ * ‖y‖ * Real.log M * ‖Cq P‖ / ‖x + y‖ |
 | [`EdgeBound.C1n`](./lean_stage3/EdgeNum.md#EdgeBound-C1n) | def | reads ζ | `EdgeNum` | ℝ |
 | [`Glue.c1n`](./lean_stage3/GlueNum.md#Glue-c1n) | def | reads ζ | `GlueNum` | ℝ |
 | [`RouteNum.C1n_le`](./lean_stage3/RouteNum.md#RouteNum-C1n_le) | theorem | reads ζ | `RouteNum` | EdgeBound.C1n ≤ 1909224 |
@@ -429,6 +430,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`TwistedMoment.continuous_eL`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_eL) | theorem | counting | `TwistedMoment` | Continuous (eL l) |
 | [`WeilPower.continuous_f1`](./lean_stage3/WeilPower.md#WeilPower-continuous_f1) | theorem | shape | `WeilPower` | Continuous (f1 k) |
 | [`WeilPower.continuous_f2`](./lean_stage3/WeilPower.md#WeilPower-continuous_f2) | theorem | shape | `WeilPower` | Continuous (f2 k) |
+| [`Unsmooth.continuous_Gpsi`](./lean_stage3/Unsmooth.md#Unsmooth-continuous_Gpsi) | theorem | reads ζ | `Unsmooth` | Continuous fun t : ℝ =&gt; ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t |
 | [`ZeroSquares.continuous_innerI`](./lean_stage3/ZeroSquares.md#ZeroSquares-continuous_innerI) | theorem | reads ζ | `ZeroSquares` | Continuous (innerI X a b) |
 | [`CountModes.continuous_integrand`](./lean_stage3/CountModes.md#CountModes-continuous_integrand) | theorem | shape | `CountModes` | Continuous (fun s : ℝ =&gt; Complex.exp ((k:ℂ) * (w - s)) / (w - s)) |
 | [`LevinsonTurn.continuous_line`](./lean_stage3/LevinsonTurn.md#LevinsonTurn-continuous_line) | theorem | counting | `LevinsonTurn` | Continuous (fun t : ℝ =&gt; (1/2 + t * I : ℂ)) |
@@ -655,6 +657,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Glue.Dln_pos`](./lean_stage3/GlueNum.md#Glue-Dln_pos) | theorem | reads ζ | `GlueNum` | 0 &lt; Dln |
 | [`Crossover.dominance_flips`](./lean/Crossover.md#Crossover-dominance_flips) | theorem | shape | `Crossover` | ratio A B x y i &lt; 1 ∧ 1 &lt; ratio A B x y j |
 | [`Operator.Dop`](./lean_stage3/OperatorCauchy.md#Operator-Dop) | def | counting | `OperatorCauchy` | ℂ |
+| [`Unsmooth.dop_cY_bdd`](./lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) | theorem | shape | `UnsmoothCY` | ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K |
 | [`Operator.Dop_Imom`](./lean_stage3/OperatorInt.md#Operator-Dop_Imom) | theorem | reads ζ | `OperatorInt` | Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMean W M a σ₀ L' |
 | [`Operator.Dop_norm_le`](./lean_stage3/OperatorCauchy.md#Operator-Dop_norm_le) | theorem | shape | `OperatorCauchy` | ‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2) |
 | [`Operator.Dop_sub_mul`](./lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) | theorem | counting | `OperatorCauchy` | Dop L (fun x y =&gt; A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c |
@@ -1311,6 +1314,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.integral_inv_vertical`](./lean_stage3/ArgIdentity.md#Stage3-integral_inv_vertical) | theorem | shape | `ArgIdentity` | (∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (Complex.log ((c : ℂ) + T * Complex.I) - Complex.log (c : ℂ)) |
 | [`Littlewood.integral_ite_lt`](./lean_stage3/Littlewood.md#Littlewood-integral_ite_lt) | theorem | shape | `Littlewood` | ∫ σ in u..v, (if σ &lt; β then m else 0) = m * (β - u) |
 | [`RHPull.integral_kernel_le`](./lean_stage3/LineBound.md#RHPull-integral_kernel_le) | theorem | shape | `LineBound` | ∫ t in (-T)..T, ((1:ℝ) + t ^ 2)⁻¹ ≤ Real.pi |
+| [`Unsmooth.integral_le_of_one`](./lean_stage3/UnsmoothWin.md#Unsmooth-integral_le_of_one) | theorem | counting | `UnsmoothWin` | ∫ t in a..b, f t ≤ ∫ t, W.w t * f t |
 | [`Stage3.integral_log_half`](./lean_stage3/Stirling.md#Stage3-integral_log_half) | theorem | shape | `Stirling` | (∫ t in (1 : ℝ)..T, Real.log (t / 2)) = T * Real.log (T / 2) - T + 1 + Real.log 2 |
 | [`ArgLegs.integral_logDeriv_eq_log_sub`](./lean_stage3/ArgLegs.md#ArgLegs-integral_logDeriv_eq_log_sub) | theorem | shape | `ArgLegs` | ∫ x in a..b, g' x / g x = Complex.log (g b) - Complex.log (g a) |
 | [`LevinsonMultiple.integral_logDeriv_mul`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-integral_logDeriv_mul) | theorem | counting | `LevinsonMultiple` | (∫ u in u₁..u₂, logDeriv (fun s =&gt; P s * H s) (q u)) = (∫ u in u₁..u₂, logDeriv P (q u)) + ∫ u in u₁..u₂, logDeriv H (q u) |
@@ -1820,6 +1824,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonMollEdge.molli_sub_one_le`](./lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli_sub_one_le) | theorem | shape | `LevinsonMollEdge` | ‖molli M β s - 1‖ ≤ M * B / (2 : ℝ) ^ X |
 | [`Operator.mollMean`](./lean_stage3/OperatorInt.md#Operator-mollMean) | def | reads ζ | `OperatorInt` | ℂ |
 | [`Operator.mollMean_eq`](./lean_stage3/OperatorInt.md#Operator-mollMean_eq) | theorem | reads ζ | `OperatorInt` | mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + 1 / (L' : ℂ) * (Jfg (deriv riemannZeta) riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1… |
+| [`Unsmooth.mollMean_re`](./lean_stage3/Unsmooth.md#Unsmooth-mollMean_re) | theorem | reads ζ | `Unsmooth` | (mollMean W M a σ₀ L').re = ∫ t, W.w t * (‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t) |
 | [`TwistedMoment.msq`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq) | def | counting | `TwistedMoment` | ℝ |
 | [`TwistedMoment.msq_expand`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_expand) | theorem | shape | `TwistedMoment` | ((msq M a σ₀ t : ℝ) : ℂ) = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) * (k : ℂ) ^ (-((σ₀ : ℂ) - t * I))) |
 | [`TwistedMoment.msq_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_le) | theorem | shape | `TwistedMoment` | msq M a σ₀ t ≤ (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^ 2 |
@@ -1863,6 +1868,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronKernel.near_diagonal_sum`](./lean_stage3/PerronKernel.md#PerronKernel-near_diagonal_sum) | theorem | shape | `PerronKernel` | (∑' n : ℕ, if 0 &lt; \|Real.log (x / n)\| ∧ \|Real.log (x / n)\| &lt; 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * \|Real.log (x / n)\|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x |
 | [`PerronTwo.near_diagonal_sum_two`](./lean_stage3/PerronTwo.md#PerronTwo-near_diagonal_sum_two) | theorem | shape | `PerronTwo` | (∑' n : ℕ, if 0 &lt; \|Real.log (x / n)\| ∧ \|Real.log (x / n)\| &lt; 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * \|Real.log (x / n)\|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x |
 | [`WeilPowerAssembly.near_nonneg`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-near_nonneg) | theorem | reads ζ | `WeilPowerAssembly` | 0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ |
+| [`Unsmooth.nearHi`](./lean_stage3/UnsmoothWin.md#Unsmooth-nearHi) | def | counting | `UnsmoothWin` | ℝ |
+| [`Unsmooth.nearLo`](./lean_stage3/UnsmoothWin.md#Unsmooth-nearLo) | def | counting | `UnsmoothWin` | ℝ |
 | [`Zeros.neg_below_zero`](./lean/Zeros.md#Zeros-neg_below_zero) | theorem | counting | `Zeros` | Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d |
 | [`LandauChebyshev.neg_le_G`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-neg_le_G) | theorem | shape | `LandauChebyshev` | -(y * Real.log y) ≤ LandauWindow.G y |
 | [`Propagation.neg_one_pow`](./lean/Propagation.md#Propagation-neg_one_pow) | theorem | counting | `Propagation` | ((-1 : ℤ)) ^ m = 1 ∨ ((-1 : ℤ)) ^ m = -1 |
@@ -1932,6 +1939,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauTrig.norm_geom_Ico_le`](./lean_stage3/LandauTrig.md#LandauTrig-norm_geom_Ico_le) | theorem | shape | `LandauTrig` | ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖ |
 | [`WeilPowerGeom.norm_geom_le`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_geom_le) | theorem | shape | `WeilPowerGeom` | ‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2)‖ ≤ geomBound z a b |
 | [`WeilPowerGeomGen.norm_geom_le_gen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-norm_geom_le_gen) | theorem | shape | `WeilPowerGeomGen` | ‖∑ h ∈ Finset.Ico a b, Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ))‖ ≤ geomBoundGen z α β₀ a b |
+| [`Unsmooth.norm_Gpsi_sq`](./lean_stage3/Unsmooth.md#Unsmooth-norm_Gpsi_sq) | theorem | reads ζ | `Unsmooth` | ‖Gl L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t |
 | [`ApproxDeriv.norm_half_le`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_half_le) | theorem | shape | `ApproxDeriv` | ‖((σ : ℂ) + y * I) / 2‖ ≤ (1 + \|σ\|) * (1 + \|y\|) |
 | [`PiFixedRow.norm_high_integral_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le) | theorem | reads ζ | `PiFixedRow` | ‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16) |
 | [`ApproxDeriv.norm_I_half`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-norm_I_half) | theorem | shape | `ApproxDeriv` | ‖I / 2‖ = 1 / 2 |
@@ -3282,6 +3290,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SdiagLead.totient_pos'`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-totient_pos-) | theorem | counting | `SdiagLeadDsum` | (0 : ℝ) &lt; Nat.totient d |
 | [`SwapX.Tp_g`](./lean_stage3/SwapX.md#SwapX-Tp_g) | theorem | shape | `SwapX` | (T : ℂ) ^ z * (cT z T * Gk z 0 t) = (((t / (2 * Real.pi) : ℝ)) : ℂ) ^ z |
 | [`OffDiagClose.Tpow_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-Tpow_le) | theorem | shape | `OffDiagClose` | T * ((T / L) ^ (2 * r))⁻¹ * Mr ^ (2 * r + 2) * (2 * T) ^ ((r : ℝ) + 4 / 5) ≤ (2 : ℝ) ^ ((r : ℝ) + 4 / 5) * L ^ (2 * r) * T ^ (4 / 5 : ℝ) |
+| [`Unsmooth.Tpow_norm_le`](./lean_stage3/UnsmoothCY.md#Unsmooth-Tpow_norm_le) | theorem | shape | `UnsmoothCY` | ‖(T : ℂ) ^ (-(x + y))‖ ≤ Real.exp (3 * R) |
 | [`PiZeros.tr`](./lean_stage3/PiZeros.md#PiZeros-tr) | def | shape | `PiZeros` | ℂ |
 | [`WeilPowerGauss.Tr`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-Tr) | def | shape | `WeilPowerGauss` | ℝ |
 | [`PiZeros.tr_const_mul`](./lean_stage3/PiZeros.md#PiZeros-tr_const_mul) | theorem | shape | `PiZeros` | tr (fun t =&gt; c * f t) x = c * tr f x |
@@ -3354,6 +3363,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`ResidueRoute.um_mem_K`](./lean_stage3/ResidueRoute.md#ResidueRoute-um_mem_K) | theorem | counting | `ResidueRoute` | um ρ ∈ K σ |
 | [`Compression.unique_new_prime`](./lean_stage3/Compression.md#Compression-unique_new_prime) | theorem | counting | `Compression` | p = q |
 | [`Construction.unique_of_isTableOf`](./lean/Construction.md#Construction-unique_of_isTableOf) | theorem | counting | `Construction` | ∀ r d, f r d = tableFrom N r d |
+| [`Unsmooth.unsmooth_near`](./lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) | theorem | reads ζ | `Unsmooth` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ)… |
+| [`Unsmooth.unsmooth_near_levinson`](./lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson) | theorem | reads ζ | `Unsmooth` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Real.log T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑(sig0 T R) … |
 | [`WeilTiles.Upper`](./lean_stage3/WeilTiles.md#WeilTiles-Upper) | abbrev | reads ζ | `WeilTiles` | Type |
 | [`LandauTail.upper_tail_le`](./lean_stage3/LandauTail.md#LandauTail-upper_tail_le) | theorem | shape | `LandauTail` | ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1) ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1)) |
 | [`WeilPowerShell.uSh`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-uSh) | def | shape | `WeilPowerShell` | ℝ |
@@ -3403,6 +3414,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiFixedRow.w`](./lean_stage3/PiFixedRow.md#PiFixedRow-w) | def | shape | `PiFixedRow` | ℝ |
 | [`WeilOddPower.W`](./lean_stage3/WeilOddPower.md#WeilOddPower-W) | def | shape | `WeilOddPower` | ℝ |
 | [`ZeroSummable.w`](./lean_stage3/ZeroSummable.md#ZeroSummable-w) | def | reads ζ | `ZeroSummable` | ℝ |
+| [`Unsmooth.w_compact`](./lean_stage3/UnsmoothWin.md#Unsmooth-w_compact) | theorem | counting | `UnsmoothWin` | HasCompactSupport W.w |
 | [`CountModes.w_im_ne_zero`](./lean_stage3/CountModes.md#CountModes-w_im_ne_zero) | theorem | reads ζ | `CountModes` | ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 |
 | [`PiFixedRow.w_le_two`](./lean_stage3/PiFixedRow.md#PiFixedRow-w_le_two) | theorem | shape | `PiFixedRow` | w t ≤ 2 |
 | [`Diagonal.w_ne_one`](./lean_stage3/Diagonal.md#Diagonal-w_ne_one) | theorem | shape | `Diagonal` | 1 + α + β + 2 * ((σ : ℂ) + y * I) ≠ 1 |
@@ -3448,6 +3460,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOddPower.what`](./lean_stage3/WeilOddPower.md#WeilOddPower-what) | def | shape | `WeilOddPower` | ℂ |
 | [`TwistedMoment.what0`](./lean_stage3/TwistedMoment.md#TwistedMoment-what0) | def | counting | `TwistedMoment` | ℝ |
 | [`DiagonalO.what0_le`](./lean_stage3/DiagonalO.md#DiagonalO-what0_le) | theorem | shape | `DiagonalO` | ‖(what0 W : ℂ)‖ ≤ 2 * T |
+| [`Unsmooth.what0_le_of_zero`](./lean_stage3/UnsmoothWin.md#Unsmooth-what0_le_of_zero) | theorem | counting | `UnsmoothWin` | what0 W ≤ hi - lo |
 | [`WeilOddPower.what_eq`](./lean_stage3/WeilOddPower.md#WeilOddPower-what_eq) | theorem | shape | `WeilOddPower` | what h γ m z = ((h : ℂ) / 2) * (S m ((z + Complex.I * (γ : ℂ)) * (h : ℂ)) + S m ((z - Complex.I * (γ : ℂ)) * (h : ℂ))) |
 | [`WeilPowerBackground.what_I`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-what_I) | theorem | shape | `WeilPowerBackground` | what h γ m (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((PsiW m (h * (t + γ)) : ℂ) + (PsiW m (h * (t - γ)) : ℂ)) |
 | [`WeilPowerBackground.what_neg`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-what_neg) | theorem | shape | `WeilPowerBackground` | what h γ m (-z) = -what h γ m z |
@@ -3465,8 +3478,19 @@ Sorted by name. Search this file before saying something is missing.
 | [`LevinsonWindow.windowE`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE) | def | shape | `LevinsonWindow` | ℝ |
 | [`LevinsonWindow.windowE_nonneg`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE_nonneg) | theorem | shape | `LevinsonWindow` | 0 ≤ windowE M B X T a b |
 | [`WindowsOfRH.windows_of_rh`](./lean_stage3/WindowsOfRH.md#WindowsOfRH-windows_of_rh) | theorem | reads ζ | `WindowsOfRH` | ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C |
+| [`Unsmooth.winG_iter_le`](./lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) | theorem | shape | `UnsmoothWin` | \|iteratedDeriv j (fun t =&gt; edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t\| ≤ winC j * ((T / L) ^ j)⁻¹ |
 | [`Zeros.wingMinus`](./lean/ZerosStencil.md#Zeros-wingMinus) | def | counting | `ZerosStencil` | ℤ |
 | [`Zeros.wingPlus`](./lean/ZerosStencil.md#Zeros-wingPlus) | def | counting | `ZerosStencil` | ℤ |
+| [`Unsmooth.winNear`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNear) | def | shape | `UnsmoothWin` | WeightAll T L |
+| [`Unsmooth.winNear_Cj`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNear_Cj) | theorem | shape | `UnsmoothWin` | (winNear T L hT hL).Cj = winC |
+| [`Unsmooth.winNear_w`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNear_w) | theorem | shape | `UnsmoothWin` | (winNear T L hT hL).w = winNY T L |
+| [`Unsmooth.winNY`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY) | def | shape | `UnsmoothWin` | ℝ |
+| [`Unsmooth.winNY_contDiff`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_contDiff) | theorem | shape | `UnsmoothWin` | ContDiff ℝ ∞ (winNY T L) |
+| [`Unsmooth.winNY_le_one`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_le_one) | theorem | shape | `UnsmoothWin` | winNY T L t ≤ 1 |
+| [`Unsmooth.winNY_nonneg`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_nonneg) | theorem | shape | `UnsmoothWin` | 0 ≤ winNY T L t |
+| [`Unsmooth.winNY_one`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_one) | theorem | shape | `UnsmoothWin` | winNY T L t = 1 |
+| [`Unsmooth.winNY_supp`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_supp) | theorem | shape | `UnsmoothWin` | T / 4 ≤ t ∧ t ≤ 2 * T |
+| [`Unsmooth.winNY_zero`](./lean_stage3/UnsmoothWin.md#Unsmooth-winNY_zero) | theorem | shape | `UnsmoothWin` | winNY T L t = 0 |
 | [`OffDiagClose.winW`](./lean_stage3/OffDiagClose.md#OffDiagClose-winW) | def | shape | `OffDiagClose` | WeightAll T L |
 | [`OffDiagClose.winY`](./lean_stage3/OffDiagClose.md#OffDiagClose-winY) | def | shape | `OffDiagClose` | ℝ |
 | [`OffDiagClose.winY_contDiff`](./lean_stage3/OffDiagClose.md#OffDiagClose-winY_contDiff) | theorem | shape | `OffDiagClose` | ContDiff ℝ ∞ (winY T L) |

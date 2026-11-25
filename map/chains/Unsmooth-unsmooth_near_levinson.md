@@ -1,13 +1,13 @@
-# What `Operator.stmtMollMeanO_holds` rests on
+# What `Unsmooth.unsmooth_near_levinson` rests on
 
-[`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) in `lean_stage3/Stage3/Operator.lean`, line 143.
+[`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson) in `lean_stage3/Stage3/Unsmooth.lean`, line 202.
 
-**Why.** The mollified mean of Levinson's `G`, `o(T)`, unconditional: Lemma 3 at `o(T)` and Cauchy's estimate on circles of radius `R/(2L)`.
+**Why.** The sharp one-sided mean in `levinson_window'`'s integrand, at `σ = σ₀`: `(ζ(s) + c ζ′(s)) · molli M β s` with `c = 1/log T`, `β = aY P T θ R`.
 
 **Proves**
 
 ```lean
-StmtMollMeanO P θ R
+∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Real.log T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑(sig0 T R) + ↑t * I) + c * deriv riemannZeta (↑(sig0 T R) + ↑t * I)) * LevinsonMollEdge.molli (Mof T θ) (aY P T θ R) (↑(sig0 T R) + ↑t * I)‖ ^ 2 ≤ (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε
 ```
 
 **Needs** (its hypotheses)
@@ -18,7 +18,7 @@ StmtMollMeanO P θ R
   - `` hθ : θ < 1 / 2 ``
   - `` hR : 0 < R ``
 
-Behind it: 378 theorems and 124 definitions in 30 files. Every one is listed below; Lean recorded each step.
+Behind it: 410 theorems and 133 definitions in 34 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -32,68 +32,80 @@ flowchart LR
   f5["<b>ApproxShift</b><br/>10 used"]:::thm
   f6["<b>ApproxBounds</b><br/>37 used"]:::thm
   f7["<b>ApproxDeriv</b><br/>32 used"]:::thm
-  f8["<b>OperatorCauchy</b><br/>8 used"]:::thm
-  f9["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
-  f10["<b>StirlingLog</b><br/>9 used"]:::thm
-  f11["<b>TwistedMoment</b><br/>58 used"]:::thm
-  f12["<b>DiagMainStmt</b><br/>2 used"]:::thm
-  f13["<b>DiagMain</b><br/>10 used"]:::thm
-  f14["<b>OffDiagClose</b><br/>26 used"]:::thm
-  f15["<b>DiagonalO</b><br/>2 used"]:::thm
-  f16["<b>OperatorCY</b><br/>9 used"]:::thm
-  f17["<b>OperatorInt</b><br/>18 used"]:::thm
-  f18["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
-  f19["<b>SdiagLeadCop</b><br/>12 used"]:::thm
-  f20["<b>SdiagLeadCore</b><br/>8 used"]:::thm
-  f21["<b>SdiagLeadAd</b><br/>36 used"]:::thm
-  f22["<b>ArithBase</b><br/>42 used"]:::thm
-  f23["<b>ArithTail</b><br/>24 used"]:::thm
-  f24["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
-  f25["<b>SdiagLead</b><br/>3 used"]:::thm
-  f26["<b>Arith</b><br/>14 used"]:::thm
-  f27["<b>StirlingX</b><br/>20 used"]:::thm
-  f28["<b>Lemma3</b><br/>1 used"]:::thm
-  f29["<b>Operator</b><br/>stmtMollMeanO_holds"]:::end_
+  f8["<b>LevinsonMollEdge</b><br/>1 used"]:::thm
+  f9["<b>OperatorCauchy</b><br/>8 used"]:::thm
+  f10["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
+  f11["<b>StirlingLog</b><br/>9 used"]:::thm
+  f12["<b>TwistedMoment</b><br/>58 used"]:::thm
+  f13["<b>DiagMainStmt</b><br/>2 used"]:::thm
+  f14["<b>DiagMain</b><br/>10 used"]:::thm
+  f15["<b>OffDiagClose</b><br/>44 used"]:::thm
+  f16["<b>DiagonalO</b><br/>2 used"]:::thm
+  f17["<b>OperatorCY</b><br/>9 used"]:::thm
+  f18["<b>OperatorInt</b><br/>18 used"]:::thm
+  f19["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
+  f20["<b>SdiagLeadCop</b><br/>12 used"]:::thm
+  f21["<b>SdiagLeadCore</b><br/>8 used"]:::thm
+  f22["<b>SdiagLeadAd</b><br/>36 used"]:::thm
+  f23["<b>ArithBase</b><br/>42 used"]:::thm
+  f24["<b>ArithTail</b><br/>24 used"]:::thm
+  f25["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
+  f26["<b>SdiagLead</b><br/>3 used"]:::thm
+  f27["<b>Arith</b><br/>14 used"]:::thm
+  f28["<b>StirlingX</b><br/>20 used"]:::thm
+  f29["<b>Lemma3</b><br/>1 used"]:::thm
+  f30["<b>Operator</b><br/>4 used"]:::thm
+  f31["<b>UnsmoothCY</b><br/>3 used"]:::thm
+  f32["<b>UnsmoothWin</b><br/>14 used"]:::thm
+  f33["<b>Unsmooth</b><br/>unsmooth_near_levinson"]:::end_
   f0 --> f5
   f1 --> f5
   f4 --> f5
   f5 --> f6
   f6 --> f7
-  f2 --> f9
-  f7 --> f11
-  f3 --> f12
-  f11 --> f12
+  f2 --> f10
+  f7 --> f12
+  f3 --> f13
   f12 --> f13
-  f11 --> f14
+  f13 --> f14
   f12 --> f15
-  f14 --> f15
-  f8 --> f16
-  f11 --> f16
-  f8 --> f17
-  f11 --> f17
-  f3 --> f18
-  f11 --> f18
-  f9 --> f19
-  f18 --> f19
-  f9 --> f20
-  f13 --> f20
-  f18 --> f20
+  f13 --> f16
+  f15 --> f16
+  f9 --> f17
+  f12 --> f17
+  f9 --> f18
+  f12 --> f18
+  f3 --> f19
+  f12 --> f19
+  f10 --> f20
+  f19 --> f20
+  f10 --> f21
+  f14 --> f21
   f19 --> f21
-  f20 --> f21
+  f20 --> f22
   f21 --> f22
   f22 --> f23
-  f21 --> f24
-  f24 --> f25
-  f23 --> f26
+  f23 --> f24
+  f22 --> f25
   f25 --> f26
-  f10 --> f27
-  f14 --> f27
+  f24 --> f27
+  f26 --> f27
+  f11 --> f28
   f15 --> f28
-  f26 --> f28
-  f27 --> f28
   f16 --> f29
-  f17 --> f29
+  f27 --> f29
   f28 --> f29
+  f17 --> f30
+  f18 --> f30
+  f29 --> f30
+  f14 --> f31
+  f17 --> f31
+  f18 --> f31
+  f15 --> f32
+  f8 --> f33
+  f30 --> f33
+  f31 --> f33
+  f32 --> f33
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -265,15 +277,19 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ApproxDeriv.F_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-F_hasDerivAt) — `` HasDerivAt (fun t => KY α β t s * (x : ℂ) ^ (-s)) (KY α β t s * (x : ℂ) ^ (-s) * dY α β t s) t ``
 - [`ApproxDeriv.VY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY_hasDerivAt) — `` HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀ ``
 
+### [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md) — 1
+
+- ★ [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli) — *def*
+
 ### [`OperatorCauchy`](../lean_stage3/OperatorCauchy.md) — 8
 
-- ★ [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa) — *def*
+- [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa) — *def*
 - [`Operator.pb`](../lean_stage3/OperatorCauchy.md#Operator-pb) — *def*
 - [`Operator.pab`](../lean_stage3/OperatorCauchy.md#Operator-pab) — *def*
 - ★ [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop) — *def*
 - [`Operator.cauchy_bounds`](../lean_stage3/OperatorCauchy.md#Operator-cauchy_bounds) — `` ‖F α₀ β₀‖ ≤ S ∧ ‖pa F α₀ β₀‖ ≤ S / ρ ∧ ‖pb F α₀ β₀‖ ≤ S / ρ ∧ ‖pab F α₀ β₀‖ ≤ S / ρ / ρ ``
-- ★ [`Operator.Dop_norm_le`](../lean_stage3/OperatorCauchy.md#Operator-Dop_norm_le) — `` ‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2) ``
-- ★ [`Operator.Dop_sub_mul`](../lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) — `` Dop L (fun x y => A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c ``
+- [`Operator.Dop_norm_le`](../lean_stage3/OperatorCauchy.md#Operator-Dop_norm_le) — `` ‖Dop L F α₀ β₀‖ ≤ S * (1 + 2 / r + 1 / r ^ 2) ``
+- [`Operator.Dop_sub_mul`](../lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) — `` Dop L (fun x y => A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c ``
 - [`Operator.analytic_partials`](../lean_stage3/OperatorCauchy.md#Operator-analytic_partials) — `` (∀ p ∈ U, DifferentiableAt ℂ (fun x => f (x, p.2)) p.1) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun y => f (p.1, y)) p.2) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun y => pa (f… ``
 
 ### [`SdiagLeadSmooth`](../lean_stage3/SdiagLeadSmooth.md) — 35
@@ -329,7 +345,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`TwistedMoment`](../lean_stage3/TwistedMoment.md) — 58
 
 - [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight) — *structure*
-- ★ [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0) — *def*
+- [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0) — *def*
 - [`TwistedMoment.eL`](../lean_stage3/TwistedMoment.md#TwistedMoment-eL) — *def*
 - [`TwistedMoment.norm_eL`](../lean_stage3/TwistedMoment.md#TwistedMoment-norm_eL) — `` ‖eL l t‖ = 1 ``
 - [`TwistedMoment.Fw`](../lean_stage3/TwistedMoment.md#TwistedMoment-Fw) — *def*
@@ -342,10 +358,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`TwistedMoment.ratio_cpow_eq`](../lean_stage3/TwistedMoment.md#TwistedMoment-ratio_cpow_eq) — `` ((p : ℂ) / (q : ℂ)) ^ (-((t : ℂ) * I)) = eL (Real.log (p / q)) t ``
 - [`TwistedMoment.log_ratio_ge`](../lean_stage3/TwistedMoment.md#TwistedMoment-log_ratio_ge) — `` 1 / (2 * (p : ℝ)) ≤ Real.log ((q : ℝ) / p) ``
 - [`TwistedMoment.inv_log_sq_le`](../lean_stage3/TwistedMoment.md#TwistedMoment-inv_log_sq_le) — `` ((Real.log ((P : ℝ) / Q)) ^ 2)⁻¹ ≤ 4 * (P : ℝ) * Q ``
-- [`TwistedMoment.psi`](../lean_stage3/TwistedMoment.md#TwistedMoment-psi) — *def*
+- ★ [`TwistedMoment.psi`](../lean_stage3/TwistedMoment.md#TwistedMoment-psi) — *def*
 - [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq) — *def*
 - [`TwistedMoment.S1`](../lean_stage3/TwistedMoment.md#TwistedMoment-S1) — *def*
-- ★ [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom) — *def*
+- [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom) — *def*
 - [`TwistedMoment.I1`](../lean_stage3/TwistedMoment.md#TwistedMoment-I1) — *def*
 - [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX) — *def*
 - [`TwistedMoment.Ires`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires) — *def*
@@ -382,7 +398,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - ★ [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY) — *def*
 - [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y) — *def*
 - ★ [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY) — *def*
-- ★ [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime) — *def*
+- [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime) — *def*
 - [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY) — *def*
 - [`TwistedMoment.Regime.small`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime-small) — `` ‖α‖ ≤ 1 / 10 ∧ ‖β‖ ≤ 1 / 10 ∧ α + β ≠ 0 ∧ 0 < Real.log T ``
 - [`TwistedMoment.norm_Tpow_le`](../lean_stage3/TwistedMoment.md#TwistedMoment-norm_Tpow_le) — `` ‖(T : ℂ) ^ (-(α + β))‖ ≤ Real.exp (2 * κ) ``
@@ -390,7 +406,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md) — 2
 
 - [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO) — *def*
-- ★ [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO) — *def*
+- [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO) — *def*
 
 ### [`DiagMain`](../lean_stage3/DiagMain.md) — 10
 
@@ -405,9 +421,27 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead) — *def*
 - [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
 
-### [`OffDiagClose`](../lean_stage3/OffDiagClose.md) — 26
+### [`OffDiagClose`](../lean_stage3/OffDiagClose.md) — 44
 
 - [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll) — *structure*
+- [`OffDiagClose.phi_contDiff`](../lean_stage3/OffDiagClose.md#OffDiagClose-phi_contDiff) — `` ContDiff ℝ ∞ Real.smoothTransition ``
+- [`OffDiagClose.phi_deriv_compact`](../lean_stage3/OffDiagClose.md#OffDiagClose-phi_deriv_compact) — `` HasCompactSupport (deriv Real.smoothTransition) ``
+- [`OffDiagClose.phi_iter_compact`](../lean_stage3/OffDiagClose.md#OffDiagClose-phi_iter_compact) — `` HasCompactSupport (iteratedDeriv k (deriv Real.smoothTransition)) ``
+- [`OffDiagClose.phi_iter_bdd`](../lean_stage3/OffDiagClose.md#OffDiagClose-phi_iter_bdd) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ s, |iteratedDeriv i Real.smoothTransition s| ≤ B ``
+- [`OffDiagClose.phiB`](../lean_stage3/OffDiagClose.md#OffDiagClose-phiB) — *def*
+- [`OffDiagClose.phiB_nonneg`](../lean_stage3/OffDiagClose.md#OffDiagClose-phiB_nonneg) — `` 0 ≤ phiB i ``
+- [`OffDiagClose.phiB_bound`](../lean_stage3/OffDiagClose.md#OffDiagClose-phiB_bound) — `` |iteratedDeriv i Real.smoothTransition s| ≤ phiB i ``
+- [`OffDiagClose.winC`](../lean_stage3/OffDiagClose.md#OffDiagClose-winC) — *def*
+- [`OffDiagClose.winC_nonneg`](../lean_stage3/OffDiagClose.md#OffDiagClose-winC_nonneg) — `` 0 ≤ winC j ``
+- [`OffDiagClose.edgeUp`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp) — *def*
+- [`OffDiagClose.edgeDn`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeDn) — *def*
+- [`OffDiagClose.edgeUp_contDiff`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_contDiff) — `` ContDiff ℝ ∞ (edgeUp c a) ``
+- [`OffDiagClose.edgeDn_contDiff`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeDn_contDiff) — `` ContDiff ℝ ∞ (edgeDn c b) ``
+- [`OffDiagClose.phi_scale_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-phi_scale_iter) — `` iteratedDeriv i (fun z => Real.smoothTransition (c * z)) = fun z => c ^ i * iteratedDeriv i Real.smoothTransition (c * z) ``
+- [`OffDiagClose.edgeUp_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_iter) — `` iteratedDeriv i (edgeUp c a) t = c ^ i * iteratedDeriv i Real.smoothTransition (c * (t - a)) ``
+- [`OffDiagClose.edgeDn_iter`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeDn_iter) — `` iteratedDeriv i (edgeDn c b) t = (-1) ^ i * (c ^ i * iteratedDeriv i Real.smoothTransition (c * (b - t))) ``
+- [`OffDiagClose.edgeUp_iter_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeUp_iter_le) — `` |iteratedDeriv i (edgeUp c a) t| ≤ phiB i * c ^ i ``
+- [`OffDiagClose.edgeDn_iter_le`](../lean_stage3/OffDiagClose.md#OffDiagClose-edgeDn_iter_le) — `` |iteratedDeriv i (edgeDn c b) t| ≤ phiB i * c ^ i ``
 - [`OffDiagClose.wsum`](../lean_stage3/OffDiagClose.md#OffDiagClose-wsum) — *def*
 - [`OffDiagClose.wsum_nonneg`](../lean_stage3/OffDiagClose.md#OffDiagClose-wsum_nonneg) — `` 0 ≤ wsum W j ``
 - [`OffDiagClose.Cj_le_wsum`](../lean_stage3/OffDiagClose.md#OffDiagClose-Cj_le_wsum) — `` W.Cj i ≤ wsum W j ``
@@ -436,7 +470,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`DiagonalO`](../lean_stage3/DiagonalO.md) — 2
 
-- ★ [`DiagonalO.T_le_errO`](../lean_stage3/DiagonalO.md#DiagonalO-T_le_errO) — `` T ≤ errO W ``
+- [`DiagonalO.T_le_errO`](../lean_stage3/DiagonalO.md#DiagonalO-T_le_errO) — `` T ≤ errO W ``
 - [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO) — *def*
 
 ### [`OperatorCY`](../lean_stage3/OperatorCY.md) — 9
@@ -449,28 +483,28 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Operator.c1Y_eq`](../lean_stage3/OperatorCY.md#Operator-c1Y_eq) — `` c1Y P M α β = c1form P M α β ``
 - [`Operator.cY_eq`](../lean_stage3/OperatorCY.md#Operator-cY_eq) — `` cY P M T α β = cYform P M T (α, β) ``
 - [`Operator.cYform_analytic`](../lean_stage3/OperatorCY.md#Operator-cYform_analytic) — `` AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0} ``
-- ★ [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials) — `` DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y => cY P M T x y) y ∧ DifferentiableAt ℂ (fun y => pa (cY P M T) x y) y ``
+- [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials) — `` DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y => cY P M T x y) y ∧ DifferentiableAt ℂ (fun y => pa (cY P M T) x y) y ``
 
 ### [`OperatorInt`](../lean_stage3/OperatorInt.md) — 18
 
 - [`Operator.hasDerivAt_setInt`](../lean_stage3/OperatorInt.md#Operator-hasDerivAt_setInt) — `` HasDerivAt (fun x => ∫ t in Set.Icc a b, f (x + c t) * k t) (∫ t in Set.Icc a b, deriv f (x₀ + c t) * k t) x₀ ``
 - [`Operator.Jfg`](../lean_stage3/OperatorInt.md#Operator-Jfg) — *def*
-- [`Operator.Gl`](../lean_stage3/OperatorInt.md#Operator-Gl) — *def*
-- ★ [`Operator.mollMean`](../lean_stage3/OperatorInt.md#Operator-mollMean) — *def*
+- ★ [`Operator.Gl`](../lean_stage3/OperatorInt.md#Operator-Gl) — *def*
+- [`Operator.mollMean`](../lean_stage3/OperatorInt.md#Operator-mollMean) — *def*
 - [`Operator.Jfg_set`](../lean_stage3/OperatorInt.md#Operator-Jfg_set) — `` Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ) ``
 - [`Operator.uA_ne_one`](../lean_stage3/OperatorInt.md#Operator-uA_ne_one) — `` uA x t ≠ 1 ``
 - [`Operator.vB_ne_one`](../lean_stage3/OperatorInt.md#Operator-vB_ne_one) — `` vB y t ≠ 1 ``
 - [`Operator.contOn_uA`](../lean_stage3/OperatorInt.md#Operator-contOn_uA) — `` ContinuousOn (fun t => f (uA x t)) (Set.Icc (T / 4) (2 * T)) ``
 - [`Operator.contOn_vB`](../lean_stage3/OperatorInt.md#Operator-contOn_vB) — `` ContinuousOn (fun t => f (vB y t)) (Set.Icc (T / 4) (2 * T)) ``
 - [`Operator.Jfg_intOn`](../lean_stage3/OperatorInt.md#Operator-Jfg_intOn) — `` IntegrableOn (fun t => (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ)) (Set.Icc (T / 4) (2 * T)) ``
-- ★ [`Operator.norm_le_of_ball`](../lean_stage3/OperatorInt.md#Operator-norm_le_of_ball) — `` ‖x‖ ≤ ‖x₀‖ + δ ``
+- [`Operator.norm_le_of_ball`](../lean_stage3/OperatorInt.md#Operator-norm_le_of_ball) — `` ‖x‖ ≤ ‖x₀‖ + δ ``
 - [`Operator.Jfg_hasDerivAt_left`](../lean_stage3/OperatorInt.md#Operator-Jfg_hasDerivAt_left) — `` HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀ β) x₀ ``
 - [`Operator.Jfg_hasDerivAt_right`](../lean_stage3/OperatorInt.md#Operator-Jfg_hasDerivAt_right) — `` HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y₀) y₀ ``
 - [`Operator.zeta_diffOn`](../lean_stage3/OperatorInt.md#Operator-zeta_diffOn) — `` DifferentiableOn ℂ riemannZeta {1}ᶜ ``
 - [`Operator.deriv_zeta_conj`](../lean_stage3/OperatorInt.md#Operator-deriv_zeta_conj) — `` deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s) ``
 - [`Operator.mollMean_eq`](../lean_stage3/OperatorInt.md#Operator-mollMean_eq) — `` mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + 1 / (L' : ℂ) * (Jfg (deriv riemannZeta) riemannZeta … ``
-- ★ [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials) — `` DifferentiableAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ DifferentiableAt ℂ (fun y => Imom W M a σ₀ x y) y ∧ pa (Imom W M a σ₀) x y = Jfg (deriv riemannZeta) riemann… ``
-- ★ [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom) — `` Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMean W M a σ₀ L' ``
+- [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials) — `` DifferentiableAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ DifferentiableAt ℂ (fun y => Imom W M a σ₀ x y) y ∧ pa (Imom W M a σ₀) x y = Jfg (deriv riemannZeta) riemann… ``
+- [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom) — `` Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMean W M a σ₀ L' ``
 
 ### [`SdiagLeadSwap`](../lean_stage3/SdiagLeadSwap.md) — 13
 
@@ -694,11 +728,42 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`Lemma3`](../lean_stage3/Lemma3.md) — 1
 
-- ★ [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) — `` StmtLemma3resO P θ R κ ``
+- [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) — `` StmtLemma3resO P θ R κ ``
 
-### [`Operator`](../lean_stage3/Operator.md) — 3
+### [`Operator`](../lean_stage3/Operator.md) — 4
 
-- ★ [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO) — *def*
+- [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO) — *def*
 - [`Operator.pow_six_le_exp`](../lean_stage3/Operator.md#Operator-pow_six_le_exp) — `` T ^ 6 ≤ 196608 * Real.exp (T ^ 2 / 32) ``
-- ★ [`Operator.Ires_o`](../lean_stage3/Operator.md#Operator-Ires_o) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Ires W (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ≤ ε * T ``
+- [`Operator.Ires_o`](../lean_stage3/Operator.md#Operator-Ires_o) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Ires W (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ≤ ε * T ``
+- [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) — `` StmtMollMeanO P θ R ``
+
+### [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md) — 3
+
+- [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le) — `` ‖c1form P M x y‖ ≤ ‖Aq P‖ / (‖x + y‖ * Real.log M) + ‖Bq P‖ + ‖x‖ * ‖y‖ * Real.log M * ‖Cq P‖ / ‖x + y‖ ``
+- [`Unsmooth.Tpow_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-Tpow_norm_le) — `` ‖(T : ℂ) ^ (-(x + y))‖ ≤ Real.exp (3 * R) ``
+- [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
+
+### [`UnsmoothWin`](../lean_stage3/UnsmoothWin.md) — 14
+
+- [`Unsmooth.nearLo`](../lean_stage3/UnsmoothWin.md#Unsmooth-nearLo) — *def*
+- [`Unsmooth.nearHi`](../lean_stage3/UnsmoothWin.md#Unsmooth-nearHi) — *def*
+- [`Unsmooth.winNY`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY) — *def*
+- [`Unsmooth.winG_iter_le`](../lean_stage3/UnsmoothWin.md#Unsmooth-winG_iter_le) — `` |iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹ ``
+- [`Unsmooth.winNY_contDiff`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_contDiff) — `` ContDiff ℝ ∞ (winNY T L) ``
+- [`Unsmooth.winNY_nonneg`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_nonneg) — `` 0 ≤ winNY T L t ``
+- [`Unsmooth.winNY_le_one`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_le_one) — `` winNY T L t ≤ 1 ``
+- [`Unsmooth.winNY_one`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_one) — `` winNY T L t = 1 ``
+- [`Unsmooth.winNY_zero`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_zero) — `` winNY T L t = 0 ``
+- [`Unsmooth.winNY_supp`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNY_supp) — `` T / 4 ≤ t ∧ t ≤ 2 * T ``
+- [`Unsmooth.winNear`](../lean_stage3/UnsmoothWin.md#Unsmooth-winNear) — *def*
+- [`Unsmooth.what0_le_of_zero`](../lean_stage3/UnsmoothWin.md#Unsmooth-what0_le_of_zero) — `` what0 W ≤ hi - lo ``
+- [`Unsmooth.w_compact`](../lean_stage3/UnsmoothWin.md#Unsmooth-w_compact) — `` HasCompactSupport W.w ``
+- [`Unsmooth.integral_le_of_one`](../lean_stage3/UnsmoothWin.md#Unsmooth-integral_le_of_one) — `` ∫ t in a..b, f t ≤ ∫ t, W.w t * f t ``
+
+### [`Unsmooth`](../lean_stage3/Unsmooth.md) — 4
+
+- [`Unsmooth.mollMean_re`](../lean_stage3/Unsmooth.md#Unsmooth-mollMean_re) — `` (mollMean W M a σ₀ L').re = ∫ t, W.w t * (‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t) ``
+- [`Unsmooth.continuous_Gpsi`](../lean_stage3/Unsmooth.md#Unsmooth-continuous_Gpsi) — `` Continuous fun t : ℝ => ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t ``
+- [`Unsmooth.norm_Gpsi_sq`](../lean_stage3/Unsmooth.md#Unsmooth-norm_Gpsi_sq) — `` ‖Gl L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t ``
+- ★ [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Real.log T) … ``
 

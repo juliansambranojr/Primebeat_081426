@@ -1,0 +1,31 @@
+flowchart LR
+  n0["<b>winG_iter_le</b><br/>|iteratedDeriv j (fun t =＞ edgeUp (T / L)⁻¹ lo t * edgeDn (T / L…"]:::shp
+  n1["<b>winNY_contDiff</b><br/>ContDiff ℝ ∞ (winNY T L)"]:::shp
+  n2["<b>winNY_nonneg</b><br/>0 ≤ winNY T L t"]:::shp
+  n3["<b>winNY_le_one</b><br/>winNY T L t ≤ 1"]:::shp
+  n4["<b>winNY_one</b><br/>winNY T L t = 1"]:::shp
+  n5["<b>winNY_zero</b><br/>winNY T L t = 0"]:::shp
+  n6["<b>winNY_supp</b><br/>T / 4 ≤ t ∧ t ≤ 2 * T"]:::shp
+  n7["<b>winNear_Cj ■</b><br/>(winNear T L hT hL).Cj = winC"]:::shp
+  n8["<b>winNear_w ■</b><br/>(winNear T L hT hL).w = winNY T L"]:::shp
+  n9["<b>what0_le_of_zero</b><br/>what0 W ≤ hi - lo"]:::cnt
+  n10["<b>w_compact</b><br/>HasCompactSupport W.w"]:::cnt
+  n11["<b>integral_le_of_one</b><br/>∫ t in a..b, f t ≤ ∫ t, W.w t * f t"]:::cnt
+  x0(["<b>OffDiagClose</b><br/>5 theorems"]):::ext
+  x1(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  n10 --> n11
+  n5 --> n6
+  n11 -.-> x1
+  n4 -.-> x1
+  n5 -.-> x1
+  n9 -.-> x1
+  x0 -.-> n0
+  x0 -.-> n1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

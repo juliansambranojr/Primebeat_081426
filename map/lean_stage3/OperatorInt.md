@@ -32,6 +32,7 @@ flowchart LR
   n16["<b>Dop_Imom</b><br/>Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) …"]:::thm
   x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
   x1(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x2(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
   n0 --> n10
   n0 --> n9
   n10 --> n15
@@ -57,6 +58,7 @@ flowchart LR
   n15 -.-> x1
   n16 -.-> x1
   n8 -.-> x1
+  n8 -.-> x2
   x0 -.-> n10
   x0 -.-> n14
   x0 -.-> n2
@@ -97,7 +99,7 @@ def · line 78
 Levinson's `G(s) = ζ(s) + ζ′(s)/L`, i.e. `Q(−(1/L) d/ds)` with `Q(x) = 1 − x`.
 
 - **Is:** `` Gl (L : ℝ) (s : ℂ) : ℂ := riemannZeta s + deriv riemannZeta s / (L : ℂ) ``
-- **Used by 2:** [`Operator.mollMean`](#Operator-mollMean), [`Operator.mollMean_eq`](#Operator-mollMean_eq)
+- **Used by 7:** [`Operator.mollMean`](#Operator-mollMean), [`Operator.mollMean_eq`](#Operator-mollMean_eq), [`Unsmooth.continuous_Gpsi`](../lean_stage3/Unsmooth.md#Unsmooth-continuous_Gpsi), [`Unsmooth.mollMean_re`](../lean_stage3/Unsmooth.md#Unsmooth-mollMean_re), [`Unsmooth.norm_Gpsi_sq`](../lean_stage3/Unsmooth.md#Unsmooth-norm_Gpsi_sq), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson)
 
 <a name="Operator-mollMean"></a>
 ### `Operator.mollMean`
@@ -108,7 +110,7 @@ The mollified mean `∫ w(t) |G(σ₀+it)|² |ψ(σ₀+it)|² dt`.
 
 - **Is:** `` mollMean {T L : ℝ} (W : Weight T L) (M : ℕ) (a : ℕ → ℂ) (σ₀ L' : ℝ) : ℂ := ∫ t, (W.w t : ℂ) * ((‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 : ℝ) : ℂ) * (msq M a σ₀ t : ℂ) ``
 - **Built from:** [`Operator.Gl`](#Operator-Gl), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
-- **Used by 4:** [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_Imom`](#Operator-Dop_Imom), [`Operator.mollMean_eq`](#Operator-mollMean_eq)
+- **Used by 6:** [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_Imom`](#Operator-Dop_Imom), [`Operator.mollMean_eq`](#Operator-mollMean_eq), [`Unsmooth.mollMean_re`](../lean_stage3/Unsmooth.md#Unsmooth-mollMean_re), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near)
 
 ## Theorems
 
@@ -364,11 +366,12 @@ line 130 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
   - [`Operator.Jfg_hasDerivAt_left`](#Operator-Jfg_hasDerivAt_left) — `` HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀ β) x₀ ``
   - [`Operator.Jfg_hasDerivAt_right`](#Operator-Jfg_hasDerivAt_right) — `` HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y₀) y₀ ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="Operator-Jfg_hasDerivAt_left"></a>
 ### `Operator.Jfg_hasDerivAt_left`

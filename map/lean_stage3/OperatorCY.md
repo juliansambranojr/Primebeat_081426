@@ -19,13 +19,16 @@ flowchart LR
   n3["<b>asnd ■</b><br/>AnalyticAt ℂ (fun p : ℂ × ℂ =＞ p.2) q"]:::cnt
   n4["<b>cYform_analytic</b><br/>AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0}"]:::shp
   n5["<b>cY_partials</b><br/>DifferentiableAt ℂ (fun x =＞ cY P M T x y) x ∧ DifferentiableAt …"]:::shp
-  x0(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
-  x1(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x0(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x1(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
+  x2(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
   n0 --> n1
   n1 --> n5
   n4 --> n5
-  n5 -.-> x1
-  x0 -.-> n5
+  n0 -.-> x0
+  n5 -.-> x0
+  n5 -.-> x2
+  x1 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -48,7 +51,7 @@ def · line 29
 `A = ∫₀¹ P′(u)² du`.
 
 - **Is:** `` Aq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.derivative.eval u : ℝ) : ℂ) * ((P.derivative.eval u : ℝ) : ℂ) ``
-- **Used by 2:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form)
+- **Used by 4:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-Bq"></a>
 ### `Operator.Bq`
@@ -58,7 +61,7 @@ def · line 33
 `B = ∫₀¹ P′(u) P(u) du`.
 
 - **Is:** `` Bq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.derivative.eval u : ℝ) : ℂ) * ((P.eval u : ℝ) : ℂ) ``
-- **Used by 2:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form)
+- **Used by 4:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-Cq"></a>
 ### `Operator.Cq`
@@ -68,7 +71,7 @@ def · line 37
 `C = ∫₀¹ P(u)² du`.
 
 - **Is:** `` Cq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.eval u : ℝ) : ℂ) * ((P.eval u : ℝ) : ℂ) ``
-- **Used by 2:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form)
+- **Used by 4:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-c1form"></a>
 ### `Operator.c1form`
@@ -79,7 +82,7 @@ The closed form of `c₁(α,β)`, `ℓ = log M`.
 
 - **Is:** `` c1form (P : Polynomial ℝ) (M : ℕ) (α β : ℂ) : ℂ := (α + β)⁻¹ * ((Real.log M : ℝ) : ℂ)⁻¹ * (Aq P + (α + β) * ((Real.log M : ℝ) : ℂ) * Bq P + α * β * ((Real.log M : ℝ) : ℂ) ^ 2 * Cq P) ``
 - **Built from:** [`Operator.Aq`](#Operator-Aq), [`Operator.Bq`](#Operator-Bq), [`Operator.Cq`](#Operator-Cq)
-- **Used by 3:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.cYform`](#Operator-cYform), [`Operator.cYform_analytic`](#Operator-cYform_analytic)
+- **Used by 4:** [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.cYform`](#Operator-cYform), [`Operator.cYform_analytic`](#Operator-cYform_analytic), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le)
 
 <a name="Operator-cYform"></a>
 ### `Operator.cYform`
@@ -119,9 +122,10 @@ c1Y P M α β = c1form P M α β
 
 **Definitions its proof touches:** [`Operator.Aq`](#Operator-Aq), [`Operator.Bq`](#Operator-Bq), [`Operator.Cq`](#Operator-Cq), [`Operator.c1form`](#Operator-c1form), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Operator.cY_eq`](#Operator-cY_eq) — `` cY P M T α β = cYform P M T (α, β) ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="Operator-cY_eq"></a>
 ### `Operator.cY_eq`
@@ -248,7 +252,8 @@ DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y =
 
 **Definitions its proof touches:** [`Operator.cYform`](#Operator-cYform), [`Operator.pa`](../lean_stage3/OperatorCauchy.md#Operator-pa), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 

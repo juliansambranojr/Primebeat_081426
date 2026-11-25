@@ -41756,7 +41756,8 @@
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
-     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -41787,7 +41788,8 @@
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
-     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
+     "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -42646,7 +42648,8 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
-     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ]
    }
   ]
@@ -64004,7 +64007,8 @@
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
-     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
     ]
    },
    {
@@ -72920,7 +72924,9 @@
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
-     "lean_stage3/Stage3/SwapX.lean::SwapX.twist"
+     "lean_stage3/Stage3/SwapX.lean::SwapX.twist",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
     ]
    },
    {
@@ -73053,7 +73059,8 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB_nonneg",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le"
     ]
    },
    {
@@ -73083,7 +73090,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le"
     ]
    },
    {
@@ -73144,7 +73152,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.weightAll_exists",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_Cj"
     ]
    },
    {
@@ -73174,7 +73186,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.weightAll_exists",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winW",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
     ]
    },
    {
@@ -73203,7 +73217,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.weightAll_exists",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_supp"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_supp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero"
     ]
    },
    {
@@ -73232,7 +73250,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.weightAll_exists",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_supp"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_supp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero"
     ]
    },
    {
@@ -73295,7 +73317,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_contDiff",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff"
     ]
    },
    {
@@ -73323,7 +73347,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_contDiff",
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff"
     ]
    },
    {
@@ -73450,7 +73476,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le"
     ]
    },
    {
@@ -73486,7 +73513,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le"
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winY_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le"
     ]
    },
    {
@@ -75171,7 +75199,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
    }
   ]
  },
@@ -75221,7 +75251,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
-     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75245,7 +75277,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
-     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75269,7 +75303,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
-     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75304,7 +75340,8 @@
     "used_by": [
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
-     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic"
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le"
     ]
    },
    {
@@ -75373,7 +75410,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq"
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75516,7 +75554,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    }
   ]
@@ -75571,7 +75610,8 @@
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.analytic_partials",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.cauchy_bounds",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
-     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75668,7 +75708,10 @@
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
-     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom"
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75743,7 +75786,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -75939,7 +75983,12 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
-     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
     ]
    },
    {
@@ -75976,7 +76025,9 @@
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
-     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ]
    },
    {
@@ -76233,7 +76284,8 @@
     "used_by": [
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
-     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -105155,7 +105207,11 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.summable_hk",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.term_integral",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.what0_le_of_zero"
     ]
    },
    {
@@ -105197,7 +105253,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.what0_le_of_zero"
     ]
    },
    {
@@ -106290,7 +106348,10 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_psi_le",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
     ]
    },
    {
@@ -106346,7 +106407,11 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrand_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_le",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ]
    },
    {
@@ -106687,7 +106752,8 @@
     "used_by": [
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
     ]
    },
    {
@@ -106723,7 +106789,8 @@
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_I1",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Imom",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.integrable_Ires",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi"
     ]
    },
    {
@@ -108609,7 +108676,10 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -108665,7 +108735,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
     ]
    },
    {
@@ -108729,7 +108801,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtOffDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
     ]
    },
    {
@@ -108768,7 +108842,8 @@
      "lean_stage3/Stage3/SwapX.lean::SwapX.stmtXAll_of",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -108807,7 +108882,10 @@
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
-     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
    {
@@ -109263,6 +109341,994 @@
     ],
     "layer": "zeta",
     "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Unsmooth.lean",
+  "module": "Stage3.Unsmooth",
+  "stem": "Unsmooth",
+  "header": "# Unsmooth — block S12 of `lean_stage3/design/stencil.md`, piece 4, unsmoothing: the sharp one-sided mean. 2026-11-25.",
+  "imports": [
+   "Stage3.UnsmoothWin",
+   "Stage3.UnsmoothCY",
+   "Stage3.LevinsonMollEdge"
+  ],
+  "opens": [
+   "Complex",
+   "DiagMainStmt",
+   "Filter",
+   "MeasureTheory",
+   "OffDiagClose",
+   "Operator",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Unsmooth"
+  ],
+  "lines": 239,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonMollEdge.lean",
+   "lean_stage3/Stage3/UnsmoothCY.lean",
+   "lean_stage3/Stage3/UnsmoothWin.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mollMean_re",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.mollMean_re",
+    "line": 42,
+    "why": "`Re mollMean = ∫ w |G|² |ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ L' : ℝ"
+    ],
+    "proves": "(mollMean W M a σ₀ L').re = ∫ t, W.w t * (‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t)",
+    "file": "lean_stage3/Stage3/Unsmooth.lean",
+    "id": "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_Gpsi",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.continuous_Gpsi",
+    "line": 55,
+    "why": "`t ↦ |G(σ₀+it)|² |ψ(σ₀+it)|²` is continuous for `σ₀ ≠ 1`.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "hσ : σ₀ ≠ 1",
+     "L' : ℝ"
+    ],
+    "proves": "Continuous fun t : ℝ => ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t",
+    "file": "lean_stage3/Stage3/Unsmooth.lean",
+    "id": "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Gpsi_sq",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.norm_Gpsi_sq",
+    "line": 70,
+    "why": "`|G ψ|² = |G|² |ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "L' : ℝ",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "‖Gl L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖Gl L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t",
+    "file": "lean_stage3/Stage3/Unsmooth.lean",
+    "id": "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "unsmooth_near",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.unsmooth_near",
+    "line": 79,
+    "why": "The sharp one-sided mean. For `P(0) = 0`, `0 < θ < 1/2`, `R > 0`, every `ε > 0`: from some height on, for `a′ ∈ [T/2, T/2 + 1]`, `b′ ∈ [T − 1, T]`, `(1/(b′−a′)) ∫_{a′}^{b′} |G(σ₀+it) ψ(σ₀+it)|² dt ≤ Re D[c](−R/L, −R/L) + ε`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖Gl (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ) (aY P T θ R) ((sig0 T R : ℂ) + t * I)‖ ^ 2 ≤ (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/Unsmooth.lean",
+    "id": "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.what0_le_of_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
+     "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.continuous_Gpsi",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.mollMean_re",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.norm_Gpsi_sq",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.what0_le_of_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "unsmooth_near_levinson",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.unsmooth_near_levinson",
+    "line": 202,
+    "why": "The sharp one-sided mean in `levinson_window'`'s integrand, at `σ = σ₀`: `(ζ(s) + c ζ′(s)) · molli M β s` with `c = 1/log T`, `β = aY P T θ R`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ c : ℝ, c = 1 / Real.log T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑(sig0 T R) + ↑t * I) + c * deriv riemannZeta (↑(sig0 T R) + ↑t * I)) * LevinsonMollEdge.molli (Mof T θ) (aY P T θ R) (↑(sig0 T R) + ↑t * I)‖ ^ 2 ≤ (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/Unsmooth.lean",
+    "id": "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near_levinson",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Gl",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/UnsmoothCY.lean",
+  "module": "Stage3.UnsmoothCY",
+  "stem": "UnsmoothCY",
+  "header": "# UnsmoothCY — block S12 of `lean_stage3/design/stencil.md`, piece 4, unsmoothing: `D[c]` is bounded. 2026-11-25.",
+  "imports": [
+   "Stage3.Operator",
+   "Stage3.DiagMain"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Metric",
+   "Operator",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Unsmooth"
+  ],
+  "lines": 199,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMain.lean",
+   "lean_stage3/Stage3/Operator.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "c1form_norm_le",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.c1form_norm_le",
+    "line": 27,
+    "why": "`‖c₁(x,y)‖ ≤ ‖A‖/(‖x+y‖ℓ) + ‖B‖ + ‖x‖‖y‖ℓ‖C‖/‖x+y‖`, `ℓ = log M > 0`, `x + y ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "hxy : x + y ≠ 0",
+     "hℓ : 0 < Real.log M"
+    ],
+    "proves": "‖c1form P M x y‖ ≤ ‖Aq P‖ / (‖x + y‖ * Real.log M) + ‖Bq P‖ + ‖x‖ * ‖y‖ * Real.log M * ‖Cq P‖ / ‖x + y‖",
+    "file": "lean_stage3/Stage3/UnsmoothCY.lean",
+    "id": "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Tpow_norm_le",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.Tpow_norm_le",
+    "line": 45,
+    "why": "`‖T^(−(x+y))‖ ≤ e^(3R)` for `‖x+y‖ ≤ 3R/log T`, `T > 1`.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "h : ‖x + y‖ ≤ 3 * R / Real.log T"
+    ],
+    "proves": "‖(T : ℂ) ^ (-(x + y))‖ ≤ Real.exp (3 * R)",
+    "file": "lean_stage3/Stage3/UnsmoothCY.lean",
+    "id": "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.Tpow_norm_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dop_cY_bdd",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.dop_cY_bdd",
+    "line": 62,
+    "why": "`D[c]` at `(−R/L, −R/L)` is bounded, uniformly in `T`, for `0 < θ < 1/2`, `R > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K",
+    "file": "lean_stage3/Stage3/UnsmoothCY.lean",
+    "id": "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.Tpow_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.Tpow_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/UnsmoothWin.lean",
+  "module": "Stage3.UnsmoothWin",
+  "stem": "UnsmoothWin",
+  "header": "# UnsmoothWin — block S12 of `lean_stage3/design/stencil.md`, piece 4, unsmoothing: the near window. 2026-11-25.",
+  "imports": [
+   "Stage3.OffDiagClose"
+  ],
+  "opens": [
+   "Complex",
+   "ContDiff",
+   "Filter",
+   "MeasureTheory",
+   "OffDiagClose",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "Unsmooth"
+  ],
+  "lines": 200,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OffDiagClose.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "nearLo",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.nearLo",
+    "line": 33,
+    "why": "The near window's rising edge `T/2 − 2T/L`.",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "nearHi",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.nearHi",
+    "line": 36,
+    "why": "The near window's falling edge `T + T/L`.",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "winNY",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY",
+    "line": 39,
+    "why": "The near window `φ((t − lo)/Δ) φ((hi − t)/Δ)`, `Δ = T/L`.",
+    "sorry": false,
+    "needs": [
+     "T L t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_le_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_nonneg",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_w"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winG_iter_le",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winG_iter_le",
+    "line": 45,
+    "why": "(2.3) for a window with any two edges: `|w^(j)| ≤ C_j Δ^(−j)`, the constants of `winW`.",
+    "sorry": false,
+    "needs": [
+     "hΔ : 0 < T / L",
+     "lo hi : ℝ",
+     "j : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "|iteratedDeriv j (fun t => edgeUp (T / L)⁻¹ lo t * edgeDn (T / L)⁻¹ hi t) t| ≤ winC j * ((T / L) ^ j)⁻¹",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_iter_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_iter_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB_nonneg",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_iter_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_iter_le",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.phiB_nonneg",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_contDiff",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_contDiff",
+    "line": 75,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ"
+    ],
+    "proves": "ContDiff ℝ ∞ (winNY T L)",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_contDiff",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn_contDiff",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp_contDiff",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_nonneg",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_nonneg",
+    "line": 78,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L t : ℝ"
+    ],
+    "proves": "0 ≤ winNY T L t",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_le_one",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_le_one",
+    "line": 81,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L t : ℝ"
+    ],
+    "proves": "winNY T L t ≤ 1",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_le_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_one",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_one",
+    "line": 86,
+    "why": "The plateau: `w = 1` on `[T/2 − T/L, T]`.",
+    "sorry": false,
+    "needs": [
+     "hΔ : 0 < T / L",
+     "h1 : T / 2 - T / L ≤ t",
+     "h2 : t ≤ T"
+    ],
+    "proves": "winNY T L t = 1",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_zero",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_zero",
+    "line": 98,
+    "why": "Off the edges `w = 0`.",
+    "sorry": false,
+    "needs": [
+     "hΔ : 0 < T / L",
+     "h : t ∉ Set.Ioo (nearLo T L) (nearHi T L)"
+    ],
+    "proves": "winNY T L t = 0",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeDn",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.edgeUp",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNY_supp",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNY_supp",
+    "line": 112,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 0 < T",
+     "hL : 8 ≤ L",
+     "t : ℝ",
+     "h : winNY T L t ≠ 0"
+    ],
+    "proves": "T / 4 ≤ t ∧ t ≤ 2 * T",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "winNear",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNear",
+    "line": 126,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ",
+     "hT : 0 < T",
+     "hL : 8 ≤ L"
+    ],
+    "proves": "WeightAll T L",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_le_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_nonneg",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC_nonneg",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearHi",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.nearLo",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winG_iter_le",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_contDiff",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_le_one",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_nonneg",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY_supp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_Cj",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_w"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "winNear_Cj",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNear_Cj",
+    "line": 146,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ",
+     "hT : 0 < T",
+     "hL : 8 ≤ L"
+    ],
+    "proves": "(winNear T L hT hL).Cj = winC",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_Cj",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.winC",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "winNear_w",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.winNear_w",
+    "line": 148,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T L : ℝ",
+     "hT : 0 < T",
+     "hL : 8 ≤ L"
+    ],
+    "proves": "(winNear T L hT hL).w = winNY T L",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear_w",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNY",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.winNear"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "what0_le_of_zero",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.what0_le_of_zero",
+    "line": 151,
+    "why": "`ŵ(0) ≤ hi − lo` for a weight vanishing off `[lo, hi]`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hlh : lo ≤ hi",
+     "h0 : ∀ t, t ∉ Set.Icc lo hi → W.w t = 0"
+    ],
+    "proves": "what0 W ≤ hi - lo",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.what0_le_of_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_compact",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.w_compact",
+    "line": 162,
+    "why": "`w` has compact support.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L"
+    ],
+    "proves": "HasCompactSupport W.w",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_le_of_one",
+    "ns": "Unsmooth",
+    "full": "Unsmooth.integral_le_of_one",
+    "line": 167,
+    "why": "The sharp integral under the smooth one: `∫_a^b f ≤ ∫ w f` for `f ≥ 0` continuous and `w = 1` on `[a, b]`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hf : Continuous f",
+     "hf0 : ∀ t, 0 ≤ f t",
+     "hab : a ≤ b",
+     "h1 : ∀ t ∈ Set.Icc a b, W.w t = 1"
+    ],
+    "proves": "∫ t in a..b, f t ≤ ∫ t, W.w t * f t",
+    "file": "lean_stage3/Stage3/UnsmoothWin.lean",
+    "id": "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Unsmooth.lean::Unsmooth.unsmooth_near"
+    ]
    }
   ]
  },
@@ -131726,11 +132792,12 @@
    "Stage3.Arith",
    "Stage3.Lemma3",
    "Stage3.Operator",
-   "Stage3.LevinsonWindowNear"
+   "Stage3.LevinsonWindowNear",
+   "Stage3.Unsmooth"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 243,
+  "lines": 244,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -131890,6 +132957,7 @@
    "lean_stage3/Stage3/ThetaPsi.lean",
    "lean_stage3/Stage3/ThetaPull.lean",
    "lean_stage3/Stage3/TwistedMoment.lean",
+   "lean_stage3/Stage3/Unsmooth.lean",
    "lean_stage3/Stage3/VonKochScaffold.lean",
    "lean_stage3/Stage3/WeilBackground.lean",
    "lean_stage3/Stage3/WeilBands.lean",

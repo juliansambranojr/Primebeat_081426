@@ -7,7 +7,7 @@
 8 theorems, 3 definitions, 334 lines. 
 
 **Imports:** [`DiagMainMu`](../lean_stage3/DiagMainMu.md), [`DiagMainStmt`](../lean_stage3/DiagMainStmt.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SdiagLeadSwap`](../lean_stage3/SdiagLeadSwap.md), [`SwapX`](../lean_stage3/SwapX.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SdiagLeadSwap`](../lean_stage3/SdiagLeadSwap.md), [`SwapX`](../lean_stage3/SwapX.md), [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md)
 
 ## The picture
 
@@ -23,7 +23,8 @@ flowchart LR
   n7["<b>stmtDiagMainO_of_lead</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SwapX</b><br/>c1Y_bound"]):::ext
   x1(["<b>SdiagLeadCore</b><br/>stmtDiagMainO_of_steps<br/>stmtSdiagLead_of_steps"]):::ext
-  x2(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
+  x2(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x3(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
   n0 --> n7
   n1 --> n7
   n2 --> n7
@@ -35,10 +36,12 @@ flowchart LR
   n1 -.-> x0
   n3 -.-> x0
   n3 -.-> x1
+  n3 -.-> x2
   n4 -.-> x0
   n4 -.-> x1
+  n4 -.-> x2
   n7 -.-> x1
-  n7 -.-> x2
+  n7 -.-> x3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -186,11 +189,12 @@ Real.log (Mof T θ) ≤ θ * Real.log T
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
   - [`SdiagLead.stmtSdiagLead_of_steps`](../lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) (SdiagLeadCore) — `` StmtSdiagLead P θ R κ ``
   - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="DiagMain-logM_ge"></a>
 ### `DiagMain.logM_ge`
@@ -215,11 +219,12 @@ line 141 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
   - [`SdiagLead.stmtSdiagLead_of_steps`](../lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) (SdiagLeadCore) — `` StmtSdiagLead P θ R κ ``
   - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
+  - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="DiagMain-key_bound"></a>
 ### `DiagMain.key_bound`

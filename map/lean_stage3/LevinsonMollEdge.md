@@ -7,7 +7,7 @@ LevinsonMollEdge — block S11 of `lean_stage3/design/stencil.md`, the mollifier
 21 theorems, 2 definitions, 907 lines. 
 
 **Imports:** [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)
 
 ## The picture
 
@@ -111,7 +111,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 80
 
 - **Is:** `` molli (M : ℕ) (β : ℕ → ℂ) (s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, β h * (h : ℂ) ^ (-s) noncomputable ``
-- **Used by 13:** [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near)
+- **Used by 14:** [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson)
 
 <a name="LevinsonMollEdge-tailDelta"></a>
 ### `LevinsonMollEdge.tailDelta`
