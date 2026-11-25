@@ -852,3 +852,4 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-24  S11 steps 2-4 PROVED (unit 0525, `LevinsonRight`): zeros of G right of the line <= (1/(2π(1/2−σ0)))·[((b−a)/2)·log(mean ‖Gψ(σ0+it)‖²) + edges]. Unconditional.
 - [open]   2026-11-25  Mollifier edge terms PROVED (unit 0526, `LevinsonMollEdge`): right edge <= (b−a)·2δ(X) + (X−σ0)π; horizontals O((X−σ0)(8X−1)(log T + log M + log B)). Unconditional.
 - [open]   2026-11-25  Avoidance PROVED (unit 0527, `LevinsonAvoid`): good heights/abscissas exist; factor > 0 for c = 1/log T, T >= e^26. Unconditional.
+- [open]   2026-11-25  Levinson one window ASSEMBLED (unit 0528, `LevinsonWindow`): mean square K as the named input, plus hsimple (ζ, ζ' no common zero on the line). Unconditional otherwise.

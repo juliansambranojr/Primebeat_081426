@@ -19,8 +19,9 @@ flowchart LR
   n3["<b>log_integral_norm_le</b><br/>∫ t in a..b, Real.log ‖F (↑σ₀ + ↑t * I)‖ ≤ (b - a) / 2 * Real.lo…"]:::shp
   n4["<b>countRight_mul_ge</b><br/>countRight G z w σ ≤ countRight (fun s =＞ G s * M s) z w σ"]:::shp
   n5["<b>countRight_left_eq</b><br/>countRight f z' w σ = countRight f z w σ"]:::shp
-  n6["<b>levinson_right ■</b><br/>countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (…"]:::shp
-  x0(["<b>Littlewood</b><br/>7 theorems"]):::ext
+  n6["<b>levinson_right</b><br/>countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (…"]:::shp
+  x0(["<b>LevinsonWindow</b><br/>countRight_right_le<br/>levinson_window"]):::ext
+  x1(["<b>Littlewood</b><br/>7 theorems"]):::ext
   n0 --> n1
   n0 --> n4
   n1 --> n6
@@ -28,10 +29,12 @@ flowchart LR
   n3 --> n6
   n4 --> n6
   n5 --> n6
-  x0 -.-> n1
-  x0 -.-> n4
-  x0 -.-> n5
-  x0 -.-> n6
+  n0 -.-> x0
+  n6 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -68,10 +71,11 @@ line 59 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonRight.countRight_mul_ge`](#LevinsonRight-countRight_mul_ge) — `` countRight G z w σ ≤ countRight (fun s => G s * M s) z w σ ``
   - [`LevinsonRight.zeros_right_le`](#LevinsonRight-zeros_right_le) — `` 2 * Real.pi * (σ₁ - z.re) * countRight f z w σ₁ ≤ (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I… ``
+  - [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le) (LevinsonWindow) — `` countRight f z w' σ ≤ countRight f z w σ ``
 
 <a name="LevinsonRight-zeros_right_le"></a>
 ### `LevinsonRight.zeros_right_le`
@@ -270,5 +274,7 @@ countRight G ((1 / 2 : ℂ) + a * I) ((X : ℂ) + b * I) (1 / 2) ≤ (1 / (2 * R
 
 **Definitions its proof touches:** [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight), [`Littlewood.edgeH`](../lean_stage3/Littlewood.md#Littlewood-edgeH)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 

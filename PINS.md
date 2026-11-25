@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S11 of `design/stencil.md`, removing `hsimple`: `Stage3/LevinsonMultiple.lean`
+
+    DONE        `levinson_count'`: `LevinsonCount.levinson_count` without the
+                left-edge part of hB, the zeros of G on the line being divided
+                out (S11, "removing hsimple by counting"), with the same bound
+                up to the constant; and `levinson_window'`: `levinson_window`
+                with no `hsimple`; one unit
+    ASSUMED     Julian, 2026-11-25: "Log it and count". The derivation is S11's
+                last subsection
+    DEPENDS     the Levinson modules; `G_line_ne`; finiteness of zeros
+    OUT         the mean value (step 5); the limit over windows
+
 ### 2026-11-25 · block S11 of `design/stencil.md`, the assembled window theorem: `Stage3/LevinsonWindow.lean`
 
     DONE        `levinson_window`: for T ≥ e^26, c = 1/log T, a mollifier

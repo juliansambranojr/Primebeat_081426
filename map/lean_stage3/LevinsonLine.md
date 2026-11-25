@@ -24,6 +24,7 @@ flowchart LR
   x2(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
   x3(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
   x4(["<b>LevinsonTurn</b><br/>lineF_turn_eq<br/>turn_split"]):::ext
+  x5(["<b>LevinsonWindow</b><br/>G_line_ne"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -35,6 +36,7 @@ flowchart LR
   n0 -.-> x3
   n0 -.-> x4
   n5 -.-> x1
+  n5 -.-> x5
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n4
@@ -221,7 +223,8 @@ riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + 
   - [`LevinsonLine.line_facts`](#LevinsonLine-line_facts) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LevinsonLine.re_gammaR_G_line`](#LevinsonLine-re_gammaR_G_line) — `` (Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I))).re = (completedRiemannZeta (1/2 + t * I)).re * (1 - c * (de… ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LevinsonArg.lineCount_ge_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-lineCount_ge_arg) (LevinsonArg) — `` (k : ℤ) ≤ lineCount T ``
+  - [`LevinsonWindow.G_line_ne`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-G_line_ne) (LevinsonWindow) — `` riemannZeta (1/2 + t * I) + c * deriv riemannZeta (1/2 + t * I) ≠ 0 ``
 

@@ -7,7 +7,7 @@ LevinsonAvoid — block S11 of `lean_stage3/design/stencil.md`, avoidance. 2026-
 6 theorems, 0 definitions, 155 lines. 
 
 **Imports:** [`LevinsonSize`](../lean_stage3/LevinsonSize.md), [`Littlewood`](../lean_stage3/Littlewood.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md)
 
 ## The picture
 
@@ -16,18 +16,23 @@ flowchart LR
   n0["<b>mem_rect_of</b><br/>((x : ℂ) + y * I) ∈ Rectangle z w"]:::cnt
   n1["<b>order_ne_top_of_ne</b><br/>∀ q ∈ Rectangle z w, meromorphicOrderAt f q ≠ ⊤"]:::shp
   n2["<b>zeros_finite</b><br/>{q | q ∈ Rectangle z w ∧ f q = 0}.Finite"]:::shp
-  n3["<b>exists_good_height ■</b><br/>∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0"]:::shp
-  n4["<b>exists_good_abscissa ■</b><br/>∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0"]:::shp
-  n5["<b>factor_pos ■</b><br/>0 ＜ 1 - (1 / Real.log T) * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ …"]:::shp
-  x0(["<b>Littlewood</b><br/>mem_support_divisor"]):::ext
-  x1(["<b>LevinsonSize</b><br/>re_logDeriv_gammaR_line"]):::ext
+  n3["<b>exists_good_height</b><br/>∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0"]:::shp
+  n4["<b>exists_good_abscissa</b><br/>∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0"]:::shp
+  n5["<b>factor_pos</b><br/>0 ＜ 1 - (1 / Real.log T) * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ …"]:::shp
+  x0(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x1(["<b>Littlewood</b><br/>mem_support_divisor"]):::ext
+  x2(["<b>LevinsonSize</b><br/>re_logDeriv_gammaR_line"]):::ext
   n0 --> n3
   n0 --> n4
   n1 --> n2
   n2 --> n3
   n2 --> n4
-  x0 -.-> n2
-  x1 -.-> n5
+  n0 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  x1 -.-> n2
+  x2 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -64,10 +69,11 @@ line 38 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonAvoid.exists_good_abscissa`](#LevinsonAvoid-exists_good_abscissa) — `` ∃ σ ∈ Icc (σ₀ - δ) σ₀, ∀ y ∈ Icc a b, f ((σ : ℂ) + y * I) ≠ 0 ``
   - [`LevinsonAvoid.exists_good_height`](#LevinsonAvoid-exists_good_height) — `` ∃ t ∈ Icc t₀ (t₀ + 1), ∀ x ∈ Icc σ₀ X, f ((x : ℂ) + t * I) ≠ 0 ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonAvoid-order_ne_top_of_ne"></a>
 ### `LevinsonAvoid.order_ne_top_of_ne`
@@ -152,7 +158,9 @@ line 73 · arrows read from text
   - [`LevinsonAvoid.mem_rect_of`](#LevinsonAvoid-mem_rect_of) — `` ((x : ℂ) + y * I) ∈ Rectangle z w ``
   - [`LevinsonAvoid.zeros_finite`](#LevinsonAvoid-zeros_finite) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonAvoid-exists_good_abscissa"></a>
 ### `LevinsonAvoid.exists_good_abscissa`
@@ -181,7 +189,9 @@ line 92 · arrows read from text
   - [`LevinsonAvoid.mem_rect_of`](#LevinsonAvoid-mem_rect_of) — `` ((x : ℂ) + y * I) ∈ Rectangle z w ``
   - [`LevinsonAvoid.zeros_finite`](#LevinsonAvoid-zeros_finite) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonAvoid-factor_pos"></a>
 ### `LevinsonAvoid.factor_pos`
@@ -209,5 +219,7 @@ line 111 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 

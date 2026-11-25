@@ -7,7 +7,7 @@ LevinsonMollEdge — block S11 of `lean_stage3/design/stencil.md`, the mollifier
 21 theorems, 2 definitions, 907 lines. 
 
 **Imports:** [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md)
 
 ## The picture
 
@@ -25,7 +25,7 @@ flowchart LR
   n9["<b>right_log_term_le</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
   n10["<b>arg_term_le_of_pos</b><br/>|(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi"]:::shp
   n11["<b>right_arg_term_le</b><br/>|(∫ t in a..b, logDeriv (fun s =＞ (riemannZeta s + c * deriv rie…"]:::thm
-  n12["<b>right_terms_le ■</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
+  n12["<b>right_terms_le</b><br/>-(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv …"]:::thm
   n13["<b>zeta_norm_le_sixteenth</b><br/>‖riemannZeta u‖ ≤ 2 + 16 * ‖u‖"]:::thm
   n14["<b>disc_facts_X</b><br/>X - d ≤ u.re ∧ T - d ≤ u.im ∧ ‖u‖ ≤ d + X + T"]:::shp
   n15["<b>zeta_disc_X</b><br/>‖riemannZeta u‖ ≤ 33 * T"]:::thm
@@ -33,11 +33,12 @@ flowchart LR
   n17["<b>G_disc_X</b><br/>‖riemannZeta w + c * deriv riemannZeta w‖ ≤ 561 * T"]:::thm
   n18["<b>real_zero_count_gen</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.c…"]:::shp
   n19["<b>edge_le_gen</b><br/>|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1…"]:::shp
-  n20["<b>horizontal_terms_le ■</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
-  x0(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
-  x1(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
-  x2(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x3(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  n20["<b>horizontal_terms_le</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
+  x0(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x1(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x2(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x3(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x4(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
   n0 --> n20
   n1 --> n4
   n10 --> n11
@@ -65,11 +66,17 @@ flowchart LR
   n8 --> n11
   n8 --> n20
   n9 --> n12
-  x0 -.-> n3
-  x1 -.-> n18
-  x1 -.-> n8
-  x2 -.-> n10
-  x3 -.-> n19
+  n12 -.-> x0
+  n2 -.-> x0
+  n20 -.-> x0
+  n4 -.-> x0
+  n5 -.-> x0
+  n8 -.-> x0
+  x1 -.-> n3
+  x2 -.-> n18
+  x2 -.-> n8
+  x3 -.-> n10
+  x4 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -90,7 +97,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 80
 
 - **Is:** `` molli (M : ℕ) (β : ℕ → ℂ) (s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, β h * (h : ℂ) ^ (-s) noncomputable ``
-- **Used by 9:** [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le)
+- **Used by 10:** [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window)
 
 <a name="LevinsonMollEdge-tailDelta"></a>
 ### `LevinsonMollEdge.tailDelta`
@@ -98,7 +105,7 @@ def · line 80
 def · line 85
 
 - **Is:** `` tailDelta (M : ℕ) (B X : ℝ) : ℝ := 8 / (2 : ℝ) ^ X * (1 + M * B / (2 : ℝ) ^ X) + M * B / (2 : ℝ) ^ X ``
-- **Used by 4:** [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMollEdge.tailDelta_le_half`](#LevinsonMollEdge-tailDelta_le_half)
+- **Used by 8:** [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMollEdge.tailDelta_le_half`](#LevinsonMollEdge-tailDelta_le_half), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.tailDelta_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-tailDelta_nonneg), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LevinsonWindow.windowE_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE_nonneg)
 
 ## Theorems
 
@@ -185,9 +192,10 @@ Differentiable ℂ (molli M β)
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt) — `` AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) w ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonMollEdge-norm_G_sub_one_le_X"></a>
 ### `LevinsonMollEdge.norm_G_sub_one_le_X`
@@ -251,11 +259,12 @@ line 226 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli), [`LevinsonMollEdge.tailDelta`](#LevinsonMollEdge-tailDelta)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le) — `` |∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Re… ``
   - [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le) — `` |(∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re| ≤ Real.pi ``
   - [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le) — `` -(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I)) * molli M β (↑X + ↑t * I)‖) ≤ (b - a) * (2 * tailDelta M B … ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonMollEdge-tailDelta_le_half"></a>
 ### `LevinsonMollEdge.tailDelta_le_half`
@@ -282,11 +291,12 @@ tailDelta M B X ≤ 1 / 2
 
 **Definitions its proof touches:** [`LevinsonMollEdge.tailDelta`](#LevinsonMollEdge-tailDelta)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le) — `` |∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Re… ``
   - [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le) — `` |(∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re| ≤ Real.pi ``
   - [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le) — `` -(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I)) * molli M β (↑X + ↑t * I)‖) ≤ (b - a) * (2 * tailDelta M B … ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonMollEdge-log_norm_abs_le"></a>
 ### `LevinsonMollEdge.log_norm_abs_le`
@@ -368,10 +378,11 @@ AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β 
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le) — `` |∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Re… ``
   - [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le) — `` |(∫ t in a..b, logDeriv (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) (↑X + ↑t * I)).re| ≤ Real.pi ``
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonMollEdge-right_log_term_le"></a>
 ### `LevinsonMollEdge.right_log_term_le`
@@ -514,7 +525,9 @@ line 410 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli), [`LevinsonMollEdge.tailDelta`](#LevinsonMollEdge-tailDelta)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
 <a name="LevinsonMollEdge-zeta_norm_le_sixteenth"></a>
 ### `LevinsonMollEdge.zeta_norm_le_sixteenth`
@@ -780,5 +793,7 @@ line 805 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli), [`Littlewood.edgeH`](../lean_stage3/Littlewood.md#Littlewood-edgeH)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 

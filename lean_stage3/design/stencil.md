@@ -694,3 +694,30 @@ Conrey's §3 and Levinson and Montgomery for it. Derivation, with `Λ = Gammaℝ
 **Lean, step 1a (unconditional).** `re_gammaR_G_line`: for real `λ` and real `t`,
 `Re(Gammaℝ(s)·(ζ(s) + λ·ζ'(s))) = Λ(s)·(1 − λ·Re(Gammaℝ'(s)/Gammaℝ(s)))` at `s = 1/2 + it`.
 Step 1b, the count through a continuous argument along the line, follows it.
+
+### S11, removing `hsimple` by counting (2026-11-25, Julian: "Log it and count")
+
+On paper, here, unchecked by anyone else.
+
+**The zeros of G on the line.** By `G_line_ne`, a zero of `G = ζ + cζ'` at
+`ρ = 1/2 + iγ` is a common zero of `ζ` and `ζ'`. If `ζ` has order `m ≥ 2` at `ρ`, then
+`ζ'` has order `m − 1`, and so does `G`, since `ζ'` dominates. Call the finite set of
+these points in the window `D`, and put `k_ρ = m_ρ − 1`, `K = Σ_D k_ρ`.
+
+**Divide them out.** `P(s) = Π_{ρ∈D} (s − ρ)^{k_ρ}`, `H = G/P`, which is analytic and
+nonzero on the line segment. On the line, `s − ρ = i(t − γ)`, so `P = i^K × real`.
+Take `F = i^(−K)·Gammaℝ·H`, so that `Re F = (real)·Λ·(1 − c·Re g)`. Every
+crossing of the imaginary axis by `F` is then a zero of `ζ` on the line, by
+`zeta_line_zero_iff` away from `D`. On `D`, ζ vanishes anyway.
+
+**The two counts cancel `K`.**
+- Turning of `F` = Gammaℝ part + turning of `H`. The argument principle for `H` on
+  the rectangle: `H` has the zeros of `G` inside, and none on the border.
+- The edge terms for `H` are those of `G`, less the turning of `P` around the
+  bottom, the right side and the top. Each factor `s − ρ`, with `ρ` on the left
+  edge, turns by exactly `π` there, so the extra term is `−π·K`.
+- So the crossings number at least `(N(b) − N(a)) − 2·N_G − K − E/π − 1`.
+- `lineCount` counts the crossings off `D` once each and every `ρ ∈ D` with
+  multiplicity `m_ρ = k_ρ + 1`. So `lineCount ≥ #crossings − #D + Σ m_ρ
+  = #crossings + K`.
+- Hence `lineCount ≥ (N(b) − N(a)) − 2·N_G − E/π − 1`, with no `hsimple`.
