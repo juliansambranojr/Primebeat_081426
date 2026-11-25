@@ -20,9 +20,10 @@ flowchart LR
   n4["<b>stmtDiagO_of_mainO</b><br/>StmtDiagO P θ R κ"]:::thm
   n5["<b>lemma3_resO_of_parts</b><br/>StmtLemma3resO P θ R κ"]:::thm
   n6["<b>lemma3_resO_of_mainO_X ■</b><br/>StmtLemma3resO P θ R κ"]:::thm
-  x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
-  x1(["<b>Diagonal</b><br/>diag_young"]):::ext
-  x2(["<b>OffDiagClose</b><br/>stmtOffDiag_holds"]):::ext
+  x0(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x1(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
+  x2(["<b>Diagonal</b><br/>diag_young"]):::ext
+  x3(["<b>OffDiagClose</b><br/>stmtOffDiag_holds"]):::ext
   n0 --> n1
   n0 --> n4
   n1 --> n5
@@ -30,10 +31,11 @@ flowchart LR
   n3 --> n4
   n4 --> n6
   n5 --> n6
-  x0 -.-> n3
-  x0 -.-> n5
-  x1 -.-> n4
-  x2 -.-> n6
+  n2 -.-> x0
+  x1 -.-> n3
+  x1 -.-> n5
+  x2 -.-> n4
+  x3 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -64,7 +66,7 @@ def · line 140
 
 - **Is:** `` StmtLemma3resO (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ α β : ℂ, Regime κ T α β → ‖Imom W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β - cY P (Mof T θ) T α β * (what0 W.toWeight : ℂ)‖ ≤ ε * errO W.toWeight + ‖Ires W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β‖ ``
 - **Built from:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom), [`TwistedMoment.Ires`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
-- **Used by 2:** [`DiagonalO.lemma3_resO_of_mainO_X`](#DiagonalO-lemma3_resO_of_mainO_X), [`DiagonalO.lemma3_resO_of_parts`](#DiagonalO-lemma3_resO_of_parts)
+- **Used by 3:** [`DiagonalO.lemma3_resO_of_mainO_X`](#DiagonalO-lemma3_resO_of_mainO_X), [`DiagonalO.lemma3_resO_of_parts`](#DiagonalO-lemma3_resO_of_parts), [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds)
 
 ## Theorems
 
@@ -152,9 +154,10 @@ T ≤ errO W
 
 **Definitions its proof touches:** [`DiagMainStmt.errO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-errO), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DiagonalO.stmtDiagO_of_mainO`](#DiagonalO-stmtDiagO_of_mainO) — `` StmtDiagO P θ R κ ``
+  - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
 
 <a name="DiagonalO-what0_le"></a>
 ### `DiagonalO.what0_le`

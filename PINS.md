@@ -22,7 +22,92 @@ below with their outcome.
 
 ## Current
 
-### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/Stirling*.lean`
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5c, the sum: `Stage3/FloorSum*.lean`
+
+    DONE        at P(x) = x, θ = 49/100, R = 13/10: for every ε > 0, from some T on,
+                lineCount T ≥ (1/3 − ε)·N T, from `FloorStep.floor_step` on the
+                windows [T/2^(k+1), T/2^k] down to a fixed height, with
+                `FloorConst.floor_const` (log K / R ≤ 2/3, Re D(cY)(T) → K), the
+                errors summed to ≤ 2ε T log T and N T ≍ T log T/(2π) by the
+                Riemann–von Mangoldt bound in the tree; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0549, TRAPS 84–87,
+                start 5c). Written before the worker starts.
+    DEPENDS     `FloorStep`, `FloorConst`, `ArgCount` (`rvM_crude`), `LineCount`
+    OUT         stage B (proportion → 1) and stage C
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5b, one height: `Stage3/FloorStep*.lean`
+
+    DONE        for P with P(0) = 0, P(1) = 1, 0 < θ < 1/2, R > 0: for every ε > 0,
+                from some T on, lineCount T − lineCount (T/2) ≥
+                (N T − N (T/2)) − (log(Re D(cY)(T) + ε)/R)·(N T − N (T/2)) − ε·T·log T,
+                from `levinson_window_diff` at a = T/2, b = T with
+                `unsmooth_near_levinson`, the bound carried from σ₀ to
+                [σ₀ − δ(T), σ₀] by continuity in σ, β = aY (β 1 = P(1) = 1), and X
+                with tailDelta → 0 so windowE = o(T); or the largest honest piece,
+                the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0547, TRAPS 80–81,
+                start 5a and 5b). Written before the workers start.
+    DEPENDS     `Unsmooth`, `LevinsonWindowNear`, `LevinsonMollEdge`, `OffDiagClose`
+                (`aY_bound'`), `TwistedMoment`
+    OUT         5a; 5c, the sum over halvings and the liminf
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 5a, the closed form: `Stage3/FloorConst*.lean`
+
+    DONE        Re D(cY)(T) → K(R, θ) as T → ∞ at P(x) = x, with K explicit:
+                (1 + ∂a)(1 + ∂b) of f(a,b) + e^(−(a+b)) f(−b,−a) at a = b = −R,
+                f(a,b) = (1/((a+b)θ)) ∫₀¹ (P′ + aθP)(P′ + bθP); and, at one rational
+                choice of R and θ < 1/2, a proved bound log K < R, with the value of
+                1 − (log K)/R computed; one unit
+    ASSUMED     as above
+    DEPENDS     `TwistedMoment` (`cY`, `c1Y`, `Mof`), `OperatorCauchy` (`Dop`),
+                `OperatorCY`, `UnsmoothCY`, `DiagMain` (`logM_ge`, `logM_le`)
+    OUT         5b; 5c
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 4, unsmoothing: `Stage3/Unsmooth*.lean`
+
+    DONE        a `WeightAll T (log T)` family with w = 1 on [T/2 − 1, T], w = 0
+                off [T/2 − 2T/L, T + T/L], derivative constants fixed before T;
+                then from `Operator.stmtMollMeanO_holds`: for every ε > 0, from some
+                T on, for a′ ∈ [T/2, T/2 + 1], b′ ∈ [T − 1, T],
+                (1/(b′−a′)) ∫_{a′}^{b′} ‖Gl(σ₀+it)·psi(σ₀+it)‖² dt ≤ Re D(cY) + ε,
+                the one-sided bound Levinson needs; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0545, TRAPS 76–79, start
+                step 4 and the `levinson_window'` restatement side by side).
+                Written before the workers start.
+    DEPENDS     `Operator`, `OffDiagClose` (`WeightAll`, `winW`), `Lemma3`
+    OUT         the window restatement; the liminf assembly (piece 5): continuity
+                of the mean in σ for the abscissa δ, P(1) = 1 for β 1 = 1, the
+                closed form of D(cY) and κ
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the window restated: `Stage3/LevinsonWindowNear.lean`
+
+    DONE        `levinson_window'` with its mean hypothesis only on the windows
+                its proof uses (a ≤ a′ ≤ a + 1, b − 1 ≤ b′ ≤ b), and, if its proof
+                gives it, the difference form with lineCount b − lineCount a on the
+                left; one unit (with unsmoothing or its own)
+    ASSUMED     as above
+    DEPENDS     `LevinsonMultiple`, `LevinsonWindow`, `LevinsonAvoid`, `LineCount`
+    OUT         unsmoothing; piece 5
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 3, the operator: `Stage3/Operator*.lean`
+
+    DONE        the mollified mean of Levinson's G = ζ + ζ′/L at σ₀ = 1/2 − R/L:
+                ∫ w(t) |G(σ₀+it) ψ(σ₀+it)|² dt = D[c](−R/L, −R/L)·ŵ(0) + o(T),
+                D = (1 + (1/L)∂α)(1 + (1/L)∂β) applied to `cY`, by
+                differentiating `Imom` under the integral and Cauchy's formula on
+                circles of radius r/L inside the Regime, with `Lemma3.lemma3_resO_holds`
+                and the remainder `Ires` bounded; or the largest honest piece, the
+                rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Log it and start" (log 0543, 0544, start the
+                operator). Q(x) = 1 − x, Levinson's linear choice, because
+                `levinson_window'` fixes c = 1/log T. Written before the worker starts.
+    DEPENDS     `Lemma3`, `TwistedMoment` (`Imom`, `Ires`, `cY`, `msq`), `DiagonalO`,
+                `OffDiagClose` (`WeightAll`), Mathlib Cauchy integral formula
+    OUT         unsmoothing (piece 4); the liminf assembly (piece 5), which also
+                needs `levinson_window'`'s mean hypothesis for every subwindow
+                weakened to the windows a ≤ a′ ≤ a+1, b−1 ≤ b′ ≤ b its proof uses
+
+### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/StirlingLog.lean`, `Stage3/StirlingX.lean`
 
     DONE        `SwapX.StmtXStirling`: X_{α,β,t} = (t/2π)^(−α−β) + O(1/t) for
                 ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1, through PNT+ `digamma_eq_tsum` and the

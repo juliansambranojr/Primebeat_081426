@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>327 theorems counting,<br/>in 58 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>391 theorems counting,<br/>in 69 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1355 theorems shape,<br/>in 162 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1461 theorems shape,<br/>in 176 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>871 theorems reads ζ,<br/>in 142 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>899 theorems reads ζ,<br/>in 151 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 431 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1606 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 892 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 495 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1712 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 920 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 327 | 1355 | 871 |
+| `lean_stage3/` | 391 | 1461 | 899 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -360,6 +360,58 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 - [`ApproxShift.ne_of_re_ne`](./lean_stage3/ApproxShift.md#ApproxShift-ne_of_re_ne) — `` z ≠ w `` `z ≠ w` from their real parts.
 - [`ApproxShift.rect_tendsto`](./lean_stage3/ApproxShift.md#ApproxShift-rect_tendsto) — `` Tendsto (fun T : ℝ => RectangleIntegral f (↑(-c) - I * T) (↑c + I * T)) atTop (𝓝 (VerticalIntegral f c - VerticalIntegral f (-c))) `` PNT+'s `RectangleIntegral_tendsTo_VerticalIntegral` (in `PerronFormula`, not built at the pin), re-proved here for `[−c, c]`.
 
+### [`Arith`](./lean_stage3/Arith.md) — 6
+
+# Stage3.Arith — S12 (`design/stencil.md` § S12), `SdiagLead.StmtArith` proved, and `StmtDiagMainO`. 2026-11-25.
+
+- [`Arith.rsAF_apply`](./lean_stage3/Arith.md#Arith-rsAF_apply) — `` rsAF a = 1 / √(a : ℝ) ``
+- [`Arith.f_ne`](./lean_stage3/Arith.md#Arith-f_ne) — `` Squarefree k ∧ m ≠ 0 ∧ m.primeFactors ⊆ k.primeFactors ``
+- [`Arith.f_val`](./lean_stage3/Arith.md#Arith-f_val) — `` ((μ k : ℤ) : ℝ) ^ 2 / k * (((chiAF k m : ℤ) : ℝ) / m) = 1 / ((k * m : ℕ) : ℝ) ``
+- [`Arith.rad_mul_of`](./lean_stage3/Arith.md#Arith-rad_mul_of) — `` rad' (k * m) = k ``
+- [`Arith.sum_sdm_eq`](./lean_stage3/Arith.md#Arith-sum_sdm_eq) — `` ∑ k ∈ Icc 1 M, ((μ k : ℤ) : ℝ) ^ 2 / k * Sdm k (M / k) = ∑ n ∈ Icc 1 M, (1 : ℝ) / n `` The bijection `n ↦ (rad n, n/rad n)`: `Σ_{k ≤ M} (μ²(k)/k) S_k(M/k) = Σ_{n ≤ M} 1/n`.
+- [`Arith.gmu_eq`](./lean_stage3/Arith.md#Arith-gmu_eq) — `` gmu k = ((μ k : ℤ) : ℝ) ^ 2 / k * Sdm k X + ((μ k : ℤ) : ℝ) ^ 2 / k * Tl k X ``
+
+### [`ArithBase`](./lean_stage3/ArithBase.md) — 18
+
+# Stage3.ArithBase — S12 (`design/stencil.md` § S12), the arithmetic tools for `StmtArith`. 2026-11-25.
+
+- [`Arith.sig_eq_prod`](./lean_stage3/ArithBase.md#Arith-sig_eq_prod) — `` sig d = ∏ p ∈ d.primeFactors, sp p ``
+- [`Arith.sig_mul`](./lean_stage3/ArithBase.md#Arith-sig_mul) — `` sig (m * n) = sig m * sig n ``
+- [`Arith.sp_eq`](./lean_stage3/ArithBase.md#Arith-sp_eq) — `` sp p = (p : ℝ) / ((p : ℝ) - 1) ``
+- [`Arith.sp_bounds`](./lean_stage3/ArithBase.md#Arith-sp_bounds) — `` 1 ≤ sp p ∧ sp p ≤ 2 ∧ sp p - 1 ≤ 2 / p ``
+- [`Arith.sig_ge_one`](./lean_stage3/ArithBase.md#Arith-sig_ge_one) — `` 1 ≤ sig d ``
+- [`Arith.sig_nonneg`](./lean_stage3/ArithBase.md#Arith-sig_nonneg) — `` 0 ≤ sig d ``
+- [`Arith.sig_pf`](./lean_stage3/ArithBase.md#Arith-sig_pf) — `` sig m = sig n ``
+- [`Arith.musq_of_sq`](./lean_stage3/ArithBase.md#Arith-musq_of_sq) — `` ((μ a : ℤ) : ℝ) ^ 2 = 1 ``
+- [`Arith.musq_of_not`](./lean_stage3/ArithBase.md#Arith-musq_of_not) — `` ((μ a : ℤ) : ℝ) ^ 2 = 0 ``
+- [`Arith.musq_mul`](./lean_stage3/ArithBase.md#Arith-musq_mul) — `` ((μ (m * n) : ℤ) : ℝ) ^ 2 = ((μ m : ℤ) : ℝ) ^ 2 * ((μ n : ℤ) : ℝ) ^ 2 ``
+- [`Arith.musq_nonneg`](./lean_stage3/ArithBase.md#Arith-musq_nonneg) — `` 0 ≤ ((μ a : ℤ) : ℝ) ^ 2 ``
+- [`Arith.prod_pf_mul`](./lean_stage3/ArithBase.md#Arith-prod_pf_mul) — `` ∏ p ∈ (m * n).primeFactors, x p = (∏ p ∈ m.primeFactors, x p) * ∏ p ∈ n.primeFactors, x p ``
+- [`Arith.zs_nonneg`](./lean_stage3/ArithBase.md#Arith-zs_nonneg) — `` 0 ≤ zs ``
+- [`Arith.sum_primes_le_zs`](./lean_stage3/ArithBase.md#Arith-sum_primes_le_zs) — `` ∑ p ∈ N.primesBelow, e p ≤ c * zs ``
+- [`Arith.G_eq_sum`](./lean_stage3/ArithBase.md#Arith-G_eq_sum) — `` G b = ∑ a ∈ b.divisors, hA a ``
+- [`Arith.prod_le_G`](./lean_stage3/ArithBase.md#Arith-prod_le_G) — `` ∏ p ∈ b.primeFactors, y p ≤ G b `` A product over the primes of a squarefree `b` with factors `≤ 1 + x(p)` is `≤ G(b)`.
+- [`Arith.hA_hasSum`](./lean_stage3/ArithBase.md#Arith-hA_hasSum) — `` HasSum (fun k => hA (p ^ k) / ((p ^ k : ℕ) : ℝ)) (1 + xg p / p) ``
+- [`Arith.filter_all`](./lean_stage3/ArithBase.md#Arith-filter_all) — `` (Icc 1 M).filter (fun b => M < b * (M + 1)) = Icc 1 M ``
+
+### [`ArithTail`](./lean_stage3/ArithTail.md) — 13
+
+# Stage3.ArithTail — S12 (`design/stencil.md` § S12), the two tails `StmtTailFixed`, `StmtTailAvg`. 2026-11-25.
+
+- [`Arith.rad_pos`](./lean_stage3/ArithTail.md#Arith-rad_pos) — `` 0 < rad' m ``
+- [`Arith.rad_pf`](./lean_stage3/ArithTail.md#Arith-rad_pf) — `` (rad' m).primeFactors = m.primeFactors ``
+- [`Arith.rad_mul`](./lean_stage3/ArithTail.md#Arith-rad_mul) — `` rad' (m * n) = rad' m * rad' n ``
+- [`Arith.rad_prime_pow`](./lean_stage3/ArithTail.md#Arith-rad_prime_pow) — `` rad' (p ^ k) = p ``
+- [`Arith.rad_dvd`](./lean_stage3/ArithTail.md#Arith-rad_dvd) — `` rad' m ∣ m ``
+- [`Arith.rad_squarefree`](./lean_stage3/ArithTail.md#Arith-rad_squarefree) — `` Squarefree (rad' n) ``
+- [`Arith.sig_prime_pow`](./lean_stage3/ArithTail.md#Arith-sig_prime_pow) — `` sig (p ^ k) = sp p ``
+- [`Arith.sp_nonneg`](./lean_stage3/ArithTail.md#Arith-sp_nonneg) — `` 0 ≤ sp p ``
+- [`Arith.fV_nonneg`](./lean_stage3/ArithTail.md#Arith-fV_nonneg) — `` 0 ≤ fV m ``
+- [`Arith.fV_one`](./lean_stage3/ArithTail.md#Arith-fV_one) — `` fV 1 = 1 ``
+- [`Arith.tailF_le`](./lean_stage3/ArithTail.md#Arith-tailF_le) — `` tailF d X m ≤ (if P ∧ m.primeFactors ⊆ d.primeFactors then (1 : ℝ) else 0) / m ``
+- [`Arith.tailF_zero`](./lean_stage3/ArithTail.md#Arith-tailF_zero) — `` tailF d X 0 = 0 ``
+- [`Arith.w_nonneg`](./lean_stage3/ArithTail.md#Arith-w_nonneg) — `` 0 ≤ ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 / d `` The weight `μ²σ²/d` is nonnegative.
+
 ### [`BandJoin`](./lean_stage3/BandJoin.md) — 2
 
 BandJoin — block J5 of `lean_stage3/design/closedloop.md`. 2026-11-23. The band of the deep zero and the strip of the zeros, under one map.
@@ -495,6 +547,42 @@ FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The fi
 - [`FilterLadder.norm_eval_le_Wb`](./lean_stage3/FilterLadder.md#FilterLadder-norm_eval_le_Wb) — `` ‖q.eval u‖ ≤ Wb ‖u‖ q `` The value of a polynomial at `u` has size at most its weighted size at `|u|`.
 - [`FilterLadder.Wb_mono`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_mono) — `` Wb t q ≤ Wb t' q `` The weighted size grows with the weight.
 - [`FilterLadder.filter_mode`](./lean_stage3/FilterLadder.md#FilterLadder-filter_mode) — `` ∑ j ∈ range (N + 1), (q ^ m).coeff j * z ^ (n - j) = z ^ n * (q.eval z⁻¹) ^ m `` Fact (iii) of block S1: the filter on a mode. If `(q^m)` has degree at most `N ≤ n` and `z ≠ 0`, then `Σ_{j≤N} (q^m)_j·z^(n−j) = z^n·q(1/z)^m`.
+
+### [`FloorConstDeriv`](./lean_stage3/FloorConstDeriv.md) — 10
+
+# FloorConstDeriv — block S12 of `lean_stage3/design/stencil.md`, piece 5a, the closed form: the partials of `c(α,β)`. 2026-11-25.
+
+- [`FloorConst.hasDerivAt_gx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gx) — `` HasDerivAt (fun x => gF A B C ℓ x y) (gx A C ℓ x y) x ``
+- [`FloorConst.hasDerivAt_gy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gy) — `` HasDerivAt (fun y => gF A B C ℓ x y) (gy A C ℓ x y) y ``
+- [`FloorConst.hasDerivAt_gxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_gxy) — `` HasDerivAt (fun y => gx A C ℓ x y) (gxy A C ℓ x y) y ``
+- [`FloorConst.hasDerivAt_EFx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_EFx) — `` HasDerivAt (fun x => EF lam x y) (-lam * EF lam x y) x ``
+- [`FloorConst.hasDerivAt_EFy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_EFy) — `` HasDerivAt (fun y => EF lam x y) (-lam * EF lam x y) y ``
+- [`FloorConst.hasDerivAt_Hx`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hx) — `` HasDerivAt (fun x => HF A B C ℓ lam x y) (Hx A B C ℓ lam x y) x ``
+- [`FloorConst.hasDerivAt_Hy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hy) — `` HasDerivAt (fun y => HF A B C ℓ lam x y) (Hy A B C ℓ lam x y) y ``
+- [`FloorConst.hasDerivAt_Hxy`](./lean_stage3/FloorConstDeriv.md#FloorConst-hasDerivAt_Hxy) — `` HasDerivAt (fun y => Hx A B C ℓ lam x y) (Hxy A B C ℓ lam x y) y ``
+- [`FloorConst.nhds_ne_x`](./lean_stage3/FloorConstDeriv.md#FloorConst-nhds_ne_x) — `` ∀ᶠ x' in 𝓝 x, x' + y ≠ 0 ``
+- [`FloorConst.nhds_ne_y`](./lean_stage3/FloorConstDeriv.md#FloorConst-nhds_ne_y) — `` ∀ᶠ y' in 𝓝 y, x + y' ≠ 0 ``
+
+### [`FloorConstLimit`](./lean_stage3/FloorConstLimit.md) — 3
+
+# FloorConstLimit — block S12 of `lean_stage3/design/stencil.md`, piece 5a, the closed form: Levinson's constant. 2026-11-25.
+
+- [`FloorConst.Ar_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Ar_X) — `` Ar Polynomial.X = 1 ``
+- [`FloorConst.Br_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Br_X) — `` Br Polynomial.X = 1 / 2 ``
+- [`FloorConst.Cr_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Cr_X) — `` Cr Polynomial.X = 1 / 3 ``
+
+### [`FloorStepCont`](./lean_stage3/FloorStepCont.md) — 1
+
+# FloorStepCont — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: continuity in `σ`. 2026-11-25.
+
+- [`FloorStep.continuous_molli`](./lean_stage3/FloorStepCont.md#FloorStep-continuous_molli) — `` Continuous (LevinsonMollEdge.molli M β) ``
+
+### [`FloorStepSize`](./lean_stage3/FloorStepSize.md) — 2
+
+# FloorStepSize — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: the sizes. 2026-11-25.
+
+- [`FloorStep.tail_le`](./lean_stage3/FloorStepSize.md#FloorStep-tail_le) — `` LevinsonMollEdge.tailDelta M B X ≤ τ `` `tailDelta ≤ τ` once `2^X = A T` with `64 (B + 1) ≤ A τ`, `M ≤ T`.
+- [`FloorStep.XMB_le`](./lean_stage3/FloorStepSize.md#FloorStep-XMB_le) — `` 32 * M * B ≤ (2 : ℝ) ^ X `` `32 M B ≤ 2^X` under the same choice.
 
 ### [`HalfSieve`](./lean_stage3/HalfSieve.md) — 3
 
@@ -639,6 +727,29 @@ NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase
 - [`OffDiagClose.Fw_iter_zero_out`](./lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_zero_out) — `` iteratedDeriv k (Fw W.toWeight α β c x) t = 0 `` Off the support every derivative of `F = wV` vanishes.
 - [`OffDiagClose.major6_nonneg`](./lean_stage3/OffDiagClose.md#OffDiagClose-major6_nonneg) — `` 0 ≤ major6 p ``
 - [`OffDiagClose.r_choice`](./lean_stage3/OffDiagClose.md#OffDiagClose-r_choice) — `` 2 ≤ ((⌈2 / (1 - 2 * θ)⌉₊ : ℕ) : ℝ) * (1 - 2 * θ) `` The number of integrations by parts: `r = ⌈2/(1 − 2θ)⌉₊`, so `r(1 − 2θ) ≥ 2`.
+
+### [`OperatorCY`](./lean_stage3/OperatorCY.md) — 2
+
+# OperatorCY — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: `c(α,β)` is analytic. 2026-11-25.
+
+- [`Operator.afst`](./lean_stage3/OperatorCY.md#Operator-afst) — `` AnalyticAt ℂ (fun p : ℂ × ℂ => p.1) q ``
+- [`Operator.asnd`](./lean_stage3/OperatorCY.md#Operator-asnd) — `` AnalyticAt ℂ (fun p : ℂ × ℂ => p.2) q ``
+
+### [`OperatorCauchy`](./lean_stage3/OperatorCauchy.md) — 3
+
+# OperatorCauchy — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: Cauchy's estimate. 2026-11-25.
+
+- [`Operator.cauchy_bounds`](./lean_stage3/OperatorCauchy.md#Operator-cauchy_bounds) — `` ‖F α₀ β₀‖ ≤ S ∧ ‖pa F α₀ β₀‖ ≤ S / ρ ∧ ‖pb F α₀ β₀‖ ≤ S / ρ ∧ ‖pab F α₀ β₀‖ ≤ S / ρ / ρ `` Cauchy's estimate, one variable at a time, on the closed polydisc of radius `ρ`.
+- [`Operator.Dop_sub_mul`](./lean_stage3/OperatorCauchy.md#Operator-Dop_sub_mul) — `` Dop L (fun x y => A x y - B x y * c) α₀ β₀ = Dop L A α₀ β₀ - Dop L B α₀ β₀ * c `` `D` is linear: `D (A − B·c) = D A − (D B)·c`, given the partials it uses.
+- [`Operator.analytic_partials`](./lean_stage3/OperatorCauchy.md#Operator-analytic_partials) — `` (∀ p ∈ U, DifferentiableAt ℂ (fun x => f (x, p.2)) p.1) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun y => f (p.1, y)) p.2) ∧ (∀ p ∈ U, DifferentiableAt ℂ (fun … `` Partials of an analytic function of two variables. For `f` analytic on an open `U ⊆ ℂ × ℂ`: at every point of `U` the partials in each variable exist, and the partial in the first variable is differentiable in the second.
+
+### [`OperatorInt`](./lean_stage3/OperatorInt.md) — 3
+
+# OperatorInt — block S12 of `lean_stage3/design/stencil.md`, piece 3, the operator: the mean as `D` of the moment. 2026-11-25.
+
+- [`Operator.hasDerivAt_setInt`](./lean_stage3/OperatorInt.md#Operator-hasDerivAt_setInt) — `` HasDerivAt (fun x => ∫ t in Set.Icc a b, f (x + c t) * k t) (∫ t in Set.Icc a b, deriv f (x₀ + c t) * k t) x₀ `` Differentiation under a compact integral.
+- [`Operator.Jfg_set`](./lean_stage3/OperatorInt.md#Operator-Jfg_set) — `` Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ) ``
+- [`Operator.norm_le_of_ball`](./lean_stage3/OperatorInt.md#Operator-norm_le_of_ball) — `` ‖x‖ ≤ ‖x₀‖ + δ ``
 
 ### [`PerfectFit`](./lean_stage3/PerfectFit.md) — 1
 
@@ -887,6 +998,14 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 - [`TwistedMoment.ne_of_im_ne`](./lean_stage3/TwistedMoment.md#TwistedMoment-ne_of_im_ne) — `` z ≠ w ``
 - [`TwistedMoment.continuous_Ehk`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_Ehk) — `` Continuous (Ehk σ₀ h k) ``
 - [`TwistedMoment.offTerm_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-offTerm_nonneg) — `` 0 ≤ offTerm T p ``
+
+### [`UnsmoothWin`](./lean_stage3/UnsmoothWin.md) — 3
+
+# UnsmoothWin — block S12 of `lean_stage3/design/stencil.md`, piece 4, unsmoothing: the near window. 2026-11-25.
+
+- [`Unsmooth.what0_le_of_zero`](./lean_stage3/UnsmoothWin.md#Unsmooth-what0_le_of_zero) — `` what0 W ≤ hi - lo `` `ŵ(0) ≤ hi − lo` for a weight vanishing off `[lo, hi]`.
+- [`Unsmooth.w_compact`](./lean_stage3/UnsmoothWin.md#Unsmooth-w_compact) — `` HasCompactSupport W.w `` `w` has compact support.
+- [`Unsmooth.integral_le_of_one`](./lean_stage3/UnsmoothWin.md#Unsmooth-integral_le_of_one) — `` ∫ t in a..b, f t ≤ ∫ t, W.w t * f t `` The sharp integral under the smooth one: `∫_a^b f ≤ ∫ w f` for `f ≥ 0` continuous and `w = 1` on `[a, b]`.
 
 ### [`WeilPowerClean`](./lean_stage3/WeilPowerClean.md) — 1
 

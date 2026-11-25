@@ -1,11 +1,13 @@
 flowchart LR
   n0["<b>stmtSdiagLead_holds</b><br/>StmtSdiagLead P θ R κ"]:::shp
-  n1["<b>stmtDiagMainO_holds ■</b><br/>StmtDiagMainO P θ R κ"]:::thm
+  n1["<b>stmtDiagMainO_holds</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SdiagLeadAd</b><br/>stmtAdApprox_of_arith"]):::ext
   x1(["<b>SdiagLeadCore</b><br/>stmtSdiagLead_of_steps"]):::ext
   x2(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith"]):::ext
   x3(["<b>DiagMain</b><br/>stmtDiagMainO_of_lead"]):::ext
+  x4(["<b>Arith</b><br/>stmtDiagMainO_holds'"]):::ext
   n0 --> n1
+  n1 -.-> x4
   x0 -.-> n0
   x1 -.-> n0
   x2 -.-> n0

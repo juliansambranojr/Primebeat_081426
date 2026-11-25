@@ -1,0 +1,19 @@
+key	value	source
+module_lines	310	wc -l lean_stage3/Stage3/Operator.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/Operator.lean
+defs	1	grep -c ^def lean_stage3/Stage3/Operator.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/Operator.lean
+pins	2	Ires_o, stmtMollMeanO_holds
+errors_first	3	the worker's failed builds of the top file: a sigma token in a name, an unknown symm constant, the sorry cascade of the pins
+builds	4	the worker's report, builds of the top file
+traps_added	4	lean_stage3/TRAPS.md rows 76-79
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8939	lake build (full Stage3), Build completed successfully
+jobs_module	8839	run/build.log, lake build Stage3.Operator
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	4	lean_stage3/Stage3/Operator.lean, OperatorCauchy.lean, OperatorCY.lean, OperatorInt.lean
+trap_first	76	lean_stage3/TRAPS.md
+trap_last	79	lean_stage3/TRAPS.md

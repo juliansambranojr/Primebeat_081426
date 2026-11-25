@@ -7,7 +7,7 @@ LevinsonMultiple — block S11 of `lean_stage3/design/stencil.md`, removing `hsi
 25 theorems, 1 definition, 1129 lines. 
 
 **Imports:** [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindowNear`](../lean_stage3/LevinsonWindowNear.md)
 
 ## The picture
 

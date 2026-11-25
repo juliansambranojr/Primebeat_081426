@@ -1,0 +1,62 @@
+flowchart LR
+  n0["<b>hasDerivAt_setInt</b><br/>HasDerivAt (fun x =＞ ∫ t in Set.Icc a b, f (x + c t) * k t) (∫ t…"]:::cnt
+  n1["<b>Imom_eq_Jfg ■</b><br/>Imom W M a σ₀ α β = Jfg riemannZeta riemannZeta W M a σ₀ α β"]:::thm
+  n2["<b>Jfg_set</b><br/>Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : …"]:::cnt
+  n3["<b>uA_ne_one</b><br/>uA x t ≠ 1"]:::shp
+  n4["<b>vB_ne_one</b><br/>vB y t ≠ 1"]:::shp
+  n5["<b>contOn_uA</b><br/>ContinuousOn (fun t =＞ f (uA x t)) (Set.Icc (T / 4) (2 * T))"]:::shp
+  n6["<b>contOn_vB</b><br/>ContinuousOn (fun t =＞ f (vB y t)) (Set.Icc (T / 4) (2 * T))"]:::shp
+  n7["<b>Jfg_intOn</b><br/>IntegrableOn (fun t =＞ (W.w t : ℂ) * (f (uA α t) * g (vB β t)) *…"]:::shp
+  n8["<b>norm_le_of_ball</b><br/>‖x‖ ≤ ‖x₀‖ + δ"]:::cnt
+  n9["<b>Jfg_hasDerivAt_left</b><br/>HasDerivAt (fun x =＞ Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M …"]:::shp
+  n10["<b>Jfg_hasDerivAt_right</b><br/>HasDerivAt (fun y =＞ Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M …"]:::shp
+  n11["<b>zeta_diffOn</b><br/>DifferentiableOn ℂ riemannZeta {1}ᶜ"]:::thm
+  n12["<b>dzeta_diffOn ■</b><br/>DifferentiableOn ℂ (deriv riemannZeta) {1}ᶜ"]:::thm
+  n13["<b>deriv_zeta_conj</b><br/>deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv r…"]:::thm
+  n14["<b>mollMean_eq</b><br/>mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀…"]:::thm
+  n15["<b>Imom_partials</b><br/>DifferentiableAt ℂ (fun x =＞ Imom W M a σ₀ x y) x ∧ Differentiab…"]:::thm
+  n16["<b>Dop_Imom</b><br/>Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) …"]:::thm
+  x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
+  x1(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x2(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  n0 --> n10
+  n0 --> n9
+  n10 --> n15
+  n11 --> n15
+  n13 --> n14
+  n14 --> n16
+  n15 --> n16
+  n2 --> n10
+  n2 --> n14
+  n2 --> n9
+  n3 --> n5
+  n3 --> n9
+  n4 --> n10
+  n4 --> n6
+  n5 --> n10
+  n5 --> n7
+  n6 --> n7
+  n6 --> n9
+  n7 --> n14
+  n8 --> n10
+  n8 --> n9
+  n9 --> n15
+  n15 -.-> x1
+  n16 -.-> x1
+  n8 -.-> x1
+  n8 -.-> x2
+  x0 -.-> n10
+  x0 -.-> n14
+  x0 -.-> n2
+  x0 -.-> n5
+  x0 -.-> n6
+  x0 -.-> n7
+  x0 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

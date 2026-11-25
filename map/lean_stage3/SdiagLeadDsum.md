@@ -7,7 +7,7 @@
 15 theorems, 4 definitions, 569 lines. 
 
 **Imports:** [`SdiagLeadAd`](../lean_stage3/SdiagLeadAd.md)  
-**Imported by:** [`SdiagLead`](../lean_stage3/SdiagLead.md)
+**Imported by:** [`ArithBase`](../lean_stage3/ArithBase.md), [`SdiagLead`](../lean_stage3/SdiagLead.md)
 
 ## The picture
 
@@ -81,7 +81,7 @@ def · line 40
 `μ²(d)/φ(d)`.
 
 - **Is:** `` gmu (d : ℕ) : ℝ := ((μ d : ℤ) : ℝ) ^ 2 / (Nat.totient d : ℝ) ``
-- **Used by 6:** [`SdiagLead.StmtGmuLog`](#SdiagLead-StmtGmuLog), [`SdiagLead.abel_main`](#SdiagLead-abel_main), [`SdiagLead.dsum_sum0`](#SdiagLead-dsum_sum0), [`SdiagLead.gmu_nonneg`](#SdiagLead-gmu_nonneg), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith), [`SdiagLead.weight_err`](#SdiagLead-weight_err)
+- **Used by 8:** [`Arith.gmuLog`](../lean_stage3/Arith.md#Arith-gmuLog), [`Arith.gmu_eq`](../lean_stage3/Arith.md#Arith-gmu_eq), [`SdiagLead.StmtGmuLog`](#SdiagLead-StmtGmuLog), [`SdiagLead.abel_main`](#SdiagLead-abel_main), [`SdiagLead.dsum_sum0`](#SdiagLead-dsum_sum0), [`SdiagLead.gmu_nonneg`](#SdiagLead-gmu_nonneg), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith), [`SdiagLead.weight_err`](#SdiagLead-weight_err)
 
 <a name="SdiagLead-StmtGmuLog"></a>
 ### `SdiagLead.StmtGmuLog`
@@ -92,7 +92,7 @@ OPEN, `Σ_{d ≤ t} μ²(d)/φ(d) = log t + O(1)`.
 
 - **Is:** `` StmtGmuLog : Prop := ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 1 ≤ t → |∑ k ∈ Icc 0 ⌊t⌋₊, gmu k - Real.log t| ≤ C ``
 - **Built from:** [`SdiagLead.gmu`](#SdiagLead-gmu)
-- **Used by 3:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.abel_main`](#SdiagLead-abel_main), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith)
+- **Used by 4:** [`Arith.gmuLog`](../lean_stage3/Arith.md#Arith-gmuLog), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.abel_main`](#SdiagLead-abel_main), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith)
 
 <a name="SdiagLead-StmtDivLog"></a>
 ### `SdiagLead.StmtDivLog`
@@ -103,7 +103,7 @@ OPEN, `Σ_{d ≤ M} μ²(d) σ(d)²/d · Σ_{a | d} log a/a ≤ C(1 + log M)`.
 
 - **Is:** `` StmtDivLog : Prop := ∃ C : ℝ, 0 ≤ C ∧ ∀ M : ℕ, ∑ d ∈ Icc 1 M, ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 / d * (∑ a ∈ d.divisors, Real.log a / a) ≤ C * (1 + Real.log M) ``
 - **Built from:** [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
-- **Used by 2:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith)
+- **Used by 3:** [`Arith.divLog`](../lean_stage3/Arith.md#Arith-divLog), [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith), [`SdiagLead.stmtDsum_of_arith`](#SdiagLead-stmtDsum_of_arith)
 
 <a name="SdiagLead-Fg"></a>
 ### `SdiagLead.Fg`
