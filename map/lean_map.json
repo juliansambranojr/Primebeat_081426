@@ -38211,7 +38211,7 @@
   "path": "lean_stage3/Stage3/DiagMain.lean",
   "module": "Stage3.DiagMain",
   "stem": "DiagMain",
-  "header": "# Stage3.DiagMain — the diagonal's main term, little-o (Young's Lemma 7): the reduction and the Möbius input. 2026-11-25.",
+  "header": "# Stage3.DiagMain — block S12 of `lean_stage3/design/stencil.md`, the diagonal's main term, little-o (Young's Lemma 7): the reduction and the Möbius input. 2026-11-25.",
   "imports": [
    "Stage3.DiagMainStmt",
    "Stage3.DiagMainMu"
@@ -42151,7 +42151,7 @@
   "path": "lean_stage3/Stage3/DiagonalO.lean",
   "module": "Stage3.DiagonalO",
   "stem": "DiagonalO",
-  "header": "# DiagonalO — the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.",
+  "header": "# DiagonalO — block S12 of `lean_stage3/design/stencil.md`, the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.",
   "imports": [
    "Stage3.DiagMainStmt"
   ],
