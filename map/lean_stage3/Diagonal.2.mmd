@@ -36,8 +36,9 @@ flowchart LR
   x4(["<b>ContourShift</b><br/>analyticAt_dslope<br/>residue_rectangle_of_local<br/>sq_mul_zeta_analyticAt_one"]):::ext
   x5(["<b>ApproxFE</b><br/>gY_zero<br/>uA_re<br/>vB_re"]):::ext
   x6(["<b>ApproxShift</b><br/>local_simple"]):::ext
-  x7(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
-  x8(["<b>FloorStepSize</b><br/>betaC_bound"]):::ext
+  x7(["<b>DiagLong</b><br/>4 theorems"]):::ext
+  x8(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
+  x9(["<b>FloorStepSize</b><br/>betaC_bound"]):::ext
   n0 --> n10
   n1 --> n5
   n1 --> n6
@@ -74,11 +75,16 @@ flowchart LR
   n7 --> n11
   n8 --> n9
   n9 --> n10
+  n24 -.-> x7
+  n25 -.-> x7
   n26 -.-> x7
-  n27 -.-> x7
+  n26 -.-> x8
+  n27 -.-> x8
   n28 -.-> x7
   n28 -.-> x8
+  n28 -.-> x9
   n29 -.-> x7
+  n29 -.-> x8
   x0 -.-> n1
   x0 -.-> n10
   x0 -.-> n11

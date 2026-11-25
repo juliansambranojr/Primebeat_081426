@@ -9,12 +9,13 @@ flowchart LR
   n7["<b>final_size_diag</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T …"]:::shp
   n8["<b>diag_young</b><br/>∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T…"]:::thm
   n9["<b>stmtDiag_of_main ■</b><br/>StmtDiag P θ R κ"]:::thm
-  x0(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
-  x1(["<b>diagram 2</b><br/>4 theorems"]):::ext
-  x2(["<b>OffDiagClose</b><br/>N_le"]):::ext
-  x3(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
-  x4(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
-  x5(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
+  x0(["<b>DiagLong</b><br/>SBF_young<br/>final_size_long<br/>gcd_sum1"]):::ext
+  x1(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
+  x2(["<b>diagram 2</b><br/>4 theorems"]):::ext
+  x3(["<b>OffDiagClose</b><br/>N_le"]):::ext
+  x4(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
+  x5(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
+  x6(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
   n0 --> n5
   n1 --> n2
   n1 --> n4
@@ -25,16 +26,19 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n8 --> n9
-  n8 -.-> x3
+  n1 -.-> x0
+  n3 -.-> x0
+  n6 -.-> x0
   n8 -.-> x4
-  x0 -.-> n3
-  x0 -.-> n4
-  x0 -.-> n5
-  x0 -.-> n8
+  n8 -.-> x5
+  x1 -.-> n3
+  x1 -.-> n4
   x1 -.-> n5
   x1 -.-> n8
+  x2 -.-> n5
   x2 -.-> n8
-  x5 -.-> n9
+  x3 -.-> n8
+  x6 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

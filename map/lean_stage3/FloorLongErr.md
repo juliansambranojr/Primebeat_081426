@@ -7,7 +7,7 @@
 4 theorems, 2 definitions, 136 lines. 
 
 **Imports:** [`Lemma3`](../lean_stage3/Lemma3.md)  
-**Imported by:** [`FloorLongMean`](../lean_stage3/FloorLongMean.md)
+**Imported by:** [`DiagLong`](../lean_stage3/DiagLong.md), [`FloorLongMean`](../lean_stage3/FloorLongMean.md)
 
 ## The picture
 
@@ -64,7 +64,7 @@ def · line 42
 
 - **Is:** `` StmtDiagErr (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (what0 W : ℂ) * (riemannZeta (1 + α + β) * Diagonal.Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0)‖ ≤ C * (T / Real.log T) noncomputable ``
 - **Built from:** [`Diagonal.Sdiag`](../lean_stage3/Diagonal.md#Diagonal-Sdiag), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.diagSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-diagSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
-- **Used by 2:** [`FloorLong.StmtLongErr`](#FloorLong-StmtLongErr), [`FloorLong.diagO_of_err`](#FloorLong-diagO_of_err)
+- **Used by 5:** [`DiagLong.stmtDiagErr_holds`](../lean_stage3/DiagLong.md#DiagLong-stmtDiagErr_holds), [`DiagLong.stmtDiagErr_of_tail`](../lean_stage3/DiagLong.md#DiagLong-stmtDiagErr_of_tail), [`DiagLong.tail_of_stmtDiagErr`](../lean_stage3/DiagLong.md#DiagLong-tail_of_stmtDiagErr), [`FloorLong.StmtLongErr`](#FloorLong-StmtLongErr), [`FloorLong.diagO_of_err`](#FloorLong-diagO_of_err)
 
 <a name="FloorLong-StmtLongErr"></a>
 ### `FloorLong.StmtLongErr`

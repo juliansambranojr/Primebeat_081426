@@ -124,11 +124,12 @@ flowchart LR
   x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
   x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
   x3(["<b>Operator</b><br/>Ires_o"]):::ext
-  x4(["<b>Diagonal</b><br/>diag_young"]):::ext
-  x5(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
-  x6(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
-  x7(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
-  x8(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
+  x4(["<b>DiagLong</b><br/>short_part"]):::ext
+  x5(["<b>Diagonal</b><br/>diag_young"]):::ext
+  x6(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
+  x7(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
+  x8(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
+  x9(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
   n0 --> n1
   n1 --> n6
   n10 --> n13
@@ -144,10 +145,11 @@ flowchart LR
   n12 -.-> x4
   n12 -.-> x5
   n12 -.-> x6
-  n13 -.-> x5
+  n12 -.-> x7
   n13 -.-> x6
   n13 -.-> x7
   n13 -.-> x8
+  n13 -.-> x9
   n7 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
@@ -1511,8 +1513,9 @@ line 960 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`DiagLong.short_part`](../lean_stage3/DiagLong.md#DiagLong-short_part) (DiagLong) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Jsh W α β (Zc (Mof T θ) (cF (aY P T θ R) (sig0 T R) (T… ``
   - [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young) (Diagonal) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (w… ``
   - [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds) — `` StmtOffDiagAll P θ R κ ``
   - [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-) (StirlingX) — `` StmtXAll P θ R κ ``
