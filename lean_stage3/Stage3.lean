@@ -238,6 +238,7 @@ import Stage3.FloorStep
 import Stage3.FloorSum
 import Stage3.Defect
 import Stage3.FloorLong
+import Stage3.OperatorQ
 
 namespace Stage3
 
