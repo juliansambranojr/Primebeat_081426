@@ -756,3 +756,94 @@ equation fixes this. It writes ζ near the line as two sums of length about
 
 **Order.** 1, then 2, then 3 and 4. Piece 1 is unconditional and
 self-contained, so it goes first.
+
+## S13 Stage B, the proportion toward one — design (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else, except where a check is named.
+
+**Where the length enters stage A.** `FloorSum.levinson_floor` holds at
+`θ = 49/100`. The length exponent `θ < 1/2` enters the chain at three size
+statements only, each an error term:
+- `Diagonal.final_size_diag`: the shifted diagonal integral, `O(L⁵·T^(3/4+θ/2))`;
+- `OffDiagClose.final_size`: the off-diagonal after `r` integrations by parts;
+- `SwapX.size_X`: the Stirling remainder of the swapped term.
+The main term is general in `θ`: `FloorConst.Kfl A B C θ R`, `re_dop_tendsto`
+for any `θ > 0`, and `Arith`, `SdiagLead`, `Operator`, `Unsmooth`, `FloorStep`
+take `θ` as a parameter.
+
+**B1, Lean, buildable now.** `floor_of_long`: the floor for every `θ > 0`, with
+the three error statements as one named hypothesis `StmtLongErr P θ R`. Then
+stage B is exactly one named input, as S11 made the mean value one input for
+the floor. Its conclusion: `lineCount T ≥ (1 − log(Kfl …)/R − ε)·N T`.
+
+**B2, the main term for long mollifiers.** Computed here, not proved: with
+`P(x) = x` and Levinson's `Q`, the best `κ(θ)` over `R` is 0.3428 at `θ = 1/2`,
+0.3902 at `4/7`, 0.5195 at `1`, and then falls (0.3798 at `2`, below zero by
+`4`). So `P` has to change with `θ`. Feng (arXiv 1003.0059, read this
+session) cites Farmer's "θ = ∞ conjecture" and his proof that it implies
+100%. Farmer's paper was not read. Steps:
+- B2a: optimize `P` of degree `d` (and `Q` of degree `d'`, which needs the
+  operator with a general `Q`) for `θ = 1, 2, 4, 8` in Python, and record the
+  best `κ(θ)`.
+- B2b: derive, on paper, Farmer's limit `sup_{P,Q,R} κ(θ) → 1` from the closed
+  form, then state it in Lean as a statement about `Kfl` (with general `Q`).
+
+**B3, the core: the error terms for `θ ≥ 1/2`.** Conrey reaches `θ < 4/7`
+through Kloosterman sums (Deshouillers–Iwaniec); none of that is in the tree.
+The off-diagonal is the pairs `(h, k)` of mollifier terms coupled through
+`hm ≠ kn`: for each shift `r = hm − kn`, a shifted convolution sum of the
+coefficients `μ(h)P(…)` against the divisor-type sum over `(m, n)`. This is
+the coupling of the composites in Julian's picture: the mollifier's terms are
+the composites, and `StmtLongErr` asks that their couplings across every
+shift cancel to `o(T)`. The design question for B3 is which cancellation in
+`Σ_{hm−kn=r} μ(h)μ(k)·…` that is, and what size it must have at length `T^θ`.
+
+**What B gives C.** `lineCount T ≥ (1 − ε)·N T`: the defect
+`N T − lineCount T` is `o(N T)`.
+
+## S14 Stage C, from the defect to zero — design (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else.
+
+**What is already settled (S7 to S9).** The ladder route through S1–S6 takes
+H, the bound on `ψ` at the doublings. The wall (S7) closes under H only with a
+separation bound on the top zeros near the alias lattice and a bound on the
+creep. S8 records that every route reaches a face equivalent to RH, and that a
+proof needs one face derived from facts about ζ proved independently of RH.
+`rh_iff_line_count` is such a face: `RiemannHypothesis ↔ ∀ T, lineCount T = N T`.
+
+**The independent facts now in the tree.** `ZeroDensity` (few zeros right of
+any `σ > 1/2`), `Backlund` and `ArgCount.rvM_crude` (the count `N T`),
+`Littlewood.littlewood_rect`, the Levinson chain, and `FloorSum.levinson_floor`
+(the defect at most `(2/3 + ε)·N T`).
+
+**The defect.** `D(T) = N T − lineCount T` counts the zeros off the line, with
+multiplicity. B makes it `o(N T)`; C needs `D(T) = 0`. Every bound in the
+Levinson chain is an average over a window, and an average bounds `D` from
+above without excluding one zero: a single off-line quadruple changes `D` by 2
+and the means by `O(1/T)`. So C needs an input that sees one zero.
+
+**C1, Lean, buildable now.**
+- `defect_even`: `D(T)` is even, from the pairing `ρ ↔ 1 − ρ̄` of the off-line
+  zeros (functional equation and conjugation, already in the tree).
+- `defect_le`: `D(T) ≤ (2/3 + ε)·N T` from `levinson_floor`, and the form taking
+  B's input, `D(T) ≤ ε·N T`.
+
+**C2, the local face.** One off-line zero `ρ₁ = β₁ + iγ₁` must be excluded by
+something local at `γ₁`. In Julian's picture this is the basin: between two
+consecutive zeros of `Z` on the line, the horizon `θ(t)` turns by about `π`,
+and `S(T) = N T − θ(T)/π − 1` measures the excess. An off-line pair at height
+`γ₁` takes two from the zeros on the line near `γ₁`: there the turning of the
+horizon is not matched by sign changes of `Z`. The candidate statement is a
+local Levinson count: on a window `[γ₁ − H, γ₁ + H]` with `H` small against
+`T`, the zeros on the line at least the window's share of `N`, less an error
+below 2. Levinson's error terms are `O(log T)` per window (`levinson_window_diff`,
+`134 log T + 2918`), so the local count needs windows where that error is below
+the step of 2.
+
+**C3, the design question.** Which local quantity of the horizon and the
+basins, read on a window of length `H`, has an error below 2 at every height,
+so that an off-line pair cannot hide in it. The next round is that
+derivation on paper: the error of `levinson_window_diff` as a function of the
+window length `H` (its terms `(b − a)·tailDelta`, `X²·log T`, `134 log T`), and
+the length at which each term drops below the step.
