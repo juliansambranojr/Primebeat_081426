@@ -1,8 +1,8 @@
-# What `MeanQ.window_V_lt_half` rests on
+# What `GrRatio.window_V_lt_half'` rests on
 
-[`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half) in `lean_stage3/Stage3/MeanQ.lean`, line 209.
+[`GrRatio.window_V_lt_half'`](../lean_stage3/GrRatio.md#GrRatio-window_V_lt_half-) in `lean_stage3/Stage3/GrRatio.lean`, line 324.
 
-**Why.** The window bound for Conrey's `V`, `θ < 1/2`: unconditional but for the `Gammaℝ` ratio.
+**Why.** `window_V_lt_half` without `hG`.
 
 **Proves**
 
@@ -17,9 +17,8 @@
   - `` hθ0 : 0 < θ ``
   - `` hθ : θ < 1 / 2 ``
   - `` hR : 0 < R ``
-  - `` hG : StmtGrRatio Q.natDegree ``
 
-Behind it: 427 theorems and 132 definitions in 40 files. Every one is listed below; Lean recorded each step.
+Behind it: 441 theorems and 133 definitions in 43 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -29,95 +28,102 @@ flowchart LR
   f1["<b>ContourShift</b><br/>6 used"]:::thm
   f2["<b>DiagMainMu</b><br/>20 used"]:::thm
   f3["<b>Diagonal</b><br/>5 used"]:::thm
-  f4["<b>LevinsonEdge</b><br/>1 used"]:::thm
-  f5["<b>ApproxShift</b><br/>10 used"]:::thm
-  f6["<b>ApproxBounds</b><br/>37 used"]:::thm
-  f7["<b>ApproxDeriv</b><br/>32 used"]:::thm
-  f8["<b>MeanQCauchy</b><br/>15 used"]:::thm
-  f9["<b>OperatorQ</b><br/>1 used"]:::thm
-  f10["<b>ConreyCountLine</b><br/>3 used"]:::thm
-  f11["<b>MeanQRed</b><br/>14 used"]:::thm
-  f12["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
-  f13["<b>StirlingLog</b><br/>9 used"]:::thm
-  f14["<b>TwistedMoment</b><br/>58 used"]:::thm
-  f15["<b>DiagMainStmt</b><br/>2 used"]:::thm
-  f16["<b>DiagMain</b><br/>10 used"]:::thm
-  f17["<b>FloorLongMean</b><br/>2 used"]:::thm
-  f18["<b>OffDiagClose</b><br/>26 used"]:::thm
-  f19["<b>DiagonalO</b><br/>1 used"]:::thm
-  f20["<b>OperatorCY</b><br/>8 used"]:::thm
-  f21["<b>OperatorInt</b><br/>11 used"]:::thm
-  f22["<b>MeanQInt</b><br/>15 used"]:::thm
-  f23["<b>MeanQMean</b><br/>3 used"]:::thm
-  f24["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
-  f25["<b>SdiagLeadCop</b><br/>12 used"]:::thm
-  f26["<b>SdiagLeadCore</b><br/>8 used"]:::thm
-  f27["<b>SdiagLeadAd</b><br/>36 used"]:::thm
-  f28["<b>ArithBase</b><br/>42 used"]:::thm
-  f29["<b>ArithTail</b><br/>24 used"]:::thm
-  f30["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
-  f31["<b>SdiagLead</b><br/>3 used"]:::thm
-  f32["<b>Arith</b><br/>14 used"]:::thm
-  f33["<b>StirlingX</b><br/>20 used"]:::thm
-  f34["<b>Lemma3</b><br/>1 used"]:::thm
-  f35["<b>UnsmoothCY</b><br/>2 used"]:::thm
-  f36["<b>MeanQBound</b><br/>7 used"]:::thm
-  f37["<b>UnsmoothWin</b><br/>1 used"]:::thm
-  f38["<b>MeanQV</b><br/>11 used"]:::thm
-  f39["<b>MeanQ</b><br/>window_V_lt_half"]:::end_
-  f0 --> f5
-  f1 --> f5
-  f4 --> f5
+  f4["<b>DigammaBoundIdentity</b><br/>1 used"]:::thm
+  f5["<b>LevinsonEdge</b><br/>1 used"]:::thm
+  f6["<b>ApproxShift</b><br/>10 used"]:::thm
+  f7["<b>ApproxBounds</b><br/>37 used"]:::thm
+  f8["<b>ApproxDeriv</b><br/>32 used"]:::thm
+  f9["<b>DigammaBoundSize</b><br/>2 used"]:::thm
+  f10["<b>MeanQCauchy</b><br/>15 used"]:::thm
+  f11["<b>OperatorQ</b><br/>1 used"]:::thm
+  f12["<b>ConreyCountLine</b><br/>3 used"]:::thm
+  f13["<b>MeanQRed</b><br/>14 used"]:::thm
+  f14["<b>SdiagLeadSmooth</b><br/>35 used"]:::thm
+  f15["<b>StirlingLog</b><br/>9 used"]:::thm
+  f16["<b>TwistedMoment</b><br/>58 used"]:::thm
+  f17["<b>DiagMainStmt</b><br/>2 used"]:::thm
+  f18["<b>DiagMain</b><br/>10 used"]:::thm
+  f19["<b>FloorLongMean</b><br/>2 used"]:::thm
+  f20["<b>OffDiagClose</b><br/>26 used"]:::thm
+  f21["<b>DiagonalO</b><br/>1 used"]:::thm
+  f22["<b>OperatorCY</b><br/>8 used"]:::thm
+  f23["<b>OperatorInt</b><br/>11 used"]:::thm
+  f24["<b>MeanQInt</b><br/>15 used"]:::thm
+  f25["<b>MeanQMean</b><br/>3 used"]:::thm
+  f26["<b>SdiagLeadSwap</b><br/>13 used"]:::thm
+  f27["<b>SdiagLeadCop</b><br/>12 used"]:::thm
+  f28["<b>SdiagLeadCore</b><br/>8 used"]:::thm
+  f29["<b>SdiagLeadAd</b><br/>36 used"]:::thm
+  f30["<b>ArithBase</b><br/>42 used"]:::thm
+  f31["<b>ArithTail</b><br/>24 used"]:::thm
+  f32["<b>SdiagLeadDsum</b><br/>18 used"]:::thm
+  f33["<b>SdiagLead</b><br/>3 used"]:::thm
+  f34["<b>Arith</b><br/>14 used"]:::thm
+  f35["<b>StirlingX</b><br/>20 used"]:::thm
+  f36["<b>Lemma3</b><br/>1 used"]:::thm
+  f37["<b>UnsmoothCY</b><br/>2 used"]:::thm
+  f38["<b>MeanQBound</b><br/>7 used"]:::thm
+  f39["<b>UnsmoothWin</b><br/>1 used"]:::thm
+  f40["<b>MeanQV</b><br/>11 used"]:::thm
+  f41["<b>MeanQ</b><br/>4 used"]:::thm
+  f42["<b>GrRatio</b><br/>window_V_lt_half'"]:::end_
+  f0 --> f6
+  f1 --> f6
   f5 --> f6
   f6 --> f7
-  f9 --> f10
-  f10 --> f11
-  f2 --> f12
-  f7 --> f14
-  f3 --> f15
-  f14 --> f15
-  f15 --> f16
-  f14 --> f17
-  f14 --> f18
-  f15 --> f19
-  f18 --> f19
-  f14 --> f20
-  f14 --> f21
-  f8 --> f22
-  f11 --> f22
-  f20 --> f22
-  f21 --> f22
-  f17 --> f23
-  f22 --> f23
-  f3 --> f24
-  f14 --> f24
-  f12 --> f25
+  f7 --> f8
+  f7 --> f9
+  f11 --> f12
+  f12 --> f13
+  f2 --> f14
+  f8 --> f16
+  f3 --> f17
+  f16 --> f17
+  f17 --> f18
+  f16 --> f19
+  f16 --> f20
+  f17 --> f21
+  f20 --> f21
+  f16 --> f22
+  f16 --> f23
+  f10 --> f24
+  f13 --> f24
+  f22 --> f24
+  f23 --> f24
+  f19 --> f25
   f24 --> f25
-  f12 --> f26
+  f3 --> f26
   f16 --> f26
-  f24 --> f26
-  f25 --> f27
+  f14 --> f27
   f26 --> f27
-  f27 --> f28
+  f14 --> f28
+  f18 --> f28
+  f26 --> f28
+  f27 --> f29
   f28 --> f29
-  f27 --> f30
+  f29 --> f30
   f30 --> f31
   f29 --> f32
-  f31 --> f32
-  f13 --> f33
-  f18 --> f33
-  f19 --> f34
-  f32 --> f34
+  f32 --> f33
+  f31 --> f34
   f33 --> f34
+  f15 --> f35
   f20 --> f35
-  f16 --> f36
-  f23 --> f36
+  f21 --> f36
+  f34 --> f36
   f35 --> f36
-  f14 --> f37
-  f36 --> f38
+  f22 --> f37
+  f18 --> f38
+  f25 --> f38
   f37 --> f38
-  f34 --> f39
-  f38 --> f39
+  f16 --> f39
+  f38 --> f40
+  f39 --> f40
+  f36 --> f41
+  f40 --> f41
+  f4 --> f42
+  f9 --> f42
+  f41 --> f42
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -196,6 +202,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Diagonal.Sdiag`](../lean_stage3/Diagonal.md#Diagonal-Sdiag) — *def*
 - [`Diagonal.ncpow_mul`](../lean_stage3/Diagonal.md#Diagonal-ncpow_mul) — `` ((m * n : ℕ) : ℂ) ^ z = (m : ℂ) ^ z * (n : ℂ) ^ z ``
 - [`Diagonal.norm_cpow_nat`](../lean_stage3/Diagonal.md#Diagonal-norm_cpow_nat) — `` ‖(n : ℂ) ^ z‖ = (n : ℝ) ^ z.re ``
+
+### [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md) — 1
+
+- [`DigammaBound.iteratedDeriv_E`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-iteratedDeriv_E) — `` iteratedDeriv m (fun z => cexp (a * (z - w))) w = a ^ m ``
 
 ### [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md) — 1
 
@@ -289,6 +299,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ApproxDeriv.F_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-F_hasDerivAt) — `` HasDerivAt (fun t => KY α β t s * (x : ℂ) ^ (-s)) (KY α β t s * (x : ℂ) ^ (-s) * dY α β t s) t ``
 - [`ApproxDeriv.VY_hasDerivAt`](../lean_stage3/ApproxDeriv.md#ApproxDeriv-VY_hasDerivAt) — `` HasDerivAt (fun t => VY α β σ x t) (VY1 α β σ x t₀) t₀ ``
 
+### [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md) — 2
+
+- [`DigammaBound.lY_bounds`](../lean_stage3/DigammaBoundSize.md#DigammaBound-lY_bounds) — `` Real.log T - 3 ≤ ApproxBounds.lY (y / 2) ∧ ApproxBounds.lY (y / 2) ≤ Real.log T + 1 ``
+- [`DigammaBound.mul_le_of_abs`](../lean_stage3/DigammaBoundSize.md#DigammaBound-mul_le_of_abs) — `` a * b ≤ A * B ``
+
 ### [`MeanQCauchy`](../lean_stage3/MeanQCauchy.md) — 15
 
 - [`MeanQ.pkl`](../lean_stage3/MeanQCauchy.md#MeanQ-pkl) — *def*
@@ -331,7 +346,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`MeanQ.V_eq_sum`](../lean_stage3/MeanQRed.md#MeanQ-V_eq_sum) — `` ConreyCount.V Q L s = ∑ j ∈ Finset.range (Q.natDegree + 1), Acoef Q L j s * (((-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j riemannZeta s ``
 - [`MeanQ.V_sub_VQ`](../lean_stage3/MeanQRed.md#MeanQ-V_sub_VQ) — `` ConreyCount.V Q L s - VQ Q L s = ∑ j ∈ Finset.range (Q.natDegree + 1), (Acoef Q L j s - (Q.coeff j : ℂ)) * (((-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j riemannZet… ``
 - [`MeanQ.Acoef_sub`](../lean_stage3/MeanQRed.md#MeanQ-Acoef_sub) — `` Acoef Q L j s - (Q.coeff j : ℂ) = ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) : ℝ) : ℂ) * ((((-1 / L) ^ (k - j) : ℝ)… ``
-- ★ [`MeanQ.StmtGrRatio`](../lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio) — *def*
+- [`MeanQ.StmtGrRatio`](../lean_stage3/MeanQRed.md#MeanQ-StmtGrRatio) — *def*
 - [`MeanQ.E_bound`](../lean_stage3/MeanQRed.md#MeanQ-E_bound) — `` ∃ K T₀ : ℝ, 0 ≤ K ∧ ∀ T : ℝ, T₀ ≤ T → ∀ σ ∈ Set.Icc (1/4 : ℝ) 1, ∀ t ∈ Set.Icc (T / 4) (2 * T), ‖ConreyCount.V Q (Real.log T) ((σ : ℂ) + t * I) - VQ Q (Real.log… ``
 
 ### [`SdiagLeadSmooth`](../lean_stage3/SdiagLeadSmooth.md) — 35
@@ -772,7 +787,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`Lemma3`](../lean_stage3/Lemma3.md) — 1
 
-- ★ [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) — `` StmtLemma3resO P θ R κ ``
+- [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) — `` StmtLemma3resO P θ R κ ``
 
 ### [`UnsmoothCY`](../lean_stage3/UnsmoothCY.md) — 2
 
@@ -807,9 +822,24 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`MeanQ.compare_means`](../lean_stage3/MeanQV.md#MeanQ-compare_means) — `` (∫ t, W.w t * fV t) ≤ (1 + δ) * (∫ t, W.w t * fQ t) + c * ∑ j ∈ Finset.range n, ∫ t, W.w t * fJ j t ∧ (∫ t, W.w t * fQ t) ≤ (1 + δ) * (∫ t, W.w t * fV t) + c * … ``
 - [`MeanQ.mollMeanV_long`](../lean_stage3/MeanQV.md#MeanQ-mollMeanV_long) — `` StmtMollMeanV Q P θ R ``
 
-### [`MeanQ`](../lean_stage3/MeanQ.md) — 3
+### [`MeanQ`](../lean_stage3/MeanQ.md) — 4
 
 - [`MeanQ.norm_Vpsi_sq`](../lean_stage3/MeanQ.md#MeanQ-norm_Vpsi_sq) — `` ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t ``
 - [`MeanQ.unsmooth_V`](../lean_stage3/MeanQ.md#MeanQ-unsmooth_V) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q … ``
-- ★ [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q … ``
+- [`MeanQ.window_V_long`](../lean_stage3/MeanQ.md#MeanQ-window_V_long) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q … ``
+- ★ [`MeanQ.window_V_lt_half`](../lean_stage3/MeanQ.md#MeanQ-window_V_lt_half) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q … ``
+
+### [`GrRatio`](../lean_stage3/GrRatio.md) — 11
+
+- [`GrRatio.gErr_le16`](../lean_stage3/GrRatio.md#GrRatio-gErr_le16) — `` ApproxBounds.gErr r ≤ 110 ``
+- [`GrRatio.logGamma_bound16`](../lean_stage3/GrRatio.md#GrRatio-logGamma_bound16) — `` ∃ C : ℝ, ∀ r ∈ Set.Icc (1 / 16 : ℝ) (7 / 2), |Real.log (Real.Gamma r)| ≤ C ``
+- [`GrRatio.gamma_ratio8`](../lean_stage3/GrRatio.md#GrRatio-gamma_ratio8) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 8 ≤ z.re → z.re ≤ 7 → 1 / 8 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z… ``
+- [`GrRatio.hw`](../lean_stage3/GrRatio.md#GrRatio-hw) — *def*
+- [`GrRatio.analyticAt_hw`](../lean_stage3/GrRatio.md#GrRatio-analyticAt_hw) — `` AnalyticAt ℂ (hw L w) z ``
+- [`GrRatio.hw_self`](../lean_stage3/GrRatio.md#GrRatio-hw_self) — `` hw L w w = 1 ``
+- [`GrRatio.norm_hw`](../lean_stage3/GrRatio.md#GrRatio-norm_hw) — `` ‖hw L w z‖ = ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(L / 2) * (z.re - w.re)) ``
+- [`GrRatio.grR_eq`](../lean_stage3/GrRatio.md#GrRatio-grR_eq) — `` MeanQ.grR i w = ∑ j ∈ Finset.range (i + 1), (i.choose j : ℂ) * iteratedDeriv j (hw L w) w * (((L / 2 : ℝ) : ℂ)) ^ (i - j) ``
+- [`GrRatio.pow_shift`](../lean_stage3/GrRatio.md#GrRatio-pow_shift) — `` (-1 / L) ^ i * (L / 2) ^ (i - j) = (-1 / 2 : ℝ) ^ (i - j) * (-1 / L) ^ j ``
+- [`GrRatio.grR_sub`](../lean_stage3/GrRatio.md#GrRatio-grR_sub) — `` (((-1 / L) ^ i : ℝ) : ℂ) * MeanQ.grR i w - (((-1 / 2 : ℝ) ^ i : ℝ) : ℂ) = ∑ j ∈ Finset.range i, (i.choose (j + 1) : ℂ) * (((-1 / 2 : ℝ) ^ (i - (j + 1)) : ℝ) : ℂ… ``
+- ★ [`GrRatio.stmtGrRatio_holds`](../lean_stage3/GrRatio.md#GrRatio-stmtGrRatio_holds) — `` MeanQ.StmtGrRatio n ``
 

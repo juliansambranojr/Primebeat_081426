@@ -2,14 +2,16 @@ flowchart LR
   n0["<b>norm_Vpsi_sq</b><br/>‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t *…"]:::cnt
   n1["<b>unsmooth_V</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::shp
   n2["<b>window_V_long</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
-  n3["<b>window_V_lt_half ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
+  n3["<b>window_V_lt_half</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 …"]:::thm
   x0(["<b>MeanQBound</b><br/>dopQ_cY_bdd"]):::ext
   x1(["<b>MeanQV</b><br/>continuous_V_line<br/>mollMeanV_long"]):::ext
   x2(["<b>TwistedMoment</b><br/>continuous_msq<br/>msq_nonneg"]):::ext
   x3(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
+  x4(["<b>GrRatio</b><br/>window_V_lt_half'"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
+  n3 -.-> x4
   x0 -.-> n1
   x1 -.-> n1
   x1 -.-> n2

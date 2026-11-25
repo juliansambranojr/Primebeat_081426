@@ -7,7 +7,7 @@ DigammaBoundSize — block S13 of `lean_stage3/design/stencil.md`, B4 step 2, th
 13 theorems, 1 definition, 319 lines. 
 
 **Imports:** [`ApproxBounds`](../lean_stage3/ApproxBounds.md), [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md)  
-**Imported by:** [`DigammaBound`](../lean_stage3/DigammaBound.md)
+**Imported by:** [`DigammaBound`](../lean_stage3/DigammaBound.md), [`GrRatio`](../lean_stage3/GrRatio.md)
 
 ## The picture
 
@@ -26,9 +26,10 @@ flowchart LR
   n10["<b>V_sub_le</b><br/>‖ConreyCount.V Q L w - (Q.coeff 0 : ℂ) * riemannZeta w‖ ≤ KQ Q *…"]:::thm
   n11["<b>zeta_norm_le_two</b><br/>‖riemannZeta z‖ ≤ Real.pi ^ 2 / 6"]:::thm
   n12["<b>re_zeta_three_ge</b><br/>2 - Real.pi ^ 2 / 6 ≤ (riemannZeta (3 + t * I)).re"]:::thm
-  x0(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge<br/>stmtVEdges_holds"]):::ext
-  x1(["<b>DigammaBoundIdentity</b><br/>V_eq_sum_H"]):::ext
-  x2(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x0(["<b>GrRatio</b><br/>gamma_ratio8"]):::ext
+  x1(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge<br/>stmtVEdges_holds"]):::ext
+  x2(["<b>DigammaBoundIdentity</b><br/>V_eq_sum_H"]):::ext
+  x3(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n4
   n1 --> n4
   n2 --> n4
@@ -36,16 +37,18 @@ flowchart LR
   n6 --> n10
   n8 --> n10
   n8 --> n9
-  n10 -.-> x0
-  n11 -.-> x0
-  n12 -.-> x0
-  n4 -.-> x0
-  n5 -.-> x0
-  n7 -.-> x0
-  n9 -.-> x0
-  x1 -.-> n10
-  x1 -.-> n9
-  x2 -.-> n12
+  n0 -.-> x0
+  n10 -.-> x1
+  n11 -.-> x1
+  n12 -.-> x1
+  n3 -.-> x0
+  n4 -.-> x1
+  n5 -.-> x1
+  n7 -.-> x1
+  n9 -.-> x1
+  x2 -.-> n10
+  x2 -.-> n9
+  x3 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -97,9 +100,10 @@ Real.log T - 3 ≤ ApproxBounds.lY (y / 2) ∧ ApproxBounds.lY (y / 2) ≤ Real.
 
 **Definitions its proof touches:** [`ApproxBounds.lY`](../lean_stage3/ApproxBounds.md#ApproxBounds-lY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DigammaBound.gamma_ratio`](#DigammaBound-gamma_ratio) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ … ``
+  - [`GrRatio.gamma_ratio8`](../lean_stage3/GrRatio.md#GrRatio-gamma_ratio8) (GrRatio) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 8 ≤ z.re → z.re ≤ 7 → 1 / 8 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ … ``
 
 <a name="DigammaBound-gErr_le"></a>
 ### `DigammaBound.gErr_le`
@@ -172,9 +176,10 @@ a * b ≤ A * B
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`DigammaBound.gamma_ratio`](#DigammaBound-gamma_ratio) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ … ``
+  - [`GrRatio.gamma_ratio8`](../lean_stage3/GrRatio.md#GrRatio-gamma_ratio8) (GrRatio) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 8 ≤ z.re → z.re ≤ 7 → 1 / 8 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ … ``
 
 <a name="DigammaBound-gamma_ratio"></a>
 ### `DigammaBound.gamma_ratio`
