@@ -894,3 +894,36 @@ every window. Candidates, each a statement about `Z` on one window:
   from the turning of the horizon alone.
 Each is a statement about individual windows, of the kind C needs. Which one
 to derive first is Julian's choice.
+
+### S14, C3 (a) and (b) tried (2026-11-25, Julian: "Try both please")
+
+Computed with mpmath, `siegelz` and `grampoint`, script in the session
+scratchpad (`c4/gram.py`): the Gram points `g_n`, `θ(g_n) = nπ`, for
+`n = −1, …, 999`, up to height 1420. Not proved; the facts marked from memory
+were not checked this session.
+
+**(a) Gram's law.** `(−1)^n Z(g_n) > 0` fails at 42 of the 1001 points, the first
+at `n = 126`. So "a sign change of `Z` in each Gram interval" is false already at
+height about 280. Rosser's rule, the next local rule (a Gram block, the run
+between two good Gram points, of `k` intervals holds `k` sign changes), held on
+all 42 blocks here. From memory: Rosser's rule fails first near Gram index
+13,999,825, and every such rule fails somewhere; the share of bad Gram points
+grows slowly with the height. A fixed local rule on Gram intervals is not a
+face.
+
+**(b) S and the sign changes.** What holds in every window is integrated:
+`∫ S(t) dt` over `[t₁, t₂]` is `O(log t₂)` (Littlewood; explicit constants are
+Turing's and Trudgian's, from memory). Turing's method uses exactly that: on a
+range where the sign changes of `Z` found by computation reach `θ/π + 1` at a
+Gram point, the integral bound on `S` shows no zero was missed. So (b) is a
+certificate for each finite range, built from a computation of `Z` on that
+range. It gives the defect zero up to every height that has been computed, and
+says nothing beyond it.
+
+**What both say for C.** Every statement about individual windows found so far
+is either false at some height ((a), Rosser) or a computation of that window
+((b), Turing). C needs a reason, valid at every height, for `Z` to change sign
+in step with the horizon. In Julian's picture: a mechanism that fills every
+basin. The design question stays C3's, now with these two routes closed as
+general statements and (b) open as a finite verification in Lean (Turing's
+method on a range), which the tree does not have.
