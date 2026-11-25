@@ -226,6 +226,7 @@ import Stage3.DiagonalO
 import Stage3.DiagMainMu
 import Stage3.DiagMain
 import Stage3.SwapX
+import Stage3.SdiagLead
 
 namespace Stage3
 
