@@ -92,6 +92,8 @@ build, 2026-09-08.
 | 79 | `rw [integral_add (j1.add …) …]` finds no pattern | `Integrable.add` states the Pi sum `(f + g) a` while the goal has a lambda (the family of row 42) | rewrite with bare `integral_add` and close the side goals after: `all_goals first \| exact j1 \| exact j2.const_mul _` (unit 0545) |
 | 80 | `typeclass instance problem is stuck IsLocallyFiniteMeasure ?m` from `Continuous.intervalIntegrable` | with no measure named, the measure is left for unification | pass `(μ := volume)` (unit 0547) |
 | 81 | `rw [Real.smoothTransition.zero_of_nonpos (… (by linarith))]` on a product of two `smoothTransition`s leaves a failing side goal | the rewrite unifies with the first factor, so the inline proof is about the other factor's sign (the family of row 58) | state the argument as a named `have h3 : … ≤ 0` and `rw [… h3]` (unit 0547) |
+| 82 | `field_simp; ring` leaves unsolved goals on a derivative built with `HasDerivAt.inv` and `.mul` | the derivative carries `(fun y => x + y)⁻¹ y` unreduced, a Pi inverse (the family of row 43) | `simp only [Pi.inv_apply]` before `field_simp; ring` (unit 0548) |
+| 83 | a numeric bound from `Real.exp_bound'` fails at `le_of_eq` | the stated Taylor remainder `x^n (n+1)/(n! n)` was typed wrong | compute the rational in Python first and paste it (unit 0548) |
 
 ## Bench and gate traps
 

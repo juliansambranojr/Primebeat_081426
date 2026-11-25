@@ -1,0 +1,24 @@
+key	value	source
+module_lines	157	wc -l lean_stage3/Stage3/FloorConst.lean
+theorems_proved	13	grep -c ^theorem lean_stage3/Stage3/FloorConst.lean
+defs	1	grep -c ^def lean_stage3/Stage3/FloorConst.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FloorConst.lean
+pins	3	Kfl_levinson_lt, kappa_levinson_ge, floor_const
+errors_first	3	the worker's first build of the derivative file: three unsolved goals from a Pi inverse
+builds	4	the worker's report, builds over the three files
+traps_added	2	lean_stage3/TRAPS.md rows 82-83
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8946	lake build (full Stage3), Build completed successfully
+jobs_module	8825	run/build.log, lake build Stage3.FloorConst
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	3	lean_stage3/Stage3/FloorConst.lean, FloorConstDeriv.lean, FloorConstLimit.lean
+trap_first	82	lean_stage3/TRAPS.md
+trap_last	83	lean_stage3/TRAPS.md
+theta_choice	49/100	kappa_levinson_ge, the length exponent
+R_choice	13/10	kappa_levinson_ge, the shift
+kappa_proved	1/3	kappa_levinson_ge: 1/3 <= kappaL (49/100) (13/10)
+kappa_computed	0.3354	python3 in this session, 1 - log K / R at theta 0.49, R 1.3, from the closed form; computed, not proved
+kappa_half	0.3427	python3 in this session, the same at theta 0.5; Levinson's 0.342
