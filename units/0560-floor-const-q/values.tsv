@@ -1,0 +1,21 @@
+key	value	source
+module_lines	268	wc -l lean_stage3/Stage3/FloorConstQ.lean
+theorems_proved	34	grep -c ^theorem lean_stage3/Stage3/FloorConstQ.lean
+defs	3	grep -c ^def lean_stage3/Stage3/FloorConstQ.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FloorConstQ.lean
+pins	4	KflQ_lt, log_KflQ_lt, kappaQ_gt, floor_constQ
+errors_first	1	the worker's first build of the top module: a polynomial coefficient that simp left open
+builds	6	the worker's report, builds over the three files
+traps_added	6	lean_stage3/TRAPS.md rows 109-114
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8976	lake build (full Stage3), Build completed successfully
+jobs_module	8828	run/build.log, lake build Stage3.FloorConstQ
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	3	lean_stage3/Stage3/FloorConstQ.lean, FloorConstQDeriv.lean, FloorConstQLimit.lean
+trap_first	109	lean_stage3/TRAPS.md
+trap_last	114	lean_stage3/TRAPS.md
+kappa_q_proved	224/625	kappaQ_gt: 224/625 < kappaQ (49/100) (3/2)
+kappa_q_computed	0.35843	the worker's Python, 1 - log K / R at the choice; computed, not proved

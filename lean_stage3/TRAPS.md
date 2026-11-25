@@ -119,6 +119,12 @@ build, 2026-09-08.
 | 106 | deprecation warnings at `integral_finset_sum`, `integrable_finset_sum` | renamed on this Mathlib (row 84's family) | `integral_finsetSum`, `integrable_finsetSum` (unit 0558) |
 | 107 | `simp` on `(1 - X : ℝ[X]).coeff 1 = -1` leaves `coeff 1 1 = 0` | `simp` does not close the constant polynomial's coefficient | `rw [coeff_sub, coeff_one, coeff_X_one]; norm_num` (unit 0558) |
 | 108 | `Function expected at AnalyticAt.div_const hGa` from `hGa.div_const (Gammaℝ w)` | `AnalyticAt.div_const` takes its constant implicitly on this Mathlib | `hGa.div_const (c := Gammaℝ w)` (unit 0559) |
+| 109 | `rw [iteratedDeriv_fun_mul …]` misses on `fun z => z * ψ z` | the lemma states the factor as `id` | pass `(f := fun z : ℂ => z) (g := ψ)` with `contDiffAt_id` (unit 0560) |
+| 110 | `iteratedDeriv_comp_const_mul` asks for a global `ContDiff` | Mathlib's statement is global | prove the local version by induction from `deriv_comp_mul_left` and `deriv_const_mul_field'` (unit 0560) |
+| 111 | `rw [eq_div_iff]` finds no pattern on `↑(a / b)`, and `field_simp` leaves `(↑R)⁻¹` | the cast wraps the quotient; and `field_simp` needs `(R : ℂ) ≠ 0` in context | `push_cast` first; put the cast's nonvanishing in context (unit 0560) |
+| 112 | `simp only [f]` on a structurally recursive `def` unfolds `f R 1`, `f R 2` but leaves `f R 0` | the equation lemmas fire on the successor cases at numerals | `show f R 0 = … from rfl` (unit 0560) |
+| 113 | `rw [lemma]` with pattern `fun x => ?f (?c * x)` misses a beta-redex `(fun a => g a b) (c * x)` (the family of rows 35 and 53) | the redex is not reduced | `exact congrFun (lemma …) x`, or `beta_reduce at h` before the `rw` (unit 0560) |
+| 114 | a two-variable neighbourhood with `y` outermost, `∀ᶠ y, ∀ᶠ x`, is hard to state | the product filter's order | `(isOpen_ne_fun (continuous_snd.add continuous_fst) continuous_const).mem_nhds`, then `rw [nhds_prod_eq]` and `.curry` (unit 0560) |
 
 ## Bench and gate traps
 

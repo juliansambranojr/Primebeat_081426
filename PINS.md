@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 5, the assembly for a general Q: `Stage3/FloorQ*.lean`
+
+    DONE        `floor_stepQ`: on [T/2, T], lineCount T − lineCount (T/2) ≥
+                (1 − log(max 1 (Re DopQ(cY) + ε))/R)(N T − N(T/2)) − ε T log T,
+                from `conrey_count_window'` and `window_V_lt_half'` (a copy of
+                `FloorStep` with V for G: continuity in σ, X, Littlewood on Vψ);
+                then `levinson_floorQ`: at P₀, Q₀, θ = 49/100, R = 3/2,
+                lineCount T ≥ (224/625 − ε)·N T for large T, from
+                `FloorConstQ.floor_constQ` and `FloorSumTele`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes please" (log 0560, TRAPS 109–114, start
+                the assembly). Written before the worker starts.
+    DEPENDS     `ConreyCount`, `DigammaBound`, `MeanQ`, `GrRatio`, `FloorConstQ`,
+                `FloorStep*`, `FloorSum*`, `Littlewood`, `LevinsonRight`
+    OUT         B3; C
+
 ### 2026-11-25 · block S13 of `design/stencil.md`, B4, the gamma ratio: `Stage3/GrRatio*.lean`
 
     DONE        `MeanQRed.StmtGrRatio n` for every n, by the device of
