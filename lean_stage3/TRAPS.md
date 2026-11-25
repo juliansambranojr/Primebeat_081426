@@ -66,6 +66,7 @@ build, 2026-09-08.
 | 53 | `rw` finds no pattern in `(fun t => f t) t` after rewriting with a `funext` equality | the application is not beta-reduced, so the pattern sits under a lambda | `beta_reduce` (or `simp only []`) before the `rw` (unit 0533) |
 | 54 | about ten cascading type errors after writing `(deriv f t : ℂ)` for `f : ℝ → ℝ` | the ascription sits inside `deriv`, so Lean elaborates `deriv` at `ℝ → ℂ` | cast outside: `((deriv f t : ℝ) : ℂ)` (unit 0534) |
 | 55 | a helper with implicit interval endpoints applies to the wrong `Icc` and the goal no longer matches | the endpoints were unified from the first `Icc` in scope | pass them by name, `(a := T/4) (b := 2*T)` (unit 0534) |
+| 56 | a hypothesis `W : Weight T (Real.log T)` is shown as an inaccessible `W✝` after `set L := Real.log T`, and lemmas about `W` stop applying | `set` rewrites `Real.log T` to `L` in the types of hypotheses too, so `W` gets a new type and the old name is shadowed | use `have hL : L = Real.log T := rfl` with a plain `let`/abbreviation, or `set ... with hL` and then `rw [← hL] at *` only where needed, or skip `set` and write `Real.log T` (unit 0538) |
 
 ## Bench and gate traps
 
