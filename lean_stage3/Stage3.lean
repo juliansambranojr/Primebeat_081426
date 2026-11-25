@@ -222,6 +222,7 @@ import Stage3.ApproxDerivAll
 import Stage3.OffDiagClose
 import Stage3.Diagonal
 import Stage3.DiagMainStmt
+import Stage3.DiagonalO
 
 namespace Stage3
 
