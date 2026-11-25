@@ -1017,3 +1017,41 @@ nothing beyond the diagonal.
 3. The design question for Julian: which property of the Möbius coefficients
    across shifts gives that cancellation, and at what length. Up to `4/7` the
    literature answers it with Kloosterman sums; beyond, nothing is known.
+
+## S15 The basin floor — design (2026-11-25, Julian: "Yes")
+
+Julian, 2026-11-25: "The coupling raises the floor of every basin pushing the
+recombination of composites from each basin to the next each prime rises and
+falls back to the line as a force back onto the each basin." On paper, here,
+unchecked by anyone else.
+
+**The objects.**
+- A basin: an interval between consecutive sign changes of `Z`, or a Gram
+  interval, where the horizon `θ(t)` turns by `π`.
+- The floor of a basin: the mean of `|Vψ|²` on `σ₀ = 1/2 − R/L` over that
+  interval. Levinson's `κ` is `1 − (1/R)·log` of the floor averaged over all
+  basins (`FloorQ.levinson_floorQ`).
+- The recombination of composites: the off-diagonal pairs `hm − kn = r`, each
+  carrying `(hm/kn)^(it)`, with period about `2πkn/r` in `t`. Inside a basin they
+  move weight; over a long window they average to zero. `StmtLongErr` is that
+  net zero at length `T^θ`: a transport between basins with no net effect.
+- Each prime: in the explicit formula, the wave `log p·p^(−1/2)·cos(t log p)` in
+  the turning of the argument, bounded and returning, a restoring force.
+
+**The statement it points to.** The floor raised in every basin means `Vψ`
+stays away from zero near the line in every basin: no zeros of `Vψ` right of
+`σ₀`. Levinson's count is `N₀ ≥ N − 2·N_V − O(log T)`, and its edge terms
+telescope between neighbouring windows, so they appear only at the ends of the
+whole range. With no zeros of `Vψ` right of the line, the defect is `O(log T)` at
+most, at every height.
+
+**Against what is known.** For a fixed mollifier, `Vψ` has zeros right of the
+line in a positive share of basins (Feng's remark (a), read this session), so
+the force must grow with the mollifier's length.
+
+**The measurement (unit 0562, exploratory).** Per Gram interval on `[T, T+H]`,
+`T = 5000`, `H = 40`, `V = ζ + ζ′/L`, `P(x) = x`, `R = 1.3`, `θ = 1/4, 1/2, 1`: the
+floor of each basin, the correlation of neighbouring basins' deviations (a
+negative one is weight moved from one basin to the next), and the zeros of
+`Vψ` right of `σ₀` in each basin by the winding of `Vψ` around the rectangle
+`[σ₀, 3]` over the basin.
