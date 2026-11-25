@@ -249,6 +249,7 @@ import Stage3.Turing
 import Stage3.TuringLWHoriz
 import Stage3.TuringLWSplit
 import Stage3.TuringLW
+import Stage3.DiagLong
 
 namespace Stage3
 
