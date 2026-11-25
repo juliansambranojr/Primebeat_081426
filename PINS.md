@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's point run: `Stage3/TuringRun*.lean`
+
+    DONE        `TuringSlope.StmtClosingData' T₁ h` proved at one T₁ near 440: the
+                zeros below T₁ located numerically (mpmath), one certified sign
+                point between each consecutive pair, the points above T₁ inside the
+                window, the numeric inequality `hnum` with a certified enclosure
+                of θ(T₁); then `rh_up_to : ∀ T ≤ T₁, Defect.defect T = 0` and its
+                reading: every zero with 0 < Im ≤ T₁ has real part ½; all through
+                the StirlingSeries pipeline, generated from `lean_stage3/checks/`
+                (gen script and its output kept); one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0571, TRAPS 146–148,
+                the point run). Written before the worker starts.
+    DEPENDS     `TuringSlope`, `StirlingSeries*`, `SignData*`, `Defect`, `LineCount`
+    OUT         B3; C's core
+
 ### 2026-11-25 · block S14 of `design/stencil.md`, Turing's slope term: `Stage3/TuringSlope*.lean`
 
     DONE        `Turing.theta_sub_le` sharpened through `StirlingSeries`: the
