@@ -854,3 +854,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-11-25  Avoidance PROVED (unit 0527, `LevinsonAvoid`): good heights/abscissas exist; factor > 0 for c = 1/log T, T >= e^26. Unconditional.
 - [open]   2026-11-25  Levinson one window ASSEMBLED (unit 0528, `LevinsonWindow`): mean square K as the named input, plus hsimple (ζ, ζ' no common zero on the line). Unconditional otherwise.
 - [open]   2026-11-25  hsimple REMOVED (unit 0529, `LevinsonMultiple`): levinson_count' / levinson_window' — the window's only named input is the mean square K. Unconditional otherwise.
+- [open]   2026-11-25  S12 piece 1 (unit 0530, `ApproxFE`): Young's Lemma 4 exactly, given the named contour shift StmtShift. Unconditional.
+- [open]   2026-11-25  Contour shift PROVED (unit 0531, `ApproxShift`): approxFE, Young's Lemma 4 exactly, no shift hypothesis. Unconditional.
+- [open]   2026-11-25  S12 piece 2a PROVED (unit 0532, `ApproxBounds`): Stirling on vertical lines; |X| ~ (t/2π)^(−Re(α+β)); V decays (1+x/t)^(−A); resY ≤ C e^(−t²/2). TRAPS rows 49–50 added.
+- [open]   2026-11-25  S12 piece 2b-i PROVED (unit 0533, `ApproxDeriv`): V twice differentiable in t; (4.3) for j = 1, 2. TRAPS rows 51–53 added.
+- [open]   2026-11-25  S12 piece 2b-ii (unit 0534, `TwistedMoment`): Lemma 3 split into diagonal, off-diagonal, swapped term; off-diagonal by two IBPs. TRAPS rows 54–55.
+- [open]   2026-11-25  Decision (unit 0535): two IBPs close the off-diagonal only for theta < 1/6; IBP j times, j > (1+2theta)/(1-2theta), needs (4.3) for all j.
+- [open]   2026-11-25  Every order PROVED (unit 0536, `ApproxDerivAll`): V smooth in t, (4.3) for all j; ibp_iter for any j. Carries out decision 0535.
+- [open]   2026-11-25  Off-diagonal CLOSED (unit 0537, `OffDiagClose`): smooth windows to every order; StmtOffDiagAll for every theta < 1/2. Remaining in A: StmtDiag, StmtX, operator, unsmoothing.

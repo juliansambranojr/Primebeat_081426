@@ -22,6 +22,107 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, the window and the off-diagonal: `Stage3/OffDiagClose.lean`
+
+    DONE        (i) `WeightAll`: an admissible window with |w^(j)| ≤ C_j·(T/L)^(−j)
+                for every j, and its existence for every T ≥ 8, L ≥ 1 (a smooth
+                bump rescaled, with explicit derivative bounds); (ii)
+                `offdiag_term_iter`: each off-diagonal term bounded with j
+                integrations by parts (`ibp_iter`, `VY_iter_bound`, the window's
+                bounds); (iii) `offSum_bound_iter` and `stmtOffDiag_holds`:
+                `StmtOffDiag` for every θ < 1/2, choosing j from θ; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it" (log 0536, then the
+                window's derivative bounds and StmtOffDiag)
+    DEPENDS     `TwistedMoment`, `ApproxDerivAll`, Mathlib smooth bumps
+                (`ContDiffBump`, `smoothTransition`)
+    OUT         `StmtDiag`, `StmtX`; pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, all orders: `Stage3/ApproxDerivAll.lean`
+
+    DONE        Young's (4.3) for every j: `VY_iter_bound`: for every j and A,
+                |t^j·∂_t^j V_{α,β}(x,t)| ≤ C_{j,A}·(1+1/‖α+β‖²)·(1 + x/t)^(−A), by induction
+                on the digamma series (∂_t^k dY bounds for every k), with V smooth
+                in t; and `ibp_iter`: j integrations by parts against a weight
+                vanishing to order j at the ends; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it please" (units 0534, 0535,
+                the TRAPS rows, and start the general-j bounds). The decision is
+                unit 0535
+    DEPENDS     `ApproxDeriv` (j ≤ 2 and its route), `ApproxBounds`,
+                `TwistedMoment` (`ibp_twice`, `Weight`)
+    OUT         the window's derivatives to every order (the Weight structure
+                carries j ≤ 2); closing `StmtOffDiag`; `StmtDiag`, `StmtX`
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-ii, the twisted moment: `Stage3/TwistedMoment.lean`
+
+    DONE        Young's Lemma 3 for a smooth weight w with (2.1)–(2.3):
+                I(α,β) = ∫ w(t)ζ(1/2+α+it)ζ(1/2+β−it)|ψ(σ₀+it)|² dt = c(α,β)·ŵ(0) + O(T/L),
+                uniformly for α, β ≪ 1/L, θ < 1/2; built as (i) inserting
+                `approxFE` and expanding |ψ|², (ii) the diagonal hm = kn giving
+                c(α,β)ŵ(0) (Young §5, Conrey's Lemma for the h, k sum), (iii) the
+                off-diagonal bounded by two integrations by parts with
+                `VY_deriv_bound`; or the largest honest piece, its open goal
+                named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes and then what's left" (log 0533, the
+                TRAPS rows, start 2b-ii). The statement is Young's (3.2)–(3.3)
+    DEPENDS     `ApproxFE`, `ApproxShift`, `ApproxBounds`, `ApproxDeriv`,
+                `DirichletMean`, `DirichletMeanW`, `MollifiedMean`
+    OUT         the operator (piece 3) and unsmoothing (piece 4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2b-i, the derivatives of V: `Stage3/ApproxDeriv.lean`
+
+    DONE        Young's (4.3) for j ≥ 1: `VY_deriv_bound`: for each j and A,
+                |t^j·∂_t^j V_{α,β}(x,t)| ≤ C_{j,A}·(1+1/‖α+β‖²)·(1 + x/t)^(−A), uniform for
+                ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1; at least j = 1 and j = 2, the cases the
+                integration by parts in Lemma 3 uses; with differentiability
+                of V in t; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all of it please" (log 0532, the
+                TRAPS rows, start piece 2b with the derivative bounds)
+    DEPENDS     `ApproxBounds` (Γ bounds, `VY_line_eq`, the kernel bound),
+                `ApproxFE`; Mathlib differentiation under the integral
+    OUT         the twisted moment (2b-ii), the asymptotic forms, pieces 3–4
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 2a, the sizes: `Stage3/ApproxBounds.lean`
+
+    DONE        the sizes the twisted moment needs, for α, β with |α|, |β| ≤ 1/L
+                and t ≥ t₀: `XY_size` (|X_{α,β,t}| ≤ C·(t/2π)^(−Re(α+β)), Young (4.2)),
+                `resY_small` (|resY α β t| ≤ C_A·(1+|t|)^(−A)), and `VY_decay`
+                (|V_{α,β}(x,t)| ≤ C_A·(1 + |t|/x)^(−A), the j = 0 case of (4.3)),
+                with explicit or existential constants; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0531 and start piece 2). Piece 2
+                (Young's Lemma 3) needs these bounds first
+    DEPENDS     `ApproxFE`, `ApproxShift`, the tree's Γ and digamma bounds
+                (`Stirling`), Mathlib Γ asymptotics
+    OUT         the twisted moment itself (piece 2b), the operator (3),
+                unsmoothing (4)
+
+### 2026-11-25 · block S12 of `design/stencil.md`, the contour shift: `Stage3/ApproxShift.lean`
+
+    DONE        `stmtShift_holds`: `ApproxFE.StmtShift α β t c` under the
+                hypotheses its docstring names (α + β ≠ 0, Γℝ(u), Γℝ(v) ≠ 0,
+                c > 1/2 + |Re α|, |Re β|, the five poles distinct); the route is
+                `ContourShift.residue_rectangle_multi` on [−c, c] × [−Y, Y] and
+                Y → ∞, with a bound |Λ(s)| ≤ poly(|Im s|) on vertical strips,
+                from the Γℝ bound on Re > 0, the tree's ζ bounds, and Λ(s) =
+                Λ(1 − s) for the left half; and `approxFE` with no shift
+                hypothesis; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes" (log 0530 and build the contour shift)
+    DEPENDS     `ApproxFE`, `ContourShift`, `LevinsonEdge.zeta_norm_le`,
+                Mathlib `completedRiemannZeta_one_sub`, Γ bounds
+    OUT         the size of resY; (4.3); pieces 2–4 of S12
+
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 1: `Stage3/ApproxFE.lean`
+
+    DONE        Young's Lemma 4 (arXiv 1002.4403): the approximate functional
+                equation for ζ(1/2+α+it)·ζ(1/2+β−it) as two smoothed double sums
+                with the weight V_{α,β}(x,t) = (1/2πi)∫_(1) G(s)/s·g_{α,β}(s,t)·x^(−s) ds,
+                G(s) = e^(s²)·p(s), plus an error O_A((1+|t|)^(−A)); or the largest
+                honest piece of it, with the open goal named; one unit
+    ASSUMED     Julian, 2026-11-25: "start the next step" (block S12, the mean
+                value). Statement from Young's text in the session scratchpad
+    DEPENDS     Mathlib `completedRiemannZeta_one_sub`, `Gammaℝ`, Mellin and
+                contour-shift lemmas; PNT+ rectangle integrals
+    OUT         the twisted moment (piece 2), the operator (3), unsmoothing (4)
+
 ### 2026-11-25 · block S11 of `design/stencil.md`, removing `hsimple`: `Stage3/LevinsonMultiple.lean`
 
     DONE        `levinson_count'`: `LevinsonCount.levinson_count` without the

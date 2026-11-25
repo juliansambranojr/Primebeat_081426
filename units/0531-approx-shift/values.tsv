@@ -1,0 +1,16 @@
+key	value	source
+module_lines	813	wc -l lean_stage3/Stage3/ApproxShift.lean
+theorems_proved	29	grep -c ^theorem lean_stage3/Stage3/ApproxShift.lean
+defs	3	grep -c ^def lean_stage3/Stage3/ApproxShift.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ApproxShift.lean
+pins	6	FL_bound, FY_horiz_bound, Lambda_bound, FL_horiz_tendsto, stmtShift_holds, approxFE
+errors_first	1	the worker's first build with code: a composition unified to the wrong inner function
+builds	4	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8908	lake build (full Stage3), Build completed successfully
+jobs_module	8808	run/build.log, lake build Stage3.ApproxShift
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

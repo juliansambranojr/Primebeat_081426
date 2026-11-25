@@ -1,0 +1,128 @@
+# check_prose_source.py  2026-11-25T03:30:50Z
+# unit: 0532-approx-bounds
+# sources searched: 75
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2218
+  theorem gamma_shift {x₁ x₂ : ℝ} (h1 : 0 < x₁) (h12 : x₁ ≤ x₂) (Y : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2219
+  (x₂ - x₁) * (LY Y x₂ / 2) ≤ lg x₂ Y - lg x₁ Y ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2220
+  lg x₂ Y - lg x₁ Y ≤ (x₂ - x₁) * (fY Y x₁ + LY Y x₁ / 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67676
+  theorem log_norm_Gamma_approx {z : ℂ} (hz : 0 < z.re) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2417
+  |Real.log ‖Complex.Gamma z‖ - gModel z.re z.im| ≤ gErr z.re :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2491
+  theorem log_norm_Gammaℝ_approx {w : ℂ} (hw : 0 < w.re) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2492
+  |Real.log ‖Gammaℝ w‖ - gRModel w| ≤ gErr (w.re / 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2588
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2589
+  |Real.log ‖XY α β t‖ - (α + β).re * (Real.log Real.pi - Real.log (t / 2))| ≤ K :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67645
+  ∃ C : ℝ, 0 < C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67646
+  ‖XY α β t‖ ≤ C * (t / (2 * Real.pi)) ^ (-(α + β).re) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2823
+  (t / (2 * Real.pi)) ^ (-(α + β).re) ≤ C * ‖XY α β t‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2960
+  theorem gY_bound {σ₀ σ₁ : ℝ} (h0 : -(2 / 5) < σ₀) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2963
+  ‖gY α β t (σ + y * I)‖ ≤ C * (t / (2 * Real.pi)) ^ σ *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:2964
+  Real.exp ((Real.pi / 2 + (|σ₀| + |σ₁|) / 2 + 1 / 2) * |y|) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3102
+  theorem integrand_bound {σ₀ σ₁ δ : ℝ} (h0 : -(2 / 5) < σ₀) (hδ : 0 < δ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:4391
+  ∀ x : ℝ, 0 < x → ∀ σ y : ℝ, σ₀ ≤ σ → σ ≤ σ₁ → δ ≤ ‖(σ : ℂ) + y * I‖ →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3105
+  ‖KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ : ℂ) + y * I))‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3106
+  C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ)) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67667
+  theorem VY_line_bound {σ : ℝ} (h0 : -(2 / 5) < σ) (hσ : σ ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3209
+  ‖VY α β σ x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67659
+  theorem VY_line_eq {c c' : ℝ} (hc : 0 < c) (hcc : c ≤ c') {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67660
+  (hβ : ‖β‖ ≤ 1 / 10) {t : ℝ} (ht : 1 ≤ t) {x : ℝ} (hx : 0 < x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3303
+  VY α β c x t = VY α β c' x t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67663
+  theorem VY_residue {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) (hαβ : α + β ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67660
+  {t : ℝ} (ht : 1 ≤ t) {x : ℝ} (hx : 0 < x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:4465
+  VY α β (1 / 4) x t - VY α β (-(1 / 4)) x t = 1 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67649
+  theorem VY_decay {A : ℝ} (hA : 0 < A) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67651
+  ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3399
+  ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (t / x) ^ A :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67654
+  theorem VY_decay_young {A : ℝ} (hA : 0 < A) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67655
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67651
+  ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:4821
+  ‖VY α β c x t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * (1 + x / t) ^ (-A) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adad9a915812154d3.jsonl:3622
+  ‖resY α β t‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) * Real.exp (-(t ^ 2 / 2)) :=
+
+# 41 found, 0 missing

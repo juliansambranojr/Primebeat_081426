@@ -1,0 +1,16 @@
+key	value	source
+module_lines	1013	wc -l lean_stage3/Stage3/ApproxDerivAll.lean
+theorems_proved	43	grep -c ^theorem lean_stage3/Stage3/ApproxDerivAll.lean
+defs	7	grep -c ^def lean_stage3/Stage3/ApproxDerivAll.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ApproxDerivAll.lean
+pins	20	ibp_iter_chain, ibp_iter, hasDerivAt_tauK_line, norm_tauK_le, dYk_hasDerivAt, dYk_contDiff, iteratedDeriv_dY, dY_contDiff, dYk_bound, dY_iter_bound, leib_bound, gY_contDiff, gY_iter_succ, gY_iter_bound, VYk_hasDerivAt, VYk_line_bound, VYk_lines, iteratedDeriv_VY_all, VY_contDiff, VY_iter_bound
+errors_first	2	the worker's first build: a set name hiding nonzero facts from field_simp, and a simp on a partially applied term
+builds	3	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8912	lake build (full Stage3), Build completed successfully
+jobs_module	8812	run/build.log, lake build Stage3.ApproxDerivAll
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

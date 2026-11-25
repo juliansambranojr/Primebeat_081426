@@ -1,0 +1,16 @@
+key	value	source
+module_lines	1810	wc -l lean_stage3/Stage3/TwistedMoment.lean
+theorems_proved	82	grep -c ^theorem lean_stage3/Stage3/TwistedMoment.lean
+defs	32	grep -c ^def lean_stage3/Stage3/TwistedMoment.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TwistedMoment.lean
+pins	12	ibp_twice, offdiag_term, inv_log_sq_le, offdiag_term_young, msq_expand, I_split, Ires_small, I1_expand, I1_diag_off, Jint_diag, offSum_bound, lemma3_res_of_parts
+errors_first	0	the worker's report: the first build of the weight and the integration by parts was clean
+builds	2	the worker's report
+traps_added	2	lean_stage3/TRAPS.md rows 54 and 55
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8911	lake build (full Stage3), Build completed successfully
+jobs_module	8811	run/build.log, lake build Stage3.TwistedMoment
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s12	The mean value, the floor
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -1,0 +1,209 @@
+# check_prose_source.py  2026-11-25T05:30:09Z
+# unit: 0536-approx-deriv-all
+# sources searched: 78
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67793
+  Yes to all of it please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68581
+  theorem ibp_iter_chain {a b l : ℝ} (hl : l ≠ 0) (j : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68582
+  ∀ F : ℕ → ℝ → ℂ, (∀ k < j, ∀ t, HasDerivAt (F k) (F (k + 1) t) t) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68583
+  IntervalIntegrable (F j) volume a b → (∀ k < j, F k a = 0) → (∀ k < j, F k b = 0) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2200
+  (1 / ((l : ℂ) * I)) ^ j * ∫ t in a..b, F j t * eL l t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68587
+  theorem ibp_iter {F : ℝ → ℂ} {a b l : ℝ} (hl : l ≠ 0) (j : ℕ) (hF : ContDiff ℝ j F)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68588
+  (ha : ∀ k < j, iteratedDeriv k F a = 0) (hb : ∀ k < j, iteratedDeriv k F b = 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2223
+  (1 / ((l : ℂ) * I)) ^ j * ∫ t in a..b, iteratedDeriv j F t * eL l t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2242
+  theorem hasDerivAt_tauK_line (h w₀ e : ℂ) (k n : ℕ) (t : ℝ) (hp : (n : ℂ) + (w₀ + t * e) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:579
+  (hq : (n : ℂ) + (w₀ + t * e) + h ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2244
+  HasDerivAt (fun t : ℝ => tauK k h (w₀ + t * e) n) (e * tauK (k + 1) h (w₀ + t * e) n) t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2258
+  theorem norm_tauK_le {h w : ℂ} {a Y : ℝ} (ha : 0 < a) (hY : 0 ≤ Y) (h1 : a ≤ w.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2259
+  (h2 : a ≤ (w + h).re) (h3 : Y ≤ |w.im|) (h4 : Y ≤ |(w + h).im|) (k n : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2260
+  ‖tauK k h w n‖ ≤ ((k + 1).factorial : ℝ) * ‖h‖ * 2 ^ (k + 2) * (1 / (a + Y)) ^ k *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:349
+  (1 / ((n : ℝ) + (a + Y)) ^ 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2406
+  theorem dYk_hasDerivAt {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2389
+  (hs : -(1 / 4) ≤ s.re) (k : ℕ) (t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2408
+  HasDerivAt (fun t => dYk α β k t s) (dYk α β (k + 1) t s) t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2675
+  theorem dYk_contDiff {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2676
+  (hs : -(1 / 4) ≤ s.re) (n : ℕ) : ∀ k : ℕ, ContDiff ℝ n (fun t => dYk α β k t s) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2693
+  theorem iteratedDeriv_dY {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2694
+  (hs : -(1 / 4) ≤ s.re) (k : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2695
+  iteratedDeriv k (fun t => dY α β t s) = fun t => dYk α β k t s :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68592
+  theorem dY_contDiff {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2706
+  (hs : -(1 / 4) ≤ s.re) : ContDiff ℝ ∞ (fun t => dY α β t s) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2742
+  theorem dYk_bound {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {σ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68596
+  (hσ0 : -(1 / 4) ≤ σ) (k : ℕ) {t : ℝ} (ht : 1 ≤ t) (y : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2744
+  t ^ (k + 1) * ‖dYk α β k t (σ + y * I)‖ ≤ Dk k * (1 + |σ|) * (1 + |y|) ^ (k + 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68595
+  theorem dY_iter_bound {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {σ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68596
+  (hσ0 : -(1 / 4) ≤ σ) (k : ℕ) {t : ℝ} (ht : 1 ≤ t) (y : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68597
+  t ^ (k + 1) * ‖iteratedDeriv k (fun t => dY α β t (σ + y * I)) t‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2744
+  Dk k * (1 + |σ|) * (1 + |y|) ^ (k + 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2820
+  theorem leib_bound (D : ℕ → ℝ) (hD : ∀ m, 0 ≤ D m) (J : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2821
+  ∃ M : ℝ, 0 ≤ M ∧ ∀ (H d : ℕ → ℂ) (G a q : ℝ), 1 ≤ a → 0 ≤ q → ‖H 0‖ ≤ G →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2822
+  (∀ j, H (j + 1) = ∑ i ∈ Finset.range (j + 1), (j.choose i : ℂ) * H i * d (j - i)) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2823
+  (∀ m, ‖d m‖ ≤ D m * a * q ^ (m + 1)) → ∀ i ≤ J, ‖H i‖ ≤ G * M * (a * q) ^ i :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2873
+  theorem gY_contDiff {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2874
+  (hs : -(1 / 4) ≤ s.re) (n : ℕ) : ContDiff ℝ n (fun t => gY α β t s) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2895
+  theorem gY_iter_succ {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2896
+  (hs : -(1 / 4) ≤ s.re) (j : ℕ) (t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2897
+  iteratedDeriv (j + 1) (fun t => gY α β t s) t = ∑ i ∈ Finset.range (j + 1),
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2898
+  (j.choose i : ℂ) * iteratedDeriv i (fun t => gY α β t s) t * dYk α β (j - i) t s :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2924
+  theorem gY_iter_bound {σ : ℝ} (hσ0 : -(1 / 4) ≤ σ) (j : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2925
+  ∃ M : ℝ, 0 ≤ M ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ y : ℝ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2910
+  ‖iteratedDeriv j (fun t => gY α β t (σ + y * I)) t‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:2927
+  ‖gY α β t (σ + y * I)‖ * M * ((1 + |σ|) * (1 + |y|) ^ 2 / t) ^ j :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3134
+  theorem VYk_hasDerivAt {σ : ℝ} (hσ0 : -(1 / 4) ≤ σ) (hσ : σ ≠ 0) {α β : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3135
+  (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {x : ℝ} (hx : 0 < x) (j : ℕ) (t₀ : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3136
+  HasDerivAt (fun t => VYk α β j σ x t) (VYk α β (j + 1) σ x t₀) t₀ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3162
+  theorem VYk_line_bound {σ : ℝ} (hσ0 : -(1 / 4) ≤ σ) (hσ : σ ≠ 0) (j : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67650
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3165
+  ‖(t : ℂ) ^ j * VYk α β j σ x t‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:1216
+  C * (1 + 1 / ‖α + β‖ ^ 2) * ((t / (2 * Real.pi)) ^ σ * x ^ (-σ)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3219
+  theorem VYk_lines {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) (hαβ : α + β ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3220
+  {x : ℝ} (hx : 0 < x) {c A : ℝ} (hc : 0 < c) (hA : 0 < A) (j : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3221
+  ∀ y : ℝ, 1 ≤ y → VYk α β (j + 1) c x y = VYk α β (j + 1) A x y ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3222
+  VYk α β (j + 1) c x y = VYk α β (j + 1) (-(1 / 4)) x y :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3261
+  theorem iteratedDeriv_VY_all {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {x : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3262
+  (hx : 0 < x) {c : ℝ} (hc : 0 < c) (j : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3263
+  iteratedDeriv j (fun t => VY α β c x t) = fun t => VYk α β j c x t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68600
+  theorem VY_contDiff {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {x : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:3275
+  (hx : 0 < x) {c : ℝ} (hc : 0 < c) : ContDiff ℝ ∞ (fun t => VY α β c x t) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68603
+  theorem VY_iter_bound {j : ℕ} (hj : 1 ≤ j) {A : ℝ} (hA : 0 < A) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67655
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67931
+  ∀ t : ℝ, 1 ≤ t → ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67932
+  ‖(t : ℂ) ^ j * iteratedDeriv j (fun t => VY α β c x t) t‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a000fda360b74214e.jsonl:1426
+  C * (1 + 1 / ‖α + β‖ ^ 2) * (1 + x / t) ^ (-A) :=
+
+# 68 found, 0 missing

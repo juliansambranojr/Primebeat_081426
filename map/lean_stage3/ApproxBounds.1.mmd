@@ -1,0 +1,73 @@
+flowchart LR
+  n0["<b>LY_hasDerivAt</b><br/>HasDerivAt (LY Y) (-2 * fY Y u) u"]:::shp
+  n1["<b>fY_nonneg ■</b><br/>0 ≤ fY Y u"]:::cnt
+  n2["<b>fY_anti</b><br/>fY Y b ≤ fY Y a"]:::cnt
+  n3["<b>fY_le_inv</b><br/>fY Y u ≤ 1 / u"]:::cnt
+  n4["<b>LY_nonneg</b><br/>0 ≤ LY Y u"]:::shp
+  n5["<b>LY_step</b><br/>2 * (b - a) * fY Y b ≤ LY Y a - LY Y b ∧ LY Y a - LY Y b ≤ 2 * (…"]:::shp
+  n6["<b>sum_fY_le</b><br/>∑ j ∈ Finset.range (n + 1), fY Y (x + j) ≤ fY Y x + LY Y x / 2"]:::shp
+  n7["<b>sum_fY_ge</b><br/>LY Y x / 2 - LY Y (x + ((n + 1 : ℕ) : ℝ)) / 2 ≤ ∑ j ∈ Finset.ran…"]:::shp
+  n8["<b>log_norm_add_I</b><br/>Real.log ‖(a : ℂ) + Y * I‖ = Real.log a + LY Y a / 2"]:::shp
+  n9["<b>norm_GammaSeq</b><br/>‖GammaSeq s n‖ = ‖(n : ℂ) ^ s‖ * (n.factorial : ℝ) / ∏ j ∈ Finse…"]:::cnt
+  n10["<b>log_GammaSeq_sub</b><br/>Real.log ‖GammaSeq ((x : ℂ) + Y * I) n‖ - Real.log ‖GammaSeq (x …"]:::shp
+  n11["<b>tendsto_log_GammaSeq</b><br/>Tendsto (fun n : ℕ =＞ Real.log ‖GammaSeq ((x : ℂ) + Y * I) n‖ - …"]:::shp
+  n12["<b>LY_tendsto</b><br/>Tendsto (fun n : ℕ =＞ LY Y (x + ((n + 1 : ℕ) : ℝ))) atTop (𝓝 0)"]:::shp
+  n13["<b>gamma_shift</b><br/>(x₂ - x₁) * (LY Y x₂ / 2) ≤ lg x₂ Y - lg x₁ Y ∧ lg x₂ Y - lg x₁ …"]:::shp
+  n14["<b>lY_nonneg</b><br/>0 ≤ lY Y"]:::shp
+  n15["<b>lY_neg</b><br/>lY (-Y) = lY Y"]:::shp
+  n16["<b>LY_eq</b><br/>LY Y x = Real.log (x ^ 2 + Y ^ 2) - 2 * Real.log x"]:::shp
+  n17["<b>LY_half_sub</b><br/>|LY Y x / 2 - lY Y| ≤ |Real.log x|"]:::shp
+  n18["<b>gamma_rel</b><br/>|lg x₂ Y - lg x₁ Y - (x₂ - x₁) * lY Y| ≤ (x₂ - x₁) * (1 / x₁ + |…"]:::shp
+  n19["<b>gamma_half_norm_sq</b><br/>‖Complex.Gamma (((1 / 2 : ℝ) : ℂ) + Y * I)‖ ^ 2 = Real.pi / Real…"]:::shp
+  n20["<b>log_cosh_bounds</b><br/>|x| - Real.log 2 ≤ Real.log (Real.cosh x) ∧ Real.log (Real.cosh …"]:::shp
+  n21["<b>log_gamma_half</b><br/>|Real.log ‖Complex.Gamma (((1 / 2 : ℝ) : ℂ) + Y * I)‖ - (Real.lo…"]:::shp
+  n22["<b>log_norm_Gamma_approx</b><br/>|Real.log ‖Complex.Gamma z‖ - gModel z.re z.im| ≤ gErr z.re"]:::shp
+  n23["<b>log_norm_Gammaℝ ■</b><br/>Real.log ‖Gammaℝ w‖ = -(w.re / 2) * Real.log Real.pi + Real.log …"]:::shp
+  n24["<b>log_norm_Gammaℝ_approx ■</b><br/>|Real.log ‖Gammaℝ w‖ - gRModel w| ≤ gErr (w.re / 2)"]:::shp
+  n25["<b>gErr_nonneg</b><br/>0 ≤ gErr r"]:::shp
+  n26["<b>const_bound</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∀ r : ℝ, lo ≤ r → r ≤ hi → |Real.log (Real.Gamm…"]:::shp
+  n27["<b>lY_near</b><br/>|lY Y - Real.log (t / 2)| ≤ 3"]:::shp
+  n28["<b>re_one_sub_uA</b><br/>(1 - uA α t).re = 1 / 2 - α.re"]:::cnt
+  n29["<b>im_one_sub_uA</b><br/>(1 - uA α t).im = -(α.im + t)"]:::cnt
+  x0(["<b>diagram 2</b><br/>5 theorems"]):::ext
+  x1(["<b>diagram 3</b><br/>resY_small"]):::ext
+  x2(["<b>TwistedMoment</b><br/>continuousAt_resY"]):::ext
+  n0 --> n5
+  n10 --> n13
+  n11 --> n13
+  n12 --> n13
+  n13 --> n18
+  n16 --> n17
+  n17 --> n18
+  n18 --> n22
+  n19 --> n21
+  n2 --> n5
+  n20 --> n21
+  n21 --> n22
+  n22 --> n24
+  n25 --> n26
+  n3 --> n18
+  n4 --> n6
+  n5 --> n13
+  n5 --> n6
+  n5 --> n7
+  n6 --> n13
+  n7 --> n13
+  n8 --> n10
+  n9 --> n10
+  n14 -.-> x0
+  n15 -.-> x0
+  n26 -.-> x0
+  n26 -.-> x1
+  n27 -.-> x0
+  n28 -.-> x0
+  n28 -.-> x2
+  n29 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

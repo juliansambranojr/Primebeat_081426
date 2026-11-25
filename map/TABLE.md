@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>166 theorems counting,<br/>in 39 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>252 theorems counting,<br/>in 46 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>993 theorems shape,<br/>in 141 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1209 theorems shape,<br/>in 148 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>788 theorems reads ζ,<br/>in 128 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>831 theorems reads ζ,<br/>in 135 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 270 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1244 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 809 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 356 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1460 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 852 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 166 | 993 | 788 |
+| `lean_stage3/` | 252 | 1209 | 831 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -283,6 +283,82 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 - [`Zeros.base_of_meets_two`](./lean/ZerosStencil.md#Zeros-base_of_meets_two) — `` ∃ i, b = 2 ^ i `` Only powers of two reach a dyadic window. If any positive power of `b` equals a power of 2, then `b` is itself a power of 2. So the ladders meeting base 2 are exactly `2, 4, 8, 16, …` and no others -- which is the general form of `window_exclusive_of_prime_ex
 - [`Zeros.factorization_proportional`](./lean/ZerosStencil.md#Zeros-factorization_proportional) — `` n * b.factorization p = m * c.factorization p `` Two ladders that meet have proportional exponents. If some power of `b` equals some power of `c`, then at every prime the two exponents stand in the ratio `m : n`. This is the "shared lineage" of `Commensurate-Ladders.md` § A2 in exact form -- not that `b` an
 - [`Zeros.primeFactors_eq_of_meets`](./lean/ZerosStencil.md#Zeros-primeFactors_eq_of_meets) — `` b.primeFactors = c.primeFactors `` And they are built from the same primes. Proportionality with both exponents nonzero forces the supports to agree, so ladders that meet are made of one prime set. Bases 2 and 3 meet nowhere above `x = 1` for exactly this reason -- there is no common ancestor 
+
+### [`ApproxBounds`](./lean_stage3/ApproxBounds.md) — 10
+
+# ApproxBounds — block S12 of `lean_stage3/design/stencil.md`, piece 2a, the sizes. 2026-11-25.
+
+- [`ApproxBounds.fY_nonneg`](./lean_stage3/ApproxBounds.md#ApproxBounds-fY_nonneg) — `` 0 ≤ fY Y u ``
+- [`ApproxBounds.fY_anti`](./lean_stage3/ApproxBounds.md#ApproxBounds-fY_anti) — `` fY Y b ≤ fY Y a ``
+- [`ApproxBounds.fY_le_inv`](./lean_stage3/ApproxBounds.md#ApproxBounds-fY_le_inv) — `` fY Y u ≤ 1 / u ``
+- [`ApproxBounds.norm_GammaSeq`](./lean_stage3/ApproxBounds.md#ApproxBounds-norm_GammaSeq) — `` ‖GammaSeq s n‖ = ‖(n : ℂ) ^ s‖ * (n.factorial : ℝ) / ∏ j ∈ Finset.range (n + 1), ‖s + j‖ ``
+- [`ApproxBounds.re_one_sub_uA`](./lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_uA) — `` (1 - uA α t).re = 1 / 2 - α.re ``
+- [`ApproxBounds.im_one_sub_uA`](./lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_uA) — `` (1 - uA α t).im = -(α.im + t) ``
+- [`ApproxBounds.re_one_sub_vB`](./lean_stage3/ApproxBounds.md#ApproxBounds-re_one_sub_vB) — `` (1 - vB β t).re = 1 / 2 - β.re ``
+- [`ApproxBounds.im_one_sub_vB`](./lean_stage3/ApproxBounds.md#ApproxBounds-im_one_sub_vB) — `` (1 - vB β t).im = -(β.im - t) ``
+- [`ApproxBounds.Q_le`](./lean_stage3/ApproxBounds.md#ApproxBounds-Q_le) — `` (n ^ 2 + A) / n ^ 2 ≤ (A + 1) * (1 + 1 / n ^ 2) ``
+- [`ApproxBounds.rect_tendsto_ab`](./lean_stage3/ApproxBounds.md#ApproxBounds-rect_tendsto_ab) — `` Tendsto (fun T : ℝ => RectangleIntegral f (↑a - I * T) (↑b + I * T)) atTop (𝓝 (VerticalIntegral f b - VerticalIntegral f a)) `` PNT+'s `RectangleIntegral_tendsTo_VerticalIntegral` for `[a, b]` (ApproxShift's `rect_tendsto` is the case `[−c, c]`).
+
+### [`ApproxDeriv`](./lean_stage3/ApproxDeriv.md) — 6
+
+# ApproxDeriv — block S12 of `lean_stage3/design/stencil.md`, piece 2b-i, the derivatives of V. 2026-11-25.
+
+- [`ApproxDeriv.hasDerivAt_line`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasDerivAt_line) — `` HasDerivAt (fun t : ℝ => w₀ + (t : ℂ) * e) e t `` A real line in `ℂ`: `t ↦ w₀ + t e` has derivative `e`.
+- [`ApproxDeriv.hasSum_tel`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasSum_tel) — `` HasSum (tel b) (1 / b) ``
+- [`ApproxDeriv.sq_le_tel`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-sq_le_tel) — `` 1 / ((n : ℝ) + b) ^ 2 ≤ (1 + 1 / b) * tel b n ``
+- [`ApproxDeriv.hasDerivAt_tau_line`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-hasDerivAt_tau_line) — `` HasDerivAt (fun t : ℝ => tau h (w₀ + t * e) n) (e * tau' h (w₀ + t * e) n) t ``
+- [`ApproxDeriv.b_facts`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-b_facts) — `` t * (1 / (1 / 20 + t / 5)) ≤ 5 ∧ 1 + 1 / (1 / 20 + t / 5) ≤ 6 ``
+- [`ApproxDeriv.deriv_eq_of_eq_Ici`](./lean_stage3/ApproxDeriv.md#ApproxDeriv-deriv_eq_of_eq_Ici) — `` f' = g' `` Two functions differentiable at `t` that agree on `[t, ∞)` have the same derivative.
+
+### [`ApproxDerivAll`](./lean_stage3/ApproxDerivAll.md) — 11
+
+# ApproxDerivAll — block S12 of `lean_stage3/design/stencil.md`, all orders. 2026-11-25.
+
+- [`ApproxDerivAll.ibp_iter_chain`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter_chain) — `` ∀ F : ℕ → ℝ → ℂ, (∀ k < j, ∀ t, HasDerivAt (F k) (F (k + 1) t) t) → IntervalIntegrable (F j) volume a b → (∀ k < j, F k a = 0) → (∀ k < j, F k b = 0) … `` `j` integrations by parts against `e_λ(t) = e^(−iλt)`, for a chain `F 0, F 1, …, F j` with `F (k+1)` the derivative of `F k` and `F k` vanishing at `a`, `b` for `k < j`.
+- [`ApproxDerivAll.ibp_iter`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-ibp_iter) — `` ∫ t in a..b, F t * eL l t = (1 / ((l : ℂ) * I)) ^ j * ∫ t in a..b, iteratedDeriv j F t * eL l t `` `j` integrations by parts. For `F` of class `Cʲ` with `F, F', …, F^(j−1)` vanishing at `a` and `b`, and `λ ≠ 0`: `∫_a^b F e_λ = (1/(iλ))^j ∫_a^b F^(j) e_λ`, `e_λ(t) = e^(−iλt)`.
+- [`ApproxDerivAll.tauK_zero`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-tauK_zero) — `` tauK 0 h w n = tau h w n ``
+- [`ApproxDerivAll.hasDerivAt_tauK_line`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-hasDerivAt_tauK_line) — `` HasDerivAt (fun t : ℝ => tauK k h (w₀ + t * e) n) (e * tauK (k + 1) h (w₀ + t * e) n) t ``
+- [`ApproxDerivAll.Dc_nonneg`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-Dc_nonneg) — `` 0 ≤ Dc k ``
+- [`ApproxDerivAll.Dk_nonneg`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-Dk_nonneg) — `` 0 ≤ Dk k ``
+- [`ApproxDerivAll.pow_key`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-pow_key) — `` (a * q) ^ i * a * q ^ (J - i + 1) ≤ (a * q) ^ (J + 1) ``
+- [`ApproxDerivAll.leib_bound`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-leib_bound) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ (H d : ℕ → ℂ) (G a q : ℝ), 1 ≤ a → 0 ≤ q → ‖H 0‖ ≤ G → (∀ j, H (j + 1) = ∑ i ∈ Finset.range (j + 1), (j.choose i : ℂ) * H i * d (j … `` The algebra of the induction: if `H (j+1) = Σ C(j,i) H i d(j−i)` and `‖d m‖ ≤ D m a q^(m+1)`, then `‖H i‖ ≤ ‖H 0‖-bound · M (aq)^i`, with `M` depending on `D` and the order only.
+- [`ApproxDerivAll.cont_xpow`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-cont_xpow) — `` Continuous fun y : ℝ => (x : ℂ) ^ (-((σ : ℂ) + y * I)) ``
+- [`ApproxDerivAll.VYk_zero`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-VYk_zero) — `` VYk α β 0 c x t = VY α β c x t ``
+- [`ApproxDerivAll.norm_IYk_le`](./lean_stage3/ApproxDerivAll.md#ApproxDerivAll-norm_IYk_le) — `` ‖IYk α β x j t s‖ ≤ ‖KY α β t s * (x : ℂ) ^ (-s)‖ * B ``
+
+### [`ApproxFE`](./lean_stage3/ApproxFE.md) — 16
+
+# ApproxFE — block S12 of `lean_stage3/design/stencil.md`, piece 1. 2026-11-25. Young's Lemma 4 (arXiv 1002.4403, §4): the approximate functional equation for `ζ(1/2+α+it)·ζ(1/2+β−it)` with the smoothing `G(s) = e^(s²)·p(s)`, `p(s) = ((α+β)² − (2s)²)/(α+β)²`.
+
+- [`ApproxFE.uA_re`](./lean_stage3/ApproxFE.md#ApproxFE-uA_re) — `` (uA α t).re = 1 / 2 + α.re ``
+- [`ApproxFE.vB_re`](./lean_stage3/ApproxFE.md#ApproxFE-vB_re) — `` (vB β t).re = 1 / 2 + β.re ``
+- [`ApproxFE.uA_im`](./lean_stage3/ApproxFE.md#ApproxFE-uA_im) — `` (uA α t).im = α.im + t ``
+- [`ApproxFE.vB_im`](./lean_stage3/ApproxFE.md#ApproxFE-vB_im) — `` (vB β t).im = β.im - t ``
+- [`ApproxFE.Gammaℝ_uA_ne`](./lean_stage3/ApproxFE.md#ApproxFE-Gamma-_uA_ne) — `` Gammaℝ (uA α t) ≠ 0 `` `Gammaℝ (uA α t) ≠ 0` once `Re α > −1/2`.
+- [`ApproxFE.Gammaℝ_vB_ne`](./lean_stage3/ApproxFE.md#ApproxFE-Gamma-_vB_ne) — `` Gammaℝ (vB β t) ≠ 0 `` `Gammaℝ (vB β t) ≠ 0` once `Re β > −1/2`.
+- [`ApproxFE.ratio_aux`](./lean_stage3/ApproxFE.md#ApproxFE-ratio_aux) — `` P ^ a * A * (P ^ b * B) / (P ^ c * C * (P ^ d * D)) = P ^ k * (A * B) / (C * D) `` A ratio of four `π`-powers times Gamma values.
+- [`ApproxFE.differentiableAt_Gammaℝ`](./lean_stage3/ApproxFE.md#ApproxFE-differentiableAt_Gamma-) — `` DifferentiableAt ℂ Gammaℝ s `` `Gammaℝ` is differentiable wherever it does not vanish.
+- [`ApproxFE.norm_succ_cpow`](./lean_stage3/ApproxFE.md#ApproxFE-norm_succ_cpow) — `` ‖((m : ℂ) + 1) ^ z‖ = ((m : ℝ) + 1) ^ z.re `` The norm of a shifted natural power.
+- [`ApproxFE.KY_differentiableAt`](./lean_stage3/ApproxFE.md#ApproxFE-KY_differentiableAt) — `` DifferentiableAt ℂ (KY α β t) s `` The kernel is differentiable at `s ≠ 0` where `Gammaℝ(u+s), Gammaℝ(v+s) ≠ 0`.
+- [`ApproxFE.GY_neg`](./lean_stage3/ApproxFE.md#ApproxFE-GY_neg) — `` GY α β (-s) = GY α β s `` `G` is even.
+- [`ApproxFE.GY_swap`](./lean_stage3/ApproxFE.md#ApproxFE-GY_swap) — `` GY (-β) (-α) s = GY α β s `` `G` for `(−β,−α)` is `G` for `(α,β)`.
+- [`ApproxFE.uA_neg`](./lean_stage3/ApproxFE.md#ApproxFE-uA_neg) — `` uA (-β) t = 1 - vB β t `` The swap `(α,β) ↦ (−β,−α)` sends `u` to `1 − v`.
+- [`ApproxFE.vB_neg`](./lean_stage3/ApproxFE.md#ApproxFE-vB_neg) — `` vB (-α) t = 1 - uA α t `` The swap `(α,β) ↦ (−β,−α)` sends `v` to `1 − u`.
+- [`ApproxFE.GY_zero`](./lean_stage3/ApproxFE.md#ApproxFE-GY_zero) — `` GY α β 0 = 1 `` `G(0) = 1` once `α + β ≠ 0`.
+- [`ApproxFE.gY_zero`](./lean_stage3/ApproxFE.md#ApproxFE-gY_zero) — `` gY α β t 0 = 1 `` `g(0,t) = 1` once `Gammaℝ u, Gammaℝ v ≠ 0`.
+
+### [`ApproxShift`](./lean_stage3/ApproxShift.md) — 8
+
+# ApproxShift — block S12 of `lean_stage3/design/stencil.md`, the contour shift. 2026-11-25.
+
+- [`ApproxShift.Gammaℝ_ne_of_im`](./lean_stage3/ApproxShift.md#ApproxShift-Gamma-_ne_of_im) — `` Gammaℝ w ≠ 0 `` `Gammaℝ w ≠ 0` off the real axis.
+- [`ApproxShift.abs_le_add_abs`](./lean_stage3/ApproxShift.md#ApproxShift-abs_le_add_abs) — `` |y| ≤ |a + y| + |a| `` `|y| ≤ |a + y| + |a|`.
+- [`ApproxShift.Lam_differentiableAt`](./lean_stage3/ApproxShift.md#ApproxShift-Lam_differentiableAt) — `` DifferentiableAt ℂ (fun s => completedRiemannZeta (w + s)) s ``
+- [`ApproxShift.Lam0_analyticAt`](./lean_stage3/ApproxShift.md#ApproxShift-Lam0_analyticAt) — `` AnalyticAt ℂ (fun s => completedRiemannZeta₀ (w + s)) p ``
+- [`ApproxShift.GY_analyticAt`](./lean_stage3/ApproxShift.md#ApproxShift-GY_analyticAt) — `` AnalyticAt ℂ (GY α β) p ``
+- [`ApproxShift.FL_differentiableAt`](./lean_stage3/ApproxShift.md#ApproxShift-FL_differentiableAt) — `` DifferentiableAt ℂ (FL α β t) s ``
+- [`ApproxShift.ne_of_re_ne`](./lean_stage3/ApproxShift.md#ApproxShift-ne_of_re_ne) — `` z ≠ w `` `z ≠ w` from their real parts.
+- [`ApproxShift.rect_tendsto`](./lean_stage3/ApproxShift.md#ApproxShift-rect_tendsto) — `` Tendsto (fun T : ℝ => RectangleIntegral f (↑(-c) - I * T) (↑c + I * T)) atTop (𝓝 (VerticalIntegral f c - VerticalIntegral f (-c))) `` PNT+'s `RectangleIntegral_tendsTo_VerticalIntegral` (in `PerronFormula`, not built at the pin), re-proved here for `[−c, c]`.
 
 ### [`BandJoin`](./lean_stage3/BandJoin.md) — 2
 
@@ -508,6 +584,17 @@ NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase
 - [`NoHoles.moebius_floor_inversion`](./lean_stage3/NoHoles.md#NoHoles-moebius_floor_inversion) — `` ∑ k ∈ Icc 1 N, ((moebius k : ℤ) : ℝ) * ∑ j ∈ Icc 1 (N / k), f (N / k / j) = f N `` Möbius inversion over the floors.
 - [`NoHoles.psi_floor`](./lean_stage3/NoHoles.md#NoHoles-psi_floor) — `` Chebyshev.psi ((N : ℝ) / (k : ℝ)) = Chebyshev.psi ((N / k : ℕ) : ℝ) `` The staircase depends on the floor of its argument.
 
+### [`OffDiagClose`](./lean_stage3/OffDiagClose.md) — 6
+
+# OffDiagClose — block S12 of `lean_stage3/design/stencil.md`, the window and the off-diagonal. 2026-11-25.
+
+- [`OffDiagClose.wsum_nonneg`](./lean_stage3/OffDiagClose.md#OffDiagClose-wsum_nonneg) — `` 0 ≤ wsum W j ``
+- [`OffDiagClose.Cj_le_wsum`](./lean_stage3/OffDiagClose.md#OffDiagClose-Cj_le_wsum) — `` W.Cj i ≤ wsum W j ``
+- [`OffDiagClose.iteratedDeriv_ofReal_comp`](./lean_stage3/OffDiagClose.md#OffDiagClose-iteratedDeriv_ofReal_comp) — `` iteratedDeriv k (fun t => (f t : ℂ)) = fun t => ((iteratedDeriv k f t : ℝ) : ℂ) `` `∂ᵏ (t ↦ (f t : ℂ)) = (∂ᵏ f : ℂ)` for smooth real `f`.
+- [`OffDiagClose.Fw_iter_zero_out`](./lean_stage3/OffDiagClose.md#OffDiagClose-Fw_iter_zero_out) — `` iteratedDeriv k (Fw W.toWeight α β c x) t = 0 `` Off the support every derivative of `F = wV` vanishes.
+- [`OffDiagClose.major6_nonneg`](./lean_stage3/OffDiagClose.md#OffDiagClose-major6_nonneg) — `` 0 ≤ major6 p ``
+- [`OffDiagClose.r_choice`](./lean_stage3/OffDiagClose.md#OffDiagClose-r_choice) — `` 2 ≤ ((⌈2 / (1 - 2 * θ)⌉₊ : ℕ) : ℝ) * (1 - 2 * θ) `` The number of integrations by parts: `r = ⌈2/(1 − 2θ)⌉₊`, so `r(1 − 2θ) ≥ 2`.
+
 ### [`PerfectFit`](./lean_stage3/PerfectFit.md) — 1
 
 PerfectFit — block R14 of `lean_stage3/design/runs.md`. 2026-11-24. Julian, 2026-11-24: the harmonic of the integers absorbs the primes' signs as a perfect fit. For the counts it is exact: at every `N`, the counts `⌊N/k⌋` of the integers with nothing missing, signed by `μ(k)`, add up to exactly one.
@@ -631,6 +718,40 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 
 - [`StepsPeak.uIcc_sub`](./lean_stage3/StepsPeak.md#StepsPeak-uIcc_sub) — `` Set.uIcc (2:ℝ) N ⊆ Set.Ioi 0 ``
 - [`StepsPeak.h0_not_mem`](./lean_stage3/StepsPeak.md#StepsPeak-h0_not_mem) — `` (0:ℝ) ∉ Set.uIcc (2:ℝ) N ``
+
+### [`TwistedMoment`](./lean_stage3/TwistedMoment.md) — 29
+
+# TwistedMoment — block S12 of `lean_stage3/design/stencil.md`, piece 2b-ii, the twisted moment. 2026-11-25.
+
+- [`TwistedMoment.Weight.differentiable`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-differentiable) — `` Differentiable ℝ W.w ``
+- [`TwistedMoment.Weight.smooth1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-smooth1) — `` ContDiff ℝ ∞ (deriv W.w) ``
+- [`TwistedMoment.Weight.differentiable1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-differentiable1) — `` Differentiable ℝ (deriv W.w) ``
+- [`TwistedMoment.Weight.hasDerivAt1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-hasDerivAt1) — `` HasDerivAt W.w (deriv W.w t) t ``
+- [`TwistedMoment.Weight.hasDerivAt2`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-hasDerivAt2) — `` HasDerivAt (deriv W.w) (deriv (deriv W.w) t) t ``
+- [`TwistedMoment.Weight.cont`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont) — `` Continuous W.w ``
+- [`TwistedMoment.Weight.cont1`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont1) — `` Continuous (deriv W.w) ``
+- [`TwistedMoment.Weight.cont2`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-cont2) — `` Continuous (deriv (deriv W.w)) ``
+- [`TwistedMoment.Weight.deriv_zero_on`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-deriv_zero_on) — `` ∀ s ∈ U, deriv f s = 0 `` A function vanishing on an open set has derivative zero there.
+- [`TwistedMoment.Weight.zero_out`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-zero_out) — `` W.w t = 0 ∧ deriv W.w t = 0 ∧ deriv (deriv W.w) t = 0 ``
+- [`TwistedMoment.Weight.abs_le_one`](./lean_stage3/TwistedMoment.md#TwistedMoment-Weight-abs_le_one) — `` |W.w t| ≤ 1 ``
+- [`TwistedMoment.continuous_eL`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_eL) — `` Continuous (eL l) ``
+- [`TwistedMoment.eL_hasDerivAt`](./lean_stage3/TwistedMoment.md#TwistedMoment-eL_hasDerivAt) — `` HasDerivAt (eL l) (eL l t * (-(l : ℂ) * I)) t ``
+- [`TwistedMoment.norm_eL`](./lean_stage3/TwistedMoment.md#TwistedMoment-norm_eL) — `` ‖eL l t‖ = 1 ``
+- [`TwistedMoment.ibp_once`](./lean_stage3/TwistedMoment.md#TwistedMoment-ibp_once) — `` ∫ t in a..b, F t * eL l t = (1 / ((l : ℂ) * I)) * ∫ t in a..b, F1 t * eL l t `` One integration by parts: `∫_a^b F e_λ = (1/(iλ)) ∫_a^b F' e_λ` when `F(a) = F(b) = 0`.
+- [`TwistedMoment.ibp_twice`](./lean_stage3/TwistedMoment.md#TwistedMoment-ibp_twice) — `` ∫ t in a..b, F t * eL l t = -(1 / (l : ℂ) ^ 2) * ∫ t in a..b, F2 t * eL l t `` Two integrations by parts: `∫_a^b F e_λ = −(1/λ²) ∫_a^b F'' e_λ` when `F` and `F'` vanish at `a` and `b`.
+- [`TwistedMoment.Fw_zero_out`](./lean_stage3/TwistedMoment.md#TwistedMoment-Fw_zero_out) — `` Fw W α β c x t = 0 ∧ Fw1 W α β c x t = 0 ∧ Fw2 W α β c x t = 0 ``
+- [`TwistedMoment.inv_t_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-inv_t_le) — `` t⁻¹ ≤ 4 * (T / L)⁻¹ `` `t⁻¹ ≤ 4Δ⁻¹` on the support, `Δ = T/L ≤ T`.
+- [`TwistedMoment.msq_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-msq_nonneg) — `` 0 ≤ msq M a σ₀ t ``
+- [`TwistedMoment.continuous_msq`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_msq) — `` Continuous (msq M a σ₀) ``
+- [`TwistedMoment.continuous_uA`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_uA) — `` Continuous fun t : ℝ => uA α t ``
+- [`TwistedMoment.continuous_vB`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_vB) — `` Continuous fun t : ℝ => vB β t ``
+- [`TwistedMoment.integrable_of_Icc`](./lean_stage3/TwistedMoment.md#TwistedMoment-integrable_of_Icc) — `` Integrable f `` A function that vanishes off `[a, b]` and is continuous on it is integrable.
+- [`TwistedMoment.w_zero_mul`](./lean_stage3/TwistedMoment.md#TwistedMoment-w_zero_mul) — `` (W.w t : ℂ) * F * G = 0 `` The `I` integrand vanishes off the support.
+- [`TwistedMoment.resY_term_cAt`](./lean_stage3/TwistedMoment.md#TwistedMoment-resY_term_cAt) — `` ContinuousAt (fun t => GY α β (f t) / d t * completedRiemannZeta (g t)) t `` One term of `resY`, continuous in `t` where its pieces are defined.
+- [`TwistedMoment.ne_zero_of_re_pos`](./lean_stage3/TwistedMoment.md#TwistedMoment-ne_zero_of_re_pos) — `` z ≠ 0 ``
+- [`TwistedMoment.ne_of_im_ne`](./lean_stage3/TwistedMoment.md#TwistedMoment-ne_of_im_ne) — `` z ≠ w ``
+- [`TwistedMoment.continuous_Ehk`](./lean_stage3/TwistedMoment.md#TwistedMoment-continuous_Ehk) — `` Continuous (Ehk σ₀ h k) ``
+- [`TwistedMoment.offTerm_nonneg`](./lean_stage3/TwistedMoment.md#TwistedMoment-offTerm_nonneg) — `` 0 ≤ offTerm T p ``
 
 ### [`WeilPowerClean`](./lean_stage3/WeilPowerClean.md) — 1
 

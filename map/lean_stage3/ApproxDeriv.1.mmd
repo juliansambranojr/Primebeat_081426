@@ -1,0 +1,113 @@
+flowchart LR
+  n0["<b>ne_neg_nat_of_re_pos</b><br/>z ≠ -(m : ℂ)"]:::shp
+  n1["<b>hasDerivAt_Gammaℝ ■</b><br/>HasDerivAt Gammaℝ (Gammaℝ w * psiR w) w"]:::shp
+  n2["<b>hasDerivAt_line</b><br/>HasDerivAt (fun t : ℝ =＞ w₀ + (t : ℂ) * e) e t"]:::cnt
+  n3["<b>hasDerivAt_Gammaℝ_comp ■</b><br/>HasDerivAt (fun t =＞ Gammaℝ (f t)) (Gammaℝ (f t) * psiR (f t) * …"]:::shp
+  n4["<b>re_conds</b><br/>1 / 20 ≤ (uA α t / 2).re ∧ 1 / 20 ≤ (uA α t / 2 + s / 2).re ∧ 1 …"]:::shp
+  n5["<b>gY_hasDerivAt</b><br/>HasDerivAt (fun t =＞ gY α β t s) (gY α β t s * dY α β t s) t"]:::shp
+  n6["<b>hasSum_tau</b><br/>HasSum (tau h w) (digamma (w + h) - digamma w)"]:::shp
+  n7["<b>norm_nat_add_ge</b><br/>((n : ℝ) + a + Y) / 2 ≤ ‖(n : ℂ) + z‖"]:::shp
+  n8["<b>norm_tau_le</b><br/>‖tau h w n‖ ≤ 4 * ‖h‖ * (1 / ((n : ℝ) + (a + Y)) ^ 2)"]:::shp
+  n9["<b>norm_tau'_le</b><br/>‖tau' h w n‖ ≤ 16 * ‖h‖ / (a + Y) * (1 / ((n : ℝ) + (a + Y)) ^ 2…"]:::shp
+  n10["<b>hasSum_tel</b><br/>HasSum (tel b) (1 / b)"]:::cnt
+  n11["<b>sq_le_tel</b><br/>1 / ((n : ℝ) + b) ^ 2 ≤ (1 + 1 / b) * tel b n"]:::cnt
+  n12["<b>nat_add_ne</b><br/>(n : ℂ) + z ≠ 0"]:::shp
+  n13["<b>dY_hasSum</b><br/>HasSum (fun n =＞ I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / …"]:::shp
+  n14["<b>norm_I_half</b><br/>‖I / 2‖ = 1 / 2"]:::shp
+  n15["<b>norm_dterm_le</b><br/>‖I / 2 * (tau (s / 2) (uA α t / 2) n - tau (s / 2) (vB β t / 2) …"]:::shp
+  n16["<b>norm_dY_le</b><br/>‖dY α β t s‖ ≤ 4 * ‖s / 2‖ * (1 + 1 / (1 / 20 + Y)) * (1 / (1 / …"]:::shp
+  n17["<b>norm_d2term_le</b><br/>‖-(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau' (s / 2) (vB β t …"]:::shp
+  n18["<b>summable_d2term</b><br/>Summable fun n =＞ -(1 / 4) * (tau' (s / 2) (uA α t / 2) n + tau'…"]:::shp
+  n19["<b>norm_d2Y_le</b><br/>‖d2Y α β t s‖ ≤ 8 * ‖s / 2‖ / (1 / 20 + Y) * (1 + 1 / (1 / 20 + …"]:::shp
+  n20["<b>hasDerivAt_tau_line</b><br/>HasDerivAt (fun t : ℝ =＞ tau h (w₀ + t * e) n) (e * tau' h (w₀ +…"]:::cnt
+  n21["<b>dY_hasDerivAt</b><br/>HasDerivAt (fun t =＞ dY α β t s) (d2Y α β t s) t"]:::shp
+  n22["<b>poly_gauss</b><br/>(1 + |y|) ^ k * Real.exp (-(1 / 2) * y ^ 2) ≤ (k.factorial : ℝ) …"]:::shp
+  n23["<b>gauss_loc</b><br/>Real.exp (-y ^ 2) * (1 + y ^ 2) * (1 + |y|) ^ k ≤ ((k + 2).facto…"]:::shp
+  n24["<b>norm_half_le</b><br/>‖((σ : ℂ) + y * I) / 2‖ ≤ (1 + |σ|) * (1 + |y|)"]:::shp
+  n25["<b>dY_crude</b><br/>‖dY α β t (σ + y * I)‖ ≤ 1680 * (1 + |σ|) * (1 + |y|)"]:::shp
+  n26["<b>d2Y_crude</b><br/>‖d2Y α β t (σ + y * I)‖ ≤ 67200 * (1 + |σ|) * (1 + |y|)"]:::shp
+  n27["<b>KY_local</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ t ∈ Metric.closedBall t₀ 1, ∀ y : ℝ, ‖KY α β …"]:::shp
+  n28["<b>cont_F</b><br/>Continuous fun y : ℝ =＞ KY α β t (σ + y * I) * (x : ℂ) ^ (-((σ :…"]:::shp
+  n29["<b>re_half_pos</b><br/>0 ＜ ((uA α t + ((σ : ℂ) + y * I)) / 2).re ∧ 0 ＜ ((vB β t + ((σ :…"]:::shp
+  x0(["<b>ApproxDerivAll</b><br/>16 theorems"]):::ext
+  x1(["<b>TwistedMoment</b><br/>eL_hasDerivAt"]):::ext
+  x2(["<b>ApproxFE</b><br/>uA_re<br/>vB_re"]):::ext
+  x3(["<b>diagram 2</b><br/>8 theorems"]):::ext
+  x4(["<b>ApproxShift</b><br/>GY_norm_le"]):::ext
+  x5(["<b>ApproxBounds</b><br/>integrand_differentiableAt'"]):::ext
+  n0 --> n1
+  n0 --> n6
+  n10 --> n16
+  n10 --> n18
+  n10 --> n19
+  n10 --> n21
+  n11 --> n15
+  n11 --> n17
+  n12 --> n21
+  n13 --> n16
+  n13 --> n21
+  n14 --> n15
+  n15 --> n16
+  n16 --> n25
+  n17 --> n18
+  n17 --> n19
+  n17 --> n21
+  n19 --> n26
+  n2 --> n20
+  n2 --> n5
+  n20 --> n21
+  n22 --> n23
+  n24 --> n25
+  n24 --> n26
+  n4 --> n13
+  n4 --> n15
+  n4 --> n17
+  n4 --> n21
+  n4 --> n29
+  n6 --> n13
+  n7 --> n8
+  n7 --> n9
+  n8 --> n15
+  n9 --> n17
+  n10 -.-> x0
+  n11 -.-> x0
+  n12 -.-> x0
+  n12 -.-> x3
+  n13 -.-> x0
+  n14 -.-> x0
+  n16 -.-> x3
+  n18 -.-> x3
+  n19 -.-> x3
+  n2 -.-> x0
+  n2 -.-> x1
+  n21 -.-> x3
+  n22 -.-> x0
+  n22 -.-> x3
+  n23 -.-> x0
+  n23 -.-> x3
+  n24 -.-> x0
+  n24 -.-> x3
+  n25 -.-> x3
+  n26 -.-> x3
+  n27 -.-> x0
+  n27 -.-> x3
+  n28 -.-> x3
+  n29 -.-> x3
+  n4 -.-> x0
+  n4 -.-> x3
+  n5 -.-> x0
+  n5 -.-> x3
+  n7 -.-> x0
+  x2 -.-> n27
+  x2 -.-> n4
+  x2 -.-> n5
+  x4 -.-> n27
+  x5 -.-> n28
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

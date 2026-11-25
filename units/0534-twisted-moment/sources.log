@@ -1,0 +1,152 @@
+# check_prose_source.py  2026-11-25T04:48:21Z
+# unit: 0534-twisted-moment
+# sources searched: 77
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68244
+  theorem ibp_twice {F F1 F2 : ℝ → ℂ} {a b l : ℝ} (hl : l ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68245
+  (hF : ∀ t, HasDerivAt F (F1 t) t) (hF1 : ∀ t, HasDerivAt F1 (F2 t) t)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68246
+  (hF2 : IntervalIntegrable F2 volume a b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68247
+  (ha : F a = 0) (hb : F b = 0) (ha1 : F1 a = 0) (hb1 : F1 b = 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:2545
+  ∫ t in a..b, F t * eL l t = -(1 / (l : ℂ) ^ 2) * ∫ t in a..b, F2 t * eL l t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68250
+  theorem offdiag_term {A : ℝ} (hA : 0 < A) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68251
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67655
+  ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68253
+  ∀ x : ℝ, 0 < x → ∀ c : ℝ, 0 < c → ∀ l : ℝ, l ≠ 0 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68254
+  ‖∫ t, (W.w t : ℂ) * VY α β c x t * eL l t‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68255
+  K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ * (l ^ 2)⁻¹ *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68258
+  theorem inv_log_sq_le {P Q : ℕ} (hP : 1 ≤ P) (hQ : 1 ≤ Q) (hPQ : P ≠ Q) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3118
+  ((Real.log ((P : ℝ) / Q)) ^ 2)⁻¹ ≤ 4 * (P : ℝ) * Q :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68261
+  theorem offdiag_term_young {A : ℝ} (hA : 0 < A) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68251
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68263
+  ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 < c →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68264
+  ∀ h k m n : ℕ, 1 ≤ h → 1 ≤ k → 1 ≤ m → 1 ≤ n → h * m ≠ k * n →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68265
+  ‖∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68266
+  ((h : ℂ) * m / ((k : ℂ) * n)) ^ (-((t : ℂ) * I))‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68255
+  K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹ *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3160
+  (4 * ((h : ℝ) * m) * ((k : ℝ) * n)) * (1 + (m : ℝ) * n / (2 * T)) ^ (-A) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68270
+  theorem msq_expand (M : ℕ) (a : ℕ → ℂ) (σ₀ t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68271
+  ((msq M a σ₀ t : ℝ) : ℂ) = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68272
+  a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-((σ₀ : ℂ) + t * I)) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3274
+  (k : ℂ) ^ (-((σ₀ : ℂ) - t * I))) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68275
+  theorem I_split {T L : ℝ} (W : Weight T L) (hT : 4 ≤ T) (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:67663
+  {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) (hαβ : α + β ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3587
+  Imom W M a σ₀ α β = I1 W M a σ₀ α β c + IX W M a σ₀ α β c - Ires W M a σ₀ α β :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68281
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68282
+  ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68283
+  ‖Ires W M a σ₀ α β‖ ≤ C * (1 + 1 / ‖α + β‖ ^ 2) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3726
+  (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (-σ₀)) ^ 2 * T * Real.exp (-(T ^ 2 / 32)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68286
+  theorem I1_expand {T L : ℝ} (W : Weight T L) (hT : 4 ≤ T) (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68287
+  {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {c : ℝ} (hc : 0 < c) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68288
+  I1 W M a σ₀ α β c = ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ∑' p : ℕ × ℕ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:3835
+  coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:4293
+  theorem I1_diag_off {T L : ℝ} (W : Weight T L) (hT : 4 ≤ T) (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68287
+  {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {c : ℝ} (hc : 0 < c) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:4295
+  I1 W M a σ₀ α β c = diagSum W M a σ₀ α β c + offSum W M a σ₀ α β c :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68293
+  theorem Jint_diag {T L : ℝ} (W : Weight T L) (α β : ℂ) (c : ℝ) {h k m n : ℕ} (hk : 1 ≤ k)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68294
+  (hn : 1 ≤ n) (hd : h * m = k * n) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a319055d14cd1a032.jsonl:4282
+  Jint W α β c h k m n = ∫ t, (W.w t : ℂ) * VY α β c ((m : ℝ) * n) t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68251
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68299
+  ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68301
+  ‖offSum W M a σ₀ α β c‖ ≤ K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68302
+  ((T / L) ^ 2)⁻¹ * (∑ h ∈ Finset.Icc 1 M, ‖a h‖ * (h : ℝ) ^ (1 - σ₀)) ^ 2 *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68305
+  theorem lemma3_res_of_parts {P : Polynomial ℝ} {θ R κ : ℝ} (hκ : 0 < κ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68306
+  (hD : StmtDiag P θ R κ) (hO : StmtOffDiag P θ R κ) (hX : StmtX P θ R κ) :
+
+# 49 found, 0 missing

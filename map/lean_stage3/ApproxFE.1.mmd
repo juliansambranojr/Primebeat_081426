@@ -1,0 +1,102 @@
+flowchart LR
+  n0["<b>uA_re</b><br/>(uA α t).re = 1 / 2 + α.re"]:::cnt
+  n1["<b>vB_re</b><br/>(vB β t).re = 1 / 2 + β.re"]:::cnt
+  n2["<b>uA_im</b><br/>(uA α t).im = α.im + t"]:::cnt
+  n3["<b>vB_im</b><br/>(vB β t).im = β.im - t"]:::cnt
+  n4["<b>zeta_fe</b><br/>riemannZeta s = Gammaℝ (1 - s) / Gammaℝ s * riemannZeta (1 - s)"]:::thm
+  n5["<b>zeta_prod_fe ■</b><br/>riemannZeta (uA α t) * riemannZeta (vB β t) = XY α β t * (rieman…"]:::thm
+  n6["<b>Gammaℝ_uA_ne ■</b><br/>Gammaℝ (uA α t) ≠ 0"]:::cnt
+  n7["<b>Gammaℝ_vB_ne ■</b><br/>Gammaℝ (vB β t) ≠ 0"]:::cnt
+  n8["<b>ratio_aux</b><br/>P ^ a * A * (P ^ b * B) / (P ^ c * C * (P ^ d * D)) = P ^ k * (A…"]:::cnt
+  n9["<b>XY_eq_young ■</b><br/>XY α β t = (Real.pi : ℂ) ^ (α + β) * (Gamma ((1 / 2 - α - t * I)…"]:::shp
+  n10["<b>gY_eq_young ■</b><br/>gY α β t s = (Real.pi : ℂ) ^ (-s) * (Gamma ((1 / 2 + α + s + t *…"]:::shp
+  n11["<b>coef_eq_young ■</b><br/>(x : ℂ) ^ (-uA α t) * (y : ℂ) ^ (-vB β t) = (x : ℂ) ^ (-(1 / 2 +…"]:::shp
+  n12["<b>norm_Gamma_le</b><br/>‖Gamma z‖ ≤ Real.Gamma z.re"]:::shp
+  n13["<b>norm_Gammaℝ_le ■</b><br/>‖Gammaℝ w‖ ≤ Real.pi ^ (-w.re / 2) * Real.Gamma (w.re / 2)"]:::shp
+  n14["<b>differentiableAt_Gammaℝ ■</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::cnt
+  n15["<b>norm_succ_cpow</b><br/>‖((m : ℂ) + 1) ^ z‖ = ((m : ℝ) + 1) ^ z.re"]:::cnt
+  n16["<b>summable_succ_rpow</b><br/>Summable fun m : ℕ =＞ ((m : ℝ) + 1) ^ r"]:::shp
+  n17["<b>summable_zeta_norm</b><br/>Summable fun n : ℕ =＞ ‖1 / ((n : ℂ) + 1) ^ w‖"]:::shp
+  n18["<b>KY_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ y : ℝ, ‖KY α β t (c + y * I)‖ ≤ C * Real.exp …"]:::shp
+  n19["<b>KY_differentiableAt</b><br/>DifferentiableAt ℂ (KY α β t) s"]:::cnt
+  n20["<b>KY_continuous_line</b><br/>Continuous fun y : ℝ =＞ KY α β t (c + y * I)"]:::shp
+  n21["<b>tsum_pointwise</b><br/>∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-u) * ((p.2 : ℂ) + 1) ^ (-v) * …"]:::thm
+  n22["<b>mellin_double_sum</b><br/>∑' p : ℕ × ℕ, ((p.1 : ℂ) + 1) ^ (-uA α t) * ((p.2 : ℂ) + 1) ^ (-…"]:::thm
+  n23["<b>GY_neg</b><br/>GY α β (-s) = GY α β s"]:::cnt
+  n24["<b>GY_swap</b><br/>GY (-β) (-α) s = GY α β s"]:::cnt
+  n25["<b>uA_neg</b><br/>uA (-β) t = 1 - vB β t"]:::cnt
+  n26["<b>vB_neg</b><br/>vB (-α) t = 1 - uA α t"]:::cnt
+  n27["<b>gamma_mul_zeta</b><br/>Gammaℝ w * riemannZeta w = completedRiemannZeta w"]:::thm
+  n28["<b>FY_reflect</b><br/>FY α β t (-s) = -(XY α β t * FY (-β) (-α) t s)"]:::thm
+  n29["<b>gamma_ne_off</b><br/>Gammaℝ (w + -((c : ℂ) + y * I)) ≠ 0"]:::shp
+  x0(["<b>ApproxBounds</b><br/>9 theorems"]):::ext
+  x1(["<b>ApproxDeriv</b><br/>4 theorems"]):::ext
+  x2(["<b>ApproxDerivAll</b><br/>cont_gY"]):::ext
+  x3(["<b>diagram 2</b><br/>approxFE_of_shift<br/>residue_zero<br/>vertInt_reflect"]):::ext
+  x4(["<b>ApproxShift</b><br/>5 theorems"]):::ext
+  x5(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
+  x6(["<b>OffDiagClose</b><br/>summable_major6"]):::ext
+  n0 --> n18
+  n0 --> n20
+  n0 --> n22
+  n0 --> n28
+  n0 --> n5
+  n0 --> n6
+  n1 --> n18
+  n1 --> n20
+  n1 --> n22
+  n1 --> n28
+  n1 --> n5
+  n1 --> n7
+  n12 --> n13
+  n15 --> n17
+  n15 --> n22
+  n16 --> n17
+  n16 --> n22
+  n17 --> n21
+  n18 --> n22
+  n19 --> n20
+  n20 --> n22
+  n21 --> n22
+  n23 --> n28
+  n24 --> n28
+  n25 --> n28
+  n26 --> n28
+  n27 --> n28
+  n4 --> n5
+  n8 --> n10
+  n8 --> n9
+  n0 -.-> x0
+  n0 -.-> x1
+  n0 -.-> x2
+  n0 -.-> x3
+  n0 -.-> x4
+  n0 -.-> x5
+  n1 -.-> x0
+  n1 -.-> x1
+  n1 -.-> x2
+  n1 -.-> x3
+  n1 -.-> x4
+  n1 -.-> x5
+  n15 -.-> x5
+  n16 -.-> x5
+  n16 -.-> x6
+  n19 -.-> x0
+  n2 -.-> x0
+  n2 -.-> x1
+  n2 -.-> x5
+  n22 -.-> x3
+  n27 -.-> x4
+  n28 -.-> x3
+  n29 -.-> x3
+  n3 -.-> x0
+  n3 -.-> x1
+  n3 -.-> x5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
