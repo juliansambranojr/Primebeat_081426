@@ -27575,7 +27575,8 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_of_good",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS_eq_zetaArgContour",
-     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.zetaArgContour_le"
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.zetaArgContour_le",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
    {
@@ -27626,7 +27627,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_of_good"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_le_of_good",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    }
   ]
@@ -81568,7 +81570,8 @@
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
-     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior"
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.support_interior",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
    {
@@ -81983,7 +81986,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
    {
@@ -82007,7 +82011,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal"
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical"
     ]
    },
    {
@@ -82065,7 +82070,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
-     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
    {
@@ -82116,7 +82123,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
-     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect"
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
    {
@@ -120502,6 +120511,57 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLW.lean",
+  "module": "Stage3.TuringLW",
+  "stem": "TuringLW",
+  "header": "# TuringLW — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces assembled. 2026-11-25.",
+  "imports": [
+   "Stage3.TuringLWSplit",
+   "Stage3.TuringLWHoriz"
+  ],
+  "opens": [],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 32,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringLWHoriz.lean",
+   "lean_stage3/Stage3/TuringLWSplit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "littlewood_holds",
+    "ns": "TuringLW",
+    "full": "TuringLW.littlewood_holds",
+    "line": 22,
+    "why": "Littlewood's bound on `∫ S`, unconditional.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2",
+    "file": "lean_stage3/Stage3/TuringLW.lean",
+    "id": "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/TuringLWHoriz.lean",
   "module": "Stage3.TuringLWHoriz",
   "stem": "TuringLWHoriz",
@@ -120921,7 +120981,9 @@
      "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds"
+    ]
    }
   ]
  },
@@ -121479,6 +121541,1337 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLWSplit.lean",
+  "module": "Stage3.TuringLWSplit",
+  "stem": "TuringLWSplit",
+  "header": "TuringLWSplit — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the split identity (`Turing.StmtSplit`) and the oscillating right edge (`Turing.StmtOsc`, from `Stage3/TuringLWSplitOsc.lean`). 2026-11-25.",
+  "imports": [
+   "Stage3.TuringLWSplitOsc",
+   "Stage3.Littlewood"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 258,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Littlewood.lean",
+   "lean_stage3/Stage3/TuringLWSplitOsc.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "order_ne_top_of",
+    "ns": "TuringLW",
+    "full": "TuringLW.order_ne_top_of",
+    "line": 48,
+    "why": "`Littlewood.order_ne_top` with any nonvanishing point of the rectangle for the corner.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hq : q ∈ Rectangle z w",
+     "hfq : f q ≠ 0"
+    ],
+    "proves": "∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.order_ne_top_of",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "far_mem",
+    "ns": "TuringLW",
+    "full": "TuringLW.far_mem",
+    "line": 63,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "z w : ℂ"
+    ],
+    "proves": "w ∈ Rectangle z w",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.far_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_analyticOnNhd",
+    "ns": "TuringLW",
+    "full": "TuringLW.zeta_analyticOnNhd",
+    "line": 66,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hz : 0 < z.im",
+     "hw : 0 < w.im"
+    ],
+    "proves": "AnalyticOnNhd ℂ riemannZeta (Rectangle z w)",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.zeta_analyticOnNhd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_im_logDeriv_vertical",
+    "ns": "TuringLW",
+    "full": "TuringLW.integral_im_logDeriv_vertical",
+    "line": 76,
+    "why": "The imaginary part along a vertical line is a difference of `log ‖f‖`. No branch.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f (Rectangle z w)",
+     "hx : x ∈ [[z.re, w.re]]",
+     "hnz : ∀ t ∈ [[z.im, w.im]], f (↑x + ↑t * I) ≠ 0"
+    ],
+    "proves": "∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.hasDerivAt_log_norm",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.hasDerivAt_log_norm",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_log_zeta",
+    "ns": "TuringLW",
+    "full": "TuringLW.intervalIntegrable_log_zeta",
+    "line": 101,
+    "why": "`x ↦ log ‖ζ(x + it)‖` is interval integrable off the real axis: `ζ(· + it)` is real-analytic, and `log ‖·‖` of a real-meromorphic function is (Mathlib).",
+    "sorry": false,
+    "needs": [
+     "ht : t ≠ 0",
+     "a b : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun x : ℝ => Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * I)‖) volume a b",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.intervalIntegrable_log_zeta",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtSplit_holds",
+    "ns": "TuringLW",
+    "full": "TuringLW.stmtSplit_holds",
+    "line": 117,
+    "why": "The split identity, `Turing.StmtSplit`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtSplit",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS_eq_zetaArgContour",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.zetaArgContour",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.far_mem",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.intervalIntegrable_log_zeta",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.order_ne_top_of",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.zeta_analyticOnNhd",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.argS_eq_zetaArgContour",
+     "lean_stage3/Stage3/ArgIdentity.lean::Stage3.zetaArgContour",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.far_mem",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.intervalIntegrable_log_zeta",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.order_ne_top_of",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.zeta_analyticOnNhd",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "littlewood_of_lower",
+    "ns": "TuringLW",
+    "full": "TuringLW.littlewood_of_lower",
+    "line": 236,
+    "why": "Littlewood's bound from the lower horizontal side alone: (Split) and (Osc) are proved.",
+    "sorry": false,
+    "needs": [
+     "hlow : Turing.StmtHorizLower a₂ b₂",
+     "ha₂ : 0 ≤ a₂"
+    ],
+    "proves": "Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2",
+    "file": "lean_stage3/Stage3/TuringLWSplit.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtHorizLower",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtLittlewood",
+     "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+  "module": "Stage3.TuringLWSplitOsc",
+  "stem": "TuringLWSplitOsc",
+  "header": "TuringLWSplitOsc — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the right edge oscillates (`Turing.StmtOsc`). 2026-11-25.",
+  "imports": [
+   "Stage3.TuringS"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "TuringLW"
+  ],
+  "lines": 358,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/TuringS.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "vm",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm",
+    "line": 44,
+    "why": "`Λ n` as a real number.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.coeff_le_w",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.Ψ"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "E",
+    "ns": "TuringLW",
+    "full": "TuringLW.E",
+    "line": 47,
+    "why": "`E n t = exp(−(2 + it) log n) = n^{−(2+it)}`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E_zero",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.Ψ"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "H",
+    "ns": "TuringLW",
+    "full": "TuringLW.H",
+    "line": 50,
+    "why": "The primitive of `ζ′/ζ(2 + it)`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ψ",
+    "ns": "TuringLW",
+    "full": "TuringLW.Ψ",
+    "line": 53,
+    "why": "The primitive of `H`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.Ψ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_nonneg",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_nonneg",
+    "line": 57,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ vm n",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_le_log",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_le_log",
+    "line": 59,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n ≤ Real.log n",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_eq_zero_of_log",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_eq_zero_of_log",
+    "line": 61,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : Real.log n = 0"
+    ],
+    "proves": "vm n = 0",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_mul",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_mul",
+    "line": 64,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n / Real.log n * Real.log n = vm n",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_eq_zero_of_log"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_sq_mul",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_sq_mul",
+    "line": 69,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n / Real.log n ^ 2 * Real.log n = vm n / Real.log n",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_nonneg",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_nonneg",
+    "line": 74,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ vm n / Real.log n",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_le_one",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_le_one",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n / Real.log n ≤ 1",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_sq_nonneg",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_sq_nonneg",
+    "line": 84,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ vm n / Real.log n ^ 2",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vm_div_log_sq_le",
+    "ns": "TuringLW",
+    "full": "TuringLW.vm_div_log_sq_le",
+    "line": 87,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n / Real.log n ^ 2 ≤ 1 / Real.log 2",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_le_log",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.coeff_le_w",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_E",
+    "ns": "TuringLW",
+    "full": "TuringLW.hasDerivAt_E",
+    "line": 100,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt (E n) (-(I * (Real.log n : ℂ)) * E n t) t",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_E",
+    "ns": "TuringLW",
+    "full": "TuringLW.norm_E",
+    "line": 112,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "‖E n t‖ = Real.exp (-2 * Real.log n)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_zero",
+    "ns": "TuringLW",
+    "full": "TuringLW.E_zero",
+    "line": 117,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "E n 0 = ((Real.exp (-2 * Real.log n) : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_E",
+    "ns": "TuringLW",
+    "full": "TuringLW.continuous_E",
+    "line": 123,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Continuous (E n)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_E",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term_eq",
+    "ns": "TuringLW",
+    "full": "TuringLW.term_eq",
+    "line": 127,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "LSeries.term (fun n => ((ArithmeticFunction.vonMangoldt n : ℝ) : ℂ)) (2 + (t : ℂ) * I) n = (vm n : ℂ) * E n t",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_v",
+    "ns": "TuringLW",
+    "full": "TuringLW.summable_v",
+    "line": 139,
+    "why": "`v n = n^{−2}` (and `1` at `n = 0`).",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable fun n : ℕ => Real.exp (-2 * Real.log n)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_v",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_u",
+    "ns": "TuringLW",
+    "full": "TuringLW.summable_u",
+    "line": 148,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable fun n : ℕ => vm n * Real.exp (-2 * Real.log n)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_eq_tsum",
+    "ns": "TuringLW",
+    "full": "TuringLW.logDeriv_eq_tsum",
+    "line": 155,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "logDeriv riemannZeta (2 + (t : ℂ) * I) = ∑' n : ℕ, -(vm n : ℂ) * E n t",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.term_eq",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_H",
+    "ns": "TuringLW",
+    "full": "TuringLW.hasDerivAt_H",
+    "line": 167,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt H (∑' n : ℕ, -(vm n : ℂ) * E n t) t",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_v",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_v",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_H"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_Ψ",
+    "ns": "TuringLW",
+    "full": "TuringLW.hasDerivAt_Ψ",
+    "line": 189,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt Ψ (H t) t",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_Ψ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_v",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_v",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_le_one",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_nonneg",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_mul",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_H",
+    "ns": "TuringLW",
+    "full": "TuringLW.continuous_H",
+    "line": 213,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous H",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_H",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_F"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_logDeriv_line",
+    "ns": "TuringLW",
+    "full": "TuringLW.continuous_logDeriv_line",
+    "line": 216,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous fun u : ℝ => ∑' n : ℕ, -(vm n : ℂ) * E n u",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_logDeriv_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.summable_u",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "re_H_zero",
+    "ns": "TuringLW",
+    "full": "TuringLW.re_H_zero",
+    "line": 224,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "(H 0).re = 0",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E_zero",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E_zero",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "F_eq_re_H",
+    "ns": "TuringLW",
+    "full": "TuringLW.F_eq_re_H",
+    "line": 235,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "Turing.F t = (H t).re",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasDerivAt_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.logDeriv_eq_tsum",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.re_H_zero",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.integral_F"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_F",
+    "ns": "TuringLW",
+    "full": "TuringLW.continuous_F",
+    "line": 242,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous Turing.F",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_H",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_H",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_F",
+    "ns": "TuringLW",
+    "full": "TuringLW.integral_F",
+    "line": 247,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t₁ t₂ : ℝ"
+    ],
+    "proves": "∫ t in t₁..t₂, Turing.F t = (Ψ t₂).re - (Ψ t₁).re",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.integral_F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasSum_w",
+    "ns": "TuringLW",
+    "full": "TuringLW.hasSum_w",
+    "line": 255,
+    "why": "`Σ_{n ≥ 2} n^{−2} = π²/6 − 1`, as a sum over all `n`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "HasSum (fun n : ℕ => 1 / (n : ℝ) ^ 2 - if n = 1 then 1 else 0) (Real.pi ^ 2 / 6 - 1)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.hasSum_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "coeff_le_w",
+    "ns": "TuringLW",
+    "full": "TuringLW.coeff_le_w",
+    "line": 260,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "vm n / Real.log n ^ 2 * Real.exp (-2 * Real.log n) ≤ (1 / Real.log 2) * (1 / (n : ℝ) ^ 2 - if n = 1 then 1 else 0)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.coeff_le_w",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtOsc_explicit",
+    "ns": "TuringLW",
+    "full": "TuringLW.stmtOsc_explicit",
+    "line": 283,
+    "why": "The explicit constant `c₀ = 2 (π²/6 − 1)/log 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtOsc (2 * (Real.pi ^ 2 / 6 - 1) / Real.log 2)",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.coeff_le_w",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.integral_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.coeff_le_w",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.integral_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.norm_E",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_le",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.vm_div_log_sq_nonneg",
+     "lean_stage3/Stage3/TuringS.lean::Turing.F",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c₀_le_two",
+    "ns": "TuringLW",
+    "full": "TuringLW.c₀_le_two",
+    "line": 330,
+    "why": "`2 (π²/6 − 1)/log 2 ≤ 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "2 * (Real.pi ^ 2 / 6 - 1) / Real.log 2 ≤ 2",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.c₀_le_two",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtOsc_holds",
+    "ns": "TuringLW",
+    "full": "TuringLW.stmtOsc_holds",
+    "line": 338,
+    "why": "The right edge oscillates, `c₀ = 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Turing.StmtOsc 2",
+    "file": "lean_stage3/Stage3/TuringLWSplitOsc.lean",
+    "id": "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.c₀_le_two",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.c₀_le_two",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/TuringS.lean",
   "module": "Stage3.TuringS",
   "stem": "TuringS",
@@ -121530,6 +122923,7 @@
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.S_eq_argS",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude",
@@ -121591,6 +122985,11 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.F_eq_re_H",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.continuous_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.integral_F",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
      "lean_stage3/Stage3/TuringS.lean::Turing.StmtOsc",
      "lean_stage3/Stage3/TuringS.lean::Turing.StmtSplit"
     ]
@@ -121621,6 +123020,8 @@
     "used_by": [
      "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
+     "lean_stage3/Stage3/TuringLW.lean::TuringLW.littlewood_holds",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
     ]
    },
@@ -121648,6 +123049,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
     ]
    },
@@ -121675,6 +123077,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_explicit",
+     "lean_stage3/Stage3/TuringLWSplitOsc.lean::TuringLW.stmtOsc_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
     ]
    },
@@ -121722,6 +123126,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/TuringLWHoriz.lean::TuringLW.horizLower_holds",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower",
      "lean_stage3/Stage3/TuringS.lean::Turing.littlewood_of_pieces"
     ]
    },
@@ -121751,6 +123156,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
     ]
    },
@@ -121847,6 +123253,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
     ]
    },
@@ -121976,7 +123383,9 @@
      "lean_stage3/Stage3/TuringS.lean::Turing.horizUpper_holds"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.littlewood_of_lower"
+    ]
    }
   ]
  },
@@ -149852,11 +151261,13 @@
    "Stage3.FloorConstQ",
    "Stage3.FloorQ",
    "Stage3.Turing",
-   "Stage3.TuringLWHoriz"
+   "Stage3.TuringLWHoriz",
+   "Stage3.TuringLWSplit",
+   "Stage3.TuringLW"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 258,
+  "lines": 260,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -150028,7 +151439,9 @@
    "lean_stage3/Stage3/ThetaPsi.lean",
    "lean_stage3/Stage3/ThetaPull.lean",
    "lean_stage3/Stage3/Turing.lean",
+   "lean_stage3/Stage3/TuringLW.lean",
    "lean_stage3/Stage3/TuringLWHoriz.lean",
+   "lean_stage3/Stage3/TuringLWSplit.lean",
    "lean_stage3/Stage3/TwistedMoment.lean",
    "lean_stage3/Stage3/Unsmooth.lean",
    "lean_stage3/Stage3/VonKochScaffold.lean",

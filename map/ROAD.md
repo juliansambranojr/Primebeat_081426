@@ -71,7 +71,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 3439.
+- **Theorems Lean has checked:** 3477.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
@@ -166,9 +166,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSFromLocal`](./lean_stage3/ArgCrude.md#Stage3-StmtSFromLocal) | **OPEN** | — | 5 |
 | [`Stage3.StmtSchoenfeld`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeld) | **OPEN** | — | 1 |
 | [`SwapX.StmtXStirling`](./lean_stage3/SwapX.md#SwapX-StmtXStirling) | **OPEN** | — | 2 |
-| [`Turing.StmtOsc`](./lean_stage3/TuringS.md#Turing-StmtOsc) | **OPEN** | — | 1 |
 | [`Turing.StmtSignData`](./lean_stage3/TuringCert.md#Turing-StmtSignData) | **OPEN** | — | 2 |
-| [`Turing.StmtSplit`](./lean_stage3/TuringS.md#Turing-StmtSplit) | **OPEN** | — | 1 |
 | [`TwistedMoment.StmtLemma3`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtLemma3) | **OPEN** | — | 0 |
 | [`TwistedMoment.StmtOffDiag`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtOffDiag) | **OPEN** | — | 1 |
 | [`TwistedMoment.StmtX`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtX) | **OPEN** | — | 3 |
@@ -209,7 +207,6 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSchoenfeldWindow`](./lean_stage3/Statement.md#Stage3-StmtSchoenfeldWindow) | from a hypothesis | [`Stage3.window_of_global`](./lean_stage3/Statement.md#Stage3-window_of_global) ⊢ StmtSchoenfeldWindow f L r n | 0 |
 | [`Stage3.StmtWeakWindow`](./lean_stage3/Statement.md#Stage3-StmtWeakWindow) | from a hypothesis | [`Stage3.weakWindow_of_global`](./lean_stage3/Statement.md#Stage3-weakWindow_of_global) ⊢ StmtWeakWindow C k f L r n | 1 |
 | [`SwapX.StmtXAll`](./lean_stage3/SwapX.md#SwapX-StmtXAll) | from a hypothesis | [`SwapX.stmtXAll_of`](./lean_stage3/SwapX.md#SwapX-stmtXAll_of) ⊢ StmtXAll P θ R κ | 1 |
-| [`Turing.StmtLittlewood`](./lean_stage3/TuringS.md#Turing-StmtLittlewood) | from a hypothesis | [`Turing.littlewood_of_pieces`](./lean_stage3/TuringS.md#Turing-littlewood_of_pieces) ⊢ StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((c₀ + (3 / 2) * Real.log 9 + b₂) / Real.pi) 2 | 2 |
 | [`TwistedMoment.StmtDiag`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtDiag) | from a hypothesis | [`Diagonal.stmtDiag_of_main`](./lean_stage3/Diagonal.md#Diagonal-stmtDiag_of_main) ⊢ StmtDiag P θ R κ | 2 |
 | [`TwistedMoment.StmtLemma3res`](./lean_stage3/TwistedMoment.md#TwistedMoment-StmtLemma3res) | from a hypothesis | [`TwistedMoment.lemma3_res_of_parts`](./lean_stage3/TwistedMoment.md#TwistedMoment-lemma3_res_of_parts) ⊢ StmtLemma3res P θ R κ | 0 |
 | [`WeilDetect.StmtWeilPositive`](./lean_stage3/WeilDetect.md#WeilDetect-StmtWeilPositive) | from a hypothesis | [`WeilDetect.weilPositive_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-weilPositive_of_RH) ⊢ StmtWeilPositive L | 1 |
@@ -232,8 +229,11 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Stage3.StmtSCrude`](./lean_stage3/ArgCrude.md#Stage3-StmtSCrude) | proved | [`ArgCount.sCrude_holds`](./lean_stage3/ArgCount.md#ArgCount-sCrude_holds) ⊢ Stage3.StmtSCrude Stage3.argS 15 600 | 1 |
 | [`Stage3.StmtZeroFreeRight`](./lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) | proved | [`Stage3.zeroFreeRight_one`](./lean_stage3/Abscissa.md#Stage3-zeroFreeRight_one) ⊢ StmtZeroFreeRight 1<br/>[`Stage3.zeroFreeRight_one_of_chebyshev`](./lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_one_of_chebyshev) ⊢ StmtZeroFreeRight 1 | 20 |
 | [`Stirling.StmtXStirlingRel`](./lean_stage3/StirlingX.md#Stirling-StmtXStirlingRel) | proved | [`Stirling.stmtXStirlingRel_holds`](./lean_stage3/StirlingX.md#Stirling-stmtXStirlingRel_holds) ⊢ StmtXStirlingRel | 1 |
-| [`Turing.StmtHorizLower`](./lean_stage3/TuringS.md#Turing-StmtHorizLower) | proved | [`TuringLW.horizLower_holds`](./lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) ⊢ Turing.StmtHorizLower 102 500 | 1 |
+| [`Turing.StmtHorizLower`](./lean_stage3/TuringS.md#Turing-StmtHorizLower) | proved | [`TuringLW.horizLower_holds`](./lean_stage3/TuringLWHoriz.md#TuringLW-horizLower_holds) ⊢ Turing.StmtHorizLower 102 500 | 2 |
 | [`Turing.StmtHorizUpper`](./lean_stage3/TuringS.md#Turing-StmtHorizUpper) | proved | [`Turing.horizUpper_holds`](./lean_stage3/TuringS.md#Turing-horizUpper_holds) ⊢ StmtHorizUpper (3 / 2) ((3 / 2) * Real.log 9) | 0 |
+| [`Turing.StmtLittlewood`](./lean_stage3/TuringS.md#Turing-StmtLittlewood) | proved | [`TuringLW.littlewood_holds`](./lean_stage3/TuringLW.md#TuringLW-littlewood_holds) ⊢ Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.p… | 2 |
+| [`Turing.StmtOsc`](./lean_stage3/TuringS.md#Turing-StmtOsc) | proved | [`TuringLW.stmtOsc_explicit`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_explicit) ⊢ Turing.StmtOsc (2 * (Real.pi ^ 2 / 6 - 1) / Real.log 2)<br/>[`TuringLW.stmtOsc_holds`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-stmtOsc_holds) ⊢ Turing.StmtOsc 2 | 1 |
+| [`Turing.StmtSplit`](./lean_stage3/TuringS.md#Turing-StmtSplit) | proved | [`TuringLW.stmtSplit_holds`](./lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) ⊢ Turing.StmtSplit | 1 |
 
 ## Joints
 

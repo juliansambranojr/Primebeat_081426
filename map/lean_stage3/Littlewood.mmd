@@ -33,7 +33,8 @@ flowchart LR
   x3(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
   x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
   x5(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
-  x6(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  x6(["<b>TuringLWSplit</b><br/>integral_im_logDeriv_vertical<br/>stmtSplit_holds"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -75,13 +76,17 @@ flowchart LR
   n8 --> n9
   n9 --> n11
   n1 -.-> x0
+  n15 -.-> x6
+  n16 -.-> x6
   n17 -.-> x2
-  n17 -.-> x6
+  n17 -.-> x7
+  n18 -.-> x6
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
+  n20 -.-> x6
   n24 -.-> x0
   n26 -.-> x0
   n3 -.-> x0
@@ -90,11 +95,12 @@ flowchart LR
   n3 -.-> x3
   n3 -.-> x4
   n3 -.-> x5
+  n3 -.-> x6
   n4 -.-> x0
   n4 -.-> x3
   n5 -.-> x0
-  n5 -.-> x6
-  n7 -.-> x6
+  n5 -.-> x7
+  n7 -.-> x7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

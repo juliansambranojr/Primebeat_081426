@@ -7,7 +7,7 @@ TuringLWHoriz — block S14 of `lean_stage3/design/stencil.md`, Turing's method,
 9 theorems, 3 definitions, 246 lines. 
 
 **Imports:** [`TuringLWHorizLog`](../lean_stage3/TuringLWHorizLog.md), [`TuringLWHorizPoint`](../lean_stage3/TuringLWHorizPoint.md), [`TuringS`](../lean_stage3/TuringS.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TuringLW`](../lean_stage3/TuringLW.md)
 
 ## The picture
 
@@ -21,10 +21,11 @@ flowchart LR
   n5["<b>intervalIntegrable_gLow</b><br/>IntervalIntegrable (gLow ht) volume (1 / 2) 2"]:::thm
   n6["<b>log3_le</b><br/>Real.log 3 ≤ 2"]:::shp
   n7["<b>integral_g_ge</b><br/>-(102 * Real.log t + 500) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x"]:::thm
-  n8["<b>horizLower_holds ■</b><br/>Turing.StmtHorizLower 102 500"]:::thm
+  n8["<b>horizLower_holds</b><br/>Turing.StmtHorizLower 102 500"]:::thm
   x0(["<b>JensenCount</b><br/>zeta_centre_lower<br/>zeta_centre_ne_zero"]):::ext
   x1(["<b>TuringLWHorizPoint</b><br/>5 theorems"]):::ext
   x2(["<b>TuringLWHorizLog</b><br/>integral_log_sub_ge<br/>intervalIntegrable_log_sub"]):::ext
+  x3(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
@@ -34,6 +35,7 @@ flowchart LR
   n5 --> n8
   n6 --> n7
   n7 --> n8
+  n8 -.-> x3
   x0 -.-> n3
   x1 -.-> n3
   x1 -.-> n7
@@ -339,5 +341,7 @@ Turing.StmtHorizLower 102 500
 
 **Definitions its proof touches:** [`TuringLW.beta`](#TuringLW-beta), [`TuringLW.gLow`](#TuringLW-gLow), [`TuringLW.zeroSet`](../lean_stage3/TuringLWHorizPoint.md#TuringLW-zeroSet), [`Turing.StmtHorizLower`](../lean_stage3/TuringS.md#Turing-StmtHorizLower)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`TuringLW.littlewood_holds`](../lean_stage3/TuringLW.md#TuringLW-littlewood_holds) (TuringLW) — `` Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi) ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2 ``
 

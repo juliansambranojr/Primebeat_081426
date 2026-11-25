@@ -7,7 +7,7 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 28 theorems, 2 definitions, 628 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md), [`TuringLWSplit`](../lean_stage3/TuringLWSplit.md)
 
 ## The picture
 
@@ -47,7 +47,8 @@ flowchart LR
   x3(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
   x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
   x5(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
-  x6(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  x6(["<b>TuringLWSplit</b><br/>integral_im_logDeriv_vertical<br/>stmtSplit_holds"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -89,13 +90,17 @@ flowchart LR
   n8 --> n9
   n9 --> n11
   n1 -.-> x0
+  n15 -.-> x6
+  n16 -.-> x6
   n17 -.-> x2
-  n17 -.-> x6
+  n17 -.-> x7
+  n18 -.-> x6
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
+  n20 -.-> x6
   n24 -.-> x0
   n26 -.-> x0
   n3 -.-> x0
@@ -104,11 +109,12 @@ flowchart LR
   n3 -.-> x3
   n3 -.-> x4
   n3 -.-> x5
+  n3 -.-> x6
   n4 -.-> x0
   n4 -.-> x3
   n5 -.-> x0
-  n5 -.-> x6
-  n7 -.-> x6
+  n5 -.-> x7
+  n7 -.-> x7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -250,7 +256,7 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (12 that use it)
+**Feeds** (13 that use it)
 
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonAvoid.zeros_finite`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-zeros_finite) (LevinsonAvoid) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
@@ -264,6 +270,7 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
   - [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free) — `` (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv… ``
   - [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count) — `` RectangleIntegral (logDeriv f) (↑σ + ↑z.im * I) w = 2 * Real.pi * I * (countRight f z w σ : ℂ) ``
   - [`Littlewood.support_interior`](#Littlewood-support_interior) — `` z.re < p.re ∧ p.re < w.re ∧ z.im < p.im ∧ p.im < w.im ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-divisor_eq"></a>
 ### `Littlewood.divisor_eq`
@@ -607,9 +614,10 @@ IntegrableOn (fun q : ℝ × ℝ => logDeriv f (↑q.1 + ↑q.2 * I)) ([[z.re, w
 
   - [`Littlewood.integrableOn_logDeriv`](#Littlewood-integrableOn_logDeriv) — `` IntegrableOn (logDeriv f) (Rectangle z w) volume ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-hasDerivAt_log_norm"></a>
 ### `Littlewood.hasDerivAt_log_norm`
@@ -631,9 +639,10 @@ HasDerivAt (fun y => Real.log ‖g y‖) (g' / g x).re x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
 
 <a name="Littlewood-continuousAt_logDeriv"></a>
 ### `Littlewood.continuousAt_logDeriv`
@@ -686,10 +695,12 @@ ContinuousOn (fun x => logDeriv f (γ x)) S
 
   - [`Littlewood.continuousAt_logDeriv`](#Littlewood-continuousAt_logDeriv) — `` ContinuousAt (logDeriv f) s ``
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-continuousOn_log_norm_comp"></a>
 ### `Littlewood.continuousOn_log_norm_comp`
@@ -737,10 +748,12 @@ line 402 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-integral_re_logDeriv_horizontal"></a>
 ### `Littlewood.integral_re_logDeriv_horizontal`
