@@ -70,7 +70,7 @@ Open: the growth on a disc. `‖V‖ ≤ M` on `‖w − (3 + T i)‖ ≤ 21/8`.
 
 - **Is:** `` StmtVDisc (Q : ℝ[X]) (L T M : ℝ) : Prop := ∀ w : ℂ, ‖w - (3 + T * I)‖ ≤ 21/8 → ‖V Q L w‖ ≤ M ``
 - **Built from:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V)
-- **Used by 5:** [`ConreyCount.StmtVDisc.mono`](../lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono), [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVEdges`](#ConreyCount-StmtVEdges), [`ConreyCount.V_horizontal_edge_le`](#ConreyCount-V_horizontal_edge_le)
+- **Used by 6:** [`ConreyCount.StmtVDisc.mono`](../lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono), [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVEdges`](#ConreyCount-StmtVEdges), [`ConreyCount.V_horizontal_edge_le`](#ConreyCount-V_horizontal_edge_le), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le)
 
 <a name="ConreyCount-StmtVEdges"></a>
 ### `ConreyCount.StmtVEdges`
@@ -81,7 +81,7 @@ Open: the size of `V` near height `T`. With `L = log T`, for every height `t ∈
 
 - **Is:** `` StmtVEdges (Q : ℝ[X]) (T A : ℝ) : Prop := ∀ t ∈ Set.Icc (T/4) (2 * T), 1/3 ≤ (V Q (Real.log T) (3 + t * I)).re ∧ StmtVDisc Q (Real.log T) t (A * t) ``
 - **Built from:** [`ConreyCount.StmtVDisc`](#ConreyCount-StmtVDisc), [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V)
-- **Used by 1:** [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window)
+- **Used by 2:** [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds)
 
 ## Theorems
 

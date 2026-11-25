@@ -25,19 +25,20 @@ flowchart LR
   n9["<b>gamma_part_count_le ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   n10["<b>gamma_part_count_le_gt_two</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   x0(["<b>LevinsonMollEdge</b><br/>norm_G_sub_one_le_X"]):::ext
-  x1(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
-  x3(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x5(["<b>ConreyCountEdge</b><br/>right_edge_le_of_re_pos"]):::ext
-  x6(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x7(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x8(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x9(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x10(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x11(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
-  x12(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
-  x13(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x1(["<b>DigammaBoundSize</b><br/>re_zeta_three_ge"]):::ext
+  x2(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
+  x4(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x6(["<b>ConreyCountEdge</b><br/>right_edge_le_of_re_pos"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
+  x8(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x9(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x10(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x11(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x12(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
+  x13(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x14(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -48,26 +49,27 @@ flowchart LR
   n8 --> n9
   n0 -.-> x0
   n1 -.-> x1
-  n10 -.-> x13
-  n10 -.-> x2
-  n10 -.-> x4
-  n10 -.-> x7
-  n2 -.-> x2
+  n1 -.-> x2
+  n10 -.-> x14
+  n10 -.-> x3
+  n10 -.-> x5
+  n10 -.-> x8
   n2 -.-> x3
   n2 -.-> x4
-  n3 -.-> x5
-  n5 -.-> x2
-  n5 -.-> x4
-  n5 -.-> x7
-  n6 -.-> x11
+  n2 -.-> x5
+  n3 -.-> x6
+  n5 -.-> x3
+  n5 -.-> x5
+  n5 -.-> x8
+  n6 -.-> x12
   x10 -.-> n6
   x10 -.-> n7
-  x12 -.-> n10
-  x12 -.-> n9
-  x6 -.-> n5
-  x6 -.-> n7
-  x8 -.-> n6
-  x8 -.-> n7
+  x11 -.-> n6
+  x11 -.-> n7
+  x13 -.-> n10
+  x13 -.-> n9
+  x7 -.-> n5
+  x7 -.-> n7
   x9 -.-> n6
   x9 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -135,8 +137,9 @@ line 60 · arrows read from text
 
   - [`LevinsonSize.deriv_zeta_eq_LSeries`](#LevinsonSize-deriv_zeta_eq_LSeries) — `` deriv riemannZeta s = -LSeries (LSeries.logMul 1) s ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DigammaBound.re_zeta_three_ge`](../lean_stage3/DigammaBoundSize.md#DigammaBound-re_zeta_three_ge) (DigammaBoundSize) — `` 2 - Real.pi ^ 2 / 6 ≤ (riemannZeta (3 + t * I)).re ``
   - [`LevinsonEdge.horizontal_edge_le`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-horizontal_edge_le) (LevinsonEdge) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (↑x + ↑T * I)).im| ≤ 21 * Real.pi * Real.log T + 133 * Real.pi ``
   - [`LevinsonSize.re_G_pos`](#LevinsonSize-re_G_pos) — `` 0 < (riemannZeta (3 + t * I) + c * deriv riemannZeta (3 + t * I)).re ``
 

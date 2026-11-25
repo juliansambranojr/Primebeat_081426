@@ -7,7 +7,7 @@
 63 theorems, 7 definitions, 1722 lines. 
 
 **Imports:** [`ApproxShift`](../lean_stage3/ApproxShift.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxDeriv`](../lean_stage3/ApproxDeriv.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxDeriv`](../lean_stage3/ApproxDeriv.md), [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md)
 
 ## The picture
 
@@ -283,7 +283,7 @@ def · line 210
 def · line 294
 
 - **Is:** `` lY (Y : ℝ) : ℝ := Real.log (1 + Y ^ 2) / 2 ``
-- **Used by 12:** [`ApproxBounds.LY_half_sub`](#ApproxBounds-LY_half_sub), [`ApproxBounds.XY_log`](#ApproxBounds-XY_log), [`ApproxBounds.gModel`](#ApproxBounds-gModel), [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.gamma_rel`](#ApproxBounds-gamma_rel), [`ApproxBounds.lY_le_abs`](#ApproxBounds-lY_le_abs), [`ApproxBounds.lY_lip`](#ApproxBounds-lY_lip), [`ApproxBounds.lY_near`](#ApproxBounds-lY_near), [`ApproxBounds.lY_neg`](#ApproxBounds-lY_neg), [`ApproxBounds.lY_nonneg`](#ApproxBounds-lY_nonneg)
+- **Used by 14:** [`ApproxBounds.LY_half_sub`](#ApproxBounds-LY_half_sub), [`ApproxBounds.XY_log`](#ApproxBounds-XY_log), [`ApproxBounds.gModel`](#ApproxBounds-gModel), [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.gamma_rel`](#ApproxBounds-gamma_rel), [`ApproxBounds.lY_le_abs`](#ApproxBounds-lY_le_abs), [`ApproxBounds.lY_lip`](#ApproxBounds-lY_lip), [`ApproxBounds.lY_near`](#ApproxBounds-lY_near), [`ApproxBounds.lY_neg`](#ApproxBounds-lY_neg), [`ApproxBounds.lY_nonneg`](#ApproxBounds-lY_nonneg), [`DigammaBound.gamma_ratio`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gamma_ratio), [`DigammaBound.lY_bounds`](../lean_stage3/DigammaBoundSize.md#DigammaBound-lY_bounds)
 
 <a name="ApproxBounds-gModel"></a>
 ### `ApproxBounds.gModel`
@@ -292,7 +292,7 @@ def · line 426
 
 - **Is:** `` gModel (r Y : ℝ) : ℝ := Real.log (Real.Gamma r) - Real.log (Real.Gamma (1 / 2)) + Real.log Real.pi / 2 - Real.pi * |Y| / 2 + (r - 1 / 2) * lY Y noncomputable ``
 - **Built from:** [`ApproxBounds.lY`](#ApproxBounds-lY)
-- **Used by 5:** [`ApproxBounds.gRModel`](#ApproxBounds-gRModel), [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gamma_approx`](#ApproxBounds-log_norm_Gamma_approx)
+- **Used by 6:** [`ApproxBounds.gRModel`](#ApproxBounds-gRModel), [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gamma_approx`](#ApproxBounds-log_norm_Gamma_approx), [`DigammaBound.gamma_ratio`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gamma_ratio)
 
 <a name="ApproxBounds-gErr"></a>
 ### `ApproxBounds.gErr`
@@ -300,7 +300,7 @@ def · line 426
 def · line 432
 
 - **Is:** `` gErr (r : ℝ) : ℝ := |r - 1 / 2| * (2 + 1 / r + |Real.log r| + Real.log 2) + Real.log 2 / 2 ``
-- **Used by 7:** [`ApproxBounds.const_bound`](#ApproxBounds-const_bound), [`ApproxBounds.gErr_nonneg`](#ApproxBounds-gErr_nonneg), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gamma_approx`](#ApproxBounds-log_norm_Gamma_approx), [`ApproxBounds.log_norm_Gammaℝ_approx`](#ApproxBounds-log_norm_Gamma-_approx), [`ApproxBounds.resY_den`](#ApproxBounds-resY_den)
+- **Used by 8:** [`ApproxBounds.const_bound`](#ApproxBounds-const_bound), [`ApproxBounds.gErr_nonneg`](#ApproxBounds-gErr_nonneg), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gamma_approx`](#ApproxBounds-log_norm_Gamma_approx), [`ApproxBounds.log_norm_Gammaℝ_approx`](#ApproxBounds-log_norm_Gamma-_approx), [`ApproxBounds.resY_den`](#ApproxBounds-resY_den), [`DigammaBound.gErr_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gErr_le)
 
 <a name="ApproxBounds-gRModel"></a>
 ### `ApproxBounds.gRModel`
@@ -309,7 +309,7 @@ def · line 483
 
 - **Is:** `` gRModel (w : ℂ) : ℝ := -(w.re / 2) * Real.log Real.pi + gModel (w.re / 2) (w.im / 2) ``
 - **Built from:** [`ApproxBounds.gModel`](#ApproxBounds-gModel)
-- **Used by 4:** [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gammaℝ_approx`](#ApproxBounds-log_norm_Gamma-_approx)
+- **Used by 5:** [`ApproxBounds.gRModel_reflect`](#ApproxBounds-gRModel_reflect), [`ApproxBounds.gR_lower`](#ApproxBounds-gR_lower), [`ApproxBounds.gR_shift`](#ApproxBounds-gR_shift), [`ApproxBounds.log_norm_Gammaℝ_approx`](#ApproxBounds-log_norm_Gamma-_approx), [`DigammaBound.gamma_ratio`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gamma_ratio)
 
 ## Theorems
 

@@ -7,7 +7,7 @@ ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey'
 3 theorems, 0 definitions, 470 lines. 
 
 **Imports:** [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md)
 
 ## The picture
 
@@ -15,7 +15,7 @@ ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey'
 flowchart LR
   n0["<b>conrey_count_sub</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
   n1["<b>StmtVDisc.mono ■</b><br/>StmtVDisc Q L T M'"]:::cnt
-  n2["<b>conrey_count_window ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
+  n2["<b>conrey_count_window</b><br/>(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight …"]:::thm
   x0(["<b>ConreyCountEdge</b><br/>V_horizontal_edge_le<br/>V_right_edge_le<br/>analyticAt_V_upper"]):::ext
   x1(["<b>ConreyCountLine</b><br/>W_eq_gammaR_mul_V"]):::ext
   x2(["<b>ConreyCountOrder</b><br/>line_identity<br/>zeta_order_ge_line"]):::ext
@@ -28,7 +28,9 @@ flowchart LR
   x9(["<b>LevinsonWindowNear</b><br/>sum_order_le_lineCount_sub"]):::ext
   x10(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
   x11(["<b>OperatorQ</b><br/>re_W_line<br/>zeta_line_zero_iff_W"]):::ext
+  x12(["<b>DigammaBound</b><br/>conrey_count_window'"]):::ext
   n0 --> n2
+  n2 -.-> x12
   x0 -.-> n0
   x1 -.-> n0
   x10 -.-> n0
@@ -173,5 +175,7 @@ line 434 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.StmtVDisc`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc), [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges), [`ConreyCount.StmtVRight`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight), [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-) (DigammaBound) — `` ∃ A T₀ : ℝ, 0 < A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → a < b → b ≤ 2 * T → (∀ x ∈ Icc (1/2 : ℝ) 3, ConreyCount.V Q (Real.log T) (↑x + ↑a * I)… ``
 

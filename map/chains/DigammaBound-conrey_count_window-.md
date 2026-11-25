@@ -1,84 +1,86 @@
-# What `ConreyCount.conrey_count_window` rests on
+# What `DigammaBound.conrey_count_window'` rests on
 
-[`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window) in `lean_stage3/Stage3/ConreyCount.lean`, line 434.
+[`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-) in `lean_stage3/Stage3/DigammaBound.lean`, line 184.
 
-**Why.** The count on a window inside `[T/4, 2T]`. With `L = log T`, `T/4 ≤ a`, `4 ≤ a < b ≤ 2T`, `0 < A`, the open size statement `StmtVEdges Q T A`, and the avoidance hypotheses: `lineCount b − lineCount a ≥ (N b − N a) − 2·countRight V − (72 log b + 42 log(3A) + 154)`.
+**Why.** The count on a window inside `[T/4, 2T]`, with no size hypothesis. For a real `Q` with `Q′(x) = Q′(1 − x)`, `Q(1/2) ≠ 0` and `Q(0) = 1` there are `A > 0` and `T₀` such that for every `T ≥ T₀`, `T/4 ≤ a`, `4 ≤ a < b ≤ 2T`, and the avoidance hypotheses: `lineCount b − lineCount a ≥ (N b − N a) − 2·countRight V − (72 log b + 42 log(3A) + 154)`.
 
 **Proves**
 
 ```lean
-(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q (Real.log T)) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 42 * Real.log (3 * A) + 154) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)
+∃ A T₀ : ℝ, 0 < A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → a < b → b ≤ 2 * T → (∀ x ∈ Icc (1/2 : ℝ) 3, ConreyCount.V Q (Real.log T) (↑x + ↑a * I) ≠ 0) → (∀ x ∈ Icc (1/2 : ℝ) 3, ConreyCount.V Q (Real.log T) (↑x + ↑b * I) ≠ 0) → riemannZeta (1/2 + a * I) ≠ 0 → (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (ConreyCount.V Q (Real.log T)) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 42 * Real.log (3 * A) + 154) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)
 ```
 
 **Needs** (its hypotheses)
 
   - `` hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x) ``
   - `` hQh : Q.eval (1/2) ≠ 0 ``
-  - `` hA : 0 < A ``
-  - `` hTa : T / 4 ≤ a ``
-  - `` ha : 4 ≤ a ``
-  - `` hab : a < b ``
-  - `` hbT : b ≤ 2 * T ``
-  - `` hE : StmtVEdges Q T A ``
-  - `` hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑a * I) ≠ 0 ``
-  - `` hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑b * I) ≠ 0 ``
-  - `` hζa : riemannZeta (1/2 + a * I) ≠ 0 ``
+  - `` hQ0 : Q.eval 0 = 1 ``
 
-Behind it: 148 theorems and 24 definitions in 23 files. Every one is listed below; Lean recorded each step.
+Behind it: 176 theorems and 30 definitions in 27 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>ContourShift</b><br/>2 used"]:::thm
-  f1["<b>HardyZ</b><br/>3 used"]:::thm
-  f2["<b>JensenCount</b><br/>1 used"]:::thm
-  f3["<b>LevinsonArg</b><br/>4 used"]:::thm
-  f4["<b>LevinsonEdge</b><br/>7 used"]:::thm
-  f5["<b>LevinsonLine</b><br/>1 used"]:::thm
-  f6["<b>LevinsonMultiple</b><br/>2 used"]:::thm
-  f7["<b>LevinsonWindow</b><br/>1 used"]:::thm
-  f8["<b>LineCount</b><br/>3 used"]:::thm
-  f9["<b>LevinsonWindowNear</b><br/>1 used"]:::thm
-  f10["<b>Littlewood</b><br/>10 used"]:::thm
-  f11["<b>LevinsonTurn</b><br/>8 used"]:::thm
-  f12["<b>OperatorQ</b><br/>12 used"]:::thm
-  f13["<b>ConreyCountLine</b><br/>4 used"]:::thm
-  f14["<b>ConreyCountOrder</b><br/>4 used"]:::thm
-  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f16["<b>Stirling</b><br/>6 used"]:::thm
-  f17["<b>ArgIdentity</b><br/>53 used"]:::thm
-  f18["<b>ArgLegs</b><br/>10 used"]:::thm
-  f19["<b>ArgCount</b><br/>7 used"]:::thm
-  f20["<b>LevinsonSize</b><br/>5 used"]:::thm
-  f21["<b>ConreyCountEdge</b><br/>8 used"]:::thm
-  f22["<b>ConreyCount</b><br/>conrey_count_window"]:::end_
-  f1 --> f5
-  f1 --> f9
-  f8 --> f9
-  f5 --> f11
-  f10 --> f11
-  f5 --> f12
-  f12 --> f13
-  f0 --> f14
-  f6 --> f14
-  f11 --> f14
+  f0["<b>ApproxBounds</b><br/>4 used"]:::thm
+  f1["<b>ContourShift</b><br/>2 used"]:::thm
+  f2["<b>HardyZ</b><br/>3 used"]:::thm
+  f3["<b>JensenCount</b><br/>1 used"]:::thm
+  f4["<b>LevinsonArg</b><br/>4 used"]:::thm
+  f5["<b>LevinsonEdge</b><br/>8 used"]:::thm
+  f6["<b>LevinsonLine</b><br/>1 used"]:::thm
+  f7["<b>LevinsonMultiple</b><br/>2 used"]:::thm
+  f8["<b>LevinsonWindow</b><br/>1 used"]:::thm
+  f9["<b>LineCount</b><br/>3 used"]:::thm
+  f10["<b>LevinsonWindowNear</b><br/>1 used"]:::thm
+  f11["<b>Littlewood</b><br/>10 used"]:::thm
+  f12["<b>LevinsonTurn</b><br/>8 used"]:::thm
+  f13["<b>OperatorQ</b><br/>12 used"]:::thm
+  f14["<b>ConreyCountLine</b><br/>4 used"]:::thm
+  f15["<b>ConreyCountOrder</b><br/>4 used"]:::thm
+  f16["<b>DigammaBoundIdentity</b><br/>8 used"]:::thm
+  f17["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f18["<b>Stirling</b><br/>6 used"]:::thm
+  f19["<b>ArgIdentity</b><br/>53 used"]:::thm
+  f20["<b>ArgLegs</b><br/>10 used"]:::thm
+  f21["<b>ArgCount</b><br/>7 used"]:::thm
+  f22["<b>LevinsonSize</b><br/>7 used"]:::thm
+  f23["<b>ConreyCountEdge</b><br/>8 used"]:::thm
+  f24["<b>ConreyCount</b><br/>2 used"]:::thm
+  f25["<b>DigammaBoundSize</b><br/>14 used"]:::thm
+  f26["<b>DigammaBound</b><br/>conrey_count_window'"]:::end_
+  f2 --> f6
+  f2 --> f10
+  f9 --> f10
+  f6 --> f12
+  f11 --> f12
+  f6 --> f13
   f13 --> f14
-  f2 --> f15
-  f16 --> f17
-  f17 --> f18
-  f15 --> f19
+  f1 --> f15
+  f7 --> f15
+  f12 --> f15
+  f14 --> f15
+  f14 --> f16
+  f3 --> f17
   f18 --> f19
-  f11 --> f20
   f19 --> f20
-  f4 --> f21
-  f13 --> f21
+  f17 --> f21
   f20 --> f21
-  f3 --> f22
-  f7 --> f22
-  f9 --> f22
-  f14 --> f22
+  f12 --> f22
   f21 --> f22
+  f5 --> f23
+  f14 --> f23
+  f22 --> f23
+  f4 --> f24
+  f8 --> f24
+  f10 --> f24
+  f15 --> f24
+  f23 --> f24
+  f0 --> f25
+  f16 --> f25
+  f22 --> f25
+  f24 --> f26
+  f25 --> f26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -94,6 +96,13 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 ## Every declaration on the way
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
+
+### [`ApproxBounds`](../lean_stage3/ApproxBounds.md) — 4
+
+- [`ApproxBounds.lY`](../lean_stage3/ApproxBounds.md#ApproxBounds-lY) — *def*
+- [`ApproxBounds.gModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gModel) — *def*
+- [`ApproxBounds.gErr`](../lean_stage3/ApproxBounds.md#ApproxBounds-gErr) — *def*
+- [`ApproxBounds.gRModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gRModel) — *def*
 
 ### [`ContourShift`](../lean_stage3/ContourShift.md) — 2
 
@@ -117,8 +126,9 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LevinsonArg.crossings_of_le`](../lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_le) — `` ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 ``
 - [`LevinsonArg.crossings_of_arg`](../lean_stage3/LevinsonArg.md#LevinsonArg-crossings_of_arg) — `` ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 ``
 
-### [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md) — 7
+### [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md) — 8
 
+- [`LevinsonEdge.zeta_norm_le`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-zeta_norm_le) — `` ‖riemannZeta u‖ ≤ 2 + 4 * ‖u‖ ``
 - [`LevinsonEdge.symm`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-symm) — *def*
 - [`LevinsonEdge.model`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-model) — *def*
 - [`LevinsonEdge.symm_real`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-symm_real) — `` symm g (x : ℂ) = ((g x).re : ℂ) ``
@@ -202,6 +212,17 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ConreyCount.zeta_order_eq`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_eq) — `` riemannZeta.order ρ = ((analyticOrderAt riemannZeta ρ).toNat : ℤ) ``
 - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1/2 + t * I… ``
 - [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line) — `` (n ρ : ℤ) ≤ riemannZeta.order ρ ∧ ((I ^ (∑ ρ' ∈ D, n ρ') * (Gammaℝ ρ * H ρ)).re = 0 → (n ρ : ℤ) + 1 ≤ riemannZeta.order ρ) ``
+
+### [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md) — 8
+
+- [`DigammaBound.H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-H) — *def*
+- [`DigammaBound.poly_shift`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-poly_shift) — `` (∑ k ∈ Finset.range (Q.natDegree + 1), C ((taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k) * (X + C (L / 2)) ^ k) = ∑ j ∈ Finset.range (Q.natDegree + 1), C (Q.coeff… ``
+- [`DigammaBound.poly_shift_coeff`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-poly_shift_coeff) — `` ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k * ((X + C (L / 2)) ^ k).coeff i = Q.coeff i * (-1 / L) ^ i ``
+- [`DigammaBound.differentiableAt_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-differentiableAt_H) — `` DifferentiableAt ℂ (H L w) z ``
+- [`DigammaBound.analyticAt_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-analyticAt_H) — `` AnalyticAt ℂ (H L w) z ``
+- [`DigammaBound.iteratedDeriv_E`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-iteratedDeriv_E) — `` iteratedDeriv m (fun z => cexp (a * (z - w))) w = a ^ m ``
+- [`DigammaBound.xi_eventually_eq`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-xi_eventually_eq) — `` completedRiemannZeta =ᶠ[𝓝 w] fun z => Gammaℝ w * (H L w z * cexp (((L / 2 : ℝ) : ℂ) * (z - w))) ``
+- [`DigammaBound.V_eq_sum_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-V_eq_sum_H) — `` ConreyCount.V Q L w = ∑ j ∈ Finset.range (Q.natDegree + 1), ((Q.coeff j * (-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j (H L w) w ``
 
 ### [`ReZetaCount`](../lean_stage3/ReZetaCount.md) — 19
 
@@ -313,8 +334,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.phaseTheta_sub_le`](../lean_stage3/ArgCount.md#ArgCount-phaseTheta_sub_le) — `` |Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2) ``
 - [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
 
-### [`LevinsonSize`](../lean_stage3/LevinsonSize.md) — 5
+### [`LevinsonSize`](../lean_stage3/LevinsonSize.md) — 7
 
+- [`LevinsonSize.deriv_zeta_eq_LSeries`](../lean_stage3/LevinsonSize.md#LevinsonSize-deriv_zeta_eq_LSeries) — `` deriv riemannZeta s = -LSeries (LSeries.logMul 1) s ``
+- [`LevinsonSize.norm_G_sub_one_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-norm_G_sub_one_le) — `` ‖riemannZeta s + c * deriv riemannZeta s - 1‖ ≤ Real.pi ^ 2 / 6 - 1 ``
 - [`LevinsonSize.hasDerivAt_three_comp`](../lean_stage3/LevinsonSize.md#LevinsonSize-hasDerivAt_three_comp) — `` HasDerivAt (fun y : ℝ => f (3 + y * I)) (deriv f (3 + t * I) * I) t ``
 - [`LevinsonSize.re_logDeriv_gammaR_line`](../lean_stage3/LevinsonSize.md#LevinsonSize-re_logDeriv_gammaR_line) — `` (logDeriv Gammaℝ (1/2 + y * I)).re = -(Real.log Real.pi) / 2 + Stage3.phasePoint y / 2 ``
 - [`LevinsonSize.gamma_part_eq`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq) — `` (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re = Stage3.phaseTheta b - Stage3.phaseTheta a ``
@@ -323,16 +346,41 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md) — 8
 
-- ★ [`ConreyCount.StmtVRight`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight) — *def*
-- ★ [`ConreyCount.StmtVDisc`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc) — *def*
-- ★ [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges) — *def*
+- [`ConreyCount.StmtVRight`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight) — *def*
+- [`ConreyCount.StmtVDisc`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc) — *def*
+- [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges) — *def*
 - [`ConreyCount.analyticAt_V_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-analyticAt_V_upper) — `` AnalyticAt ℂ (V Q L) w ``
 - [`ConreyCount.right_edge_le_of_re_pos`](../lean_stage3/ConreyCountEdge.md#ConreyCount-right_edge_le_of_re_pos) — `` |(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ Real.pi ``
 - [`ConreyCount.edge_le_of_bound_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-edge_le_of_bound_upper) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
 - [`ConreyCount.V_right_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_right_edge_le) — `` |(∫ t in a..b, logDeriv (V Q L) (3 + t * I)).re| ≤ Real.pi ``
 - [`ConreyCount.V_horizontal_edge_le`](../lean_stage3/ConreyCountEdge.md#ConreyCount-V_horizontal_edge_le) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
 
-### [`ConreyCount`](../lean_stage3/ConreyCount.md) — 1
+### [`ConreyCount`](../lean_stage3/ConreyCount.md) — 2
 
-- ★ [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log (3 * M) +… ``
+- [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log (3 * M) +… ``
+- ★ [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q (Real.log T)) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 42 * Real.lo… ``
+
+### [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md) — 14
+
+- [`DigammaBound.lY_bounds`](../lean_stage3/DigammaBoundSize.md#DigammaBound-lY_bounds) — `` Real.log T - 3 ≤ ApproxBounds.lY (y / 2) ∧ ApproxBounds.lY (y / 2) ≤ Real.log T + 1 ``
+- [`DigammaBound.gErr_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gErr_le) — `` ApproxBounds.gErr r ≤ 58 ``
+- [`DigammaBound.logGamma_bound`](../lean_stage3/DigammaBoundSize.md#DigammaBound-logGamma_bound) — `` ∃ C : ℝ, ∀ r ∈ Set.Icc (1 / 8 : ℝ) (7 / 2), |Real.log (Real.Gamma r)| ≤ C ``
+- [`DigammaBound.mul_le_of_abs`](../lean_stage3/DigammaBoundSize.md#DigammaBound-mul_le_of_abs) — `` a * b ≤ A * B ``
+- [`DigammaBound.gamma_ratio`](../lean_stage3/DigammaBoundSize.md#DigammaBound-gamma_ratio) — `` ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z… ``
+- [`DigammaBound.norm_H`](../lean_stage3/DigammaBoundSize.md#DigammaBound-norm_H) — `` ‖H L w z‖ = ‖riemannZeta z‖ * (‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(L / 2) * (z.re - w.re))) ``
+- [`DigammaBound.H_self`](../lean_stage3/DigammaBoundSize.md#DigammaBound-H_self) — `` H L w w = riemannZeta w ``
+- [`DigammaBound.KQ`](../lean_stage3/DigammaBoundSize.md#DigammaBound-KQ) — *def*
+- [`DigammaBound.KQ_nonneg`](../lean_stage3/DigammaBoundSize.md#DigammaBound-KQ_nonneg) — `` 0 ≤ KQ Q ``
+- [`DigammaBound.term_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-term_le) — `` ‖((Q.coeff j * (-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j (H L w) w‖ ≤ |Q.coeff j| * (j.factorial : ℝ) * M / (L * R) ^ j ``
+- [`DigammaBound.V_norm_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_norm_le) — `` ‖ConreyCount.V Q L w‖ ≤ KQ Q * M ``
+- [`DigammaBound.V_sub_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_sub_le) — `` ‖ConreyCount.V Q L w - (Q.coeff 0 : ℂ) * riemannZeta w‖ ≤ KQ Q * M / (L * R) ``
+- [`DigammaBound.zeta_norm_le_two`](../lean_stage3/DigammaBoundSize.md#DigammaBound-zeta_norm_le_two) — `` ‖riemannZeta z‖ ≤ Real.pi ^ 2 / 6 ``
+- [`DigammaBound.re_zeta_three_ge`](../lean_stage3/DigammaBoundSize.md#DigammaBound-re_zeta_three_ge) — `` 2 - Real.pi ^ 2 / 6 ≤ (riemannZeta (3 + t * I)).re ``
+
+### [`DigammaBound`](../lean_stage3/DigammaBound.md) — 4
+
+- [`DigammaBound.re_im_close`](../lean_stage3/DigammaBound.md#DigammaBound-re_im_close) — `` |z.re - w.re| ≤ r ∧ |z.im - w.im| ≤ r ``
+- [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
+- [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le) — `` ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) ``
+- ★ [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds) — `` ∃ A T₀ : ℝ, 0 < A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A ``
 
