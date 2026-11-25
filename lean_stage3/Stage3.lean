@@ -246,6 +246,7 @@ import Stage3.GrRatio
 import Stage3.FloorConstQ
 import Stage3.FloorQ
 import Stage3.Turing
+import Stage3.TuringLWHoriz
 
 namespace Stage3
 
