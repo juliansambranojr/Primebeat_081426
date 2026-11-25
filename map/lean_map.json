@@ -59990,7 +59990,9 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
-     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
+     "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
     ]
    },
    {
@@ -68440,7 +68442,9 @@
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
-     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.line_mem",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
     ]
    },
    {
@@ -81303,6 +81307,501 @@
     "used_by": [
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/OperatorQ.lean",
+  "module": "Stage3.OperatorQ",
+  "stem": "OperatorQ",
+  "header": "OperatorQ — block S13 of `lean_stage3/design/stencil.md`, B4, the operator with a general Q. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonLine"
+  ],
+  "opens": [
+   "Complex",
+   "HardyZ",
+   "LevinsonLine",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "OperatorQ"
+  ],
+  "lines": 307,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonLine.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "domXi",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.domXi",
+    "line": 54,
+    "why": "The domain of `Λ`: away from `0` and `1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Set ℂ",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.analyticOnNhd_xi",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.isOpen_domXi",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.line_mem"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "isOpen_domXi",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.isOpen_domXi",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "IsOpen domXi",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.isOpen_domXi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.analyticOnNhd_xi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticOnNhd_xi",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.analyticOnNhd_xi",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "AnalyticOnNhd ℂ completedRiemannZeta domXi",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.analyticOnNhd_xi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.isOpen_domXi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.isOpen_domXi"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "line_mem",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.line_mem",
+    "line": 67,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "((1/2 : ℂ) + t * I) ∈ domXi",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.line_mem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.domXi"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.differentiableAt_iteratedDeriv"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableAt_iteratedDeriv",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.differentiableAt_iteratedDeriv",
+    "line": 72,
+    "why": "Every iterated derivative of `Λ` is complex-differentiable on the line.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "DifferentiableAt ℂ (iteratedDeriv k completedRiemannZeta) ((1/2 : ℂ) + t * I)",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.differentiableAt_iteratedDeriv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.line_mem"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.line_mem"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_I_mul_deriv",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.im_I_mul_deriv",
+    "line": 78,
+    "why": "A function differentiable on the line and real there has `I · F'` real there.",
+    "sorry": false,
+    "needs": [
+     "hF : ∀ t : ℝ, DifferentiableAt ℂ F ((1/2 : ℂ) + t * I)",
+     "hr : ∀ t : ℝ, (F ((1/2 : ℂ) + t * I)).im = 0",
+     "t : ℝ"
+    ],
+    "proves": "(I * deriv F ((1/2 : ℂ) + t * I)).im = 0",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_mul_deriv",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_I_pow_iteratedDeriv",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.im_I_pow_iteratedDeriv",
+    "line": 107,
+    "why": "Target 1. On the line, `I^k · Λ^{(k)}` is real.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "t : ℝ"
+    ],
+    "proves": "(I ^ k * iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).im = 0",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.differentiableAt_iteratedDeriv",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_mul_deriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.differentiableAt_iteratedDeriv",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_mul_deriv"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_iteratedDeriv_odd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_iteratedDeriv_odd",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.re_iteratedDeriv_odd",
+    "line": 127,
+    "why": "Target 2. On the line, an odd derivative of `Λ` is purely imaginary.",
+    "sorry": false,
+    "needs": [
+     "hk : Odd k",
+     "t : ℝ"
+    ],
+    "proves": "(iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).re = 0",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_iteratedDeriv_odd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.im_I_pow_iteratedDeriv"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_sum_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_sum_line",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.re_sum_line",
+    "line": 144,
+    "why": "Target 3. A real combination of derivatives of `Λ` with no even derivative past the zeroth has real part `a₀ · Λ` on the line.",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℝ",
+     "n : ℕ",
+     "ha : ∀ k, Even k → k ≠ 0 → a k = 0",
+     "t : ℝ"
+    ],
+    "proves": "(∑ k ∈ Finset.range (n + 1), (a k : ℂ) * iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).re = a 0 * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_sum_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_iteratedDeriv_odd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_iteratedDeriv_odd"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coeff_comp_neg_X",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.coeff_comp_neg_X",
+    "line": 160,
+    "why": "The coefficients of `p.comp (−X)` are those of `p` times `(−1)^n`.",
+    "sorry": false,
+    "needs": [
+     "p : ℝ[X]",
+     "n : ℕ"
+    ],
+    "proves": "(p.comp (-X)).coeff n = (-1) ^ n * p.coeff n",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.coeff_comp_neg_X",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "taylor_coeff_even_eq_zero",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.taylor_coeff_even_eq_zero",
+    "line": 175,
+    "why": "Target 4. `Q'(x) = Q'(1 − x)` makes the even Taylor coefficients of `Q` at `1/2` vanish past the zeroth.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hk : Even k",
+     "hk0 : k ≠ 0"
+    ],
+    "proves": "(taylor (1/2 : ℝ) Q).coeff k = 0",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.coeff_comp_neg_X"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.coeff_comp_neg_X"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "W",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.W",
+    "line": 206,
+    "why": "`W = Q(1/2 − (1/L) d/ds) Λ`: the Taylor coefficients `b_k` of `Q` at `1/2`, against `(−1/L)^k Λ^{(k)}`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_W_line",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.re_W_line",
+    "line": 212,
+    "why": "Target 5. On the line, `Re W = Q(1/2) · Λ`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "L t : ℝ"
+    ],
+    "proves": "(W Q L ((1/2 : ℂ) + t * I)).re = Q.eval (1/2) * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_sum_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_sum_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_line_zero_iff_W",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.zeta_line_zero_iff_W",
+    "line": 225,
+    "why": "Target 6. Where `Q(1/2) ≠ 0`, the zeros of `ζ` on the line are exactly the zeros of `Re W`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "L t : ℝ"
+    ],
+    "proves": "riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "Qcubic",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.Qcubic",
+    "line": 245,
+    "why": "The cubic of the numerical check, `Q = 1 + x/2 − 3x² + 2x³ = 1 − x + 2((x − 1/2)³ + 1/8)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ[X]",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.Qcubic",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_sym"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cubic_sym",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.cubic_sym",
+    "line": 249,
+    "why": "Target 7. The hypotheses hold for a nonlinear `Q`: `Qcubic` has `Q(0) = 1`, `Q'(x) = Q'(1 − x)` and `Q(1/2) = 3/4`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Qcubic.eval 0 = 1 ∧ (∀ x : ℝ, Qcubic.derivative.eval x = Qcubic.derivative.eval (1 - x)) ∧ Qcubic.eval (1/2) = 3/4",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_sym",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.Qcubic"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.Qcubic"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "cubic_re_W_line",
+    "ns": "OperatorQ",
+    "full": "OperatorQ.cubic_re_W_line",
+    "line": 263,
+    "why": "Target 8. For `Qcubic`, `Re W = (3/4) · Λ` on the line, for every `L`.",
+    "sorry": false,
+    "needs": [
+     "L t : ℝ"
+    ],
+    "proves": "(W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re",
+    "file": "lean_stage3/Stage3/OperatorQ.lean",
+    "id": "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.Qcubic",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.Qcubic",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -137617,11 +138116,12 @@
    "Stage3.FloorStep",
    "Stage3.FloorSum",
    "Stage3.Defect",
-   "Stage3.FloorLong"
+   "Stage3.FloorLong",
+   "Stage3.OperatorQ"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 249,
+  "lines": 250,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -137740,6 +138240,7 @@
    "lean_stage3/Stage3/OffDiagClose.lean",
    "lean_stage3/Stage3/OneChain.lean",
    "lean_stage3/Stage3/Operator.lean",
+   "lean_stage3/Stage3/OperatorQ.lean",
    "lean_stage3/Stage3/PerfectFit.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",

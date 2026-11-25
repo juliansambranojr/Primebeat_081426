@@ -7,7 +7,7 @@ LevinsonLine — block S11 of `lean_stage3/design/stencil.md`, step 1a. 2026-11-
 6 theorems, 0 definitions, 161 lines. 
 
 **Imports:** [`HardyZ`](../lean_stage3/HardyZ.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonArg`](../lean_stage3/LevinsonArg.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonArg`](../lean_stage3/LevinsonArg.md), [`OperatorQ`](../lean_stage3/OperatorQ.md)
 
 ## The picture
 
@@ -26,7 +26,8 @@ flowchart LR
   x4(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
   x5(["<b>LevinsonTurn</b><br/>lineF_turn_eq<br/>turn_split"]):::ext
   x6(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x7(["<b>LevinsonWindow</b><br/>G_line_ne"]):::ext
+  x7(["<b>OperatorQ</b><br/>line_mem<br/>zeta_line_zero_iff_W"]):::ext
+  x8(["<b>LevinsonWindow</b><br/>G_line_ne"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -39,10 +40,11 @@ flowchart LR
   n0 -.-> x4
   n0 -.-> x5
   n0 -.-> x6
+  n0 -.-> x7
   n5 -.-> x1
   n5 -.-> x3
   n5 -.-> x6
-  n5 -.-> x7
+  n5 -.-> x8
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n4
@@ -84,7 +86,7 @@ line 30 · arrows read from text
 
   - [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) (HardyZ) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (11 that use it)
+**Feeds** (13 that use it)
 
   - [`LevinsonArg.continuous_lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-continuous_lineF) (LevinsonArg) — `` Continuous (lineF c) ``
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
@@ -97,6 +99,8 @@ line 30 · arrows read from text
   - [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq) (LevinsonTurn) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I))… ``
   - [`LevinsonTurn.turn_split`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-turn_split) (LevinsonTurn) — `` (∫ t in a..b, logDeriv (fun s => Gammaℝ s * G s) (1/2 + t * I)).re = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv G (1/2 +… ``
   - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
+  - [`OperatorQ.line_mem`](../lean_stage3/OperatorQ.md#OperatorQ-line_mem) (OperatorQ) — `` ((1/2 : ℂ) + t * I) ∈ domXi ``
+  - [`OperatorQ.zeta_line_zero_iff_W`](../lean_stage3/OperatorQ.md#OperatorQ-zeta_line_zero_iff_W) (OperatorQ) — `` riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0 ``
 
 <a name="LevinsonLine-deriv_xi_line_im"></a>
 ### `LevinsonLine.deriv_xi_line_im`
