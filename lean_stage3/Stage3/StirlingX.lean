@@ -285,7 +285,7 @@ theorem norm_main_le {κ T t : ℝ} {z : ℂ} (hκ : 0 < κ) (hT8 : 8 ≤ T) (hL
           mul_le_mul habs hre (abs_nonneg _) (by positivity)
   have h2 : (Real.log T + 3) * (2 * κ / Real.log T) = 2 * κ + 6 * κ / Real.log T := by
     field_simp
-    ring
+    try ring
   have h3 : 6 * κ / Real.log T ≤ 6 * κ := div_le_self (by positivity) hL1
   linarith
 

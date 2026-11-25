@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-25T16:52:36Z
+# unit: 0544-arith-lemma3
+# sources searched: 488
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae125244eb6bdf467.jsonl:2930
+  theorem meanSig3 : StmtMeanSig3 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ae125244eb6bdf467.jsonl:3017
+  ∑ k ∈ Icc 1 M, ((μ k : ℤ) : ℝ) ^ 2 / k * Sdm k (M / k) = ∑ n ∈ Icc 1 M, (1 : ℝ) / n :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:71979
+  theorem stmtArith_holds : StmtArith :=
+
+# 4 found, 0 missing

@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-25T16:52:29Z
+# unit: 0543-stirling-phase
+# sources searched: 488
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2238
+  theorem XY_eq_exp {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) (t : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2239
+  XY α β t = cexp (log (Real.pi : ℂ) * (α + β) +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2240
+  ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) -
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2241
+  (logG (wp t + α / 2) + logG (wm t + β / 2)))) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2321
+  theorem exponent_le {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) {t : ℝ} (ht : 1 ≤ t) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2322
+  ‖(log (Real.pi : ℂ) * (α + β) +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2240
+  ((logG (wm t + -α / 2) + logG (wp t + -β / 2)) -
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2324
+  (logG (wp t + α / 2) + logG (wm t + β / 2)))) -
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2325
+  log (((t / (2 * Real.pi) : ℝ)) : ℂ) * (-(α + β))‖ ≤ 17 / t :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4fd2059a58191476.jsonl:2379
+  theorem stmtXStirlingRel_holds : StmtXStirlingRel :=
+
+# 11 found, 0 missing

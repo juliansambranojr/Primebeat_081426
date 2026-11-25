@@ -77,6 +77,15 @@ build, 2026-09-08.
 | 64 | `add_le_add_left h _` gives `a + c ≤ b + c` where `c + a ≤ c + b` was wanted | the side the constant is added on differs from the name's reading in this Mathlib | write `add_le_add h1 h2` explicitly (unit 0542) |
 | 65 | `Complex.norm_exp_sub_one_le` needs `‖x‖ ≤ 1` | that lemma is the local form | `Complex.norm_exp_sub_sum_le_norm_mul_exp x 1` gives `‖eˣ − 1‖ ≤ ‖x‖ e^‖x‖` with no condition (unit 0542) |
 | 66 | hand proofs that a step function `t ↦ Σ_{n ≤ t} a n` is integrable grow long | Abel summation was done by hand | Mathlib's `AbelSummation`: `sum_mul_eq_sub_integral_mul₀'` and `integrableOn_mul_sum_Icc` (unit 0542) |
+| 67 | a copied proof that ran inside its original hits a heartbeat timeout (whnf, isDefEq) | a `set x := c * Real.exp (10 * κ) with h` added to it is unfolded again and again | make the constant opaque: `obtain ⟨x, hx⟩ : ∃ c, c = … := ⟨_, rfl⟩` (unit 0543; near rows 13 and 49) |
+| 68 | `rw [norm_div]` on `‖1/4 + ↑t/2 * I‖` makes the next `rw` find no pattern | the rewrite lands on the `1/4` first (the first-match family of row 7) | recast the terms as real casts, `↑(1/4:ℝ) + ↑(t/2:ℝ) * I`, before taking norms (unit 0543) |
+| 69 | `Complex.ext <;> simp` on `wm t = conj (wp t)` leaves `(↑t / conj 2).im = 0` | `simp` does not push `conj` through the numeral division | `simp only [map_add, map_mul, map_div₀, Complex.conj_ofReal, Complex.conj_I, map_one, map_ofNat]` then `ring` (unit 0543) |
+| 70 | `field_simp` leaves `(n : ℂ)⁻¹` for `n : ℕ` with `hn0 : (0:ℝ) < n` in context | `field_simp` needs the nonvanishing in the field it clears | put `hnC : (n : ℂ) ≠ 0` in context, or use `mul_div_cancel₀ _ hnC` (unit 0543) |
+| 71 | `typeclass instance problem is stuck SummationFilter.LeAtTop ?m` from `hasSum_sum_of_ne_finset_zero` or `hasSum_ite_eq` | this Mathlib has summation filters, and with no expected type the filter is left open | state the `HasSum` type in a `have` first (unit 0544) |
+| 72 | a `∏`/`∑` body takes in a division meant to sit outside it: `∏ p ∈ s, (1 + q p) / d` | the binder body runs to the end of the term (the `Finset` form of row 44) | parenthesize the product: `(∏ p ∈ s, (1 + q p)) / d` (unit 0544) |
+| 73 | after `rintro ⟨k, m⟩` on a `Σ _ : ℕ, ℕ`, a later `rw` finds no `k` | hypotheses keep `⟨k, m⟩.fst`, and lemmas applied with implicit arguments carry that form on | pass `(k := k) (m := m)` explicitly (unit 0544) |
+| 74 | `failed to synthesize MulLeftMono ℝ` from `Finset.one_le_prod'` | that lemma is for ordered monoids that ℝ is not | `prod_le_prod (fun _ _ => zero_le_one) h` after rewriting `1 = ∏ _, 1` (unit 0544) |
+| 75 | bare `sum_range_succ` rewrites the wrong pattern, `∑ i ∈ range ?n, ?a (i + 1)` | under `open Finset SdiagLead` the name resolves to another lemma | write `Finset.sum_range_succ` (unit 0544) |
 
 ## Bench and gate traps
 

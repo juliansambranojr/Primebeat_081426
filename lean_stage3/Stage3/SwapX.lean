@@ -46,13 +46,13 @@ only for `θ < 1/4`; `aY_bound'` (`≤ B h^(−1/2)`) is used. `S1_term_bound` (
 | `sum_half_sq`, `msq_young` | `(Σ_{h≤M} h^(−1/2))² ≤ M(1+log M)`; `|ψ|² ≤ B² M(1+log M)` | proved |
 | `etaX`, `size_X` | `η = (1/2−θ⁺)/8`; `N (2T)^(1/2+2η) M(1+log M) ≤ C T/L` | proved |
 | `c1Y_bound` | `‖c₁(α,β)‖ ≤ C` on `Regime κ T`, `θ < 1/2` (`c₁ = 0` for `θ ≤ 0`) | proved |
-| `StmtXStirling` | `‖X_{α,β,t} − (t/2π)^(−α−β)‖ ≤ C/t`, `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1` | OPEN (named Prop) |
+| `StmtXStirling` | `‖X_{α,β,t} − (t/2π)^(−α−β)‖ ≤ C/t`, `‖α‖, ‖β‖ ≤ 1/10`, `t ≥ 1` | FALSE as stated (unit 0543): the next Stirling term carries the factor `‖(t/2π)^(−α−β)‖`, which grows with `t` when `Re(α+β) < 0`; checked numerically, the negation is not in Lean. Replaced by `Stirling.StmtXStirlingRel`, proved in `StirlingX` |
 | `Tp_g`, `integrable_IX`, `lin_comb`, `split_eq` | `T^z g = (t/2π)^z`; integrability; the two linear identities | proved |
 | `E_bound`, `I1_X_bound`, `J_alg`, `le_twC` | the remainder; `‖I₁‖ = O(T)` per weight; the `(K/L)`-algebra | proved |
 | `StmtXAll` | `StmtX` over `WeightAll`, constants `C_j ≤ Cs j`, shape of `StmtOffDiagAll` | defined |
-| `stmtXAll_of` | `StmtXStirling → StmtDiagMainO → StmtXAll`, `θ < 1/2`, `κ > 0` | proved |
+| `stmtXAll_of` | `StmtXStirling → StmtDiagMainO → StmtXAll`, `θ < 1/2`, `κ > 0` | proved, from a false hypothesis; use `Stirling.stmtXAll_of'` |
 | `lemma3_resO_of_partsAll` | `StmtDiagO → StmtOffDiagAll → StmtXAll → StmtLemma3resO`, `κ > 0` | proved |
-| `lemma3_resO_of_mainO` | `StmtXStirling → StmtDiagMainO → StmtLemma3resO`, `θ < 1/2`, `κ > 0` | proved |
+| `lemma3_resO_of_mainO` | `StmtXStirling → StmtDiagMainO → StmtLemma3resO`, `θ < 1/2`, `κ > 0` | proved, from a false hypothesis; use `Stirling.lemma3_resO_of_mainO'` |
 
 Differences from the target. (i) `stmtX_holds` (unconditional `StmtX`) is not built. Two inputs
 are open: Stirling with the phase (`StmtXStirling`; the tree has the size only) and the main

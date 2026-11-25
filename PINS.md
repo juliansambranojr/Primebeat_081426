@@ -22,7 +22,25 @@ below with their outcome.
 
 ## Current
 
-### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/Stirling*.lean`
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 3, the operator: `Stage3/Operator*.lean`
+
+    DONE        the mollified mean of Levinson's G = ζ + ζ′/L at σ₀ = 1/2 − R/L:
+                ∫ w(t) |G(σ₀+it) ψ(σ₀+it)|² dt = D[c](−R/L, −R/L)·ŵ(0) + o(T),
+                D = (1 + (1/L)∂α)(1 + (1/L)∂β) applied to `cY`, by
+                differentiating `Imom` under the integral and Cauchy's formula on
+                circles of radius r/L inside the Regime, with `Lemma3.lemma3_resO_holds`
+                and the remainder `Ires` bounded; or the largest honest piece, the
+                rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Log it and start" (log 0543, 0544, start the
+                operator). Q(x) = 1 − x, Levinson's linear choice, because
+                `levinson_window'` fixes c = 1/log T. Written before the worker starts.
+    DEPENDS     `Lemma3`, `TwistedMoment` (`Imom`, `Ires`, `cY`, `msq`), `DiagonalO`,
+                `OffDiagClose` (`WeightAll`), Mathlib Cauchy integral formula
+    OUT         unsmoothing (piece 4); the liminf assembly (piece 5), which also
+                needs `levinson_window'`'s mean hypothesis for every subwindow
+                weakened to the windows a ≤ a′ ≤ a+1, b−1 ≤ b′ ≤ b its proof uses
+
+### 2026-11-25 · block S12 of `design/stencil.md`, Stirling with its phase: `Stage3/StirlingLog.lean`, `Stage3/StirlingX.lean`
 
     DONE        `SwapX.StmtXStirling`: X_{α,β,t} = (t/2π)^(−α−β) + O(1/t) for
                 ‖α‖, ‖β‖ ≤ 1/10, t ≥ 1, through PNT+ `digamma_eq_tsum` and the
