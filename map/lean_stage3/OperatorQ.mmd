@@ -10,11 +10,15 @@ flowchart LR
   n8["<b>coeff_comp_neg_X</b><br/>(p.comp (-X)).coeff n = (-1) ^ n * p.coeff n"]:::cnt
   n9["<b>taylor_coeff_even_eq_zero</b><br/>(taylor (1/2 : ℝ) Q).coeff k = 0"]:::cnt
   n10["<b>re_W_line</b><br/>(W Q L ((1/2 : ℂ) + t * I)).re = Q.eval (1/2) * (completedRieman…"]:::thm
-  n11["<b>zeta_line_zero_iff_W ■</b><br/>riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)…"]:::thm
+  n11["<b>zeta_line_zero_iff_W</b><br/>riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)…"]:::thm
   n12["<b>cubic_sym ■</b><br/>Qcubic.eval 0 = 1 ∧ (∀ x : ℝ, Qcubic.derivative.eval x = Qcubic.…"]:::cnt
   n13["<b>cubic_re_W_line ■</b><br/>(W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZet…"]:::thm
   x0(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
+  x2(["<b>ConreyCountIdentity</b><br/>conrey_identity"]):::ext
+  x3(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x4(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x5(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
   n0 --> n1
   n10 --> n11
   n10 --> n13
@@ -26,6 +30,11 @@ flowchart LR
   n7 --> n10
   n8 --> n9
   n9 --> n10
+  n10 -.-> x3
+  n10 -.-> x4
+  n11 -.-> x3
+  n11 -.-> x5
+  n9 -.-> x2
   x0 -.-> n11
   x0 -.-> n2
   x1 -.-> n11

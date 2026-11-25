@@ -1,0 +1,58 @@
+flowchart LR
+  f0["<b>ContourShift</b><br/>2 used"]:::thm
+  f1["<b>HardyZ</b><br/>3 used"]:::thm
+  f2["<b>JensenCount</b><br/>1 used"]:::thm
+  f3["<b>LevinsonArg</b><br/>4 used"]:::thm
+  f4["<b>LevinsonEdge</b><br/>7 used"]:::thm
+  f5["<b>LevinsonLine</b><br/>1 used"]:::thm
+  f6["<b>LevinsonMultiple</b><br/>2 used"]:::thm
+  f7["<b>LevinsonWindow</b><br/>1 used"]:::thm
+  f8["<b>LineCount</b><br/>3 used"]:::thm
+  f9["<b>LevinsonWindowNear</b><br/>1 used"]:::thm
+  f10["<b>Littlewood</b><br/>10 used"]:::thm
+  f11["<b>LevinsonTurn</b><br/>8 used"]:::thm
+  f12["<b>OperatorQ</b><br/>12 used"]:::thm
+  f13["<b>ConreyCountLine</b><br/>4 used"]:::thm
+  f14["<b>ConreyCountOrder</b><br/>4 used"]:::thm
+  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f16["<b>Stirling</b><br/>6 used"]:::thm
+  f17["<b>ArgIdentity</b><br/>53 used"]:::thm
+  f18["<b>ArgLegs</b><br/>10 used"]:::thm
+  f19["<b>ArgCount</b><br/>7 used"]:::thm
+  f20["<b>LevinsonSize</b><br/>5 used"]:::thm
+  f21["<b>ConreyCountEdge</b><br/>8 used"]:::thm
+  f22["<b>ConreyCount</b><br/>conrey_count_window"]:::end_
+  f1 --> f5
+  f1 --> f9
+  f8 --> f9
+  f5 --> f11
+  f10 --> f11
+  f5 --> f12
+  f12 --> f13
+  f0 --> f14
+  f6 --> f14
+  f11 --> f14
+  f13 --> f14
+  f2 --> f15
+  f16 --> f17
+  f17 --> f18
+  f15 --> f19
+  f18 --> f19
+  f11 --> f20
+  f19 --> f20
+  f4 --> f21
+  f13 --> f21
+  f20 --> f21
+  f3 --> f22
+  f7 --> f22
+  f9 --> f22
+  f14 --> f22
+  f21 --> f22
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -29,13 +29,15 @@ flowchart LR
   x2(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
   x3(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
   x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x6(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x7(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x8(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x9(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x10(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
-  x11(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x5(["<b>ConreyCountEdge</b><br/>right_edge_le_of_re_pos"]):::ext
+  x6(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
+  x7(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x8(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x9(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x10(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x11(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
+  x12(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x13(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -46,22 +48,24 @@ flowchart LR
   n8 --> n9
   n0 -.-> x0
   n1 -.-> x1
+  n10 -.-> x13
   n10 -.-> x2
   n10 -.-> x4
-  n10 -.-> x6
+  n10 -.-> x7
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
+  n3 -.-> x5
   n5 -.-> x2
   n5 -.-> x4
-  n5 -.-> x6
-  n6 -.-> x10
-  x11 -.-> n10
-  x11 -.-> n9
-  x5 -.-> n5
-  x5 -.-> n7
-  x7 -.-> n6
-  x7 -.-> n7
+  n5 -.-> x7
+  n6 -.-> x11
+  x10 -.-> n6
+  x10 -.-> n7
+  x12 -.-> n10
+  x12 -.-> n9
+  x6 -.-> n5
+  x6 -.-> n7
   x8 -.-> n6
   x8 -.-> n7
   x9 -.-> n6
@@ -189,8 +193,9 @@ HasDerivAt (fun y : ℝ => f (3 + y * I)) (deriv f (3 + t * I) * I) t
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ConreyCount.right_edge_le_of_re_pos`](../lean_stage3/ConreyCountEdge.md#ConreyCount-right_edge_le_of_re_pos) (ConreyCountEdge) — `` |(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ Real.pi ``
   - [`LevinsonSize.right_edge_le`](#LevinsonSize-right_edge_le) — `` |(∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (3 + t * I)).re| ≤ Real.pi ``
 
 <a name="LevinsonSize-continuous_three"></a>
@@ -395,8 +400,9 @@ line 263 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``

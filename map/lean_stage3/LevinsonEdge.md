@@ -7,7 +7,7 @@ LevinsonEdge — block S11 of `lean_stage3/design/stencil.md`, step 1d (ii). 202
 13 theorems, 2 definitions, 517 lines. 
 
 **Imports:** [`LevinsonSize`](../lean_stage3/LevinsonSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md)
 
 ## The picture
 
@@ -32,8 +32,9 @@ flowchart LR
   x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
   x4(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
   x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
-  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x7(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x6(["<b>ConreyCountEdge</b><br/>edge_le_of_bound_upper"]):::ext
+  x7(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x8(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -50,6 +51,7 @@ flowchart LR
   n8 --> n10
   n9 --> n10
   n0 -.-> x0
+  n10 -.-> x6
   n12 -.-> x1
   n12 -.-> x3
   n12 -.-> x5
@@ -62,8 +64,8 @@ flowchart LR
   n7 -.-> x2
   n8 -.-> x2
   n9 -.-> x2
-  x6 -.-> n11
-  x7 -.-> n12
+  x7 -.-> n11
+  x8 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -420,8 +422,9 @@ line 245 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonEdge.model`](#LevinsonEdge-model), [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ConreyCount.edge_le_of_bound_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-edge_le_of_bound_upper) (ConreyCountEdge) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
   - [`LevinsonEdge.edge_le_of_bound`](#LevinsonEdge-edge_le_of_bound) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
 
 <a name="LevinsonEdge-edge_le_of_bound"></a>

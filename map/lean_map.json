@@ -27834,6 +27834,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.horizontal_leg_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.edge_le_gen"
     ]
@@ -37056,6 +37057,1225 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ConreyCount.lean",
+  "module": "Stage3.ConreyCount",
+  "stem": "ConreyCount",
+  "header": "ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey's identity and Levinson's count for a general `Q`. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCountOrder",
+   "Stage3.ConreyCountEdge"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "Kadiri",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Polynomial",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "ConreyCount"
+  ],
+  "lines": 470,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCountEdge.lean",
+   "lean_stage3/Stage3/ConreyCountOrder.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "conrey_count_sub",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.conrey_count_sub",
+    "line": 67,
+    "why": "Levinson's count for `V = W/Gammaℝ`, difference form. For `Q′(x) = Q′(1 − x)`, `Q(1/2) ≠ 0`, `4 ≤ a < b`, `V` nonzero on the bottom and top edges of `[1/2, 3] × [a, b]`, `ζ(1/2 + a i) ≠ 0`, `Re V ≥ 1/3` on the right edge and `‖V‖ ≤ M` on the discs about `3 + a i` and `3 + b i`: the zeros of `ζ` on the line with height in `(a, b]`, with order, number at least `(N b − N a) − 2·(zeros of V in the rectangle right of the line) − (30 log b + 42 log(3M) + 154)`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑a * I) ≠ 0",
+     "hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑b * I) ≠ 0",
+     "hζa : riemannZeta (1/2 + a * I) ≠ 0",
+     "hR : StmtVRight Q L a b",
+     "hMa : StmtVDisc Q L a M",
+     "hMb : StmtVDisc Q L b M"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log (3 * M) + 154) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/ConreyCount.lean",
+    "id": "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "StmtVDisc.mono",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.StmtVDisc.mono",
+    "line": 428,
+    "why": "A disc bound with a larger constant.",
+    "sorry": false,
+    "needs": [
+     "h : StmtVDisc Q L T M",
+     "hM : M ≤ M'"
+    ],
+    "proves": "StmtVDisc Q L T M'",
+    "file": "lean_stage3/Stage3/ConreyCount.lean",
+    "id": "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.StmtVDisc.mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "conrey_count_window",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.conrey_count_window",
+    "line": 434,
+    "why": "The count on a window inside `[T/4, 2T]`. With `L = log T`, `T/4 ≤ a`, `4 ≤ a < b ≤ 2T`, `0 < A`, the open size statement `StmtVEdges Q T A`, and the avoidance hypotheses: `lineCount b − lineCount a ≥ (N b − N a) − 2·countRight V − (72 log b + 42 log(3A) + 154)`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hA : 0 < A",
+     "hTa : T / 4 ≤ a",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hbT : b ≤ 2 * T",
+     "hE : StmtVEdges Q T A",
+     "hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑a * I) ≠ 0",
+     "hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q (Real.log T) (↑x + ↑b * I) ≠ 0",
+     "hζa : riemannZeta (1/2 + a * I) ≠ 0"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q (Real.log T)) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 42 * Real.log (3 * A) + 154) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/ConreyCount.lean",
+    "id": "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVEdges",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVEdges",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ConreyCountEdge.lean",
+  "module": "Stage3.ConreyCountEdge",
+  "stem": "ConreyCountEdge",
+  "header": "ConreyCountEdge — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the edges for `V`. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCountLine",
+   "Stage3.LevinsonEdge"
+  ],
+  "opens": [
+   "Complex",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "ConreyCount"
+  ],
+  "lines": 255,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCountLine.lean",
+   "lean_stage3/Stage3/LevinsonEdge.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtVRight",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.StmtVRight",
+    "line": 65,
+    "why": "Open: the right edge. `Re V ≥ 1/3` on `3 + [a, b] i`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L a b : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtVDisc",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.StmtVDisc",
+    "line": 69,
+    "why": "Open: the growth on a disc. `‖V‖ ≤ M` on `‖w − (3 + T i)‖ ≤ 21/8`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L T M : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.StmtVDisc.mono",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVEdges",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtVEdges",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.StmtVEdges",
+    "line": 74,
+    "why": "Open: the size of `V` near height `T`. With `L = log T`, for every height `t ∈ [T/4, 2T]`: `Re V(3 + t i) ≥ 1/3`, and `‖V‖ ≤ A·t` on the disc of radius `21/8` about `3 + t i`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "T A : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVEdges",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_V_upper",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.analyticAt_V_upper",
+    "line": 79,
+    "why": "`V` is analytic above `Im = 1/2`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hw : 1/2 < w.im"
+    ],
+    "proves": "AnalyticAt ℂ (V Q L) w",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_edge_le_of_re_pos",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.right_edge_le_of_re_pos",
+    "line": 88,
+    "why": "The right edge, for any `G` in the right half-plane there.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hGa : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ G (3 + t * I)",
+     "hpos : ∀ t ∈ Set.Icc a b, 0 < (G (3 + t * I)).re"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_le_of_bound_upper",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.edge_le_of_bound_upper",
+    "line": 135,
+    "why": "A horizontal edge, with analyticity above `Im = 1/2` only. The proof of `LevinsonEdge.edge_le_of_bound` (which asks `G` analytic off `1`); it uses `G` only at points with `Im > 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hGa : ∀ w : ℂ, 1/2 < w.im → AnalyticAt ℂ G w",
+     "h0 : 1 / 3 ≤ (G (3 + (T : ℂ) * I)).re",
+     "hM : ∀ w : ℂ, ‖w - (3 + (T : ℂ) * I)‖ ≤ 21 / 8 → ‖G w‖ ≤ M",
+     "hne : ∀ x ∈ Set.Icc (1/2:ℝ) 3, G (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1)",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgLegs.lean::ArgLegs.segment_im_integral_le",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.real_zero_count"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_right_edge_le",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.V_right_edge_le",
+    "line": 217,
+    "why": "The right edge for `V`.",
+    "sorry": false,
+    "needs": [
+     "ha : 4 ≤ a",
+     "hab : a ≤ b",
+     "hR : StmtVRight Q L a b"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv (V Q L) (3 + t * I)).re| ≤ Real.pi",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_horizontal_edge_le",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.V_horizontal_edge_le",
+    "line": 225,
+    "why": "A horizontal edge for `V`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "h0 : 1/3 ≤ (V Q L (3 + T * I)).re",
+     "hM : StmtVDisc Q L T M",
+     "hne : ∀ x ∈ Set.Icc (1/2:ℝ) 3, V Q L (↑x + ↑T * I) ≠ 0"
+    ],
+    "proves": "|(∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1)",
+    "file": "lean_stage3/Stage3/ConreyCountEdge.lean",
+    "id": "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ConreyCountIdentity.lean",
+  "module": "Stage3.ConreyCountIdentity",
+  "stem": "ConreyCountIdentity",
+  "header": "ConreyCountIdentity — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, Conrey's identity. 2026-11-25.",
+  "imports": [
+   "Stage3.OperatorQ"
+  ],
+  "opens": [
+   "Complex",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "ConreyCount"
+  ],
+  "lines": 115,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OperatorQ.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_xi_one_sub",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.iteratedDeriv_xi_one_sub",
+    "line": 35,
+    "why": "The parity of the derivatives of `Λ`. `Λ^{(k)}(1 − s) = (−1)^k Λ^{(k)}(s)` for every `s ∈ ℂ`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "iteratedDeriv k completedRiemannZeta (1 - s) = (-1 : ℂ) ^ k * iteratedDeriv k completedRiemannZeta s",
+    "file": "lean_stage3/Stage3/ConreyCountIdentity.lean",
+    "id": "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.iteratedDeriv_xi_one_sub",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conrey_identity",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.conrey_identity",
+    "line": 46,
+    "why": "Conrey's identity at `m = 0`. For `Q′(x) = Q′(1 − x)`: `W(s) + W(1 − s) = 2·Q(1/2)·Λ(s)` for every `s`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = 2 * ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta s",
+    "file": "lean_stage3/Stage3/ConreyCountIdentity.lean",
+    "id": "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.iteratedDeriv_xi_one_sub",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.iteratedDeriv_xi_one_sub",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.taylor_coeff_even_eq_zero"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity_K"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sym_of_add_const",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.sym_of_add_const",
+    "line": 67,
+    "why": "Conrey's hypothesis `Q(x) + Q(1 − x) = K` gives the symmetry of `Q′`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "K : ℝ",
+     "hK : ∀ x : ℝ, Q.eval x + Q.eval (1 - x) = K"
+    ],
+    "proves": "∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+    "file": "lean_stage3/Stage3/ConreyCountIdentity.lean",
+    "id": "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.sym_of_add_const",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity_K"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conrey_identity_K",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.conrey_identity_K",
+    "line": 84,
+    "why": "Conrey's identity in his form. For `Q(x) + Q(1 − x) = K`: `W(s) + W(1 − s) = K·Λ(s)` for every `s` (and `K = 2·Q(1/2)`).",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "K : ℝ",
+     "hK : ∀ x : ℝ, Q.eval x + Q.eval (1 - x) = K",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = (K : ℂ) * completedRiemannZeta s",
+    "file": "lean_stage3/Stage3/ConreyCountIdentity.lean",
+    "id": "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity_K",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.sym_of_add_const",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.sym_of_add_const",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ConreyCountLine.lean",
+  "module": "Stage3.ConreyCountLine",
+  "stem": "ConreyCountLine",
+  "header": "ConreyCountLine — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the line function. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCountIdentity",
+   "Stage3.LevinsonTurn"
+  ],
+  "opens": [
+   "Complex",
+   "LineCount",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "ConreyCount"
+  ],
+  "lines": 191,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCountIdentity.lean",
+   "lean_stage3/Stage3/LevinsonTurn.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "V",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.V",
+    "line": 45,
+    "why": "Conrey's `V = W/Gammaℝ`, the analogue of `G = ζ + cζ′`: `V = Q(1/2 − (D + g)/L) ζ` with `g = Gammaℝ′/Gammaℝ`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVEdges",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVRight",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_W",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.analyticAt_W",
+    "line": 48,
+    "why": "`W` is analytic off `{0, 1}`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "h0 : s ≠ 0",
+     "h1 : s ≠ 1"
+    ],
+    "proves": "AnalyticAt ℂ (OperatorQ.W Q L) s",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_Gammaℝ'",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.analyticAt_Gammaℝ'",
+    "line": 61,
+    "why": "`Gammaℝ` is analytic where it does not vanish.",
+    "sorry": false,
+    "needs": [
+     "hs : Gammaℝ s ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ Gammaℝ s",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_Gammaℝ'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_V",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.analyticAt_V",
+    "line": 71,
+    "why": "`V` is analytic where `W` is and `Gammaℝ ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "h0 : s ≠ 0",
+     "h1 : s ≠ 1",
+     "hG : Gammaℝ s ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ (V Q L) s",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gammaℝ_ne_of_im",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.Gammaℝ_ne_of_im",
+    "line": 76,
+    "why": "`Gammaℝ` has no zero off the real axis.",
+    "sorry": false,
+    "needs": [
+     "h : w.im ≠ 0"
+    ],
+    "proves": "Gammaℝ w ≠ 0",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.Gammaℝ_ne_of_im",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "W_eq_gammaR_mul_V",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.W_eq_gammaR_mul_V",
+    "line": 84,
+    "why": "`W = Gammaℝ · V` where `Gammaℝ ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hG : Gammaℝ s ≠ 0"
+    ],
+    "proves": "OperatorQ.W Q L s = Gammaℝ s * V Q L s",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "lineW",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.lineW",
+    "line": 90,
+    "why": "The line function `t ↦ W(1/2 + t i)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.continuous_lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analyticAt_W_line",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.analyticAt_W_line",
+    "line": 93,
+    "why": "`W` is analytic at every point of the line.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L t : ℝ"
+    ],
+    "proves": "AnalyticAt ℂ (OperatorQ.W Q L) (1/2 + t * I)",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.continuous_lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_lineW",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.continuous_lineW",
+    "line": 99,
+    "why": "The line function is continuous.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ"
+    ],
+    "proves": "Continuous (lineW Q L)",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.continuous_lineW",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "lineCount_ge_argW",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.lineCount_ge_argW",
+    "line": 108,
+    "why": "The crossings of `W`. If a continuous argument `φ` of `W` along `[1/2 + a i, 1/2 + b i]` moves by at least `kπ`, and `Q(1/2) ≠ 0`, then at least `k` zeros of `ζ` lie on the line up to height `T ≥ b`, with multiplicity.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "ha : 0 < a",
+     "hab : a ≤ b",
+     "hbT : b ≤ T",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, lineW Q L t = ‖lineW Q L t‖ * Complex.exp (φ t * Complex.I)",
+     "hk : (k : ℝ) * Real.pi ≤ |φ b - φ a|"
+    ],
+    "proves": "(k : ℤ) ≤ lineCount T",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_W_eq",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.logDeriv_W_eq",
+    "line": 127,
+    "why": "On `Re s > 0`, `logDeriv W = logDeriv (Gammaℝ · V)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hs : 0 < s.re"
+    ],
+    "proves": "logDeriv (OperatorQ.W Q L) s = logDeriv (fun z => Gammaℝ z * V Q L z) s",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineW_turn_eq",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.lineW_turn_eq",
+    "line": 138,
+    "why": "The turning of `W`. Where `V ≠ 0` along `[1/2 + a i, 1/2 + b i]`, a continuous argument of `W` there turns by the `Gammaℝ` part plus the turning of `V`.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hne : ∀ t ∈ Set.Icc a b, V Q L (1/2 + t * I) ≠ 0",
+     "hφc : ContinuousOn φ (Set.Icc a b)",
+     "hφ : ∀ t ∈ Set.Icc a b, lineW Q L t = ‖lineW Q L t‖ * Complex.exp (φ t * Complex.I)"
+    ],
+    "proves": "φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (V Q L) (1/2 + t * I)).re",
+    "file": "lean_stage3/Stage3/ConreyCountLine.lean",
+    "id": "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ConreyCountOrder.lean",
+  "module": "Stage3.ConreyCountOrder",
+  "stem": "ConreyCountOrder",
+  "header": "ConreyCountOrder — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the zeros of `V` on the line. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCountLine",
+   "Stage3.LevinsonWindowNear",
+   "Stage3.ContourShift"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "LevinsonMultiple",
+   "Polynomial",
+   "Topology"
+  ],
+  "namespaces": [
+   "ConreyCount"
+  ],
+  "lines": 244,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCountLine.lean",
+   "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/LevinsonWindowNear.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "order_cmp",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.order_cmp",
+    "line": 47,
+    "why": "Comparing orders along a real variable. If `(t − γ)^m f t = (t − γ)^n g t` near `γ`, with `f`, `g` continuous at `γ` and `f γ ≠ 0`, then `n ≤ m`, and `n + 1 ≤ m` if `g γ = 0`.",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousAt f γ",
+     "hg : ContinuousAt g γ",
+     "hf0 : f γ ≠ 0",
+     "heq : ∀ᶠ t in 𝓝 γ, (((t - γ : ℝ) : ℂ)) ^ m * f t = (((t - γ : ℝ) : ℂ)) ^ n * g t"
+    ],
+    "proves": "n ≤ m ∧ (g γ = 0 → n + 1 ≤ m)",
+    "file": "lean_stage3/Stage3/ConreyCountOrder.lean",
+    "id": "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.order_cmp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_order_eq",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.zeta_order_eq",
+    "line": 88,
+    "why": "The tree's order of `ζ` is its analytic order off the pole.",
+    "sorry": false,
+    "needs": [
+     "hρ1 : ρ ≠ 1"
+    ],
+    "proves": "riemannZeta.order ρ = ((analyticOrderAt riemannZeta ρ).toNat : ℤ)",
+    "file": "lean_stage3/Stage3/ConreyCountOrder.lean",
+    "id": "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "line_identity",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.line_identity",
+    "line": 100,
+    "why": "The real identity on the line. For `V = P·H` with `D` on the line and `F = i^K·Gammaℝ·H`: `Q(1/2)·Λ(1/2 + t i) = p(t)·Re F(t)`, `p(t) = Π_{ρ∈D}(t − Im ρ)^{n ρ}`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hD : ∀ ρ ∈ D, ρ.re = 1/2",
+     "hVPH : ∀ s, V Q L s = polyP D n s * H s",
+     "t : ℝ"
+    ],
+    "proves": "((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1/2 + t * I))).re : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/ConreyCountOrder.lean",
+    "id": "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_order_ge_line",
+    "ns": "ConreyCount",
+    "full": "ConreyCount.zeta_order_ge_line",
+    "line": 124,
+    "why": "The order of `ζ` at a zero of `V` on the line. For `V = P·H` with `D` on the line, `H` analytic at `ρ ∈ D` and `Q(1/2) ≠ 0`: `n ρ ≤ ord ζ ρ`, and `n ρ + 1 ≤ ord ζ ρ` where `Re F(Im ρ) = 0`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hD : ∀ ρ ∈ D, ρ.re = 1/2",
+     "hVPH : ∀ s, V Q L s = polyP D n s * H s",
+     "hρ : ρ ∈ D",
+     "hHa : AnalyticAt ℂ H ρ"
+    ],
+    "proves": "(n ρ : ℤ) ≤ riemannZeta.order ρ ∧ ((I ^ (∑ ρ' ∈ D, n ρ') * (Gammaℝ ρ * H ρ)).re = 0 → (n ρ : ℤ) + 1 ≤ riemannZeta.order ρ)",
+    "file": "lean_stage3/Stage3/ConreyCountOrder.lean",
+    "id": "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.order_cmp",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_eq",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuous_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.order_cmp",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_eq",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.polyP",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.continuous_line"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ContourShift.lean",
   "module": "Stage3.ContourShift",
   "stem": "ContourShift",
@@ -37585,6 +38805,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_eq",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.order_bridge",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_zero",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_conj",
@@ -59947,6 +61169,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.xi_line_real",
@@ -59986,6 +61209,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.re_gammaR_G_line",
@@ -67329,6 +68553,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -67387,6 +68612,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -67455,6 +68682,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg"
     ]
    },
@@ -68309,6 +69537,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.edge_le_of_bound_upper",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.edge_le_of_bound"
     ]
    },
@@ -68432,6 +69661,11 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.continuous_lineF",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.deriv_xi_line_im",
@@ -69554,6 +70788,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.exists_prod_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.integral_logDeriv_polyP",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -69707,6 +70943,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
     ]
    },
@@ -70740,6 +71977,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le"
     ]
    },
@@ -70963,6 +72201,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -71050,6 +72289,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.arg_turn_segment",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
@@ -71097,6 +72337,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.zeta_order_ge_line",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq"
     ]
    },
@@ -71130,6 +72371,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -71212,6 +72455,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -71314,6 +72559,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
@@ -71407,6 +72653,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
@@ -71835,6 +73082,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
@@ -74527,6 +75775,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
      "lean_stage3/Stage3/Defect.lean::Defect.defect",
      "lean_stage3/Stage3/Defect.lean::Defect.defectN",
@@ -74850,6 +76101,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
@@ -74885,6 +76137,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -74986,6 +76239,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -81631,6 +82886,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
     ]
    },
@@ -81656,6 +82912,17 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
+     "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity_K",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.W_eq_gammaR_mul_V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.continuous_lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
@@ -81691,6 +82958,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
     ]
@@ -81727,7 +82996,10 @@
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW"
+    ]
    },
    {
     "kind": "def",
@@ -138117,11 +139389,12 @@
    "Stage3.FloorSum",
    "Stage3.Defect",
    "Stage3.FloorLong",
-   "Stage3.OperatorQ"
+   "Stage3.OperatorQ",
+   "Stage3.ConreyCount"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 250,
+  "lines": 251,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -138153,6 +139426,7 @@
    "lean_stage3/Stage3/ClosedLoopJoin.lean",
    "lean_stage3/Stage3/CompositeSplit.lean",
    "lean_stage3/Stage3/Compression.lean",
+   "lean_stage3/Stage3/ConreyCount.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",

@@ -5,7 +5,7 @@
 28 theorems, 1 definition, 1432 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`PerronKernel`](../lean_stage3/PerronKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`Defect`](../lean_stage3/Defect.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`StepsPole`](../lean_stage3/StepsPole.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md), [`Defect`](../lean_stage3/Defect.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`StepsPole`](../lean_stage3/StepsPole.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
 
 ## The picture
 
@@ -55,10 +55,11 @@ flowchart LR
   x13(["<b>ApproxBounds</b><br/>VY_residue"]):::ext
   x14(["<b>ApproxShift</b><br/>local_simple<br/>stmtShift_holds"]):::ext
   x15(["<b>Diagonal</b><br/>Ez_differentiable<br/>shift_t"]):::ext
-  x16(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x17(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x18(["<b>RouteNum</b><br/>C2n_le"]):::ext
-  x19(["<b>Defect</b><br/>mirrorZ_order"]):::ext
+  x16(["<b>ConreyCountOrder</b><br/>zeta_order_eq<br/>zeta_order_ge_line"]):::ext
+  x17(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x18(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x19(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x20(["<b>Defect</b><br/>mirrorZ_order"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -113,6 +114,7 @@ flowchart LR
   n11 -.-> x14
   n11 -.-> x15
   n12 -.-> x14
+  n14 -.-> x16
   n14 -.-> x6
   n14 -.-> x8
   n15 -.-> x0
@@ -121,7 +123,7 @@ flowchart LR
   n17 -.-> x0
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x16
+  n18 -.-> x17
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
@@ -141,11 +143,11 @@ flowchart LR
   n21 -.-> x0
   n21 -.-> x1
   n21 -.-> x11
-  n21 -.-> x17
   n21 -.-> x18
+  n21 -.-> x19
   n21 -.-> x2
   n21 -.-> x3
-  n22 -.-> x19
+  n22 -.-> x20
   n23 -.-> x0
   n23 -.-> x1
   n23 -.-> x2
@@ -154,8 +156,8 @@ flowchart LR
   n25 -.-> x2
   n26 -.-> x1
   n26 -.-> x11
-  n26 -.-> x19
   n26 -.-> x2
+  n26 -.-> x20
   n26 -.-> x3
   n27 -.-> x1
   n27 -.-> x2
@@ -668,8 +670,10 @@ analyticOrderAt riemannZeta ρ ≠ ⊤
 
   - [`ContourShift.zeta_analyticAt`](#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
 
-**Feeds** (7 that use it)
+**Feeds** (9 that use it)
 
+  - [`ConreyCount.zeta_order_eq`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_eq) (ConreyCountOrder) — `` riemannZeta.order ρ = ((analyticOrderAt riemannZeta ρ).toNat : ℤ) ``
+  - [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line) (ConreyCountOrder) — `` (n ρ : ℤ) ≤ riemannZeta.order ρ ∧ ((I ^ (∑ ρ' ∈ D, n ρ') * (Gammaℝ ρ * H ρ)).re = 0 → (n ρ : ℤ) + 1 ≤ riemannZeta.order ρ) ``
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
   - [`ContourShift.zeta_local_data_zero`](#ContourShift-zeta_local_data_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(analyticOrderNatAt rie… ``
   - [`ContourShift.zeta_order_conj`](#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``

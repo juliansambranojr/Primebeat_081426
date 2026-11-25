@@ -42,11 +42,12 @@ flowchart LR
   n26["<b>littlewood_rect</b><br/>2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toF…"]:::shp
   n27["<b>littlewood_rect_zero_free ■</b><br/>(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.i…"]:::shp
   x0(["<b>LevinsonRight</b><br/>4 theorems"]):::ext
-  x1(["<b>LevinsonMultiple</b><br/>countRight_eq_of_mul<br/>integral_logDeriv_mul<br/>levinson_count'"]):::ext
-  x2(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
-  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x4(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>LevinsonMultiple</b><br/>countRight_eq_of_mul<br/>integral_logDeriv_mul<br/>levinson_count'"]):::ext
+  x3(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x5(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
+  x6(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -88,12 +89,13 @@ flowchart LR
   n8 --> n9
   n9 --> n11
   n1 -.-> x0
-  n17 -.-> x1
-  n17 -.-> x5
+  n17 -.-> x2
+  n17 -.-> x6
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
+  n2 -.-> x4
   n24 -.-> x0
   n26 -.-> x0
   n3 -.-> x0
@@ -101,11 +103,12 @@ flowchart LR
   n3 -.-> x2
   n3 -.-> x3
   n3 -.-> x4
+  n3 -.-> x5
   n4 -.-> x0
-  n4 -.-> x2
+  n4 -.-> x3
   n5 -.-> x0
-  n5 -.-> x5
-  n7 -.-> x5
+  n5 -.-> x6
+  n7 -.-> x6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -126,7 +129,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 137
 
 - **Is:** `` countRight (f : ℂ → ℂ) (z w : ℂ) (σ : ℝ) : ℝ := ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset, if σ < p.re then ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) else 0 ``
-- **Used by 18:** [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq), [`LevinsonRight.countRight_mul_ge`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_mul_ge), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
+- **Used by 20:** [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq), [`LevinsonRight.countRight_mul_ge`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_mul_ge), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
 
 <a name="Littlewood-edgeH"></a>
 ### `Littlewood.edgeH`
@@ -211,8 +214,9 @@ line 64 · arrows read from text
 
   - [`Littlewood.corner_mem`](#Littlewood-corner_mem) — `` z ∈ Rectangle z w ``
 
-**Feeds** (10 that use it)
+**Feeds** (11 that use it)
 
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul) (LevinsonMultiple) — `` Littlewood.countRight G z w σ = Littlewood.countRight H z w σ ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq) (LevinsonRight) — `` countRight f z' w σ = countRight f z w σ ``
@@ -246,8 +250,9 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (11 that use it)
+**Feeds** (12 that use it)
 
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonAvoid.zeros_finite`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-zeros_finite) (LevinsonAvoid) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
   - [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul) (LevinsonMultiple) — `` Littlewood.countRight G z w σ = Littlewood.countRight H z w σ ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``

@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>398 theorems counting,<br/>in 71 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>408 theorems counting,<br/>in 74 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1474 theorems shape,<br/>in 182 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1484 theorems shape,<br/>in 185 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>939 theorems reads ζ,<br/>in 158 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>945 theorems reads ζ,<br/>in 161 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 502 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1725 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 960 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 512 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1735 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 966 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 398 | 1474 | 939 |
+| `lean_stage3/` | 408 | 1484 | 945 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -462,6 +462,31 @@ Compression — block R11 of `lean_stage3/design/runs.md`. 2026-11-23. The prime
 - [`Compression.unique_new_prime`](./lean_stage3/Compression.md#Compression-unique_new_prime) — `` p = q `` No number is claimed twice. A number up to `N` has at most one prime factor above `√N`.
 - [`Compression.nonSmooth_eq_biUnion`](./lean_stage3/Compression.md#Compression-nonSmooth_eq_biUnion) — `` (Icc 1 N).filter (fun n => ¬ ∀ p : ℕ, p.Prime → p ∣ n → p ≤ Nat.sqrt N) = (newPrimes N).biUnion (fun p => (Icc 1 N).filter (fun n => p ∣ n)) `` The numbers that are not combinations of the primes so far are the multiples of the new primes.
 - [`Compression.compression`](./lean_stage3/Compression.md#Compression-compression) — `` N = smooth N + ∑ p ∈ newPrimes N, N / p `` The compression. The numbers up to `N` are the combinations of the primes up to `√N`, and for each new prime its multiples up to `N`, with nothing counted twice.
+
+### [`ConreyCount`](./lean_stage3/ConreyCount.md) — 1
+
+ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey's identity and Levinson's count for a general `Q`. 2026-11-25.
+
+- [`ConreyCount.StmtVDisc.mono`](./lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono) — `` StmtVDisc Q L T M' `` A disc bound with a larger constant.
+
+### [`ConreyCountIdentity`](./lean_stage3/ConreyCountIdentity.md) — 4
+
+ConreyCountIdentity — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, Conrey's identity. 2026-11-25.
+
+- [`ConreyCount.iteratedDeriv_xi_one_sub`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-iteratedDeriv_xi_one_sub) — `` iteratedDeriv k completedRiemannZeta (1 - s) = (-1 : ℂ) ^ k * iteratedDeriv k completedRiemannZeta s `` The parity of the derivatives of `Λ`. `Λ^{(k)}(1 − s) = (−1)^k Λ^{(k)}(s)` for every `s ∈ ℂ`.
+- [`ConreyCount.conrey_identity`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity) — `` OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = 2 * ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta s `` Conrey's identity at `m = 0`. For `Q′(x) = Q′(1 − x)`: `W(s) + W(1 − s) = 2·Q(1/2)·Λ(s)` for every `s`.
+- [`ConreyCount.sym_of_add_const`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-sym_of_add_const) — `` ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x) `` Conrey's hypothesis `Q(x) + Q(1 − x) = K` gives the symmetry of `Q′`.
+- [`ConreyCount.conrey_identity_K`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity_K) — `` OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = (K : ℂ) * completedRiemannZeta s `` Conrey's identity in his form. For `Q(x) + Q(1 − x) = K`: `W(s) + W(1 − s) = K·Λ(s)` for every `s` (and `K = 2·Q(1/2)`).
+
+### [`ConreyCountLine`](./lean_stage3/ConreyCountLine.md) — 5
+
+ConreyCountLine — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the line function. 2026-11-25.
+
+- [`ConreyCount.analyticAt_W`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W) — `` AnalyticAt ℂ (OperatorQ.W Q L) s `` `W` is analytic off `{0, 1}`.
+- [`ConreyCount.analyticAt_Gammaℝ'`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_Gamma--) — `` AnalyticAt ℂ Gammaℝ s `` `Gammaℝ` is analytic where it does not vanish.
+- [`ConreyCount.analyticAt_V`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_V) — `` AnalyticAt ℂ (V Q L) s `` `V` is analytic where `W` is and `Gammaℝ ≠ 0`.
+- [`ConreyCount.Gammaℝ_ne_of_im`](./lean_stage3/ConreyCountLine.md#ConreyCount-Gamma-_ne_of_im) — `` Gammaℝ w ≠ 0 `` `Gammaℝ` has no zero off the real axis.
+- [`ConreyCount.W_eq_gammaR_mul_V`](./lean_stage3/ConreyCountLine.md#ConreyCount-W_eq_gammaR_mul_V) — `` OperatorQ.W Q L s = Gammaℝ s * V Q L s `` `W = Gammaℝ · V` where `Gammaℝ ≠ 0`.
 
 ### [`CountEuler`](./lean_stage3/CountEuler.md) — 2
 
