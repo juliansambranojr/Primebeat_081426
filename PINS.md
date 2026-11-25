@@ -22,7 +22,7 @@ below with their outcome.
 
 ## Current
 
-### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, its analytic half: `Stage3/Turing*.lean`
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, its analytic half: `Stage3/TuringCert.lean` and `Stage3/Turing*.lean`
 
     DONE        Littlewood's bound on ∫ S: S₁(T) = ∫_0^T S(t) dt with
                 |S₁(t₂) − S₁(t₁)| ≤ a·log t₂ + b, explicit a, b, from

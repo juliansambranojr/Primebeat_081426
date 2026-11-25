@@ -129,6 +129,8 @@ build, 2026-09-08.
 | 116 | `unexpected token 'at'; expected ':='` two lines after a nested `have … := by` that ends in a one-step `calc` | the `calc` swallowed the following tactic lines | close with `exact` (unit 0561) |
 | 117 | `simp only [Set.mem_Iic] at h` makes no progress after `eventually_atTop.mp` of a `Tendsto … .eventually (Iic_mem_nhds …)` | the membership is already unfolded to `x ≤ c` | drop the `simp` (unit 0561) |
 | 118 | `LevinsonMollEdge.edge_le_gen` and `arg_term_le_of_pos` do not apply to Conrey's `V` | they ask analyticity on all of `ℂ ∖ {1}`, and `V` has the poles of the completed zeta at 0 and 1 | use the copies in `FloorQEdge` that ask `Im > 0` or `t ∈ [a, b]` (unit 0561) |
+| 119 | `Application type mismatch … expected ℝ` at `t + h`, and `linarith` fails on `t + ?m < t` | a `have h := …` shadowed the window length `h : ℝ` | name the hypothesis differently (unit 0563) |
+| 120 | `#check riemannZeta_order_pos_nontrivialZero` reports an unknown name | the upstream lemma is in namespace `Kadiri` (row 2's family) | `open Kadiri` or write `Kadiri.riemannZeta_order_pos_nontrivialZero` (unit 0563) |
 
 ## Bench and gate traps
 
