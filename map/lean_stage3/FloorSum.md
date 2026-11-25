@@ -7,7 +7,7 @@
 6 theorems, 0 definitions, 195 lines. 
 
 **Imports:** [`FloorConst`](../lean_stage3/FloorConst.md), [`FloorStep`](../lean_stage3/FloorStep.md), [`FloorSumTele`](../lean_stage3/FloorSumTele.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Defect`](../lean_stage3/Defect.md)
 
 ## The picture
 
@@ -18,17 +18,19 @@ flowchart LR
   n2["<b>logmax_le</b><br/>Real.log (max 1 x) / (13 / 10) ≤ 2 / 3 + 2 * ε₁"]:::shp
   n3["<b>step_X</b><br/>∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemann…"]:::thm
   n4["<b>N_ge ■</b><br/>∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T"]:::thm
-  n5["<b>levinson_floor ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riema…"]:::thm
+  n5["<b>levinson_floor</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riema…"]:::thm
   x0(["<b>FloorConst</b><br/>Kfl_levinson_eq<br/>kappa_levinson_ge"]):::ext
   x1(["<b>ArgCount</b><br/>N_mono<br/>N_nonneg"]):::ext
   x2(["<b>FloorStep</b><br/>floor_step"]):::ext
   x3(["<b>FloorStepSize</b><br/>N_window_ge"]):::ext
   x4(["<b>FloorSumTele</b><br/>tele_floor"]):::ext
   x5(["<b>LevinsonWindowNear</b><br/>lineCount_nonneg"]):::ext
+  x6(["<b>Defect</b><br/>defectN_le<br/>defect_le"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
   n3 --> n5
+  n5 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x1 -.-> n3
@@ -211,5 +213,8 @@ line 132 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`Defect.defectN_le`](../lean_stage3/Defect.md#Defect-defectN_le) (Defect) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → defectN T ≤ (2 / 3 + ε) * riemannZeta.N T ``
+  - [`Defect.defect_le`](../lean_stage3/Defect.md#Defect-defect_le) (Defect) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2 / 3 + ε) * (allCount T : ℝ) ``
 

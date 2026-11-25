@@ -25096,7 +25096,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
-     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg"
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_nonneg",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt"
     ]
    },
    {
@@ -37840,7 +37841,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order"
     ]
    },
    {
@@ -37963,6 +37965,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_order_sum_le",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.ball_order_sum_le_num",
      "lean_stage3/Stage3/Glue.lean::Glue.band_order_sum_le",
@@ -41588,6 +41591,758 @@
     "used_by": [
      "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Defect.lean",
+  "module": "Stage3.Defect",
+  "stem": "Defect",
+  "header": "Defect — block S14 of `lean_stage3/design/stencil.md`, C1, the defect: the zeros off the line. 2026-11-25.",
+  "imports": [
+   "Stage3.FloorSum",
+   "Stage3.LineCount",
+   "Stage3.SpiralLink",
+   "Stage3.ContourShift",
+   "Stage3.ArgCount"
+  ],
+  "opens": [
+   "Classical",
+   "Complex",
+   "ComplexConjugate",
+   "Filter",
+   "Kadiri",
+   "LineCount",
+   "Topology"
+  ],
+  "namespaces": [
+   "Defect"
+  ],
+  "lines": 370,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ArgCount.lean",
+   "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/FloorSum.lean",
+   "lean_stage3/Stage3/LineCount.lean",
+   "lean_stage3/Stage3/SpiralLink.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "defect",
+    "ns": "Defect",
+    "full": "Defect.defect",
+    "line": 76,
+    "why": "The defect: the nontrivial zeros up to height `T` (closed) off the line, with multiplicity.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℤ",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg",
+     "lean_stage3/Stage3/Defect.lean::Defect.rh_iff_defect_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "defectN",
+    "ns": "Defect",
+    "full": "Defect.defectN",
+    "line": 79,
+    "why": "The defect against upstream's `N` (open at `T`).",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "offCount",
+    "ns": "Defect",
+    "full": "Defect.offCount",
+    "line": 82,
+    "why": "The off-line count up to height `T`, with multiplicity.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "ℤ",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_eq_offCount",
+    "ns": "Defect",
+    "full": "Defect.defect_eq_offCount",
+    "line": 88,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "defect T = offCount T",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_nonneg",
+    "ns": "Defect",
+    "full": "Defect.defect_nonneg",
+    "line": 95,
+    "why": "The defect is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "0 ≤ defect T",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_defect_zero",
+    "ns": "Defect",
+    "full": "Defect.rh_iff_defect_zero",
+    "line": 100,
+    "why": "RH is the vanishing of the defect.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∀ T : ℝ, defect T = 0",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.rh_iff_defect_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "N_eq_sum_lt",
+    "ns": "Defect",
+    "full": "Defect.N_eq_sum_lt",
+    "line": 112,
+    "why": "`N T` as the sum over the zeros up to `T` strictly below `T`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => (ρ : ℂ).im < T), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_eq_sum",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_eq_sum",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "allCount_cast",
+    "ns": "Defect",
+    "full": "Defect.allCount_cast",
+    "line": 134,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "(allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_le_allCount",
+    "ns": "Defect",
+    "full": "Defect.N_le_allCount",
+    "line": 141,
+    "why": "`N` below the closed count.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "riemannZeta.N T ≤ (allCount T : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_eq_allCount_of_no_zero_at",
+    "ns": "Defect",
+    "full": "Defect.N_eq_allCount_of_no_zero_at",
+    "line": 148,
+    "why": "`N` is the closed count at a height carrying no zero.",
+    "sorry": false,
+    "needs": [
+     "h : ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ T"
+    ],
+    "proves": "riemannZeta.N T = (allCount T : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_right",
+    "ns": "Defect",
+    "full": "Defect.exists_right",
+    "line": 156,
+    "why": "A height just above with no zero between.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "∃ T' : ℝ, T < T' ∧ ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.exists_right",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zerosUpTo_eq_right",
+    "ns": "Defect",
+    "full": "Defect.zerosUpTo_eq_right",
+    "line": 176,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hTT' : T ≤ T'",
+     "hno : ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im"
+    ],
+    "proves": "zerosUpTo T' = zerosUpTo T",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.zerosUpTo_eq_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "N_eq_allCount_right",
+    "ns": "Defect",
+    "full": "Defect.N_eq_allCount_right",
+    "line": 191,
+    "why": "At a height just above, `N` is the closed count and the line count is unchanged.",
+    "sorry": false,
+    "needs": [
+     "hTT' : T < T'",
+     "hno : ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im"
+    ],
+    "proves": "riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/Defect.lean::Defect.zerosUpTo_eq_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/Defect.lean::Defect.zerosUpTo_eq_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defectN_eq",
+    "ns": "Defect",
+    "full": "Defect.defectN_eq",
+    "line": 203,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "defectN T = (defect T : ℝ) - ((allCount T : ℝ) - riemannZeta.N T)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defectN_le_defect",
+    "ns": "Defect",
+    "full": "Defect.defectN_le_defect",
+    "line": 209,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "defectN T ≤ (defect T : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mirrorZ_order",
+    "ns": "Defect",
+    "full": "Defect.mirrorZ_order",
+    "line": 214,
+    "why": "The mirror has the same order (functional equation and conjugation).",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.order_bridge",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_reflect",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.order_bridge",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_reflect",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirrorZ_mirrorZ",
+    "ns": "Defect",
+    "full": "Defect.mirrorZ_mirrorZ",
+    "line": 227,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "SpiralLink.mirrorZ (SpiralLink.mirrorZ ρ) = ρ",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_mirrorZ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offLine_pair",
+    "ns": "Defect",
+    "full": "Defect.offLine_pair",
+    "line": 235,
+    "why": "The pairing. An off-line zero up to height `T` has its mirror off the line, up to height `T`, distinct from it, at the same height and with the same order.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2)"
+    ],
+    "proves": "SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "offCount_eq_two_mul",
+    "ns": "Defect",
+    "full": "Defect.offCount_eq_two_mul",
+    "line": 253,
+    "why": "The off-line count is twice the count left of the line.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2)).filter (fun ρ : NontrivialZeros => (ρ : ℂ).re < 1 / 2), riemannZeta.order (ρ : ℂ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_mirrorZ",
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_mirrorZ",
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_even",
+    "ns": "Defect",
+    "full": "Defect.defect_even",
+    "line": 291,
+    "why": "The defect is even.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "Even (defect T)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_le_of_floor",
+    "ns": "Defect",
+    "full": "Defect.defect_le_of_floor",
+    "line": 297,
+    "why": "A line floor bounds the defect. A floor `(c − ε) N T ≤ lineCount T` from some height on, for every `ε > 0`, gives `defect T ≤ (1 − c + ε) allCount T` from some height on.",
+    "sorry": false,
+    "needs": [
+     "h : ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (c - ε) * riemannZeta.N T ≤ (lineCount T : ℝ)"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.exists_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.exists_right",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_le",
+    "ns": "Defect",
+    "full": "Defect.defect_le",
+    "line": 314,
+    "why": "The defect at most `(2/3 + ε)` of the count, from Levinson's floor.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2 / 3 + ε) * (allCount T : ℝ)",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defect_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "defectN_le",
+    "ns": "Defect",
+    "full": "Defect.defectN_le",
+    "line": 324,
+    "why": "The N-defect at most `(2/3 + ε) N T`, from Levinson's floor.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → defectN T ≤ (2 / 3 + ε) * riemannZeta.N T",
+    "file": "lean_stage3/Stage3/Defect.lean",
+    "id": "lean_stage3/Stage3/Defect.lean::Defect.defectN_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -55791,7 +56546,10 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_le",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le"
+    ]
    }
   ]
  },
@@ -72702,6 +73460,13 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
+     "lean_stage3/Stage3/Defect.lean::Defect.zerosUpTo_eq_right",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
@@ -72736,6 +73501,15 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count"
     ]
@@ -72764,6 +73538,11 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defectN",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_le_of_floor",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.levinson_floor",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
@@ -72807,6 +73586,11 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
+     "lean_stage3/Stage3/Defect.lean::Defect.zerosUpTo_eq_right",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
@@ -72894,7 +73678,9 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_nonneg"
+    ]
    },
    {
     "kind": "theorem",
@@ -72929,7 +73715,9 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.rh_iff_defect_zero"
+    ]
    },
    {
     "kind": "theorem",
@@ -94592,6 +95380,10 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_mirrorZ",
+     "lean_stage3/Stage3/Defect.lean::Defect.mirrorZ_order",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
@@ -94635,6 +95427,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
@@ -94665,6 +95458,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/Defect.lean::Defect.offCount_eq_two_mul",
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
@@ -94704,6 +95499,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Defect.lean::Defect.offLine_pair",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
@@ -135769,11 +136565,12 @@
    "Stage3.Unsmooth",
    "Stage3.FloorConst",
    "Stage3.FloorStep",
-   "Stage3.FloorSum"
+   "Stage3.FloorSum",
+   "Stage3.Defect"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 247,
+  "lines": 248,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -135809,6 +136606,7 @@
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",
    "lean_stage3/Stage3/CountReduction.lean",
+   "lean_stage3/Stage3/Defect.lean",
    "lean_stage3/Stage3/DiagMain.lean",
    "lean_stage3/Stage3/DiagMainMu.lean",
    "lean_stage3/Stage3/DiagMainStmt.lean",

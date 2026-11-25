@@ -63,6 +63,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nyquist.aliases_of_offset`](./lean/Nyquist.md#Nyquist-aliases_of_offset) | theorem | shape | `Nyquist` | Aliases b γ (γ - 2 * π * k / Real.log b) |
 | [`ZeroCells.all_four_have_length_four`](./lean/ZeroCells.md#ZeroCells-all_four_have_length_four) | theorem | counting | `ZeroCells` | Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_cells.length = 4 ∧ PairIdentity.zero_cells.length = 4 ∧ Zeros.measured_zeros.length = 4 |
 | [`LineCount.allCount`](./lean_stage3/LineCount.md#LineCount-allCount) | def | reads ζ | `LineCount` | ℤ |
+| [`Defect.allCount_cast`](./lean_stage3/Defect.md#Defect-allCount_cast) | theorem | reads ζ | `Defect` | (allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) |
 | [`Doubling.alt_even`](./lean_stage3/Doubling.md#Doubling-alt_even) | theorem | counting | `Doubling` | ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) = ∑ k ∈ Icc 1 (2 * m), 1 / (k : ℝ) - ∑ k ∈ Icc 1 m, 1 / (k : ℝ) |
 | [`Doubling.alt_even_bound`](./lean_stage3/Doubling.md#Doubling-alt_even_bound) | theorem | shape | `Doubling` | Real.log 2 - 1 / (2 * (m : ℝ)) ≤ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ∧ ∑ k ∈ Icc 1 (2 * m), (-1 : ℝ) ^ (k + 1) / (k : ℝ) ≤ Real.log 2 |
 | [`Doubling.alt_harmonic`](./lean_stage3/Doubling.md#Doubling-alt_harmonic) | theorem | shape | `Doubling` | \|∑ k ∈ Icc 1 N, (-1 : ℝ) ^ (k + 1) / (k : ℝ) - Real.log 2\| ≤ 1 / (N : ℝ) |
@@ -594,6 +595,16 @@ Sorted by name. Search this file before saying something is missing.
 | [`DeepZeroBand.deep_zero_inverse_share`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_share) | theorem | shape | `DeepZeroBand` | share compRow 20 6 13 = 1 |
 | [`DeepZeroBand.deep_zero_on_outer_circle`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_on_outer_circle) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share Zeros.dyadicRow 20 6 13 : ℝ) : ℂ))‖ = 1 |
 | [`DeepZeroBand.deep_zero_share`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) | theorem | shape | `DeepZeroBand` | share Zeros.dyadicRow 20 6 13 = 0 |
+| [`Defect.defect`](./lean_stage3/Defect.md#Defect-defect) | def | reads ζ | `Defect` | ℤ |
+| [`Defect.defect_eq_offCount`](./lean_stage3/Defect.md#Defect-defect_eq_offCount) | theorem | reads ζ | `Defect` | defect T = offCount T |
+| [`Defect.defect_even`](./lean_stage3/Defect.md#Defect-defect_even) | theorem | reads ζ | `Defect` | Even (defect T) |
+| [`Defect.defect_le`](./lean_stage3/Defect.md#Defect-defect_le) | theorem | reads ζ | `Defect` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (2 / 3 + ε) * (allCount T : ℝ) |
+| [`Defect.defect_le_of_floor`](./lean_stage3/Defect.md#Defect-defect_le_of_floor) | theorem | reads ζ | `Defect` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ) |
+| [`Defect.defect_nonneg`](./lean_stage3/Defect.md#Defect-defect_nonneg) | theorem | reads ζ | `Defect` | 0 ≤ defect T |
+| [`Defect.defectN`](./lean_stage3/Defect.md#Defect-defectN) | def | reads ζ | `Defect` | ℝ |
+| [`Defect.defectN_eq`](./lean_stage3/Defect.md#Defect-defectN_eq) | theorem | reads ζ | `Defect` | defectN T = (defect T : ℝ) - ((allCount T : ℝ) - riemannZeta.N T) |
+| [`Defect.defectN_le`](./lean_stage3/Defect.md#Defect-defectN_le) | theorem | reads ζ | `Defect` | ∀ ε : ℝ, 0 &lt; ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → defectN T ≤ (2 / 3 + ε) * riemannZeta.N T |
+| [`Defect.defectN_le_defect`](./lean_stage3/Defect.md#Defect-defectN_le_defect) | theorem | reads ζ | `Defect` | defectN T ≤ (defect T : ℝ) |
 | [`WeilPowerPhase.delta`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-delta) | def | shape | `WeilPowerPhase` | ℂ |
 | [`PerronKernel.delta_sum_close`](./lean_stage3/PerronKernel.md#PerronKernel-delta_sum_close) | theorem | shape | `PerronKernel` | ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x / n)‖ ≤ Real.log x |
 | [`PerronTwo.delta_sum_close_two`](./lean_stage3/PerronTwo.md#PerronTwo-delta_sum_close_two) | theorem | shape | `PerronTwo` | ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x / n)‖ ≤ Real.log x |
@@ -812,6 +823,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauRates.exists_pow_small`](./lean_stage3/LandauRates.md#LandauRates-exists_pow_small) | theorem | shape | `LandauRates` | ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k &lt; ε |
 | [`LevinsonMultiple.exists_prod_mul`](./lean_stage3/LevinsonMultiple.md#LevinsonMultiple-exists_prod_mul) | theorem | shape | `LevinsonMultiple` | ∀ f : ℂ → ℂ, (∀ ρ ∈ D, ρ ∈ S) → (∀ z ∈ S, AnalyticAt ℂ f z) → (∀ ρ ∈ D, (n ρ : ℕ∞) ≤ analyticOrderAt f ρ) → ∃ g : ℂ → ℂ, (∀ z ∈ S, AnalyticAt ℂ g z) ∧ ∀ z, f z = polyP D n z * g z |
 | [`WeilPowerCount.exists_range_log`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-exists_range_log) | theorem | shape | `WeilPowerCount` | ∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L → (c₁ * M + c₂) * ((W : ℝ) + 1) * lρ + E ≤ L |
+| [`Defect.exists_right`](./lean_stage3/Defect.md#Defect-exists_right) | theorem | reads ζ | `Defect` | ∃ T' : ℝ, T &lt; T' ∧ ∀ z : ℂ, riemannZeta z = 0 → 0 &lt; z.im → T &lt; z.im → T' &lt; z.im |
 | [`WeilPowerSelect.exists_step_le`](./lean_stage3/WeilPowerSelect.md#WeilPowerSelect-exists_step_le) | theorem | shape | `WeilPowerSelect` | ∃ k &lt; N, f (k + 1) ≤ f k + δ |
 | [`WeilPowerSelect.exists_target_step`](./lean_stage3/WeilPowerSelect.md#WeilPowerSelect-exists_target_step) | theorem | shape | `WeilPowerSelect` | ∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ (E (k + 1)) ^ 2 ≤ (E k) ^ 2 + δSel K' lam h |
 | [`WeilPowerClean.exists_unblocked`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-exists_unblocked) | theorem | counting | `WeilPowerClean` | ∃ k, k &lt; K ∧ ∀ j ∈ S, k ∉ B j |
@@ -1857,6 +1869,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`SpiralLink.mirrorZ`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) | def | reads ζ | `SpiralLink` | NontrivialZeros |
 | [`SpiralLink.mirrorZ_eq_iff`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_eq_iff) | theorem | reads ζ | `SpiralLink` | mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 |
 | [`SpiralLink.mirrorZ_im`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_im) | theorem | reads ζ | `SpiralLink` | ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im |
+| [`Defect.mirrorZ_mirrorZ`](./lean_stage3/Defect.md#Defect-mirrorZ_mirrorZ) | theorem | reads ζ | `Defect` | SpiralLink.mirrorZ (SpiralLink.mirrorZ ρ) = ρ |
+| [`Defect.mirrorZ_order`](./lean_stage3/Defect.md#Defect-mirrorZ_order) | theorem | reads ζ | `Defect` | riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ) |
 | [`SpiralLink.mirrorZ_re`](./lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) | theorem | reads ζ | `SpiralLink` | ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re |
 | [`Nonvanishing.Mlow`](./lean/Nonvanishing.md#Nonvanishing-Mlow) | def | shape | `Nonvanishing` | ℝ |
 | [`PiRemainder.Mlow`](./lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def | reads ζ | `PiRemainder` | ℝ |
@@ -1907,11 +1921,15 @@ Sorted by name. Search this file before saying something is missing.
 | [`Arith.musq_of_not`](./lean_stage3/ArithBase.md#Arith-musq_of_not) | theorem | counting | `ArithBase` | ((μ a : ℤ) : ℝ) ^ 2 = 0 |
 | [`Arith.musq_of_sq`](./lean_stage3/ArithBase.md#Arith-musq_of_sq) | theorem | counting | `ArithBase` | ((μ a : ℤ) : ℝ) ^ 2 = 1 |
 | [`Stage3.N_abs_le`](./lean_stage3/ZeroSum.md#Stage3-N_abs_le) | theorem | reads ζ | `ZeroSum` | \|riemannZeta.N T\| ≤ T / (2 * Real.pi) * (Real.log T + 3) + riemannZeta.RvM b₁ b₂ b₃ T + 7 / 8 |
+| [`Defect.N_eq_allCount_of_no_zero_at`](./lean_stage3/Defect.md#Defect-N_eq_allCount_of_no_zero_at) | theorem | reads ζ | `Defect` | riemannZeta.N T = (allCount T : ℝ) |
+| [`Defect.N_eq_allCount_right`](./lean_stage3/Defect.md#Defect-N_eq_allCount_right) | theorem | reads ζ | `Defect` | riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T |
 | [`ArgCount.N_eq_of_no_zero_between`](./lean_stage3/ArgCount.md#ArgCount-N_eq_of_no_zero_between) | theorem | reads ζ | `ArgCount` | riemannZeta.N T = riemannZeta.N T₀ |
 | [`ArgCount.N_eq_sum`](./lean_stage3/ArgCount.md#ArgCount-N_eq_sum) | theorem | reads ζ | `ArgCount` | riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) |
 | [`Stage3.N_eq_sum`](./lean_stage3/ArgIdentity.md#Stage3-N_eq_sum) | theorem | reads ζ | `ArgIdentity` | riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (riemannZeta.order ρ : ℝ) |
+| [`Defect.N_eq_sum_lt`](./lean_stage3/Defect.md#Defect-N_eq_sum_lt) | theorem | reads ζ | `Defect` | riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros =&gt; (ρ : ℂ).im &lt; T), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) |
 | [`FloorSum.N_ge`](./lean_stage3/FloorSum.md#FloorSum-N_ge) | theorem | reads ζ | `FloorSum` | ∀ᶠ T : ℝ in atTop, T * Real.log T / 20 ≤ riemannZeta.N T |
 | [`OffDiagClose.N_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-N_le) | theorem | shape | `OffDiagClose` | 1 + 1 / ‖α + β‖ ^ 2 ≤ 1 + κ ^ 2 * Real.log T ^ 2 |
+| [`Defect.N_le_allCount`](./lean_stage3/Defect.md#Defect-N_le_allCount) | theorem | reads ζ | `Defect` | riemannZeta.N T ≤ (allCount T : ℝ) |
 | [`ArgCount.N_mono`](./lean_stage3/ArgCount.md#ArgCount-N_mono) | theorem | reads ζ | `ArgCount` | riemannZeta.N T ≤ riemannZeta.N T' |
 | [`ArgCount.N_nonneg`](./lean_stage3/ArgCount.md#ArgCount-N_nonneg) | theorem | reads ζ | `ArgCount` | 0 ≤ riemannZeta.N T |
 | [`LevinsonWindow.N_step_le`](./lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le) | theorem | reads ζ | `LevinsonWindow` | riemannZeta.N u - riemannZeta.N t ≤ 31 * Real.log u + 1250 |
@@ -2161,10 +2179,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`ClosedLoopJoin.off_line_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero) | theorem | shape | `ClosedLoopJoin` | restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 &lt; b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b &lt; max ‖(b : ℂ) ^ (ρ : ℂ)‖ ‖(b : ℂ) ^ (1 - (ρ : ℂ))‖ |
 | [`OffDiagClose.off_term_iter_le`](./lean_stage3/OffDiagClose.md#OffDiagClose-off_term_iter_le) | theorem | shape | `OffDiagClose` | ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W.toWeight α β c h k (p.1 + 1) (p.2 + 1)‖ ≤ (K * wsum W (2 * r) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ (2 * r))⁻¹) * B ^ 2 * 4 ^ r * (M : ℝ) ^ (2 * r) … |
 | [`TwistedMoment.off_term_le`](./lean_stage3/TwistedMoment.md#TwistedMoment-off_term_le) | theorem | shape | `TwistedMoment` | ‖coefY a σ₀ α β h k (p.1 + 1) (p.2 + 1) * Jint W α β c h k (p.1 + 1) (p.2 + 1)‖ ≤ 4 * (K * (1 + W.C1 + W.C2) * (1 + 1 / ‖α + β‖ ^ 2) * T * ((T / L) ^ 2)⁻¹) * ((‖a h‖ * (h : ℝ) ^ (1 - σ₀)) * (‖a k‖ * (… |
+| [`Defect.offCount`](./lean_stage3/Defect.md#Defect-offCount) | def | reads ζ | `Defect` | ℤ |
+| [`Defect.offCount_eq_two_mul`](./lean_stage3/Defect.md#Defect-offCount_eq_two_mul) | theorem | reads ζ | `Defect` | offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : NontrivialZeros =&gt; ¬ (ρ : ℂ).re = 1 / 2)).filter (fun ρ : NontrivialZeros =&gt; (ρ : ℂ).re &lt; 1 / 2), riemannZeta.order (ρ : ℂ) |
 | [`TwistedMoment.offdiag_term`](./lean_stage3/TwistedMoment.md#TwistedMoment-offdiag_term) | theorem | reads ζ | `TwistedMoment` | ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 &lt; x → ∀ c : ℝ, 0 &lt; c → ∀ l : ℝ, l ≠ 0 → ‖∫ t, (W.w t : ℂ) * VY α β c x t … |
 | [`OffDiagClose.offdiag_term_iter`](./lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter) | theorem | reads ζ | `OffDiagClose` | ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ x : ℝ, 0 &lt; x → ∀ c : ℝ, 0 &lt; c → ∀ l : ℝ, l ≠ 0 → ‖∫ t, (W.w t : ℂ) * VY α β c x… |
 | [`OffDiagClose.offdiag_term_iter_young`](./lean_stage3/OffDiagClose.md#OffDiagClose-offdiag_term_iter_young) | theorem | reads ζ | `OffDiagClose` | ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : WeightAll T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 &lt; c → ∀ h k m n : ℕ, 1 ≤ h → 1 ≤ k → 1 ≤ m → 1 ≤ n → h * m ≠ k * n → ‖… |
 | [`TwistedMoment.offdiag_term_young`](./lean_stage3/TwistedMoment.md#TwistedMoment-offdiag_term_young) | theorem | reads ζ | `TwistedMoment` | ∃ K : ℝ, 0 ≤ K ∧ ∀ (T L : ℝ) (W : Weight T L), 8 ≤ T → 1 ≤ L → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → α + β ≠ 0 → ∀ c : ℝ, 0 &lt; c → ∀ h k m n : ℕ, 1 ≤ h → 1 ≤ k → 1 ≤ m → 1 ≤ n → h * m ≠ k * n → ‖∫ t… |
+| [`Defect.offLine_pair`](./lean_stage3/Defect.md#Defect-offLine_pair) | theorem | reads ζ | `Defect` | SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros =&gt; ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ riemannZeta.… |
 | [`WeilOffLine.offline_term_le`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) … |
 | [`WeilOffLine.offline_term_le_explicit`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε *… |
 | [`WeilDetect.OffLineBox`](./lean_stage3/WeilDetect.md#WeilDetect-OffLineBox) | def | reads ζ | `WeilDetect` | Set ℂ |
@@ -2625,6 +2646,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ReZetaCount.reZeroSet`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def | reads ζ | `ReZetaCount` | Set ℝ |
 | [`ReZetaCount.reZeroSet_finite`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem | reads ζ | `ReZetaCount` | (reZeroSet T).Finite |
 | [`CellResidual.RH_iff_cells`](./lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | theorem | reads ζ | `CellResidual` | RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
+| [`Defect.rh_iff_defect_zero`](./lean_stage3/Defect.md#Defect-rh_iff_defect_zero) | theorem | reads ζ | `Defect` | RiemannHypothesis ↔ ∀ T : ℝ, defect T = 0 |
 | [`ClosedLoopJoin.rh_iff_force_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 |
 | [`ClosedLoopJoin.rh_iff_handshake`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re |
 | [`LineCount.rh_iff_line_count`](./lean_stage3/LineCount.md#LineCount-rh_iff_line_count) | theorem | reads ζ | `LineCount` | RiemannHypothesis ↔ ∀ T : ℝ, lineCount T = allCount T |
@@ -3714,6 +3736,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.zeros_re_pos`](./lean/Transform.md#Transform-zeros_re_pos) | theorem | reads ζ | `Transform` | 0 &lt; s.re |
 | [`LevinsonRight.zeros_right_le`](./lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le) | theorem | shape | `LevinsonRight` | 2 * Real.pi * (σ₁ - z.re) * countRight f z w σ₁ ≤ (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv… |
 | [`LineCount.zerosUpTo`](./lean_stage3/LineCount.md#LineCount-zerosUpTo) | def | counting | `LineCount` | Finset NontrivialZeros |
+| [`Defect.zerosUpTo_eq_right`](./lean_stage3/Defect.md#Defect-zerosUpTo_eq_right) | theorem | reads ζ | `Defect` | zerosUpTo T' = zerosUpTo T |
 | [`CountEuler.zeta`](./lean_stage3/CountEuler.md#CountEuler-zeta) | def | shape | `CountEuler` | ℂ |
 | [`ZetaGrowth.zeta1`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1) | def | shape | `ZetaGrowth` | ℂ |
 | [`ZetaGrowth.zeta1_analyticOnNhd`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_analyticOnNhd) | theorem | reads ζ | `ZetaGrowth` | AnalyticOnNhd ℂ (zeta1 N) stripRegion |

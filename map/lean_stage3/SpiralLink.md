@@ -7,7 +7,7 @@ SpiralLink — block J2 of `lean_stage3/design/closedloop.md`. 2026-11-23. The l
 9 theorems, 3 definitions, 171 lines. 
 
 **Imports:** [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md), [`Defect`](../lean_stage3/Defect.md)
 
 ## The picture
 
@@ -23,12 +23,13 @@ flowchart LR
   n7["<b>rh_iff_one_at_each_height</b><br/>RiemannHypothesis ↔ OneAtEachHeight"]:::thm
   n8["<b>spiralLink_iff_one</b><br/>SpiralLink ↔ OneAtEachHeight"]:::thm
   x0(["<b>WeilOnLine</b><br/>conj_mem"]):::ext
-  x1(["<b>BandJoin</b><br/>spiralLink_iff_middle<br/>zero_pair"]):::ext
-  x2(["<b>HolyChannel</b><br/>4 theorems"]):::ext
-  x3(["<b>Saddle</b><br/>4 theorems"]):::ext
-  x4(["<b>ShareLink</b><br/>meet_iff<br/>pair_shares_add<br/>spiralLink_iff_meet"]):::ext
-  x5(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
-  x6(["<b>OneChain</b><br/>one_chain"]):::ext
+  x1(["<b>Defect</b><br/>offCount_eq_two_mul<br/>offLine_pair"]):::ext
+  x2(["<b>BandJoin</b><br/>spiralLink_iff_middle<br/>zero_pair"]):::ext
+  x3(["<b>HolyChannel</b><br/>4 theorems"]):::ext
+  x4(["<b>Saddle</b><br/>4 theorems"]):::ext
+  x5(["<b>ShareLink</b><br/>meet_iff<br/>pair_shares_add<br/>spiralLink_iff_meet"]):::ext
+  x6(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
+  x7(["<b>OneChain</b><br/>one_chain"]):::ext
   n1 --> n3
   n1 --> n5
   n1 --> n7
@@ -38,21 +39,24 @@ flowchart LR
   n3 --> n5
   n3 --> n7
   n7 --> n8
+  n1 -.-> x1
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
-  n3 -.-> x2
-  n6 -.-> x1
+  n2 -.-> x5
+  n3 -.-> x1
+  n3 -.-> x3
   n6 -.-> x2
   n6 -.-> x3
   n6 -.-> x4
-  n6 -.-> x6
-  n8 -.-> x6
+  n6 -.-> x5
+  n6 -.-> x7
+  n8 -.-> x7
   x0 -.-> n0
-  x5 -.-> n5
-  x5 -.-> n6
-  x5 -.-> n7
+  x6 -.-> n5
+  x6 -.-> n6
+  x6 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -76,7 +80,7 @@ The mirror of a zero, as a zero.
 
 - **Is:** `` mirrorZ (ρ : NontrivialZeros) : NontrivialZeros := ⟨1 - (starRingEnd ℂ) (ρ : ℂ), mirror_mem ρ⟩ ``
 - **Built from:** [`SpiralLink.mirror_mem`](#SpiralLink-mirror_mem)
-- **Used by 18:** [`BandJoin.zero_pair`](../lean_stage3/BandJoin.md#BandJoin-zero_pair), [`HolyChannel.channel_iff_self_mirror`](../lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror), [`HolyChannel.holy_pair_shares`](../lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares), [`HolyChannel.meet_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel), [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two), [`Saddle.saddle_area`](../lean_stage3/Saddle.md#Saddle-saddle_area), [`Saddle.saddle_of_off_line`](../lean_stage3/Saddle.md#Saddle-saddle_of_off_line), [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away), [`ShareLink.meet_iff`](../lean_stage3/ShareLink.md#ShareLink-meet_iff), [`ShareLink.pair_shares_add`](../lean_stage3/ShareLink.md#ShareLink-pair_shares_add), [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet), [`SpiralLink.mirrorZ_eq_iff`](#SpiralLink-mirrorZ_eq_iff), [`SpiralLink.mirrorZ_im`](#SpiralLink-mirrorZ_im), [`SpiralLink.mirrorZ_re`](#SpiralLink-mirrorZ_re), [`SpiralLink.mirror_pair_area`](#SpiralLink-mirror_pair_area), [`SpiralLink.off_line_is_two`](#SpiralLink-off_line_is_two), [`SpiralLink.rh_iff_one_at_each_height`](#SpiralLink-rh_iff_one_at_each_height), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
+- **Used by 22:** [`BandJoin.zero_pair`](../lean_stage3/BandJoin.md#BandJoin-zero_pair), [`Defect.mirrorZ_mirrorZ`](../lean_stage3/Defect.md#Defect-mirrorZ_mirrorZ), [`Defect.mirrorZ_order`](../lean_stage3/Defect.md#Defect-mirrorZ_order), [`Defect.offCount_eq_two_mul`](../lean_stage3/Defect.md#Defect-offCount_eq_two_mul), [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair), [`HolyChannel.channel_iff_self_mirror`](../lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror), [`HolyChannel.holy_pair_shares`](../lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares), [`HolyChannel.meet_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel), [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two), [`Saddle.saddle_area`](../lean_stage3/Saddle.md#Saddle-saddle_area), [`Saddle.saddle_of_off_line`](../lean_stage3/Saddle.md#Saddle-saddle_of_off_line), [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away), [`ShareLink.meet_iff`](../lean_stage3/ShareLink.md#ShareLink-meet_iff), [`ShareLink.pair_shares_add`](../lean_stage3/ShareLink.md#ShareLink-pair_shares_add), [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet), [`SpiralLink.mirrorZ_eq_iff`](#SpiralLink-mirrorZ_eq_iff), [`SpiralLink.mirrorZ_im`](#SpiralLink-mirrorZ_im), [`SpiralLink.mirrorZ_re`](#SpiralLink-mirrorZ_re), [`SpiralLink.mirror_pair_area`](#SpiralLink-mirror_pair_area), [`SpiralLink.off_line_is_two`](#SpiralLink-off_line_is_two), [`SpiralLink.rh_iff_one_at_each_height`](#SpiralLink-rh_iff_one_at_each_height), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 <a name="SpiralLink-SpiralLink"></a>
 ### `SpiralLink.SpiralLink`
@@ -151,8 +155,9 @@ line 75 · arrows read from text
 
 **Definitions its proof touches:** [`SpiralLink.mirrorZ`](#SpiralLink-mirrorZ)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair) (Defect) — `` SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : No… ``
   - [`SpiralLink.mirrorZ_eq_iff`](#SpiralLink-mirrorZ_eq_iff) — `` mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 ``
   - [`SpiralLink.off_line_is_two`](#SpiralLink-off_line_is_two) — `` mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ¬ isHermitianHandshake ((mirrorZ ρ : Nontriv… ``
   - [`SpiralLink.rh_iff_one_at_each_height`](#SpiralLink-rh_iff_one_at_each_height) — `` RiemannHypothesis ↔ OneAtEachHeight ``
@@ -180,9 +185,11 @@ line 80 · arrows read from text
 
 **Definitions its proof touches:** [`SpiralLink.mirrorZ`](#SpiralLink-mirrorZ)
 
-**Feeds** (10 that use it)
+**Feeds** (12 that use it)
 
   - [`BandJoin.zero_pair`](../lean_stage3/BandJoin.md#BandJoin-zero_pair) (BandJoin) — `` ‖(2:ℂ) ^ (-(ρ:ℂ))‖ * ‖(2:ℂ) ^ (-((SpiralLink.mirrorZ ρ : NontrivialZeros):ℂ))‖ = 1 / 2 ``
+  - [`Defect.offCount_eq_two_mul`](../lean_stage3/Defect.md#Defect-offCount_eq_two_mul) (Defect) — `` offCount T = 2 * ∑ ρ ∈ ((zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2)).filter (fun ρ : NontrivialZeros => (ρ : ℂ).re < 1 / 2)… ``
+  - [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair) (Defect) — `` SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : No… ``
   - [`HolyChannel.holy_pair_shares`](../lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares) (HolyChannel) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = hf.M ``
   - [`Saddle.saddle_area`](../lean_stage3/Saddle.md#Saddle-saddle_area) (Saddle) — `` stretch ρ * stretch (mirrorZ ρ) = 1 ``
   - [`Saddle.saddle_of_off_line`](../lean_stage3/Saddle.md#Saddle-saddle_of_off_line) (Saddle) — `` (1 < stretch ρ ∧ stretch (mirrorZ ρ) < 1) ∨ (stretch ρ < 1 ∧ 1 < stretch (mirrorZ ρ)) ``
@@ -219,8 +226,9 @@ mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2
 
 **Definitions its proof touches:** [`SpiralLink.mirrorZ`](#SpiralLink-mirrorZ)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`Defect.offLine_pair`](../lean_stage3/Defect.md#Defect-offLine_pair) (Defect) — `` SpiralLink.mirrorZ ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧ SpiralLink.mirrorZ ρ ≠ ρ ∧ ((SpiralLink.mirrorZ ρ : No… ``
   - [`HolyChannel.channel_iff_self_mirror`](../lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror) (HolyChannel) — `` (ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ ``
   - [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two) (HolyChannel) — `` mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
   - [`SpiralLink.off_line_is_two`](#SpiralLink-off_line_is_two) — `` mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ¬ isHermitianHandshake ((mirrorZ ρ : Nontriv… ``

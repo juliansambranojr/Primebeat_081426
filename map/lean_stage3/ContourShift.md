@@ -5,7 +5,7 @@
 28 theorems, 1 definition, 1432 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`PerronKernel`](../lean_stage3/PerronKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`StepsPole`](../lean_stage3/StepsPole.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`Defect`](../lean_stage3/Defect.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`StepsPole`](../lean_stage3/StepsPole.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
 
 ## The picture
 
@@ -58,6 +58,7 @@ flowchart LR
   x16(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
   x17(["<b>LowCount</b><br/>low_rect_count"]):::ext
   x18(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x19(["<b>Defect</b><br/>mirrorZ_order"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -144,6 +145,7 @@ flowchart LR
   n21 -.-> x18
   n21 -.-> x2
   n21 -.-> x3
+  n22 -.-> x19
   n23 -.-> x0
   n23 -.-> x1
   n23 -.-> x2
@@ -152,6 +154,7 @@ flowchart LR
   n25 -.-> x2
   n26 -.-> x1
   n26 -.-> x11
+  n26 -.-> x19
   n26 -.-> x2
   n26 -.-> x3
   n27 -.-> x1
@@ -920,9 +923,10 @@ line 889
   - [`ContourShift.zeta_analyticAt`](#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
   - [`ContourShift.zeta_order_ne_top`](#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ContourShift.zeroPartialSum_eq_sum`](#ContourShift-zeroPartialSum_eq_sum) — `` Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : ℂ) * ((x : ℂ) ^ p / p)) ``
+  - [`Defect.mirrorZ_order`](../lean_stage3/Defect.md#Defect-mirrorZ_order) (Defect) — `` riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ) ``
 
 <a name="ContourShift-zeroPartialSum_eq_sum"></a>
 ### `ContourShift.zeroPartialSum_eq_sum`
@@ -1040,8 +1044,9 @@ analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt r
   - [`ContourShift.zeta_order_conj`](#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
   - [`ContourShift.zeta_order_ne_top`](#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`Defect.mirrorZ_order`](../lean_stage3/Defect.md#Defect-mirrorZ_order) (Defect) — `` riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ) = riemannZeta.order (ρ : ℂ) ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
   - [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) (EdgeNum) — `` ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' ``
   - [`Glue.band_order_sum_le`](../lean_stage3/Glue.md#Glue-band_order_sum_le) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (anal… ``
