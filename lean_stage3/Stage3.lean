@@ -243,6 +243,7 @@ import Stage3.ConreyCount
 import Stage3.DigammaBound
 import Stage3.MeanQ
 import Stage3.GrRatio
+import Stage3.FloorConstQ
 
 namespace Stage3
 
