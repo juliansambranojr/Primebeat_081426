@@ -38208,6 +38208,940 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/DiagMain.lean",
+  "module": "Stage3.DiagMain",
+  "stem": "DiagMain",
+  "header": "# Stage3.DiagMain — the diagonal's main term, little-o (Young's Lemma 7): the reduction and the Möbius input. 2026-11-25.",
+  "imports": [
+   "Stage3.DiagMainStmt",
+   "Stage3.DiagMainMu"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "DiagMainStmt",
+   "Diagonal",
+   "Filter",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "DiagMain"
+  ],
+  "lines": 334,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMainMu.lean",
+   "lean_stage3/Stage3/DiagMainStmt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "IY",
+    "ns": "DiagMain",
+    "full": "DiagMain.IY",
+    "line": 68,
+    "why": "`I(α,β) = ∫₀¹ (P′(u) + α log M P(u))(P′(u) + β log M P(u)) du`, so `c₁ = I/((α+β) log M)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c1Y_eq",
+    "ns": "DiagMain",
+    "full": "DiagMain.c1Y_eq",
+    "line": 73,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "c1Y P M α β = 1 / ((α + β) * Real.log M) * IY P M α β",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "IY_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.IY_bound",
+    "line": 77,
+    "why": "`‖I(α,β)‖` is bounded once `‖α‖ log M, ‖β‖ log M ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ (M : ℕ) (α β : ℂ), ‖α‖ * Real.log M ≤ A → ‖β‖ * Real.log M ≤ A → ‖IY P M α β‖ ≤ C",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_taylor",
+    "ns": "DiagMain",
+    "full": "DiagMain.zeta_taylor",
+    "line": 116,
+    "why": "`ζ(1+s) − 1/s` is bounded near `s = 0` (`isBigO_riemannZeta_sub_one_div`).",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ C δ : ℝ, 0 ≤ C ∧ 0 < δ ∧ ∀ s : ℂ, ‖s‖ < δ → ‖riemannZeta (1 + s) - 1 / s‖ ≤ C",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.zeta_taylor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logM_le",
+    "ns": "DiagMain",
+    "full": "DiagMain.logM_le",
+    "line": 130,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 1 ≤ T",
+     "hθ : 0 ≤ θ"
+    ],
+    "proves": "Real.log (Mof T θ) ≤ θ * Real.log T",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logM_ge",
+    "ns": "DiagMain",
+    "full": "DiagMain.logM_ge",
+    "line": 141,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "hθ : 0 < θ",
+     "hTθ : 4 * Real.log 2 / θ ≤ Real.log T"
+    ],
+    "proves": "θ * Real.log T / 2 ≤ Real.log (Mof T θ)",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "key_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.key_bound",
+    "line": 168,
+    "why": "`ζ S − I/(s lm) = (ζ − 1/s)(I/lm + E) + E/s` with `S = I/lm + E`, bounded termwise.",
+    "sorry": false,
+    "needs": [
+     "hlm : 0 < lm",
+     "hL : 0 < L",
+     "hκ : 0 < κ",
+     "hz : ‖z - 1 / s‖ ≤ Cz",
+     "hI : ‖I‖ ≤ CI",
+     "hE : ‖E‖ ≤ e / L",
+     "hsL : 1 / (κ * L) ≤ ‖s‖"
+    ],
+    "proves": "‖z * (I / lm + E) - 1 / (s * lm) * I‖ ≤ Cz * (CI / lm + e / L) + κ * e",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.key_bound",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "final_real",
+    "ns": "DiagMain",
+    "full": "DiagMain.final_real",
+    "line": 203,
+    "why": "The real arithmetic closing the reduction: the three pieces are each `≤ ε/3`.",
+    "sorry": false,
+    "needs": [
+     "hCz : 0 ≤ Cz",
+     "hCI : 0 ≤ CI",
+     "hθ : 0 < θ",
+     "hε : 0 < ε",
+     "hκ : 0 < κ",
+     "hL : 0 < L",
+     "hlm : θ * L / 2 ≤ lm",
+     "hL1 : 6 * Cz * CI / (θ * ε) ≤ L",
+     "hL2 : Cz ≤ L",
+     "he : e = ε / (3 * (κ + 1))"
+    ],
+    "proves": "Cz * (CI / lm + e / L) + κ * e ≤ ε",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.final_real",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtSdiagLead",
+    "ns": "DiagMain",
+    "full": "DiagMain.StmtSdiagLead",
+    "line": 234,
+    "why": "OPEN, the leading term of `S`: `S(α,β,0) = I(α,β)/log M + o(1/L)` uniformly on `Regime κ T`. This is the whole arithmetic content of Young's Lemma 7; the `ζ` factor is `stmtDiagMainO_of_lead`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDiagMainO_of_lead",
+    "ns": "DiagMain",
+    "full": "DiagMain.stmtDiagMainO_of_lead",
+    "line": 240,
+    "why": "The Taylor step: `StmtSdiagLead → StmtDiagMainO`, for `θ > 0`, `κ > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ0 : 0 < θ",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "h : StmtSdiagLead P θ R κ"
+    ],
+    "proves": "StmtDiagMainO P θ R κ",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.final_real",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.key_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.zeta_taylor",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.final_real",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.key_bound",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.zeta_taylor",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "StmtMuSmooth",
+    "ns": "DiagMain",
+    "full": "DiagMain.StmtMuSmooth",
+    "line": 306,
+    "why": "OPEN, the smooth Möbius sum to `o(1/log M)` (the per-`d` step of the route at `d = 1`): for `P(0) = 0`, `Σ_{n ≤ x} μ(n) P(log(x/n)/log M) n^{−1−β} = βP(ℓ) + P′(ℓ)/log M + o(1/log M)`, `ℓ = log x/log M`, uniformly for `Y ≤ x ≤ M` and `‖β‖ log M ≤ κ`. Route: `n^{−β} = x^{−β} e^{β log(x/n)}`, partial summation of `F(u) = e^{βu} P(u/log M)` (`F(0) = 0`) against `psiMu_tendsto`; `F″ = O(1/log² M)` and `∫₁^x |ψ_μ − 1| ds/s = o(log x)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/DiagMain.lean",
+    "id": "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtMuSmooth",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/DiagMainMu.lean",
+  "module": "Stage3.DiagMainMu",
+  "stem": "DiagMainMu",
+  "header": "# Stage3.DiagMainMu — the log-weighted Möbius sum, `Σ_{n ≤ N} μ(n)/n · log(N/n) → 1`",
+  "imports": [
+   "Stage3.DiagMainStmt"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Filter",
+   "Finset",
+   "Topology"
+  ],
+  "namespaces": [
+   "DiagMain"
+  ],
+  "lines": 488,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMainStmt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "psiMu",
+    "ns": "DiagMain",
+    "full": "DiagMain.psiMu",
+    "line": 41,
+    "why": "`ψ_μ(N) = Σ_{n ≤ N} μ(n)/n · log(N/n)`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mMu",
+    "ns": "DiagMain",
+    "full": "DiagMain.mMu",
+    "line": 44,
+    "why": "`m(N) = Σ_{n ≤ N} μ(n)/n`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "MMu",
+    "ns": "DiagMain",
+    "full": "DiagMain.MMu",
+    "line": 47,
+    "why": "`M(N) = Σ_{n ≤ N} μ(n)`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_range_succ_eq_Ioc",
+    "ns": "DiagMain",
+    "full": "DiagMain.sum_range_succ_eq_Ioc",
+    "line": 49,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "g : ℕ → ℝ",
+     "hg : g 0 = 0",
+     "t : ℕ"
+    ],
+    "proves": "∑ n ∈ range (t + 1), g n = ∑ n ∈ Ioc 0 t, g n",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "MMu_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.MMu_bound",
+    "line": 56,
+    "why": "`|M(t)| ≤ η t + C` for every `t`, from `mu_pnt`.",
+    "sorry": false,
+    "needs": [
+     "hη : 0 < η"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℕ, |MMu t| ≤ η * t + C",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mMu_tendsto",
+    "ns": "DiagMain",
+    "full": "DiagMain.mMu_tendsto",
+    "line": 80,
+    "why": "`m(N) → 0`, from `mu_pnt_alt`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Tendsto mMu atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_divisors_mu",
+    "ns": "DiagMain",
+    "full": "DiagMain.sum_divisors_mu",
+    "line": 90,
+    "why": "`Σ_{d | n} μ(d) = [n = 1]`, over `ℝ`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "∑ d ∈ n.divisors, (μ d : ℝ) = if n = 1 then 1 else 0",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_divisors_mu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mobius_harmonic"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mobius_harmonic",
+    "ns": "DiagMain",
+    "full": "DiagMain.mobius_harmonic",
+    "line": 98,
+    "why": "`Σ_{n ≤ N} μ(n)/n · H(⌊N/n⌋) = 1`, `N ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N"
+    ],
+    "proves": "∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * (harmonic (N / n) : ℝ) = 1",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mobius_harmonic",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_divisors_mu"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_divisors_mu"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "div_bounds",
+    "ns": "DiagMain",
+    "full": "DiagMain.div_bounds",
+    "line": 138,
+    "why": "`⌊N/n⌋ ≤ N/n < ⌊N/n⌋ + 1` over `ℝ`, `n ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hn : 0 < n"
+    ],
+    "proves": "((N / n : ℕ) : ℝ) ≤ (N : ℝ) / n ∧ (N : ℝ) / n < ((N / n : ℕ) : ℝ) + 1",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.div_bounds",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harm_log_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "harmonic_mono",
+    "ns": "DiagMain",
+    "full": "DiagMain.harmonic_mono",
+    "line": 147,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Monotone (fun k : ℕ => (harmonic k : ℝ))",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harmonic_mono",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_harmonic",
+    "ns": "DiagMain",
+    "full": "DiagMain.one_le_harmonic",
+    "line": 153,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k"
+    ],
+    "proves": "(1 : ℝ) ≤ harmonic k",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harmonic_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harmonic_mono"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_nonneg",
+    "ns": "DiagMain",
+    "full": "DiagMain.gamma_nonneg",
+    "line": 157,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Real.eulerMascheroniConstant",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_nonneg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gamma_lt_one",
+    "ns": "DiagMain",
+    "full": "DiagMain.gamma_lt_one",
+    "line": 160,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.eulerMascheroniConstant < 1",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_lt_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "harm_log_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.harm_log_bound",
+    "line": 164,
+    "why": "`|log(N/n) + γ − H(⌊N/n⌋)| ≤ 1/⌊N/n⌋` for `1 ≤ n ≤ N`.",
+    "sorry": false,
+    "needs": [
+     "hn : 0 < n",
+     "hnN : n ≤ N"
+    ],
+    "proves": "|Real.log ((N : ℝ) / n) + Real.eulerMascheroniConstant - harmonic (N / n)| ≤ 1 / ((N / n : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harm_log_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.div_bounds"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.div_bounds"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.head_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "abel_ineq",
+    "ns": "DiagMain",
+    "full": "DiagMain.abel_ineq",
+    "line": 190,
+    "why": "For `f` antitone and nonnegative on `(a, b]`, `|Σ_{a<n≤b} c_n f_n| ≤ B f_{a+1}`, where `B` bounds every partial sum `|Σ_{a<n≤t} c_n|`, `t ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "c f : ℕ → ℝ",
+     "hab : a < b",
+     "hf : ∀ n, a < n → n < b → f (n + 1) ≤ f n",
+     "hf0 : 0 ≤ f b",
+     "hB : ∀ t, a < t → t ≤ b → |∑ n ∈ Ioc a t, c n| ≤ B"
+    ],
+    "proves": "|∑ n ∈ Ioc a b, c n * f n| ≤ B * f (a + 1)",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.abel_ineq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "rhoN",
+    "ns": "DiagMain",
+    "full": "DiagMain.rhoN",
+    "line": 236,
+    "why": "`ρ_N(n) = log(N/n) + γ − H(⌊N/n⌋)`, so `ψ_μ(N) = 1 − γ m(N) + Σ μ(n)/n ρ_N(n)`.",
+    "sorry": false,
+    "needs": [
+     "N n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.head_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "head_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.head_bound",
+    "line": 240,
+    "why": "The head `n ≤ N/Y`: `|ρ_N(n)| ≤ 1/⌊N/n⌋ ≤ 2n/N`, so the head is `≤ 2/Y`.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N",
+     "hY : 1 ≤ Y"
+    ],
+    "proves": "|∑ n ∈ Ioc 0 (N / Y), (μ n : ℝ) / n * rhoN N n| ≤ 2 / Y",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.head_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harm_log_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harm_log_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tail_bound",
+    "ns": "DiagMain",
+    "full": "DiagMain.tail_bound",
+    "line": 276,
+    "why": "Abel's inequality on the tail `N/Y < n ≤ N`, for `log(N/n)/n` and `(H(⌊N/n⌋) − γ)/n`.",
+    "sorry": false,
+    "needs": [
+     "hN : 1 ≤ N",
+     "hY : 2 ≤ Y",
+     "hB : ∀ t, N / Y < t → t ≤ N → |∑ n ∈ Ioc (N / Y) t, (μ n : ℝ)| ≤ B"
+    ],
+    "proves": "|∑ n ∈ Ioc (N / Y) N, (μ n : ℝ) / n * rhoN N n| ≤ B * ((Y : ℝ) / N) * (Real.log Y + harmonic Y)",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.abel_ineq",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_lt_one",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_nonneg",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harmonic_mono",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.abel_ineq",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_lt_one",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.gamma_nonneg",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.harmonic_mono",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "D_small",
+    "ns": "DiagMain",
+    "full": "DiagMain.D_small",
+    "line": 380,
+    "why": "`Σ_{n ≤ N} μ(n)/n ρ_N(n) → 0`: the head is `≤ 2/Y`, the tail `≤ 4ηY(log Y + H(Y))`.",
+    "sorry": false,
+    "needs": [
+     "hε : 0 < ε"
+    ],
+    "proves": "∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → |∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * rhoN N n| ≤ ε",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.head_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.MMu_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.head_bound",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.one_le_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.tail_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiMu_tendsto",
+    "ns": "DiagMain",
+    "full": "DiagMain.psiMu_tendsto",
+    "line": 444,
+    "why": "`ψ_μ(N) = Σ_{n ≤ N} μ(n)/n · log(N/n) → 1`, from `mu_pnt` and `mu_pnt_alt`: the identity `Σ μ(n)/n · H(⌊N/n⌋) = 1`, `H(k) = log k + γ + O(1/k)` on the head and Abel's inequality with `M(t) = o(t)` on the tail.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Tendsto psiMu atTop (𝓝 1)",
+    "file": "lean_stage3/Stage3/DiagMainMu.lean",
+    "id": "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mobius_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.D_small",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mobius_harmonic",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/DiagMainStmt.lean",
   "module": "Stage3.DiagMainStmt",
   "stem": "DiagMainStmt",
@@ -38265,6 +39199,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
     ]
@@ -38424,6 +39359,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_norm_le",
@@ -94634,6 +95571,10 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
@@ -94676,6 +95617,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
@@ -94726,6 +95669,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.SB_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
@@ -94769,6 +95714,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
@@ -94835,6 +95781,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
@@ -117706,11 +118653,13 @@
    "Stage3.OffDiagClose",
    "Stage3.Diagonal",
    "Stage3.DiagMainStmt",
-   "Stage3.DiagonalO"
+   "Stage3.DiagonalO",
+   "Stage3.DiagMainMu",
+   "Stage3.DiagMain"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 234,
+  "lines": 236,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -117745,6 +118694,8 @@
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",
    "lean_stage3/Stage3/CountReduction.lean",
+   "lean_stage3/Stage3/DiagMain.lean",
+   "lean_stage3/Stage3/DiagMainMu.lean",
    "lean_stage3/Stage3/DiagMainStmt.lean",
    "lean_stage3/Stage3/Diagonal.lean",
    "lean_stage3/Stage3/DiagonalO.lean",
