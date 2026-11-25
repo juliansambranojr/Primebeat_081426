@@ -1,0 +1,41 @@
+flowchart LR
+  n0["<b>re_add_nat_pos</b><br/>0 ＜ (z + (n : ℂ)).re"]:::cnt
+  n1["<b>sum_log_eq</b><br/>∑ n ∈ Finset.range (N + 1), log (z + (n : ℂ)) = stirMain (K + 1)…"]:::shp
+  n2["<b>log_shift_eq</b><br/>log (z + ((N + 1 : ℕ) : ℂ)) = (Real.log N : ℂ) + log (1 + (z + 1…"]:::shp
+  n3["<b>log_factorial_eq</b><br/>Real.log (N.factorial) = Real.log (Stirling.stirlingSeq N) + Rea…"]:::shp
+  n4["<b>tendsto_inv_pow_shift</b><br/>Tendsto (fun N : ℕ =＞ ((z + ((N + 1 : ℕ) : ℂ)) ^ j)⁻¹) atTop (𝓝 …"]:::shp
+  n5["<b>tendsto_stirSum_shift</b><br/>Tendsto (fun N : ℕ =＞ stirSum K (z + ((N + 1 : ℕ) : ℂ))) atTop (…"]:::shp
+  n6["<b>tendsto_A</b><br/>Tendsto (seqA K z) atTop (𝓝 ((Real.log (2 * Real.pi) / 2 : ℝ) : …"]:::shp
+  n7["<b>norm_P_le</b><br/>‖remP K z N‖ ≤ ZetaEM.bernBound (2 * K) / (2 * K) * (6 / |z.im|)…"]:::thm
+  n8["<b>stirling_series</b><br/>‖Stirling.logG z - stirMain (K + 1) z - ((Real.log (2 * Real.pi)…"]:::thm
+  n9["<b>stirling_series' ■</b><br/>‖Stirling.logG z - stirMain K z - ((Real.log (2 * Real.pi) / 2 :…"]:::thm
+  x0(["<b>StirlingSeriesEM</b><br/>norm_emJ_le<br/>norm_le_norm_add<br/>stirMain_step"]):::ext
+  x1(["<b>StirlingLog</b><br/>sum_inv_normSq_le<br/>tendsto_logG"]):::ext
+  x2(["<b>ZetaEM</b><br/>bernBound_nonneg"]):::ext
+  x3(["<b>StirlingSeriesBern</b><br/>stirling_series_explicit"]):::ext
+  x4(["<b>StirlingSeriesPhase</b><br/>delta3_le'"]):::ext
+  n0 --> n1
+  n0 --> n7
+  n1 --> n8
+  n2 --> n6
+  n3 --> n6
+  n4 --> n5
+  n5 --> n6
+  n6 --> n8
+  n7 --> n8
+  n8 --> n9
+  n8 -.-> x3
+  n8 -.-> x4
+  x0 -.-> n1
+  x0 -.-> n7
+  x1 -.-> n7
+  x1 -.-> n8
+  x2 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -29,6 +29,7 @@ flowchart LR
   x7(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
   x8(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
   x9(["<b>SignDataGamma</b><br/>re_lambda_eq"]):::ext
+  x10(["<b>StirlingSeriesPhase</b><br/>re_lambda_eq_stir"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -42,6 +43,7 @@ flowchart LR
   n2 -.-> x4
   n2 -.-> x5
   n2 -.-> x6
+  n3 -.-> x10
   n3 -.-> x2
   n3 -.-> x5
   n3 -.-> x7
@@ -171,7 +173,7 @@ line 66 · arrows read from text
   - [`HardyZ.completedRiemannZeta_conj_of_re_pos`](#HardyZ-completedRiemannZeta_conj_of_re_pos) — `` completedRiemannZeta (conj s) = conj (completedRiemannZeta s) ``
   - [`HardyZ.re_line`](#HardyZ-re_line) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (9 that use it)
+**Feeds** (10 that use it)
 
   - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
@@ -182,6 +184,7 @@ line 66 · arrows read from text
   - [`OperatorQ.im_I_pow_iteratedDeriv`](../lean_stage3/OperatorQ.md#OperatorQ-im_I_pow_iteratedDeriv) (OperatorQ) — `` (I ^ k * iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).im = 0 ``
   - [`OperatorQ.zeta_line_zero_iff_W`](../lean_stage3/OperatorQ.md#OperatorQ-zeta_line_zero_iff_W) (OperatorQ) — `` riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0 ``
   - [`SignData.re_lambda_eq`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_eq) (SignDataGamma) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (gammaDir t n * riemannZeta (lineS t)).re ``
+  - [`StirlingSeries.re_lambda_eq_stir`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-re_lambda_eq_stir) (StirlingSeriesPhase) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (stirDir K t * riemannZeta (lineS t)).re ``
 
 <a name="HardyZ-continuous_xi_line"></a>
 ### `HardyZ.continuous_xi_line`

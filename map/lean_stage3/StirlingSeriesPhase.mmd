@@ -1,0 +1,74 @@
+flowchart LR
+  n0["<b>zz_im</b><br/>(zz t).im = t / 2"]:::cnt
+  n1["<b>re_of_real_factor</b><br/>∃ c : ℝ, 0 ＜ c ∧ Λ.re = c * X.re"]:::shp
+  n2["<b>re_lambda_eq_stir</b><br/>∃ c : ℝ, 0 ＜ c ∧ (completedRiemannZeta (lineS t)).re = c * (stir…"]:::thm
+  n3["<b>norm_zz_ge</b><br/>|t| / 2 ≤ ‖zz t‖"]:::shp
+  n4["<b>delta3_le'</b><br/>‖Stirling.logG (zz t) - stirMain 3 (zz t) - ((Real.log (2 * Real…"]:::thm
+  n5["<b>delta3_le</b><br/>‖Stirling.logG (zz t) - stirMain 3 (zz t) - ((Real.log (2 * Real…"]:::thm
+  n6["<b>im_logG_ball ■</b><br/>|(Stirling.logG (zz t)).im - (stirMain 3 (zz t)).im| ≤ 2 / 5 / |…"]:::thm
+  n7["<b>re_lambda_eq_stir3</b><br/>∃ c : ℝ, 0 ＜ c ∧ (completedRiemannZeta (lineS t)).re = c * (stir…"]:::thm
+  n8["<b>re_lambda_pos_stir3</b><br/>0 ＜ (completedRiemannZeta (lineS t)).re"]:::thm
+  n9["<b>re_lambda_neg_stir3 ■</b><br/>(completedRiemannZeta (lineS t)).re ＜ 0"]:::thm
+  n10["<b>stirC_one</b><br/>stirC 1 = 1 / 12"]:::cnt
+  n11["<b>stirC_two</b><br/>stirC 2 = -1 / 360"]:::cnt
+  n12["<b>stirSum3_eq</b><br/>stirSum 3 w = 1 / 12 * w⁻¹ - 1 / 360 * (w ^ 3)⁻¹"]:::cnt
+  n13["<b>stirSum3_im</b><br/>(stirSum 3 (zz t)).im = sig3 t"]:::shp
+  n14["<b>log_zz_eq</b><br/>log (zz t) = ((Real.log (t / 2) : ℝ) : ℂ) + ((Real.pi / 2 : ℝ) :…"]:::shp
+  n15["<b>log_one_sub_ball</b><br/>‖log (1 + cx 0 (-y)) - cx (y ^ 2 / 2 - y ^ 4 / 4) (-y + y ^ 3 / …"]:::shp
+  n16["<b>stirPhase3_ball</b><br/>|stirPhase 3 t - φ₀| ≤ E"]:::shp
+  x0(["<b>StirlingSeriesK5</b><br/>delta5_le<br/>im_stirMain_ball<br/>stirSum5_eq"]):::ext
+  x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
+  x2(["<b>SignDataGamma</b><br/>lineS_div_two<br/>zz_re"]):::ext
+  x3(["<b>SignDataZeta</b><br/>bernBound_four_le<br/>lineS_ne_zero<br/>lineS_re"]):::ext
+  x4(["<b>StirlingLog</b><br/>exp_logG"]):::ext
+  x5(["<b>StirlingSeriesLim</b><br/>stirling_series"]):::ext
+  x6(["<b>ZetaEM</b><br/>bernBound_nonneg"]):::ext
+  x7(["<b>SignDataBall</b><br/>pi_ball<br/>re_neg_of_ball<br/>re_pos_of_ball"]):::ext
+  x8(["<b>StirlingSeriesPt100</b><br/>s100_phase<br/>sign_100"]):::ext
+  x9(["<b>StirlingSeriesPt49</b><br/>s49_phase<br/>sign_49"]):::ext
+  n0 --> n3
+  n0 --> n4
+  n1 --> n2
+  n10 --> n12
+  n11 --> n12
+  n12 --> n13
+  n13 --> n16
+  n14 --> n16
+  n15 --> n16
+  n2 --> n7
+  n3 --> n4
+  n4 --> n5
+  n4 --> n6
+  n5 --> n7
+  n7 --> n8
+  n7 --> n9
+  n0 -.-> x0
+  n10 -.-> x0
+  n11 -.-> x0
+  n14 -.-> x0
+  n15 -.-> x0
+  n16 -.-> x8
+  n16 -.-> x9
+  n3 -.-> x0
+  n8 -.-> x8
+  n8 -.-> x9
+  x1 -.-> n2
+  x2 -.-> n13
+  x2 -.-> n2
+  x2 -.-> n4
+  x3 -.-> n2
+  x3 -.-> n4
+  x4 -.-> n2
+  x5 -.-> n4
+  x6 -.-> n4
+  x7 -.-> n16
+  x7 -.-> n8
+  x7 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

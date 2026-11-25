@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>489 theorems counting,<br/>in 98 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>504 theorems counting,<br/>in 102 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>5252 theorems shape,<br/>in 227 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>5446 theorems shape,<br/>in 235 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1103 theorems reads ζ,<br/>in 201 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1127 theorems reads ζ,<br/>in 209 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 593 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 5503 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1124 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 608 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 5697 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1148 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 489 | 5252 | 1103 |
+| `lean_stage3/` | 504 | 5446 | 1127 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -1149,6 +1149,41 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 # StirlingLog — block S12 of `lean_stage3/design/stencil.md`, the Γ-shift with its phase. 2026-11-25.
 
 - [`Stirling.sum_inv_sq_le`](./lean_stage3/StirlingLog.md#Stirling-sum_inv_sq_le) — `` ∑ m ∈ Finset.range N, 1 / ((m : ℝ) + Y) ^ 2 ≤ 3 / Y - 3 / ((N : ℝ) + Y) `` `Σ_{m<N} 1/(m+Y)² ≤ 3/Y − 3/(N+Y)` for `Y ≥ 1/2`.
+
+### [`StirlingSeriesEM`](./lean_stage3/StirlingSeriesEM.md) — 3
+
+StirlingSeriesEM — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: one step of Stirling's series by Euler–Maclaurin on `[0, 1]`. 2026-11-25.
+
+- [`StirlingSeries.bern_cast_zero`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-bern_cast_zero) — `` ((bernoulliFun n 0 : ℝ) : ℂ) = ((bernoulli n : ℚ) : ℂ) ``
+- [`StirlingSeries.hasDerivAt_inv_pow`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-hasDerivAt_inv_pow) — `` HasDerivAt (fun y : ℝ => ((w + (y : ℂ)) ^ (p + 1))⁻¹) (-((p : ℂ) + 1) * ((w + (x : ℂ)) ^ (p + 2))⁻¹) x `` The derivative of `(w + x)^{−(p+1)}` in the real variable `x`.
+- [`StirlingSeries.bernoulli_odd_zero`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-bernoulli_odd_zero) — `` ((bernoulli (2 * K + 1) : ℚ) : ℂ) = 0 ``
+
+### [`StirlingSeriesK5`](./lean_stage3/StirlingSeriesK5.md) — 7
+
+StirlingSeriesK5 — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: the phase of `Γ(1/4 + it/2)` from Stirling's series with the four terms `B₂ … B₈` (`S₅`). 2026-11-25.
+
+- [`StirlingSeries.bernoulli'_five`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_five) — `` bernoulli' 5 = 0 ``
+- [`StirlingSeries.bernoulli'_seven`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_seven) — `` bernoulli' 7 = 0 ``
+- [`StirlingSeries.bernoulli'_six`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_six) — `` bernoulli' 6 = 1 / 42 ``
+- [`StirlingSeries.bernoulli'_eight`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_eight) — `` bernoulli' 8 = -1 / 30 ``
+- [`StirlingSeries.stirC_three`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirC_three) — `` stirC 3 = 1 / 1260 ``
+- [`StirlingSeries.stirC_four`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirC_four) — `` stirC 4 = -1 / 1680 ``
+- [`StirlingSeries.stirSum5_eq`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirSum5_eq) — `` stirSum 5 w = 1 / 12 * w⁻¹ - 1 / 360 * (w ^ 3)⁻¹ + 1 / 1260 * (w ^ 5)⁻¹ - 1 / 1680 * (w ^ 7)⁻¹ ``
+
+### [`StirlingSeriesLim`](./lean_stage3/StirlingSeriesLim.md) — 1
+
+StirlingSeriesLim — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: Stirling's series for `log Γ` with an explicit remainder. 2026-11-25.
+
+- [`StirlingSeries.re_add_nat_pos`](./lean_stage3/StirlingSeriesLim.md#StirlingSeries-re_add_nat_pos) — `` 0 < (z + (n : ℂ)).re ``
+
+### [`StirlingSeriesPhase`](./lean_stage3/StirlingSeriesPhase.md) — 4
+
+StirlingSeriesPhase — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: the phase of `Gammaℝ` on the line from Stirling's series, in a fixed number of balls. 2026-11-25.
+
+- [`StirlingSeries.zz_im`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-zz_im) — `` (zz t).im = t / 2 ``
+- [`StirlingSeries.stirC_one`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirC_one) — `` stirC 1 = 1 / 12 ``
+- [`StirlingSeries.stirC_two`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirC_two) — `` stirC 2 = -1 / 360 ``
+- [`StirlingSeries.stirSum3_eq`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirSum3_eq) — `` stirSum 3 w = 1 / 12 * w⁻¹ - 1 / 360 * (w ^ 3)⁻¹ ``
 
 ### [`StirlingX`](./lean_stage3/StirlingX.md) — 4
 

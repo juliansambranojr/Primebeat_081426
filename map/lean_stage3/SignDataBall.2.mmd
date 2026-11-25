@@ -2,8 +2,10 @@ flowchart LR
   n0["<b>log_pi_ball</b><br/>|Real.log Real.pi - c| ≤ R"]:::shp
   n1["<b>inv_sqrt_ball</b><br/>|(Real.sqrt m)⁻¹ - c| ≤ R"]:::shp
   x0(["<b>SignDataLog</b><br/>19 theorems"]):::ext
+  x1(["<b>StirlingSeriesLog</b><br/>10 theorems"]):::ext
   n0 -.-> x0
   n1 -.-> x0
+  n1 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

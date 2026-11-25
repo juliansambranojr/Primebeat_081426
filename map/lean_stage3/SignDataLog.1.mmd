@@ -40,7 +40,10 @@ flowchart LR
   x8(["<b>SignDataPt63_2</b><br/>18 theorems"]):::ext
   x9(["<b>SignDataPt71_2</b><br/>16 theorems"]):::ext
   x10(["<b>SignDataPt91_2</b><br/>18 theorems"]):::ext
-  x11(["<b>SignDataBall</b><br/>4 theorems"]):::ext
+  x11(["<b>StirlingSeriesPt100</b><br/>27 theorems"]):::ext
+  x12(["<b>StirlingSeriesPt49</b><br/>27 theorems"]):::ext
+  x13(["<b>SignDataBall</b><br/>4 theorems"]):::ext
+  x14(["<b>StirlingSeriesLog</b><br/>log_ball_20"]):::ext
   n0 --> n1
   n0 --> n19
   n0 --> n20
@@ -66,6 +69,8 @@ flowchart LR
   n0 -.-> x0
   n0 -.-> x1
   n0 -.-> x10
+  n0 -.-> x11
+  n0 -.-> x12
   n0 -.-> x2
   n0 -.-> x3
   n0 -.-> x4
@@ -77,6 +82,8 @@ flowchart LR
   n1 -.-> x0
   n1 -.-> x1
   n1 -.-> x10
+  n1 -.-> x11
+  n1 -.-> x12
   n1 -.-> x2
   n1 -.-> x3
   n1 -.-> x4
@@ -85,20 +92,39 @@ flowchart LR
   n1 -.-> x7
   n1 -.-> x8
   n1 -.-> x9
+  n10 -.-> x11
+  n10 -.-> x12
   n10 -.-> x5
   n10 -.-> x6
+  n11 -.-> x11
+  n11 -.-> x12
   n11 -.-> x5
   n11 -.-> x6
+  n12 -.-> x11
+  n12 -.-> x12
   n12 -.-> x5
   n12 -.-> x6
+  n13 -.-> x11
+  n13 -.-> x12
   n13 -.-> x6
+  n14 -.-> x11
+  n14 -.-> x12
   n14 -.-> x6
+  n15 -.-> x11
+  n15 -.-> x12
   n15 -.-> x6
+  n16 -.-> x11
+  n16 -.-> x12
   n16 -.-> x6
+  n17 -.-> x11
+  n17 -.-> x12
+  n17 -.-> x14
   n17 -.-> x6
   n18 -.-> x0
   n18 -.-> x1
   n18 -.-> x10
+  n18 -.-> x11
+  n18 -.-> x12
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
@@ -112,6 +138,8 @@ flowchart LR
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x10
+  n2 -.-> x11
+  n2 -.-> x12
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
@@ -132,6 +160,8 @@ flowchart LR
   n23 -.-> x0
   n23 -.-> x1
   n23 -.-> x10
+  n23 -.-> x11
+  n23 -.-> x12
   n23 -.-> x2
   n23 -.-> x3
   n23 -.-> x4
@@ -143,6 +173,8 @@ flowchart LR
   n24 -.-> x0
   n24 -.-> x1
   n24 -.-> x10
+  n24 -.-> x11
+  n24 -.-> x12
   n24 -.-> x2
   n24 -.-> x3
   n24 -.-> x4
@@ -154,6 +186,8 @@ flowchart LR
   n25 -.-> x0
   n25 -.-> x1
   n25 -.-> x10
+  n25 -.-> x11
+  n25 -.-> x12
   n25 -.-> x2
   n25 -.-> x3
   n25 -.-> x4
@@ -165,6 +199,8 @@ flowchart LR
   n26 -.-> x0
   n26 -.-> x1
   n26 -.-> x10
+  n26 -.-> x11
+  n26 -.-> x12
   n26 -.-> x2
   n26 -.-> x3
   n26 -.-> x4
@@ -175,6 +211,8 @@ flowchart LR
   n26 -.-> x9
   n27 -.-> x0
   n27 -.-> x10
+  n27 -.-> x11
+  n27 -.-> x12
   n27 -.-> x2
   n27 -.-> x3
   n27 -.-> x4
@@ -185,6 +223,8 @@ flowchart LR
   n27 -.-> x9
   n28 -.-> x0
   n28 -.-> x10
+  n28 -.-> x11
+  n28 -.-> x12
   n28 -.-> x2
   n28 -.-> x4
   n28 -.-> x5
@@ -194,6 +234,8 @@ flowchart LR
   n28 -.-> x9
   n29 -.-> x0
   n29 -.-> x10
+  n29 -.-> x11
+  n29 -.-> x12
   n29 -.-> x4
   n29 -.-> x5
   n29 -.-> x6
@@ -202,6 +244,8 @@ flowchart LR
   n3 -.-> x0
   n3 -.-> x1
   n3 -.-> x10
+  n3 -.-> x11
+  n3 -.-> x12
   n3 -.-> x2
   n3 -.-> x3
   n3 -.-> x4
@@ -212,6 +256,8 @@ flowchart LR
   n3 -.-> x9
   n4 -.-> x0
   n4 -.-> x10
+  n4 -.-> x11
+  n4 -.-> x12
   n4 -.-> x2
   n4 -.-> x3
   n4 -.-> x4
@@ -222,6 +268,8 @@ flowchart LR
   n4 -.-> x9
   n5 -.-> x0
   n5 -.-> x10
+  n5 -.-> x11
+  n5 -.-> x12
   n5 -.-> x2
   n5 -.-> x4
   n5 -.-> x5
@@ -231,56 +279,64 @@ flowchart LR
   n5 -.-> x9
   n6 -.-> x0
   n6 -.-> x10
+  n6 -.-> x11
+  n6 -.-> x12
   n6 -.-> x4
   n6 -.-> x5
   n6 -.-> x6
   n6 -.-> x8
   n6 -.-> x9
   n7 -.-> x10
+  n7 -.-> x11
+  n7 -.-> x12
   n7 -.-> x4
   n7 -.-> x5
   n7 -.-> x6
   n7 -.-> x8
   n7 -.-> x9
   n8 -.-> x10
+  n8 -.-> x11
+  n8 -.-> x12
   n8 -.-> x4
   n8 -.-> x5
   n8 -.-> x6
   n8 -.-> x8
   n9 -.-> x10
+  n9 -.-> x11
+  n9 -.-> x12
   n9 -.-> x4
   n9 -.-> x5
   n9 -.-> x6
   n9 -.-> x8
-  x11 -.-> n1
-  x11 -.-> n10
-  x11 -.-> n11
-  x11 -.-> n12
-  x11 -.-> n13
-  x11 -.-> n14
-  x11 -.-> n15
-  x11 -.-> n16
-  x11 -.-> n17
-  x11 -.-> n18
-  x11 -.-> n19
-  x11 -.-> n2
-  x11 -.-> n20
-  x11 -.-> n21
-  x11 -.-> n22
-  x11 -.-> n23
-  x11 -.-> n24
-  x11 -.-> n25
-  x11 -.-> n26
-  x11 -.-> n27
-  x11 -.-> n28
-  x11 -.-> n29
-  x11 -.-> n3
-  x11 -.-> n4
-  x11 -.-> n5
-  x11 -.-> n6
-  x11 -.-> n7
-  x11 -.-> n8
-  x11 -.-> n9
+  x13 -.-> n1
+  x13 -.-> n10
+  x13 -.-> n11
+  x13 -.-> n12
+  x13 -.-> n13
+  x13 -.-> n14
+  x13 -.-> n15
+  x13 -.-> n16
+  x13 -.-> n17
+  x13 -.-> n18
+  x13 -.-> n19
+  x13 -.-> n2
+  x13 -.-> n20
+  x13 -.-> n21
+  x13 -.-> n22
+  x13 -.-> n23
+  x13 -.-> n24
+  x13 -.-> n25
+  x13 -.-> n26
+  x13 -.-> n27
+  x13 -.-> n28
+  x13 -.-> n29
+  x13 -.-> n3
+  x13 -.-> n4
+  x13 -.-> n5
+  x13 -.-> n6
+  x13 -.-> n7
+  x13 -.-> n8
+  x13 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
