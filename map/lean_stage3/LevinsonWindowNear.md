@@ -20,43 +20,47 @@ flowchart LR
   n4["<b>levinson_window_near ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ…"]:::thm
   x0(["<b>HardyZ</b><br/>re_line"]):::ext
   x1(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
-  x2(["<b>FloorSum</b><br/>levinson_floor"]):::ext
-  x3(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
-  x4(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
-  x5(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
-  x6(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
-  x7(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
-  x8(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>line_turn_eq_integral<br/>turn_split"]):::ext
-  x9(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
-  x10(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
-  x11(["<b>ArgCount</b><br/>N_mono"]):::ext
-  x12(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
-  x13(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
-  x14(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
-  x15(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x2(["<b>FloorLong</b><br/>floor_of_long"]):::ext
+  x3(["<b>FloorSum</b><br/>levinson_floor"]):::ext
+  x4(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
+  x5(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>G_analyticAt<br/>horizontal_edge_le"]):::ext
+  x7(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x8(["<b>LevinsonSize</b><br/>gamma_part_count_le_gt_two<br/>re_G_pos<br/>right_edge_le"]):::ext
+  x9(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>line_turn_eq_integral<br/>turn_split"]):::ext
+  x10(["<b>LevinsonWindow</b><br/>8 theorems"]):::ext
+  x11(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x12(["<b>ArgCount</b><br/>N_mono"]):::ext
+  x13(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x14(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x15(["<b>LevinsonRight</b><br/>levinson_right"]):::ext
+  x16(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x17(["<b>FloorStep</b><br/>floor_step"]):::ext
   n0 --> n2
   n1 --> n4
   n2 --> n3
   n3 --> n4
   n1 -.-> x2
-  n3 -.-> x15
+  n1 -.-> x3
+  n3 -.-> x16
+  n3 -.-> x17
   x0 -.-> n0
   x0 -.-> n2
   x1 -.-> n0
   x10 -.-> n2
-  x11 -.-> n3
+  x10 -.-> n3
+  x11 -.-> n2
   x12 -.-> n3
   x13 -.-> n3
   x14 -.-> n3
-  x3 -.-> n2
+  x15 -.-> n3
   x4 -.-> n2
   x5 -.-> n2
-  x5 -.-> n3
   x6 -.-> n2
+  x6 -.-> n3
   x7 -.-> n2
   x8 -.-> n2
   x9 -.-> n2
-  x9 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -129,8 +133,9 @@ line 104 · arrows read from text
 
 **Definitions its proof touches:** [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
   - [`FloorSum.levinson_floor`](../lean_stage3/FloorSum.md#FloorSum-levinson_floor) (FloorSum) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
   - [`LevinsonWindowNear.levinson_window_near`](#LevinsonWindowNear-levinson_window_near) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 
@@ -246,8 +251,9 @@ line 457 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-molli), [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long) (FloorLongStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step) (FloorStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonWindowNear.levinson_window_near`](#LevinsonWindowNear-levinson_window_near) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
 

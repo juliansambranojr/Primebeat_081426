@@ -7,7 +7,7 @@
 13 theorems, 4 definitions, 227 lines. 
 
 **Imports:** [`DiagMain`](../lean_stage3/DiagMain.md), [`FloorConstDeriv`](../lean_stage3/FloorConstDeriv.md)  
-**Imported by:** [`FloorConst`](../lean_stage3/FloorConst.md)
+**Imported by:** [`FloorConst`](../lean_stage3/FloorConst.md), [`FloorLongMean`](../lean_stage3/FloorLongMean.md)
 
 ## The picture
 
@@ -27,8 +27,10 @@ flowchart LR
   n11["<b>Cr_X</b><br/>Cr Polynomial.X = 1 / 3"]:::cnt
   n12["<b>re_dop_tendsto_X</b><br/>Tendsto (fun T =＞ (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T…"]:::shp
   x0(["<b>FloorConstDeriv</b><br/>4 theorems"]):::ext
-  x1(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
-  x2(["<b>FloorConst</b><br/>floor_const"]):::ext
+  x1(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
+  x2(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
+  x3(["<b>FloorLong</b><br/>floor_of_long<br/>levinson_floor_of_long"]):::ext
+  x4(["<b>FloorConst</b><br/>floor_const"]):::ext
   n0 --> n4
   n1 --> n4
   n10 --> n12
@@ -41,10 +43,17 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n12
-  n12 -.-> x2
+  n10 -.-> x3
+  n11 -.-> x3
+  n12 -.-> x4
+  n4 -.-> x1
+  n6 -.-> x1
+  n7 -.-> x1
+  n8 -.-> x3
+  n9 -.-> x3
   x0 -.-> n4
-  x1 -.-> n6
-  x1 -.-> n8
+  x2 -.-> n6
+  x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -67,7 +76,7 @@ def · line 43
 Levinson's constant in closed form, `(1 + ∂a)(1 + ∂b)[f(a,b) + e^(−(a+b)) f(−b,−a)]` at `a = b = −R`, `f(a,b) = (A + (a+b)θB + abθ²C)/((a+b)θ)`.
 
 - **Is:** `` Kfl (A B C θ R : ℝ) : ℝ := B - A / (2 * R * θ) - R * θ * C / 2 + θ * C / 2 - A / (2 * R ^ 2 * θ) - θ * C / (4 * R) - A / (4 * R ^ 3 * θ) + Real.exp (2 * R) * (θ * C / (4 * R) + A / (4 * R ^ 3 * θ)) ``
-- **Used by 17:** [`FloorConst.Kfl_levinson_eq`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_eq), [`FloorConst.Kfl_levinson_le`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_le), [`FloorConst.Kfl_levinson_lt`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_lt), [`FloorConst.Kfl_levinson_pos`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_pos), [`FloorConst.floor_const`](../lean_stage3/FloorConst.md#FloorConst-floor_const), [`FloorConst.kappaL`](../lean_stage3/FloorConst.md#FloorConst-kappaL), [`FloorConst.kappa_levinson_ge`](../lean_stage3/FloorConst.md#FloorConst-kappa_levinson_ge), [`FloorConst.log_Kfl_levinson_lt`](../lean_stage3/FloorConst.md#FloorConst-log_Kfl_levinson_lt), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.dop_closed`](#FloorConst-dop_closed), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto), [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X), [`FloorConst.tendsto_Kfl`](#FloorConst-tendsto_Kfl), [`FloorSum.K_ge_one`](../lean_stage3/FloorSum.md#FloorSum-K_ge_one), [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le), [`FloorSum.logmax_le`](../lean_stage3/FloorSum.md#FloorSum-logmax_le), [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X)
+- **Used by 21:** [`FloorConst.Kfl_levinson_eq`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_eq), [`FloorConst.Kfl_levinson_le`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_le), [`FloorConst.Kfl_levinson_lt`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_lt), [`FloorConst.Kfl_levinson_pos`](../lean_stage3/FloorConst.md#FloorConst-Kfl_levinson_pos), [`FloorConst.floor_const`](../lean_stage3/FloorConst.md#FloorConst-floor_const), [`FloorConst.kappaL`](../lean_stage3/FloorConst.md#FloorConst-kappaL), [`FloorConst.kappa_levinson_ge`](../lean_stage3/FloorConst.md#FloorConst-kappa_levinson_ge), [`FloorConst.log_Kfl_levinson_lt`](../lean_stage3/FloorConst.md#FloorConst-log_Kfl_levinson_lt), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.dop_closed`](#FloorConst-dop_closed), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto), [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X), [`FloorConst.tendsto_Kfl`](#FloorConst-tendsto_Kfl), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long), [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long), [`FloorSum.K_ge_one`](../lean_stage3/FloorSum.md#FloorSum-K_ge_one), [`FloorSum.log_K_le`](../lean_stage3/FloorSum.md#FloorSum-log_K_le), [`FloorSum.logmax_le`](../lean_stage3/FloorSum.md#FloorSum-logmax_le), [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X)
 
 <a name="FloorConst-Ar"></a>
 ### `FloorConst.Ar`
@@ -77,7 +86,7 @@ def · line 48
 `A = ∫₀¹ P′²`, real.
 
 - **Is:** `` Ar (P : Polynomial ℝ) : ℝ := ∫ u in (0 : ℝ)..1, P.derivative.eval u * P.derivative.eval u ``
-- **Used by 4:** [`FloorConst.Aq_eq`](#FloorConst-Aq_eq), [`FloorConst.Ar_X`](#FloorConst-Ar_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto)
+- **Used by 7:** [`FloorConst.Aq_eq`](#FloorConst-Aq_eq), [`FloorConst.Ar_X`](#FloorConst-Ar_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long)
 
 <a name="FloorConst-Br"></a>
 ### `FloorConst.Br`
@@ -87,7 +96,7 @@ def · line 51
 `B = ∫₀¹ P′P`, real.
 
 - **Is:** `` Br (P : Polynomial ℝ) : ℝ := ∫ u in (0 : ℝ)..1, P.derivative.eval u * P.eval u ``
-- **Used by 4:** [`FloorConst.Bq_eq`](#FloorConst-Bq_eq), [`FloorConst.Br_X`](#FloorConst-Br_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto)
+- **Used by 7:** [`FloorConst.Bq_eq`](#FloorConst-Bq_eq), [`FloorConst.Br_X`](#FloorConst-Br_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long)
 
 <a name="FloorConst-Cr"></a>
 ### `FloorConst.Cr`
@@ -97,7 +106,7 @@ def · line 54
 `C = ∫₀¹ P²`, real.
 
 - **Is:** `` Cr (P : Polynomial ℝ) : ℝ := ∫ u in (0 : ℝ)..1, P.eval u * P.eval u ``
-- **Used by 4:** [`FloorConst.Cq_eq`](#FloorConst-Cq_eq), [`FloorConst.Cr_X`](#FloorConst-Cr_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto)
+- **Used by 7:** [`FloorConst.Cq_eq`](#FloorConst-Cq_eq), [`FloorConst.Cr_X`](#FloorConst-Cr_X), [`FloorConst.dop_cY_eq`](#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto), [`FloorLong.floor_lt_half`](../lean_stage3/FloorLong.md#FloorLong-floor_lt_half), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long)
 
 ## Theorems
 
@@ -240,9 +249,10 @@ Dop (Real.log T) (cY P M T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T
 
 **Definitions its proof touches:** [`FloorConst.Ar`](#FloorConst-Ar), [`FloorConst.Br`](#FloorConst-Br), [`FloorConst.Cr`](#FloorConst-Cr), [`FloorConst.Kfl`](#FloorConst-Kfl), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto) — `` Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (C… ``
+  - [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long) (FloorLongMean) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="FloorConst-logM_ge-"></a>
 ### `FloorConst.logM_ge'`
@@ -298,9 +308,10 @@ Tendsto (fun T => Real.log (Mof T θ) / Real.log T) atTop (𝓝 θ)
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto) — `` Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (C… ``
+  - [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long) (FloorLongMean) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="FloorConst-tendsto_Kfl"></a>
 ### `FloorConst.tendsto_Kfl`
@@ -327,9 +338,10 @@ Tendsto (fun t => Kfl A B C (f t) R) l (𝓝 (Kfl A B C θ R))
 
 **Definitions its proof touches:** [`FloorConst.Kfl`](#FloorConst-Kfl)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto`](#FloorConst-re_dop_tendsto) — `` Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (C… ``
+  - [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long) (FloorLongMean) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="FloorConst-re_dop_tendsto"></a>
 ### `FloorConst.re_dop_tendsto`
@@ -361,9 +373,10 @@ Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : �
 
 **Definitions its proof touches:** [`FloorConst.Ar`](#FloorConst-Ar), [`FloorConst.Br`](#FloorConst-Br), [`FloorConst.Cr`](#FloorConst-Cr), [`FloorConst.Kfl`](#FloorConst-Kfl), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X) — `` Tendsto (fun T => (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 … ``
+  - [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 - Real.log (max 1 (Kfl (Ar P) (Br P) (Cr P) θ R)) / R - ε) * riemannZeta.N T ≤ (LineCount.lineCount T … ``
 
 <a name="FloorConst-Ar_X"></a>
 ### `FloorConst.Ar_X`
@@ -382,9 +395,10 @@ Ar Polynomial.X = 1
 
 **Definitions its proof touches:** [`FloorConst.Ar`](#FloorConst-Ar)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X) — `` Tendsto (fun T => (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 … ``
+  - [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
 
 <a name="FloorConst-Br_X"></a>
 ### `FloorConst.Br_X`
@@ -403,9 +417,10 @@ Br Polynomial.X = 1 / 2
 
 **Definitions its proof touches:** [`FloorConst.Br`](#FloorConst-Br)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X) — `` Tendsto (fun T => (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 … ``
+  - [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
 
 <a name="FloorConst-Cr_X"></a>
 ### `FloorConst.Cr_X`
@@ -424,9 +439,10 @@ Cr Polynomial.X = 1 / 3
 
 **Definitions its proof touches:** [`FloorConst.Cr`](#FloorConst-Cr)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FloorConst.re_dop_tendsto_X`](#FloorConst-re_dop_tendsto_X) — `` Tendsto (fun T => (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl 1 (1 … ``
+  - [`FloorLong.levinson_floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-levinson_floor_of_long) (FloorLong) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (1 / 3 - ε) * riemannZeta.N T ≤ (LineCount.lineCount T : ℝ) ``
 
 <a name="FloorConst-re_dop_tendsto_X"></a>
 ### `FloorConst.re_dop_tendsto_X`

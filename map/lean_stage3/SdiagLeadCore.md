@@ -19,11 +19,13 @@ flowchart LR
   n3["<b>stmtDiagMainO_of_steps ■</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SdiagLeadSwap</b><br/>Sdiag_swap"]):::ext
   x1(["<b>DiagMain</b><br/>logM_ge<br/>logM_le<br/>stmtDiagMainO_of_lead"]):::ext
-  x2(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  x2(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x3(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
   n2 -.-> x2
+  n2 -.-> x3
   x0 -.-> n0
   x1 -.-> n2
   x1 -.-> n3
@@ -188,8 +190,9 @@ StmtSdiagLead P θ R κ
 
 **Definitions its proof touches:** [`DiagMain.IY`](../lean_stage3/DiagMain.md#DiagMain-IY), [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`SdiagLead.Ahat`](#SdiagLead-Ahat), [`SdiagLead.StmtAdApprox`](#SdiagLead-StmtAdApprox), [`SdiagLead.StmtDsum`](#SdiagLead-StmtDsum), [`SdiagLead.Wd`](#SdiagLead-Wd), [`SdiagLead.Ad`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Ad), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`FloorLong.mainO_long`](../lean_stage3/FloorLongErr.md#FloorLong-mainO_long) (FloorLongErr) — `` StmtDiagMainO P θ R κ ``
   - [`SdiagLead.stmtSdiagLead_holds`](../lean_stage3/SdiagLead.md#SdiagLead-stmtSdiagLead_holds) (SdiagLead) — `` StmtSdiagLead P θ R κ ``
   - [`SdiagLead.stmtDiagMainO_of_steps`](#SdiagLead-stmtDiagMainO_of_steps) — `` StmtDiagMainO P θ R κ ``
 

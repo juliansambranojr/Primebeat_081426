@@ -7,7 +7,7 @@
 1 theorem, 0 definitions, 35 lines. 
 
 **Imports:** [`Arith`](../lean_stage3/Arith.md), [`StirlingX`](../lean_stage3/StirlingX.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Operator`](../lean_stage3/Operator.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorLongErr`](../lean_stage3/FloorLongErr.md), [`Operator`](../lean_stage3/Operator.md)
 
 ## The picture
 
