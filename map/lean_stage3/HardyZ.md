@@ -22,7 +22,8 @@ flowchart LR
   x0(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
   x1(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
   x2(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>sum_order_le_lineCount"]):::ext
-  x3(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
+  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>sum_order_le_lineCount_sub"]):::ext
+  x4(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -33,9 +34,10 @@ flowchart LR
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
+  n2 -.-> x4
   n3 -.-> x1
-  n3 -.-> x3
-  n4 -.-> x3
+  n3 -.-> x4
+  n4 -.-> x4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -119,7 +121,7 @@ line 62 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (9 that use it)
+**Feeds** (11 that use it)
 
   - [`HardyZ.continuous_xi_line`](#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
@@ -128,6 +130,8 @@ line 62 · arrows read from text
   - [`LevinsonLine.line_facts`](../lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) (LevinsonLine) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.sum_order_le_lineCount`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-sum_order_le_lineCount) (LevinsonMultiple) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount T ``
+  - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
+  - [`LevinsonWindowNear.sum_order_le_lineCount_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-sum_order_le_lineCount_sub) (LevinsonWindowNear) — `` ∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a ``
   - [`LineCount.signChanges_le_line_count`](../lean_stage3/LineCount.md#LineCount-signChanges_le_line_count) (LineCount) — `` (k : ℤ) ≤ lineCount T ``
   - [`LineCount.strictSignChange_zero_on_line`](../lean_stage3/LineCount.md#LineCount-strictSignChange_zero_on_line) (LineCount) — `` ∃ γ ∈ Set.Ioo t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``
 

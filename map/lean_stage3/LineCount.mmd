@@ -7,19 +7,21 @@ flowchart LR
   n5["<b>signChanges_le_line_count ■</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
   x0(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
   x1(["<b>LevinsonMultiple</b><br/>sum_order_le_lineCount"]):::ext
-  x2(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
-  x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
-  x4(["<b>CountModes</b><br/>im_ne_zero"]):::ext
+  x2(["<b>LevinsonWindowNear</b><br/>sum_order_le_lineCount_sub"]):::ext
+  x3(["<b>HardyZ</b><br/>continuous_xi_line<br/>re_line<br/>xi_line_real"]):::ext
+  x4(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x5(["<b>CountModes</b><br/>im_ne_zero"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
   n2 --> n4
   n0 -.-> x0
   n0 -.-> x1
-  x2 -.-> n1
-  x2 -.-> n5
-  x3 -.-> n4
+  n0 -.-> x2
+  x3 -.-> n1
+  x3 -.-> n5
   x4 -.-> n4
+  x5 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

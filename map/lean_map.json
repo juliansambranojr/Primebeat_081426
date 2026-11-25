@@ -25152,7 +25152,8 @@
     "used_by": [
      "lean_stage3/Stage3/ArgCount.lean::ArgCount.argS_two_le",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -55308,6 +55309,8 @@
      "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.strictSignChange_zero_on_line"
     ]
@@ -62680,7 +62683,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -62737,7 +62741,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -62899,7 +62904,8 @@
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -62987,7 +62993,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -63020,7 +63027,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -63051,7 +63059,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    }
   ]
@@ -63106,7 +63115,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -63403,7 +63413,8 @@
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -63721,7 +63732,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    }
   ]
@@ -63782,7 +63794,8 @@
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_logDeriv_gammaR_line",
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
-     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split"
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -63923,7 +63936,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.G_line_ne",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    }
   ]
@@ -63988,7 +64002,9 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
     ]
    },
    {
@@ -64020,7 +64036,8 @@
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64109,7 +64126,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64182,7 +64200,8 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64215,7 +64234,8 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_log_term_le",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64299,7 +64319,8 @@
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_arg_term_le",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64456,7 +64477,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -64738,7 +64760,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    }
   ]
@@ -65923,7 +65946,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    }
   ]
@@ -66034,7 +66058,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -66110,7 +66135,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -66280,7 +66306,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    }
   ]
@@ -66446,7 +66473,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
-     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -66527,7 +66555,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
-     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq"
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lineF_turn_eq",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    },
    {
@@ -66628,7 +66657,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
-     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'"
+     "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
    }
   ]
@@ -66690,7 +66720,9 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
     ]
    },
    {
@@ -66717,7 +66749,9 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66743,7 +66777,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66781,7 +66816,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66809,7 +66845,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66847,7 +66884,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66902,7 +66940,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66931,7 +66970,8 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -66967,7 +67007,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_window'",
-     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window"
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
     ]
    },
    {
@@ -67062,6 +67103,314 @@
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+  "module": "Stage3.LevinsonWindowNear",
+  "stem": "LevinsonWindowNear",
+  "header": "LevinsonWindowNear — block S12 of `lean_stage3/design/stencil.md`, the window restated. 2026-11-25.",
+  "imports": [
+   "Stage3.LevinsonMultiple"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "Kadiri",
+   "LevinsonWindow",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "LevinsonWindowNear"
+  ],
+  "lines": 738,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LevinsonMultiple.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_order_le_lineCount_sub",
+    "ns": "LevinsonWindowNear",
+    "full": "LevinsonWindowNear.sum_order_le_lineCount_sub",
+    "line": 54,
+    "why": "Distinct heights in `(a, b]` carrying zeros of `ζ` on the line, weighted by order, number at most `lineCount b − lineCount a`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 ≤ a",
+     "hab : a ≤ b",
+     "E : Finset ℝ",
+     "hgt : ∀ γ ∈ E, a < γ",
+     "hle : ∀ γ ∈ E, γ ≤ b",
+     "hζ : ∀ γ ∈ E, riemannZeta (1/2 + γ * I) = 0"
+    ],
+    "proves": "∑ γ ∈ E, riemannZeta.order (1/2 + γ * I) ≤ lineCount b - lineCount a",
+    "file": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lineCount_nonneg",
+    "ns": "LevinsonWindowNear",
+    "full": "LevinsonWindowNear.lineCount_nonneg",
+    "line": 104,
+    "why": "The line count is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "0 ≤ lineCount T",
+    "file": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_count_sub",
+    "ns": "LevinsonWindowNear",
+    "full": "LevinsonWindowNear.levinson_count_sub",
+    "line": 112,
+    "why": "The count, difference form. `LevinsonMultiple.levinson_count'` with `ζ(1/2 + a i) ≠ 0` added: every height its proof counts is then in `(a, b]`, so the count is in `lineCount b − lineCount a`. The proof is a copy, changed at the count of `E`.",
+    "sorry": false,
+    "needs": [
+     "hc0 : 0 < c",
+     "hc1 : c ≤ 1",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, riemannZeta (↑x + ↑a * I) + c * deriv riemannZeta (↑x + ↑a * I) ≠ 0",
+     "hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, riemannZeta (↑x + ↑b * I) + c * deriv riemannZeta (↑x + ↑b * I) ≠ 0",
+     "hfac : ∀ t ∈ Icc a b, 1 - c * (deriv Gammaℝ (1/2 + t * I) / Gammaℝ (1/2 + t * I)).re ≠ 0",
+     "hζa : riemannZeta (1/2 + a * I) ≠ 0"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (72 * Real.log b + 418) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.G_analyticOnNhd_rect",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.zeta_line_zero_iff",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_count_le_gt_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_window_diff",
+    "ns": "LevinsonWindowNear",
+    "full": "LevinsonWindowNear.levinson_window_diff",
+    "line": 457,
+    "why": "S12, the window restated, difference form. `LevinsonMultiple.levinson_window'` with the mean hypothesis `hK` asked only for `a ≤ a' ≤ a + 1`, `b − 1 ≤ b' ≤ b`, the windows its proof uses, and the zeros on the line with height in `(a, b]` on the right. The proof is a copy: the bottom height avoids the zeros of `ζ` too, and step 4 is `levinson_count_sub`.",
+    "sorry": false,
+    "needs": [
+     "hT : Real.exp 26 ≤ T",
+     "hc : c = 1 / Real.log T",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hσ₀ : σ₀ < 1 / 2",
+     "hδ : 0 < δ",
+     "hσδ : 1 / 4 ≤ σ₀ - δ",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hXa : 2 * X ≤ a",
+     "hab : a + 3 ≤ b",
+     "hbT : b ≤ T",
+     "hK1 : 1 ≤ K",
+     "hK : ∀ a' b' : ℝ, a ≤ a' → a' ≤ a + 1 → b - 1 ≤ b' → b' ≤ b → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑σ + ↑t * I) + c * deriv riemannZeta (↑σ + ↑t * I)) * LevinsonMollEdge.molli M β (↑σ + ↑t * I)‖ ^ 2 ≤ K"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.N_mono",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_abscissa",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.exists_good_height",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.factor_pos",
+     "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.mem_rect_of",
+     "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.G_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_analyticAt",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.f_sub_one_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.horizontal_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli_differentiable",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.right_terms_le",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta",
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.tailDelta_le_half",
+     "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.levinson_right",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.analyticOnNhd_rect_of_im",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.half_log_mean_le",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.tailDelta_nonneg",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "levinson_window_near",
+    "ns": "LevinsonWindowNear",
+    "full": "LevinsonWindowNear.levinson_window_near",
+    "line": 699,
+    "why": "S12, the window restated. The conclusion of `LevinsonMultiple.levinson_window'` with the mean hypothesis `hK` asked only for `a ≤ a' ≤ a + 1`, `b − 1 ≤ b' ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "hT : Real.exp 26 ≤ T",
+     "hc : c = 1 / Real.log T",
+     "hM : 1 ≤ M",
+     "hβ1 : β 1 = 1",
+     "hβ : ∀ h, ‖β h‖ ≤ B",
+     "hσ₀ : σ₀ < 1 / 2",
+     "hδ : 0 < δ",
+     "hσδ : 1 / 4 ≤ σ₀ - δ",
+     "hX : 3 ≤ X",
+     "hXMB : 32 * M * B ≤ (2 : ℝ) ^ X",
+     "hXa : 2 * X ≤ a",
+     "hab : a + 3 ≤ b",
+     "hbT : b ≤ T",
+     "hK1 : 1 ≤ K",
+     "hK : ∀ a' b' : ℝ, a ≤ a' → a' ≤ a + 1 → b - 1 ≤ b' → b' ≤ b → a' < b' → ∀ σ ∈ Icc (σ₀ - δ) σ₀, (1 / (b' - a')) * ∫ t in a'..b', ‖(riemannZeta (↑σ + ↑t * I) + c * deriv riemannZeta (↑σ + ↑t * I)) * LevinsonMollEdge.molli M β (↑σ + ↑t * I)‖ ^ 2 ≤ K"
+    ],
+    "proves": "(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ (lineCount b : ℝ)",
+    "file": "lean_stage3/Stage3/LevinsonWindowNear.lean",
+    "id": "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.molli",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.windowE",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount"
     ],
     "layer": "zeta",
     "used_by": []
@@ -69438,6 +69787,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo",
@@ -69505,6 +69855,11 @@
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.lineCount_mono",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_near",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.lineCount_nonneg",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount_le_allCount",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
@@ -69534,6 +69889,7 @@
     "used_by": [
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.distinct_line_zeros_le_lineCount",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.sum_order_le_lineCount",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
      "lean_stage3/Stage3/LineCount.lean::LineCount.rh_iff_line_count",
      "lean_stage3/Stage3/LineCount.lean::LineCount.signChanges_le_line_count"
     ]
@@ -69798,6 +70154,7 @@
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -69833,6 +70190,7 @@
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonRight.lean::LevinsonRight.countRight_mul_ge",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect_zero_free",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -69939,6 +70297,8 @@
      "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.countRight_left_eq",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.countRight_right_le",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.levinson_window",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_window_diff",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_countRight",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.rectIntegral_eq_count",
@@ -131365,11 +131725,12 @@
    "Stage3.StirlingX",
    "Stage3.Arith",
    "Stage3.Lemma3",
-   "Stage3.Operator"
+   "Stage3.Operator",
+   "Stage3.LevinsonWindowNear"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 242,
+  "lines": 243,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -131470,6 +131831,7 @@
    "lean_stage3/Stage3/LevinsonSize.lean",
    "lean_stage3/Stage3/LevinsonTurn.lean",
    "lean_stage3/Stage3/LevinsonWindow.lean",
+   "lean_stage3/Stage3/LevinsonWindowNear.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LineCount.lean",
    "lean_stage3/Stage3/Littlewood.lean",

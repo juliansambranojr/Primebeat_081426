@@ -27,9 +27,10 @@ flowchart LR
   x0(["<b>LevinsonMollEdge</b><br/>arg_term_le_of_pos"]):::ext
   x1(["<b>LevinsonMultiple</b><br/>arg_turn_segment<br/>levinson_count'"]):::ext
   x2(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>right_edge_le"]):::ext
-  x3(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
-  x4(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x5(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x4(["<b>Littlewood</b><br/>continuousAt_logDeriv<br/>support_interior<br/>two_pi_count_eq"]):::ext
+  x5(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x6(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
   n0 --> n1
   n1 --> n4
   n2 --> n4
@@ -40,16 +41,19 @@ flowchart LR
   n1 -.-> x1
   n1 -.-> x2
   n10 -.-> x1
-  n10 -.-> x5
+  n10 -.-> x3
+  n10 -.-> x6
   n3 -.-> x2
   n4 -.-> x1
+  n4 -.-> x3
   n7 -.-> x1
-  n8 -.-> x5
-  x3 -.-> n10
-  x3 -.-> n5
-  x3 -.-> n9
-  x4 -.-> n7
-  x4 -.-> n8
+  n7 -.-> x3
+  n8 -.-> x6
+  x4 -.-> n10
+  x4 -.-> n5
+  x4 -.-> n9
+  x5 -.-> n7
+  x5 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -200,10 +204,11 @@ line 183 · arrows read from text
   - [`LevinsonTurn.hasDerivAt_line_comp`](#LevinsonTurn-hasDerivAt_line_comp) — `` HasDerivAt (fun y : ℝ => f (1/2 + y * I)) (deriv f (1/2 + t * I) * I) t ``
   - [`LevinsonTurn.lift_turn_eq_integral`](#LevinsonTurn-lift_turn_eq_integral) — `` φ b - φ a = (∫ t in a..b, F' t / F t).im ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonTurn.lineF_turn_eq`](#LevinsonTurn-lineF_turn_eq) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I))… ``
+  - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonTurn-continuousOn_logDeriv_line"></a>
 ### `LevinsonTurn.continuousOn_logDeriv_line`
@@ -282,10 +287,11 @@ line 228 · arrows read from text
   - [`LevinsonLine.line_facts`](../lean_stage3/LevinsonLine.md#LevinsonLine-line_facts) (LevinsonLine) — `` ((1/2 : ℂ) + t * I) ≠ 0 ∧ ((1/2 : ℂ) + t * I) ≠ 1 ∧ 0 < ((1/2 : ℂ) + t * I).re ``
   - [`LevinsonTurn.continuousOn_logDeriv_line`](#LevinsonTurn-continuousOn_logDeriv_line) — `` ContinuousOn (fun t : ℝ => logDeriv f (1/2 + t * I)) S ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonTurn.lineF_turn_eq`](#LevinsonTurn-lineF_turn_eq) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I))… ``
+  - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
 <a name="LevinsonTurn-lineF_turn_eq"></a>
 ### `LevinsonTurn.lineF_turn_eq`
@@ -380,8 +386,9 @@ line 308 · arrows read from text
 
 **Definitions its proof touches:** [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
+  - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
 
