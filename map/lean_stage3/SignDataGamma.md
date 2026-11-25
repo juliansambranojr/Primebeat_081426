@@ -7,7 +7,7 @@ SignDataGamma — block S14 of `lean_stage3/design/stencil.md`, Turing's sign da
 12 theorems, 2 definitions, 353 lines. 
 
 **Imports:** [`HardyZ`](../lean_stage3/HardyZ.md), [`SignDataZeta`](../lean_stage3/SignDataZeta.md), [`StirlingLog`](../lean_stage3/StirlingLog.md)  
-**Imported by:** [`SignDataPt14`](../lean_stage3/SignDataPt14.md), [`SignDataPt18`](../lean_stage3/SignDataPt18.md), [`SignDataPt23`](../lean_stage3/SignDataPt23.md), [`SignDataPt29_2`](../lean_stage3/SignDataPt29_2.md), [`SignDataPt39`](../lean_stage3/SignDataPt39.md), [`SignDataPt42`](../lean_stage3/SignDataPt42.md), [`SignDataPt49`](../lean_stage3/SignDataPt49.md), [`SignDataPt55_2`](../lean_stage3/SignDataPt55_2.md), [`SignDataPt63_2`](../lean_stage3/SignDataPt63_2.md), [`SignDataPt71_2`](../lean_stage3/SignDataPt71_2.md), [`SignDataPt91_2`](../lean_stage3/SignDataPt91_2.md)
+**Imported by:** [`SignDataPt14`](../lean_stage3/SignDataPt14.md), [`SignDataPt18`](../lean_stage3/SignDataPt18.md), [`SignDataPt23`](../lean_stage3/SignDataPt23.md), [`SignDataPt29_2`](../lean_stage3/SignDataPt29_2.md), [`SignDataPt39`](../lean_stage3/SignDataPt39.md), [`SignDataPt42`](../lean_stage3/SignDataPt42.md), [`SignDataPt49`](../lean_stage3/SignDataPt49.md), [`SignDataPt55_2`](../lean_stage3/SignDataPt55_2.md), [`SignDataPt63_2`](../lean_stage3/SignDataPt63_2.md), [`SignDataPt71_2`](../lean_stage3/SignDataPt71_2.md), [`SignDataPt91_2`](../lean_stage3/SignDataPt91_2.md), [`StirlingSeriesPhase`](../lean_stage3/StirlingSeriesPhase.md)
 
 ## The picture
 
@@ -25,21 +25,23 @@ flowchart LR
   n9["<b>factor_ball</b><br/>‖(1 + zz t / ((j : ℂ) + 1)) - cx (1 + 1 / (4 * ((j : ℝ) + 1))) (…"]:::shp
   n10["<b>prod_zero_ball</b><br/>‖∏ j ∈ Finset.range 0, (1 + zz t / ((j : ℂ) + 1)) - cx 1 0‖ ≤ 0"]:::shp
   n11["<b>zz_ball</b><br/>‖zz t - cx (1 / 4) (t / 2)‖ ≤ 0"]:::shp
-  x0(["<b>StirlingLog</b><br/>exp_logG<br/>tendsto_logG"]):::ext
-  x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
-  x2(["<b>SignDataZeta</b><br/>lineS_ne_zero<br/>lineS_re"]):::ext
-  x3(["<b>SignDataBall</b><br/>re_neg_of_ball<br/>re_pos_of_ball"]):::ext
-  x4(["<b>SignDataPt18</b><br/>130 theorems"]):::ext
-  x5(["<b>SignDataPt29_2</b><br/>66 theorems"]):::ext
-  x6(["<b>SignDataPt42</b><br/>514 theorems"]):::ext
-  x7(["<b>SignDataPt49</b><br/>514 theorems"]):::ext
-  x8(["<b>SignDataPt55_2</b><br/>258 theorems"]):::ext
-  x9(["<b>SignDataPt71_2</b><br/>258 theorems"]):::ext
-  x10(["<b>SignDataPt14</b><br/>66 theorems"]):::ext
-  x11(["<b>SignDataPt23</b><br/>130 theorems"]):::ext
-  x12(["<b>SignDataPt39</b><br/>514 theorems"]):::ext
-  x13(["<b>SignDataPt63_2</b><br/>258 theorems"]):::ext
-  x14(["<b>SignDataPt91_2</b><br/>514 theorems"]):::ext
+  x0(["<b>StirlingSeriesK5</b><br/>delta5_le<br/>zz_inv"]):::ext
+  x1(["<b>StirlingSeriesPhase</b><br/>delta3_le'<br/>re_lambda_eq_stir<br/>stirSum3_im"]):::ext
+  x2(["<b>StirlingLog</b><br/>exp_logG<br/>tendsto_logG"]):::ext
+  x3(["<b>HardyZ</b><br/>xi_line_real"]):::ext
+  x4(["<b>SignDataZeta</b><br/>lineS_ne_zero<br/>lineS_re"]):::ext
+  x5(["<b>SignDataBall</b><br/>re_neg_of_ball<br/>re_pos_of_ball"]):::ext
+  x6(["<b>SignDataPt18</b><br/>130 theorems"]):::ext
+  x7(["<b>SignDataPt29_2</b><br/>66 theorems"]):::ext
+  x8(["<b>SignDataPt42</b><br/>514 theorems"]):::ext
+  x9(["<b>SignDataPt49</b><br/>514 theorems"]):::ext
+  x10(["<b>SignDataPt55_2</b><br/>258 theorems"]):::ext
+  x11(["<b>SignDataPt71_2</b><br/>258 theorems"]):::ext
+  x12(["<b>SignDataPt14</b><br/>66 theorems"]):::ext
+  x13(["<b>SignDataPt23</b><br/>130 theorems"]):::ext
+  x14(["<b>SignDataPt39</b><br/>514 theorems"]):::ext
+  x15(["<b>SignDataPt63_2</b><br/>258 theorems"]):::ext
+  x16(["<b>SignDataPt91_2</b><br/>514 theorems"]):::ext
   n0 --> n6
   n1 --> n6
   n2 --> n3
@@ -48,13 +50,15 @@ flowchart LR
   n5 --> n6
   n6 --> n7
   n6 --> n8
+  n0 -.-> x0
+  n0 -.-> x1
   n10 -.-> x10
   n10 -.-> x11
   n10 -.-> x12
   n10 -.-> x13
   n10 -.-> x14
-  n10 -.-> x4
-  n10 -.-> x5
+  n10 -.-> x15
+  n10 -.-> x16
   n10 -.-> x6
   n10 -.-> x7
   n10 -.-> x8
@@ -64,40 +68,41 @@ flowchart LR
   n11 -.-> x12
   n11 -.-> x13
   n11 -.-> x14
-  n11 -.-> x4
-  n11 -.-> x5
+  n11 -.-> x15
+  n11 -.-> x16
   n11 -.-> x6
   n11 -.-> x7
   n11 -.-> x8
   n11 -.-> x9
-  n7 -.-> x4
-  n7 -.-> x5
+  n5 -.-> x1
+  n7 -.-> x10
+  n7 -.-> x11
   n7 -.-> x6
   n7 -.-> x7
   n7 -.-> x8
   n7 -.-> x9
-  n8 -.-> x10
-  n8 -.-> x11
   n8 -.-> x12
   n8 -.-> x13
   n8 -.-> x14
+  n8 -.-> x15
+  n8 -.-> x16
   n9 -.-> x10
   n9 -.-> x11
   n9 -.-> x12
   n9 -.-> x13
   n9 -.-> x14
-  n9 -.-> x4
-  n9 -.-> x5
+  n9 -.-> x15
+  n9 -.-> x16
   n9 -.-> x6
   n9 -.-> x7
   n9 -.-> x8
   n9 -.-> x9
-  x0 -.-> n3
-  x0 -.-> n6
-  x1 -.-> n6
+  x2 -.-> n3
   x2 -.-> n6
-  x3 -.-> n7
-  x3 -.-> n8
+  x3 -.-> n6
+  x4 -.-> n6
+  x5 -.-> n7
+  x5 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -120,7 +125,7 @@ def · line 41
 `z = s/2 = 1/4 + it/2` on the line.
 
 - **Is:** `` zz (t : ℝ) : ℂ := 1 / 4 + ((t / 2 : ℝ) : ℂ) * I ``
-- **Used by 3219:** [`SignData.factor_ball`](#SignData-factor_ball), [`SignData.gammaDir`](#SignData-gammaDir), [`SignData.lineS_div_two`](#SignData-lineS_div_two), [`SignData.norm_zz_le`](#SignData-norm_zz_le), [`SignData.prod_zero_ball`](#SignData-prod_zero_ball), [`SignData.re_lambda_eq`](#SignData-re_lambda_eq), [`SignData.zz_ball`](#SignData-zz_ball), [`SignData.zz_re`](#SignData-zz_re), [`SignData.p14_P1`](../lean_stage3/SignDataPt14.md#SignData-p14_P1), [`SignData.p14_P10`](../lean_stage3/SignDataPt14.md#SignData-p14_P10), [`SignData.p14_P11`](../lean_stage3/SignDataPt14.md#SignData-p14_P11), [`SignData.p14_P12`](../lean_stage3/SignDataPt14.md#SignData-p14_P12), [`SignData.p14_P13`](../lean_stage3/SignDataPt14.md#SignData-p14_P13), [`SignData.p14_P14`](../lean_stage3/SignDataPt14.md#SignData-p14_P14), [`SignData.p14_P15`](../lean_stage3/SignDataPt14.md#SignData-p14_P15), [`SignData.p14_P16`](../lean_stage3/SignDataPt14.md#SignData-p14_P16), [`SignData.p14_P17`](../lean_stage3/SignDataPt14.md#SignData-p14_P17), [`SignData.p14_P18`](../lean_stage3/SignDataPt14.md#SignData-p14_P18), [`SignData.p14_P19`](../lean_stage3/SignDataPt14.md#SignData-p14_P19), [`SignData.p14_P2`](../lean_stage3/SignDataPt14.md#SignData-p14_P2), [`SignData.p14_P20`](../lean_stage3/SignDataPt14.md#SignData-p14_P20), [`SignData.p14_P21`](../lean_stage3/SignDataPt14.md#SignData-p14_P21), [`SignData.p14_P22`](../lean_stage3/SignDataPt14.md#SignData-p14_P22), [`SignData.p14_P23`](../lean_stage3/SignDataPt14.md#SignData-p14_P23), [`SignData.p14_P24`](../lean_stage3/SignDataPt14.md#SignData-p14_P24), [`SignData.p14_P25`](../lean_stage3/SignDataPt14.md#SignData-p14_P25), [`SignData.p14_P26`](../lean_stage3/SignDataPt14.md#SignData-p14_P26), [`SignData.p14_P27`](../lean_stage3/SignDataPt14.md#SignData-p14_P27), [`SignData.p14_P28`](../lean_stage3/SignDataPt14.md#SignData-p14_P28), [`SignData.p14_P29`](../lean_stage3/SignDataPt14.md#SignData-p14_P29), [`SignData.p14_P3`](../lean_stage3/SignDataPt14.md#SignData-p14_P3), [`SignData.p14_P30`](../lean_stage3/SignDataPt14.md#SignData-p14_P30), [`SignData.p14_P31`](../lean_stage3/SignDataPt14.md#SignData-p14_P31), [`SignData.p14_P32`](../lean_stage3/SignDataPt14.md#SignData-p14_P32), [`SignData.p14_P33`](../lean_stage3/SignDataPt14.md#SignData-p14_P33), [`SignData.p14_P34`](../lean_stage3/SignDataPt14.md#SignData-p14_P34), [`SignData.p14_P35`](../lean_stage3/SignDataPt14.md#SignData-p14_P35), [`SignData.p14_P36`](../lean_stage3/SignDataPt14.md#SignData-p14_P36), [`SignData.p14_P37`](../lean_stage3/SignDataPt14.md#SignData-p14_P37), [`SignData.p14_P38`](../lean_stage3/SignDataPt14.md#SignData-p14_P38), and 3179 more (full list in `map/lean_map.json`)
+- **Used by 3236:** [`SignData.factor_ball`](#SignData-factor_ball), [`SignData.gammaDir`](#SignData-gammaDir), [`SignData.lineS_div_two`](#SignData-lineS_div_two), [`SignData.norm_zz_le`](#SignData-norm_zz_le), [`SignData.prod_zero_ball`](#SignData-prod_zero_ball), [`SignData.re_lambda_eq`](#SignData-re_lambda_eq), [`SignData.zz_ball`](#SignData-zz_ball), [`SignData.zz_re`](#SignData-zz_re), [`SignData.p14_P1`](../lean_stage3/SignDataPt14.md#SignData-p14_P1), [`SignData.p14_P10`](../lean_stage3/SignDataPt14.md#SignData-p14_P10), [`SignData.p14_P11`](../lean_stage3/SignDataPt14.md#SignData-p14_P11), [`SignData.p14_P12`](../lean_stage3/SignDataPt14.md#SignData-p14_P12), [`SignData.p14_P13`](../lean_stage3/SignDataPt14.md#SignData-p14_P13), [`SignData.p14_P14`](../lean_stage3/SignDataPt14.md#SignData-p14_P14), [`SignData.p14_P15`](../lean_stage3/SignDataPt14.md#SignData-p14_P15), [`SignData.p14_P16`](../lean_stage3/SignDataPt14.md#SignData-p14_P16), [`SignData.p14_P17`](../lean_stage3/SignDataPt14.md#SignData-p14_P17), [`SignData.p14_P18`](../lean_stage3/SignDataPt14.md#SignData-p14_P18), [`SignData.p14_P19`](../lean_stage3/SignDataPt14.md#SignData-p14_P19), [`SignData.p14_P2`](../lean_stage3/SignDataPt14.md#SignData-p14_P2), [`SignData.p14_P20`](../lean_stage3/SignDataPt14.md#SignData-p14_P20), [`SignData.p14_P21`](../lean_stage3/SignDataPt14.md#SignData-p14_P21), [`SignData.p14_P22`](../lean_stage3/SignDataPt14.md#SignData-p14_P22), [`SignData.p14_P23`](../lean_stage3/SignDataPt14.md#SignData-p14_P23), [`SignData.p14_P24`](../lean_stage3/SignDataPt14.md#SignData-p14_P24), [`SignData.p14_P25`](../lean_stage3/SignDataPt14.md#SignData-p14_P25), [`SignData.p14_P26`](../lean_stage3/SignDataPt14.md#SignData-p14_P26), [`SignData.p14_P27`](../lean_stage3/SignDataPt14.md#SignData-p14_P27), [`SignData.p14_P28`](../lean_stage3/SignDataPt14.md#SignData-p14_P28), [`SignData.p14_P29`](../lean_stage3/SignDataPt14.md#SignData-p14_P29), [`SignData.p14_P3`](../lean_stage3/SignDataPt14.md#SignData-p14_P3), [`SignData.p14_P30`](../lean_stage3/SignDataPt14.md#SignData-p14_P30), [`SignData.p14_P31`](../lean_stage3/SignDataPt14.md#SignData-p14_P31), [`SignData.p14_P32`](../lean_stage3/SignDataPt14.md#SignData-p14_P32), [`SignData.p14_P33`](../lean_stage3/SignDataPt14.md#SignData-p14_P33), [`SignData.p14_P34`](../lean_stage3/SignDataPt14.md#SignData-p14_P34), [`SignData.p14_P35`](../lean_stage3/SignDataPt14.md#SignData-p14_P35), [`SignData.p14_P36`](../lean_stage3/SignDataPt14.md#SignData-p14_P36), [`SignData.p14_P37`](../lean_stage3/SignDataPt14.md#SignData-p14_P37), [`SignData.p14_P38`](../lean_stage3/SignDataPt14.md#SignData-p14_P38), and 3196 more (full list in `map/lean_map.json`)
 
 <a name="SignData-gammaDir"></a>
 ### `SignData.gammaDir`
@@ -156,9 +161,14 @@ line 48 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.zz`](#SignData-zz)
 
-**Feeds** (1 that use it)
+**Feeds** (6 that use it)
 
   - [`SignData.re_lambda_eq`](#SignData-re_lambda_eq) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (gammaDir t n * riemannZeta (lineS t)).re ``
+  - [`StirlingSeries.delta5_le`](../lean_stage3/StirlingSeriesK5.md#StirlingSeries-delta5_le) (StirlingSeriesK5) — `` ‖Stirling.logG (zz t) - stirMain 5 (zz t) - ((Real.log (2 * Real.pi) / 2 : ℝ) : ℂ)‖ ≤ 10 / |t| ^ 7 ``
+  - [`StirlingSeries.zz_inv`](../lean_stage3/StirlingSeriesK5.md#StirlingSeries-zz_inv) (StirlingSeriesK5) — `` (zz t)⁻¹ = cx ((1 / 4) / ((1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2)) (-(t / 2) / ((1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2)) ``
+  - [`StirlingSeries.delta3_le'`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-delta3_le-) (StirlingSeriesPhase) — `` ‖Stirling.logG (zz t) - stirMain 3 (zz t) - ((Real.log (2 * Real.pi) / 2 : ℝ) : ℂ)‖ ≤ 2 / 5 / |t| ^ 3 ``
+  - [`StirlingSeries.re_lambda_eq_stir`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-re_lambda_eq_stir) (StirlingSeriesPhase) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (stirDir K t * riemannZeta (lineS t)).re ``
+  - [`StirlingSeries.stirSum3_im`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirSum3_im) (StirlingSeriesPhase) — `` (stirSum 3 (zz t)).im = sig3 t ``
 
 <a name="SignData-norm_zz_le"></a>
 ### `SignData.norm_zz_le`
@@ -291,9 +301,10 @@ lineS t / 2 = zz t
 
 **Definitions its proof touches:** [`SignData.zz`](#SignData-zz), [`SignData.lineS`](../lean_stage3/SignDataZeta.md#SignData-lineS)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`SignData.re_lambda_eq`](#SignData-re_lambda_eq) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (gammaDir t n * riemannZeta (lineS t)).re ``
+  - [`StirlingSeries.re_lambda_eq_stir`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-re_lambda_eq_stir) (StirlingSeriesPhase) — `` ∃ c : ℝ, 0 < c ∧ (completedRiemannZeta (lineS t)).re = c * (stirDir K t * riemannZeta (lineS t)).re ``
 
 <a name="SignData-re_lambda_eq"></a>
 ### `SignData.re_lambda_eq`

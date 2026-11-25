@@ -41,8 +41,13 @@ flowchart LR
   x9(["<b>SignDataPt63_2</b><br/>292 theorems"]):::ext
   x10(["<b>SignDataPt71_2</b><br/>286 theorems"]):::ext
   x11(["<b>SignDataPt91_2</b><br/>548 theorems"]):::ext
-  x12(["<b>SignDataGamma</b><br/>re_lambda_neg<br/>re_lambda_pos"]):::ext
-  x13(["<b>SignDataLog</b><br/>21 theorems"]):::ext
+  x12(["<b>StirlingSeriesPt100</b><br/>88 theorems"]):::ext
+  x13(["<b>StirlingSeriesPt49</b><br/>58 theorems"]):::ext
+  x14(["<b>SignDataGamma</b><br/>re_lambda_neg<br/>re_lambda_pos"]):::ext
+  x15(["<b>StirlingSeriesPhase</b><br/>re_lambda_neg_stir3<br/>re_lambda_pos_stir3<br/>stirPhase3_ball"]):::ext
+  x16(["<b>StirlingSeriesK5</b><br/>im_stirMain_ball"]):::ext
+  x17(["<b>SignDataLog</b><br/>21 theorems"]):::ext
+  x18(["<b>StirlingSeriesLog</b><br/>10 theorems"]):::ext
   n13 --> n29
   n16 --> n18
   n17 --> n18
@@ -62,11 +67,15 @@ flowchart LR
   n22 --> n26
   n0 -.-> x0
   n1 -.-> x0
-  n10 -.-> x12
-  n11 -.-> x12
+  n10 -.-> x14
+  n10 -.-> x15
+  n11 -.-> x14
+  n11 -.-> x15
   n14 -.-> x1
   n14 -.-> x10
   n14 -.-> x11
+  n14 -.-> x12
+  n14 -.-> x13
   n14 -.-> x2
   n14 -.-> x3
   n14 -.-> x4
@@ -86,9 +95,13 @@ flowchart LR
   n15 -.-> x7
   n15 -.-> x8
   n15 -.-> x9
+  n20 -.-> x15
+  n20 -.-> x16
   n23 -.-> x1
   n23 -.-> x10
   n23 -.-> x11
+  n23 -.-> x12
+  n23 -.-> x13
   n23 -.-> x2
   n23 -.-> x3
   n23 -.-> x5
@@ -99,6 +112,8 @@ flowchart LR
   n24 -.-> x1
   n24 -.-> x10
   n24 -.-> x11
+  n24 -.-> x12
+  n24 -.-> x13
   n24 -.-> x2
   n24 -.-> x4
   n24 -.-> x5
@@ -109,6 +124,8 @@ flowchart LR
   n25 -.-> x1
   n25 -.-> x10
   n25 -.-> x11
+  n25 -.-> x12
+  n25 -.-> x13
   n25 -.-> x2
   n25 -.-> x3
   n25 -.-> x4
@@ -120,6 +137,8 @@ flowchart LR
   n26 -.-> x1
   n26 -.-> x10
   n26 -.-> x11
+  n26 -.-> x12
+  n26 -.-> x13
   n26 -.-> x2
   n26 -.-> x3
   n26 -.-> x4
@@ -127,11 +146,14 @@ flowchart LR
   n26 -.-> x6
   n26 -.-> x7
   n26 -.-> x8
-  n28 -.-> x13
-  n29 -.-> x13
+  n28 -.-> x17
+  n28 -.-> x18
+  n29 -.-> x17
   n5 -.-> x1
   n5 -.-> x10
   n5 -.-> x11
+  n5 -.-> x12
+  n5 -.-> x13
   n5 -.-> x2
   n5 -.-> x3
   n5 -.-> x4
@@ -143,6 +165,8 @@ flowchart LR
   n6 -.-> x1
   n6 -.-> x10
   n6 -.-> x11
+  n6 -.-> x12
+  n6 -.-> x13
   n6 -.-> x2
   n6 -.-> x3
   n6 -.-> x4
@@ -165,6 +189,8 @@ flowchart LR
   n8 -.-> x1
   n8 -.-> x10
   n8 -.-> x11
+  n8 -.-> x12
+  n8 -.-> x13
   n8 -.-> x2
   n8 -.-> x3
   n8 -.-> x4

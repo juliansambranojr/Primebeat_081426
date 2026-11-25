@@ -57,8 +57,13 @@ flowchart LR
   x9(["<b>SignDataPt63_2</b><br/>292 theorems"]):::ext
   x10(["<b>SignDataPt71_2</b><br/>286 theorems"]):::ext
   x11(["<b>SignDataPt91_2</b><br/>548 theorems"]):::ext
-  x12(["<b>SignDataGamma</b><br/>re_lambda_neg<br/>re_lambda_pos"]):::ext
-  x13(["<b>SignDataLog</b><br/>21 theorems"]):::ext
+  x12(["<b>StirlingSeriesPt100</b><br/>88 theorems"]):::ext
+  x13(["<b>StirlingSeriesPt49</b><br/>58 theorems"]):::ext
+  x14(["<b>SignDataGamma</b><br/>re_lambda_neg<br/>re_lambda_pos"]):::ext
+  x15(["<b>StirlingSeriesPhase</b><br/>re_lambda_neg_stir3<br/>re_lambda_pos_stir3<br/>stirPhase3_ball"]):::ext
+  x16(["<b>StirlingSeriesK5</b><br/>im_stirMain_ball"]):::ext
+  x17(["<b>SignDataLog</b><br/>21 theorems"]):::ext
+  x18(["<b>StirlingSeriesLog</b><br/>10 theorems"]):::ext
   n13 --> n29
   n16 --> n18
   n17 --> n18
@@ -78,11 +83,15 @@ flowchart LR
   n22 --> n26
   n0 -.-> x0
   n1 -.-> x0
-  n10 -.-> x12
-  n11 -.-> x12
+  n10 -.-> x14
+  n10 -.-> x15
+  n11 -.-> x14
+  n11 -.-> x15
   n14 -.-> x1
   n14 -.-> x10
   n14 -.-> x11
+  n14 -.-> x12
+  n14 -.-> x13
   n14 -.-> x2
   n14 -.-> x3
   n14 -.-> x4
@@ -102,9 +111,13 @@ flowchart LR
   n15 -.-> x7
   n15 -.-> x8
   n15 -.-> x9
+  n20 -.-> x15
+  n20 -.-> x16
   n23 -.-> x1
   n23 -.-> x10
   n23 -.-> x11
+  n23 -.-> x12
+  n23 -.-> x13
   n23 -.-> x2
   n23 -.-> x3
   n23 -.-> x5
@@ -115,6 +128,8 @@ flowchart LR
   n24 -.-> x1
   n24 -.-> x10
   n24 -.-> x11
+  n24 -.-> x12
+  n24 -.-> x13
   n24 -.-> x2
   n24 -.-> x4
   n24 -.-> x5
@@ -125,6 +140,8 @@ flowchart LR
   n25 -.-> x1
   n25 -.-> x10
   n25 -.-> x11
+  n25 -.-> x12
+  n25 -.-> x13
   n25 -.-> x2
   n25 -.-> x3
   n25 -.-> x4
@@ -136,6 +153,8 @@ flowchart LR
   n26 -.-> x1
   n26 -.-> x10
   n26 -.-> x11
+  n26 -.-> x12
+  n26 -.-> x13
   n26 -.-> x2
   n26 -.-> x3
   n26 -.-> x4
@@ -143,11 +162,14 @@ flowchart LR
   n26 -.-> x6
   n26 -.-> x7
   n26 -.-> x8
-  n28 -.-> x13
-  n29 -.-> x13
+  n28 -.-> x17
+  n28 -.-> x18
+  n29 -.-> x17
   n5 -.-> x1
   n5 -.-> x10
   n5 -.-> x11
+  n5 -.-> x12
+  n5 -.-> x13
   n5 -.-> x2
   n5 -.-> x3
   n5 -.-> x4
@@ -159,6 +181,8 @@ flowchart LR
   n6 -.-> x1
   n6 -.-> x10
   n6 -.-> x11
+  n6 -.-> x12
+  n6 -.-> x13
   n6 -.-> x2
   n6 -.-> x3
   n6 -.-> x4
@@ -181,6 +205,8 @@ flowchart LR
   n8 -.-> x1
   n8 -.-> x10
   n8 -.-> x11
+  n8 -.-> x12
+  n8 -.-> x13
   n8 -.-> x2
   n8 -.-> x3
   n8 -.-> x4
@@ -206,8 +232,10 @@ flowchart LR
   n0["<b>log_pi_ball</b><br/>|Real.log Real.pi - c| ≤ R"]:::shp
   n1["<b>inv_sqrt_ball</b><br/>|(Real.sqrt m)⁻¹ - c| ≤ R"]:::shp
   x0(["<b>SignDataLog</b><br/>19 theorems"]):::ext
+  x1(["<b>StirlingSeriesLog</b><br/>10 theorems"]):::ext
   n0 -.-> x0
   n1 -.-> x0
+  n1 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -230,7 +258,7 @@ def · line 34
 The complex number with real part `a` and imaginary part `b`.
 
 - **Is:** `` cx (a b : ℝ) : ℂ := ⟨a, b⟩ ``
-- **Used by 3599:** [`SignData.ball_add`](#SignData-ball_add), [`SignData.ball_conj`](#SignData-ball_conj), [`SignData.ball_exact`](#SignData-ball_exact), [`SignData.ball_mono`](#SignData-ball_mono), [`SignData.ball_mul`](#SignData-ball_mul), [`SignData.ball_ofReal`](#SignData-ball_ofReal), [`SignData.cx_im`](#SignData-cx_im), [`SignData.cx_mul`](#SignData-cx_mul), [`SignData.cx_re`](#SignData-cx_re), [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.norm_cx_le`](#SignData-norm_cx_le), [`SignData.re_neg_of_ball`](#SignData-re_neg_of_ball), [`SignData.re_pos_of_ball`](#SignData-re_pos_of_ball), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.factor_ball`](../lean_stage3/SignDataGamma.md#SignData-factor_ball), [`SignData.prod_zero_ball`](../lean_stage3/SignDataGamma.md#SignData-prod_zero_ball), [`SignData.re_lambda_neg`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_neg), [`SignData.re_lambda_pos`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_pos), [`SignData.zz_ball`](../lean_stage3/SignDataGamma.md#SignData-zz_ball), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_G`](../lean_stage3/SignDataPt14.md#SignData-p14_G), [`SignData.p14_NB`](../lean_stage3/SignDataPt14.md#SignData-p14_NB), [`SignData.p14_P1`](../lean_stage3/SignDataPt14.md#SignData-p14_P1), [`SignData.p14_P10`](../lean_stage3/SignDataPt14.md#SignData-p14_P10), [`SignData.p14_P11`](../lean_stage3/SignDataPt14.md#SignData-p14_P11), [`SignData.p14_P12`](../lean_stage3/SignDataPt14.md#SignData-p14_P12), [`SignData.p14_P13`](../lean_stage3/SignDataPt14.md#SignData-p14_P13), [`SignData.p14_P14`](../lean_stage3/SignDataPt14.md#SignData-p14_P14), [`SignData.p14_P15`](../lean_stage3/SignDataPt14.md#SignData-p14_P15), and 3559 more (full list in `map/lean_map.json`)
+- **Used by 3756:** [`SignData.ball_add`](#SignData-ball_add), [`SignData.ball_conj`](#SignData-ball_conj), [`SignData.ball_exact`](#SignData-ball_exact), [`SignData.ball_mono`](#SignData-ball_mono), [`SignData.ball_mul`](#SignData-ball_mul), [`SignData.ball_ofReal`](#SignData-ball_ofReal), [`SignData.cx_im`](#SignData-cx_im), [`SignData.cx_mul`](#SignData-cx_mul), [`SignData.cx_re`](#SignData-cx_re), [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.norm_cx_le`](#SignData-norm_cx_le), [`SignData.re_neg_of_ball`](#SignData-re_neg_of_ball), [`SignData.re_pos_of_ball`](#SignData-re_pos_of_ball), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.factor_ball`](../lean_stage3/SignDataGamma.md#SignData-factor_ball), [`SignData.prod_zero_ball`](../lean_stage3/SignDataGamma.md#SignData-prod_zero_ball), [`SignData.re_lambda_neg`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_neg), [`SignData.re_lambda_pos`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_pos), [`SignData.zz_ball`](../lean_stage3/SignDataGamma.md#SignData-zz_ball), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_G`](../lean_stage3/SignDataPt14.md#SignData-p14_G), [`SignData.p14_NB`](../lean_stage3/SignDataPt14.md#SignData-p14_NB), [`SignData.p14_P1`](../lean_stage3/SignDataPt14.md#SignData-p14_P1), [`SignData.p14_P10`](../lean_stage3/SignDataPt14.md#SignData-p14_P10), [`SignData.p14_P11`](../lean_stage3/SignDataPt14.md#SignData-p14_P11), [`SignData.p14_P12`](../lean_stage3/SignDataPt14.md#SignData-p14_P12), [`SignData.p14_P13`](../lean_stage3/SignDataPt14.md#SignData-p14_P13), [`SignData.p14_P14`](../lean_stage3/SignDataPt14.md#SignData-p14_P14), [`SignData.p14_P15`](../lean_stage3/SignDataPt14.md#SignData-p14_P15), and 3716 more (full list in `map/lean_map.json`)
 
 <a name="SignData-cosP"></a>
 ### `SignData.cosP`
@@ -240,7 +268,7 @@ def · line 143
 The Taylor polynomial of `cos` of degree `< 2K`.
 
 - **Is:** `` cosP (K : ℕ) (y : ℝ) : ℝ := ∑ i ∈ Finset.range K, (-1) ^ i * y ^ (2 * i) / ((2 * i).factorial : ℝ) ``
-- **Used by 115:** [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_phase`](../lean_stage3/SignDataPt14.md#SignData-p14_phase), [`SignData.p18_E2`](../lean_stage3/SignDataPt18.md#SignData-p18_E2), [`SignData.p18_E3`](../lean_stage3/SignDataPt18.md#SignData-p18_E3), [`SignData.p18_E4`](../lean_stage3/SignDataPt18.md#SignData-p18_E4), [`SignData.p18_E5`](../lean_stage3/SignDataPt18.md#SignData-p18_E5), [`SignData.p18_phase`](../lean_stage3/SignDataPt18.md#SignData-p18_phase), [`SignData.p23_E2`](../lean_stage3/SignDataPt23.md#SignData-p23_E2), [`SignData.p23_E3`](../lean_stage3/SignDataPt23.md#SignData-p23_E3), [`SignData.p23_E4`](../lean_stage3/SignDataPt23.md#SignData-p23_E4), [`SignData.p23_E5`](../lean_stage3/SignDataPt23.md#SignData-p23_E5), [`SignData.p23_E6`](../lean_stage3/SignDataPt23.md#SignData-p23_E6), [`SignData.p23_E7`](../lean_stage3/SignDataPt23.md#SignData-p23_E7), [`SignData.p23_phase`](../lean_stage3/SignDataPt23.md#SignData-p23_phase), [`SignData.p29_2_E2`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E2), [`SignData.p29_2_E3`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E3), [`SignData.p29_2_E4`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E4), [`SignData.p29_2_E5`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E5), [`SignData.p29_2_E6`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E6), [`SignData.p29_2_phase`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_phase), [`SignData.p39_E10`](../lean_stage3/SignDataPt39.md#SignData-p39_E10), [`SignData.p39_E11`](../lean_stage3/SignDataPt39.md#SignData-p39_E11), [`SignData.p39_E2`](../lean_stage3/SignDataPt39.md#SignData-p39_E2), [`SignData.p39_E3`](../lean_stage3/SignDataPt39.md#SignData-p39_E3), [`SignData.p39_E4`](../lean_stage3/SignDataPt39.md#SignData-p39_E4), [`SignData.p39_E5`](../lean_stage3/SignDataPt39.md#SignData-p39_E5), [`SignData.p39_E6`](../lean_stage3/SignDataPt39.md#SignData-p39_E6), and 75 more (full list in `map/lean_map.json`)
+- **Used by 163:** [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_phase`](../lean_stage3/SignDataPt14.md#SignData-p14_phase), [`SignData.p18_E2`](../lean_stage3/SignDataPt18.md#SignData-p18_E2), [`SignData.p18_E3`](../lean_stage3/SignDataPt18.md#SignData-p18_E3), [`SignData.p18_E4`](../lean_stage3/SignDataPt18.md#SignData-p18_E4), [`SignData.p18_E5`](../lean_stage3/SignDataPt18.md#SignData-p18_E5), [`SignData.p18_phase`](../lean_stage3/SignDataPt18.md#SignData-p18_phase), [`SignData.p23_E2`](../lean_stage3/SignDataPt23.md#SignData-p23_E2), [`SignData.p23_E3`](../lean_stage3/SignDataPt23.md#SignData-p23_E3), [`SignData.p23_E4`](../lean_stage3/SignDataPt23.md#SignData-p23_E4), [`SignData.p23_E5`](../lean_stage3/SignDataPt23.md#SignData-p23_E5), [`SignData.p23_E6`](../lean_stage3/SignDataPt23.md#SignData-p23_E6), [`SignData.p23_E7`](../lean_stage3/SignDataPt23.md#SignData-p23_E7), [`SignData.p23_phase`](../lean_stage3/SignDataPt23.md#SignData-p23_phase), [`SignData.p29_2_E2`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E2), [`SignData.p29_2_E3`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E3), [`SignData.p29_2_E4`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E4), [`SignData.p29_2_E5`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E5), [`SignData.p29_2_E6`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E6), [`SignData.p29_2_phase`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_phase), [`SignData.p39_E10`](../lean_stage3/SignDataPt39.md#SignData-p39_E10), [`SignData.p39_E11`](../lean_stage3/SignDataPt39.md#SignData-p39_E11), [`SignData.p39_E2`](../lean_stage3/SignDataPt39.md#SignData-p39_E2), [`SignData.p39_E3`](../lean_stage3/SignDataPt39.md#SignData-p39_E3), [`SignData.p39_E4`](../lean_stage3/SignDataPt39.md#SignData-p39_E4), [`SignData.p39_E5`](../lean_stage3/SignDataPt39.md#SignData-p39_E5), [`SignData.p39_E6`](../lean_stage3/SignDataPt39.md#SignData-p39_E6), and 123 more (full list in `map/lean_map.json`)
 
 <a name="SignData-sinP"></a>
 ### `SignData.sinP`
@@ -250,7 +278,7 @@ def · line 146
 The Taylor polynomial of `sin` of degree `< 2K`.
 
 - **Is:** `` sinP (K : ℕ) (y : ℝ) : ℝ := ∑ i ∈ Finset.range K, (-1) ^ i * y ^ (2 * i + 1) / ((2 * i + 1).factorial : ℝ) ``
-- **Used by 115:** [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_phase`](../lean_stage3/SignDataPt14.md#SignData-p14_phase), [`SignData.p18_E2`](../lean_stage3/SignDataPt18.md#SignData-p18_E2), [`SignData.p18_E3`](../lean_stage3/SignDataPt18.md#SignData-p18_E3), [`SignData.p18_E4`](../lean_stage3/SignDataPt18.md#SignData-p18_E4), [`SignData.p18_E5`](../lean_stage3/SignDataPt18.md#SignData-p18_E5), [`SignData.p18_phase`](../lean_stage3/SignDataPt18.md#SignData-p18_phase), [`SignData.p23_E2`](../lean_stage3/SignDataPt23.md#SignData-p23_E2), [`SignData.p23_E3`](../lean_stage3/SignDataPt23.md#SignData-p23_E3), [`SignData.p23_E4`](../lean_stage3/SignDataPt23.md#SignData-p23_E4), [`SignData.p23_E5`](../lean_stage3/SignDataPt23.md#SignData-p23_E5), [`SignData.p23_E6`](../lean_stage3/SignDataPt23.md#SignData-p23_E6), [`SignData.p23_E7`](../lean_stage3/SignDataPt23.md#SignData-p23_E7), [`SignData.p23_phase`](../lean_stage3/SignDataPt23.md#SignData-p23_phase), [`SignData.p29_2_E2`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E2), [`SignData.p29_2_E3`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E3), [`SignData.p29_2_E4`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E4), [`SignData.p29_2_E5`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E5), [`SignData.p29_2_E6`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E6), [`SignData.p29_2_phase`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_phase), [`SignData.p39_E10`](../lean_stage3/SignDataPt39.md#SignData-p39_E10), [`SignData.p39_E11`](../lean_stage3/SignDataPt39.md#SignData-p39_E11), [`SignData.p39_E2`](../lean_stage3/SignDataPt39.md#SignData-p39_E2), [`SignData.p39_E3`](../lean_stage3/SignDataPt39.md#SignData-p39_E3), [`SignData.p39_E4`](../lean_stage3/SignDataPt39.md#SignData-p39_E4), [`SignData.p39_E5`](../lean_stage3/SignDataPt39.md#SignData-p39_E5), [`SignData.p39_E6`](../lean_stage3/SignDataPt39.md#SignData-p39_E6), and 75 more (full list in `map/lean_map.json`)
+- **Used by 163:** [`SignData.exp_ball0`](#SignData-exp_ball0), [`SignData.exp_ball1`](#SignData-exp_ball1), [`SignData.exp_ball2`](#SignData-exp_ball2), [`SignData.exp_ball3`](#SignData-exp_ball3), [`SignData.exp_ball_core`](#SignData-exp_ball_core), [`SignData.exp_ball_red`](#SignData-exp_ball_red), [`SignData.taylor_eq`](#SignData-taylor_eq), [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2), [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3), [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4), [`SignData.p14_E5`](../lean_stage3/SignDataPt14.md#SignData-p14_E5), [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6), [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7), [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8), [`SignData.p14_phase`](../lean_stage3/SignDataPt14.md#SignData-p14_phase), [`SignData.p18_E2`](../lean_stage3/SignDataPt18.md#SignData-p18_E2), [`SignData.p18_E3`](../lean_stage3/SignDataPt18.md#SignData-p18_E3), [`SignData.p18_E4`](../lean_stage3/SignDataPt18.md#SignData-p18_E4), [`SignData.p18_E5`](../lean_stage3/SignDataPt18.md#SignData-p18_E5), [`SignData.p18_phase`](../lean_stage3/SignDataPt18.md#SignData-p18_phase), [`SignData.p23_E2`](../lean_stage3/SignDataPt23.md#SignData-p23_E2), [`SignData.p23_E3`](../lean_stage3/SignDataPt23.md#SignData-p23_E3), [`SignData.p23_E4`](../lean_stage3/SignDataPt23.md#SignData-p23_E4), [`SignData.p23_E5`](../lean_stage3/SignDataPt23.md#SignData-p23_E5), [`SignData.p23_E6`](../lean_stage3/SignDataPt23.md#SignData-p23_E6), [`SignData.p23_E7`](../lean_stage3/SignDataPt23.md#SignData-p23_E7), [`SignData.p23_phase`](../lean_stage3/SignDataPt23.md#SignData-p23_phase), [`SignData.p29_2_E2`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E2), [`SignData.p29_2_E3`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E3), [`SignData.p29_2_E4`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E4), [`SignData.p29_2_E5`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E5), [`SignData.p29_2_E6`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_E6), [`SignData.p29_2_phase`](../lean_stage3/SignDataPt29_2.md#SignData-p29_2_phase), [`SignData.p39_E10`](../lean_stage3/SignDataPt39.md#SignData-p39_E10), [`SignData.p39_E11`](../lean_stage3/SignDataPt39.md#SignData-p39_E11), [`SignData.p39_E2`](../lean_stage3/SignDataPt39.md#SignData-p39_E2), [`SignData.p39_E3`](../lean_stage3/SignDataPt39.md#SignData-p39_E3), [`SignData.p39_E4`](../lean_stage3/SignDataPt39.md#SignData-p39_E4), [`SignData.p39_E5`](../lean_stage3/SignDataPt39.md#SignData-p39_E5), [`SignData.p39_E6`](../lean_stage3/SignDataPt39.md#SignData-p39_E6), and 123 more (full list in `map/lean_map.json`)
 
 ## Theorems
 
@@ -404,7 +432,7 @@ line 48 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cx`](#SignData-cx)
 
-**Feeds** (108 that use it)
+**Feeds** (156 that use it)
 
   - [`SignData.p14_S2`](../lean_stage3/SignDataPt14.md#SignData-p14_S2) (SignDataPt14) — `` ‖∑ m ∈ Finset.Icc 1 (1 + 1), ((m : ℕ) : ℂ) ^ (-lineS (14 : ℝ)) - cx (0.320291161662014779228085203864) (0.194925357727584208072744154227)‖ ≤ (0.000000… ``
   - [`SignData.p14_S3`](../lean_stage3/SignDataPt14.md#SignData-p14_S3) (SignDataPt14) — `` ‖∑ m ∈ Finset.Icc 1 (2 + 1), ((m : ℕ) : ℂ) ^ (-lineS (14 : ℝ)) - cx (-0.226392846672863201165566252431) (0.009264569287363486823025564359)‖ ≤ (0.00000… ``
@@ -466,7 +494,7 @@ line 48 · arrows read from text
   - [`SignData.p49_S16`](../lean_stage3/SignDataPt49.md#SignData-p49_S16) (SignDataPt49) — `` ‖∑ m ∈ Finset.Icc 1 (15 + 1), ((m : ℕ) : ℂ) ^ (-lineS (49 : ℝ)) - cx (0.574185481722156560469417001442) (-0.121658695489253593666234028538)‖ ≤ (0.0000… ``
   - [`SignData.p49_S17`](../lean_stage3/SignDataPt49.md#SignData-p49_S17) (SignDataPt49) — `` ‖∑ m ∈ Finset.Icc 1 (16 + 1), ((m : ℕ) : ℂ) ^ (-lineS (49 : ℝ)) - cx (0.77471727737890157818674972974) (-0.258079105774687664159197218624)‖ ≤ (0.00000… ``
   - [`SignData.p49_S18`](../lean_stage3/SignDataPt49.md#SignData-p49_S18) (SignDataPt49) — `` ‖∑ m ∈ Finset.Icc 1 (17 + 1), ((m : ℕ) : ℂ) ^ (-lineS (49 : ℝ)) - cx (0.546729084310326756926340299245) (-0.198271586373848045471259398153)‖ ≤ (0.0000… ``
-  - and 48 more; the full list is in `map/lean_map.json`
+  - and 96 more; the full list is in `map/lean_map.json`
 
 <a name="SignData-ball_mul"></a>
 ### `SignData.ball_mul`
@@ -495,7 +523,7 @@ line 60 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cx`](#SignData-cx)
 
-**Feeds** (3341 that use it)
+**Feeds** (3391 that use it)
 
   - [`SignData.p14_G`](../lean_stage3/SignDataPt14.md#SignData-p14_G) (SignDataPt14) — `` ‖gammaDir (14 : ℝ) 64 - cx (-22741.532926692913019148935605107414) (-71644.350647772723613163941115458181)‖ ≤ (0.001276075643759393038301710258) ``
   - [`SignData.p14_NB`](../lean_stage3/SignDataPt14.md#SignData-p14_NB) (SignDataPt14) — `` ‖(((8 : ℕ)) : ℂ) ^ (-lineS (14 : ℝ)) * emB (14 : ℝ) 8 - cx (0.231040241106962438163161808154) (-0.035947893512639355574654835797)‖ ≤ (0.00000000115146… ``
@@ -557,7 +585,7 @@ line 60 · arrows read from text
   - [`SignData.p14_P6`](../lean_stage3/SignDataPt14.md#SignData-p14_P6) (SignDataPt14) — `` ‖∏ j ∈ Finset.range (5 + 1), (1 + zz (14 : ℝ) / ((j : ℂ) + 1)) - cx (359.876873440212673611111111111109) (111.798055013020833333333333333332)‖ ≤ (0.00… ``
   - [`SignData.p14_P60`](../lean_stage3/SignDataPt14.md#SignData-p14_P60) (SignDataPt14) — `` ‖∏ j ∈ Finset.range (59 + 1), (1 + zz (14 : ℝ) / ((j : ℂ) + 1)) - cx (-5622.706912324158123778327327290805) (8633.473383987998379633710641335221)‖ ≤ (… ``
   - [`SignData.p14_P61`](../lean_stage3/SignDataPt14.md#SignData-p14_P61) (SignDataPt14) — `` ‖∏ j ∈ Finset.range (60 + 1), (1 + zz (14 : ℝ) / ((j : ℂ) + 1)) - cx (-6636.477247012633995718992185014891) (8023.627809557308096493712876897486)‖ ≤ (… ``
-  - and 3281 more; the full list is in `map/lean_map.json`
+  - and 3331 more; the full list is in `map/lean_map.json`
 
 <a name="SignData-ball_conj"></a>
 ### `SignData.ball_conj`
@@ -619,7 +647,7 @@ line 94 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cx`](#SignData-cx)
 
-**Feeds** (97 that use it)
+**Feeds** (143 that use it)
 
   - [`SignData.p14_T2`](../lean_stage3/SignDataPt14.md#SignData-p14_T2) (SignDataPt14) — `` ‖(((2 : ℕ)) : ℂ) ^ (-lineS (14 : ℝ)) - cx (-0.679708838337985220771914796136) (0.194925357727584208072744154227)‖ ≤ (0.000000002474873734174129538843) ``
   - [`SignData.p14_T3`](../lean_stage3/SignDataPt14.md#SignData-p14_T3) (SignDataPt14) — `` ‖(((3 : ℕ)) : ℂ) ^ (-lineS (14 : ℝ)) - cx (-0.546684008334877980393651456295) (-0.185660788440220721249718589868)‖ ≤ (0.000000002020784829410994313809… ``
@@ -681,7 +709,7 @@ line 94 · arrows read from text
   - [`SignData.p49_T4`](../lean_stage3/SignDataPt49.md#SignData-p49_T4) (SignDataPt49) — `` ‖(((4 : ℕ)) : ℂ) ^ (-lineS (49 : ℝ)) - cx (0.187400279177126714528158973166) (0.463552732021217805622074557128)‖ ≤ (0.000000006125294547811681462929) ``
   - [`SignData.p49_T5`](../lean_stage3/SignDataPt49.md#SignData-p49_T5) (SignDataPt49) — `` ‖(((5 : ℕ)) : ℂ) ^ (-lineS (49 : ℝ)) - cx (-0.424137920176230086682958764925) (0.141799240719341918324916625302)‖ ≤ (0.000000005478687441297565127905) ``
   - [`SignData.p49_T6`](../lean_stage3/SignDataPt49.md#SignData-p49_T6) (SignDataPt49) — `` ‖(((6 : ℕ)) : ℂ) ^ (-lineS (49 : ℝ)) - cx (0.402474637854990851725176074064) (0.068416610191974810838923865093)‖ ≤ (0.000000005001373889016359841699) ``
-  - and 37 more; the full list is in `map/lean_map.json`
+  - and 83 more; the full list is in `map/lean_map.json`
 
 <a name="SignData-ball_mono"></a>
 ### `SignData.ball_mono`
@@ -731,9 +759,10 @@ line 103 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cx`](#SignData-cx)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`SignData.re_lambda_pos`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_pos) (SignDataGamma) — `` 0 < (completedRiemannZeta (lineS t)).re ``
+  - [`StirlingSeries.re_lambda_pos_stir3`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-re_lambda_pos_stir3) (StirlingSeriesPhase) — `` 0 < (completedRiemannZeta (lineS t)).re ``
 
 <a name="SignData-re_neg_of_ball"></a>
 ### `SignData.re_neg_of_ball`
@@ -757,9 +786,10 @@ z.re < 0
 
 **Definitions its proof touches:** [`SignData.cx`](#SignData-cx)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`SignData.re_lambda_neg`](../lean_stage3/SignDataGamma.md#SignData-re_lambda_neg) (SignDataGamma) — `` (completedRiemannZeta (lineS t)).re < 0 ``
+  - [`StirlingSeries.re_lambda_neg_stir3`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-re_lambda_neg_stir3) (StirlingSeriesPhase) — `` (completedRiemannZeta (lineS t)).re < 0 ``
 
 <a name="SignData-real_round"></a>
 ### `SignData.real_round`
@@ -827,7 +857,7 @@ line 129 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (97 that use it)
+**Feeds** (143 that use it)
 
   - [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((2 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.961253457642440241181855761014)) (-(-0.2756660845487767744075643278… ``
   - [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.94688447812141625126363548568)) (-(0.321573918551758778340741691955… ``
@@ -889,7 +919,7 @@ line 129 · arrows read from text
   - [`SignData.p49_E4`](../lean_stage3/SignDataPt49.md#SignData-p49_E4) (SignDataPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((4 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(-0.374800558354253429056317946331)) (0.927105464042435611244149114255… ``
   - [`SignData.p49_E5`](../lean_stage3/SignDataPt49.md#SignData-p49_E5) (SignDataPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((5 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.948401221349430055776194616157)) (-(-0.3170727414063047075502667812… ``
   - [`SignData.p49_E6`](../lean_stage3/SignDataPt49.md#SignData-p49_E6) (SignDataPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((6 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.985857497156174296252574168149) (0.167585784901237340527590176717)‖ ≤… ``
-  - and 37 more; the full list is in `map/lean_map.json`
+  - and 83 more; the full list is in `map/lean_map.json`
 
 <a name="SignData-phase_ball"></a>
 ### `SignData.phase_ball`
@@ -1054,9 +1084,11 @@ line 221 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`SignData.red_ball`](#SignData-red_ball) — `` |(x - (j * (Real.pi / 2) + k * (2 * Real.pi))) - y₀| ≤ ε' ``
+  - [`StirlingSeries.im_stirMain_ball`](../lean_stage3/StirlingSeriesK5.md#StirlingSeries-im_stirMain_ball) (StirlingSeriesK5) — `` |(stirMain K (zz t)).im - φ₀| ≤ E ``
+  - [`StirlingSeries.stirPhase3_ball`](../lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirPhase3_ball) (StirlingSeriesPhase) — `` |stirPhase 3 t - φ₀| ≤ E ``
 
 <a name="SignData-red_ball"></a>
 ### `SignData.red_ball`
@@ -1157,7 +1189,7 @@ line 260 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cosP`](#SignData-cosP), [`SignData.cx`](#SignData-cx), [`SignData.sinP`](#SignData-sinP)
 
-**Feeds** (44 that use it)
+**Feeds** (63 that use it)
 
   - [`SignData.p14_E4`](../lean_stage3/SignDataPt14.md#SignData-p14_E4) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((4 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.84801641958530651641591672347) (-0.52996995397259773949362267018)‖ ≤ … ``
   - [`SignData.p14_E6`](../lean_stage3/SignDataPt14.md#SignData-p14_E6) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((6 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.998843001609035031450064349163) (0.048090104352696528263467439119)‖ ≤… ``
@@ -1203,6 +1235,23 @@ line 260 · arrows read from text
   - [`SignData.p91_2_E7`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E7) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((7 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.839563284480796960379436856621) (-0.543261899411155460593987822752)… ``
   - [`SignData.p91_2_E8`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E8) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((8 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.933475960102626120955660191505) (-0.35863997533805453688600242972)‖… ``
   - [`SignData.p91_2_E9`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E9) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((9 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.848714441028285318001975155162) (0.528851394618606639149194241585)‖… ``
+  - [`StirlingSeries.s100_E14`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E14) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((14 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.999928598894788523382275345387) (-0.011949774571310030160433977041)… ``
+  - [`StirlingSeries.s100_E15`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E15) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((15 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.809173686923509358986734929129) (-0.587569523027372871425065571484)… ``
+  - [`StirlingSeries.s100_E17`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E17) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((17 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.837559438147487834790799894218) (-0.546346215846750877758720948247)… ``
+  - [`StirlingSeries.s100_E18`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E18) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((18 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.999943271623443993302203723715) (-0.010651456942752325443595414821)… ``
+  - [`StirlingSeries.s100_E2`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E2) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((2 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.980130166108928452346011677602) (-0.198355381785532403103887577243)‖… ``
+  - [`StirlingSeries.s100_E23`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E23) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((23 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.819737508609686202067943426674) (0.572739397089448212630923824822)‖… ``
+  - [`StirlingSeries.s100_E28`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E28) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((28 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.977689881425668544815507998064) (-0.210053554499470874739640853872)… ``
+  - [`StirlingSeries.s100_E4`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E4) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((4 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.921310284646746566748588693713) (-0.388828187512339204648366963227)‖… ``
+  - [`StirlingSeries.s100_E7`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E7) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((7 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.98243048564357703340061174777) (0.186628885433432786357525054262)‖ ≤… ``
+  - [`StirlingSeries.s100_E8`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E8) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((8 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.825877838184971295114613296044) (-0.563849090089643018981454486578)‖… ``
+  - [`StirlingSeries.s100_E9`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E9) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((9 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.982187338537403166134062957709) (0.187904316120765531912102083428)‖ … ``
+  - [`StirlingSeries.s100_dir`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_dir) (StirlingSeriesPt100) — `` ‖stirDir 3 (100 : ℝ) - cx (0.999971340644235376295815569429) (0.007570857954721813765943243867)‖ ≤ (0.000000050002096024211132047209) ``
+  - [`StirlingSeries.s49_E10`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E10) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((10 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.963593046714958390139362185665) (0.267373222897477184248616449246)‖ … ``
+  - [`StirlingSeries.s49_E13`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E13) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((13 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.999823052557238879120030502138) (-0.018811261922708483189881440846)‖… ``
+  - [`StirlingSeries.s49_E15`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E15) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((15 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.733344175060589132142689672711) (-0.679857573984951645728051097535)‖… ``
+  - [`StirlingSeries.s49_E17`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E17) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((17 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.826813774787536530903078968627) (-0.562475761096942577239946576211)‖… ``
+  - and 3 more; the full list is in `map/lean_map.json`
 
 <a name="SignData-exp_ball1"></a>
 ### `SignData.exp_ball1`
@@ -1236,7 +1285,7 @@ line 271 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cosP`](#SignData-cosP), [`SignData.cx`](#SignData-cx), [`SignData.sinP`](#SignData-sinP)
 
-**Feeds** (19 that use it)
+**Feeds** (26 that use it)
 
   - [`SignData.p14_E8`](../lean_stage3/SignDataPt14.md#SignData-p14_E8) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((8 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.6690639732203451906722617839)) (0.743204816816068014337900118218)‖ … ``
   - [`SignData.p14_phase`](../lean_stage3/SignDataPt14.md#SignData-p14_phase) (SignDataPt14) — `` ‖cexp (((((14 : ℝ) / 2) * (Real.log (((64 : ℕ)) : ℝ) - Real.log Real.pi) : ℝ) : ℂ) * Complex.I) - cx (-(0.6277973203200831287054920208)) (0.7783768525… ``
@@ -1257,6 +1306,13 @@ line 271 · arrows read from text
   - [`SignData.p71_2_E8`](../lean_stage3/SignDataPt71_2.md#SignData-p71_2_E8) (SignDataPt71_2) — `` ‖cexp ((((-((71/2 : ℝ) * Real.log (((8 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.007252566497066419874002253859)) (0.99997369979375239052654438399… ``
   - [`SignData.p91_2_E10`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E10) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((10 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.457989433083761192297653679825)) (0.8889576363267346549631390506… ``
   - [`SignData.p91_2_E5`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E5) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((5 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.562992611259906511027083503382)) (0.82646192874611700919008230332… ``
+  - [`StirlingSeries.s100_E10`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E10) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((10 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.604032038531736553214384362705)) (0.79696003439770725298667172085… ``
+  - [`StirlingSeries.s100_E13`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E13) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((13 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(-0.43958310581077937969014945169)) (0.89820192222336572995242642771… ``
+  - [`StirlingSeries.s100_E19`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E19) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((19 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(-0.648022256775867527270215681679)) (0.7616213985459649706045856707… ``
+  - [`StirlingSeries.s100_E20`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E20) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((20 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.433948709474731235154872988879)) (0.90093757694149671067407505851… ``
+  - [`StirlingSeries.s100_E26`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E26) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((26 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(-0.609011848508619969196626619559)) (0.7931611238431405375941492877… ``
+  - [`StirlingSeries.s49_E11`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E11) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((11 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.307777389324773362727021086033)) (0.951458395632949829771669541356… ``
+  - [`StirlingSeries.s49_E4`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E4) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((4 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(-0.374800558354253429056317946331)) (0.927105464042435611244149114255… ``
 
 <a name="SignData-exp_ball2"></a>
 ### `SignData.exp_ball2`
@@ -1290,7 +1346,7 @@ line 288 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cosP`](#SignData-cosP), [`SignData.cx`](#SignData-cx), [`SignData.sinP`](#SignData-sinP)
 
-**Feeds** (27 that use it)
+**Feeds** (42 that use it)
 
   - [`SignData.p14_E2`](../lean_stage3/SignDataPt14.md#SignData-p14_E2) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((2 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.961253457642440241181855761014)) (-(-0.2756660845487767744075643278… ``
   - [`SignData.p14_E3`](../lean_stage3/SignDataPt14.md#SignData-p14_E3) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.94688447812141625126363548568)) (-(0.321573918551758778340741691955… ``
@@ -1319,6 +1375,21 @@ line 288 · arrows read from text
   - [`SignData.p71_2_E9`](../lean_stage3/SignDataPt71_2.md#SignData-p71_2_E9) (SignDataPt71_2) — `` ‖cexp ((((-((71/2 : ℝ) * Real.log (((9 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.858558993758451320502812480285)) (-(0.512714788392606778419836258… ``
   - [`SignData.p71_2_phase`](../lean_stage3/SignDataPt71_2.md#SignData-p71_2_phase) (SignDataPt71_2) — `` ‖cexp (((((71/2 : ℝ) / 2) * (Real.log (((256 : ℕ)) : ℝ) - Real.log Real.pi) : ℝ) : ℂ) * Complex.I) - cx (-(0.908183701932887392373663860388)) (-(-0.41… ``
   - [`SignData.p91_2_phase`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_phase) (SignDataPt91_2) — `` ‖cexp (((((91/2 : ℝ) / 2) * (Real.log (((512 : ℕ)) : ℝ) - Real.log Real.pi) : ℝ) : ℂ) * Complex.I) - cx (-(0.936020812661295027874964469849)) (-(-0.35… ``
+  - [`StirlingSeries.s100_E12`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E12) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((12 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.953893383238039319739366048696)) (-(-0.30014565366616096804367466… ``
+  - [`StirlingSeries.s100_E21`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E21) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((21 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.960432980965226943714830415552)) (-(0.278511200985253049502066134… ``
+  - [`StirlingSeries.s100_E24`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E24) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((24 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.875404173958508075709450900972)) (-(-0.48339169646987331284231866… ``
+  - [`StirlingSeries.s100_E27`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E27) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((27 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.960070552378529655773954541115)) (-(0.279757992657198169141607255… ``
+  - [`StirlingSeries.s100_E29`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E29) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((29 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.836917734160420441869366372007)) (-(-0.54732870036915460348123520… ``
+  - [`StirlingSeries.s100_E3`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E3) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.995536874844560175044276063213)) (-(0.0943733586597750061753246336… ``
+  - [`StirlingSeries.s100_E5`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E5) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((5 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.750111334809617160772942341066)) (-(-0.661311564536818323399243094… ``
+  - [`StirlingSeries.s100_E6`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E6) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((6 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.994475185991911525436531192815)) (-(-0.104971922180900252827291743… ``
+  - [`StirlingSeries.s49_E12`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E12) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((12 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.723672320185348540337092735067)) (-(0.6901437335784150866437781956… ``
+  - [`StirlingSeries.s49_E14`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E14) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((14 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.873470750584130800088945823713)) (-(-0.486876624899979320782963188… ``
+  - [`StirlingSeries.s49_E16`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E16) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((16 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.719049082576094237195420023918)) (-(-0.694959291503090280729952259… ``
+  - [`StirlingSeries.s49_E18`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E18) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((18 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.967271984095542522771977112434)) (-(-0.253741815205678176914863542… ``
+  - [`StirlingSeries.s49_E2`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E2) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((2 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.829096061353108815313364206236)) (-(0.55910618047805733687774796518… ``
+  - [`StirlingSeries.s49_E3`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E3) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.911068816247057217206025703191)) (-(-0.4122543050862972991915974641… ``
+  - [`StirlingSeries.s49_E5`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E5) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((5 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-(0.948401221349430055776194616157)) (-(-0.3170727414063047075502667812… ``
 
 <a name="SignData-exp_ball3"></a>
 ### `SignData.exp_ball3`
@@ -1352,7 +1423,7 @@ line 306 · arrows read from text
 
 **Definitions its proof touches:** [`SignData.cosP`](#SignData-cosP), [`SignData.cx`](#SignData-cx), [`SignData.sinP`](#SignData-sinP)
 
-**Feeds** (18 that use it)
+**Feeds** (25 that use it)
 
   - [`SignData.p14_E7`](../lean_stage3/SignDataPt14.md#SignData-p14_E7) (SignDataPt14) — `` ‖cexp ((((-((14 : ℝ) * Real.log (((7 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-0.51345354849746680672361505507) (-(0.858117389134703120953442154992))… ``
   - [`SignData.p18_E3`](../lean_stage3/SignDataPt18.md#SignData-p18_E3) (SignDataPt18) — `` ‖cexp ((((-((18 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.601462949529781653519223575226) (-(0.798900694919547136211476519698))… ``
@@ -1372,6 +1443,13 @@ line 306 · arrows read from text
   - [`SignData.p55_2_phase`](../lean_stage3/SignDataPt55_2.md#SignData-p55_2_phase) (SignDataPt55_2) — `` ‖cexp (((((55/2 : ℝ) / 2) * (Real.log (((256 : ℕ)) : ℝ) - Real.log Real.pi) : ℝ) : ℂ) * Complex.I) - cx (-0.685217888200965880868050328667) (-(0.72833… ``
   - [`SignData.p71_2_E3`](../lean_stage3/SignDataPt71_2.md#SignData-p71_2_E3) (SignDataPt71_2) — `` ‖cexp ((((-((71/2 : ℝ) * Real.log (((3 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.265933268342405023336551989178) (-(0.963991440205112195897546931753… ``
   - [`SignData.p91_2_E11`](../lean_stage3/SignDataPt91_2.md#SignData-p91_2_E11) (SignDataPt91_2) — `` ‖cexp ((((-((91/2 : ℝ) * Real.log (((11 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (-0.65884949229690189044581124102) (-(0.75227478124692882497537577025… ``
+  - [`StirlingSeries.s100_E11`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E11) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((11 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.516116542563805878832381028375) (-(0.85651836786608561007515218839)… ``
+  - [`StirlingSeries.s100_E16`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E16) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((16 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.697625280479366810375979321229) (-(0.716462816924985151140529848865… ``
+  - [`StirlingSeries.s100_E22`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E22) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((22 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.335966363793826153353671169857) (-(0.941873984352022783470837265696… ``
+  - [`StirlingSeries.s100_E25`](../lean_stage3/StirlingSeriesPt100.md#StirlingSeries-s100_E25) (StirlingSeriesPt100) — `` ‖cexp ((((-((100 : ℝ) * Real.log (((25 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.125334028233470410498337793327) (-(0.992114600924092660847045288773… ``
+  - [`StirlingSeries.s49_E7`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E7) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((7 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.45197542933921751807375912854) (-(0.892030386967635756881720870862))‖… ``
+  - [`StirlingSeries.s49_E8`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E8) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((8 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.207604727699979652297942031267) (-(0.978212797420181628482487297357))… ``
+  - [`StirlingSeries.s49_E9`](../lean_stage3/StirlingSeriesPt49.md#StirlingSeries-s49_E9) (StirlingSeriesPt49) — `` ‖cexp ((((-((49 : ℝ) * Real.log (((9 : ℕ)) : ℝ))) : ℝ) : ℂ) * Complex.I) - cx (0.660092775509601089415384514153) (-(0.751184083777093469527807872819))… ``
 
 <a name="SignData-log_one_ball"></a>
 ### `SignData.log_one_ball`
@@ -1415,7 +1493,7 @@ line 328 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (17 that use it)
+**Feeds** (27 that use it)
 
   - [`SignData.log_ball_10`](../lean_stage3/SignDataLog.md#SignData-log_ball_10) (SignDataLog) — `` |Real.log (((10 : ℕ)) : ℝ) - (2.302585092984098735657405232358)| ≤ (0.000000000250032263589228775533) ``
   - [`SignData.log_ball_11`](../lean_stage3/SignDataLog.md#SignData-log_ball_11) (SignDataLog) — `` |Real.log (((11 : ℕ)) : ℝ) - (2.397895272788423390160638914682)| ≤ (0.000000000250035160233026142414) ``
@@ -1434,6 +1512,16 @@ line 328 · arrows read from text
   - [`SignData.log_ball_7`](../lean_stage3/SignDataLog.md#SignData-log_ball_7) (SignDataLog) — `` |Real.log (((7 : ℕ)) : ℝ) - (1.945910149045367043442249594592)| ≤ (0.000000000250021628181194999771) ``
   - [`SignData.log_ball_8`](../lean_stage3/SignDataLog.md#SignData-log_ball_8) (SignDataLog) — `` |Real.log (((8 : ℕ)) : ℝ) - (2.079441541669889414922705144822)| ≤ (0.000000000250025688425399343201) ``
   - [`SignData.log_ball_9`](../lean_stage3/SignDataLog.md#SignData-log_ball_9) (SignDataLog) — `` |Real.log (((9 : ℕ)) : ℝ) - (2.19722457732627250799617757113)| ≤ (0.000000000250031152478117664421) ``
+  - [`StirlingSeries.log_ball_20`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_20) (StirlingSeriesLog) — `` |Real.log (((20 : ℕ)) : ℝ) - (2.995732273544040890903123699102)| ≤ (0.000000000250069931036558732271) ``
+  - [`StirlingSeries.log_ball_21`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_21) (StirlingSeriesLog) — `` |Real.log (((21 : ℕ)) : ℝ) - (3.044522437713472622584109651714)| ≤ (0.000000000250072928659867036761) ``
+  - [`StirlingSeries.log_ball_22`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_22) (StirlingSeriesLog) — `` |Real.log (((22 : ℕ)) : ℝ) - (3.091042453348365317214688221636)| ≤ (0.0000000002500747215509079107) ``
+  - [`StirlingSeries.log_ball_23`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_23) (StirlingSeriesLog) — `` |Real.log (((23 : ℕ)) : ℝ) - (3.135494215919199055169006622998)| ≤ (0.000000000250075818784155965857) ``
+  - [`StirlingSeries.log_ball_24`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_24) (StirlingSeriesLog) — `` |Real.log (((24 : ℕ)) : ℝ) - (3.178053830337994921893530313829)| ≤ (0.000000000250076504524572447879) ``
+  - [`StirlingSeries.log_ball_25`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_25) (StirlingSeriesLog) — `` |Real.log (((25 : ℕ)) : ℝ) - (3.218875824858250011866355710654)| ≤ (0.000000000250076941431239114547) ``
+  - [`StirlingSeries.log_ball_26`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_26) (StirlingSeriesLog) — `` |Real.log (((26 : ℕ)) : ℝ) - (3.258096538011530574081236766765)| ≤ (0.000000000250084308587127577629) ``
+  - [`StirlingSeries.log_ball_27`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_27) (StirlingSeriesLog) — `` |Real.log (((27 : ℕ)) : ℝ) - (3.295836865994377100174496101552)| ≤ (0.000000000250089352328098335678) ``
+  - [`StirlingSeries.log_ball_28`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_28) (StirlingSeriesLog) — `` |Real.log (((28 : ℕ)) : ℝ) - (3.33220451016525160098260040834)| ≤ (0.000000000250092853504186808688) ``
+  - [`StirlingSeries.log_ball_29`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-log_ball_29) (StirlingSeriesLog) — `` |Real.log (((29 : ℕ)) : ℝ) - (3.367295829976521458836542724803)| ≤ (0.000000000250095315345114975566) ``
 
 <a name="SignData-log_pow_ball"></a>
 ### `SignData.log_pow_ball`
@@ -1515,7 +1603,7 @@ line 402 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (18 that use it)
+**Feeds** (28 that use it)
 
   - [`SignData.isqrt_ball_10`](../lean_stage3/SignDataLog.md#SignData-isqrt_ball_10) (SignDataLog) — `` |(Real.sqrt (((10 : ℕ)) : ℝ))⁻¹ - (0.316227766016837933199889354444)| ≤ (0.000000000000000000000000000001) ``
   - [`SignData.isqrt_ball_11`](../lean_stage3/SignDataLog.md#SignData-isqrt_ball_11) (SignDataLog) — `` |(Real.sqrt (((11 : ℕ)) : ℝ))⁻¹ - (0.30151134457776362264681206697)| ≤ (0.000000000000000000000000000001) ``
@@ -1535,4 +1623,14 @@ line 402 · arrows read from text
   - [`SignData.isqrt_ball_7`](../lean_stage3/SignDataLog.md#SignData-isqrt_ball_7) (SignDataLog) — `` |(Real.sqrt (((7 : ℕ)) : ℝ))⁻¹ - (0.377964473009227227214516536234)| ≤ (0.000000000000000000000000000001) ``
   - [`SignData.isqrt_ball_8`](../lean_stage3/SignDataLog.md#SignData-isqrt_ball_8) (SignDataLog) — `` |(Real.sqrt (((8 : ℕ)) : ℝ))⁻¹ - (0.353553390593273762200422181052)| ≤ (0.000000000000000000000000000001) ``
   - [`SignData.isqrt_ball_9`](../lean_stage3/SignDataLog.md#SignData-isqrt_ball_9) (SignDataLog) — `` |(Real.sqrt (((9 : ℕ)) : ℝ))⁻¹ - (0.333333333333333333333333333334)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_20`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_20) (StirlingSeriesLog) — `` |(Real.sqrt (((20 : ℕ)) : ℝ))⁻¹ - (0.223606797749978969640917366874)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_21`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_21) (StirlingSeriesLog) — `` |(Real.sqrt (((21 : ℕ)) : ℝ))⁻¹ - (0.218217890235992381266097485416)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_22`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_22) (StirlingSeriesLog) — `` |(Real.sqrt (((22 : ℕ)) : ℝ))⁻¹ - (0.213200716355610434298437732434)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_23`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_23) (StirlingSeriesLog) — `` |(Real.sqrt (((23 : ℕ)) : ℝ))⁻¹ - (0.20851441405707476267814948105)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_24`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_24) (StirlingSeriesLog) — `` |(Real.sqrt (((24 : ℕ)) : ℝ))⁻¹ - (0.204124145231931508183107006226)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_25`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_25) (StirlingSeriesLog) — `` |(Real.sqrt (((25 : ℕ)) : ℝ))⁻¹ - (0.2)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_26`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_26) (StirlingSeriesLog) — `` |(Real.sqrt (((26 : ℕ)) : ℝ))⁻¹ - (0.196116135138184031924162465732)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_27`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_27) (StirlingSeriesLog) — `` |(Real.sqrt (((27 : ℕ)) : ℝ))⁻¹ - (0.192450089729875254836382926834)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_28`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_28) (StirlingSeriesLog) — `` |(Real.sqrt (((28 : ℕ)) : ℝ))⁻¹ - (0.188982236504613613607258268118)| ≤ (0.000000000000000000000000000001) ``
+  - [`StirlingSeries.isqrt_ball_29`](../lean_stage3/StirlingSeriesLog.md#StirlingSeries-isqrt_ball_29) (StirlingSeriesLog) — `` |(Real.sqrt (((29 : ℕ)) : ℝ))⁻¹ - (0.185695338177051863146576223846)| ≤ (0.000000000000000000000000000001) ``
 

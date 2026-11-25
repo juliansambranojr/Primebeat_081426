@@ -1,0 +1,42 @@
+flowchart LR
+  n0["<b>add_ofReal_ne_zero</b><br/>w + (x : ℂ) ≠ 0"]:::shp
+  n1["<b>bern_cast_zero</b><br/>((bernoulliFun n 0 : ℝ) : ℂ) = ((bernoulli n : ℚ) : ℂ)"]:::cnt
+  n2["<b>continuousOn_integrand</b><br/>ContinuousOn (fun x : ℝ =＞ ((bernoulliFun m x : ℝ) : ℂ) * ((w + …"]:::shp
+  n3["<b>intervalIntegrable_integrand</b><br/>IntervalIntegrable (fun x : ℝ =＞ ((bernoulliFun m x : ℝ) : ℂ) * …"]:::shp
+  n4["<b>hasDerivAt_inv_pow</b><br/>HasDerivAt (fun y : ℝ =＞ ((w + (y : ℂ)) ^ (p + 1))⁻¹) (-((p : ℂ)…"]:::cnt
+  n5["<b>emJ_step</b><br/>((m : ℂ) + 1) * emJ m w = ((bernoulli (m + 1) : ℚ) : ℂ) * bdiff …"]:::shp
+  n6["<b>integral_inv_add</b><br/>∫ x in (0 : ℝ)..1, (w + (x : ℂ))⁻¹ = log (w + 1) - log w"]:::shp
+  n7["<b>emJ_one</b><br/>emJ 1 w = 1 - (w + 1 / 2) * (log (w + 1) - log w)"]:::shp
+  n8["<b>bernoulli_odd_zero</b><br/>((bernoulli (2 * K + 1) : ℚ) : ℂ) = 0"]:::cnt
+  n9["<b>emJ_one_unroll</b><br/>emJ 1 w = ∑ k ∈ Finset.Ico 1 (K + 1), stirC k * bdiff (2 * k - 1…"]:::shp
+  n10["<b>stirMain_step</b><br/>stirMain (K + 1) (w + 1) - stirMain (K + 1) w - log w = -(emJ (2…"]:::shp
+  n11["<b>abs_bern_le</b><br/>|bernoulliFun m x| ≤ ZetaEM.bernBound m"]:::thm
+  n12["<b>norm_le_norm_add</b><br/>‖w‖ ≤ ‖w + (x : ℂ)‖"]:::shp
+  n13["<b>norm_emJ_le</b><br/>‖emJ m w‖ ≤ ZetaEM.bernBound m / ‖w‖ ^ m"]:::thm
+  x0(["<b>StirlingSeriesLim</b><br/>norm_P_le<br/>sum_log_eq"]):::ext
+  n0 --> n2
+  n0 --> n5
+  n0 --> n6
+  n0 --> n7
+  n1 --> n5
+  n11 --> n13
+  n12 --> n13
+  n2 --> n3
+  n3 --> n5
+  n4 --> n5
+  n5 --> n9
+  n6 --> n7
+  n7 --> n10
+  n8 --> n9
+  n9 --> n10
+  n10 -.-> x0
+  n12 -.-> x0
+  n13 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

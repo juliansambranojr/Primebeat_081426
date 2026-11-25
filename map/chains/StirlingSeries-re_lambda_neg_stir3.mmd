@@ -1,0 +1,27 @@
+flowchart LR
+  f0["<b>HardyZ</b><br/>3 used"]:::thm
+  f1["<b>SignDataBall</b><br/>2 used"]:::thm
+  f2["<b>StirlingLog</b><br/>6 used"]:::thm
+  f3["<b>ZetaEM</b><br/>3 used"]:::thm
+  f4["<b>SignDataZeta</b><br/>5 used"]:::thm
+  f5["<b>SignDataGamma</b><br/>3 used"]:::thm
+  f6["<b>StirlingSeriesEM</b><br/>19 used"]:::thm
+  f7["<b>StirlingSeriesLim</b><br/>11 used"]:::thm
+  f8["<b>StirlingSeriesPhase</b><br/>re_lambda_neg_stir3"]:::end_
+  f3 --> f4
+  f4 --> f5
+  f3 --> f6
+  f2 --> f7
+  f6 --> f7
+  f0 --> f8
+  f1 --> f8
+  f5 --> f8
+  f7 --> f8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
