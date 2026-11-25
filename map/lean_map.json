@@ -38264,7 +38264,10 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
    },
    {
     "kind": "def",
@@ -38289,7 +38292,14 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
    }
   ]
  },
@@ -38424,7 +38434,8 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
     ]
    },
    {
@@ -41141,7 +41152,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
     ]
    },
    {
@@ -41191,6 +41203,420 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/DiagonalO.lean",
+  "module": "Stage3.DiagonalO",
+  "stem": "DiagonalO",
+  "header": "# DiagonalO — the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.",
+  "imports": [
+   "Stage3.DiagMainStmt"
+  ],
+  "opens": [
+   "Complex",
+   "DiagMainStmt",
+   "Diagonal",
+   "MeasureTheory",
+   "OffDiagClose",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "DiagonalO"
+  ],
+  "lines": 261,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMainStmt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "small_of_log",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.small_of_log",
+    "line": 50,
+    "why": "`C·(T/log T) ≤ ε·T` once `log T ≥ C/ε`.",
+    "sorry": false,
+    "needs": [
+     "hε : 0 < ε",
+     "hT : 1 < T",
+     "hTe : Real.exp (C / ε) ≤ T"
+    ],
+    "proves": "C * (T / Real.log T) ≤ ε * T",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.small_of_log",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "errY_absorb",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.errY_absorb",
+    "line": 65,
+    "why": "`K·errY W ≤ ε·errO W` once `log T ≥ K/ε`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T (Real.log T)",
+     "hε : 0 < ε",
+     "hT : 1 < T",
+     "hTe : Real.exp (K / ε) ≤ T"
+    ],
+    "proves": "K * errY W ≤ ε * errO W",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.small_of_log",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.small_of_log",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "T_le_errO",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.T_le_errO",
+    "line": 79,
+    "why": "`T ≤ errO W` for `T ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "T ≤ errO W",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "what0_le",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.what0_le",
+    "line": 86,
+    "why": "`‖ŵ(0)‖ ≤ 2T`, from the support `[T/4, 2T]` and `0 ≤ w ≤ 1`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hT : 0 < T"
+    ],
+    "proves": "‖(what0 W : ℂ)‖ ≤ 2 * T",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_integral_le_Icc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtDiagO",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.StmtDiagO",
+    "line": 98,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDiagO_of_mainO",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.stmtDiagO_of_mainO",
+    "line": 105,
+    "why": "`StmtDiagO` from the main term, `o(1)`: `diag_young` and `StmtDiagMainO`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hmain : StmtDiagMainO P θ R κ"
+    ],
+    "proves": "StmtDiagO P θ R κ",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.small_of_log",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.small_of_log",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtLemma3resO",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.StmtLemma3resO",
+    "line": 140,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "θ R κ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_resO_of_parts",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.lemma3_resO_of_parts",
+    "line": 149,
+    "why": "The assembly, `o(T)`: the diagonal with `o(T)`, the off-diagonal as proved (over `WeightAll`) and the X-term give Lemma 3 up to `I_res` with `o(T)`.",
+    "sorry": false,
+    "needs": [
+     "hκ : 0 < κ",
+     "hD : StmtDiagO P θ R κ",
+     "hO : StmtOffDiagAll P θ R κ",
+     "hX : StmtX P θ R κ"
+    ],
+    "proves": "StmtLemma3resO P θ R κ",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.IX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.diagSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.errY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.norm_Tpow_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.offSum",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lemma3_resO_of_mainO_X",
+    "ns": "DiagonalO",
+    "full": "DiagonalO.lemma3_resO_of_mainO_X",
+    "line": 225,
+    "why": "Lemma 3 up to `I_res`, `o(T)`, from the main term and the X-term: the diagonal by `stmtDiagO_of_mainO`, the off-diagonal by `stmtOffDiag_holds`, for `θ < 1/2`, `κ > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hmain : StmtDiagMainO P θ R κ",
+     "hX : StmtX P θ R κ"
+    ],
+    "proves": "StmtLemma3resO P θ R κ",
+    "file": "lean_stage3/Stage3/DiagonalO.lean",
+    "id": "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX"
     ],
     "layer": "zeta",
     "used_by": []
@@ -67691,6 +68117,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.Cj_le_wsum",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.Fw_iter_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
@@ -69326,6 +69753,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds"
     ]
    },
@@ -69430,7 +69858,9 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X"
+    ]
    }
   ]
  },
@@ -90826,6 +91256,10 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_integrable",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.wVI_swap",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.T_le_errO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Fw2_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
@@ -90883,6 +91317,11 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -92090,6 +92529,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -92120,6 +92561,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_expand",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
@@ -92153,6 +92595,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtX",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -92182,6 +92625,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I_split",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
@@ -93151,6 +93596,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -93179,6 +93625,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_t",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.hk_dom"
     ]
@@ -93776,6 +94223,9 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_shift",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.I1_diag_off",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -93805,6 +94255,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.offSum_bound_iter",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -93895,6 +94346,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -94188,6 +94640,10 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -94226,6 +94682,10 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -94272,6 +94732,10 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.aY_bound'",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -94308,6 +94772,9 @@
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -94340,6 +94807,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtLemma3res",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
@@ -94369,6 +94838,8 @@
      "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.StmtDiagMain",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtDiagO",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime.small",
@@ -94406,6 +94877,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.errY_absorb",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.StmtDiag",
@@ -94540,6 +95013,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -94708,6 +95183,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.lemma3_res_of_parts"
     ]
    },
@@ -117229,11 +117705,12 @@
    "Stage3.ApproxDerivAll",
    "Stage3.OffDiagClose",
    "Stage3.Diagonal",
-   "Stage3.DiagMainStmt"
+   "Stage3.DiagMainStmt",
+   "Stage3.DiagonalO"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 233,
+  "lines": 234,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -117270,6 +117747,7 @@
    "lean_stage3/Stage3/CountReduction.lean",
    "lean_stage3/Stage3/DiagMainStmt.lean",
    "lean_stage3/Stage3/Diagonal.lean",
+   "lean_stage3/Stage3/DiagonalO.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/Doubling.lean",

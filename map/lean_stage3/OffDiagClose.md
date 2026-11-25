@@ -111,11 +111,12 @@ flowchart LR
   n10["<b>final_size</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ Mr : ℝ, 0 ≤ Mr → Mr…"]:::shp
   n11["<b>r_choice</b><br/>2 ≤ ((⌈2 / (1 - 2 * θ)⌉₊ : ℕ) : ℝ) * (1 - 2 * θ)"]:::cnt
   n12["<b>N_le</b><br/>1 + 1 / ‖α + β‖ ^ 2 ≤ 1 + κ ^ 2 * Real.log T ^ 2"]:::shp
-  n13["<b>stmtOffDiag_holds ■</b><br/>StmtOffDiagAll P θ R κ"]:::thm
+  n13["<b>stmtOffDiag_holds</b><br/>StmtOffDiagAll P θ R κ"]:::thm
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
   x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
   x3(["<b>Diagonal</b><br/>diag_young"]):::ext
+  x4(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
   n0 --> n1
   n1 --> n6
   n10 --> n13
@@ -129,6 +130,7 @@ flowchart LR
   n8 --> n10
   n9 --> n10
   n12 -.-> x3
+  n13 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n5
@@ -161,7 +163,7 @@ Young's admissible weight (2.1)–(2.3) with (2.3) for every `j`: `|w^(j)(t)| �
 
 - **Is:** `` WeightAll (T L : ℝ) extends Weight T L where Cj : ℕ → ℝ Cj_nonneg : ∀ j, 0 ≤ Cj j dj : ∀ j t, |iteratedDeriv j w t| ≤ Cj j * ((T / L) ^ j)⁻¹ ``
 - **Built from:** [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
-- **Used by 11:** [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg)
+- **Used by 12:** [`DiagonalO.StmtLemma3resO`](../lean_stage3/DiagonalO.md#DiagonalO-StmtLemma3resO), [`OffDiagClose.Cj_le_wsum`](#OffDiagClose-Cj_le_wsum), [`OffDiagClose.Fw_iter_bound`](#OffDiagClose-Fw_iter_bound), [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.offSum_bound_iter`](#OffDiagClose-offSum_bound_iter), [`OffDiagClose.off_term_iter_le`](#OffDiagClose-off_term_iter_le), [`OffDiagClose.offdiag_term_iter`](#OffDiagClose-offdiag_term_iter), [`OffDiagClose.offdiag_term_iter_young`](#OffDiagClose-offdiag_term_iter_young), [`OffDiagClose.weightAll_exists`](#OffDiagClose-weightAll_exists), [`OffDiagClose.winW`](#OffDiagClose-winW), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`OffDiagClose.wsum_nonneg`](#OffDiagClose-wsum_nonneg)
 
 <a name="OffDiagClose-phiB"></a>
 ### `OffDiagClose.phiB`
@@ -239,7 +241,7 @@ def · line 944
 
 - **Is:** `` StmtOffDiagAll (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ α β : ℂ, Regime κ T α β → ‖offSum W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β 1‖ ≤ C * errY W.toWeight ``
 - **Built from:** [`OffDiagClose.WeightAll`](#OffDiagClose-WeightAll), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
-- **Used by 1:** [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds)
+- **Used by 2:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds)
 
 ## Theorems
 
@@ -1518,5 +1520,7 @@ StmtOffDiagAll P θ R κ
 
 **Definitions its proof touches:** [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`DiagonalO.lemma3_resO_of_mainO_X`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) (DiagonalO) — `` StmtLemma3resO P θ R κ ``
 
