@@ -36,7 +36,7 @@ below with their outcome.
     DEPENDS     `SignData*`, `StirlingLog`, `Stirling`, `TuringLW*`, `ZetaEM`
     OUT         the PNT for μ with a rate; B3; C's core
 
-### 2026-11-25 · block S14 of `design/stencil.md`, Turing's sign data: `Stage3/SignData*.lean`
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's sign data: `Stage3/SignData.lean` and `Stage3/SignData*.lean`
 
     DONE        a certified evaluation of Λ(1/2 + it) at given rational t in Lean:
                 Euler–Maclaurin (`ZetaEM.zeta_eq_em`, explicit remainder) with
@@ -51,7 +51,7 @@ below with their outcome.
                 for exp, cos, sin, log
     OUT         B3; C's core
 
-### 2026-11-25 · block S13 of `design/stencil.md`, B3 step 1, the diagonal at any length: `Stage3/DiagLong*.lean`
+### 2026-11-25 · block S13 of `design/stencil.md`, B3 step 1, the diagonal at any length: `Stage3/DiagLong.lean`
 
     DONE        `FloorLong.StmtDiagErr P θ R κ` for the largest range of θ the
                 diagonal's own route reaches (target: every θ > 0, as in Young §6 by

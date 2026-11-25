@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-11-25T22:39:12Z
+# unit: 0567-diag-long
+# sources searched: 509
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80256
+  Start the sign data and the diagonal please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80457
+  theorem diag_split {T L : ℝ} (W : Weight T L) (hT : 4 ≤ T) (M : ℕ) (a : ℕ → ℂ) (σ₀ X : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:69583
+  {α β : ℂ} (hα : ‖α‖ ≤ 1 / 10) (hβ : ‖β‖ ≤ 1 / 10) (hαβ : α + β ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:69585
+  (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) +
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aef3b00001fdcb2b5.jsonl:2900
+  (Jsh W α β (Zc M (cF a σ₀ X) α β) + Jsh W α β (Zc M (cG a σ₀ X) α β)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80463
+  theorem short_part (P : Polynomial ℝ) {θ η : ℝ} (hθ : 0 ≤ θ) (hη : 0 < η) (R : ℝ) {κ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:68314
+  ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80467
+  ‖Jsh W α β (Zc (Mof T θ) (cF (aY P T θ R) (sig0 T R) (T ^ (1 - η))) α β)‖ ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80470
+  theorem stmtDiagTail_of_le (P : Polynomial ℝ) {θ η : ℝ} (h : 2 * θ ≤ 1 - η)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aef3b00001fdcb2b5.jsonl:3258
+  (R κ : ℝ) : StmtDiagTail P θ R κ η :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80473
+  theorem stmtDiagErr_of_tail (P : Polynomial ℝ) {θ η : ℝ} (hθ : 0 ≤ θ) (hη : 0 < η) (R : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aef3b00001fdcb2b5.jsonl:3267
+  {κ : ℝ} (hκ : 0 < κ) (ht : StmtDiagTail P θ R κ η) : FloorLong.StmtDiagErr P θ R κ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80476
+  theorem tail_of_stmtDiagErr (P : Polynomial ℝ) {θ η : ℝ} (hθ : 0 ≤ θ) (hη : 0 < η) (R : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aef3b00001fdcb2b5.jsonl:3285
+  {κ : ℝ} (hκ : 0 < κ) (hd : FloorLong.StmtDiagErr P θ R κ) : StmtDiagTail P θ R κ η :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80479
+  theorem stmtDiagErr_holds (P : Polynomial ℝ) {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < 1 / 2) (R : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aef3b00001fdcb2b5.jsonl:3309
+  {κ : ℝ} (hκ : 0 < κ) : FloorLong.StmtDiagErr P θ R κ :=
+
+# 17 found, 0 missing

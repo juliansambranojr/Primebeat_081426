@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-25T22:39:19Z
+# unit: 0568-sign-data
+# sources searched: 509
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80256
+  Start the sign data and the diagonal please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a98350b067b2ac1eb.jsonl:5181
+  theorem first_zero_signs : Turing.StmtSignData 1 ![14, 29 / 2] :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a98350b067b2ac1eb.jsonl:5193
+  Turing.StmtSignData 9 ![14, 18, 23, 55 / 2, 63 / 2, 71 / 2, 39, 42, 91 / 2, 49] :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a98350b067b2ac1eb.jsonl:5216
+  theorem nine_zeros_on_line : (9 : ℤ) ≤ LineCount.lineCount 49 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80786
+  theorem defect_zero_of_closing {T₁ h : ℝ} (hd : StmtClosingData T₁ h) (h2 : 2 ≤ T₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a98350b067b2ac1eb.jsonl:5232
+  (hh : 0 < h) : ∀ T ≤ T₁, Defect.defect T = 0 :=
+
+# 7 found, 0 missing

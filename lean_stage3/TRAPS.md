@@ -142,6 +142,13 @@ build, 2026-09-08.
 | 129 | `Littlewood.order_ne_top` does not apply when ζ may vanish at the rectangle's corner | it assumes `f z ≠ 0` at the corner `z` | `TuringLWSplit.order_ne_top_of` with any nonvanishing point of the rectangle (unit 0566) |
 | 130 | `tsum_sub` is an unknown name | it is now only `Summable.tsum_sub` | `Summable.tsum_sub` (unit 0566) |
 | 131 | `positivity` fails on `(1 / Real.log 2) * (1/n^2 - 0)` | it does not know `0 < Real.log 2` and leaves the `- 0` | `sub_zero`, then `mul_nonneg (div_nonneg zero_le_one hl2.le) …` (unit 0566) |
+| 132 | downstream `#print axioms` lists a theorem's caller by name as an axiom, `[propext, Classical.choice, J_add, Quot.sound]`, with no `sorryAx` | a lemma failed at the kernel (`(kernel) unknown constant …`), and its name enters the axiom list (row 19's cascade in another form) | fix the failing lemma upstream (unit 0567) |
+| 133 | a generated ball lemma fails as `big ≤ ?m` at a later `norm_num` | its conclusion centre is `cx (-e) (-f)`, and a normalized literal does not unify with `-(-x)` | emit the centre in the lemma's own syntactic shape (unit 0568) |
+| 134 | `rw … at h` inside a `by` argument closes the main goal by `rfl` and then reports `No goals` | the expected type still has metavariables, and the rewrite assigns them | pass the implicit arguments explicitly (unit 0568) |
+| 135 | `rw [hreal]` with `hreal : Λ = ↑Λ.re` leaves `(↑Λ.re).re` | it also rewrites inside `Λ.re` on the other side | `try simp` after, or rewrite only at the occurrence wanted (unit 0568) |
+| 136 | `push_cast` unfolds `set`-bound locals inside casts (`↑φ`, `φ := (t/2)*L`), and real logs become `Complex.log` | `push_cast` sees through the `set`, then `Complex.natCast_log` fires | `simp only [Complex.ofReal_mul]` (unit 0568) |
+| 137 | `Complex.norm_exp_I_mul_ofReal_sub_one_le` is an unknown name | it is in namespace `Real`, though about complex numbers (row 2's family) | `Real.norm_exp_I_mul_ofReal_sub_one_le` (unit 0568) |
+| 138 | generated sums with literal offsets, `Finset.Icc 1 (7 + 1)`, `((2 + 1 : ℕ) : ℂ)`, look as if they need normalizing | they unify by defeq with `Icc 1 8` and `((3:ℕ):ℂ)` under `exact` | chain `Finset.sum_Icc_succ_top` and `Finset.prod_range_succ` with the offsets as they are (unit 0568) |
 
 ## Bench and gate traps
 
