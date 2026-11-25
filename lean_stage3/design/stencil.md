@@ -721,3 +721,38 @@ crossing of the imaginary axis by `F` is then a zero of `ζ` on the line, by
   multiplicity `m_ρ = k_ρ + 1`. So `lineCount ≥ #crossings − #D + Σ m_ρ
   = #crossings + K`.
 - Hence `lineCount ≥ (N(b) − N(a)) − 2·N_G − E/π − 1`, with no `hsimple`.
+
+## S12 The mean value, the floor — design (2026-11-25, Julian: "start the next step")
+
+On paper, here, unchecked by anyone else. The target is Young's Theorem 1, his
+(1.2) and (1.3) (arXiv 1002.4403, text in the session scratchpad): the
+mean square of `Vψ` on `σ₀ = 1/2 − R/L` is `c(P,Q,R,θ)·T + o(T)` for `θ < 1/2`.
+Together with `LevinsonMultiple.levinson_window'`, it gives the first
+proportion of zeros on the line in Lean.
+
+**Why the tree's Euler–Maclaurin is not enough.** `ZetaEM` writes
+`ζ = Σ_{n≤N} n^(−s) + …` with an error that is small only for `N` well past `T`
+near the line. A Dirichlet polynomial of length `N` has mean value
+`Σ|a_n|²(T + O(n))` (`DirichletMean.dirichlet_mean_value`), so a length beyond
+`T` makes the error larger than the main term. The approximate functional
+equation fixes this. It writes ζ near the line as two sums of length about
+`√T`, joined by the functional equation's factor.
+
+**The pieces, in Young's order.**
+1. **The approximate functional equation**, Young's Lemma 4. It covers
+   `ζ(1/2+α+it)·ζ(1/2+β−it)` as two smoothed double sums `Σ m^(−1/2−α) n^(−1/2−β) (m/n)^(−it) V(mn, t)`
+   plus `X_{α,β,t}` times the swapped sum, for `Re α, Re β < 1/2`, with error
+   `O((1+|t|)^(−A))`. The proof shifts a Mellin integral of `G(s)/s` past `s = 0`
+   and uses the functional equation (Mathlib's `completedRiemannZeta_one_sub`).
+2. **The twisted second moment** `I(α,β)`, Young's Lemma 3:
+   `∫ w(t) ζ(1/2+α+it) ζ(1/2+β−it) |ψ(σ₀+it)|² dt = c(α,β)·ŵ(0) + O(T/L)`.
+   The diagonal `hm = kn` gives the main term, and the off-diagonal is small for
+   `θ < 1/2`. The tree's `DirichletMean`, `DirichletMeanW` and `SquareMean` hold
+   the mean value theorems for Dirichlet polynomials that this step uses.
+3. **The operator**: apply `Q(−(1/L) d/dα)·Q(−(1/L) d/dβ)` at `α = β = −R/L`. This
+   gives `c(P,Q,R,θ)`, through Cauchy's formula on circles of radius about `1/L`.
+4. **Unsmoothing**: from `w` to the sharp interval `[T/2, T]`, then dyadic sums
+   (Young §2).
+
+**Order.** 1, then 2, then 3 and 4. Piece 1 is unconditional and
+self-contained, so it goes first.

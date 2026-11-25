@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, piece 1: `Stage3/ApproxFE.lean`
+
+    DONE        Young's Lemma 4 (arXiv 1002.4403): the approximate functional
+                equation for ζ(1/2+α+it)·ζ(1/2+β−it) as two smoothed double sums
+                with the weight V_{α,β}(x,t) = (1/2πi)∫_(1) G(s)/s·g_{α,β}(s,t)·x^(−s) ds,
+                G(s) = e^(s²)·p(s), plus an error O_A((1+|t|)^(−A)); or the largest
+                honest piece of it, with the open goal named; one unit
+    ASSUMED     Julian, 2026-11-25: "start the next step" (block S12, the mean
+                value). Statement from Young's text in the session scratchpad
+    DEPENDS     Mathlib `completedRiemannZeta_one_sub`, `Gammaℝ`, Mellin and
+                contour-shift lemmas; PNT+ rectangle integrals
+    OUT         the twisted moment (piece 2), the operator (3), unsmoothing (4)
+
 ### 2026-11-25 · block S11 of `design/stencil.md`, removing `hsimple`: `Stage3/LevinsonMultiple.lean`
 
     DONE        `levinson_count'`: `LevinsonCount.levinson_count` without the
