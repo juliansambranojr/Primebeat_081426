@@ -250,6 +250,7 @@ import Stage3.TuringLWHoriz
 import Stage3.TuringLWSplit
 import Stage3.TuringLW
 import Stage3.DiagLong
+import Stage3.SignData
 
 namespace Stage3
 
