@@ -1,0 +1,55 @@
+flowchart LR
+  n0["<b>Wd_eq</b><br/>Wd α β d = (1 / (d : ℂ)) * ∑ a ∈ d.divisors, ((μ a : ℤ) : ℂ) * (…"]:::shp
+  n1["<b>sum_mu_div</b><br/>∑ a ∈ d.divisors, ((μ a : ℤ) : ℝ) / a = (Nat.totient d : ℝ) / d"]:::cnt
+  n2["<b>totient_pos'</b><br/>(0 : ℝ) ＜ Nat.totient d"]:::cnt
+  n3["<b>weight_err</b><br/>‖((((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 : ℝ) : ℂ) * Wd α β d - ((gmu …"]:::shp
+  n4["<b>f_hasDerivAt</b><br/>HasDerivAt (fun t =＞ Q (Real.log (Mr / t) / lM)) (((-t⁻¹ / lM : …"]:::shp
+  n5["<b>int_f_div</b><br/>∫ t in (1 : ℝ)..Mr, Q (Real.log (Mr / t) / Real.log Mr) * ((t⁻¹ …"]:::shp
+  n6["<b>int_fprime_log</b><br/>∫ t in (1 : ℝ)..Mr, ((-t⁻¹ / Real.log Mr : ℝ) : ℂ) * Q' (Real.lo…"]:::shp
+  n7["<b>gmu_nonneg ■</b><br/>0 ≤ gmu d"]:::cnt
+  n8["<b>abel_main</b><br/>∃ CR : ℝ, 0 ≤ CR ∧ ∀ M : ℕ, 2 ≤ M → ∀ Q Q' : ℝ → ℂ, (∀ u, HasDer…"]:::shp
+  n9["<b>Fg_hasDerivAt</b><br/>HasDerivAt (Fg P lM γ) (Fg P.derivative lM γ u) u"]:::cnt
+  n10["<b>Fg_continuous</b><br/>Continuous (Fg P lM γ)"]:::cnt
+  n11["<b>Fg_bound</b><br/>‖Fg P lM γ u‖ ≤ B1 + A * B0"]:::shp
+  n12["<b>mainS_eq_Fg</b><br/>mainS P lM x γ = Fg P lM γ (Real.log x / lM) / (lM : ℂ)"]:::shp
+  n13["<b>dsum_sum0</b><br/>∑ k ∈ Icc 0 M, (Fg P (Real.log M) β (Real.log ((M : ℝ) / k) / Re…"]:::shp
+  n14["<b>stmtDsum_of_arith</b><br/>StmtDsum P A"]:::shp
+  x0(["<b>Diagonal</b><br/>ncpow_mul"]):::ext
+  x1(["<b>SdiagLeadSwap</b><br/>natcpow_ne"]):::ext
+  x2(["<b>SdiagLeadAd</b><br/>4 theorems"]):::ext
+  x3(["<b>SdiagLeadSmooth</b><br/>hasDerivAt_logdiv"]):::ext
+  x4(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  n0 --> n3
+  n1 --> n3
+  n10 --> n14
+  n11 --> n14
+  n12 --> n13
+  n13 --> n14
+  n2 --> n3
+  n3 --> n14
+  n4 --> n5
+  n4 --> n6
+  n4 --> n8
+  n5 --> n6
+  n6 --> n8
+  n8 --> n14
+  n9 --> n10
+  n9 --> n14
+  n14 -.-> x4
+  x0 -.-> n0
+  x1 -.-> n0
+  x1 -.-> n3
+  x2 -.-> n14
+  x2 -.-> n3
+  x3 -.-> n4
+  x3 -.-> n5
+  x3 -.-> n6
+  x3 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

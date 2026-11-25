@@ -1,0 +1,102 @@
+flowchart LR
+  n0["<b>chi_cases</b><br/>((chiAF d m : ℤ) : ℝ) = 0 ∨ ((chiAF d m : ℤ) : ℝ) = 1"]:::cnt
+  n1["<b>chi_nonneg</b><br/>0 ≤ ((chiAF d m : ℤ) : ℝ)"]:::cnt
+  n2["<b>chi_le_one ■</b><br/>((chiAF d m : ℤ) : ℝ) ≤ 1"]:::cnt
+  n3["<b>chi_term_nonneg</b><br/>0 ≤ ((chiAF d m : ℤ) : ℝ) / m"]:::cnt
+  n4["<b>Sdm_mono</b><br/>Sdm d X ≤ Sdm d X'"]:::cnt
+  n5["<b>Tl_nonneg</b><br/>0 ≤ Tl d X"]:::cnt
+  n6["<b>Tl_anti</b><br/>Tl d X' ≤ Tl d X"]:::cnt
+  n7["<b>sum_above_le</b><br/>∑ m ∈ Ioc 0 N, (if m ≤ K then (0 : ℝ) else ((chiAF d m : ℤ) : ℝ)…"]:::cnt
+  n8["<b>norm_ncpow_le</b><br/>‖(m : ℂ) ^ (-(1 + γ))‖ ≤ Real.exp A / m"]:::shp
+  n9["<b>norm_ncpow_sub_one_le</b><br/>‖(m : ℂ) ^ (-γ) - 1‖ ≤ ‖γ‖ * Real.log m * Real.exp A"]:::shp
+  n10["<b>poly_sup</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ u ∈ Set.Icc (0 : ℝ) 1, |p.eval u| ≤ B"]:::cnt
+  n11["<b>poly_lip</b><br/>∃ B : ℝ, 0 ≤ B ∧ ∀ u v : ℝ, 0 ≤ v → v ≤ u → u ≤ 1 → |p.eval u - …"]:::shp
+  n12["<b>ell_mem</b><br/>Real.log y / lM ∈ Set.Icc (0 : ℝ) 1"]:::shp
+  n13["<b>mainS_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 ＜ lM → ∀ y : ℝ, 1 ≤ y → Real.log y …"]:::shp
+  n14["<b>mainS_shift</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 ＜ lM → ∀ x : ℝ, ∀ m : ℕ, 1 ≤ m → (m…"]:::shp
+  n15["<b>Smu_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 ＜ lM → ∀ y : ℝ, 1 ≤ y → Real.log y …"]:::shp
+  n16["<b>sum_div_le_Sdm</b><br/>∑ a ∈ d.divisors, (1 : ℝ) / a ≤ Sdm d d"]:::cnt
+  n17["<b>Wd_bound</b><br/>‖Wd α β d‖ ≤ Real.exp (2 * A) * sig d / d"]:::shp
+  n18["<b>sig_nonneg</b><br/>0 ≤ sig d"]:::cnt
+  n19["<b>Sdm_nonneg ■</b><br/>0 ≤ Sdm d X"]:::cnt
+  n20["<b>range_facts</b><br/>1 ≤ m ∧ m ≤ M ∧ (m : ℝ) ≤ (M : ℝ) / d ∧ 1 ≤ (M : ℝ) / d / m ∧ Re…"]:::shp
+  n21["<b>norm_chi_mul</b><br/>‖((chiAF d m : ℤ) : ℂ) * z‖ = ((chiAF d m : ℤ) : ℝ) * ‖z‖"]:::cnt
+  n22["<b>ad_bound</b><br/>‖ad P M d γ‖ ≤ Real.exp A * C * sig d / Real.log M"]:::shp
+  n23["<b>ahat0_bound</b><br/>‖ahat0 P M d γ‖ ≤ sig d * Cm / Real.log M"]:::shp
+  n24["<b>ad_err</b><br/>‖ad P M d γ - ahat0 P M d γ‖ ≤ (Real.exp A * ε * sig d + Cs * Re…"]:::shp
+  n25["<b>AA_eq</b><br/>Ad P M d β * Ad P M d α - Ahat P M d β * Ahat P M d α = ((μ d : …"]:::shp
+  n26["<b>norm_mu_sq</b><br/>‖((μ d : ℤ) : ℂ) ^ 2 * z‖ = ((μ d : ℤ) : ℝ) ^ 2 * ‖z‖"]:::shp
+  n27["<b>perd_bound</b><br/>‖Wd α β d‖ * ‖Ad P M d β * Ad P M d α - Ahat P M d β * Ahat P M …"]:::shp
+  n28["<b>final_arith</b><br/>K₀ / lM ^ 2 * ((Real.exp A * ε + Cs * lZ / lM) * S2 + Cs * S3 + …"]:::shp
+  n29["<b>stmtAdApprox_of_arith</b><br/>StmtAdApprox P A"]:::shp
+  x0(["<b>SdiagLeadCop</b><br/>Ad_eq<br/>chiAF_apply"]):::ext
+  x1(["<b>Diagonal</b><br/>norm_cpow_nat"]):::ext
+  x2(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith<br/>weight_err"]):::ext
+  x3(["<b>SdiagLeadSmooth</b><br/>muSmoothR<br/>muSmooth_crude"]):::ext
+  x4(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n0 --> n21
+  n1 --> n22
+  n1 --> n24
+  n1 --> n3
+  n10 --> n11
+  n10 --> n13
+  n11 --> n14
+  n12 --> n13
+  n12 --> n14
+  n13 --> n14
+  n13 --> n15
+  n13 --> n29
+  n14 --> n29
+  n15 --> n29
+  n16 --> n17
+  n17 --> n27
+  n18 --> n23
+  n18 --> n27
+  n18 --> n29
+  n20 --> n22
+  n20 --> n24
+  n21 --> n22
+  n21 --> n24
+  n22 --> n27
+  n23 --> n27
+  n24 --> n27
+  n25 --> n27
+  n26 --> n27
+  n27 --> n29
+  n28 --> n29
+  n3 --> n16
+  n3 --> n19
+  n3 --> n24
+  n3 --> n4
+  n4 --> n6
+  n5 --> n24
+  n5 --> n27
+  n5 --> n7
+  n6 --> n24
+  n6 --> n29
+  n7 --> n24
+  n8 --> n22
+  n8 --> n24
+  n9 --> n14
+  n10 -.-> x2
+  n13 -.-> x2
+  n18 -.-> x2
+  n29 -.-> x4
+  n9 -.-> x2
+  x0 -.-> n0
+  x0 -.-> n16
+  x0 -.-> n25
+  x1 -.-> n17
+  x1 -.-> n8
+  x3 -.-> n15
+  x3 -.-> n29
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

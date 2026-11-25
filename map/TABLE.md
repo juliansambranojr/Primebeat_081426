@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>285 theorems counting,<br/>in 51 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>322 theorems counting,<br/>in 56 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1277 theorems shape,<br/>in 153 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1337 theorems shape,<br/>in 160 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>867 theorems reads ζ,<br/>in 139 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>869 theorems reads ζ,<br/>in 141 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 389 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1528 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 888 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 426 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1588 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 890 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 285 | 1277 | 867 |
+| `lean_stage3/` | 322 | 1337 | 869 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -683,6 +683,68 @@ Saddle — block J7 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table
 - [`Saddle.fold_fract`](./lean_stage3/Saddle.md#Saddle-fold_fract) — `` Int.fract (2 * x) = if Int.fract x < 1 / 2 then 2 * Int.fract x else 2 * Int.fract x - 1 `` The baker's fold. Doubling a number doubles its fractional part and folds it back into the unit.
 - [`Saddle.fold_rounding`](./lean_stage3/Saddle.md#Saddle-fold_rounding) — `` Int.fract (2 * (N : ℝ) / (d : ℝ)) = if Int.fract ((N : ℝ) / (d : ℝ)) < 1 / 2 then 2 * Int.fract ((N : ℝ) / (d : ℝ)) else 2 * Int.fract ((N : ℝ) / (d :… `` One row down. The rounding of `2N/d` is the rounding of `N/d`, doubled and folded.
 - [`Saddle.fold_mirror`](./lean_stage3/Saddle.md#Saddle-fold_mirror) — `` Int.fract (2 * (1 - x)) = 1 - Int.fract (2 * x) `` The fold commutes with the mirror. Away from the fold's own edge, the fold of the mirror image is the mirror image of the fold.
+
+### [`SdiagLeadAd`](./lean_stage3/SdiagLeadAd.md) — 13
+
+# Stage3.SdiagLeadAd — layer (2), the per-`d` step on average, from four arithmetic facts. 2026-11-25.
+
+- [`SdiagLead.chi_cases`](./lean_stage3/SdiagLeadAd.md#SdiagLead-chi_cases) — `` ((chiAF d m : ℤ) : ℝ) = 0 ∨ ((chiAF d m : ℤ) : ℝ) = 1 ``
+- [`SdiagLead.chi_nonneg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-chi_nonneg) — `` 0 ≤ ((chiAF d m : ℤ) : ℝ) ``
+- [`SdiagLead.chi_le_one`](./lean_stage3/SdiagLeadAd.md#SdiagLead-chi_le_one) — `` ((chiAF d m : ℤ) : ℝ) ≤ 1 ``
+- [`SdiagLead.chi_term_nonneg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-chi_term_nonneg) — `` 0 ≤ ((chiAF d m : ℤ) : ℝ) / m ``
+- [`SdiagLead.Sdm_mono`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm_mono) — `` Sdm d X ≤ Sdm d X' ``
+- [`SdiagLead.Tl_nonneg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Tl_nonneg) — `` 0 ≤ Tl d X ``
+- [`SdiagLead.Tl_anti`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Tl_anti) — `` Tl d X' ≤ Tl d X ``
+- [`SdiagLead.sum_above_le`](./lean_stage3/SdiagLeadAd.md#SdiagLead-sum_above_le) — `` ∑ m ∈ Ioc 0 N, (if m ≤ K then (0 : ℝ) else ((chiAF d m : ℤ) : ℝ) / m) ≤ Tl d K `` `Σ_{m ≤ N, m > K, m ∈ ⟨d⟩} 1/m ≤ T_d(K)`.
+- [`SdiagLead.poly_sup`](./lean_stage3/SdiagLeadAd.md#SdiagLead-poly_sup) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ u ∈ Set.Icc (0 : ℝ) 1, |p.eval u| ≤ B `` Sup bounds for `|P|`, `|P′|`, `|P″|` on `[0, 1]`.
+- [`SdiagLead.sum_div_le_Sdm`](./lean_stage3/SdiagLeadAd.md#SdiagLead-sum_div_le_Sdm) — `` ∑ a ∈ d.divisors, (1 : ℝ) / a ≤ Sdm d d `` `Σ_{a | d} 1/a ≤ S_d(d)`.
+- [`SdiagLead.sig_nonneg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-sig_nonneg) — `` 0 ≤ sig d ``
+- [`SdiagLead.Sdm_nonneg`](./lean_stage3/SdiagLeadAd.md#SdiagLead-Sdm_nonneg) — `` 0 ≤ Sdm d X ``
+- [`SdiagLead.norm_chi_mul`](./lean_stage3/SdiagLeadAd.md#SdiagLead-norm_chi_mul) — `` ‖((chiAF d m : ℤ) : ℂ) * z‖ = ((chiAF d m : ℤ) : ℝ) * ‖z‖ ``
+
+### [`SdiagLeadCop`](./lean_stage3/SdiagLeadCop.md) — 9
+
+# Stage3.SdiagLeadCop — the coprimality step, exact. 2026-11-25. Step 3 of the route in `Stage3/DiagMain.lean`'s docstring, the exact part: `μ(dn) = μ(d) μ(n) 1_{(n,d)=1}` (`mu_mul_eq`), `μ·1_{(·,d)=1} = 1_{⟨d⟩} * μ` with `⟨d⟩ = {m : primes of m ⊆ primes of d}` (`copAF_eq`), and the weighted hyperbola swap (`sum_conv_weight`) give
+
+- [`SdiagLead.chiAF_apply`](./lean_stage3/SdiagLeadCop.md#SdiagLead-chiAF_apply) — `` chiAF d m = if m ≠ 0 ∧ m.primeFactors ⊆ d.primeFactors then 1 else 0 ``
+- [`SdiagLead.copAF_apply`](./lean_stage3/SdiagLeadCop.md#SdiagLead-copAF_apply) — `` copAF d n = if n.Coprime d then μ n else 0 ``
+- [`SdiagLead.chiAF_mult`](./lean_stage3/SdiagLeadCop.md#SdiagLead-chiAF_mult) — `` (chiAF d).IsMultiplicative ``
+- [`SdiagLead.copAF_mult`](./lean_stage3/SdiagLeadCop.md#SdiagLead-copAF_mult) — `` (copAF d).IsMultiplicative ``
+- [`SdiagLead.mu_mul_eq`](./lean_stage3/SdiagLeadCop.md#SdiagLead-mu_mul_eq) — `` μ (d * n) = μ d * copAF d n `` `μ(dn) = μ(d) μ(n) 1_{(n,d)=1}`.
+- [`SdiagLead.chiAF_prime_pow`](./lean_stage3/SdiagLeadCop.md#SdiagLead-chiAF_prime_pow) — `` chiAF d (p ^ i) = if p ∣ d then 1 else 0 ``
+- [`SdiagLead.mul_prime_pow`](./lean_stage3/SdiagLeadCop.md#SdiagLead-mul_prime_pow) — `` (f * g) (p ^ i) = ∑ j ∈ range (i + 1), f (p ^ j) * g (p ^ (i - j)) `` `(f * g)(p^i) = Σ_{j ≤ i} f(p^j) g(p^{i−j})`.
+- [`SdiagLead.copAF_eq`](./lean_stage3/SdiagLeadCop.md#SdiagLead-copAF_eq) — `` copAF d = chiAF d * μ `` `μ·1_{(·,d)=1} = 1_{⟨d⟩} * μ`.
+- [`SdiagLead.sum_conv_weight`](./lean_stage3/SdiagLeadCop.md#SdiagLead-sum_conv_weight) — `` ∑ n ∈ Ioc 0 N, (((f * g) n : ℤ) : ℂ) * w n = ∑ m ∈ Ioc 0 N, ((f m : ℤ) : ℂ) * ∑ k ∈ Ioc 0 (N / m), ((g k : ℤ) : ℂ) * w (m * k) `` The weighted hyperbola swap: `Σ_{n ≤ N} (f*g)(n) w(n) = Σ_{m ≤ N} f(m) Σ_{k ≤ N/m} g(k) w(mk)`.
+
+### [`SdiagLeadDsum`](./lean_stage3/SdiagLeadDsum.md) — 5
+
+# Stage3.SdiagLeadDsum — layer (3), the `d`-sum, from two arithmetic facts. 2026-11-25.
+
+- [`SdiagLead.sum_mu_div`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-sum_mu_div) — `` ∑ a ∈ d.divisors, ((μ a : ℤ) : ℝ) / a = (Nat.totient d : ℝ) / d `` `Σ_{a | d} μ(a)/a = φ(d)/d`.
+- [`SdiagLead.totient_pos'`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-totient_pos-) — `` (0 : ℝ) < Nat.totient d ``
+- [`SdiagLead.gmu_nonneg`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-gmu_nonneg) — `` 0 ≤ gmu d ``
+- [`SdiagLead.Fg_hasDerivAt`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-Fg_hasDerivAt) — `` HasDerivAt (Fg P lM γ) (Fg P.derivative lM γ u) u ``
+- [`SdiagLead.Fg_continuous`](./lean_stage3/SdiagLeadDsum.md#SdiagLead-Fg_continuous) — `` Continuous (Fg P lM γ) ``
+
+### [`SdiagLeadSmooth`](./lean_stage3/SdiagLeadSmooth.md) — 6
+
+# Stage3.SdiagLeadSmooth — the smooth Möbius sum to `o(1/log M)`, real `x`. 2026-11-25.
+
+- [`SdiagLead.Gp_hasDerivAt`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-Gp_hasDerivAt) — `` HasDerivAt (Gp p β lM) (β * Gp p β lM u + (lM : ℂ)⁻¹ * Gp p.derivative β lM u) u ``
+- [`SdiagLead.Gp_continuous`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-Gp_continuous) — `` Continuous (Gp p β lM) ``
+- [`SdiagLead.G1_hasDerivAt`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-G1_hasDerivAt) — `` HasDerivAt (G1 P β lM) (G2 P β lM u) u ``
+- [`SdiagLead.G2_continuous`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-G2_continuous) — `` Continuous (G2 P β lM) ``
+- [`SdiagLead.G1_continuous`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-G1_continuous) — `` Continuous (G1 P β lM) ``
+- [`SdiagLead.Gp_zero`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-Gp_zero) — `` Gp P β lM 0 = 0 ``
+
+### [`SdiagLeadSwap`](./lean_stage3/SdiagLeadSwap.md) — 4
+
+# Stage3.SdiagLeadSwap — the exact reduction of `Sdiag` through `d | (h,k)`. 2026-11-25.
+
+- [`SdiagLead.Jz_sum`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-Jz_sum) — `` ∑ d ∈ n.divisors, Jz z d = (n : ℂ) ^ z ``
+- [`SdiagLead.natcpow_ne`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-natcpow_ne) — `` (n : ℂ) ≠ 0 ``
+- [`SdiagLead.gcd_swap`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-gcd_swap) — `` ∑ h ∈ Icc 1 M, ∑ k ∈ Icc 1 M, F h * G k * ∑ d ∈ (Nat.gcd h k).divisors, J d = ∑ d ∈ Icc 1 M, J d * (∑ h ∈ (Icc 1 M).filter (d ∣ ·), F h) * (∑ k ∈ (Icc… `` The swap: `Σ_{h,k} F_h G_k Σ_{d|(h,k)} J_d = Σ_{d ≤ M} J_d (Σ_{d|h} F_h)(Σ_{d|k} G_k)`.
+- [`SdiagLead.sum_dvd_reindex`](./lean_stage3/SdiagLeadSwap.md#SdiagLead-sum_dvd_reindex) — `` ∑ h ∈ (Icc 1 M).filter (d ∣ ·), F h = ∑ n ∈ Icc 1 (M / d), F (d * n) `` `Σ_{h ≤ M, d | h} F_h = Σ_{n ≤ M/d} F_{dn}`.
 
 ### [`SelfBound`](./lean_stage3/SelfBound.md) — 2
 

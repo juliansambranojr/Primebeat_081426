@@ -47,9 +47,13 @@ flowchart LR
   n29["<b>line_integrable</b><br/>Integrable fun y : ℝ =＞ KY α β t (c + y * I) * Z (c + y * I)"]:::shp
   x0(["<b>diagram 3</b><br/>4 theorems"]):::ext
   x1(["<b>diagram 2</b><br/>17 theorems"]):::ext
-  x2(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x3(["<b>ApproxBounds</b><br/>integrand_bound"]):::ext
-  x4(["<b>ApproxShift</b><br/>GY_analyticAt"]):::ext
+  x2(["<b>SdiagLeadCop</b><br/>Ad_eq"]):::ext
+  x3(["<b>SdiagLeadDsum</b><br/>Wd_eq"]):::ext
+  x4(["<b>SdiagLeadSwap</b><br/>fw_mul<br/>term_eq"]):::ext
+  x5(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x6(["<b>ApproxBounds</b><br/>integrand_bound"]):::ext
+  x7(["<b>ApproxShift</b><br/>GY_analyticAt"]):::ext
+  x8(["<b>SdiagLeadAd</b><br/>Wd_bound<br/>norm_ncpow_le"]):::ext
   n0 --> n1
   n0 --> n18
   n0 --> n19
@@ -82,7 +86,11 @@ flowchart LR
   n14 -.-> x1
   n15 -.-> x1
   n16 -.-> x1
+  n16 -.-> x8
   n18 -.-> x1
+  n2 -.-> x2
+  n2 -.-> x3
+  n2 -.-> x4
   n20 -.-> x1
   n21 -.-> x0
   n21 -.-> x1
@@ -99,13 +107,13 @@ flowchart LR
   n6 -.-> x1
   n7 -.-> x1
   n8 -.-> x1
-  x2 -.-> n12
-  x2 -.-> n24
-  x2 -.-> n29
-  x2 -.-> n5
-  x2 -.-> n6
-  x3 -.-> n11
-  x4 -.-> n12
+  x5 -.-> n12
+  x5 -.-> n24
+  x5 -.-> n29
+  x5 -.-> n5
+  x5 -.-> n6
+  x6 -.-> n11
+  x7 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -297,7 +305,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 83
 
 - **Is:** `` Chk (a : ℕ → ℂ) (σ₀ : ℝ) (h k : ℕ) : ℂ := a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-(σ₀ : ℂ)) * (k : ℂ) ^ (-(σ₀ : ℂ))) noncomputable ``
-- **Used by 7:** [`Diagonal.Chk_norm`](#Diagonal-Chk_norm), [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.Zhk_le`](#Diagonal-Zhk_le), [`Diagonal.inner_hk`](#Diagonal-inner_hk)
+- **Used by 9:** [`Diagonal.Chk_norm`](#Diagonal-Chk_norm), [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.Zhk_le`](#Diagonal-Zhk_le), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
 
 <a name="Diagonal-Rhk"></a>
 ### `Diagonal.Rhk`
@@ -305,7 +313,7 @@ def · line 83
 def · line 88
 
 - **Is:** `` Rhk (α β : ℂ) (h k : ℕ) (s : ℂ) : ℂ := ((k / Nat.gcd h k : ℕ) : ℂ) ^ (-(1 / 2 + α + s)) * ((h / Nat.gcd h k : ℕ) : ℂ) ^ (-(1 / 2 + β + s)) noncomputable ``
-- **Used by 7:** [`Diagonal.Rhk_differentiable`](#Diagonal-Rhk_differentiable), [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm), [`Diagonal.Rhk_norm_le`](#Diagonal-Rhk_norm_le), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.inner_hk`](#Diagonal-inner_hk)
+- **Used by 9:** [`Diagonal.Rhk_differentiable`](#Diagonal-Rhk_differentiable), [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm), [`Diagonal.Rhk_norm_le`](#Diagonal-Rhk_norm_le), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
 
 <a name="Diagonal-Sdiag"></a>
 ### `Diagonal.Sdiag`
@@ -314,7 +322,7 @@ def · line 95
 
 - **Is:** `` Sdiag (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, Chk a σ₀ h k * Rhk α β h k s noncomputable ``
 - **Built from:** [`Diagonal.Chk`](#Diagonal-Chk), [`Diagonal.Rhk`](#Diagonal-Rhk)
-- **Used by 14:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO)
+- **Used by 16:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`SdiagLead.S_eq`](../lean_stage3/SdiagLeadCore.md#SdiagLead-S_eq), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap)
 
 <a name="Diagonal-Zd"></a>
 ### `Diagonal.Zd`
@@ -477,9 +485,13 @@ line 189 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (5 that use it)
 
   - [`Diagonal.ell_term`](#Diagonal-ell_term) — `` ((A * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + α)) * ((B * (l + 1) : ℕ) : ℂ) ^ (-(1 / 2 + β)) * (K * ((((A * (l + 1) : ℕ) : ℝ) * ((B * (l + 1) : ℕ) : ℝ) : ℝ) : … ``
+  - [`SdiagLead.Ad_eq`](../lean_stage3/SdiagLeadCop.md#SdiagLead-Ad_eq) (SdiagLeadCop) — `` Ad P M d γ = ((μ d : ℤ) : ℂ) * ∑ m ∈ Ioc 0 (M / d), ((chiAF d m : ℤ) : ℂ) * ((m : ℂ) ^ (-(1 + γ)) * Smu P (Real.log M) ((M : ℝ) / d / m) γ) ``
+  - [`SdiagLead.Wd_eq`](../lean_stage3/SdiagLeadDsum.md#SdiagLead-Wd_eq) (SdiagLeadDsum) — `` Wd α β d = (1 / (d : ℂ)) * ∑ a ∈ d.divisors, ((μ a : ℤ) : ℂ) * (a : ℂ) ^ (-(1 + α + β)) ``
+  - [`SdiagLead.fw_mul`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-fw_mul) (SdiagLeadSwap) — `` fw P M γ (d * n) = (d : ℂ) ^ (-(1 + γ)) * (((μ (d * n) : ℤ) : ℂ) * ((Pw P M (d * n) : ℝ) : ℂ) * (n : ℂ) ^ (-(1 + γ))) ``
+  - [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq) (SdiagLeadSwap) — `` Chk (aY P T θ R) (sig0 T R) h k * Rhk α β h k 0 = fw P (Mof T θ) β h * fw P (Mof T θ) α k * ((Nat.gcd h k : ℕ) : ℂ) ^ (1 + α + β) ``
 
 <a name="Diagonal-ell_term"></a>
 ### `Diagonal.ell_term`
@@ -919,10 +931,12 @@ line 481 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`Diagonal.Chk_norm`](#Diagonal-Chk_norm) — `` ‖Chk a σ₀ h k‖ = (‖a h‖ * (h : ℝ) ^ (-σ₀)) * (‖a k‖ * (k : ℝ) ^ (-σ₀)) ``
   - [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm) — `` ‖Rhk α β h k (σ + y * I)‖ = ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + σ)) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + σ)) ``
+  - [`SdiagLead.Wd_bound`](../lean_stage3/SdiagLeadAd.md#SdiagLead-Wd_bound) (SdiagLeadAd) — `` ‖Wd α β d‖ ≤ Real.exp (2 * A) * sig d / d ``
+  - [`SdiagLead.norm_ncpow_le`](../lean_stage3/SdiagLeadAd.md#SdiagLead-norm_ncpow_le) (SdiagLeadAd) — `` ‖(m : ℂ) ^ (-(1 + γ))‖ ≤ Real.exp A / m ``
 
 <a name="Diagonal-re_line"></a>
 ### `Diagonal.re_line`

@@ -15,7 +15,7 @@
 flowchart LR
   n0["<b>sum_range_succ_eq_Ioc</b><br/>∑ n ∈ range (t + 1), g n = ∑ n ∈ Ioc 0 t, g n"]:::cnt
   n1["<b>MMu_bound</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℕ, |MMu t| ≤ η * t + C"]:::shp
-  n2["<b>mMu_tendsto ■</b><br/>Tendsto mMu atTop (𝓝 0)"]:::cnt
+  n2["<b>mMu_tendsto</b><br/>Tendsto mMu atTop (𝓝 0)"]:::cnt
   n3["<b>sum_divisors_mu</b><br/>∑ d ∈ n.divisors, (μ d : ℝ) = if n = 1 then 1 else 0"]:::cnt
   n4["<b>mobius_harmonic</b><br/>∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * (harmonic (N / n) : ℝ) = 1"]:::cnt
   n5["<b>div_bounds</b><br/>((N / n : ℕ) : ℝ) ≤ (N : ℝ) / n ∧ (N : ℝ) / n ＜ ((N / n : ℕ) : ℝ…"]:::cnt
@@ -28,7 +28,8 @@ flowchart LR
   n12["<b>head_bound</b><br/>|∑ n ∈ Ioc 0 (N / Y), (μ n : ℝ) / n * rhoN N n| ≤ 2 / Y"]:::shp
   n13["<b>tail_bound</b><br/>|∑ n ∈ Ioc (N / Y) N, (μ n : ℝ) / n * rhoN N n| ≤ B * ((Y : ℝ) /…"]:::shp
   n14["<b>D_small</b><br/>∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → |∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * rhoN…"]:::shp
-  n15["<b>psiMu_tendsto ■</b><br/>Tendsto psiMu atTop (𝓝 1)"]:::shp
+  n15["<b>psiMu_tendsto</b><br/>Tendsto psiMu atTop (𝓝 1)"]:::shp
+  x0(["<b>SdiagLeadSmooth</b><br/>psiR_bdd<br/>psiR_tendsto"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n14
@@ -46,6 +47,8 @@ flowchart LR
   n7 --> n14
   n8 --> n13
   n9 --> n13
+  n15 -.-> x0
+  n2 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -68,7 +71,7 @@ def · line 41
 `ψ_μ(N) = Σ_{n ≤ N} μ(n)/n · log(N/n)`.
 
 - **Is:** `` psiMu (N : ℕ) : ℝ := ∑ n ∈ Ioc 0 N, (μ n : ℝ) / n * Real.log ((N : ℝ) / n) ``
-- **Used by 1:** [`DiagMain.psiMu_tendsto`](#DiagMain-psiMu_tendsto)
+- **Used by 4:** [`DiagMain.psiMu_tendsto`](#DiagMain-psiMu_tendsto), [`SdiagLead.psiR_bdd`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_bdd), [`SdiagLead.psiR_eq`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_eq), [`SdiagLead.psiR_tendsto`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_tendsto)
 
 <a name="DiagMain-mMu"></a>
 ### `DiagMain.mMu`
@@ -78,7 +81,7 @@ def · line 44
 `m(N) = Σ_{n ≤ N} μ(n)/n`.
 
 - **Is:** `` mMu (N : ℕ) : ℝ := ∑ n ∈ Ioc 0 N, (μ n : ℝ) / n ``
-- **Used by 2:** [`DiagMain.mMu_tendsto`](#DiagMain-mMu_tendsto), [`DiagMain.psiMu_tendsto`](#DiagMain-psiMu_tendsto)
+- **Used by 5:** [`DiagMain.mMu_tendsto`](#DiagMain-mMu_tendsto), [`DiagMain.psiMu_tendsto`](#DiagMain-psiMu_tendsto), [`SdiagLead.psiR_bdd`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_bdd), [`SdiagLead.psiR_eq`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_eq), [`SdiagLead.psiR_tendsto`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_tendsto)
 
 <a name="DiagMain-MMu"></a>
 ### `DiagMain.MMu`
@@ -178,7 +181,10 @@ Tendsto mMu atTop (𝓝 0)
 
 **Definitions its proof touches:** [`DiagMain.mMu`](#DiagMain-mMu)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`SdiagLead.psiR_bdd`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_bdd) (SdiagLeadSmooth) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ s : ℝ, 1 ≤ s → |psiR s - 1| ≤ B ``
+  - [`SdiagLead.psiR_tendsto`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_tendsto) (SdiagLeadSmooth) — `` ∃ s₀ : ℝ, 1 ≤ s₀ ∧ ∀ s : ℝ, s₀ ≤ s → |psiR s - 1| ≤ ε ``
 
 <a name="DiagMain-sum_divisors_mu"></a>
 ### `DiagMain.sum_divisors_mu`
@@ -517,5 +523,8 @@ Tendsto psiMu atTop (𝓝 1)
 
 **Definitions its proof touches:** [`DiagMain.mMu`](#DiagMain-mMu), [`DiagMain.psiMu`](#DiagMain-psiMu), [`DiagMain.rhoN`](#DiagMain-rhoN)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`SdiagLead.psiR_bdd`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_bdd) (SdiagLeadSmooth) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ s : ℝ, 1 ≤ s → |psiR s - 1| ≤ B ``
+  - [`SdiagLead.psiR_tendsto`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-psiR_tendsto) (SdiagLeadSmooth) — `` ∃ s₀ : ℝ, 1 ≤ s₀ ∧ ∀ s : ℝ, s₀ ≤ s → |psiR s - 1| ≤ ε ``
 

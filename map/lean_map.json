@@ -38273,7 +38273,10 @@
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY_bound",
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.c1Y_eq",
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
     ]
    },
    {
@@ -38384,6 +38387,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
@@ -38414,6 +38418,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound"
     ]
    },
@@ -38513,7 +38518,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead"
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
     ]
    },
    {
@@ -38569,7 +38576,10 @@
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtDiagMainO_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps"
+    ]
    },
    {
     "kind": "def",
@@ -38591,7 +38601,9 @@
     "exact": false,
     "uses": [],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.stmtMuSmooth_holds"
+    ]
    }
   ]
  },
@@ -38640,7 +38652,10 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
     ]
    },
    {
@@ -38664,7 +38679,10 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
-     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto"
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
     ]
    },
    {
@@ -38769,7 +38787,10 @@
      "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.sum_range_succ_eq_Ioc"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
+    ]
    },
    {
     "kind": "theorem",
@@ -39152,7 +39173,10 @@
      "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.rhoN"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
+    ]
    }
   ]
  },
@@ -39217,7 +39241,9 @@
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_mainO_X",
-     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtDiagMainO_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps"
     ]
    },
    {
@@ -39312,7 +39338,9 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk_le",
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
     ]
    },
    {
@@ -39343,7 +39371,9 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag_differentiable",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Zhk",
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.inner_hk",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
     ]
    },
    {
@@ -39388,7 +39418,9 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.diag_young",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.shifted_bound",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.stmtDiag_of_main",
-     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO"
+     "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
     ]
    },
    {
@@ -39611,7 +39643,11 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ell_term",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
     ]
    },
    {
@@ -40082,7 +40118,9 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk_norm",
-     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm"
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk_norm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le"
     ]
    },
    {
@@ -79721,6 +79759,4746 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLead.lean",
+  "module": "Stage3.SdiagLead",
+  "stem": "SdiagLead",
+  "header": "# Stage3.SdiagLead — `StmtSdiagLead` and `StmtDiagMainO`, from six arithmetic facts. 2026-11-25.",
+  "imports": [
+   "Stage3.SdiagLeadDsum"
+  ],
+  "opens": [
+   "DiagMain",
+   "DiagMainStmt"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 81,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadDsum.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtArith",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtArith",
+    "line": 49,
+    "why": "OPEN, the six arithmetic facts the leading term rests on.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLead.lean",
+    "id": "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtDiagMainO_holds",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtSdiagLead_holds",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtSdiagLead_holds",
+    "line": 54,
+    "why": "Young's Lemma 7 to `o(1/L)`: `S(α,β,0) = I(α,β)/log M + o(1/L)` on `Regime κ T`, given `StmtArith`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "_hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hA : StmtArith"
+    ],
+    "proves": "StmtSdiagLead P θ R κ",
+    "file": "lean_stage3/Stage3/SdiagLead.lean",
+    "id": "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtDiagMainO_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDiagMainO_holds",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtDiagMainO_holds",
+    "line": 63,
+    "why": "The main term, little-o: `ζ(1+α+β) S(α,β,0) = c₁(α,β) + o(1)`, given `StmtArith`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "hA : StmtArith"
+    ],
+    "proves": "StmtDiagMainO P θ R κ",
+    "file": "lean_stage3/Stage3/SdiagLead.lean",
+    "id": "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtDiagMainO_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadAd.lean",
+  "module": "Stage3.SdiagLeadAd",
+  "stem": "SdiagLeadAd",
+  "header": "# Stage3.SdiagLeadAd — layer (2), the per-`d` step on average, from four arithmetic facts. 2026-11-25.",
+  "imports": [
+   "Stage3.SdiagLeadCore"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "DiagMain",
+   "Finset"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 828,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadCore.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Sdm",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Sdm",
+    "line": 46,
+    "why": "`S_d(X) = Σ_{m ≤ X, m ∈ ⟨d⟩} 1/m`.",
+    "sorry": false,
+    "needs": [
+     "d X : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_mono",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Tl",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Tl",
+    "line": 49,
+    "why": "`T_d(X) = σ(d) − S_d(X)`.",
+    "sorry": false,
+    "needs": [
+     "d X : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtSdmLe",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtSdmLe",
+    "line": 52,
+    "why": "OPEN, the finite Euler product: `S_d(X) ≤ d/φ(d)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtMeanSig3",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtMeanSig3",
+    "line": 55,
+    "why": "OPEN, the mean of `σ³`: `Σ_{d ≤ M} μ²(d) σ(d)³/d ≤ C(1 + log M)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtTailFixed",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtTailFixed",
+    "line": 59,
+    "why": "OPEN, the tail beyond a fixed `Z`, on average: `≤ η(1 + log M)` once `Z = Z(η)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtTailAvg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtTailAvg",
+    "line": 63,
+    "why": "OPEN, the tail beyond `M/(dY)`, on average: `≤ C(1 + log Y)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chi_cases",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chi_cases",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ"
+    ],
+    "proves": "((chiAF d m : ℤ) : ℝ) = 0 ∨ ((chiAF d m : ℤ) : ℝ) = 1",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_le_one",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chi_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chi_nonneg",
+    "line": 71,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ"
+    ],
+    "proves": "0 ≤ ((chiAF d m : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chi_le_one",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chi_le_one",
+    "line": 74,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ"
+    ],
+    "proves": "((chiAF d m : ℤ) : ℝ) ≤ 1",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_le_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "chi_term_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chi_term_nonneg",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ"
+    ],
+    "proves": "0 ≤ ((chiAF d m : ℤ) : ℝ) / m",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_mono",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Sdm_mono",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Sdm_mono",
+    "line": 80,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "h : X ≤ X'"
+    ],
+    "proves": "Sdm d X ≤ Sdm d X'",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Tl_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Tl_nonneg",
+    "line": 85,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "hd : 1 ≤ d",
+     "X : ℕ"
+    ],
+    "proves": "0 ≤ Tl d X",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Tl_anti",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Tl_anti",
+    "line": 88,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "h : X ≤ X'"
+    ],
+    "proves": "Tl d X' ≤ Tl d X",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_mono",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_mono",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_above_le",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_above_le",
+    "line": 92,
+    "why": "`Σ_{m ≤ N, m > K, m ∈ ⟨d⟩} 1/m ≤ T_d(K)`.",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "hd : 1 ≤ d",
+     "N K : ℕ"
+    ],
+    "proves": "∑ m ∈ Ioc 0 N, (if m ≤ K then (0 : ℝ) else ((chiAF d m : ℤ) : ℝ) / m) ≤ Tl d K",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_ncpow_le",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.norm_ncpow_le",
+    "line": 108,
+    "why": "`‖m^{−(1+γ)}‖ ≤ e^A/m` for `1 ≤ m ≤ M`.",
+    "sorry": false,
+    "needs": [
+     "hm : 1 ≤ m",
+     "hmM : m ≤ M",
+     "hγ : ‖γ‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖(m : ℂ) ^ (-(1 + γ))‖ ≤ Real.exp A / m",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_ncpow_sub_one_le",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.norm_ncpow_sub_one_le",
+    "line": 125,
+    "why": "`‖m^{−γ} − 1‖ ≤ ‖γ‖ log m e^A` for `1 ≤ m`, `‖γ‖ log m ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "hm : 1 ≤ m",
+     "hγ : ‖γ‖ * Real.log m ≤ A"
+    ],
+    "proves": "‖(m : ℂ) ^ (-γ) - 1‖ ≤ ‖γ‖ * Real.log m * Real.exp A",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_sub_one_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "poly_sup",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.poly_sup",
+    "line": 139,
+    "why": "Sup bounds for `|P|`, `|P′|`, `|P″|` on `[0, 1]`.",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ u ∈ Set.Icc (0 : ℝ) 1, |p.eval u| ≤ B",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_lip",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "poly_lip",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.poly_lip",
+    "line": 145,
+    "why": "`|p(u) − p(v)| ≤ B₁ |u − v|` on `[0, 1]`.",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ u v : ℝ, 0 ≤ v → v ≤ u → u ≤ 1 → |p.eval u - p.eval v| ≤ B * (u - v)",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_lip",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ell_mem",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ell_mem",
+    "line": 156,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hlM : 0 < lM",
+     "hy : 1 ≤ y",
+     "hyl : Real.log y ≤ lM"
+    ],
+    "proves": "Real.log y / lM ∈ Set.Icc (0 : ℝ) 1",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ell_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mainS_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mainS_bound",
+    "line": 161,
+    "why": "`‖mainS(y, γ)‖ ≤ C_m/λ` for `1 ≤ y`, `log y ≤ λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖mainS P lM y γ‖ ≤ C / lM",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ell_mem",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ell_mem",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mainS_shift",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mainS_shift",
+    "line": 181,
+    "why": "The shift: `‖m^{−γ} mainS(x/m) − mainS(x)‖ ≤ C_s log m/λ²` for `1 ≤ m ≤ x`, `log x ≤ λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, ∀ m : ℕ, 1 ≤ m → (m : ℝ) ≤ x → Real.log x ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖(m : ℂ) ^ (-γ) * mainS P lM (x / m) γ - mainS P lM x γ‖ ≤ C * Real.log m / lM ^ 2",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ell_mem",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_sub_one_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_lip",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ell_mem",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_sub_one_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_lip",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Smu_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Smu_bound",
+    "line": 245,
+    "why": "`‖Smu(y, γ)‖ ≤ C/λ` for `1 ≤ y`, `log y ≤ λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖Smu P lM y γ‖ ≤ C / lM",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_div_le_Sdm",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_div_le_Sdm",
+    "line": 260,
+    "why": "`Σ_{a | d} 1/a ≤ S_d(d)`.",
+    "sorry": false,
+    "needs": [
+     "hd : 1 ≤ d"
+    ],
+    "proves": "∑ a ∈ d.divisors, (1 : ℝ) / a ≤ Sdm d d",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wd_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Wd_bound",
+    "line": 275,
+    "why": "`‖W_d‖ ≤ e^{2A} σ(d)/d` for `1 ≤ d ≤ M`, `‖α‖λ, ‖β‖λ ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "hd : 1 ≤ d",
+     "hdM : d ≤ M",
+     "hα : ‖α‖ * Real.log M ≤ A",
+     "hβ : ‖β‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖Wd α β d‖ ≤ Real.exp (2 * A) * sig d / d",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.norm_cpow_nat",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ad",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ad",
+    "line": 347,
+    "why": "`a_d(γ) = A_d(γ)/μ(d) = Σ_{m ∈ ⟨d⟩, m ≤ M/d} m^{−(1+γ)} Smu(M/(dm), γ)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M d : ℕ",
+     "γ : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ahat0",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ahat0",
+    "line": 352,
+    "why": "`â_d(γ) = σ(d) mainS(M/d, γ)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M d : ℕ",
+     "γ : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sig_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sig_nonneg",
+    "line": 355,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "0 ≤ sig d",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Sdm_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Sdm_nonneg",
+    "line": 357,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d X : ℕ"
+    ],
+    "proves": "0 ≤ Sdm d X",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "range_facts",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.range_facts",
+    "line": 361,
+    "why": "The range facts for `m ≤ M/d`.",
+    "sorry": false,
+    "needs": [
+     "hd : 1 ≤ d",
+     "hm : m ∈ Ioc 0 (M / d)"
+    ],
+    "proves": "1 ≤ m ∧ m ≤ M ∧ (m : ℝ) ≤ (M : ℝ) / d ∧ 1 ≤ (M : ℝ) / d / m ∧ Real.log ((M : ℝ) / d / m) ≤ Real.log M ∧ Real.log ((M : ℝ) / d) ≤ Real.log M ∧ 1 ≤ (M : ℝ) / d",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.range_facts",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_chi_mul",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.norm_chi_mul",
+    "line": 380,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "‖((chiAF d m : ℤ) : ℂ) * z‖ = ((chiAF d m : ℤ) : ℝ) * ‖z‖",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ad_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ad_bound",
+    "line": 390,
+    "why": "`‖a_d(γ)‖ ≤ e^A C σ(d)/λ`.",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "P : Polynomial ℝ",
+     "hC : ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖Smu P lM y γ‖ ≤ C / lM",
+     "hC0 : 0 ≤ C",
+     "hd : 1 ≤ d",
+     "hlM : 0 < Real.log M",
+     "hγ : ‖γ‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖ad P M d γ‖ ≤ Real.exp A * C * sig d / Real.log M",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.range_facts",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.range_facts",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ahat0_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ahat0_bound",
+    "line": 422,
+    "why": "`‖â_d(γ)‖ ≤ σ(d) C_m/λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hCm : ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖mainS P lM y γ‖ ≤ Cm / lM",
+     "hd : 1 ≤ d",
+     "hdM : d ≤ M",
+     "hlM : 0 < Real.log M",
+     "hγ : ‖γ‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖ahat0 P M d γ‖ ≤ sig d * Cm / Real.log M",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ad_err",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ad_err",
+    "line": 438,
+    "why": "The per-`d` error: `‖a_d − â_d‖ ≤ (e^A ε σ + C_s log Z σ/λ + C_s T_d(Z) + (e^A C_c + C_m) T_d(M/d/Y′))/λ`.",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "P : Polynomial ℝ",
+     "hsm : ∀ lM : ℝ, L₀ ≤ lM → ∀ x : ℝ, Y ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ ε / lM",
+     "hcr : ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, 1 ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ Cc / lM",
+     "hCm : ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖mainS P lM y γ‖ ≤ Cm / lM",
+     "hCs : ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, ∀ m : ℕ, 1 ≤ m → (m : ℝ) ≤ x → Real.log x ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖(m : ℂ) ^ (-γ) * mainS P lM (x / m) γ - mainS P lM x γ‖ ≤ Cs * Real.log m / lM ^ 2",
+     "hε : 0 ≤ ε",
+     "hCc : 0 ≤ Cc",
+     "hCs0 : 0 ≤ Cs",
+     "hYY : Y ≤ Y'",
+     "hY' : 1 ≤ Y'",
+     "hZ : 1 ≤ Z",
+     "hd : 1 ≤ d",
+     "hdM : d ≤ M",
+     "hlM : 0 < Real.log M",
+     "hL : L₀ ≤ Real.log M",
+     "hγ : ‖γ‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖ad P M d γ - ahat0 P M d γ‖ ≤ (Real.exp A * ε * sig d + Cs * Real.log Z / Real.log M * sig d + Cs * Tl d Z + (Real.exp A * Cc + Cm) * Tl d (M / d / Y')) / Real.log M",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.range_facts",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.range_facts",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "AA_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.AA_eq",
+    "line": 596,
+    "why": "`A_d = μ(d) a_d`, `Â_d = μ(d) â_d`, so `A A − Â Â = μ² (a a − â â)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hd : 1 ≤ d",
+     "α β : ℂ"
+    ],
+    "proves": "Ad P M d β * Ad P M d α - Ahat P M d β * Ahat P M d α = ((μ d : ℤ) : ℂ) ^ 2 * (ad P M d β * ad P M d α - ahat0 P M d β * ahat0 P M d α)",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_mu_sq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.norm_mu_sq",
+    "line": 603,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "‖((μ d : ℤ) : ℂ) ^ 2 * z‖ = ((μ d : ℤ) : ℝ) ^ 2 * ‖z‖",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_mu_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "perd_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.perd_bound",
+    "line": 608,
+    "why": "The per-`d` bound: `‖W_d‖ ‖A A − Â Â‖ ≤ K₀/λ² · μ²(d) σ(d)²/d · E_d`.",
+    "sorry": false,
+    "needs": [
+     "hS : StmtSdmLe",
+     "P : Polynomial ℝ",
+     "hsm : ∀ lM : ℝ, L₀ ≤ lM → ∀ x : ℝ, Y ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ ε / lM",
+     "hcr : ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, 1 ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ Cc / lM",
+     "hCm : ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖mainS P lM y γ‖ ≤ Cm / lM",
+     "hCs : ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, ∀ m : ℕ, 1 ≤ m → (m : ℝ) ≤ x → Real.log x ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖(m : ℂ) ^ (-γ) * mainS P lM (x / m) γ - mainS P lM x γ‖ ≤ Cs * Real.log m / lM ^ 2",
+     "hCS : ∀ lM : ℝ, 0 < lM → ∀ y : ℝ, 1 ≤ y → Real.log y ≤ lM → ∀ γ : ℂ, ‖γ‖ * lM ≤ A → ‖Smu P lM y γ‖ ≤ CS / lM",
+     "hε : 0 ≤ ε",
+     "hCc : 0 ≤ Cc",
+     "hCm0 : 0 ≤ Cm",
+     "hCs0 : 0 ≤ Cs",
+     "hCS0 : 0 ≤ CS",
+     "hYY : Y ≤ Y'",
+     "hY' : 1 ≤ Y'",
+     "hZ : 1 ≤ Z",
+     "hd : 1 ≤ d",
+     "hdM : d ≤ M",
+     "hlM : 0 < Real.log M",
+     "hL : L₀ ≤ Real.log M",
+     "hα : ‖α‖ * Real.log M ≤ A",
+     "hβ : ‖β‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖Wd α β d‖ * ‖Ad P M d β * Ad P M d α - Ahat P M d β * Ahat P M d α‖ ≤ 2 * Real.exp (2 * A) * (Real.exp A * CS + Cm + 1) / Real.log M ^ 2 * (((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 / d * (Real.exp A * ε * sig d + Cs * Real.log Z / Real.log M * sig d + Cs * Tl d Z + (Real.exp A * Cc + Cm) * Tl d (M / d / Y')))",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_mu_sq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_mu_sq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "final_arith",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.final_arith",
+    "line": 676,
+    "why": "The real arithmetic closing layer (2).",
+    "sorry": false,
+    "needs": [
+     "hK₀ : 0 < K₀",
+     "hεt : 0 < εt",
+     "hCs : 0 ≤ Cs",
+     "hC2 : 0 ≤ C2",
+     "hC7 : 0 ≤ C7",
+     "hlZ : 0 ≤ lZ",
+     "hl1 : 1 ≤ lM",
+     "hεd : ε = εt / (8 * K₀ * Real.exp A * (C2 + 1))",
+     "hηd : η = εt / (8 * K₀ * (Cs + 1))",
+     "hlZb : 8 * K₀ * Cs * lZ * C2 / εt ≤ lM",
+     "hlYb : 4 * K₀ * C7 * C4 * (1 + lY) / εt ≤ lM",
+     "s2 : S2 ≤ C2 * (1 + lM)",
+     "s3 : S3 ≤ η * (1 + lM)",
+     "s4 : S4 ≤ C4 * (1 + lY)"
+    ],
+    "proves": "K₀ / lM ^ 2 * ((Real.exp A * ε + Cs * lZ / lM) * S2 + Cs * S3 + C7 * S4) ≤ εt / lM",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.final_arith",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtAdApprox_of_arith",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtAdApprox_of_arith",
+    "line": 750,
+    "why": "Layer (2) from the arithmetic: the four facts on `⟨d⟩` give `StmtAdApprox P A`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hA : 0 ≤ A",
+     "hS : StmtSdmLe",
+     "h2 : StmtMeanSig3",
+     "h3 : StmtTailFixed",
+     "h4 : StmtTailAvg"
+    ],
+    "proves": "StmtAdApprox P A",
+    "file": "lean_stage3/Stage3/SdiagLeadAd.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.final_arith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl_anti",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.final_arith",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadCop.lean",
+  "module": "Stage3.SdiagLeadCop",
+  "stem": "SdiagLeadCop",
+  "header": "# Stage3.SdiagLeadCop — the coprimality step, exact. 2026-11-25. Step 3 of the route in `Stage3/DiagMain.lean`'s docstring, the exact part: `μ(dn) = μ(d) μ(n) 1_{(n,d)=1}` (`mu_mul_eq`), `μ·1_{(·,d)=1} = 1_{⟨d⟩} * μ` with `⟨d⟩ = {m : primes of m ⊆ primes of d}` (`copAF_eq`), and the weighted hyperbola swap (`sum_conv_weight`) give",
+  "imports": [
+   "Stage3.SdiagLeadSmooth"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "Finset"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 197,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadSmooth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "chiAF",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chiAF",
+    "line": 34,
+    "why": "`1_{⟨d⟩}(m)`: `m ≠ 0` and every prime of `m` divides `d`.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "ArithmeticFunction ℤ",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Sdm",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_le_one",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_term_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_chi_mul",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_above_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_prime_pow",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "copAF",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.copAF",
+    "line": 38,
+    "why": "`μ(n) 1_{(n,d)=1}`.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "ArithmeticFunction ℤ",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mu_mul_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chiAF_apply",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chiAF_apply",
+    "line": 41,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d m : ℕ"
+    ],
+    "proves": "chiAF d m = if m ≠ 0 ∧ m.primeFactors ⊆ d.primeFactors then 1 else 0",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.chi_cases",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sum_div_le_Sdm",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_prime_pow",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "copAF_apply",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.copAF_apply",
+    "line": 44,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d n : ℕ"
+    ],
+    "proves": "copAF d n = if n.Coprime d then μ n else 0",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mu_mul_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chiAF_mult",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chiAF_mult",
+    "line": 46,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "(chiAF d).IsMultiplicative",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_mult",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "copAF_mult",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.copAF_mult",
+    "line": 53,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "(copAF d).IsMultiplicative",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_mult",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mu_mul_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mu_mul_eq",
+    "line": 61,
+    "why": "`μ(dn) = μ(d) μ(n) 1_{(n,d)=1}`.",
+    "sorry": false,
+    "needs": [
+     "d n : ℕ"
+    ],
+    "proves": "μ (d * n) = μ d * copAF d n",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mu_mul_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "chiAF_prime_pow",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.chiAF_prime_pow",
+    "line": 70,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hd : d ≠ 0",
+     "hp : p.Prime",
+     "hi : i ≠ 0"
+    ],
+    "proves": "chiAF d (p ^ i) = if p ∣ d then 1 else 0",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_prime_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mul_prime_pow",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mul_prime_pow",
+    "line": 81,
+    "why": "`(f * g)(p^i) = Σ_{j ≤ i} f(p^j) g(p^{i−j})`.",
+    "sorry": false,
+    "needs": [
+     "f g : ArithmeticFunction ℤ",
+     "hp : p.Prime",
+     "i : ℕ"
+    ],
+    "proves": "(f * g) (p ^ i) = ∑ j ∈ range (i + 1), f (p ^ j) * g (p ^ (i - j))",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mul_prime_pow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "copAF_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.copAF_eq",
+    "line": 91,
+    "why": "`μ·1_{(·,d)=1} = 1_{⟨d⟩} * μ`.",
+    "sorry": false,
+    "needs": [
+     "hd : d ≠ 0"
+    ],
+    "proves": "copAF d = chiAF d * μ",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_prime_pow",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mul_prime_pow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF_prime_pow",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_apply",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_mult",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mul_prime_pow"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_conv_weight",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_conv_weight",
+    "line": 126,
+    "why": "The weighted hyperbola swap: `Σ_{n ≤ N} (f*g)(n) w(n) = Σ_{m ≤ N} f(m) Σ_{k ≤ N/m} g(k) w(mk)`.",
+    "sorry": false,
+    "needs": [
+     "f g : ArithmeticFunction ℤ",
+     "N : ℕ",
+     "w : ℕ → ℂ"
+    ],
+    "proves": "∑ n ∈ Ioc 0 N, (((f * g) n : ℤ) : ℂ) * w n = ∑ m ∈ Ioc 0 N, ((f m : ℤ) : ℂ) * ∑ k ∈ Ioc 0 (N / m), ((g k : ℤ) : ℂ) * w (m * k)",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.sum_conv_weight",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.sum_dvd_reindex"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.sum_dvd_reindex"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Ad_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Ad_eq",
+    "line": 153,
+    "why": "`A_d(γ) = μ(d) Σ_{m ∈ ⟨d⟩, m ≤ M/d} m^{−(1+γ)} Smu(M/(dm), γ)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "hd : 1 ≤ d",
+     "γ : ℂ"
+    ],
+    "proves": "Ad P M d γ = ((μ d : ℤ) : ℂ) * ∑ m ∈ Ioc 0 (M / d), ((chiAF d m : ℤ) : ℂ) * ((m : ℂ) ^ (-(1 + γ)) * Smu P (Real.log M) ((M : ℝ) / d / m) γ)",
+    "file": "lean_stage3/Stage3/SdiagLeadCop.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mu_mul_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.sum_conv_weight",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.chiAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.copAF_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.mu_mul_eq",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.sum_conv_weight",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadCore.lean",
+  "module": "Stage3.SdiagLeadCore",
+  "stem": "SdiagLeadCore",
+  "header": "# Stage3.SdiagLeadCore — the leading term of `S(α,β,0)`, Young's Lemma 7 to `o(1/L)`. 2026-11-25.",
+  "imports": [
+   "Stage3.SdiagLeadCop"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "DiagMain",
+   "DiagMainStmt",
+   "Diagonal",
+   "Finset",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 187,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadCop.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Wd",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Wd",
+    "line": 54,
+    "why": "`W_d = J_{1+α+β}(d) d^{−(2+α+β)}`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "d : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "sig",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sig",
+    "line": 57,
+    "why": "`d/φ(d)`.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtMeanSig3",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtSdmLe",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailAvg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.StmtTailFixed",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Tl",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ahat",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Ahat",
+    "line": 60,
+    "why": "`Â_d(γ) = μ(d) (d/φ(d)) (γ P(ℓ_d) + P′(ℓ_d)/log M)`, `ℓ_d = log(M/d)/log M`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M d : ℕ",
+     "γ : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.S_eq",
+    "line": 63,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0 = ∑ d ∈ Icc 1 (Mof T θ), Wd α β d * Ad P (Mof T θ) d β * Ad P (Mof T θ) d α",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtAdApprox",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtAdApprox",
+    "line": 73,
+    "why": "OPEN, (2) the per-`d` step on average: `A_d(γ) = Â_d(γ) + error`, the errors summed against `‖W_d‖` are `o(1/log M)`, uniformly in `‖α‖ log M, ‖β‖ log M ≤ A`. Route: `μ(dn) = μ(d)μ(n)1_{(n,d)=1}`, `μ·1_{(·,d)=1} = μ * 1_{rad(·)|d}`, `A_d(γ) = μ(d) Σ_{m ∈ ⟨d⟩} m^{−(1+γ)} Smu(M/(dm), γ)`, `muSmoothR` for `M/(dm) ≥ Y` and `muSmooth_crude` below; the tails on average over `d` (`Σ_m (1 + log m)/(m rad m) < ∞`).",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "A : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtDsum",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtDsum",
+    "line": 83,
+    "why": "OPEN, (3) the `d`-sum: `Σ_{d ≤ M} W_d Â_d(β) Â_d(α) = I(α,β)/log M + o(1/log M)`. Route: `W_d (d/φ(d))² μ²(d) = μ²(d)/φ(d) · Π_{p|d}(1 − p^{−1−α−β})/(1 − p^{−1})`, the product `1 + O(Σ_{p | d} log p/(p log M))`; `Σ_{d ≤ x} μ²(d)/φ(d) = log x + O(1)` and partial summation against `F(ℓ) = (P′(ℓ) + β log M P(ℓ))(P′(ℓ) + α log M P(ℓ))/log² M`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "A : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Mof_ge",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Mof_ge",
+    "line": 90,
+    "why": "`N ≤ M = ⌊T^θ⌋` once `log T ≥ log(N+1)/θ`.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 < T",
+     "hθ : 0 < θ",
+     "hN : Real.log (N + 1) / θ ≤ Real.log T"
+    ],
+    "proves": "N ≤ Mof T θ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Mof_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtSdiagLead_of_steps",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtSdiagLead_of_steps",
+    "line": 103,
+    "why": "The composition: (1) exact, (2) and (3) with `A = κθ` give `StmtSdiagLead`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ0 : 0 < θ",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "h2 : StmtAdApprox P (κ * θ)",
+     "h3 : StmtDsum P (κ * θ)"
+    ],
+    "proves": "StmtSdiagLead P θ R κ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Mof_ge",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtSdiagLead",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Mof_ge",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDiagMainO_of_steps",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtDiagMainO_of_steps",
+    "line": 167,
+    "why": "The corollary through the Taylor step: (2) and (3) give `StmtDiagMainO`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hθ0 : 0 < θ",
+     "R : ℝ",
+     "hκ : 0 < κ",
+     "h2 : StmtAdApprox P (κ * θ)",
+     "h3 : StmtDsum P (κ * θ)"
+    ],
+    "proves": "StmtDiagMainO P θ R κ",
+    "file": "lean_stage3/Stage3/SdiagLeadCore.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtDiagMainO_of_steps",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
+     "lean_stage3/Stage3/DiagMainStmt.lean::DiagMainStmt.StmtDiagMainO",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+  "module": "Stage3.SdiagLeadDsum",
+  "stem": "SdiagLeadDsum",
+  "header": "# Stage3.SdiagLeadDsum — layer (3), the `d`-sum, from two arithmetic facts. 2026-11-25.",
+  "imports": [
+   "Stage3.SdiagLeadAd"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "DiagMain",
+   "Finset",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 569,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadAd.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "gmu",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.gmu",
+    "line": 40,
+    "why": "`μ²(d)/φ(d)`.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu_nonneg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtGmuLog",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtGmuLog",
+    "line": 43,
+    "why": "OPEN, `Σ_{d ≤ t} μ²(d)/φ(d) = log t + O(1)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtDivLog",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.StmtDivLog",
+    "line": 47,
+    "why": "OPEN, `Σ_{d ≤ M} μ²(d) σ(d)²/d · Σ_{a | d} log a/a ≤ C(1 + log M)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.StmtArith",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wd_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Wd_eq",
+    "line": 54,
+    "why": "`W_d = (1/d) Σ_{a | d} μ(a) a^{−(1+α+β)}`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℂ",
+     "hd : 1 ≤ d"
+    ],
+    "proves": "Wd α β d = (1 / (d : ℂ)) * ∑ a ∈ d.divisors, ((μ a : ℤ) : ℂ) * (a : ℂ) ^ (-(1 + α + β))",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_mu_div",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_mu_div",
+    "line": 81,
+    "why": "`Σ_{a | d} μ(a)/a = φ(d)/d`.",
+    "sorry": false,
+    "needs": [
+     "hd : 1 ≤ d"
+    ],
+    "proves": "∑ a ∈ d.divisors, ((μ a : ℤ) : ℝ) / a = (Nat.totient d : ℝ) / d",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.sum_mu_div",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "totient_pos'",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.totient_pos'",
+    "line": 95,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hd : 1 ≤ d"
+    ],
+    "proves": "(0 : ℝ) < Nat.totient d",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.totient_pos'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "weight_err",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.weight_err",
+    "line": 99,
+    "why": "The weight error: `‖μ²σ²W_d − μ²/φ(d)‖ ≤ μ²σ²/d · (2A e^{2A}/λ) Σ_{a|d} log a/a`.",
+    "sorry": false,
+    "needs": [
+     "hd : 1 ≤ d",
+     "hdM : d ≤ M",
+     "hlM : 0 < Real.log M",
+     "hα : ‖α‖ * Real.log M ≤ A",
+     "hβ : ‖β‖ * Real.log M ≤ A"
+    ],
+    "proves": "‖((((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 : ℝ) : ℂ) * Wd α β d - ((gmu d : ℝ) : ℂ)‖ ≤ ((μ d : ℤ) : ℝ) ^ 2 * sig d ^ 2 / d * (2 * A * Real.exp (2 * A) / Real.log M) * ∑ a ∈ d.divisors, Real.log a / a",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_sub_one_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.sum_mu_div",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.totient_pos'",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.norm_ncpow_sub_one_le",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.sum_mu_div",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.totient_pos'",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "f_hasDerivAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.f_hasDerivAt",
+    "line": 173,
+    "why": "`ℓ(t) = log(M/t)/λ` has derivative `−t⁻¹/λ`; `f = Q ∘ ℓ`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ u, HasDerivAt Q (Q' u) u",
+     "hM : 0 < Mr",
+     "ht : 0 < t"
+    ],
+    "proves": "HasDerivAt (fun t => Q (Real.log (Mr / t) / lM)) (((-t⁻¹ / lM : ℝ) : ℂ) * Q' (Real.log (Mr / t) / lM)) t",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_f_div",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "int_f_div",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.int_f_div",
+    "line": 183,
+    "why": "`∫₁^M Q(ℓ(t))/t dt = λ ∫₀¹ Q`, `λ = log M`.",
+    "sorry": false,
+    "needs": [
+     "hQc : Continuous Q",
+     "hM : 1 < Mr"
+    ],
+    "proves": "∫ t in (1 : ℝ)..Mr, Q (Real.log (Mr / t) / Real.log Mr) * ((t⁻¹ : ℝ) : ℂ) = (Real.log Mr : ℂ) * ∫ u in (0 : ℝ)..1, Q u",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_f_div",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "int_fprime_log",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.int_fprime_log",
+    "line": 213,
+    "why": "`∫₁^M f′(t) log t dt = Q(0) λ − λ ∫₀¹ Q`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ u, HasDerivAt Q (Q' u) u",
+     "hQ'c : Continuous Q'",
+     "hM : 1 < Mr"
+    ],
+    "proves": "∫ t in (1 : ℝ)..Mr, ((-t⁻¹ / Real.log Mr : ℝ) : ℂ) * Q' (Real.log (Mr / t) / Real.log Mr) * (Real.log t : ℂ) = Q 0 * Real.log Mr - (Real.log Mr : ℂ) * ∫ u in (0 : ℝ)..1, Q u",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_f_div",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_f_div",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gmu_nonneg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.gmu_nonneg",
+    "line": 255,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "0 ≤ gmu d",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "abel_main",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.abel_main",
+    "line": 258,
+    "why": "Abel summation: `‖Σ_{k ≤ M} Q(ℓ_k) μ²(k)/φ(k) − λ ∫₀¹ Q‖ ≤ C_R(B + B′)`.",
+    "sorry": false,
+    "needs": [
+     "hG : StmtGmuLog"
+    ],
+    "proves": "∃ CR : ℝ, 0 ≤ CR ∧ ∀ M : ℕ, 2 ≤ M → ∀ Q Q' : ℝ → ℂ, (∀ u, HasDerivAt Q (Q' u) u) → Continuous Q' → ∀ B B' : ℝ, ‖Q 0‖ ≤ B → (∀ u ∈ Set.Icc (0 : ℝ) 1, ‖Q' u‖ ≤ B') → ‖∑ k ∈ Icc 0 M, Q (Real.log ((M : ℝ) / k) / Real.log M) * ((gmu k : ℝ) : ℂ) - (Real.log M : ℂ) * ∫ u in (0 : ℝ)..1, Q u‖ ≤ CR * (B + B')",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Fg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Fg",
+    "line": 375,
+    "why": "`F_γ(u) = P′(u) + γλP(u)`, so `mainS(x, γ) = F_γ(ℓ)/λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM : ℝ",
+     "γ : ℂ",
+     "u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_bound",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_continuous",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.mainS_eq_Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fg_hasDerivAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Fg_hasDerivAt",
+    "line": 378,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM : ℝ",
+     "γ : ℂ",
+     "u : ℝ"
+    ],
+    "proves": "HasDerivAt (Fg P lM γ) (Fg P.derivative lM γ u) u",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_continuous",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fg_continuous",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Fg_continuous",
+    "line": 384,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM : ℝ",
+     "γ : ℂ"
+    ],
+    "proves": "Continuous (Fg P lM γ)",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Fg_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Fg_bound",
+    "line": 387,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hB0 : ∀ u ∈ Set.Icc (0 : ℝ) 1, |P.eval u| ≤ B0",
+     "hB1 : ∀ u ∈ Set.Icc (0 : ℝ) 1, |P.derivative.eval u| ≤ B1",
+     "hl : 0 < lM",
+     "hγ : ‖γ‖ * lM ≤ A",
+     "hA : 0 ≤ A",
+     "hu : u ∈ Set.Icc (0 : ℝ) 1"
+    ],
+    "proves": "‖Fg P lM γ u‖ ≤ B1 + A * B0",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mainS_eq_Fg",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mainS_eq_Fg",
+    "line": 400,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hl : 0 < lM",
+     "x : ℝ",
+     "γ : ℂ"
+    ],
+    "proves": "mainS P lM x γ = Fg P lM γ (Real.log x / lM) / (lM : ℂ)",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.mainS_eq_Fg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dsum_sum0",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.dsum_sum0",
+    "line": 406,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hl : 0 < Real.log M",
+     "α β : ℂ"
+    ],
+    "proves": "∑ k ∈ Icc 0 M, (Fg P (Real.log M) β (Real.log ((M : ℝ) / k) / Real.log M) * Fg P (Real.log M) α (Real.log ((M : ℝ) / k) / Real.log M)) * ((gmu k : ℝ) : ℂ) = (Real.log M : ℂ) ^ 2 * ∑ d ∈ Icc 1 M, ((gmu d : ℝ) : ℂ) * (mainS P (Real.log M) ((M : ℝ) / d) β * mainS P (Real.log M) ((M : ℝ) / d) α)",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.mainS_eq_Fg",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.mainS_eq_Fg",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtDsum_of_arith",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtDsum_of_arith",
+    "line": 423,
+    "why": "Layer (3) from the arithmetic: `StmtGmuLog` and `StmtDivLog` give `StmtDsum P A`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hA : 0 ≤ A",
+     "hG : StmtGmuLog",
+     "hD : StmtDivLog"
+    ],
+    "proves": "StmtDsum P A",
+    "file": "lean_stage3/Stage3/SdiagLeadDsum.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_bound",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_continuous",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.IY",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.poly_sup",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.sig_nonneg",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtDsum",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.sig",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_bound",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_continuous",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Fg_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtDivLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.StmtGmuLog",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.gmu",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLead.lean::SdiagLead.stmtSdiagLead_holds"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+  "module": "Stage3.SdiagLeadSmooth",
+  "stem": "SdiagLeadSmooth",
+  "header": "# Stage3.SdiagLeadSmooth — the smooth Möbius sum to `o(1/log M)`, real `x`. 2026-11-25.",
+  "imports": [
+   "Stage3.SdiagLeadSwap"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "DiagMain",
+   "Filter",
+   "Finset",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 736,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/SdiagLeadSwap.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Gp",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Gp",
+    "line": 45,
+    "why": "`G_p(u) = e^{βu} p(u/λ)`.",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ",
+     "β : ℂ",
+     "lM u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_zero",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gp_hasDerivAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Gp_hasDerivAt",
+    "line": 47,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ",
+     "β : ℂ",
+     "lM u : ℝ"
+    ],
+    "proves": "HasDerivAt (Gp p β lM) (β * Gp p β lM u + (lM : ℂ)⁻¹ * Gp p.derivative β lM u) u",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gp_continuous",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Gp_continuous",
+    "line": 61,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ",
+     "β : ℂ",
+     "lM : ℝ"
+    ],
+    "proves": "Continuous (Gp p β lM)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_continuous"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "G1",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G1",
+    "line": 65,
+    "why": "`G′`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "G2",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G2",
+    "line": 69,
+    "why": "`G″`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.int_piece",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G1_hasDerivAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G1_hasDerivAt",
+    "line": 73,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM u : ℝ"
+    ],
+    "proves": "HasDerivAt (G1 P β lM) (G2 P β lM u) u",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G2_continuous",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G2_continuous",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM : ℝ"
+    ],
+    "proves": "Continuous (G2 P β lM)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_continuous"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_continuous"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G1_continuous",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G1_continuous",
+    "line": 84,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM : ℝ"
+    ],
+    "proves": "Continuous (G1 P β lM)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "Gp_zero",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Gp_zero",
+    "line": 87,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "β : ℂ",
+     "lM : ℝ"
+    ],
+    "proves": "Gp P β lM 0 = 0",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_logdiv",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.hasDerivAt_logdiv",
+    "line": 92,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "hs : 0 < s"
+    ],
+    "proves": "HasDerivAt (fun t : ℝ => Real.log (x / t)) (-s⁻¹) s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.abel_main",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.f_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_f_div",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.int_fprime_log",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_logdiv'",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.hasDerivAt_logdiv'",
+    "line": 99,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hn : 0 < n",
+     "hs : 0 < s"
+    ],
+    "proves": "HasDerivAt (fun t : ℝ => Real.log (t / n)) s⁻¹ s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_continuousAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.kernel_continuousAt",
+    "line": 107,
+    "why": "The real kernel `max(log(s/n), 0)/s` is continuous at `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hn : 0 < n",
+     "hs : 0 < s"
+    ],
+    "proves": "ContinuousAt (fun t : ℝ => max (Real.log (t / n)) 0 / t) s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G2comp_continuousAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G2comp_continuousAt",
+    "line": 113,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM : ℝ",
+     "hx : 0 < x",
+     "hs : 0 < s"
+    ],
+    "proves": "ContinuousAt (fun t : ℝ => G2 P β lM (Real.log (x / t))) s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_continuous",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Psi_div_continuousAt",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Psi_div_continuousAt",
+    "line": 118,
+    "why": "`Ψ(s)/s` is continuous at `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "c : ℕ → ℝ",
+     "x : ℝ",
+     "hs : 0 < s"
+    ],
+    "proves": "ContinuousAt (fun t => (∑ n ∈ Ioc 0 ⌊x⌋₊, c n * max (Real.log (t / n)) 0) / t) s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "taylor_n",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.taylor_n",
+    "line": 129,
+    "why": "`G(log(x/n)) = log(x/n) G′(0) + ∫₁^x G″(log(x/s)) max(log(s/n),0) ds/s`, `G(0) = 0`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "β : ℂ",
+     "lM : ℝ",
+     "hn : 1 ≤ n",
+     "hnx : (n : ℝ) ≤ x"
+    ],
+    "proves": "∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((max (Real.log (s / n)) 0 / s : ℝ) : ℂ) = Gp P β lM (Real.log (x / n)) - (Real.log (x / n) : ℂ) * G1 P β lM 0",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_zero",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_zero",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv'",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Psi",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Psi",
+    "line": 180,
+    "why": "`Ψ(s) = Σ_{n ≤ x} c_n max(log(s/n), 0)`.",
+    "sorry": false,
+    "needs": [
+     "c : ℕ → ℝ",
+     "x s : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_taylor",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_taylor",
+    "line": 184,
+    "why": "Summed against `c_n`: `Σ c_n G(log(x/n)) = G′(0) Σ c_n log(x/n) + ∫₁^x G″(log(x/s)) Ψ(s) ds/s`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "β : ℂ",
+     "lM : ℝ",
+     "hx : 1 ≤ x",
+     "c : ℕ → ℝ"
+    ],
+    "proves": "∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) = G1 P β lM 0 * ((∑ n ∈ Ioc 0 ⌊x⌋₊, c n * Real.log (x / n) : ℝ) : ℂ) + ∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((Psi c x s / s : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.kernel_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.taylor_n"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ftc_G1",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.ftc_G1",
+    "line": 220,
+    "why": "`∫₁^x G″(log(x/s)) ds/s = G′(log x) − G′(0)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "β : ℂ",
+     "lM : ℝ",
+     "hx : 1 ≤ x"
+    ],
+    "proves": "∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * ((1 / s : ℝ) : ℂ) = G1 P β lM (Real.log x) - G1 P β lM 0",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1_hasDerivAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.hasDerivAt_logdiv"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "err_identity",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.err_identity",
+    "line": 245,
+    "why": "The error identity: `Σ c_n G(log(x/n)) − G′(log x) = G′(0)(Σ c_n log(x/n) − 1) + ∫₁^x G″(log(x/s)) (Ψ(s) − 1) ds/s`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "β : ℂ",
+     "lM : ℝ",
+     "hx : 1 ≤ x",
+     "c : ℕ → ℝ"
+    ],
+    "proves": "∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) - G1 P β lM (Real.log x) = G1 P β lM 0 * ((∑ n ∈ Ioc 0 ⌊x⌋₊, c n * Real.log (x / n) - 1 : ℝ) : ℂ) + ∫ s in (1 : ℝ)..x, G2 P β lM (Real.log (x / s)) * (((Psi c x s - 1) / s : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.ftc_G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_taylor"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Gp_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Gp_bound",
+    "line": 279,
+    "why": "`‖e^{βu} p(u/λ)‖ ≤ e^A B_p` on `0 ≤ u ≤ λ`, `‖β‖λ ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "p : Polynomial ℝ"
+    ],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ (A : ℝ) (β : ℂ) (lM u : ℝ), 0 < lM → ‖β‖ * lM ≤ A → 0 ≤ u → u ≤ lM → ‖Gp p β lM u‖ ≤ Real.exp A * B",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "G2_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.G2_bound",
+    "line": 299,
+    "why": "`‖G″(u)‖ ≤ K/λ²` on `0 ≤ u ≤ λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ (β : ℂ) (lM u : ℝ), 0 < lM → ‖β‖ * lM ≤ A → 0 ≤ u → u ≤ lM → ‖G2 P β lM u‖ ≤ K / lM ^ 2",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp_bound"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "int_piece",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.int_piece",
+    "line": 338,
+    "why": "One piece of the remainder integral: `|Ψ − 1| ≤ C` on `[a, b] ⊆ [1, x]` gives `≤ K/λ² · C · log(b/a)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hK : ∀ (β : ℂ) (lM u : ℝ), 0 < lM → ‖β‖ * lM ≤ A → 0 ≤ u → u ≤ lM → ‖G2 P β lM u‖ ≤ K / lM ^ 2",
+     "hK0 : 0 ≤ K",
+     "β : ℂ",
+     "hlM : 0 < lM",
+     "hβ : ‖β‖ * lM ≤ A",
+     "hxl : Real.log x ≤ lM",
+     "Ψ : ℝ → ℝ",
+     "ha : 1 ≤ a",
+     "hab : a ≤ b",
+     "hbx : b ≤ x",
+     "hC : ∀ s, a ≤ s → s ≤ b → |Ψ s - 1| ≤ C"
+    ],
+    "proves": "‖∫ s in a..b, G2 P β lM (Real.log (x / s)) * (((Ψ s - 1) / s : ℝ) : ℂ)‖ ≤ K / lM ^ 2 * C * Real.log (b / a)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.int_piece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "err_bound",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.err_bound",
+    "line": 374,
+    "why": "The size of the error: `‖Σ c_n G(log(x/n)) − G′(log x)‖ ≤ |P′(0)|/λ |ψ(x) − 1| + K/λ²(B log s₀ + ε log x)`, given `|Ψ − 1| ≤ B` on `[1, x]` and `≤ ε` on `[s₀, x]`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hK : ∀ (β : ℂ) (lM u : ℝ), 0 < lM → ‖β‖ * lM ≤ A → 0 ≤ u → u ≤ lM → ‖G2 P β lM u‖ ≤ K / lM ^ 2",
+     "hK0 : 0 ≤ K",
+     "β : ℂ",
+     "hlM : 0 < lM",
+     "hβ : ‖β‖ * lM ≤ A",
+     "hx : 1 ≤ x",
+     "hxl : Real.log x ≤ lM",
+     "c : ℕ → ℝ",
+     "hs₀ : 1 ≤ s₀",
+     "hε0 : 0 ≤ ε",
+     "hB : ∀ s, 1 ≤ s → s ≤ x → |Psi c x s - 1| ≤ B",
+     "hε : ∀ s, s₀ ≤ s → s ≤ x → |Psi c x s - 1| ≤ ε"
+    ],
+    "proves": "‖∑ n ∈ Ioc 0 ⌊x⌋₊, (c n : ℂ) * Gp P β lM (Real.log (x / n)) - G1 P β lM (Real.log x)‖ ≤ |(P.derivative.eval 0)| / lM * |∑ n ∈ Ioc 0 ⌊x⌋₊, c n * Real.log (x / n) - 1| + K / lM ^ 2 * (B * Real.log s₀ + ε * Real.log x)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.int_piece"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2comp_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_div_continuousAt",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_identity",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.int_piece"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "psiR",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.psiR",
+    "line": 433,
+    "why": "`ψ_μ(s) = Σ_{n ≤ s} μ(n)/n · log(s/n)`, real `s`.",
+    "sorry": false,
+    "needs": [
+     "s : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cmu",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.cmu",
+    "line": 436,
+    "why": "`c_n = μ(n)/n`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Psi_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Psi_eq",
+    "line": 439,
+    "why": "`Ψ(s) = ψ_μ(s)` for `1 ≤ s ≤ x`.",
+    "sorry": false,
+    "needs": [
+     "hs : 1 ≤ s",
+     "hsx : s ≤ x"
+    ],
+    "proves": "Psi cmu x s = psiR s",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiR_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.psiR_eq",
+    "line": 459,
+    "why": "`ψ_μ(s) = ψ_μ(⌊s⌋) + m(⌊s⌋) log(s/⌊s⌋)`.",
+    "sorry": false,
+    "needs": [
+     "hs : 1 ≤ s"
+    ],
+    "proves": "psiR s = psiMu ⌊s⌋₊ + mMu ⌊s⌋₊ * Real.log (s / ⌊s⌋₊)",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_floor_le",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.log_floor_le",
+    "line": 473,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hs : 1 ≤ s"
+    ],
+    "proves": "0 ≤ Real.log (s / ⌊s⌋₊) ∧ Real.log (s / ⌊s⌋₊) ≤ Real.log 2",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.log_floor_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiR_bdd",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.psiR_bdd",
+    "line": 487,
+    "why": "`|ψ_μ(s) − 1| ≤ B` for all `s ≥ 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∃ B : ℝ, 0 ≤ B ∧ ∀ s : ℝ, 1 ≤ s → |psiR s - 1| ≤ B",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.log_floor_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.log_floor_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiR_tendsto",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.psiR_tendsto",
+    "line": 508,
+    "why": "`ψ_μ(s) → 1` along real `s`.",
+    "sorry": false,
+    "needs": [
+     "hε : 0 < ε"
+    ],
+    "proves": "∃ s₀ : ℝ, 1 ≤ s₀ ∧ ∀ s : ℝ, s₀ ≤ s → |psiR s - 1| ≤ ε",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.log_floor_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.mMu_tendsto",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu",
+     "lean_stage3/Stage3/DiagMainMu.lean::DiagMain.psiMu_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.log_floor_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Smu",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Smu",
+    "line": 537,
+    "why": "The smooth Möbius sum `Σ_{n ≤ x} μ(n) P(log(x/n)/λ) n^{−(1+β)}`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM x : ℝ",
+     "β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.stmtMuSmooth_holds",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mainS",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.mainS",
+    "line": 542,
+    "why": "Its main term `βP(log x/λ) + P′(log x/λ)/λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM x : ℝ",
+     "β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ad_err",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.ahat0_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.mainS_shift",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Ahat",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.dsum_sum0",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.mainS_eq_Fg",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.stmtDsum_of_arith",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.stmtMuSmooth_holds",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_cpow_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_cpow_eq",
+    "line": 545,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "lM : ℝ",
+     "β : ℂ",
+     "hx : 1 ≤ x"
+    ],
+    "proves": "Smu P lM x β - mainS P lM x β = cexp (-(β * Real.log x)) * (∑ n ∈ Ioc 0 ⌊x⌋₊, (cmu n : ℂ) * Gp P β lM (Real.log (x / n)) - G1 P β lM (Real.log x))",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_xpow_le",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.norm_xpow_le",
+    "line": 584,
+    "why": "`‖x^{−β}‖ ≤ e^A` for `log x ≤ λ`, `‖β‖λ ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 ≤ x",
+     "hxl : Real.log x ≤ lM",
+     "hβ : ‖β‖ * lM ≤ A"
+    ],
+    "proves": "‖cexp (-(β * Real.log x))‖ ≤ Real.exp A",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.norm_xpow_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "muSmoothR",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.muSmoothR",
+    "line": 596,
+    "why": "The per-`d` step, `o(1/λ)`: for `P(0) = 0`, `Σ_{n ≤ x} μ(n) P(log(x/n)/λ) n^{−(1+β)} = βP(ℓ) + P′(ℓ)/λ + o(1/λ)`, `ℓ = log x/λ`, uniformly for `Y ≤ x`, `log x ≤ λ`, `‖β‖λ ≤ A`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hA : 0 ≤ A",
+     "hε : 0 < ε"
+    ],
+    "proves": "∃ Y : ℝ, 1 ≤ Y ∧ ∃ L₀ : ℝ, 0 < L₀ ∧ ∀ lM : ℝ, L₀ ≤ lM → ∀ x : ℝ, Y ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ ε / lM",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.norm_xpow_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.norm_xpow_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_tendsto",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.stmtMuSmooth_holds"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "muSmooth_crude",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.muSmooth_crude",
+    "line": 668,
+    "why": "The crude size: `‖Σ_{n ≤ x} μ(n) P(log(x/n)/λ) n^{−(1+β)} − main‖ ≤ C/λ` for every `1 ≤ x` with `log x ≤ λ`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "hP0 : P.eval 0 = 0",
+     "hA : 0 ≤ A"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ lM : ℝ, 0 < lM → ∀ x : ℝ, 1 ≤ x → Real.log x ≤ lM → ∀ β : ℂ, ‖β‖ * lM ≤ A → ‖Smu P lM x β - mainS P lM x β‖ ≤ C / lM",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmooth_crude",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.norm_xpow_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G1",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.G2_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Gp",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Psi_eq",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.cmu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.err_bound",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.norm_xpow_le",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.psiR_bdd",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.sum_cpow_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Smu_bound",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.stmtAdApprox_of_arith"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stmtMuSmooth_holds",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.stmtMuSmooth_holds",
+    "line": 703,
+    "why": "`DiagMain.StmtMuSmooth` holds (the `d = 1` per-`d` step, natural `x`).",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "κ : ℝ"
+    ],
+    "proves": "StmtMuSmooth P κ",
+    "file": "lean_stage3/Stage3/SdiagLeadSmooth.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.stmtMuSmooth_holds",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtMuSmooth",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.StmtMuSmooth",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.Smu",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.mainS",
+     "lean_stage3/Stage3/SdiagLeadSmooth.lean::SdiagLead.muSmoothR"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+  "module": "Stage3.SdiagLeadSwap",
+  "stem": "SdiagLeadSwap",
+  "header": "# Stage3.SdiagLeadSwap — the exact reduction of `Sdiag` through `d | (h,k)`. 2026-11-25.",
+  "imports": [
+   "Stage3.DiagMain"
+  ],
+  "opens": [
+   "ArithmeticFunction.Moebius",
+   "Complex",
+   "Diagonal",
+   "Finset",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "SdiagLead"
+  ],
+  "lines": 224,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/DiagMain.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Pw",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Pw",
+    "line": 33,
+    "why": "`P_n = P(log(M/n)/log M)`, Young's weight.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "fw",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.fw",
+    "line": 36,
+    "why": "`μ(n) P_n n^{−(1+γ)}`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "γ : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Jz",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Jz",
+    "line": 40,
+    "why": "`J_z(d) = Σ_{ab = d} μ(a) b^z`, so `Σ_{d | n} J_z(d) = n^z`.",
+    "sorry": false,
+    "needs": [
+     "z : ℂ",
+     "d : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.Wd_bound",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Wd",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz_sum",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Ad",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Ad",
+    "line": 43,
+    "why": "`A_d(γ) = Σ_{n ≤ M/d} μ(dn) P_{dn} n^{−(1+γ)}`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M d : ℕ",
+     "γ : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.AA_eq",
+     "lean_stage3/Stage3/SdiagLeadAd.lean::SdiagLead.perd_bound",
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.Ad_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.StmtAdApprox",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jz_sum",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Jz_sum",
+    "line": 46,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "z : ℂ",
+     "hn : 0 < n"
+    ],
+    "proves": "∑ d ∈ n.divisors, Jz z d = (n : ℂ) ^ z",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natcpow_ne",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.natcpow_ne",
+    "line": 50,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hn : 1 ≤ n"
+    ],
+    "proves": "(n : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.Wd_eq",
+     "lean_stage3/Stage3/SdiagLeadDsum.lean::SdiagLead.weight_err",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "aY_mul",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.aY_mul",
+    "line": 54,
+    "why": "`a_h h^{−σ₀} = μ(h) P_h h^{−1/2}`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "hh : 1 ≤ h"
+    ],
+    "proves": "aY P T θ R h * (h : ℂ) ^ (-(sig0 T R : ℂ)) = ((μ h : ℤ) : ℂ) * ((Pw P (Mof T θ) h : ℝ) : ℂ) * (h : ℂ) ^ (-(1 / 2 : ℂ))",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "conj_aY",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.conj_aY",
+    "line": 63,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "h : ℕ"
+    ],
+    "proves": "(starRingEnd ℂ) (aY P T θ R h) = aY P T θ R h",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.conj_aY",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term_eq",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.term_eq",
+    "line": 69,
+    "why": "One term: `Chk·Rhk(·,0) = μ(h)P_h h^{−1−β} · μ(k)P_k k^{−1−α} · (h,k)^{1+α+β}`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "hh : 1 ≤ h",
+     "hk : 1 ≤ k",
+     "α β : ℂ"
+    ],
+    "proves": "Chk (aY P T θ R) (sig0 T R) h k * Rhk α β h k 0 = fw P (Mof T θ) β h * fw P (Mof T θ) α k * ((Nat.gcd h k : ℕ) : ℂ) ^ (1 + α + β)",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.conj_aY",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.conj_aY",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gcd_swap",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.gcd_swap",
+    "line": 120,
+    "why": "The swap: `Σ_{h,k} F_h G_k Σ_{d|(h,k)} J_d = Σ_{d ≤ M} J_d (Σ_{d|h} F_h)(Σ_{d|k} G_k)`.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "F G J : ℕ → ℂ"
+    ],
+    "proves": "∑ h ∈ Icc 1 M, ∑ k ∈ Icc 1 M, F h * G k * ∑ d ∈ (Nat.gcd h k).divisors, J d = ∑ d ∈ Icc 1 M, J d * (∑ h ∈ (Icc 1 M).filter (d ∣ ·), F h) * (∑ k ∈ (Icc 1 M).filter (d ∣ ·), G k)",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.gcd_swap",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_dvd_reindex",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.sum_dvd_reindex",
+    "line": 159,
+    "why": "`Σ_{h ≤ M, d | h} F_h = Σ_{n ≤ M/d} F_{dn}`.",
+    "sorry": false,
+    "needs": [
+     "M : ℕ",
+     "hd : 1 ≤ d",
+     "F : ℕ → ℂ"
+    ],
+    "proves": "∑ h ∈ (Icc 1 M).filter (d ∣ ·), F h = ∑ n ∈ Icc 1 (M / d), F (d * n)",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.sum_dvd_reindex",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCop.lean::SdiagLead.sum_conv_weight",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "fw_mul",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.fw_mul",
+    "line": 181,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "M : ℕ",
+     "γ : ℂ",
+     "d n : ℕ"
+    ],
+    "proves": "fw P M γ (d * n) = (d : ℂ) ^ (-(1 + γ)) * (((μ (d * n) : ℤ) : ℂ) * ((Pw P M (d * n) : ℝ) : ℂ) * (n : ℂ) ^ (-(1 + γ)))",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.ncpow_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Pw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Sdiag_swap",
+    "ns": "SdiagLead",
+    "full": "SdiagLead.Sdiag_swap",
+    "line": 187,
+    "why": "The reduction: `S(α,β,0) = Σ_{d ≤ M} J_{1+α+β}(d) d^{−(2+α+β)} A_d(β) A_d(α)`.",
+    "sorry": false,
+    "needs": [
+     "P : Polynomial ℝ",
+     "T θ R : ℝ",
+     "α β : ℂ"
+    ],
+    "proves": "Sdiag (Mof T θ) (aY P T θ R) (sig0 T R) α β 0 = ∑ d ∈ Icc 1 (Mof T θ), Jz (1 + α + β) d * (d : ℂ) ^ (-(2 + α + β)) * Ad P (Mof T θ) d β * Ad P (Mof T θ) d α",
+    "file": "lean_stage3/Stage3/SdiagLeadSwap.lean",
+    "id": "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz_sum",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.gcd_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.sum_dvd_reindex",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Chk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Rhk",
+     "lean_stage3/Stage3/Diagonal.lean::Diagonal.Sdiag",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Ad",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Jz_sum",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.fw_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.gcd_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.natcpow_ne",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.sum_dvd_reindex",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SelfBound.lean",
   "module": "Stage3.SelfBound",
   "stem": "SelfBound",
@@ -97369,6 +102147,12 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.Mof_ge",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
@@ -97418,6 +102202,10 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
@@ -97474,6 +102262,11 @@
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
+     "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.S_eq",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.Sdiag_swap",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.aY_mul",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.conj_aY",
+     "lean_stage3/Stage3/SdiagLeadSwap.lean::SdiagLead.term_eq",
      "lean_stage3/Stage3/SwapX.lean::SwapX.StmtXAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.lemma3_resO_of_partsAll",
      "lean_stage3/Stage3/SwapX.lean::SwapX.msq_young",
@@ -120462,11 +125255,12 @@
    "Stage3.DiagonalO",
    "Stage3.DiagMainMu",
    "Stage3.DiagMain",
-   "Stage3.SwapX"
+   "Stage3.SwapX",
+   "Stage3.SdiagLead"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 237,
+  "lines": 238,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -120596,6 +125390,7 @@
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
    "lean_stage3/Stage3/Saddle.lean",
+   "lean_stage3/Stage3/SdiagLead.lean",
    "lean_stage3/Stage3/SelfBound.lean",
    "lean_stage3/Stage3/ShareLink.lean",
    "lean_stage3/Stage3/SieveExact.lean",
