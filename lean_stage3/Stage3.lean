@@ -240,6 +240,7 @@ import Stage3.Defect
 import Stage3.FloorLong
 import Stage3.OperatorQ
 import Stage3.ConreyCount
+import Stage3.DigammaBound
 
 namespace Stage3
 
