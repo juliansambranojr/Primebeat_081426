@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S12 of `design/stencil.md`, the diagonal: `Stage3/Diagonal.lean`
+
+    DONE        `StmtDiag` (TwistedMoment), Young §5–6: (a) the diagonal hm = kn
+                rewritten through the Mellin form of V as
+                (1/2πi)∫ G(s)/s·(∫w·g(s,t)dt)·ζ(1+α+β+2s)·S(α,β,s) ds with S the
+                h,k-sum over gcds; (b) the shift past s = 0, the pole of
+                ζ(1+α+β+2s) cancelled by the zero of p, the residue at 0 giving the
+                main term; (c) the h,k-sum evaluated as Young's integral in P
+                (Conrey's lemma), giving c₁(α,β) of (5.3); or the largest honest
+                piece, the rest as named statements with exact goals; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes and merge after unit" (log 0537, merge
+                #20, start the diagonal)
+    DEPENDS     `TwistedMoment`, `OffDiagClose`, `ApproxBounds`, `ApproxShift`,
+                Mathlib Möbius and arithmetic functions
+    OUT         `StmtX`; the operator (piece 3); unsmoothing (piece 4)
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, the window and the off-diagonal: `Stage3/OffDiagClose.lean`
 
     DONE        (i) `WeightAll`: an admissible window with |w^(j)| ≤ C_j·(T/L)^(−j)
