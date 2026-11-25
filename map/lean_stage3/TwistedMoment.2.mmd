@@ -34,14 +34,17 @@ flowchart LR
   x2(["<b>diagram 3</b><br/>7 theorems"]):::ext
   x3(["<b>SwapX</b><br/>5 theorems"]):::ext
   x4(["<b>FloorLongMean</b><br/>unsmooth_near_long"]):::ext
-  x5(["<b>StirlingX</b><br/>E_bound'<br/>stmtXAll_of'"]):::ext
-  x6(["<b>Unsmooth</b><br/>continuous_Gpsi<br/>unsmooth_near"]):::ext
-  x7(["<b>OperatorInt</b><br/>7 theorems"]):::ext
-  x8(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x9(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
-  x10(["<b>Diagonal</b><br/>4 theorems"]):::ext
-  x11(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
-  x12(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
+  x5(["<b>MeanQ</b><br/>unsmooth_V"]):::ext
+  x6(["<b>MeanQV</b><br/>mollMeanV_long"]):::ext
+  x7(["<b>StirlingX</b><br/>E_bound'<br/>stmtXAll_of'"]):::ext
+  x8(["<b>Unsmooth</b><br/>continuous_Gpsi<br/>unsmooth_near"]):::ext
+  x9(["<b>OperatorInt</b><br/>7 theorems"]):::ext
+  x10(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x11(["<b>ApproxShift</b><br/>GY_analyticAt<br/>approxFE"]):::ext
+  x12(["<b>Diagonal</b><br/>4 theorems"]):::ext
+  x13(["<b>MeanQInt</b><br/>mollMeanQ_eq"]):::ext
+  x14(["<b>ApproxBounds</b><br/>VY_decay<br/>re_one_sub_uA<br/>re_one_sub_vB"]):::ext
+  x15(["<b>DiagonalO</b><br/>lemma3_resO_of_parts<br/>what0_le"]):::ext
   n0 --> n1
   n10 --> n11
   n11 --> n12
@@ -84,29 +87,30 @@ flowchart LR
   n1 -.-> x2
   n12 -.-> x3
   n13 -.-> x2
-  n13 -.-> x7
+  n13 -.-> x9
   n14 -.-> x2
-  n14 -.-> x7
-  n15 -.-> x10
+  n14 -.-> x9
+  n15 -.-> x12
   n15 -.-> x2
+  n16 -.-> x13
   n16 -.-> x2
   n16 -.-> x3
-  n16 -.-> x5
   n16 -.-> x7
+  n16 -.-> x9
   n17 -.-> x3
   n22 -.-> x3
   n25 -.-> x2
   n26 -.-> x2
   n27 -.-> x3
-  n27 -.-> x5
-  n28 -.-> x12
+  n27 -.-> x7
+  n28 -.-> x15
   n28 -.-> x2
   n28 -.-> x3
-  n29 -.-> x10
   n29 -.-> x12
+  n29 -.-> x15
   n29 -.-> x2
   n29 -.-> x3
-  n29 -.-> x5
+  n29 -.-> x7
   n3 -.-> x2
   n5 -.-> x2
   n5 -.-> x3
@@ -115,22 +119,26 @@ flowchart LR
   n6 -.-> x4
   n6 -.-> x5
   n6 -.-> x6
+  n6 -.-> x7
+  n6 -.-> x8
+  n7 -.-> x5
   n7 -.-> x6
-  n7 -.-> x7
+  n7 -.-> x8
+  n7 -.-> x9
   n8 -.-> x1
   n8 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n26
-  x11 -.-> n21
-  x11 -.-> n26
-  x8 -.-> n10
-  x8 -.-> n17
-  x8 -.-> n21
-  x8 -.-> n23
-  x8 -.-> n25
-  x9 -.-> n11
-  x9 -.-> n18
+  x10 -.-> n10
+  x10 -.-> n17
+  x10 -.-> n21
+  x10 -.-> n23
+  x10 -.-> n25
+  x11 -.-> n11
+  x11 -.-> n18
+  x14 -.-> n21
+  x14 -.-> n26
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

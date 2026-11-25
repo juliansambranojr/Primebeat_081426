@@ -23,11 +23,12 @@ flowchart LR
   n7["<b>stmtDiagMainO_of_lead</b><br/>StmtDiagMainO P θ R κ"]:::thm
   x0(["<b>SwapX</b><br/>c1Y_bound"]):::ext
   x1(["<b>FloorConstLimit</b><br/>re_dop_tendsto<br/>theta_tendsto"]):::ext
-  x2(["<b>SdiagLeadCore</b><br/>stmtDiagMainO_of_steps<br/>stmtSdiagLead_of_steps"]):::ext
-  x3(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
-  x4(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
-  x5(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
-  x6(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
+  x2(["<b>MeanQBound</b><br/>cY_sup_bound"]):::ext
+  x3(["<b>SdiagLeadCore</b><br/>stmtDiagMainO_of_steps<br/>stmtSdiagLead_of_steps"]):::ext
+  x4(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x5(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
+  x6(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x7(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
   n0 --> n7
   n1 --> n7
   n2 --> n7
@@ -41,14 +42,16 @@ flowchart LR
   n3 -.-> x1
   n3 -.-> x2
   n3 -.-> x3
+  n3 -.-> x4
   n4 -.-> x0
   n4 -.-> x1
   n4 -.-> x2
   n4 -.-> x3
   n4 -.-> x4
-  n7 -.-> x2
-  n7 -.-> x5
+  n4 -.-> x5
+  n7 -.-> x3
   n7 -.-> x6
+  n7 -.-> x7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -196,10 +199,11 @@ Real.log (Mof T θ) ≤ θ * Real.log T
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
   - [`FloorConst.theta_tendsto`](../lean_stage3/FloorConstLimit.md#FloorConst-theta_tendsto) (FloorConstLimit) — `` Tendsto (fun T => Real.log (Mof T θ) / Real.log T) atTop (𝓝 θ) ``
+  - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`SdiagLead.stmtSdiagLead_of_steps`](../lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) (SdiagLeadCore) — `` StmtSdiagLead P θ R κ ``
   - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
   - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
@@ -227,11 +231,12 @@ line 141 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof)
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`DiagMain.stmtDiagMainO_of_lead`](#DiagMain-stmtDiagMainO_of_lead) — `` StmtDiagMainO P θ R κ ``
   - [`FloorConst.re_dop_tendsto`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto) (FloorConstLimit) — `` Tendsto (fun T => (Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re) atTop (𝓝 (Kfl (Ar P) (Br P) (C… ``
   - [`FloorLong.dop_bdd_long`](../lean_stage3/FloorLongMean.md#FloorLong-dop_bdd_long) (FloorLongMean) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
+  - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`SdiagLead.stmtSdiagLead_of_steps`](../lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) (SdiagLeadCore) — `` StmtSdiagLead P θ R κ ``
   - [`SwapX.c1Y_bound`](../lean_stage3/SwapX.md#SwapX-c1Y_bound) (SwapX) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ α β : ℂ, Regime κ T α β → ‖c1Y P (Mof T θ) α β‖ ≤ C ``
   - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``

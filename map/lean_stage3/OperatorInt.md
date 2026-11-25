@@ -7,7 +7,7 @@
 17 theorems, 3 definitions, 345 lines. 
 
 **Imports:** [`OperatorCauchy`](../lean_stage3/OperatorCauchy.md), [`TwistedMoment`](../lean_stage3/TwistedMoment.md)  
-**Imported by:** [`Operator`](../lean_stage3/Operator.md)
+**Imported by:** [`MeanQInt`](../lean_stage3/MeanQInt.md), [`Operator`](../lean_stage3/Operator.md)
 
 ## The picture
 
@@ -31,8 +31,10 @@ flowchart LR
   n15["<b>Imom_partials</b><br/>DifferentiableAt ℂ (fun x =＞ Imom W M a σ₀ x y) x ∧ Differentiab…"]:::thm
   n16["<b>Dop_Imom</b><br/>Dop L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) …"]:::thm
   x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
-  x1(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
-  x2(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x1(["<b>MeanQInt</b><br/>5 theorems"]):::ext
+  x2(["<b>MeanQMean</b><br/>polydisc"]):::ext
+  x3(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x4(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
   n0 --> n10
   n0 --> n9
   n10 --> n15
@@ -55,10 +57,15 @@ flowchart LR
   n8 --> n10
   n8 --> n9
   n9 --> n15
-  n15 -.-> x1
-  n16 -.-> x1
-  n8 -.-> x1
+  n10 -.-> x1
+  n15 -.-> x3
+  n16 -.-> x3
+  n2 -.-> x1
+  n7 -.-> x1
   n8 -.-> x2
+  n8 -.-> x3
+  n8 -.-> x4
+  n9 -.-> x1
   x0 -.-> n10
   x0 -.-> n14
   x0 -.-> n2
@@ -89,7 +96,7 @@ def · line 74
 
 - **Is:** `` Jfg (f g : ℂ → ℂ) {T L : ℝ} (W : Weight T L) (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ) : ℂ := ∫ t, (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ) ``
 - **Built from:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
-- **Used by 6:** [`Operator.Imom_eq_Jfg`](#Operator-Imom_eq_Jfg), [`Operator.Imom_partials`](#Operator-Imom_partials), [`Operator.Jfg_hasDerivAt_left`](#Operator-Jfg_hasDerivAt_left), [`Operator.Jfg_hasDerivAt_right`](#Operator-Jfg_hasDerivAt_right), [`Operator.Jfg_set`](#Operator-Jfg_set), [`Operator.mollMean_eq`](#Operator-mollMean_eq)
+- **Used by 13:** [`MeanQ.Imom_iter_left_ev`](../lean_stage3/MeanQInt.md#MeanQ-Imom_iter_left_ev), [`MeanQ.Jfg_analytic_left`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_analytic_left), [`MeanQ.Jfg_analytic_right`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_analytic_right), [`MeanQ.Jfg_iter_left`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_iter_left), [`MeanQ.Jfg_iter_right`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_iter_right), [`MeanQ.mollMeanQ_eq`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ_eq), [`MeanQ.pkl_Imom`](../lean_stage3/MeanQInt.md#MeanQ-pkl_Imom), [`Operator.Imom_eq_Jfg`](#Operator-Imom_eq_Jfg), [`Operator.Imom_partials`](#Operator-Imom_partials), [`Operator.Jfg_hasDerivAt_left`](#Operator-Jfg_hasDerivAt_left), [`Operator.Jfg_hasDerivAt_right`](#Operator-Jfg_hasDerivAt_right), [`Operator.Jfg_set`](#Operator-Jfg_set), [`Operator.mollMean_eq`](#Operator-mollMean_eq)
 
 <a name="Operator-Gl"></a>
 ### `Operator.Gl`
@@ -192,8 +199,9 @@ Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : ℂ) * (f
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`Operator.Jfg`](#Operator-Jfg), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`MeanQ.mollMeanQ_eq`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ_eq) (MeanQInt) — `` mollMeanQ W M a σ₀ Q L' = ∑ k ∈ Finset.range (Q.natDegree + 1), ∑ l ∈ Finset.range (Q.natDegree + 1), qc Q L' k * qc Q L' l * Jfg (iteratedDeriv k rie… ``
   - [`Operator.Jfg_hasDerivAt_left`](#Operator-Jfg_hasDerivAt_left) — `` HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀ β) x₀ ``
   - [`Operator.Jfg_hasDerivAt_right`](#Operator-Jfg_hasDerivAt_right) — `` HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y₀) y₀ ``
   - [`Operator.mollMean_eq`](#Operator-mollMean_eq) — `` mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + 1 / (L' : ℂ) * (Jfg (deriv riemannZeta) ri… ``
@@ -343,8 +351,9 @@ IntegrableOn (fun t => (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MeanQ.mollMeanQ_eq`](../lean_stage3/MeanQInt.md#MeanQ-mollMeanQ_eq) (MeanQInt) — `` mollMeanQ W M a σ₀ Q L' = ∑ k ∈ Finset.range (Q.natDegree + 1), ∑ l ∈ Finset.range (Q.natDegree + 1), qc Q L' k * qc Q L' l * Jfg (iteratedDeriv k rie… ``
   - [`Operator.mollMean_eq`](#Operator-mollMean_eq) — `` mollMean W M a σ₀ L' = Jfg riemannZeta riemannZeta W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) + 1 / (L' : ℂ) * (Jfg (deriv riemannZeta) ri… ``
 
 <a name="Operator-norm_le_of_ball"></a>
@@ -366,8 +375,9 @@ line 130 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`MeanQ.polydisc`](../lean_stage3/MeanQMean.md#MeanQ-polydisc) (MeanQMean) — `` (∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ‖x‖ < 1 / 2) ∧ (∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real… ``
   - [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds) (Operator) — `` StmtMollMeanO P θ R ``
   - [`Operator.Jfg_hasDerivAt_left`](#Operator-Jfg_hasDerivAt_left) — `` HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀ β) x₀ ``
   - [`Operator.Jfg_hasDerivAt_right`](#Operator-Jfg_hasDerivAt_right) — `` HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y₀) y₀ ``
@@ -407,8 +417,10 @@ HasDerivAt (fun x => Jfg f g W M a σ₀ x β) (Jfg (deriv f) g W M a σ₀ x₀
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`Operator.Jfg`](#Operator-Jfg), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`MeanQ.Jfg_analytic_left`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_analytic_left) (MeanQInt) — `` AnalyticAt ℂ (fun x => Jfg f g W M a σ₀ x y) x ``
+  - [`MeanQ.Jfg_iter_left`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_iter_left) (MeanQInt) — `` ∀ x : ℂ, ‖x‖ < 1 / 2 → iteratedDeriv k (fun x => Jfg f g W M a σ₀ x y) x = Jfg (iteratedDeriv k f) g W M a σ₀ x y ``
   - [`Operator.Imom_partials`](#Operator-Imom_partials) — `` DifferentiableAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ DifferentiableAt ℂ (fun y => Imom W M a σ₀ x y) y ∧ pa (Imom W M a σ₀) x y = Jfg (deriv riemannZet… ``
 
 <a name="Operator-Jfg_hasDerivAt_right"></a>
@@ -445,8 +457,10 @@ HasDerivAt (fun y => Jfg f g W M a σ₀ α y) (Jfg f (deriv g) W M a σ₀ α y
 
 **Definitions its proof touches:** [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB), [`Operator.Jfg`](#Operator-Jfg), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`MeanQ.Jfg_analytic_right`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_analytic_right) (MeanQInt) — `` AnalyticAt ℂ (fun y => Jfg f g W M a σ₀ x y) y ``
+  - [`MeanQ.Jfg_iter_right`](../lean_stage3/MeanQInt.md#MeanQ-Jfg_iter_right) (MeanQInt) — `` ∀ y : ℂ, ‖y‖ < 1 / 2 → iteratedDeriv l (fun y => Jfg f g W M a σ₀ x y) y = Jfg f (iteratedDeriv l g) W M a σ₀ x y ``
   - [`Operator.Imom_partials`](#Operator-Imom_partials) — `` DifferentiableAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ DifferentiableAt ℂ (fun y => Imom W M a σ₀ x y) y ∧ pa (Imom W M a σ₀) x y = Jfg (deriv riemannZet… ``
 
 <a name="Operator-zeta_diffOn"></a>

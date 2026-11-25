@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>413 theorems counting,<br/>in 76 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>429 theorems counting,<br/>in 81 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1489 theorems shape,<br/>in 187 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>1505 theorems shape,<br/>in 193 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>960 theorems reads ζ,<br/>in 164 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>987 theorems reads ζ,<br/>in 170 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 517 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1740 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 981 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 533 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1756 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1008 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 413 | 1489 | 960 |
+| `lean_stage3/` | 429 | 1505 | 987 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -744,6 +744,47 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 - [`Littlewood.top_mem_border`](./lean_stage3/Littlewood.md#Littlewood-top_mem_border) — `` (↑x + ↑w.im * I : ℂ) ∈ RectangleBorder z w ``
 - [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) — `` (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
 - [`Littlewood.right_mem_border`](./lean_stage3/Littlewood.md#Littlewood-right_mem_border) — `` (↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
+
+### [`MeanQ`](./lean_stage3/MeanQ.md) — 1
+
+MeanQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q. 2026-11-25.
+
+- [`MeanQ.norm_Vpsi_sq`](./lean_stage3/MeanQ.md#MeanQ-norm_Vpsi_sq) — `` ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t `` `|V ψ|² = |V|² |ψ|²`.
+
+### [`MeanQBound`](./lean_stage3/MeanQBound.md) — 1
+
+MeanQBound — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the sizes the V-version and unsmoothing use. 2026-11-25.
+
+- [`MeanQ.Kq_X_pow`](./lean_stage3/MeanQBound.md#MeanQ-Kq_X_pow) — `` Kq (X ^ j) r = j.factorial / r ^ j ``
+
+### [`MeanQCauchy`](./lean_stage3/MeanQCauchy.md) — 8
+
+MeanQCauchy — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the operator `Q(−∂α/L) Q(−∂β/L)` and Cauchy's estimate for it. 2026-11-25.
+
+- [`MeanQ.Kq_nonneg`](./lean_stage3/MeanQCauchy.md#MeanQ-Kq_nonneg) — `` 0 ≤ Kq Q r ``
+- [`MeanQ.iteratedDeriv_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-iteratedDeriv_sub_mul) — `` iteratedDeriv k (fun z => A z - B z * c) x = iteratedDeriv k A x - iteratedDeriv k B x * c `` `∂α^k (A − B·c) = ∂α^k A − ∂α^k B · c` at a point where both are analytic.
+- [`MeanQ.pkl_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-pkl_sub_mul) — `` pkl (fun x y => A x y - B x y * c) k l α₀ β₀ = pkl A k l α₀ β₀ - pkl B k l α₀ β₀ * c `` `pkl` is linear under analyticity of the slices and of the `α`-derivatives in `β`.
+- [`MeanQ.DopQ_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-DopQ_sub_mul) — `` DopQ Q L (fun x y => A x y - B x y * c) α₀ β₀ = DopQ Q L A α₀ β₀ - DopQ Q L B α₀ β₀ * c `` `DopQ` is linear: `DopQ (A − B·c) = DopQ A − DopQ B · c`.
+- [`MeanQ.iterPartial_succ`](./lean_stage3/MeanQCauchy.md#MeanQ-iterPartial_succ) — `` iterPartial F (k + 1) p = deriv (fun x => iterPartial F k (x, p.2)) p.1 ``
+- [`MeanQ.analytic_iterPartial`](./lean_stage3/MeanQCauchy.md#MeanQ-analytic_iterPartial) — `` AnalyticOnNhd ℂ (iterPartial F k) U `` `∂α^k F` is analytic where `F` is, on an open `U ⊆ ℂ × ℂ`.
+- [`MeanQ.slices_of_analytic`](./lean_stage3/MeanQCauchy.md#MeanQ-slices_of_analytic) — `` (∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => F (x, y)) α₀) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => F (x, y)) α₀) β₀ `` The slices of a two-variable analytic function: for `(α₀, β₀) ∈ U` open, the `α`-slices are analytic at `α₀` for `β` near `β₀`, and every `∂α^k` is analytic in `β` at `β₀`.
+- [`MeanQ.DopQ_one_sub`](./lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub) — `` DopQ (1 - X) L f α β = Operator.Dop L f α β `` `DopQ` at `Q = 1 − X` is `Dop`.
+
+### [`MeanQRed`](./lean_stage3/MeanQRed.md) — 3
+
+MeanQRed — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the reduction `V = Q(−D/L) ζ + E`. 2026-11-25.
+
+- [`MeanQ.coeff_taylor`](./lean_stage3/MeanQRed.md#MeanQ-coeff_taylor) — `` (taylor r p).coeff j = ∑ k ∈ Finset.range (p.natDegree + 1), p.coeff k * (k.choose j : ℝ) * r ^ (k - j) `` The coefficients of a Taylor shift: `(taylor r p).coeff j = Σ_k p_k C(k,j) r^{k−j}`.
+- [`MeanQ.coeff_eq_shift`](./lean_stage3/MeanQRed.md#MeanQ-coeff_eq_shift) — `` Q.coeff j = ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) * (-1/2 : ℝ) ^ (k - j) `` The shift back to `0`: `Q.coeff j = Σ_k b_k C(k,j) (−1/2)^{k−j}`, `b = taylor (1/2) Q`.
+- [`MeanQ.Acoef_sub`](./lean_stage3/MeanQRed.md#MeanQ-Acoef_sub) — `` Acoef Q L j s - (Q.coeff j : ℂ) = ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) : ℝ) : ℂ) * ((((-1 / L) ^ (k… `` The coefficient error: `A_j − q_j = Σ_k b_k C(k,j) ((−1/L)^i grR i − (−1/2)^i)`, `i = k − j`.
+
+### [`MeanQV`](./lean_stage3/MeanQV.md) — 3
+
+MeanQV — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the mean of `|Vψ|²` for Conrey's `V = W/Gammaℝ`. 2026-11-25.
+
+- [`MeanQ.sq_add_le`](./lean_stage3/MeanQV.md#MeanQ-sq_add_le) — `` ‖a + e‖ ^ 2 ≤ (1 + δ) * ‖a‖ ^ 2 + (1 + 1 / δ) * ‖e‖ ^ 2 `` `‖a + e‖² ≤ (1 + δ)‖a‖² + (1 + 1/δ)‖e‖²`, `δ > 0`.
+- [`MeanQ.intg_w`](./lean_stage3/MeanQV.md#MeanQ-intg_w) — `` Integrable (fun t => W.w t * f t) `` Integrability of `w·f` for continuous `f`.
+- [`MeanQ.compare_means`](./lean_stage3/MeanQV.md#MeanQ-compare_means) — `` (∫ t, W.w t * fV t) ≤ (1 + δ) * (∫ t, W.w t * fQ t) + c * ∑ j ∈ Finset.range n, ∫ t, W.w t * fJ j t ∧ (∫ t, W.w t * fQ t) ≤ (1 + δ) * (∫ t, W.w t * fV… `` The two integrated comparisons, from a pointwise `E` bound on the support of `w`.
 
 ### [`Mollified`](./lean_stage3/Mollified.md) — 5
 

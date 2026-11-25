@@ -7,7 +7,7 @@
 3 theorems, 0 definitions, 199 lines. 
 
 **Imports:** [`DiagMain`](../lean_stage3/DiagMain.md), [`Operator`](../lean_stage3/Operator.md)  
-**Imported by:** [`Unsmooth`](../lean_stage3/Unsmooth.md)
+**Imported by:** [`MeanQBound`](../lean_stage3/MeanQBound.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)
 
 ## The picture
 
@@ -16,20 +16,23 @@ flowchart LR
   n0["<b>c1form_norm_le</b><br/>‖c1form P M x y‖ ≤ ‖Aq P‖ / (‖x + y‖ * Real.log M) + ‖Bq P‖ + ‖x…"]:::shp
   n1["<b>Tpow_norm_le</b><br/>‖(T : ℂ) ^ (-(x + y))‖ ≤ Real.exp (3 * R)"]:::shp
   n2["<b>dop_cY_bdd</b><br/>∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (…"]:::shp
-  x0(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
-  x1(["<b>OperatorCY</b><br/>c1Y_eq<br/>cY_partials"]):::ext
-  x2(["<b>OperatorCauchy</b><br/>Dop_norm_le"]):::ext
-  x3(["<b>OperatorInt</b><br/>norm_le_of_ball"]):::ext
-  x4(["<b>FloorStep</b><br/>floor_step"]):::ext
-  x5(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x0(["<b>MeanQBound</b><br/>cY_sup_bound"]):::ext
+  x1(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
+  x2(["<b>OperatorCY</b><br/>c1Y_eq<br/>cY_partials"]):::ext
+  x3(["<b>OperatorCauchy</b><br/>Dop_norm_le"]):::ext
+  x4(["<b>OperatorInt</b><br/>norm_le_of_ball"]):::ext
+  x5(["<b>FloorStep</b><br/>floor_step"]):::ext
+  x6(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
   n0 --> n2
   n1 --> n2
-  n2 -.-> x4
+  n0 -.-> x0
+  n1 -.-> x0
   n2 -.-> x5
-  x0 -.-> n2
+  n2 -.-> x6
   x1 -.-> n2
   x2 -.-> n2
   x3 -.-> n2
+  x4 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -70,8 +73,9 @@ line 27 · arrows read from text
 
 **Definitions its proof touches:** [`Operator.Aq`](../lean_stage3/OperatorCY.md#Operator-Aq), [`Operator.Bq`](../lean_stage3/OperatorCY.md#Operator-Bq), [`Operator.Cq`](../lean_stage3/OperatorCY.md#Operator-Cq), [`Operator.c1form`](../lean_stage3/OperatorCY.md#Operator-c1form)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`Unsmooth.dop_cY_bdd`](#Unsmooth-dop_cY_bdd) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="Unsmooth-Tpow_norm_le"></a>
@@ -96,8 +100,9 @@ line 45 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`Unsmooth.dop_cY_bdd`](#Unsmooth-dop_cY_bdd) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
 <a name="Unsmooth-dop_cY_bdd"></a>

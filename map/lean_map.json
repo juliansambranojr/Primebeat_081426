@@ -22124,6 +22124,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
@@ -22240,6 +22241,7 @@
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.Hf_local",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.KY_joint_cont",
      "lean_stage3/Stage3/Diagonal.lean::Diagonal.gY_differentiableAt",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
@@ -37755,7 +37757,17 @@
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_norm_le",
-     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le"
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
     ]
    },
    {
@@ -37841,7 +37853,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
-     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq"
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line"
     ]
    },
    {
@@ -43758,6 +43771,7 @@
     "used_by": [
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.theta_tendsto",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
@@ -43792,6 +43806,7 @@
      "lean_stage3/Stage3/DiagMain.lean::DiagMain.stmtDiagMainO_of_lead",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.re_dop_tendsto",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.dop_bdd_long",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/SdiagLeadCore.lean::SdiagLead.stmtSdiagLead_of_steps",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
@@ -58405,7 +58420,9 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long"
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
     ]
    },
    {
@@ -69409,6 +69426,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_lt_half",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds"
     ]
    }
@@ -78269,6 +78288,2780 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQ.lean",
+  "module": "Stage3.MeanQ",
+  "stem": "MeanQ",
+  "header": "MeanQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQV"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 235,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/MeanQV.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "norm_Vpsi_sq",
+    "ns": "MeanQ",
+    "full": "MeanQ.norm_Vpsi_sq",
+    "line": 62,
+    "why": "`|V ψ|² = |V|² |ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L' : ℝ",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ t : ℝ"
+    ],
+    "proves": "‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t",
+    "file": "lean_stage3/Stage3/MeanQ.lean",
+    "id": "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "unsmooth_V",
+    "ns": "MeanQ",
+    "full": "MeanQ.unsmooth_V",
+    "line": 70,
+    "why": "The sharp one-sided mean of `Vψ` from the mollified mean, every length: `FloorLong.unsmooth_near_long` with `G` replaced by `V` and `Dop` by `DopQ`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hMV : StmtMollMeanV Q P θ R"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ) (aY P T θ R) ((sig0 T R : ℂ) + t * I)‖ ^ 2 ≤ (DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/MeanQ.lean",
+    "id": "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "window_V_long",
+    "ns": "MeanQ",
+    "full": "MeanQ.window_V_long",
+    "line": 197,
+    "why": "The window bound for Conrey's `V`, every length, from Lemma 3 at `κ = 2R + 1 + 1/R` and the `Gammaℝ` ratio.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)",
+     "hG : StmtGrRatio Q.natDegree"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ) (aY P T θ R) ((sig0 T R : ℂ) + t * I)‖ ^ 2 ≤ (DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/MeanQ.lean",
+    "id": "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "window_V_lt_half",
+    "ns": "MeanQ",
+    "full": "MeanQ.window_V_lt_half",
+    "line": 209,
+    "why": "The window bound for Conrey's `V`, `θ < 1/2`: unconditional but for the `Gammaℝ` ratio.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R",
+     "hG : StmtGrRatio Q.natDegree"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ a' b' : ℝ, T / 2 ≤ a' → a' ≤ T / 2 + 1 → T - 1 ≤ b' → b' ≤ T → (1 / (b' - a')) * ∫ t in a'..b', ‖ConreyCount.V Q (Real.log T) ((sig0 T R : ℂ) + t * I) * psi (Mof T θ) (aY P T θ R) ((sig0 T R : ℂ) + t * I)‖ ^ 2 ≤ (DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)).re + ε",
+    "file": "lean_stage3/Stage3/MeanQ.lean",
+    "id": "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.psi",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQBound.lean",
+  "module": "Stage3.MeanQBound",
+  "stem": "MeanQBound",
+  "header": "MeanQBound — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the sizes the V-version and unsmoothing use. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQMean",
+   "Stage3.UnsmoothCY"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 285,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/MeanQMean.lean",
+   "lean_stage3/Stage3/UnsmoothCY.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cY_sup_bound",
+    "ns": "MeanQ",
+    "full": "MeanQ.cY_sup_bound",
+    "line": 38,
+    "why": "`c(α,β)` is bounded on the polydisc, uniformly in `T`, for every `θ > 0`.",
+    "sorry": false,
+    "needs": [
+     "P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ‖cY P (Mof T θ) T x y‖ ≤ K",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.Tpow_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_ge",
+     "lean_stage3/Stage3/DiagMain.lean::DiagMain.logM_le",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Aq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Bq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.Cq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.c1Y",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.Tpow_norm_le",
+     "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cY_cauchy_hyps",
+    "ns": "MeanQ",
+    "full": "MeanQ.cY_cauchy_hyps",
+    "line": 122,
+    "why": "The slices of `cY` on the polydisc, in the form `DopQ_norm_le` asks.",
+    "sorry": false,
+    "needs": [
+     "P : ℝ[X]",
+     "M : ℕ",
+     "hR : 0 < R",
+     "hT1 : 1 < T",
+     "hL3 : 3 * R + 1 ≤ Real.log T"
+    ],
+    "proves": "(∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), DifferentiableAt ℂ (fun x => cY P M T x y) x) ∧ (∀ k, ∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), DifferentiableAt ℂ (fun y => iteratedDeriv k (fun x => cY P M T x y) (((-(R / Real.log T) : ℝ) : ℂ))) y)",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dopQ_cY_bdd",
+    "ns": "MeanQ",
+    "full": "MeanQ.dopQ_cY_bdd",
+    "line": 147,
+    "why": "`DopQ[c]` at the centre is bounded, uniformly in `T`, every `θ > 0`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖DopQ Q (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Imom_sup",
+    "ns": "MeanQ",
+    "full": "MeanQ.Imom_sup",
+    "line": 163,
+    "why": "The moment is `O(errO)` on the polydisc, from Lemma 3 at `κ = 2R + 1 + 1/R`.",
+    "sorry": false,
+    "needs": [
+     "P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)",
+     "Cs : ℕ → ℝ"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ‖Imom W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) x y‖ ≤ K * errO W.toWeight",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "VQ_X_pow",
+    "ns": "MeanQ",
+    "full": "MeanQ.VQ_X_pow",
+    "line": 199,
+    "why": "`Q = X^j`: `VQ (X^j) L = (−1/L)^j ζ^{(j)}`.",
+    "sorry": false,
+    "needs": [
+     "j : ℕ",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "VQ (X ^ j) L s = (((-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.VQ_X_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.norm_VQ_X_pow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Kq_X_pow",
+    "ns": "MeanQ",
+    "full": "MeanQ.Kq_X_pow",
+    "line": 211,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "j : ℕ",
+     "r : ℝ"
+    ],
+    "proves": "Kq (X ^ j) r = j.factorial / r ^ j",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Kq_X_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "meanJ_bound",
+    "ns": "MeanQ",
+    "full": "MeanQ.meanJ_bound",
+    "line": 224,
+    "why": "The mean square of `ζ^{(j)}ψ/L^j` is `O(errO)`, from Lemma 3, with constant `(j!/r^j)²`, `r = R/2`: `mollMeanQ (X^j) = DopQ (X^j) Imom` and Cauchy.",
+    "sorry": false,
+    "needs": [
+     "P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)",
+     "Cs : ℕ → ℝ"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ j : ℕ, ‖mollMeanQ W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) (X ^ j) (Real.log T)‖ ≤ K * (j.factorial / (R / 2) ^ j) ^ 2 * errO W.toWeight",
+    "file": "lean_stage3/Stage3/MeanQBound.lean",
+    "id": "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Kq_X_pow",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Kq_X_pow",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQCauchy.lean",
+  "module": "Stage3.MeanQCauchy",
+  "stem": "MeanQCauchy",
+  "header": "MeanQCauchy — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the operator `Q(−∂α/L) Q(−∂β/L)` and Cauchy's estimate for it. 2026-11-25.",
+  "imports": [
+   "Stage3.OperatorCauchy"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Metric",
+   "Polynomial",
+   "Topology"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 243,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OperatorCauchy.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "pkl",
+    "ns": "MeanQ",
+    "full": "MeanQ.pkl",
+    "line": 34,
+    "why": "`∂β^l ∂α^k f (α, β)`: `k` derivatives in the first variable at `α`, then `l` in the second.",
+    "sorry": false,
+    "needs": [
+     "f : ℂ → ℂ → ℂ",
+     "k l : ℕ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_sub_mul",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "qc",
+    "ns": "MeanQ",
+    "full": "MeanQ.qc",
+    "line": 38,
+    "why": "`q_k (−1/L)^k`, `q_k = Q.coeff k`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.norm_qc",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "DopQ",
+    "ns": "MeanQ",
+    "full": "MeanQ.DopQ",
+    "line": 41,
+    "why": "The operator `Q(−∂α/L) Q(−∂β/L)`: `Σ_{k,l ≤ d} q_k q_l (−1/L)^{k+l} ∂β^l ∂α^k f`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_sub_mul",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cauchy_disc",
+    "ns": "MeanQ",
+    "full": "MeanQ.cauchy_disc",
+    "line": 46,
+    "why": "Cauchy's estimate on a closed disc, from differentiability on it.",
+    "sorry": false,
+    "needs": [
+     "hρ : 0 < ρ",
+     "n : ℕ",
+     "hf : ∀ z ∈ closedBall c ρ, DifferentiableAt ℂ f z",
+     "hS : ∀ z ∈ closedBall c ρ, ‖f z‖ ≤ S"
+    ],
+    "proves": "‖iteratedDeriv n f c‖ ≤ n.factorial * S / ρ ^ n",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.cauchy_disc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_norm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_norm_le",
+    "ns": "MeanQ",
+    "full": "MeanQ.pkl_norm_le",
+    "line": 57,
+    "why": "Cauchy's estimate for `pkl`, one variable at a time, on the closed polydisc of radius `ρ`.",
+    "sorry": false,
+    "needs": [
+     "hρ : 0 < ρ",
+     "k l : ℕ",
+     "hFa : ∀ y ∈ closedBall β₀ ρ, ∀ x ∈ closedBall α₀ ρ, DifferentiableAt ℂ (fun x => F x y) x",
+     "hFb : ∀ y ∈ closedBall β₀ ρ, DifferentiableAt ℂ (fun y => iteratedDeriv k (fun x => F x y) α₀) y",
+     "hS : ∀ x ∈ closedBall α₀ ρ, ∀ y ∈ closedBall β₀ ρ, ‖F x y‖ ≤ S"
+    ],
+    "proves": "‖pkl F k l α₀ β₀‖ ≤ l.factorial * (k.factorial * S / ρ ^ k) / ρ ^ l",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.cauchy_disc",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.cauchy_disc",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_qc",
+    "ns": "MeanQ",
+    "full": "MeanQ.norm_qc",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hL : 0 < L",
+     "k : ℕ"
+    ],
+    "proves": "‖qc Q L k‖ = |Q.coeff k| / L ^ k",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.norm_qc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Kq",
+    "ns": "MeanQ",
+    "full": "MeanQ.Kq",
+    "line": 74,
+    "why": "The constant of `DopQ`'s bound: `Σ_k |q_k| k!/r^k`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "r : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Kq_X_pow",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq_nonneg",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Kq_nonneg",
+    "ns": "MeanQ",
+    "full": "MeanQ.Kq_nonneg",
+    "line": 77,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hr : 0 < r"
+    ],
+    "proves": "0 ≤ Kq Q r",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "DopQ_norm_le",
+    "ns": "MeanQ",
+    "full": "MeanQ.DopQ_norm_le",
+    "line": 81,
+    "why": "The size of `DopQ f` at the radius `ρ = r/L`: `‖DopQ f‖ ≤ S (Σ_k |q_k| k!/r^k)²`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hL : 0 < L",
+     "hr : 0 < r",
+     "hFa : ∀ y ∈ closedBall β₀ (r / L), ∀ x ∈ closedBall α₀ (r / L), DifferentiableAt ℂ (fun x => F x y) x",
+     "hFb : ∀ k, ∀ y ∈ closedBall β₀ (r / L), DifferentiableAt ℂ (fun y => iteratedDeriv k (fun x => F x y) α₀) y",
+     "hS : ∀ x ∈ closedBall α₀ (r / L), ∀ y ∈ closedBall β₀ (r / L), ‖F x y‖ ≤ S"
+    ],
+    "proves": "‖DopQ Q L F α₀ β₀‖ ≤ S * Kq Q r ^ 2",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.norm_qc",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_norm_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.norm_qc",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_norm_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_sub_mul",
+    "ns": "MeanQ",
+    "full": "MeanQ.iteratedDeriv_sub_mul",
+    "line": 116,
+    "why": "`∂α^k (A − B·c) = ∂α^k A − ∂α^k B · c` at a point where both are analytic.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hA : AnalyticAt ℂ A x",
+     "hB : AnalyticAt ℂ B x"
+    ],
+    "proves": "iteratedDeriv k (fun z => A z - B z * c) x = iteratedDeriv k A x - iteratedDeriv k B x * c",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iteratedDeriv_sub_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_sub_mul",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_sub_mul",
+    "ns": "MeanQ",
+    "full": "MeanQ.pkl_sub_mul",
+    "line": 124,
+    "why": "`pkl` is linear under analyticity of the slices and of the `α`-derivatives in `β`.",
+    "sorry": false,
+    "needs": [
+     "k l : ℕ",
+     "hAa : ∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => A x y) α₀",
+     "hBa : ∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => B x y) α₀",
+     "hAb : AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => A x y) α₀) β₀",
+     "hBb : AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => B x y) α₀) β₀"
+    ],
+    "proves": "pkl (fun x y => A x y - B x y * c) k l α₀ β₀ = pkl A k l α₀ β₀ - pkl B k l α₀ β₀ * c",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_sub_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iteratedDeriv_sub_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iteratedDeriv_sub_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_sub_mul"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "DopQ_sub_mul",
+    "ns": "MeanQ",
+    "full": "MeanQ.DopQ_sub_mul",
+    "line": 139,
+    "why": "`DopQ` is linear: `DopQ (A − B·c) = DopQ A − DopQ B · c`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hAa : ∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => A x y) α₀",
+     "hBa : ∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => B x y) α₀",
+     "hAb : ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => A x y) α₀) β₀",
+     "hBb : ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => B x y) α₀) β₀"
+    ],
+    "proves": "DopQ Q L (fun x y => A x y - B x y * c) α₀ β₀ = DopQ Q L A α₀ β₀ - DopQ Q L B α₀ β₀ * c",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_sub_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_sub_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl_sub_mul"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "iterPartial",
+    "ns": "MeanQ",
+    "full": "MeanQ.iterPartial",
+    "line": 156,
+    "why": "The `k`-th partial in the first variable of a function on `ℂ × ℂ`.",
+    "sorry": false,
+    "needs": [
+     "F : ℂ × ℂ → ℂ",
+     "k : ℕ",
+     "p : ℂ × ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.analytic_iterPartial",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial_succ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iterPartial_succ",
+    "ns": "MeanQ",
+    "full": "MeanQ.iterPartial_succ",
+    "line": 159,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "F : ℂ × ℂ → ℂ",
+     "k : ℕ",
+     "p : ℂ × ℂ"
+    ],
+    "proves": "iterPartial F (k + 1) p = deriv (fun x => iterPartial F k (x, p.2)) p.1",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial_succ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.analytic_iterPartial"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "analytic_iterPartial",
+    "ns": "MeanQ",
+    "full": "MeanQ.analytic_iterPartial",
+    "line": 165,
+    "why": "`∂α^k F` is analytic where `F` is, on an open `U ⊆ ℂ × ℂ`.",
+    "sorry": false,
+    "needs": [
+     "hU : IsOpen U",
+     "hF : AnalyticOnNhd ℂ F U",
+     "k : ℕ"
+    ],
+    "proves": "AnalyticOnNhd ℂ (iterPartial F k) U",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.analytic_iterPartial",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial_succ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iterPartial_succ"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.slices_of_analytic"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "slices_of_analytic",
+    "ns": "MeanQ",
+    "full": "MeanQ.slices_of_analytic",
+    "line": 187,
+    "why": "The slices of a two-variable analytic function: for `(α₀, β₀) ∈ U` open, the `α`-slices are analytic at `α₀` for `β` near `β₀`, and every `∂α^k` is analytic in `β` at `β₀`.",
+    "sorry": false,
+    "needs": [
+     "hU : IsOpen U",
+     "hF : AnalyticOnNhd ℂ F U",
+     "h0 : (α₀, β₀) ∈ U"
+    ],
+    "proves": "(∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => F (x, y)) α₀) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => F (x, y)) α₀) β₀",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.slices_of_analytic",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.analytic_iterPartial"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.analytic_iterPartial"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "DopQ_one_sub",
+    "ns": "MeanQ",
+    "full": "MeanQ.DopQ_one_sub",
+    "line": 204,
+    "why": "`DopQ` at `Q = 1 − X` is `Dop`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ",
+     "f : ℂ → ℂ → ℂ",
+     "α β : ℂ"
+    ],
+    "proves": "DopQ (1 - X) L f α β = Operator.Dop L f α β",
+    "file": "lean_stage3/Stage3/MeanQCauchy.lean",
+    "id": "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pa",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pab",
+     "lean_stage3/Stage3/OperatorCauchy.lean::Operator.pb"
+    ],
+    "layer": "count",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQInt.lean",
+  "module": "Stage3.MeanQInt",
+  "stem": "MeanQInt",
+  "header": "MeanQInt — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the mean of `|Q(−D/L)ζ·ψ|²` as `DopQ` of the twisted moment. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQRed",
+   "Stage3.MeanQCauchy",
+   "Stage3.OperatorInt",
+   "Stage3.OperatorCY"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 304,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/MeanQCauchy.lean",
+   "lean_stage3/Stage3/MeanQRed.lean",
+   "lean_stage3/Stage3/OperatorCY.lean",
+   "lean_stage3/Stage3/OperatorInt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "zetaK_analyticOnNhd",
+    "ns": "MeanQ",
+    "full": "MeanQ.zetaK_analyticOnNhd",
+    "line": 38,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "AnalyticOnNhd ℂ (iteratedDeriv k riemannZeta) {1}ᶜ",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_analyticOnNhd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zetaK_diffOn",
+    "ns": "MeanQ",
+    "full": "MeanQ.zetaK_diffOn",
+    "line": 42,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "DifferentiableOn ℂ (iteratedDeriv k riemannZeta) {1}ᶜ",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_analyticOnNhd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_analyticOnNhd"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zetaK_conj_fun",
+    "ns": "MeanQ",
+    "full": "MeanQ.zetaK_conj_fun",
+    "line": 46,
+    "why": "`ζ^{(k)}(s̄) = conj ζ^{(k)}(s)`, as functions.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "(starRingEnd ℂ) ∘ iteratedDeriv k riemannZeta ∘ (starRingEnd ℂ) = iteratedDeriv k riemannZeta",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_conj_fun",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.iteratedDeriv_zeta_conj"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_zeta_conj",
+    "ns": "MeanQ",
+    "full": "MeanQ.iteratedDeriv_zeta_conj",
+    "line": 64,
+    "why": "`ζ^{(k)}(s̄) = conj ζ^{(k)}(s)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "iteratedDeriv k riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (iteratedDeriv k riemannZeta s)",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.iteratedDeriv_zeta_conj",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_conj_fun"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_conj_fun"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_iter_left",
+    "ns": "MeanQ",
+    "full": "MeanQ.Jfg_iter_left",
+    "line": 78,
+    "why": "`∂α^k J_{f,g} = J_{f^{(k)},g}` on `‖x‖ < 1/2`, `‖y‖ < 1`.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f {1}ᶜ",
+     "hg : ContinuousOn g {1}ᶜ",
+     "hT : 4 ≤ T",
+     "hy : ‖y‖ < 1",
+     "k : ℕ"
+    ],
+    "proves": "∀ x : ℂ, ‖x‖ < 1 / 2 → iteratedDeriv k (fun x => Jfg f g W M a σ₀ x y) x = Jfg (iteratedDeriv k f) g W M a σ₀ x y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_left",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_iter_right",
+    "ns": "MeanQ",
+    "full": "MeanQ.Jfg_iter_right",
+    "line": 99,
+    "why": "`∂β^l J_{f,g} = J_{f,g^{(l)}}` on `‖x‖ < 1`, `‖y‖ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hg : AnalyticOnNhd ℂ g {1}ᶜ",
+     "hT : 4 ≤ T",
+     "hx : ‖x‖ < 1",
+     "l : ℕ"
+    ],
+    "proves": "∀ y : ℂ, ‖y‖ < 1 / 2 → iteratedDeriv l (fun y => Jfg f g W M a σ₀ x y) y = Jfg f (iteratedDeriv l g) W M a σ₀ x y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_analytic_left",
+    "ns": "MeanQ",
+    "full": "MeanQ.Jfg_analytic_left",
+    "line": 120,
+    "why": "`x ↦ J_{f,g}(x, y)` is analytic on `‖x‖ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hf : AnalyticOnNhd ℂ f {1}ᶜ",
+     "hg : ContinuousOn g {1}ᶜ",
+     "hT : 4 ≤ T",
+     "hx : ‖x‖ < 1 / 2",
+     "hy : ‖y‖ < 1"
+    ],
+    "proves": "AnalyticAt ℂ (fun x => Jfg f g W M a σ₀ x y) x",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_left",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Jfg_analytic_right",
+    "ns": "MeanQ",
+    "full": "MeanQ.Jfg_analytic_right",
+    "line": 132,
+    "why": "`y ↦ J_{f,g}(x, y)` is analytic on `‖y‖ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hf : ContinuousOn f {1}ᶜ",
+     "hg : AnalyticOnNhd ℂ g {1}ᶜ",
+     "hT : 4 ≤ T",
+     "hx : ‖x‖ < 1",
+     "hy : ‖y‖ < 1 / 2"
+    ],
+    "proves": "AnalyticAt ℂ (fun y => Jfg f g W M a σ₀ x y) y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_right",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Imom_iter_left_ev",
+    "ns": "MeanQ",
+    "full": "MeanQ.Imom_iter_left_ev",
+    "line": 144,
+    "why": "`∂α^k Imom(x, ·) = J_{ζ^{(k)}, ζ}(x, ·)` near `y`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "k : ℕ",
+     "hx : ‖x‖ < 1 / 2",
+     "hy : ‖y‖ < 1 / 2"
+    ],
+    "proves": "(fun y => iteratedDeriv k (fun x => Imom W M a σ₀ x y) x) =ᶠ[𝓝 y] fun y => Jfg (iteratedDeriv k riemannZeta) riemannZeta W M a σ₀ x y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_analyticOnNhd",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_analyticOnNhd",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pkl_Imom",
+    "ns": "MeanQ",
+    "full": "MeanQ.pkl_Imom",
+    "line": 156,
+    "why": "The partials of the moment, every order: `pkl Imom k l = J_{ζ^{(k)}, ζ^{(l)}}`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "k l : ℕ",
+     "hx : ‖x‖ < 1 / 2",
+     "hy : ‖y‖ < 1 / 2"
+    ],
+    "proves": "pkl (Imom W M a σ₀) k l x y = Jfg (iteratedDeriv k riemannZeta) (iteratedDeriv l riemannZeta) W M a σ₀ x y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.pkl",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Imom_slices",
+    "ns": "MeanQ",
+    "full": "MeanQ.Imom_slices",
+    "line": 166,
+    "why": "The slices of the moment are analytic, on `‖x‖, ‖y‖ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hT : 4 ≤ T",
+     "hx : ‖x‖ < 1 / 2",
+     "hy : ‖y‖ < 1 / 2"
+    ],
+    "proves": "AnalyticAt ℂ (fun x => Imom W M a σ₀ x y) x ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => Imom W M a σ₀ x y) x) y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cY_slices",
+    "ns": "MeanQ",
+    "full": "MeanQ.cY_slices",
+    "line": 179,
+    "why": "The slices of `c(α,β)` are analytic, at `α + β ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "P : ℝ[X]",
+     "M : ℕ",
+     "hT : T ≠ 0",
+     "hxy : x + y ≠ 0"
+    ],
+    "proves": "(∀ᶠ y' in 𝓝 y, AnalyticAt ℂ (fun x => cY P M T x y') x) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => cY P M T x y) x) y",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.slices_of_analytic",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.slices_of_analytic",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform",
+     "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mollMeanQ",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanQ",
+    "line": 193,
+    "why": "The mollified mean `∫ w(t) |Q(−D/L)ζ(σ₀+it)|² |ψ(σ₀+it)|² dt`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "Q : ℝ[X]",
+     "L' : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanQ_eq",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanQ_eq",
+    "line": 202,
+    "why": "The mean, expanded: at `α₀ = σ₀ − 1/2`, `∫ w |VQ|² |ψ|² = Σ_{k,l} q_k q_l (−1/L)^{k+l} J_{ζ^{(k)}, ζ^{(l)}}(α₀, α₀)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L' : ℝ",
+     "hT : 4 ≤ T",
+     "hσ : ‖(((σ₀ - 1 / 2 : ℝ)) : ℂ)‖ < 1"
+    ],
+    "proves": "mollMeanQ W M a σ₀ Q L' = ∑ k ∈ Finset.range (Q.natDegree + 1), ∑ l ∈ Finset.range (Q.natDegree + 1), qc Q L' k * qc Q L' l * Jfg (iteratedDeriv k riemannZeta) (iteratedDeriv l riemannZeta) W M a σ₀ ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.iteratedDeriv_zeta_conj",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.uA",
+     "lean_stage3/Stage3/ApproxFE.lean::ApproxFE.vB",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.qc",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.iteratedDeriv_zeta_conj",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.w_zero_mul"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "DopQ_Imom",
+    "ns": "MeanQ",
+    "full": "MeanQ.DopQ_Imom",
+    "line": 267,
+    "why": "`DopQ` of the moment is the mean: at `α₀ = σ₀ − 1/2`, `‖α₀‖ < 1/2`, `DopQ Imom (α₀, α₀) = ∫ w |Q(−D/L)ζ(σ₀+it)|² |ψ(σ₀+it)|²`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L' : ℝ",
+     "hT : 4 ≤ T",
+     "hσ : ‖(((σ₀ - 1 / 2 : ℝ)) : ℂ)‖ < 1 / 2"
+    ],
+    "proves": "DopQ Q L' (Imom W M a σ₀) ((σ₀ - 1 / 2 : ℝ) : ℂ) ((σ₀ - 1 / 2 : ℝ) : ℂ) = mollMeanQ W M a σ₀ Q L'",
+    "file": "lean_stage3/Stage3/MeanQInt.lean",
+    "id": "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQMean.lean",
+  "module": "Stage3.MeanQMean",
+  "stem": "MeanQMean",
+  "header": "MeanQMean — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the mean of `|Q(−D/L)ζ·ψ|²` from Lemma 3. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQInt",
+   "Stage3.FloorLongMean"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 222,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FloorLongMean.lean",
+   "lean_stage3/Stage3/MeanQInt.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "polydisc",
+    "ns": "MeanQ",
+    "full": "MeanQ.polydisc",
+    "line": 35,
+    "why": "The polydisc: radius `R/(2L)` about `−R/L`, for `3R + 1 ≤ L = log T`.",
+    "sorry": false,
+    "needs": [
+     "hR : 0 < R",
+     "hL : 3 * R + 1 ≤ Real.log T"
+    ],
+    "proves": "(∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ‖x‖ < 1 / 2) ∧ (∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), R / Real.log T ≤ ‖x + y‖) ∧ (∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), Regime (2 * R + 1 + 1 / R) T x y)",
+    "file": "lean_stage3/Stage3/MeanQMean.lean",
+    "id": "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorInt.lean::Operator.norm_le_of_ball",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Regime"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtMollMeanQ",
+    "ns": "MeanQ",
+    "full": "MeanQ.StmtMollMeanQ",
+    "line": 98,
+    "why": "The mollified mean of `Q(−D/L)ζ` at `o(T)`: for every family `Cs` and `ε > 0`, from some height on, uniformly over `WeightAll T (log T)` with `C_j ≤ Cs j`, `‖∫ w |VQ(σ₀+it)|² |ψ(σ₀+it)|² − DopQ[c](−R/L, −R/L) ŵ(0)‖ ≤ ε·errO W`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "θ R : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/MeanQMean.lean",
+    "id": "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_lt_half"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanQ_long",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanQ_long",
+    "line": 108,
+    "why": "The general-Q mean from Lemma 3, every length: `FloorLong.mollMean_long` with `Dop` replaced by `DopQ` and Cauchy's estimate taken to order `deg Q` in each variable.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)"
+    ],
+    "proves": "StmtMollMeanQ Q P θ R",
+    "file": "lean_stage3/Stage3/MeanQMean.lean",
+    "id": "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_sub_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iteratedDeriv_sub_mul",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_norm_le",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_sub_mul",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.Kq",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.iteratedDeriv_sub_mul",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Imom",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_lt_half",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanQ_lt_half",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanQ_lt_half",
+    "line": 203,
+    "why": "The general-Q mean, unconditional for `θ < 1/2`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hP0 : P.eval 0 = 0",
+     "hθ0 : 0 < θ",
+     "hθ : θ < 1 / 2",
+     "hR : 0 < R"
+    ],
+    "proves": "StmtMollMeanQ Q P θ R",
+    "file": "lean_stage3/Stage3/MeanQMean.lean",
+    "id": "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_lt_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Lemma3.lean::Lemma3.lemma3_resO_holds",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQRed.lean",
+  "module": "Stage3.MeanQRed",
+  "stem": "MeanQRed",
+  "header": "MeanQRed — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the reduction `V = Q(−D/L) ζ + E`. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCountLine"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Polynomial",
+   "Topology"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 280,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCountLine.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "coeff_taylor",
+    "ns": "MeanQ",
+    "full": "MeanQ.coeff_taylor",
+    "line": 49,
+    "why": "The coefficients of a Taylor shift: `(taylor r p).coeff j = Σ_k p_k C(k,j) r^{k−j}`.",
+    "sorry": false,
+    "needs": [
+     "p : ℝ[X]",
+     "r : ℝ",
+     "j : ℕ"
+    ],
+    "proves": "(taylor r p).coeff j = ∑ k ∈ Finset.range (p.natDegree + 1), p.coeff k * (k.choose j : ℝ) * r ^ (k - j)",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_taylor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_eq_shift"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coeff_eq_shift",
+    "ns": "MeanQ",
+    "full": "MeanQ.coeff_eq_shift",
+    "line": 60,
+    "why": "The shift back to `0`: `Q.coeff j = Σ_k b_k C(k,j) (−1/2)^{k−j}`, `b = taylor (1/2) Q`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "j : ℕ"
+    ],
+    "proves": "Q.coeff j = ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) * (-1/2 : ℝ) ^ (k - j)",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_eq_shift",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_taylor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_taylor"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_analyticAt",
+    "ns": "MeanQ",
+    "full": "MeanQ.zeta_analyticAt",
+    "line": 72,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hs1 : s ≠ 1"
+    ],
+    "proves": "AnalyticAt ℂ riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.zeta_analyticAt",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.iteratedDeriv_xi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "xi_eventually",
+    "ns": "MeanQ",
+    "full": "MeanQ.xi_eventually",
+    "line": 78,
+    "why": "`Λ = Gammaℝ · ζ` near a point with `Re s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re"
+    ],
+    "proves": "completedRiemannZeta =ᶠ[𝓝 s] fun z => Gammaℝ z * riemannZeta z",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_eventually",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.iteratedDeriv_xi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iteratedDeriv_xi",
+    "ns": "MeanQ",
+    "full": "MeanQ.iteratedDeriv_xi",
+    "line": 89,
+    "why": "Leibniz for `Λ`: `Λ^{(k)}(s) = Σ_i C(k,i) Gammaℝ^{(i)}(s) ζ^{(k−i)}(s)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hs : 0 < s.re",
+     "hs1 : s ≠ 1"
+    ],
+    "proves": "iteratedDeriv k completedRiemannZeta s = ∑ i ∈ Finset.range (k + 1), (k.choose i : ℂ) * iteratedDeriv i Gammaℝ s * iteratedDeriv (k - i) riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.iteratedDeriv_xi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_eventually",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.zeta_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_eventually",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.zeta_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_div_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "grR",
+    "ns": "MeanQ",
+    "full": "MeanQ.grR",
+    "line": 100,
+    "why": "`Gammaℝ^{(i)}/Gammaℝ`.",
+    "sorry": false,
+    "needs": [
+     "i : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_div_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Acoef",
+    "ns": "MeanQ",
+    "full": "MeanQ.Acoef",
+    "line": 103,
+    "why": "`A_j = Σ_k b_k C(k,j) (−1/L)^{k−j} Gammaℝ^{(k−j)}/Gammaℝ`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "j : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "VQ",
+    "ns": "MeanQ",
+    "full": "MeanQ.VQ",
+    "line": 109,
+    "why": "`Q(−(1/L) d/ds) ζ = Σ_j q_j (−1/L)^j ζ^{(j)}`, `q_j = Q.coeff j`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.VQ_X_pow",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.norm_VQ_X_pow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "xi_div_eq",
+    "ns": "MeanQ",
+    "full": "MeanQ.xi_div_eq",
+    "line": 114,
+    "why": "One `Λ^{(k)}/Gammaℝ`, reindexed by the order of `ζ` and extended to `range (d+1)`.",
+    "sorry": false,
+    "needs": [
+     "hk : k ≤ d",
+     "hs : 0 < s.re",
+     "hs1 : s ≠ 1"
+    ],
+    "proves": "iteratedDeriv k completedRiemannZeta s / Gammaℝ s = ∑ j ∈ Finset.range (d + 1), (k.choose j : ℂ) * grR (k - j) s * iteratedDeriv j riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_div_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.iteratedDeriv_xi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.iteratedDeriv_xi"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_eq_sum",
+    "ns": "MeanQ",
+    "full": "MeanQ.V_eq_sum",
+    "line": 134,
+    "why": "The exact reduction: `V = Σ_j A_j (−1/L)^j ζ^{(j)}` on `Re s > 0`, `s ≠ 1`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hs : 0 < s.re",
+     "hs1 : s ≠ 1"
+    ],
+    "proves": "ConreyCount.V Q L s = ∑ j ∈ Finset.range (Q.natDegree + 1), Acoef Q L j s * (((-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_div_eq",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.xi_div_eq",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_sub_VQ",
+    "ns": "MeanQ",
+    "full": "MeanQ.V_sub_VQ",
+    "line": 163,
+    "why": "The error: `V − Q(−D/L)ζ = Σ_j (A_j − q_j)(−1/L)^j ζ^{(j)}`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hs : 0 < s.re",
+     "hs1 : s ≠ 1"
+    ],
+    "proves": "ConreyCount.V Q L s - VQ Q L s = ∑ j ∈ Finset.range (Q.natDegree + 1), (Acoef Q L j s - (Q.coeff j : ℂ)) * (((-1 / L) ^ j : ℝ) : ℂ) * iteratedDeriv j riemannZeta s",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Acoef_sub",
+    "ns": "MeanQ",
+    "full": "MeanQ.Acoef_sub",
+    "line": 173,
+    "why": "The coefficient error: `A_j − q_j = Σ_k b_k C(k,j) ((−1/L)^i grR i − (−1/2)^i)`, `i = k − j`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "j : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "Acoef Q L j s - (Q.coeff j : ℂ) = ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) : ℝ) : ℂ) * ((((-1 / L) ^ (k - j) : ℝ) : ℂ) * grR (k - j) s - (((-1/2 : ℝ) ^ (k - j) : ℝ) : ℂ))",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_eq_shift",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.coeff_eq_shift",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtGrRatio",
+    "ns": "MeanQ",
+    "full": "MeanQ.StmtGrRatio",
+    "line": 190,
+    "why": "OPEN, the `Gammaℝ` ratio: for `i ≤ n`, uniformly on `σ ∈ [1/4, 1]`, `t ∈ [T/4, 2T]`, `‖(−1/L)^i Gammaℝ^{(i)}(σ+it)/Gammaℝ(σ+it) − (−1/2)^i‖ ≤ C/L`, `L = log T`. Budget: any `C`, any `T₀`. Route: `Gammaℝ^{(i)}/Gammaℝ` is the complete Bell polynomial in `g, g′, …, g^{(i−1)}`, `g = Gammaℝ′/Gammaℝ = −(1/2) log π + (1/2) ψ(s/2)`; with `|ψ(z) − log z| ≤ C/|z|` and `|ψ^{(m)}(z)| ≤ C_m/|z|^m` (the digamma worker, `Stage3/DigammaBound*.lean`), `g = L/2 + O(1)` and `g^{(m)} = O(1/t^m)` on the window, so the Bell polynomial is `g^i + O(L^{i−2}/t)` and `(−g/L)^i = (−1/2)^i + O(1/L)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "E_bound",
+    "ns": "MeanQ",
+    "full": "MeanQ.E_bound",
+    "line": 198,
+    "why": "The size of `E`: from `StmtGrRatio`, on `σ ∈ [1/4, 1]`, `t ∈ [T/4, 2T]`, `‖V − Q(−D/L)ζ‖ ≤ (K/L) Σ_j ‖ζ^{(j)}‖/L^j`, `L = log T`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hG : StmtGrRatio Q.natDegree"
+    ],
+    "proves": "∃ K T₀ : ℝ, 0 ≤ K ∧ ∀ T : ℝ, T₀ ≤ T → ∀ σ ∈ Set.Icc (1/4 : ℝ) 1, ∀ t ∈ Set.Icc (T / 4) (2 * T), ‖ConreyCount.V Q (Real.log T) ((σ : ℂ) + t * I) - VQ Q (Real.log T) ((σ : ℂ) + t * I)‖ ≤ K / Real.log T * ∑ j ∈ Finset.range (Q.natDegree + 1), ‖iteratedDeriv j riemannZeta ((σ : ℂ) + t * I)‖ / Real.log T ^ j",
+    "file": "lean_stage3/Stage3/MeanQRed.lean",
+    "id": "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.Acoef_sub",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_sub_VQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.grR"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MeanQV.lean",
+  "module": "Stage3.MeanQV",
+  "stem": "MeanQV",
+  "header": "MeanQV — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the mean of `|Vψ|²` for Conrey's `V = W/Gammaℝ`. 2026-11-25.",
+  "imports": [
+   "Stage3.MeanQBound"
+  ],
+  "opens": [
+   "ApproxFE",
+   "Complex",
+   "Filter",
+   "MeasureTheory",
+   "Metric",
+   "Operator",
+   "Polynomial",
+   "Topology",
+   "TwistedMoment"
+  ],
+  "namespaces": [
+   "MeanQ"
+  ],
+  "lines": 392,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/MeanQBound.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sq_add_le",
+    "ns": "MeanQ",
+    "full": "MeanQ.sq_add_le",
+    "line": 38,
+    "why": "`‖a + e‖² ≤ (1 + δ)‖a‖² + (1 + 1/δ)‖e‖²`, `δ > 0`.",
+    "sorry": false,
+    "needs": [
+     "a e : ℂ",
+     "hδ : 0 < δ"
+    ],
+    "proves": "‖a + e‖ ^ 2 ≤ (1 + δ) * ‖a‖ ^ 2 + (1 + 1 / δ) * ‖e‖ ^ 2",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.sq_add_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_VQ_X_pow",
+    "ns": "MeanQ",
+    "full": "MeanQ.norm_VQ_X_pow",
+    "line": 50,
+    "why": "`‖VQ (X^j)‖ = ‖ζ^{(j)}‖/L^j`.",
+    "sorry": false,
+    "needs": [
+     "j : ℕ",
+     "hL : 0 < L",
+     "s : ℂ"
+    ],
+    "proves": "‖VQ (X ^ j) L s‖ = ‖iteratedDeriv j riemannZeta s‖ / L ^ j",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.norm_VQ_X_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.VQ_X_pow",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.VQ_X_pow",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanQ_re",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanQ_re",
+    "line": 57,
+    "why": "`Re mollMeanQ = ∫ w |VQ|² |ψ|²`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "Q : ℝ[X]",
+     "L' : ℝ"
+    ],
+    "proves": "(mollMeanQ W M a σ₀ Q L').re = ∫ t, W.w t * (‖VQ Q L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t)",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "line_ne_one",
+    "ns": "MeanQ",
+    "full": "MeanQ.line_ne_one",
+    "line": 69,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hσ : σ₀ ≠ 1",
+     "t : ℝ"
+    ],
+    "proves": "(σ₀ : ℂ) + t * I ≠ 1",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.line_ne_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_VQ_line",
+    "ns": "MeanQ",
+    "full": "MeanQ.continuous_VQ_line",
+    "line": 76,
+    "why": "`t ↦ VQ(σ₀+it)` is continuous for `σ₀ ≠ 1`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "hσ : σ₀ ≠ 1"
+    ],
+    "proves": "Continuous fun t : ℝ => VQ Q L ((σ₀ : ℂ) + t * I)",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.line_ne_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.zetaK_diffOn",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.line_ne_one"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_V_line",
+    "ns": "MeanQ",
+    "full": "MeanQ.continuous_V_line",
+    "line": 85,
+    "why": "`t ↦ V(σ₀+it)` is continuous for `0 < σ₀ < 1`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "h0 : 0 < σ₀",
+     "h1 : σ₀ < 1"
+    ],
+    "proves": "Continuous fun t : ℝ => ConreyCount.V Q L ((σ₀ : ℂ) + t * I)",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.line_ne_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.line_ne_one"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "mollMeanV",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanV",
+    "line": 100,
+    "why": "The mollified mean of Conrey's `V`: `∫ w(t) |V(σ₀+it)|² |ψ(σ₀+it)|² dt`, real.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "M : ℕ",
+     "a : ℕ → ℂ",
+     "σ₀ : ℝ",
+     "Q : ℝ[X]",
+     "L' : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "StmtMollMeanV",
+    "ns": "MeanQ",
+    "full": "MeanQ.StmtMollMeanV",
+    "line": 106,
+    "why": "The mollified mean of `V` at `o(T)`: for every `Cs` and `ε > 0`, from some height on, uniformly over `WeightAll T (log T)` with `C_j ≤ Cs j`, `|∫ w |V(σ₀+it)|² |ψ(σ₀+it)|² − Re DopQ[c](−R/L, −R/L)·ŵ(0)| ≤ ε·errO W`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "θ R : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intg_w",
+    "ns": "MeanQ",
+    "full": "MeanQ.intg_w",
+    "line": 115,
+    "why": "Integrability of `w·f` for continuous `f`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hf : Continuous f"
+    ],
+    "proves": "Integrable (fun t => W.w t * f t)",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.intg_w",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight",
+     "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.w_compact"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.compare_means"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "compare_means",
+    "ns": "MeanQ",
+    "full": "MeanQ.compare_means",
+    "line": 120,
+    "why": "The two integrated comparisons, from a pointwise `E` bound on the support of `w`.",
+    "sorry": false,
+    "needs": [
+     "W : Weight T L",
+     "hV : Continuous fV",
+     "hQ : Continuous fQ",
+     "hJ : ∀ j, Continuous (fJ j)",
+     "hle1 : ∀ t ∈ Set.Icc (T / 4) (2 * T), fV t ≤ (1 + δ) * fQ t + c * ∑ j ∈ Finset.range n, fJ j t",
+     "hle2 : ∀ t ∈ Set.Icc (T / 4) (2 * T), fQ t ≤ (1 + δ) * fV t + c * ∑ j ∈ Finset.range n, fJ j t"
+    ],
+    "proves": "(∫ t, W.w t * fV t) ≤ (1 + δ) * (∫ t, W.w t * fQ t) + c * ∑ j ∈ Finset.range n, ∫ t, W.w t * fJ j t ∧ (∫ t, W.w t * fQ t) ≤ (1 + δ) * (∫ t, W.w t * fV t) + c * ∑ j ∈ Finset.range n, ∫ t, W.w t * fJ j t",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.compare_means",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.intg_w",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.intg_w",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Weight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mollMeanV_long",
+    "ns": "MeanQ",
+    "full": "MeanQ.mollMeanV_long",
+    "line": 167,
+    "why": "The mean of Conrey's `V` from Lemma 3, every length, with the `Gammaℝ` ratio as the one open input: `V = Q(−D/L)ζ + E`, `E` paid as `O(T/L)` at `δ = 1/L`.",
+    "sorry": false,
+    "needs": [
+     "Q P : ℝ[X]",
+     "hθ0 : 0 < θ",
+     "hR : 0 < R",
+     "hL3 : StmtLemma3resO P θ R (2 * R + 1 + 1 / R)",
+     "hG : StmtGrRatio Q.natDegree"
+    ],
+    "proves": "StmtMollMeanV Q P θ R",
+    "file": "lean_stage3/Stage3/MeanQV.lean",
+    "id": "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.compare_means",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.norm_VQ_X_pow",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.sq_add_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.E_bound",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.StmtGrRatio",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.VQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.compare_means",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_VQ_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.continuous_V_line",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.norm_VQ_X_pow",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.sq_add_le",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Mof",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.aY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.cY",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_nonneg",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.sig0",
+     "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.what0"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/MirrorArea.lean",
   "module": "Stage3.MirrorArea",
   "stem": "MirrorArea",
@@ -82180,6 +84973,7 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Aq_eq",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
@@ -82211,6 +85005,7 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Bq_eq",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
@@ -82242,6 +85037,7 @@
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
      "lean_stage3/Stage3/FloorConstLimit.lean::FloorConst.Cq_eq",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1form",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.c1form_norm_le",
@@ -82313,6 +85109,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cYform_analytic"
@@ -82352,6 +85149,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
@@ -82388,6 +85186,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.cY_eq_HF",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials"
     ]
    },
@@ -82457,6 +85256,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials"
     ]
    },
@@ -82547,6 +85347,7 @@
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pa_cY",
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_partials",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
@@ -82581,6 +85382,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pb_cY",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
@@ -82614,6 +85416,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorConstDeriv.lean::FloorConst.pab_cY",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_sub_mul",
@@ -82659,6 +85462,7 @@
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/MeanQCauchy.lean::MeanQ.DopQ_one_sub",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCauchy.lean::Operator.Dop_norm_le",
@@ -82908,6 +85712,13 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_eq_Jfg",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
@@ -83045,6 +85856,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
@@ -83214,6 +86026,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq"
     ]
    },
@@ -83237,6 +86050,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
@@ -83289,6 +86103,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_left",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
     ]
    },
@@ -83338,6 +86154,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_analytic_right",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Jfg_iter_right",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_partials"
     ]
    },
@@ -83893,6 +86711,7 @@
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.logDeriv_W_eq",
      "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
+     "lean_stage3/Stage3/MeanQRed.lean::MeanQ.V_eq_sum",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
@@ -112659,6 +115478,11 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.what0_le",
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.StmtDiagErr",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.compare_means",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.intg_w",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.WeightAll",
      "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
@@ -112735,6 +115559,12 @@
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.diagO_of_err",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/SwapX.lean::SwapX.I1_X_bound",
@@ -113836,6 +116666,10 @@
     "used_by": [
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_levinson_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.continuous_msq",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.msq_expand",
@@ -113872,6 +116706,13 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.norm_Vpsi_sq",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanQ_re",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
@@ -113981,6 +116822,13 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.StmtLemma3resO",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.DopQ_Imom",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_iter_left_ev",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.Imom_slices",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.pkl_Imom",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Dop_Imom",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Imom_eq_Jfg",
@@ -114245,6 +117093,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.unsmooth_near_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.E_bound",
      "lean_stage3/Stage3/TwistedMoment.lean::TwistedMoment.Ires_small",
@@ -114279,6 +117129,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_left",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_hasDerivAt_right",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_intOn",
@@ -114591,6 +117443,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.mollMeanQ_eq",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.Jfg_set",
      "lean_stage3/Stage3/OperatorInt.lean::Operator.mollMean_eq",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.E_bound'",
@@ -116169,6 +119022,17 @@
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -116240,6 +119104,15 @@
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -116316,6 +119189,15 @@
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_bound",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.betaC_one",
      "lean_stage3/Stage3/FloorStepSize.lean::FloorStep.molli_betaC",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.meanJ_bound",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.aY_bound",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.stmtOffDiag_holds",
@@ -116372,6 +119254,7 @@
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.lemma3_resO_of_parts",
      "lean_stage3/Stage3/DiagonalO.lean::DiagonalO.stmtDiagO_of_mainO",
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.diagO_of_err",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.c1Y_eq",
      "lean_stage3/Stage3/StirlingX.lean::Stirling.stmtXAll_of'",
      "lean_stage3/Stage3/SwapX.lean::SwapX.c1Y_bound",
@@ -116428,6 +119311,18 @@
      "lean_stage3/Stage3/FloorLongStep.lean::FloorLong.floor_step_long",
      "lean_stage3/Stage3/FloorStep.lean::FloorStep.floor_step",
      "lean_stage3/Stage3/FloorSum.lean::FloorSum.step_X",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.unsmooth_V",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_long",
+     "lean_stage3/Stage3/MeanQ.lean::MeanQ.window_V_lt_half",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.Imom_sup",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_cauchy_hyps",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.dopQ_cY_bdd",
+     "lean_stage3/Stage3/MeanQInt.lean::MeanQ.cY_slices",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.StmtMollMeanQ",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.mollMeanQ_long",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.StmtMollMeanV",
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.mollMeanV_long",
      "lean_stage3/Stage3/Operator.lean::Operator.StmtMollMeanO",
      "lean_stage3/Stage3/Operator.lean::Operator.stmtMollMeanO_holds",
      "lean_stage3/Stage3/OperatorCY.lean::Operator.cY_eq",
@@ -116471,6 +119366,7 @@
      "lean_stage3/Stage3/FloorLongErr.lean::FloorLong.StmtDiagErr",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.Ires_o_long",
      "lean_stage3/Stage3/FloorLongMean.lean::FloorLong.mollMean_long",
+     "lean_stage3/Stage3/MeanQMean.lean::MeanQ.polydisc",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.N_le",
      "lean_stage3/Stage3/OffDiagClose.lean::OffDiagClose.StmtOffDiagAll",
      "lean_stage3/Stage3/Operator.lean::Operator.Ires_o",
@@ -117234,6 +120130,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
@@ -117258,6 +120155,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MeanQBound.lean::MeanQ.cY_sup_bound",
      "lean_stage3/Stage3/UnsmoothCY.lean::Unsmooth.dop_cY_bdd"
     ]
    },
@@ -117854,6 +120752,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/MeanQV.lean::MeanQ.intg_w",
      "lean_stage3/Stage3/UnsmoothWin.lean::Unsmooth.integral_le_of_one"
     ]
    },
@@ -140361,11 +143260,12 @@
    "Stage3.FloorLong",
    "Stage3.OperatorQ",
    "Stage3.ConreyCount",
-   "Stage3.DigammaBound"
+   "Stage3.DigammaBound",
+   "Stage3.MeanQ"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 252,
+  "lines": 253,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -140479,6 +143379,7 @@
    "lean_stage3/Stage3/Littlewood.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
+   "lean_stage3/Stage3/MeanQ.lean",
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
