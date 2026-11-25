@@ -17,7 +17,8 @@ flowchart LR
   x4(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
   x5(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x6(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x7(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x7(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
+  x8(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -30,6 +31,7 @@ flowchart LR
   n1 -.-> x1
   n10 -.-> x3
   n5 -.-> x3
+  n6 -.-> x7
   x2 -.-> n5
   x2 -.-> n7
   x4 -.-> n6
@@ -38,8 +40,8 @@ flowchart LR
   x5 -.-> n7
   x6 -.-> n6
   x6 -.-> n7
-  x7 -.-> n10
-  x7 -.-> n9
+  x8 -.-> n10
+  x8 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
