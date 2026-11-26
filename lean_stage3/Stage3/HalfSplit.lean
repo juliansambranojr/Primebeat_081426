@@ -414,3 +414,43 @@ end HalfSplit
 /-- info: 'HalfSplit.bernoulli_two_step_fract' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.bernoulli_two_step_fract
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- A shift of `N` by less than one never leaves the rounding's cell: `fract(N/d) + t/d < 1`. -/
+theorem fract_add_lt_one {N d : ℕ} (hd : 0 < d) {t : ℝ} (ht : t < 1) :
+    Int.fract ((N : ℝ) / d) + t / d < 1 := by
+  rw [Int.fract_div_natCast_eq_div_natCast_mod]
+  have hd' : (0 : ℝ) < d := by exact_mod_cast hd
+  have hm : ((N % d : ℕ) : ℝ) + 1 ≤ d := by exact_mod_cast Nat.mod_lt N hd
+  rw [← add_div, div_lt_one hd']
+  linarith
+
+/-- **The sieve's step from B₂ to the half.** Shifting `N` by `t ∈ [0, 1)`, the signed change of
+the integrated roundings over the products up to `N` is the signed centered roundings, weighted
+`2t/d`, plus `t²/d²`. -/
+theorem sieve_step (N : ℕ) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1) :
+    ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        (bernoulliFun 2 (Int.fract (((N : ℝ) + t) / ((∏ p ∈ T, p : ℕ) : ℝ)))
+          - bernoulliFun 2 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))))
+      = ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        (2 * (t / ((∏ p ∈ T, p : ℕ) : ℝ)) *
+            bernoulliFun 1 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))
+          + (t / ((∏ p ∈ T, p : ℕ) : ℝ)) ^ 2) := by
+  refine Finset.sum_congr rfl fun T hT => ?_
+  have hTp : ∀ q ∈ T, q.Prime := fun q hq =>
+    prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp hT).1 hq)
+  have hd : 0 < ∏ p ∈ T, p := Nat.pos_of_ne_zero
+    (Finset.prod_ne_zero_iff.mpr fun q hq => (hTp q hq).ne_zero)
+  have hd' : (0 : ℝ) < ((∏ p ∈ T, p : ℕ) : ℝ) := by exact_mod_cast hd
+  have hshift : ((N : ℝ) + t) / ((∏ p ∈ T, p : ℕ) : ℝ)
+      = (N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ) + t / ((∏ p ∈ T, p : ℕ) : ℝ) := add_div _ _ _
+  rw [hshift, bernoulli_two_step_fract (div_nonneg ht0 hd'.le) (fract_add_lt_one hd ht1)]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.sieve_step' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.sieve_step
