@@ -116,3 +116,20 @@ Deterministic: `default_rng(2026)`, no flags. Output
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
 - `locked_by`: claude-on-julian-authorization ("Lock it", 2026-11-26)
+
+## Run record
+
+Appended after the run. This append changes the file's hash; the no-drift
+check is that `post_compute_sha256` below, taken before this section existed,
+equals the sidecar.
+
+- `run_start_at`: 2026-11-26T02:31:44Z
+- `run_end_at`: 2026-11-26T02:32:13Z
+- `post_compute_sha256`: aa14d38e8ed842364cb2328186e05428e0395ebb45a14459f7359149d0cd688a
+- sidecar `golden_step_basin_v1_20261126.sha256`: aa14d38e8ed842364cb2328186e05428e0395ebb45a14459f7359149d0cd688a — match
+- integrity: `count_ok` true, Gram-point error 1.58e-30, `integrity_ok` true
+- primary: `S` = 0.2026431718061674, `p` = 0.47733522664773353 (null mean 0.19937845814977975, sd 0.026075170680782574)
+- secondary, mirror step `1/φ²`: `S` = 0.1894273127753304, `p` = 0.6835731642683573
+- mechanical output of the decision rule: `does_not_fall_out`
+- output: `results/O98_golden_step_basin.json`
+- `verdict`: (Julian's to write)
