@@ -54,3 +54,73 @@ end PrimeStep
 /-- info: 'PrimeStep.step_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms PrimeStep.step_eq
+
+namespace PrimeStep
+
+open Finset
+
+/-- **The subsets, by their largest element.** For a finite set `S` of naturals, a sum over
+its subsets is the empty subset's term plus, for each `p ∈ S`, the sum over the subsets of the
+elements of `S` below `p`, with `p` put in. -/
+theorem sum_powerset_by_max {β : Type*} [AddCommMonoid β] (g : Finset ℕ → β) (S : Finset ℕ) :
+    ∑ T ∈ S.powerset, g T =
+      g ∅ + ∑ p ∈ S, ∑ t ∈ (S.filter (· < p)).powerset, g (insert p t) := by
+  refine Finset.induction_on_max S (by simp) ?_
+  intro a s ha ih
+  have has : a ∉ s := fun h => lt_irrefl a (ha a h)
+  rw [Finset.sum_powerset_insert has, ih, Finset.sum_insert has, add_assoc]
+  congr 1
+  have hfa : (insert a s).filter (· < a) = s := by
+    ext x; simp only [mem_filter, mem_insert]
+    constructor
+    · rintro ⟨hx | hx, hlt⟩
+      · exact absurd hx (ne_of_lt hlt)
+      · exact hx
+    · intro hx; exact ⟨Or.inr hx, ha x hx⟩
+  have hfx : ∀ x ∈ s, (insert a s).filter (· < x) = s.filter (· < x) := by
+    intro x hx
+    ext y; simp only [mem_filter, mem_insert]
+    constructor
+    · rintro ⟨hy | hy, hlt⟩
+      · subst hy; exact absurd (lt_trans hlt (ha x hx)) (lt_irrefl _)
+      · exact ⟨hy, hlt⟩
+    · rintro ⟨hy, hlt⟩; exact ⟨Or.inr hy, hlt⟩
+  rw [hfa, add_comm]
+  congr 1
+  exact Finset.sum_congr rfl fun x hx => by rw [hfx x hx]
+
+end PrimeStep
+
+/-- info: 'PrimeStep.sum_powerset_by_max' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PrimeStep.sum_powerset_by_max
+
+namespace PrimeStep
+
+open Finset
+
+/-- **The net rounding is the sum of the primes' steps.** Grouped by largest prime, the sieve's
+net rounding at `N` is, over the primes `p ≤ √N`, the numbers up to `⌊N/p⌋` that no smaller
+prime up to `√N` divides, less their smooth part `(N/p) ∏ (1 - 1/q)`. -/
+theorem net_by_steps (N : ℕ) :
+    (SieveExact.netRounding N : ℚ) =
+      ∑ p ∈ SieveExact.smallPrimes N,
+        ((((Icc 1 (N / p)).filter
+            (fun m => ∀ q ∈ (SieveExact.smallPrimes N).filter (· < p), ¬ q ∣ m)).card : ℚ)
+          - ((N : ℚ) / (p : ℚ)) *
+              ∏ q ∈ (SieveExact.smallPrimes N).filter (· < p), (1 - 1 / (q : ℚ))) := by
+  unfold SieveExact.netRounding
+  rw [sum_powerset_by_max]
+  simp only [card_empty, pow_zero, prod_empty, Nat.cast_one, div_one, one_mul]
+  rw [show Int.fract ((N : ℚ)) = 0 from Int.fract_natCast N, zero_add]
+  refine Finset.sum_congr rfl fun p hp => ?_
+  rw [← step_eq _ (fun q hq => SieveExact.prime_of_mem_smallPrimes (mem_filter.mp hq).1) N p]
+  refine Finset.sum_congr rfl fun t ht => ?_
+  have hpt : p ∉ t := fun h => lt_irrefl p (mem_filter.mp (mem_powerset.mp ht h)).2
+  rw [card_insert_of_notMem hpt, prod_insert hpt]
+
+end PrimeStep
+
+/-- info: 'PrimeStep.net_by_steps' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PrimeStep.net_by_steps
