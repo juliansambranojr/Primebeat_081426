@@ -30,9 +30,10 @@ flowchart LR
   x0(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
   x2(["<b>ConreyCountIdentity</b><br/>conrey_identity"]):::ext
-  x3(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x4(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
-  x5(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
+  x3(["<b>BasinChainCount</b><br/>V_line_ne<br/>count_exact"]):::ext
+  x4(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x5(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x6(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
   n0 --> n1
   n10 --> n11
   n10 --> n13
@@ -46,8 +47,10 @@ flowchart LR
   n9 --> n10
   n10 -.-> x3
   n10 -.-> x4
+  n10 -.-> x5
   n11 -.-> x3
-  n11 -.-> x5
+  n11 -.-> x4
+  n11 -.-> x6
   n9 -.-> x2
   x0 -.-> n11
   x0 -.-> n2
@@ -85,7 +88,7 @@ def · line 206
 `W = Q(1/2 − (1/L) d/ds) Λ`: the Taylor coefficients `b_k` of `Q` at `1/2`, against `(−1/L)^k Λ^{(k)}`.
 
 - **Is:** `` W (Q : ℝ[X]) (L : ℝ) (s : ℂ) : ℂ := ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k : ℝ) : ℂ) * iteratedDeriv k completedRiemannZeta s ``
-- **Used by 16:** [`ConreyCount.conrey_identity`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity), [`ConreyCount.conrey_identity_K`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity_K), [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`ConreyCount.W_eq_gammaR_mul_V`](../lean_stage3/ConreyCountLine.md#ConreyCount-W_eq_gammaR_mul_V), [`ConreyCount.analyticAt_W`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W), [`ConreyCount.analyticAt_W_line`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W_line), [`ConreyCount.continuous_lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-continuous_lineW), [`ConreyCount.lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW), [`ConreyCount.lineW_turn_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW_turn_eq), [`ConreyCount.logDeriv_W_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-logDeriv_W_eq), [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`DigammaBound.V_eq_sum_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-V_eq_sum_H), [`MeanQ.V_eq_sum`](../lean_stage3/MeanQRed.md#MeanQ-V_eq_sum), [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line), [`OperatorQ.re_W_line`](#OperatorQ-re_W_line), [`OperatorQ.zeta_line_zero_iff_W`](#OperatorQ-zeta_line_zero_iff_W)
+- **Used by 17:** [`BasinChain.W_one`](../lean_stage3/BasinChainCount.md#BasinChain-W_one), [`ConreyCount.conrey_identity`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity), [`ConreyCount.conrey_identity_K`](../lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity_K), [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`ConreyCount.W_eq_gammaR_mul_V`](../lean_stage3/ConreyCountLine.md#ConreyCount-W_eq_gammaR_mul_V), [`ConreyCount.analyticAt_W`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W), [`ConreyCount.analyticAt_W_line`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W_line), [`ConreyCount.continuous_lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-continuous_lineW), [`ConreyCount.lineW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW), [`ConreyCount.lineW_turn_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW_turn_eq), [`ConreyCount.logDeriv_W_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-logDeriv_W_eq), [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity), [`DigammaBound.V_eq_sum_H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-V_eq_sum_H), [`MeanQ.V_eq_sum`](../lean_stage3/MeanQRed.md#MeanQ-V_eq_sum), [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line), [`OperatorQ.re_W_line`](#OperatorQ-re_W_line), [`OperatorQ.zeta_line_zero_iff_W`](#OperatorQ-zeta_line_zero_iff_W)
 
 <a name="OperatorQ-Qcubic"></a>
 ### `OperatorQ.Qcubic`
@@ -396,8 +399,9 @@ line 212 · arrows read from text
 
 **Definitions its proof touches:** [`OperatorQ.W`](#OperatorQ-W)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
   - [`OperatorQ.cubic_re_W_line`](#OperatorQ-cubic_re_W_line) — `` (W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZeta ((1/2 : ℂ) + t * I)).re ``
@@ -433,8 +437,10 @@ riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0
 
 **Definitions its proof touches:** [`OperatorQ.W`](#OperatorQ-W)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`BasinChain.V_line_ne`](../lean_stage3/BasinChainCount.md#BasinChain-V_line_ne) (BasinChainCount) — `` V Q L ((1/2 : ℂ) + t * I) ≠ 0 ``
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`ConreyCount.lineCount_ge_argW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineCount_ge_argW) (ConreyCountLine) — `` (k : ℤ) ≤ lineCount T ``
 

@@ -23,19 +23,20 @@ flowchart LR
   n7["<b>tailDelta_nonneg</b><br/>0 ≤ LevinsonMollEdge.tailDelta M B X"]:::cnt
   n8["<b>windowE_nonneg</b><br/>0 ≤ windowE M B X T a b"]:::shp
   n9["<b>levinson_window ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ…"]:::thm
-  x0(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x1(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
-  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
-  x4(["<b>LevinsonRight</b><br/>divisor_nonneg_real<br/>levinson_right"]):::ext
-  x5(["<b>Littlewood</b><br/>divisor_eq<br/>mem_support_divisor<br/>order_ne_top"]):::ext
-  x6(["<b>ArgCount</b><br/>N_mono<br/>phaseTheta_sub_le<br/>sCrude_holds"]):::ext
-  x7(["<b>LevinsonLine</b><br/>zeta_line_zero_iff"]):::ext
-  x8(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
-  x9(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x10(["<b>LevinsonEdge</b><br/>G_analyticAt"]):::ext
-  x11(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
-  x12(["<b>LevinsonSize</b><br/>re_G_pos"]):::ext
+  x0(["<b>BasinChainCount</b><br/>count_exact"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
+  x5(["<b>LevinsonRight</b><br/>divisor_nonneg_real<br/>levinson_right"]):::ext
+  x6(["<b>Littlewood</b><br/>divisor_eq<br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x7(["<b>ArgCount</b><br/>N_mono<br/>phaseTheta_sub_le<br/>sCrude_holds"]):::ext
+  x8(["<b>LevinsonLine</b><br/>zeta_line_zero_iff"]):::ext
+  x9(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x10(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x11(["<b>LevinsonEdge</b><br/>G_analyticAt"]):::ext
+  x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x13(["<b>LevinsonSize</b><br/>re_G_pos"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n9
@@ -50,34 +51,35 @@ flowchart LR
   n0 -.-> x1
   n0 -.-> x2
   n0 -.-> x3
-  n1 -.-> x2
+  n0 -.-> x4
   n1 -.-> x3
-  n2 -.-> x1
+  n1 -.-> x4
   n2 -.-> x2
   n2 -.-> x3
-  n3 -.-> x1
+  n2 -.-> x4
   n3 -.-> x2
   n3 -.-> x3
-  n4 -.-> x1
+  n3 -.-> x4
   n4 -.-> x2
   n4 -.-> x3
-  n6 -.-> x1
+  n4 -.-> x4
   n6 -.-> x2
   n6 -.-> x3
-  n7 -.-> x2
+  n6 -.-> x4
   n7 -.-> x3
-  n8 -.-> x2
+  n7 -.-> x4
   n8 -.-> x3
+  n8 -.-> x4
   x10 -.-> n9
   x11 -.-> n9
   x12 -.-> n9
-  x4 -.-> n2
-  x4 -.-> n9
+  x13 -.-> n9
   x5 -.-> n2
-  x6 -.-> n4
-  x6 -.-> n9
-  x7 -.-> n5
-  x8 -.-> n9
+  x5 -.-> n9
+  x6 -.-> n2
+  x7 -.-> n4
+  x7 -.-> n9
+  x8 -.-> n5
   x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -127,8 +129,9 @@ line 79 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``

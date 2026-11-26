@@ -7,7 +7,7 @@ ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey'
 3 theorems, 0 definitions, 470 lines. 
 
 **Imports:** [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`ConreyCountOrder`](../lean_stage3/ConreyCountOrder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BasinChainCount`](../lean_stage3/BasinChainCount.md), [`DigammaBoundIdentity`](../lean_stage3/DigammaBoundIdentity.md)
 
 ## The picture
 

@@ -7,7 +7,7 @@ TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, st
 7 theorems, 3 definitions, 345 lines. 
 
 **Imports:** [`TuringAvg`](../lean_stage3/TuringAvg.md)  
-**Imported by:** [`SignData`](../lean_stage3/SignData.md), [`Turing`](../lean_stage3/Turing.md), [`TuringSlope`](../lean_stage3/TuringSlope.md)
+**Imported by:** [`BasinChainCount`](../lean_stage3/BasinChainCount.md), [`SignData`](../lean_stage3/SignData.md), [`Turing`](../lean_stage3/Turing.md), [`TuringSlope`](../lean_stage3/TuringSlope.md)
 
 ## The picture
 
@@ -22,22 +22,27 @@ flowchart LR
   n6["<b>defect_zero_of_signs</b><br/>∀ T ≤ T₁, defect T = 0"]:::thm
   x0(["<b>Defect</b><br/>7 theorems"]):::ext
   x1(["<b>LineCount</b><br/>mem_zerosUpTo<br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
-  x2(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
-  x3(["<b>HardyZ</b><br/>re_line"]):::ext
-  x4(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
-  x5(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
-  x6(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
+  x2(["<b>BasinChain</b><br/>const_of_step<br/>rh_of_noRightZeros"]):::ext
+  x3(["<b>BasinChainAvg</b><br/>defect_step<br/>increment_avg"]):::ext
+  x4(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
+  x5(["<b>HardyZ</b><br/>re_line"]):::ext
+  x6(["<b>TuringAvg</b><br/>S_le_of_count<br/>theta_sub_le"]):::ext
+  x7(["<b>TuringS</b><br/>continuous_phaseTheta"]):::ext
+  x8(["<b>SignData</b><br/>defect_zero_of_closing"]):::ext
   n0 --> n2
   n1 --> n6
   n2 --> n6
   n3 --> n4
   n4 --> n6
   n5 --> n6
-  n1 -.-> x2
+  n0 -.-> x2
+  n0 -.-> x3
+  n1 -.-> x4
   n2 -.-> x2
-  n4 -.-> x2
-  n5 -.-> x2
-  n6 -.-> x6
+  n2 -.-> x4
+  n4 -.-> x4
+  n5 -.-> x4
+  n6 -.-> x8
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2
@@ -47,9 +52,9 @@ flowchart LR
   x1 -.-> n3
   x1 -.-> n4
   x1 -.-> n6
-  x3 -.-> n4
-  x4 -.-> n6
-  x5 -.-> n6
+  x5 -.-> n4
+  x6 -.-> n6
+  x7 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -121,8 +126,11 @@ defect T ≤ defect T'
 
 **Definitions its proof touches:** [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect), [`Defect.offCount`](../lean_stage3/Defect.md#Defect-offCount)
 
-**Feeds** (1 that use it)
+**Feeds** (4 that use it)
 
+  - [`BasinChain.const_of_step`](../lean_stage3/BasinChain.md#BasinChain-const_of_step) (BasinChain) — `` ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect T₂ ``
+  - [`BasinChain.defect_step`](../lean_stage3/BasinChainAvg.md#BasinChain-defect_step) (BasinChainAvg) — `` ∃ T₂ : ℝ, 0 < T₂ ∧ ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect (3 * T / 4) ``
+  - [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg) (BasinChainAvg) — `` ∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤ 4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) +… ``
   - [`Turing.defect_zero_below`](#Turing-defect_zero_below) — `` ∀ T ≤ T₁, defect T = 0 ``
 
 <a name="Turing-defect_eq_zero_of_lt_two"></a>
@@ -178,8 +186,9 @@ line 97 · arrows read from text
 
 **Definitions its proof touches:** [`Defect.defect`](../lean_stage3/Defect.md#Defect-defect)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.rh_of_noRightZeros`](../lean_stage3/BasinChain.md#BasinChain-rh_of_noRightZeros) (BasinChain) — `` RiemannHypothesis ``
   - [`Turing.defect_zero_of_signs`](#Turing-defect_zero_of_signs) — `` ∀ T ≤ T₁, defect T = 0 ``
   - [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-) (TuringSlope) — `` ∀ T ≤ T₁, defect T = 0 ``
 
