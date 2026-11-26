@@ -1,0 +1,11 @@
+{
+ "pairs": 311,
+ "least_prime_pairs_leave": 214,
+ "least_prime_stages_off": 6166,
+ "largest_desc_pairs_leave": 267,
+ "largest_desc_stages_off": 9526,
+ "primes_first_pairs_leave": 221,
+ "primes_first_stages_off": 9083,
+ "fold_pairs_leave": 123,
+ "fold_stages_off": 1303
+}
