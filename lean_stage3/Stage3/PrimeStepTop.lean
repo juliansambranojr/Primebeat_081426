@@ -91,3 +91,31 @@ end PrimeStepTop
 /-- info: 'PrimeStepTop.step_count_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms PrimeStepTop.step_count_top
+
+namespace PrimeStepTop
+
+open Finset
+
+open Classical in
+/-- **The net rounding, with its top steps as prime counts.** In `PrimeStep.net_by_steps`, each
+prime `p ≤ √N` with `N/p < p²` contributes `1 + #{primes in [p, N/p]}` less its smooth part; the
+primes at or below the cube root keep their sieve count. -/
+theorem net_by_steps_top (N : ℕ) :
+    (SieveExact.netRounding N : ℚ) =
+      ∑ p ∈ SieveExact.smallPrimes N,
+        ((if N / p < p * p then (1 + ((Icc p (N / p)).filter Nat.Prime).card : ℚ)
+          else (((Icc 1 (N / p)).filter
+            (fun m => ∀ q ∈ (SieveExact.smallPrimes N).filter (· < p), ¬ q ∣ m)).card : ℚ))
+          - ((N : ℚ) / (p : ℚ)) *
+              ∏ q ∈ (SieveExact.smallPrimes N).filter (· < p), (1 - 1 / (q : ℚ))) := by
+  rw [PrimeStep.net_by_steps]
+  refine Finset.sum_congr rfl fun p hp => ?_
+  split_ifs with h
+  · rw [step_count_top hp h]; push_cast; ring
+  · rfl
+
+end PrimeStepTop
+
+/-- info: 'PrimeStepTop.net_by_steps_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PrimeStepTop.net_by_steps_top
