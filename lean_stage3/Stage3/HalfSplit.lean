@@ -825,3 +825,39 @@ end HalfSplit
 /-- info: 'HalfSplit.harmonic_by_parts' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.harmonic_by_parts
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **Half the signs is half the signed count.** The `½ Σ (−1)^|T|` of `wobble_centered_low` is
+half the sieve's signed count at `N`. -/
+theorem low_signs_eq_mertens (N : ℕ) :
+    ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card = sieveMertens N N := by
+  have h := harmonic_by_value N 0 0
+  unfold harmonic at h
+  simp only [Nat.cast_zero, mul_zero, zero_mul, Real.cos_zero, mul_one] at h
+  rw [h, sieveMertens]
+  have hI : Icc 1 N = Ico 1 (N + 1) := by ext x; simp only [mem_Icc, mem_Ico]; omega
+  rw [hI, Finset.sum_Ico_eq_sum_range, Nat.add_sub_cancel]
+  exact Finset.sum_congr rfl fun i _ => by rw [add_comm 1 i]
+
+/-- **The wobble through the sieve's own objects.** Julian's half gives
+`wobble = 1 + Li N − Li √N − (exact fractions) + (centered roundings) + ½ M_S(N)`. -/
+theorem wobble_mertens (N : ℕ) :
+    HalfSieve.wobble N = 1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)
+      - ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))
+      + ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+          (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)
+      + (1 / 2) * sieveMertens N N := by
+  rw [wobble_centered_low, low_signs_eq_mertens]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.low_signs_eq_mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.low_signs_eq_mertens
+
+/-- info: 'HalfSplit.wobble_mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.wobble_mertens
