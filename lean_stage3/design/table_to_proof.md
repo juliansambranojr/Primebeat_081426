@@ -16,7 +16,7 @@ residual is at most `C · cellSize r d`, the square-root size of its window.
 `CellResidual.stencilR_abs_le`: if the values a stencil reads shrink by a factor
 `t` per step down its window, the cell is at most the top bound times `(1+t)^n`.
 `cells_of_schoenfeldWeak` and `schoenfeldWeak_of_cells`: the cells at square-root
-size are the bottom row at square-root size. The depth axis transports whatever
+size are the count's residual `π(x) − Li(x)` at square-root size, at every `x`. The depth axis transports whatever
 the row has; it adds no cancellation of its own (`Euler-Factor-Chain.md` C3).
 
 **T2. The row is carried by its half.** PROVED.
@@ -27,9 +27,9 @@ rounding of the primes up to `√N` less its smooth part
 (`wobble N = netRounding N − smoothNet N`).
 
 **T3. The halves telescope.** PROVED.
-`HalfSieve.resid_of_wobble`, `schoenfeld_of_wobble`: unwinding T2 through
-`N, √N, N^{1/4}, …` sums the wobbles, and the sum is dominated by the first, so a
-square-root bound on the wobble at every `N` is a square-root bound on the row.
+`HalfSieve.resid_of_wobble`: if `|wobble N| ≤ C·√N·log N` for every `N ≥ 2`, then
+`|resid N| ≤ K·√N·log N` for every `N ≥ 2`, some `K`; `schoenfeld_of_wobble` gives
+the Schoenfeld-weak bound from the same hypothesis.
 
 **T4. The whole goal is one line of the sieve.** PROVED as an equivalence.
 `HalfSieve.spiralLink_iff_wobble : SpiralLink ↔ WobbleSqrt`, with
@@ -44,11 +44,12 @@ smooth part, stay within `C · √N · log N` at every `N`.
 
 | try | where in the chain | what stopped it |
 |---|---|---|
-| sizes of the roundings (unit 0475, R13 `NoHoles`) | T5 by absolute values | 2^π(√N) roundings, each below one: sizes give N log N, a lost factor |
+| sizes of the roundings (unit 0475) | T5 by absolute values | at r = 24 the roundings, each below one, have mass 1.17 million, above the count; the net is 2.7% of the mass |
+| the log-factorials (R13 `NoHoles`) | the row, another route | the bound from sizes alone grows like N log N, a lost factor |
 | the doubling across scales (R15 `Doubling`, unit 0506) | T5 by alternating scales | the induction loses the count of scales; needs the alternating residuals to cancel among themselves |
 | the scales N/m (unit 0492) | T5 by adding scales | pieces large and of one sign; the residual is a small difference of them |
-| the rounding remembers the primes (unit 0499) | MEASURED inside T5 | neighbouring steps correlate 0.998; the net rounding 7.75 √x against 0.63 for random signs — the cancellation is structured, not random |
-| Möbius-signed errors (unit 0504) | MEASURED, T5's shape | 0.25 √N from 10⁴ to 10⁷; no proof that they must |
+| the rounding remembers the primes (unit 0499) | MEASURED inside T5 | neighbouring steps correlate 0.998; the net rounding reaches 7.75 √x against 0.63 for random signs, larger than chance; the residual narrows only where the smooth part meets the roundings |
+| the no-holes errors, Möbius-signed (unit 0504) | MEASURED, R13's route | 0.25 √N from 10⁴ to 10⁷ while their sizes sum to 1.37 N; no proof that they must |
 | Levinson and Conrey floors (units 0551–0564) | outside the chain | count a share of zeros; no bound on a single row |
 | no right zeros of V, Weil positivity, rung 5 (units 0573, 0576) | a face of T0 | each equivalent to the goal; none proved |
 | the heat flow (units 0577, 0578) | a face of T0 (`Λ = 0`) | the flow's settling is the goal restated |
@@ -70,5 +71,13 @@ write down: the wobble of T5 as the error of the truncation at its own band.
 The table reduces the Riemann hypothesis, with every step proved in Lean, to one
 line: **`WobbleSqrt`** — the sieve's Möbius-signed rounding over the primes up to
 `√N`, less its smooth part, stays within `C · √N · log N`. Nothing tried so far
-bounds it. The measurements say it cancels, and that the cancellation is
-structured: the rounding remembers the primes before it.
+bounds it. The measurements say the net rounding alone is larger than chance
+(unit 0499) and remembers the primes before it; the bound needs the smooth part
+and the roundings together.
+
+Checked 2026-11-26 against the source: every theorem above opened, and
+`#print axioms` on `RH_iff_cells`, `one_chain`, `spiralLink_iff_wobble`,
+`resid_step`, `resid_of_wobble`, `stencilR_abs_le`, `cells_of_schoenfeldWeak`
+reads `propext, Classical.choice, Quot.sound`. Three lines of the first draft
+were wrong and are corrected: units 0475 and R13 were merged, unit 0504 was read
+as the wobble, and unit 0499 was read as cancellation.
