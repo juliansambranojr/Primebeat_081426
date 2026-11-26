@@ -285,3 +285,39 @@ end HalfPair
 /-- info: 'HalfPair.pair_period' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.pair_period
+
+namespace HalfPair
+
+open Finset
+
+/-- **The mean square as one quadratic form.** For a finite family `D` of positive periods, all
+dividing `L`, with weights `c`, the half's sawtooths summed with those weights have, over the
+period `L`, a square sum that is one quadratic form in the weights: every pair weighted by its
+pairing identity. Nothing is bounded part by part. -/
+theorem square_form (D : Finset ℕ) (hD : ∀ d ∈ D, 0 < d) (c : ℕ → ℚ) {L : ℕ}
+    (hL : ∀ d ∈ D, d ∣ L) :
+    ∑ k ∈ range L, (∑ d ∈ D, c d * saw d k) ^ 2
+      = ∑ a ∈ D, ∑ b ∈ D, c a * c b * (((L / Nat.lcm a b : ℕ) : ℚ) *
+          ((((Nat.gcd a b : ℕ) : ℚ) ^ 2 + 2) / (12 * (Nat.gcd a b : ℕ)))) := by
+  have hexp : ∀ k, (∑ d ∈ D, c d * saw d k) ^ 2
+      = ∑ a ∈ D, ∑ b ∈ D, c a * c b * (saw a k * saw b k) := by
+    intro k
+    rw [sq, Finset.sum_mul_sum]
+    exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
+  simp only [hexp]
+  rw [Finset.sum_comm]
+  refine Finset.sum_congr rfl fun a ha => ?_
+  rw [Finset.sum_comm]
+  refine Finset.sum_congr rfl fun b hb => ?_
+  rw [← Finset.mul_sum]
+  congr 1
+  have hdvd : Nat.lcm a b ∣ L := Nat.lcm_dvd (hL a ha) (hL b hb)
+  have hLeq : L = Nat.lcm a b * (L / Nat.lcm a b) := (Nat.mul_div_cancel' hdvd).symm
+  conv_lhs => rw [hLeq]
+  exact pair_period (hD a ha) (hD b hb) _
+
+end HalfPair
+
+/-- info: 'HalfPair.square_form' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.square_form
