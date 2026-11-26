@@ -12,6 +12,7 @@ the two exact facts the split of 2026-11-26 rests on (exploratory run in scratch
   fract_tail    a product `d > N` has `fract (N/d) = N/d`: past `N` the rounding is exact
 -/
 import Stage3.HalfSieve
+import Stage3.PrimeStep
 
 namespace HalfSplit
 
@@ -529,3 +530,30 @@ end HalfSplit
 /-- info: 'HalfSplit.abs_harmonic_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.abs_harmonic_le
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- The harmonic's term for one set of primes: its signed cosine if its product is at most `N`,
+else nothing. -/
+noncomputable def hterm (N n : ℕ) (y : ℝ) (T : Finset ℕ) : ℝ :=
+  if (∏ p ∈ T, p) ≤ N then (-1 : ℝ) ^ T.card * Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ)))
+  else 0
+
+/-- **The harmonic by its largest prime.** Grouped as `PrimeStep.net_by_steps` groups the
+wobble: the empty product, plus for each prime `p ≤ √N` the products whose largest prime is `p`. -/
+theorem harmonic_by_max (N n : ℕ) (y : ℝ) :
+    harmonic N n y = hterm N n y ∅ +
+      ∑ p ∈ smallPrimes N, ∑ t ∈ ((smallPrimes N).filter (· < p)).powerset,
+        hterm N n y (insert p t) := by
+  have h : harmonic N n y = ∑ T ∈ (smallPrimes N).powerset, hterm N n y T := by
+    unfold harmonic lowT hterm
+    rw [Finset.sum_filter]
+  rw [h, PrimeStep.sum_powerset_by_max]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.harmonic_by_max' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.harmonic_by_max
