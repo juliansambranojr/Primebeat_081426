@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-26T08:02:37Z
+# unit: 0590-offline-zero-reach
+# sources searched: 526
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:106434
+  if 2 * 2 ** (r * beta) * f ** (d + 1) / (abs(rho) * r * math.log(2)) > 2 ** (r / 2) * 1.707 ** (d + ...
+
+# 2 found, 0 missing
