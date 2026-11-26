@@ -1,0 +1,10 @@
+Turing run to ~600: build-cost estimate, before any Lean is written (2026-11-26).
+n = 342, gamma_n = 601.602137, T1 = 120321/200 = 601.605, h = 343/4 = 85.75
+planned closing margin 0.16341
+points below T1: 343 (10 SignDataPt + 272 reused TuringRun + 61 new incl. T1); above: 64 (new)
+new points 125, planned total N 15896, planned Nmax 161 (certified N may be a few higher)
+old run: total N 16406, 74 min wall at 2 modules at a time -> 0.541 s per unit of N per module (per-point seconds ~ 0.541 * N)
+per-point seconds at the new N: min 48, max 87
+point modules: 26 (budget 700 N each), per-module est. 2.9..6.3 min
+projected wall, two at a time: 1.21 h (+ log module and top module)
+limit ~8 h: fits
