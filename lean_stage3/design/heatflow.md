@@ -56,6 +56,25 @@ moves. A unit, exploratory.
 Every zero of `H_λ` is real for `λ ≥ 1/2`. Unconditional; not in Mathlib or
 PNT+ by the audit of 2026-11-26 (to be rechecked by name before building).
 
+### H0 RH as a constant at its floor (2026-11-26, Julian: "Sure")
+
+Julian, 2026-11-26: "What of rh is a constant ?" Two constants, each with one
+side of the equality proved.
+- **Λ, the settling time.** `Λ ≥ 0` (Rodgers and Tao); RH is `Λ ≤ 0`, so RH is
+  `Λ = 0`. The proved upper bounds come down: `1/2`, `0.22`, `0.2`.
+- **Θ, the largest real part of a zero.** `Θ ≥ 1/2` because zeros on the line
+  exist (`SignData.nine_zeros_on_line`, `Stage3/SignData.lean`); RH is
+  `Θ = 1/2`. The tree ties `Θ` to the primes:
+  `zeroFreeRight_iff_psiWeakTheta` (`Stage3/ThetaConverse.lean`), no zero with
+  `Re s > θ` iff `ψ(x) − x = O(x^θ log³x)` for `1/2 ≤ θ < 1`; at `θ = 1/2` it
+  is `RH_iff_psiWeak` (`Stage3/VonKochScaffold.lean`). `Θ < 1` is open.
+- **What the view says.** Both constants sit on a proved floor, and RH is that
+  each touches it. Lowering an upper bound does not end at the floor; the last
+  step is an argument that excludes every positive value. In the picture: why
+  settling cannot take positive time, no pair still off the line at `λ = 0`.
+  H1 measures, below the point run's height, how close to `λ = 0` the pairs
+  were still unsettled.
+
 ### H3 An adversary on H1 and H2 — OPEN
 Before any Lean: what each block adds toward `Λ ≤ 0`, and whether the step from
 a bound `Λ ≤ c` with `c > 0` toward `c = 0` has a route weaker than RH.
