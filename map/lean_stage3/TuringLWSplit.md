@@ -7,7 +7,7 @@ TuringLWSplit — block S14 of `lean_stage3/design/stencil.md`, Turing's method,
 7 theorems, 0 definitions, 258 lines. 
 
 **Imports:** [`Littlewood`](../lean_stage3/Littlewood.md), [`TuringLWSplitOsc`](../lean_stage3/TuringLWSplitOsc.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LittlewoodSharp`](../lean_stage3/LittlewoodSharp.md), [`TuringLW`](../lean_stage3/TuringLW.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BasinChainSplit`](../lean_stage3/BasinChainSplit.md), [`LittlewoodSharp`](../lean_stage3/LittlewoodSharp.md), [`TuringLW`](../lean_stage3/TuringLW.md)
 
 ## The picture
 
@@ -20,26 +20,29 @@ flowchart LR
   n4["<b>intervalIntegrable_log_zeta</b><br/>IntervalIntegrable (fun x : ℝ =＞ Real.log ‖riemannZeta ((x : ℂ) …"]:::thm
   n5["<b>stmtSplit_holds</b><br/>Turing.StmtSplit"]:::thm
   n6["<b>littlewood_of_lower</b><br/>Turing.StmtLittlewood ((3 / 2 + a₂) / Real.pi) ((2 + (3 / 2) * R…"]:::thm
-  x0(["<b>Littlewood</b><br/>5 theorems"]):::ext
-  x1(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour"]):::ext
-  x2(["<b>TuringS</b><br/>S_eq_argS<br/>S₁_sub<br/>littlewood_of_pieces"]):::ext
-  x3(["<b>TuringLWSplitOsc</b><br/>stmtOsc_holds"]):::ext
-  x4(["<b>LittlewoodSharp</b><br/>littlewood_sharp"]):::ext
-  x5(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
+  x0(["<b>BasinChainSplit</b><br/>split_logDeriv"]):::ext
+  x1(["<b>Littlewood</b><br/>5 theorems"]):::ext
+  x2(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour"]):::ext
+  x3(["<b>TuringS</b><br/>S_eq_argS<br/>S₁_sub<br/>littlewood_of_pieces"]):::ext
+  x4(["<b>TuringLWSplitOsc</b><br/>stmtOsc_holds"]):::ext
+  x5(["<b>LittlewoodSharp</b><br/>littlewood_sharp"]):::ext
+  x6(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
   n0 --> n5
   n1 --> n5
   n2 --> n5
   n3 --> n5
   n4 --> n5
   n5 --> n6
-  n6 -.-> x4
+  n0 -.-> x0
+  n3 -.-> x0
   n6 -.-> x5
-  x0 -.-> n3
-  x0 -.-> n5
+  n6 -.-> x6
+  x1 -.-> n3
   x1 -.-> n5
   x2 -.-> n5
-  x2 -.-> n6
+  x3 -.-> n5
   x3 -.-> n6
+  x4 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -77,8 +80,9 @@ line 48 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
   - [`TuringLW.stmtSplit_holds`](#TuringLW-stmtSplit_holds) — `` Turing.StmtSplit ``
 
 <a name="TuringLW-far_mem"></a>
@@ -155,8 +159,9 @@ line 76 · arrows read from text
   - [`Littlewood.hasDerivAt_log_norm`](../lean_stage3/Littlewood.md#Littlewood-hasDerivAt_log_norm) (Littlewood) — `` HasDerivAt (fun y => Real.log ‖g y‖) (g' / g x).re x ``
   - [`Littlewood.horiz_mem`](../lean_stage3/Littlewood.md#Littlewood-horiz_mem) (Littlewood) — `` (↑x + ↑t * I : ℂ) ∈ Rectangle z w ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
   - [`TuringLW.stmtSplit_holds`](#TuringLW-stmtSplit_holds) — `` Turing.StmtSplit ``
 
 <a name="TuringLW-intervalIntegrable_log_zeta"></a>

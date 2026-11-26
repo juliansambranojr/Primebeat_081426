@@ -7,7 +7,7 @@ DigammaBound — block S13 of `lean_stage3/design/stencil.md`, B4 step 2, the si
 5 theorems, 0 definitions, 220 lines. 
 
 **Imports:** [`DigammaBoundSize`](../lean_stage3/DigammaBoundSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorQGamma`](../lean_stage3/FloorQGamma.md), [`FloorQStep`](../lean_stage3/FloorQStep.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BasinChainCount`](../lean_stage3/BasinChainCount.md), [`FloorQGamma`](../lean_stage3/FloorQGamma.md), [`FloorQStep`](../lean_stage3/FloorQStep.md)
 
 ## The picture
 
@@ -18,24 +18,28 @@ flowchart LR
   n2["<b>disc_le</b><br/>ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t)"]:::thm
   n3["<b>stmtVEdges_holds</b><br/>∃ A T₀ : ℝ, 0 ＜ A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A"]:::thm
   n4["<b>conrey_count_window'</b><br/>∃ A T₀ : ℝ, 0 ＜ A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → …"]:::thm
-  x0(["<b>DigammaBoundIdentity</b><br/>differentiableAt_H"]):::ext
-  x1(["<b>DigammaBoundSize</b><br/>7 theorems"]):::ext
-  x2(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
-  x3(["<b>ConreyCount</b><br/>conrey_count_window"]):::ext
-  x4(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
+  x0(["<b>BasinChainCount</b><br/>V_near_one"]):::ext
+  x1(["<b>DigammaBoundIdentity</b><br/>differentiableAt_H"]):::ext
+  x2(["<b>DigammaBoundSize</b><br/>7 theorems"]):::ext
+  x3(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  x4(["<b>BasinChainAvg</b><br/>increment_avg"]):::ext
+  x5(["<b>ConreyCount</b><br/>conrey_count_window"]):::ext
+  x6(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n3
   n2 --> n3
   n3 --> n4
-  n4 -.-> x4
-  x0 -.-> n1
-  x0 -.-> n2
+  n0 -.-> x0
+  n3 -.-> x4
+  n4 -.-> x6
   x1 -.-> n1
   x1 -.-> n2
-  x1 -.-> n3
+  x2 -.-> n1
   x2 -.-> n2
-  x3 -.-> n4
+  x2 -.-> n3
+  x3 -.-> n2
+  x5 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -71,8 +75,9 @@ line 50 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
   - [`DigammaBound.disc_le`](#DigammaBound-disc_le) — `` ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) ``
   - [`DigammaBound.right_edge_ge`](#DigammaBound-right_edge_ge) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
 
@@ -184,8 +189,9 @@ line 164 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.StmtVEdges`](../lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges), [`DigammaBound.KQ`](../lean_stage3/DigammaBoundSize.md#DigammaBound-KQ)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg) (BasinChainAvg) — `` ∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤ 4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) +… ``
   - [`DigammaBound.conrey_count_window'`](#DigammaBound-conrey_count_window-) — `` ∃ A T₀ : ℝ, 0 < A ∧ ∀ {T a b : ℝ}, T₀ ≤ T → T / 4 ≤ a → 4 ≤ a → a < b → b ≤ 2 * T → (∀ x ∈ Icc (1/2 : ℝ) 3, ConreyCount.V Q (Real.log T) (↑x + ↑a * I)… ``
 
 <a name="DigammaBound-conrey_count_window-"></a>

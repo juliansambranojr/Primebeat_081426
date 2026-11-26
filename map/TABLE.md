@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>504 theorems counting,<br/>in 102 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>507 theorems counting,<br/>in 104 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>5454 theorems shape,<br/>in 237 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>5463 theorems shape,<br/>in 240 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>1134 theorems reads ζ,<br/>in 210 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1146 theorems reads ζ,<br/>in 213 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 608 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 5705 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 1155 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 611 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 5714 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1167 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 504 | 5454 | 1134 |
+| `lean_stage3/` | 507 | 5463 | 1146 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -418,6 +418,19 @@ BandJoin — block J5 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ban
 
 - [`BandJoin.bandR_zero`](./lean_stage3/BandJoin.md#BandJoin-bandR_zero) — `` bandR 0 = 1 `` Share `0`, the deep zero, is on the outer circle.
 - [`BandJoin.bandR_middle_iff`](./lean_stage3/BandJoin.md#BandJoin-bandR_middle_iff) — `` bandR x = bandR (1 / 2) ↔ x = 1 / 2 `` The middle circle is reached exactly at one half.
+
+### [`BasinChainAvg`](./lean_stage3/BasinChainAvg.md) — 2
+
+BasinChainAvg — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 3 and 4: the sizes of `J` and Turing's averaging of the increment. 2026-11-25.
+
+- [`BasinChain.avg_double`](./lean_stage3/BasinChainAvg.md#BasinChain-avg_double) — `` X ≤ ((∫ b in B..B + h, f b) - ∫ a in A..A + h, g a) / h + c `` The double average. If `X ≤ f b − g a + c` for `a ∈ [A, A + h]`, `b ∈ [B, B + h]` off a countable set, then `X ≤ (∫ f − ∫ g)/h + c`.
+- [`BasinChain.good_of_notMem`](./lean_stage3/BasinChainAvg.md#BasinChain-good_of_notMem) — `` ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ a `` A good height: off the heights of the zeros up to `2T`, no zero sits at it.
+
+### [`BasinChainCount`](./lean_stage3/BasinChainCount.md) — 1
+
+BasinChainCount — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 1 and 2: the hypothesis and the count with no losses. 2026-11-25.
+
+- [`BasinChain.W_one`](./lean_stage3/BasinChainCount.md#BasinChain-W_one) — `` OperatorQ.W 1 L = completedRiemannZeta `` For `Q = 1`, `W = Λ`.
 
 ### [`ClosedLoopChain`](./lean_stage3/ClosedLoopChain.md) — 13
 

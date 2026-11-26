@@ -16,9 +16,10 @@ flowchart LR
   x0(["<b>LevinsonLine</b><br/>line_facts"]):::ext
   x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
   x2(["<b>ConreyCountIdentity</b><br/>conrey_identity"]):::ext
-  x3(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x4(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
-  x5(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
+  x3(["<b>BasinChainCount</b><br/>V_line_ne<br/>count_exact"]):::ext
+  x4(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x5(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x6(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
   n0 --> n1
   n10 --> n11
   n10 --> n13
@@ -32,8 +33,10 @@ flowchart LR
   n9 --> n10
   n10 -.-> x3
   n10 -.-> x4
+  n10 -.-> x5
   n11 -.-> x3
-  n11 -.-> x5
+  n11 -.-> x4
+  n11 -.-> x6
   n9 -.-> x2
   x0 -.-> n11
   x0 -.-> n2

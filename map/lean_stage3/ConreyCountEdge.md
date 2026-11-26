@@ -19,23 +19,25 @@ flowchart LR
   n3["<b>V_right_edge_le</b><br/>|(∫ t in a..b, logDeriv (V Q L) (3 + t * I)).re| ≤ Real.pi"]:::shp
   n4["<b>V_horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑T * I)).im| ≤ Real.…"]:::shp
   x0(["<b>ConreyCountLine</b><br/>analyticAt_V"]):::ext
-  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x2(["<b>LevinsonSize</b><br/>hasDerivAt_three_comp"]):::ext
-  x3(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x4(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x5(["<b>LevinsonEdge</b><br/>real_zero_count"]):::ext
+  x1(["<b>BasinChainSplit</b><br/>intervalIntegrable_log_V<br/>split_V"]):::ext
+  x2(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x3(["<b>LevinsonSize</b><br/>hasDerivAt_three_comp"]):::ext
+  x4(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x5(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>real_zero_count"]):::ext
   n0 --> n3
   n0 --> n4
   n1 --> n3
   n2 --> n4
   n0 -.-> x1
-  n3 -.-> x1
-  n4 -.-> x1
+  n0 -.-> x2
+  n3 -.-> x2
+  n4 -.-> x2
   x0 -.-> n0
-  x2 -.-> n1
   x3 -.-> n1
-  x4 -.-> n2
+  x4 -.-> n1
   x5 -.-> n2
+  x6 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -70,7 +72,7 @@ Open: the growth on a disc. `‖V‖ ≤ M` on `‖w − (3 + T i)‖ ≤ 21/8`.
 
 - **Is:** `` StmtVDisc (Q : ℝ[X]) (L T M : ℝ) : Prop := ∀ w : ℂ, ‖w - (3 + T * I)‖ ≤ 21/8 → ‖V Q L w‖ ≤ M ``
 - **Built from:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V)
-- **Used by 6:** [`ConreyCount.StmtVDisc.mono`](../lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono), [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVEdges`](#ConreyCount-StmtVEdges), [`ConreyCount.V_horizontal_edge_le`](#ConreyCount-V_horizontal_edge_le), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le)
+- **Used by 8:** [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg), [`BasinChain.logJ_le`](../lean_stage3/BasinChainAvg.md#BasinChain-logJ_le), [`ConreyCount.StmtVDisc.mono`](../lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono), [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`ConreyCount.StmtVEdges`](#ConreyCount-StmtVEdges), [`ConreyCount.V_horizontal_edge_le`](#ConreyCount-V_horizontal_edge_le), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le)
 
 <a name="ConreyCount-StmtVEdges"></a>
 ### `ConreyCount.StmtVEdges`
@@ -112,8 +114,10 @@ AnalyticAt ℂ (V Q L) w
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V)
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.intervalIntegrable_log_V`](../lean_stage3/BasinChainSplit.md#BasinChain-intervalIntegrable_log_V) (BasinChainSplit) — `` IntervalIntegrable (fun x : ℝ => Real.log ‖V Q L ((x : ℂ) + (t : ℂ) * I)‖) volume a b ``
+  - [`BasinChain.split_V`](../lean_stage3/BasinChainSplit.md#BasinChain-split_V) (BasinChainSplit) — `` IntervalIntegrable (fun t => hEdge Q L t) volume t₁ t₂ ∧ ∫ t in t₁..t₂, hEdge Q L t = logJ Q L t₁ - logJ Q L t₂ ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`ConreyCount.V_horizontal_edge_le`](#ConreyCount-V_horizontal_edge_le) — `` |(∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
   - [`ConreyCount.V_right_edge_le`](#ConreyCount-V_right_edge_le) — `` |(∫ t in a..b, logDeriv (V Q L) (3 + t * I)).re| ≤ Real.pi ``

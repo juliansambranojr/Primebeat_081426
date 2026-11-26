@@ -33457,6 +33457,1175 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/BasinChain.lean",
+  "module": "Stage3.BasinChain",
+  "stem": "BasinChain",
+  "header": "BasinChain — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros. 2026-11-25.",
+  "imports": [
+   "Stage3.BasinChainAvg"
+  ],
+  "opens": [
+   "Polynomial"
+  ],
+  "namespaces": [
+   "BasinChain"
+  ],
+  "lines": 151,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/BasinChainAvg.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtNoFiniteDefect",
+    "ns": "BasinChain",
+    "full": "BasinChain.StmtNoFiniteDefect",
+    "line": 70,
+    "why": "Open: the base. Wherever the defect is constant from a height on, it is `0` there: the off-line zeros are none or infinitely many.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/BasinChain.lean",
+    "id": "lean_stage3/Stage3/BasinChain.lean::BasinChain.StmtNoFiniteDefect",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "const_of_step",
+    "ns": "BasinChain",
+    "full": "BasinChain.const_of_step",
+    "line": 74,
+    "why": "From `D T = D(3T/4)` for `T ≥ T₂`, `D` is constant on `[T₂, ∞)`.",
+    "sorry": false,
+    "needs": [
+     "hT₂ : 0 < T₂",
+     "hstep : ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect (3 * T / 4)"
+    ],
+    "proves": "∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect T₂",
+    "file": "lean_stage3/Stage3/BasinChain.lean",
+    "id": "lean_stage3/Stage3/BasinChain.lean::BasinChain.const_of_step",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_eventually_const",
+    "ns": "BasinChain",
+    "full": "BasinChain.defect_eventually_const",
+    "line": 105,
+    "why": "The chain: finitely many zeros off the line. For `Q′` symmetric, `Q(1/2) ≠ 0`, `Q(0) = 1`, no right zeros of `V` from `T₀` on and the lower side of `J`: the defect is constant from some height on.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1",
+     "hNR : StmtNoRightZeros Q T₀",
+     "hLow : StmtVHorizLower Q a₂ b₂ T₀'",
+     "ha₂ : 0 ≤ a₂"
+    ],
+    "proves": "∃ T₂ : ℝ, ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect T₂",
+    "file": "lean_stage3/Stage3/BasinChain.lean",
+    "id": "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.const_of_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.const_of_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_of_noRightZeros",
+    "ns": "BasinChain",
+    "full": "BasinChain.rh_of_noRightZeros",
+    "line": 114,
+    "why": "RH from no right zeros, with the lower side of `J` and the base as named hypotheses.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1",
+     "hNR : StmtNoRightZeros Q T₀",
+     "hLow : StmtVHorizLower Q a₂ b₂ T₀'",
+     "ha₂ : 0 ≤ a₂",
+     "hbase : StmtNoFiniteDefect"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/BasinChain.lean",
+    "id": "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.StmtNoFiniteDefect",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.StmtNoFiniteDefect",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/BasinChainAvg.lean",
+  "module": "Stage3.BasinChainAvg",
+  "stem": "BasinChainAvg",
+  "header": "BasinChainAvg — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 3 and 4: the sizes of `J` and Turing's averaging of the increment. 2026-11-25.",
+  "imports": [
+   "Stage3.BasinChainSplit",
+   "Stage3.LittlewoodSharp"
+  ],
+  "opens": [
+   "Complex",
+   "ConreyCount",
+   "Filter",
+   "Interval",
+   "Kadiri",
+   "LineCount",
+   "MeasureTheory",
+   "Polynomial",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "BasinChain"
+  ],
+  "lines": 358,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/BasinChainSplit.lean",
+   "lean_stage3/Stage3/LittlewoodSharp.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtVHorizLower",
+    "ns": "BasinChain",
+    "full": "BasinChain.StmtVHorizLower",
+    "line": 65,
+    "why": "Open: the lower side of `J`. For `T ≥ T₀`, `L = log T` and every `t ∈ [T/4, 2T]`: `∫_{1/2}^{3} log‖V(x + it)‖ dx ≥ −(a₂ log t + b₂)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "a₂ b₂ T₀ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logJ_le",
+    "ns": "BasinChain",
+    "full": "BasinChain.logJ_le",
+    "line": 69,
+    "why": "The upper side of `J`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "ht : 1/2 < t",
+     "hM : 1 ≤ M",
+     "hD : StmtVDisc Q L t M"
+    ],
+    "proves": "logJ Q L t ≤ (5 / 2) * Real.log M",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "avg_double",
+    "ns": "BasinChain",
+    "full": "BasinChain.avg_double",
+    "line": 90,
+    "why": "The double average. If `X ≤ f b − g a + c` for `a ∈ [A, A + h]`, `b ∈ [B, B + h]` off a countable set, then `X ≤ (∫ f − ∫ g)/h + c`.",
+    "sorry": false,
+    "needs": [
+     "hh : 0 < h",
+     "hE : E.Countable",
+     "hf : IntervalIntegrable f volume B (B + h)",
+     "hg : IntervalIntegrable g volume A (A + h)",
+     "hpt : ∀ a ∈ Icc A (A + h), a ∉ E → ∀ b ∈ Icc B (B + h), b ∉ E → X ≤ f b - g a + c"
+    ],
+    "proves": "X ≤ ((∫ b in B..B + h, f b) - ∫ a in A..A + h, g a) / h + c",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.avg_double",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "err_eventually",
+    "ns": "BasinChain",
+    "full": "BasinChain.err_eventually",
+    "line": 131,
+    "why": "The error of the average falls below any `m > 0`.",
+    "sorry": false,
+    "needs": [
+     "α β : ℝ",
+     "hm : 0 < m"
+    ],
+    "proves": "∃ T₃ : ℝ, ∀ T : ℝ, T₃ ≤ T → 4 * α * (Real.log T ^ 1 / (1 * T + 0)) + 4 * (α * Real.log 2 + β) / T < m",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.err_eventually",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "c0_lt_two",
+    "ns": "BasinChain",
+    "full": "BasinChain.c0_lt_two",
+    "line": 142,
+    "why": "`c₀ < 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "1 + 2 * Real.arcsin (Real.pi ^ 2 / 6 - 1 + 1 / 100) / Real.pi < 2",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.c0_lt_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.r0_lt_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.r0_lt_one"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "good_of_notMem",
+    "ns": "BasinChain",
+    "full": "BasinChain.good_of_notMem",
+    "line": 154,
+    "why": "A good height: off the heights of the zeros up to `2T`, no zero sits at it.",
+    "sorry": false,
+    "needs": [
+     "ha0 : 0 < a",
+     "haT : a ≤ 2 * T",
+     "h : a ∉ (((zerosUpTo (2 * T)).image (fun ρ : NontrivialZeros => (ρ : ℂ).im) : Finset ℝ) : Set ℝ)"
+    ],
+    "proves": "∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ a",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.good_of_notMem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "increment_avg",
+    "ns": "BasinChain",
+    "full": "BasinChain.increment_avg",
+    "line": 167,
+    "why": "The averaged increment. For `Q′` symmetric, `Q(1/2) ≠ 0`, `Q(0) = 1`, the hypothesis and the lower side: there are `A > 0` and `T₁` with, for `T ≥ T₁`, `D T − D(3T/4) ≤ 4 (α log(2T) + β)/T + c₀`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1",
+     "hNR : StmtNoRightZeros Q T₀",
+     "hLow : StmtVHorizLower Q a₂ b₂ T₀'",
+     "ha₂ : 0 ≤ a₂"
+    ],
+    "proves": "∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤ 4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) + (5 + 2 * a₂) / Real.pi) * Real.log (2 * T) + (2 * ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) + (5 * Real.log (A + 1) + 2 * b₂) / Real.pi)) / T + (1 + 2 * Real.arcsin (Real.pi ^ 2 / 6 - 1 + 1 / 100) / Real.pi)",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.avg_double",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.good_of_notMem",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.avg_double",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.good_of_notMem",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.zerosUpTo",
+     "lean_stage3/Stage3/LittlewoodSharp.lean::LittlewoodSharp.littlewood_sharp",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub",
+     "lean_stage3/Stage3/TuringS.lean::Turing.intervalIntegrable_S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "defect_step",
+    "ns": "BasinChain",
+    "full": "BasinChain.defect_step",
+    "line": 298,
+    "why": "The step. Under the hypothesis and the lower side, `D T = D(3T/4)` for all large `T`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1",
+     "hNR : StmtNoRightZeros Q T₀",
+     "hLow : StmtVHorizLower Q a₂ b₂ T₀'",
+     "ha₂ : 0 ≤ a₂"
+    ],
+    "proves": "∃ T₂ : ℝ, 0 < T₂ ∧ ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect (3 * T / 4)",
+    "file": "lean_stage3/Stage3/BasinChainAvg.lean",
+    "id": "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.c0_lt_two",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.err_eventually",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.c0_lt_two",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.err_eventually",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect_even",
+     "lean_stage3/Stage3/TuringCert.lean::Turing.defect_mono"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/BasinChainCount.lean",
+  "module": "Stage3.BasinChainCount",
+  "stem": "BasinChainCount",
+  "header": "BasinChainCount — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 1 and 2: the hypothesis and the count with no losses. 2026-11-25.",
+  "imports": [
+   "Stage3.ConreyCount",
+   "Stage3.DigammaBound",
+   "Stage3.TuringCert"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Interval",
+   "Kadiri",
+   "LineCount",
+   "Littlewood",
+   "MeasureTheory",
+   "Polynomial",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "BasinChain"
+  ],
+  "lines": 770,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ConreyCount.lean",
+   "lean_stage3/Stage3/DigammaBound.lean",
+   "lean_stage3/Stage3/TuringCert.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "StmtNoRightZeros",
+    "ns": "BasinChain",
+    "full": "BasinChain.StmtNoRightZeros",
+    "line": 62,
+    "why": "The hypothesis. From `T₀` on, `V = ConreyCount.V Q (log T)` has no zero with `1/2 < Re s ≤ 3` and `T/4 ≤ Im s ≤ 2T`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "T₀ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.noRightZeros_one_of_rh"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "hEdge",
+    "ns": "BasinChain",
+    "full": "BasinChain.hEdge",
+    "line": 68,
+    "why": "The horizontal edge at height `t`: `Im ∫_{1/2}^{3} V′/V (x + it) dx`, the turning of `arg V` from `1/2 + it` to `3 + it`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "W_one",
+    "ns": "BasinChain",
+    "full": "BasinChain.W_one",
+    "line": 72,
+    "why": "For `Q = 1`, `W = Λ`.",
+    "sorry": false,
+    "needs": [
+     "L : ℝ"
+    ],
+    "proves": "OperatorQ.W 1 L = completedRiemannZeta",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.W_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.W"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.noRightZeros_one_of_rh"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "noRightZeros_one_of_rh",
+    "ns": "BasinChain",
+    "full": "BasinChain.noRightZeros_one_of_rh",
+    "line": 77,
+    "why": "Non-vacuity. For `Q = 1`, `V = ζ` on `Re s > 0`, and RH gives the hypothesis.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis",
+     "T₀ : ℝ",
+     "hT₀ : 0 < T₀"
+    ],
+    "proves": "StmtNoRightZeros 1 T₀",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.noRightZeros_one_of_rh",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.W_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.StmtNoRightZeros",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.W_one"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "count_exact",
+    "ns": "BasinChain",
+    "full": "BasinChain.count_exact",
+    "line": 105,
+    "why": "Levinson's count for `V = W/Gammaℝ`, exact form. The proof of `ConreyCount.conrey_count_sub` with the sizes left out: for `Q′(x) = Q′(1 − x)`, `Q(1/2) ≠ 0`, `4 ≤ a < b`, `V` nonzero on the bottom, top and right edges of `[1/2, 3] × [a, b]` and `ζ(1/2 + a i) ≠ 0`, the zeros of `ζ` on the line with height in `(a, b]` number more than `(θ b − θ a + E)/π − 2·countRight − 1`, `E` the three edges of `V` (bottom − top + right), exactly as the argument principle gives them.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑a * I) ≠ 0",
+     "hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑b * I) ≠ 0",
+     "hζa : riemannZeta (1/2 + a * I) ≠ 0",
+     "hRne : ∀ t ∈ Icc a b, V Q L (3 + t * I) ≠ 0"
+    ],
+    "proves": "((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b * I)).im + (∫ t in a..b, logDeriv (V Q L) (3 + ↑t * I)).re)) / Real.pi - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - 1 < (lineCount b : ℝ) - (lineCount a : ℝ)",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.crossings_of_arg",
+     "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.exists_arg_lift",
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.G_turn_eq",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.line_turn_eq_integral",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.turn_split",
+     "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.border_cases",
+     "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.sum_order_le_lineCount_sub",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.re_W_line",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_arg_le_arcsin",
+    "ns": "BasinChain",
+    "full": "BasinChain.abs_arg_le_arcsin",
+    "line": 457,
+    "why": "The argument near one. `‖w − 1‖ ≤ r < 1` ⊢ `|arg w| ≤ arcsin r`.",
+    "sorry": false,
+    "needs": [
+     "hr : r < 1",
+     "hw : ‖w - 1‖ ≤ r"
+    ],
+    "proves": "|Complex.arg w| ≤ Real.arcsin r",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.abs_arg_le_arcsin",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "right_edge_le_arcsin",
+    "ns": "BasinChain",
+    "full": "BasinChain.right_edge_le_arcsin",
+    "line": 497,
+    "why": "The right edge near one. Where `‖G − 1‖ ≤ r < 1` on `3 + [a, b] i`, `|Re ∫_a^b G′/G (3 + it) dt| ≤ 2 arcsin r`. The proof of `ConreyCount.right_edge_le_of_re_pos`, with `abs_arg_le_arcsin` at the two ends.",
+    "sorry": false,
+    "needs": [
+     "hab : a ≤ b",
+     "hGa : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ G (3 + t * I)",
+     "hr : r < 1",
+     "hnear : ∀ t ∈ Set.Icc a b, ‖G (3 + t * I) - 1‖ ≤ r"
+    ],
+    "proves": "|(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ 2 * Real.arcsin r",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.abs_arg_le_arcsin",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.abs_arg_le_arcsin",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.hasDerivAt_three_comp",
+     "lean_stage3/Stage3/LevinsonTurn.lean::LevinsonTurn.lift_turn_eq_integral"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_near_one",
+    "ns": "BasinChain",
+    "full": "BasinChain.V_near_one",
+    "line": 547,
+    "why": "`V` near one on the right edge. In the range of `DigammaBound.right_edge_ge`, `‖V(3 + it) − 1‖ ≤ π²/6 − 1 + 1/100`. Its proof, ending at the triangle inequality.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "hQ0 : Q.eval 0 = 1",
+     "hB : 0 < B",
+     "hBr : ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ, 1 / 4 ≤ z.re → z.re ≤ 7 → 1 / 4 ≤ w.re → w.re ≤ 7 → T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z.im - w.im| ≤ 1 → ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(Real.log T / 2) * (z.re - w.re)) ≤ B",
+     "hT : 200 ≤ T",
+     "hL : 8 + 400 * DigammaBound.KQ Q * B ≤ Real.log T",
+     "ht : t ∈ Icc (T / 4) (2 * T)"
+    ],
+    "proves": "‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.re_im_close",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.zeta_norm_le_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.re_im_close",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.H",
+     "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.differentiableAt_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.V_sub_le",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.norm_H",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.zeta_norm_le_two",
+     "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.norm_G_sub_one_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "r0_lt_one",
+    "ns": "BasinChain",
+    "full": "BasinChain.r0_lt_one",
+    "line": 605,
+    "why": "`r₀ = π²/6 − 1 + 1/100 < 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Real.pi ^ 2 / 6 - 1 + 1 / 100 < 1",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.r0_lt_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.c0_lt_two",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "V_line_ne",
+    "ns": "BasinChain",
+    "full": "BasinChain.V_line_ne",
+    "line": 609,
+    "why": "A zero of `V` on the line is a zero of `ζ`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "L t : ℝ",
+     "hζ : riemannZeta ((1/2 : ℂ) + t * I) ≠ 0"
+    ],
+    "proves": "V Q L ((1/2 : ℂ) + t * I) ≠ 0",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_line_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LevinsonLine.lean::LevinsonLine.line_facts",
+     "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.zeta_line_zero_iff_W"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_line_ne_of_good",
+    "ns": "BasinChain",
+    "full": "BasinChain.zeta_line_ne_of_good",
+    "line": 620,
+    "why": "At a height carrying no nontrivial zero, `ζ(1/2 + t i) ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hg : ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ t"
+    ],
+    "proves": "riemannZeta ((1/2 : ℂ) + t * I) ≠ 0",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.zeta_line_ne_of_good",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HardyZ.lean::HardyZ.re_line"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "increment_lt",
+    "ns": "BasinChain",
+    "full": "BasinChain.increment_lt",
+    "line": 633,
+    "why": "The increment at good heights. For `Q′` symmetric, `Q(1/2) ≠ 0`, `4 ≤ a < b` carrying no nontrivial zero, `V = V Q L` with no zero right of the line in `[1/2, 3] × [a, b]` and `‖V − 1‖ ≤ r < 1` on the right edge: `D b − D a < (S b + h(b)/π) − (S a + h(a)/π) + 1 + 2 arcsin(r)/π`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "ha : 4 ≤ a",
+     "hab : a < b",
+     "hr : r < 1",
+     "hnear : ∀ t ∈ Icc a b, ‖V Q L (3 + t * I) - 1‖ ≤ r",
+     "hfree : ∀ s : ℂ, 1/2 < s.re → s.re ≤ 3 → a ≤ s.im → s.im ≤ b → V Q L s ≠ 0",
+     "hga : ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ a",
+     "hgb : ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ b"
+    ],
+    "proves": "(Defect.defect b : ℝ) - (Defect.defect a : ℝ) < (Turing.S b + hEdge Q L b / Real.pi) - (Turing.S a + hEdge Q L a / Real.pi) + 1 + 2 * Real.arcsin r / Real.pi",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_line_ne",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.zeta_line_ne_of_good",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_line_ne",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.zeta_line_ne_of_good",
+     "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.allCount",
+     "lean_stage3/Stage3/LineCount.lean::LineCount.lineCount",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.countRight",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.order_ne_top",
+     "lean_stage3/Stage3/Stirling.lean::Stage3.phaseTheta",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "increment_window",
+    "ns": "BasinChain",
+    "full": "BasinChain.increment_window",
+    "line": 715,
+    "why": "The increment on a window. For `Q′` symmetric, `Q(1/2) ≠ 0`, `Q(0) = 1` there is `T₁` such that for `T ≥ T₁`, good heights `T/4 ≤ a < b ≤ 2T` and `V = V Q (log T)` with no zero right of the line in `[1/2, 3] × [a, b]`, with `r₀ = π²/6 − 1 + 1/100`: `D b − D a < (S b + h(b)/π) − (S a + h(a)/π) + 1 + 2 arcsin(r₀)/π`.",
+    "sorry": false,
+    "needs": [
+     "hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)",
+     "hQh : Q.eval (1/2) ≠ 0",
+     "hQ0 : Q.eval 0 = 1"
+    ],
+    "proves": "∃ T₁ : ℝ, 200 ≤ T₁ ∧ ∀ {T a b : ℝ}, T₁ ≤ T → T / 4 ≤ a → a < b → b ≤ 2 * T → (∀ s : ℂ, 1/2 < s.re → s.re ≤ 3 → a ≤ s.im → s.im ≤ b → V Q (Real.log T) s ≠ 0) → (∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ a) → (∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ b) → (Defect.defect b : ℝ) - (Defect.defect a : ℝ) < (Turing.S b + hEdge Q (Real.log T) b / Real.pi) - (Turing.S a + hEdge Q (Real.log T) a / Real.pi) + 1 + 2 * Real.arcsin (Real.pi ^ 2 / 6 - 1 + 1 / 100) / Real.pi",
+    "file": "lean_stage3/Stage3/BasinChainCount.lean",
+    "id": "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.r0_lt_one",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.r0_lt_one",
+     "lean_stage3/Stage3/Defect.lean::Defect.defect",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.KQ_nonneg",
+     "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.gamma_ratio",
+     "lean_stage3/Stage3/TuringS.lean::Turing.S"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/BasinChainSplit.lean",
+  "module": "Stage3.BasinChainSplit",
+  "stem": "BasinChainSplit",
+  "header": "BasinChainSplit — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, step 3 (the split): the horizontal edge `h(t)` integrated in `t` is a difference of `∫ log|V|`. 2026-11-25.",
+  "imports": [
+   "Stage3.BasinChainCount",
+   "Stage3.TuringLWSplit"
+  ],
+  "opens": [
+   "Complex",
+   "ConreyCount",
+   "Filter",
+   "Interval",
+   "MeasureTheory",
+   "Polynomial",
+   "Set"
+  ],
+  "namespaces": [
+   "BasinChain"
+  ],
+  "lines": 196,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/BasinChainCount.lean",
+   "lean_stage3/Stage3/TuringLWSplit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "split_logDeriv",
+    "ns": "BasinChain",
+    "full": "BasinChain.split_logDeriv",
+    "line": 47,
+    "why": "The split for `f` analytic on a rectangle.",
+    "sorry": false,
+    "needs": [
+     "hx : x₁ ≤ x₂",
+     "h12 : t₁ ≤ t₂",
+     "hfa : AnalyticOnNhd ℂ f (Rectangle ⟨x₁, t₁⟩ ⟨x₂, t₂⟩)",
+     "hq : q ∈ Rectangle ⟨x₁, t₁⟩ ⟨x₂, t₂⟩",
+     "hfq : f q ≠ 0",
+     "hl1 : IntervalIntegrable (fun x : ℝ => Real.log ‖f ((x : ℂ) + (t₁ : ℂ) * I)‖) volume x₁ x₂",
+     "hl2 : IntervalIntegrable (fun x : ℝ => Real.log ‖f ((x : ℂ) + (t₂ : ℂ) * I)‖) volume x₁ x₂"
+    ],
+    "proves": "IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im = (∫ x in x₁..x₂, Real.log ‖f ((x : ℂ) + (t₁ : ℂ) * I)‖) - ∫ x in x₁..x₂, Real.log ‖f ((x : ℂ) + (t₂ : ℂ) * I)‖",
+    "file": "lean_stage3/Stage3/BasinChainSplit.lean",
+    "id": "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.order_ne_top_of"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.continuousOn_logDeriv_comp",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.horiz_mem",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.integrableOn_logDeriv_prod",
+     "lean_stage3/Stage3/Littlewood.lean::Littlewood.mem_support_divisor",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
+     "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.order_ne_top_of"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_log_V",
+    "ns": "BasinChain",
+    "full": "BasinChain.intervalIntegrable_log_V",
+    "line": 139,
+    "why": "`x ↦ log ‖V(x + it)‖` is interval integrable above `Im = 1/2`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "ht : 1/2 < t",
+     "a b : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun x : ℝ => Real.log ‖V Q L ((x : ℂ) + (t : ℂ) * I)‖) volume a b",
+    "file": "lean_stage3/Stage3/BasinChainSplit.lean",
+    "id": "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "logJ",
+    "ns": "BasinChain",
+    "full": "BasinChain.logJ",
+    "line": 151,
+    "why": "`J(t) = ∫_{1/2}^{3} log‖V(x + it)‖ dx`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/BasinChainSplit.lean",
+    "id": "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.StmtVHorizLower",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "split_V",
+    "ns": "BasinChain",
+    "full": "BasinChain.split_V",
+    "line": 156,
+    "why": "The split for `V`. For `1/2 < t₁ ≤ t₂` and `V(3 + t₁ i) ≠ 0`: `hEdge` is interval integrable on `[t₁, t₂]` and `∫_{t₁}^{t₂} hEdge = J(t₁) − J(t₂)`.",
+    "sorry": false,
+    "needs": [
+     "Q : ℝ[X]",
+     "L : ℝ",
+     "h1 : 1/2 < t₁",
+     "h12 : t₁ ≤ t₂",
+     "hne : V Q L (3 + t₁ * I) ≠ 0"
+    ],
+    "proves": "IntervalIntegrable (fun t => hEdge Q L t) volume t₁ t₂ ∧ ∫ t in t₁..t₂, hEdge Q L t = logJ Q L t₁ - logJ Q L t₂",
+    "file": "lean_stage3/Stage3/BasinChainSplit.lean",
+    "id": "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.hEdge",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
+     "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.analyticAt_V_upper",
+     "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/BoxBounds.lean",
   "module": "Stage3.BoxBounds",
   "stem": "BoxBounds",
@@ -37357,6 +38526,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.StmtVDisc.mono",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
@@ -37424,6 +38595,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_horizontal_edge_le",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.V_right_edge_le"
@@ -37759,6 +38932,11 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.logJ_le",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.intervalIntegrable_log_V",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.logJ",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_V",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.StmtVDisc",
@@ -42940,6 +44118,13 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.StmtNoFiniteDefect",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.const_of_step",
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.defect_eventually_const",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
      "lean_stage3/Stage3/Defect.lean::Defect.defectN_eq",
      "lean_stage3/Stage3/Defect.lean::Defect.defectN_le_defect",
      "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
@@ -43232,7 +44417,9 @@
      "lean_stage3/Stage3/LineCount.lean::LineCount.mem_zerosUpTo"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt"
+    ]
    },
    {
     "kind": "theorem",
@@ -43556,6 +44743,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_eq_zero_of_lt_two"
     ]
    },
@@ -49299,6 +50487,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge"
     ]
@@ -49437,6 +50626,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.conrey_count_window'"
     ]
    },
@@ -49525,6 +50715,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.V_eq_sum_H",
@@ -49620,6 +50811,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/DigammaBoundIdentity.lean::DigammaBound.analyticAt_H",
@@ -49923,6 +51115,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds"
     ]
    },
@@ -49951,6 +51144,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
@@ -50005,6 +51199,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.disc_le",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
@@ -50039,6 +51235,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.stmtVEdges_holds",
      "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_disc_le",
@@ -50164,6 +51362,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
@@ -50188,6 +51387,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.right_edge_ge",
      "lean_stage3/Stage3/FloorQGamma.lean::FloorQ.V_right_le"
     ]
@@ -67713,6 +68913,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.zeta_line_ne_of_good",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.continuous_xi_line",
      "lean_stage3/Stage3/HardyZ.lean::HardyZ.signChange_zero_on_line",
@@ -75151,6 +76353,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -75210,6 +76413,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
      "lean_stage3/Stage3/LevinsonArg.lean::LevinsonArg.lineCount_ge_arg",
@@ -76264,6 +77468,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_line_ne",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.analyticAt_W_line",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
@@ -78537,6 +79743,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_near_one",
      "lean_stage3/Stage3/DigammaBoundSize.lean::DigammaBound.re_zeta_three_ge",
      "lean_stage3/Stage3/LevinsonEdge.lean::LevinsonEdge.horizontal_edge_le",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.re_G_pos"
@@ -78594,6 +79801,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.right_edge_le"
     ]
@@ -78726,6 +79934,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq_count"
     ]
    },
@@ -78906,6 +80115,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.right_edge_le_arcsin",
      "lean_stage3/Stage3/ConreyCountEdge.lean::ConreyCount.right_edge_le_of_re_pos",
      "lean_stage3/Stage3/FloorQEdge.lean::FloorQ.arg_term_le_on",
      "lean_stage3/Stage3/LevinsonMollEdge.lean::LevinsonMollEdge.arg_term_le_of_pos",
@@ -78989,6 +80199,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -79073,6 +80284,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineW_turn_eq",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -79177,6 +80389,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonCount.lean::LevinsonCount.levinson_count",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -79271,6 +80484,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/FloorQWindow.lean::FloorQ.conrey_window_diff",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -79705,6 +80919,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonWindowNear.lean::LevinsonWindowNear.levinson_count_sub"
     ]
@@ -82321,6 +83536,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.good_of_notMem",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_sum_lt",
      "lean_stage3/Stage3/Defect.lean::Defect.allCount_cast",
      "lean_stage3/Stage3/Defect.lean::Defect.defect_eq_offCount",
@@ -82363,6 +83580,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_of_no_zero_at",
      "lean_stage3/Stage3/Defect.lean::Defect.N_eq_allCount_right",
      "lean_stage3/Stage3/Defect.lean::Defect.N_le_allCount",
@@ -82404,6 +83622,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW",
@@ -82747,6 +83967,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.levinson_count'",
@@ -82783,6 +84005,9 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/LevinsonAvoid.lean::LevinsonAvoid.zeros_finite",
      "lean_stage3/Stage3/LevinsonMultiple.lean::LevinsonMultiple.countRight_eq_of_mul",
@@ -82886,6 +84111,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_window",
      "lean_stage3/Stage3/DigammaBound.lean::DigammaBound.conrey_count_window'",
@@ -83210,6 +84437,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
@@ -83293,6 +84521,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
@@ -83346,6 +84575,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.integral_re_logDeriv_horizontal",
      "lean_stage3/Stage3/Littlewood.lean::Littlewood.littlewood_rect",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.integral_im_logDeriv_vertical",
@@ -83656,6 +84886,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/TuringSlope.lean::TuringSlope.defect_zero_of_closing'",
      "lean_stage3/Stage3/TuringSlope.lean::TuringSlope.turing_S_le_sharp"
     ]
@@ -93579,6 +94810,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.W_one",
      "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity",
      "lean_stage3/Stage3/ConreyCountIdentity.lean::ConreyCount.conrey_identity_K",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.V",
@@ -93627,6 +94859,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountOrder.lean::ConreyCount.line_identity",
      "lean_stage3/Stage3/OperatorQ.lean::OperatorQ.cubic_re_W_line",
@@ -93666,6 +94899,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.V_line_ne",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
      "lean_stage3/Stage3/ConreyCount.lean::ConreyCount.conrey_count_sub",
      "lean_stage3/Stage3/ConreyCountLine.lean::ConreyCount.lineCount_ge_argW"
     ]
@@ -251365,6 +252600,8 @@
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.gammaR_fold_eq_phaseTheta",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.rvM_of_sFromLocal",
      "lean_stage3/Stage3/ArgIdentity.lean::Stage3.stmtArgIdentity_holds",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.count_exact",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
      "lean_stage3/Stage3/LevinsonSize.lean::LevinsonSize.gamma_part_eq",
      "lean_stage3/Stage3/LevinsonWindow.lean::LevinsonWindow.N_step_le",
      "lean_stage3/Stage3/SignData.lean::SignData.StmtClosingData",
@@ -269325,6 +270562,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.const_of_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.defect_step",
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_below"
     ]
    },
@@ -269388,6 +270628,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChain.lean::BasinChain.rh_of_noRightZeros",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
      "lean_stage3/Stage3/TuringSlope.lean::TuringSlope.defect_zero_of_signs'"
     ]
@@ -270666,6 +271907,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
@@ -270746,6 +271988,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainSplit.lean::BasinChain.split_logDeriv",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds"
     ]
    },
@@ -271997,6 +273240,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_lt",
+     "lean_stage3/Stage3/BasinChainCount.lean::BasinChain.increment_window",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_pointwise",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
@@ -272036,6 +273282,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.turing_S_le",
      "lean_stage3/Stage3/TuringCert.lean::Turing.defect_zero_of_signs",
@@ -272308,6 +273555,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁_sub"
     ]
@@ -272340,6 +273588,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BasinChainAvg.lean::BasinChain.increment_avg",
      "lean_stage3/Stage3/TuringAvg.lean::Turing.S_le_of_count",
      "lean_stage3/Stage3/TuringLWSplit.lean::TuringLW.stmtSplit_holds",
      "lean_stage3/Stage3/TuringS.lean::Turing.S₁_crude"
@@ -301048,11 +302297,12 @@
    "Stage3.SignData",
    "Stage3.LittlewoodSharp",
    "Stage3.StirlingSeries",
-   "Stage3.TuringSlope"
+   "Stage3.TuringSlope",
+   "Stage3.BasinChain"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 265,
+  "lines": 266,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -301072,6 +302322,7 @@
    "lean_stage3/Stage3/AssemblyFloor.lean",
    "lean_stage3/Stage3/AttainedPi.lean",
    "lean_stage3/Stage3/BandJoin.lean",
+   "lean_stage3/Stage3/BasinChain.lean",
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
    "lean_stage3/Stage3/CellBdiff.lean",

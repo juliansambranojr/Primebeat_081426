@@ -19,17 +19,18 @@ flowchart LR
   n3["<b>xi_line_real</b><br/>(completedRiemannZeta (1/2 + t * Complex.I)).im = 0"]:::thm
   n4["<b>continuous_xi_line</b><br/>Continuous (fun t : ℝ =＞ completedRiemannZeta (1/2 + t * Complex…"]:::shp
   n5["<b>signChange_zero_on_line ■</b><br/>∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0"]:::thm
-  x0(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x1(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
-  x2(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
-  x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>sum_order_le_lineCount"]):::ext
-  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>sum_order_le_lineCount_sub"]):::ext
-  x5(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
-  x6(["<b>TuringCert</b><br/>count_le_N_sub"]):::ext
-  x7(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
-  x8(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
-  x9(["<b>SignDataGamma</b><br/>re_lambda_eq"]):::ext
-  x10(["<b>StirlingSeriesPhase</b><br/>re_lambda_eq_stir"]):::ext
+  x0(["<b>BasinChainCount</b><br/>count_exact<br/>zeta_line_ne_of_good"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>LevinsonArg</b><br/>distinct_line_zeros_le_lineCount"]):::ext
+  x3(["<b>LevinsonLine</b><br/>4 theorems"]):::ext
+  x4(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>sum_order_le_lineCount"]):::ext
+  x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>sum_order_le_lineCount_sub"]):::ext
+  x6(["<b>LineCount</b><br/>signChanges_le_line_count<br/>strictSignChange_zero_on_line"]):::ext
+  x7(["<b>TuringCert</b><br/>count_le_N_sub"]):::ext
+  x8(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x9(["<b>OperatorQ</b><br/>im_I_pow_iteratedDeriv<br/>zeta_line_zero_iff_W"]):::ext
+  x10(["<b>SignDataGamma</b><br/>re_lambda_eq"]):::ext
+  x11(["<b>StirlingSeriesPhase</b><br/>re_lambda_eq_stir"]):::ext
   n1 --> n3
   n2 --> n3
   n2 --> n4
@@ -43,13 +44,14 @@ flowchart LR
   n2 -.-> x4
   n2 -.-> x5
   n2 -.-> x6
+  n2 -.-> x7
   n3 -.-> x10
-  n3 -.-> x2
-  n3 -.-> x5
-  n3 -.-> x7
+  n3 -.-> x11
+  n3 -.-> x3
+  n3 -.-> x6
   n3 -.-> x8
   n3 -.-> x9
-  n4 -.-> x5
+  n4 -.-> x6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -133,8 +135,10 @@ line 62 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (13 that use it)
+**Feeds** (15 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
+  - [`BasinChain.zeta_line_ne_of_good`](../lean_stage3/BasinChainCount.md#BasinChain-zeta_line_ne_of_good) (BasinChainCount) — `` riemannZeta ((1/2 : ℂ) + t * I) ≠ 0 ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`HardyZ.continuous_xi_line`](#HardyZ-continuous_xi_line) — `` Continuous (fun t : ℝ => completedRiemannZeta (1/2 + t * Complex.I)) ``
   - [`HardyZ.signChange_zero_on_line`](#HardyZ-signChange_zero_on_line) — `` ∃ γ ∈ Set.Icc t₁ t₂, riemannZeta (1/2 + γ * I) = 0 ``

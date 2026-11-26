@@ -19,7 +19,7 @@ flowchart LR
   n3["<b>N_eq_sum_lt</b><br/>riemannZeta.N T = ∑ ρ ∈ (zerosUpTo T).filter (fun ρ : Nontrivial…"]:::thm
   n4["<b>allCount_cast</b><br/>(allCount T : ℝ) = ∑ ρ ∈ zerosUpTo T, ((riemannZeta.order (ρ : ℂ…"]:::thm
   n5["<b>N_le_allCount</b><br/>riemannZeta.N T ≤ (allCount T : ℝ)"]:::thm
-  n6["<b>N_eq_allCount_of_no_zero_at ■</b><br/>riemannZeta.N T = (allCount T : ℝ)"]:::thm
+  n6["<b>N_eq_allCount_of_no_zero_at</b><br/>riemannZeta.N T = (allCount T : ℝ)"]:::thm
   n7["<b>exists_right</b><br/>∃ T' : ℝ, T ＜ T' ∧ ∀ z : ℂ, riemannZeta z = 0 → 0 ＜ z.im → T ＜ z…"]:::thm
   n8["<b>zerosUpTo_eq_right</b><br/>zerosUpTo T' = zerosUpTo T"]:::thm
   n9["<b>N_eq_allCount_right</b><br/>riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T"]:::thm
@@ -36,10 +36,12 @@ flowchart LR
   x0(["<b>TuringCert</b><br/>5 theorems"]):::ext
   x1(["<b>LineCount</b><br/>lineCount_le_allCount<br/>mem_zerosUpTo<br/>rh_iff_line_count"]):::ext
   x2(["<b>ArgCount</b><br/>N_eq_sum"]):::ext
-  x3(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
-  x4(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
-  x5(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
-  x6(["<b>FloorSum</b><br/>levinson_floor"]):::ext
+  x3(["<b>BasinChainCount</b><br/>increment_lt"]):::ext
+  x4(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
+  x5(["<b>ContourShift</b><br/>order_bridge<br/>zeta_order_reflect"]):::ext
+  x6(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_im<br/>mirrorZ_re"]):::ext
+  x7(["<b>BasinChainAvg</b><br/>defect_step"]):::ext
+  x8(["<b>FloorSum</b><br/>levinson_floor"]):::ext
   n0 --> n16
   n10 --> n11
   n12 --> n14
@@ -61,12 +63,14 @@ flowchart LR
   n0 -.-> x0
   n1 -.-> x0
   n16 -.-> x0
+  n16 -.-> x7
   n3 -.-> x0
   n4 -.-> x0
+  n6 -.-> x3
   n7 -.-> x0
-  n7 -.-> x3
+  n7 -.-> x4
   n9 -.-> x0
-  n9 -.-> x3
+  n9 -.-> x4
   x1 -.-> n1
   x1 -.-> n14
   x1 -.-> n2
@@ -75,11 +79,11 @@ flowchart LR
   x1 -.-> n8
   x1 -.-> n9
   x2 -.-> n3
-  x4 -.-> n12
-  x5 -.-> n14
-  x5 -.-> n15
-  x6 -.-> n18
-  x6 -.-> n19
+  x5 -.-> n12
+  x6 -.-> n14
+  x6 -.-> n15
+  x8 -.-> n18
+  x8 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -103,7 +107,7 @@ The defect: the nontrivial zeros up to height `T` (closed) off the line, with mu
 
 - **Is:** `` defect (T : ℝ) : ℤ := allCount T - lineCount T ``
 - **Built from:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
-- **Used by 15:** [`Defect.defectN_eq`](#Defect-defectN_eq), [`Defect.defectN_le_defect`](#Defect-defectN_le_defect), [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.defect_even`](#Defect-defect_even), [`Defect.defect_le`](#Defect-defect_le), [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor), [`Defect.defect_nonneg`](#Defect-defect_nonneg), [`Defect.rh_iff_defect_zero`](#Defect-rh_iff_defect_zero), [`SignData.defect_zero_of_closing`](../lean_stage3/SignData.md#SignData-defect_zero_of_closing), [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two), [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono), [`Turing.defect_zero_below`](../lean_stage3/TuringCert.md#Turing-defect_zero_below), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringSlope.defect_zero_of_closing'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_closing-), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-)
+- **Used by 22:** [`BasinChain.StmtNoFiniteDefect`](../lean_stage3/BasinChain.md#BasinChain-StmtNoFiniteDefect), [`BasinChain.const_of_step`](../lean_stage3/BasinChain.md#BasinChain-const_of_step), [`BasinChain.defect_eventually_const`](../lean_stage3/BasinChain.md#BasinChain-defect_eventually_const), [`BasinChain.defect_step`](../lean_stage3/BasinChainAvg.md#BasinChain-defect_step), [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg), [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt), [`BasinChain.increment_window`](../lean_stage3/BasinChainCount.md#BasinChain-increment_window), [`Defect.defectN_eq`](#Defect-defectN_eq), [`Defect.defectN_le_defect`](#Defect-defectN_le_defect), [`Defect.defect_eq_offCount`](#Defect-defect_eq_offCount), [`Defect.defect_even`](#Defect-defect_even), [`Defect.defect_le`](#Defect-defect_le), [`Defect.defect_le_of_floor`](#Defect-defect_le_of_floor), [`Defect.defect_nonneg`](#Defect-defect_nonneg), [`Defect.rh_iff_defect_zero`](#Defect-rh_iff_defect_zero), [`SignData.defect_zero_of_closing`](../lean_stage3/SignData.md#SignData-defect_zero_of_closing), [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two), [`Turing.defect_mono`](../lean_stage3/TuringCert.md#Turing-defect_mono), [`Turing.defect_zero_below`](../lean_stage3/TuringCert.md#Turing-defect_zero_below), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringSlope.defect_zero_of_closing'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_closing-), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-)
 
 <a name="Defect-defectN"></a>
 ### `Defect.defectN`
@@ -326,7 +330,9 @@ riemannZeta.N T = (allCount T : ℝ)
 
 **Definitions its proof touches:** [`LineCount.allCount`](../lean_stage3/LineCount.md#LineCount-allCount)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt) (BasinChainCount) — `` (Defect.defect b : ℝ) - (Defect.defect a : ℝ) < (Turing.S b + hEdge Q L b / Real.pi) - (Turing.S a + hEdge Q L a / Real.pi) + 1 + 2 * Real.arcsin r / … ``
 
 <a name="Defect-exists_right"></a>
 ### `Defect.exists_right`
@@ -616,8 +622,9 @@ Even (defect T)
 
 **Definitions its proof touches:** [`Defect.defect`](#Defect-defect)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`BasinChain.defect_step`](../lean_stage3/BasinChainAvg.md#BasinChain-defect_step) (BasinChainAvg) — `` ∃ T₂ : ℝ, 0 < T₂ ∧ ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect (3 * T / 4) ``
   - [`Turing.defect_eq_zero_of_lt_two`](../lean_stage3/TuringCert.md#Turing-defect_eq_zero_of_lt_two) (TuringCert) — `` defect T = 0 ``
 
 <a name="Defect-defect_le_of_floor"></a>

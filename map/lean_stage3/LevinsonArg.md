@@ -20,14 +20,15 @@ flowchart LR
   n4["<b>continuous_lineF</b><br/>Continuous (lineF c)"]:::thm
   n5["<b>distinct_line_zeros_le_lineCount</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
   n6["<b>lineCount_ge_arg</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
-  x0(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
-  x1(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
-  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x4(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
-  x5(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
-  x6(["<b>HardyZ</b><br/>re_line"]):::ext
-  x7(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
+  x0(["<b>BasinChainCount</b><br/>count_exact"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x5(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
+  x6(["<b>LevinsonLine</b><br/>line_facts<br/>zeta_line_zero_iff"]):::ext
+  x7(["<b>HardyZ</b><br/>re_line"]):::ext
+  x8(["<b>LineCount</b><br/>mem_zerosUpTo"]):::ext
   n0 --> n1
   n2 --> n3
   n3 --> n6
@@ -36,17 +37,19 @@ flowchart LR
   n1 -.-> x1
   n1 -.-> x2
   n1 -.-> x3
+  n1 -.-> x4
   n3 -.-> x0
-  n3 -.-> x2
+  n3 -.-> x1
   n3 -.-> x3
   n3 -.-> x4
-  n4 -.-> x1
-  n5 -.-> x4
-  n6 -.-> x1
-  x5 -.-> n4
-  x5 -.-> n6
-  x6 -.-> n5
+  n3 -.-> x5
+  n4 -.-> x2
+  n5 -.-> x5
+  n6 -.-> x2
+  x6 -.-> n4
+  x6 -.-> n6
   x7 -.-> n5
+  x8 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -123,8 +126,9 @@ line 114 · arrows read from text
 
   - [`LevinsonArg.exists_log_lift`](#LevinsonArg-exists_log_lift) — `` ∃ L : ℝ → ℂ, ContinuousOn L (Set.Icc a b) ∧ ∀ t ∈ Set.Icc a b, Complex.exp (L t) = F t ``
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
@@ -184,8 +188,9 @@ line 193 · arrows read from text
 
   - [`LevinsonArg.crossings_of_le`](#LevinsonArg-crossings_of_le) — `` ∃ t : Fin k → ℝ, StrictMono t ∧ (∀ i, t i ∈ Set.Icc a b) ∧ ∀ i, Real.cos (φ (t i)) = 0 ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
   - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`ConreyCount.lineCount_ge_argW`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineCount_ge_argW) (ConreyCountLine) — `` (k : ℤ) ≤ lineCount T ``
   - [`LevinsonArg.lineCount_ge_arg`](#LevinsonArg-lineCount_ge_arg) — `` (k : ℤ) ≤ lineCount T ``

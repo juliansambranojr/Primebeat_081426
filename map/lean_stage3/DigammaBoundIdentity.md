@@ -20,10 +20,11 @@ flowchart LR
   n4["<b>iteratedDeriv_E</b><br/>iteratedDeriv m (fun z =＞ cexp (a * (z - w))) w = a ^ m"]:::cnt
   n5["<b>xi_eventually_eq</b><br/>completedRiemannZeta =ᶠ[𝓝 w] fun z =＞ Gammaℝ w * (H L w z * cexp…"]:::thm
   n6["<b>V_eq_sum_H</b><br/>ConreyCount.V Q L w = ∑ j ∈ Finset.range (Q.natDegree + 1), ((Q.…"]:::thm
-  x0(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge"]):::ext
-  x1(["<b>FloorQGamma</b><br/>V_disc_le<br/>V_right_le"]):::ext
-  x2(["<b>GrRatio</b><br/>grR_eq"]):::ext
-  x3(["<b>DigammaBoundSize</b><br/>V_norm_le<br/>V_sub_le"]):::ext
+  x0(["<b>BasinChainCount</b><br/>V_near_one"]):::ext
+  x1(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge"]):::ext
+  x2(["<b>FloorQGamma</b><br/>V_disc_le<br/>V_right_le"]):::ext
+  x3(["<b>GrRatio</b><br/>grR_eq"]):::ext
+  x4(["<b>DigammaBoundSize</b><br/>V_norm_le<br/>V_sub_le"]):::ext
   n0 --> n1
   n1 --> n6
   n2 --> n3
@@ -32,8 +33,9 @@ flowchart LR
   n5 --> n6
   n2 -.-> x0
   n2 -.-> x1
-  n4 -.-> x2
-  n6 -.-> x3
+  n2 -.-> x2
+  n4 -.-> x3
+  n6 -.-> x4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -56,7 +58,7 @@ def · line 36
 `H_w(z) = ζ(z) · Gammaℝ(z)/Gammaℝ(w) · e^{−(L/2)(z − w)}`.
 
 - **Is:** `` H (L : ℝ) (w z : ℂ) : ℂ := riemannZeta z * Gammaℝ z / Gammaℝ w * cexp (-((L / 2 : ℝ) : ℂ) * (z - w)) ``
-- **Used by 13:** [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.V_eq_sum_H`](#DigammaBound-V_eq_sum_H), [`DigammaBound.analyticAt_H`](#DigammaBound-analyticAt_H), [`DigammaBound.differentiableAt_H`](#DigammaBound-differentiableAt_H), [`DigammaBound.xi_eventually_eq`](#DigammaBound-xi_eventually_eq), [`DigammaBound.H_self`](../lean_stage3/DigammaBoundSize.md#DigammaBound-H_self), [`DigammaBound.V_norm_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_sub_le), [`DigammaBound.norm_H`](../lean_stage3/DigammaBoundSize.md#DigammaBound-norm_H), [`DigammaBound.term_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-term_le), [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le), [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le)
+- **Used by 14:** [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.V_eq_sum_H`](#DigammaBound-V_eq_sum_H), [`DigammaBound.analyticAt_H`](#DigammaBound-analyticAt_H), [`DigammaBound.differentiableAt_H`](#DigammaBound-differentiableAt_H), [`DigammaBound.xi_eventually_eq`](#DigammaBound-xi_eventually_eq), [`DigammaBound.H_self`](../lean_stage3/DigammaBoundSize.md#DigammaBound-H_self), [`DigammaBound.V_norm_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-V_sub_le), [`DigammaBound.norm_H`](../lean_stage3/DigammaBoundSize.md#DigammaBound-norm_H), [`DigammaBound.term_le`](../lean_stage3/DigammaBoundSize.md#DigammaBound-term_le), [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le), [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le)
 
 ## Theorems
 
@@ -141,8 +143,9 @@ DifferentiableAt ℂ (H L w) z
 
 **Definitions its proof touches:** [`DigammaBound.H`](#DigammaBound-H)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
   - [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le) (DigammaBound) — `` ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) ``
   - [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) (DigammaBound) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
   - [`DigammaBound.analyticAt_H`](#DigammaBound-analyticAt_H) — `` AnalyticAt ℂ (H L w) z ``

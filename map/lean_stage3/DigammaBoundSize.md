@@ -27,10 +27,11 @@ flowchart LR
   n11["<b>zeta_norm_le_two</b><br/>‖riemannZeta z‖ ≤ Real.pi ^ 2 / 6"]:::thm
   n12["<b>re_zeta_three_ge</b><br/>2 - Real.pi ^ 2 / 6 ≤ (riemannZeta (3 + t * I)).re"]:::thm
   x0(["<b>GrRatio</b><br/>gamma_ratio8"]):::ext
-  x1(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge<br/>stmtVEdges_holds"]):::ext
-  x2(["<b>FloorQGamma</b><br/>V_disc_le<br/>V_right_le"]):::ext
-  x3(["<b>DigammaBoundIdentity</b><br/>V_eq_sum_H"]):::ext
-  x4(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x1(["<b>BasinChainCount</b><br/>V_near_one<br/>increment_window"]):::ext
+  x2(["<b>DigammaBound</b><br/>disc_le<br/>right_edge_ge<br/>stmtVEdges_holds"]):::ext
+  x3(["<b>FloorQGamma</b><br/>V_disc_le<br/>V_right_le"]):::ext
+  x4(["<b>DigammaBoundIdentity</b><br/>V_eq_sum_H"]):::ext
+  x5(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n4
   n1 --> n4
   n2 --> n4
@@ -41,20 +42,25 @@ flowchart LR
   n0 -.-> x0
   n10 -.-> x1
   n10 -.-> x2
+  n10 -.-> x3
   n11 -.-> x1
   n11 -.-> x2
-  n12 -.-> x1
+  n11 -.-> x3
+  n12 -.-> x2
   n3 -.-> x0
   n4 -.-> x1
+  n4 -.-> x2
   n5 -.-> x1
   n5 -.-> x2
+  n5 -.-> x3
   n7 -.-> x1
   n7 -.-> x2
-  n9 -.-> x1
+  n7 -.-> x3
   n9 -.-> x2
-  x3 -.-> n10
-  x3 -.-> n9
-  x4 -.-> n12
+  n9 -.-> x3
+  x4 -.-> n10
+  x4 -.-> n9
+  x5 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -77,7 +83,7 @@ def · line 205
 `K_Q = Σ_j |Q_j| j!`.
 
 - **Is:** `` KQ (Q : ℝ[X]) : ℝ := ∑ j ∈ Finset.range (Q.natDegree + 1), |Q.coeff j| * (j.factorial : ℝ) ``
-- **Used by 8:** [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds), [`DigammaBound.KQ_nonneg`](#DigammaBound-KQ_nonneg), [`DigammaBound.V_norm_le`](#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](#DigammaBound-V_sub_le), [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le), [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le)
+- **Used by 10:** [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one), [`BasinChain.increment_window`](../lean_stage3/BasinChainCount.md#BasinChain-increment_window), [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le), [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge), [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds), [`DigammaBound.KQ_nonneg`](#DigammaBound-KQ_nonneg), [`DigammaBound.V_norm_le`](#DigammaBound-V_norm_le), [`DigammaBound.V_sub_le`](#DigammaBound-V_sub_le), [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le), [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le)
 
 ## Theorems
 
@@ -211,8 +217,9 @@ line 117 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxBounds.gModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gModel), [`ApproxBounds.gRModel`](../lean_stage3/ApproxBounds.md#ApproxBounds-gRModel), [`ApproxBounds.lY`](../lean_stage3/ApproxBounds.md#ApproxBounds-lY)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`BasinChain.increment_window`](../lean_stage3/BasinChainCount.md#BasinChain-increment_window) (BasinChainCount) — `` ∃ T₁ : ℝ, 200 ≤ T₁ ∧ ∀ {T a b : ℝ}, T₁ ≤ T → T / 4 ≤ a → a < b → b ≤ 2 * T → (∀ s : ℂ, 1/2 < s.re → s.re ≤ 3 → a ≤ s.im → s.im ≤ b → V Q (Real.log T) … ``
   - [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds) (DigammaBound) — `` ∃ A T₀ : ℝ, 0 < A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A ``
 
 <a name="DigammaBound-norm_H"></a>
@@ -239,8 +246,9 @@ line 189 · arrows read from text
 
 **Definitions its proof touches:** [`DigammaBound.H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-H)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
   - [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le) (DigammaBound) — `` ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) ``
   - [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) (DigammaBound) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
   - [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le) (FloorQGamma) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 16 ≤ Real.log T → ∀ w : ℂ, 1 / 8 ≤ w.re → w.re ≤ T / 128 → T / 4 + 1 ≤ w.im → w.im ≤ 2 * T - 1 → ‖ConreyCount.V Q (… ``
@@ -295,8 +303,10 @@ line 207 · arrows read from text
 
 **Definitions its proof touches:** [`DigammaBound.KQ`](#DigammaBound-KQ)
 
-**Feeds** (4 that use it)
+**Feeds** (6 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
+  - [`BasinChain.increment_window`](../lean_stage3/BasinChainCount.md#BasinChain-increment_window) (BasinChainCount) — `` ∃ T₁ : ℝ, 200 ≤ T₁ ∧ ∀ {T a b : ℝ}, T₁ ≤ T → T / 4 ≤ a → a < b → b ≤ 2 * T → (∀ s : ℂ, 1/2 < s.re → s.re ≤ 3 → a ≤ s.im → s.im ≤ b → V Q (Real.log T) … ``
   - [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) (DigammaBound) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
   - [`DigammaBound.stmtVEdges_holds`](../lean_stage3/DigammaBound.md#DigammaBound-stmtVEdges_holds) (DigammaBound) — `` ∃ A T₀ : ℝ, 0 < A ∧ ∀ T ≥ T₀, ConreyCount.StmtVEdges Q T A ``
   - [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le) (FloorQGamma) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 16 ≤ Real.log T → ∀ w : ℂ, 1 / 8 ≤ w.re → w.re ≤ T / 128 → T / 4 + 1 ≤ w.im → w.im ≤ 2 * T - 1 → ‖ConreyCount.V Q (… ``
@@ -409,8 +419,9 @@ line 242 · arrows read from text
 
 **Definitions its proof touches:** [`ConreyCount.V`](../lean_stage3/ConreyCountLine.md#ConreyCount-V), [`DigammaBound.H`](../lean_stage3/DigammaBoundIdentity.md#DigammaBound-H), [`DigammaBound.KQ`](#DigammaBound-KQ)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
   - [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) (DigammaBound) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
   - [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le) (FloorQGamma) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 1 ≤ Real.log T → ∀ xR t : ℝ, 3 ≤ xR → xR ≤ T / 128 → T / 4 + 1 ≤ t → t ≤ 2 * T - 1 → ‖ConreyCount.V Q (Real.log T) … ``
 
@@ -435,8 +446,9 @@ line 273 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.V_near_one`](../lean_stage3/BasinChainCount.md#BasinChain-V_near_one) (BasinChainCount) — `` ‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 100 ``
   - [`DigammaBound.right_edge_ge`](../lean_stage3/DigammaBound.md#DigammaBound-right_edge_ge) (DigammaBound) — `` 1 / 3 ≤ (ConreyCount.V Q (Real.log T) (3 + t * I)).re ``
   - [`FloorQ.V_right_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_right_le) (FloorQGamma) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 1 ≤ Real.log T → ∀ xR t : ℝ, 3 ≤ xR → xR ≤ T / 128 → T / 4 + 1 ≤ t → t ≤ 2 * T - 1 → ‖ConreyCount.V Q (Real.log T) … ``
 

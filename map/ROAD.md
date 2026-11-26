@@ -8,45 +8,48 @@ flowchart LR
   p0["Kadiri.NontrivialZeros<br/>∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re<br/>ℝ<br/>∀ᶠ r : ℕ in Filter.atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊…"]:::bad
   t0["<b>attained_off_line_pi</b>"]:::thm
   p0 --> t0 --> rh
-  p1["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>∀ σ : ℝ, 1/2 ＜ σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε…"]:::bad
-  t1["<b>rh_of_finite_accumulation</b>"]:::thm
+  p1["∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x)<br/>Q.eval (1/2) ≠ 0<br/>Q.eval 0 = 1<br/>StmtNoRightZeros Q T₀<br/>StmtVHorizLower Q a₂ b₂ T₀'<br/>0 ≤ a₂<br/>StmtNoFiniteDefect"]:::bad
+  t1["<b>rh_of_noRightZeros</b>"]:::thm
   p1 --> t1 --> rh
-  p2["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>Kadiri.NontrivialZeros<br/>∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re"]:::bad
-  t2["<b>attained_psi</b>"]:::thm
+  p2["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>∀ σ : ℝ, 1/2 ＜ σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε…"]:::bad
+  t2["<b>rh_of_finite_accumulation</b>"]:::thm
   p2 --> t2 --> rh
-  p3["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
-  t3["<b>finite_off_line</b>"]:::thm
+  p3["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>Kadiri.NontrivialZeros<br/>∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re"]:::bad
+  t3["<b>attained_psi</b>"]:::thm
   p3 --> t3 --> rh
-  p4["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
-  t4["<b>finite_off_line_pi</b>"]:::thm
+  p4["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
+  t4["<b>finite_off_line</b>"]:::thm
   p4 --> t4 --> rh
-  p5["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>¬ RiemannHypothesis → ∃ ρ₁ : Kadiri.NontrivialZeros, 1/2 ＜…"]:::bad
-  t5["<b>rh_of_ladder_tame</b>"]:::thm
+  p5["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
+  t5["<b>finite_off_line_pi</b>"]:::thm
   p5 --> t5 --> rh
-  p6["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
-  t6["<b>rh_of_windows</b>"]:::thm
+  p6["∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^…<br/>¬ RiemannHypothesis → ∃ ρ₁ : Kadiri.NontrivialZeros, 1/2 ＜…"]:::bad
+  t6["<b>rh_of_ladder_tame</b>"]:::thm
   p6 --> t6 --> rh
-  p7["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
-  t7["<b>rh_of_zeroFree_half</b>"]:::thm
+  p7["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t7["<b>rh_of_windows</b>"]:::thm
   p7 --> t7 --> rh
-  p8["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
-  t8["<b>rh_of_window</b>"]:::thm
+  p8["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t8["<b>rh_of_zeroFree_half</b>"]:::thm
   p8 --> t8 --> rh
-  p9["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
-  t9["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p9["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t9["<b>rh_of_window</b>"]:::thm
   p9 --> t9 --> rh
-  p10["Target"]:::bad
-  t10["<b>rh_of_target</b>"]:::thm
+  p10["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t10["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p10 --> t10 --> rh
-  p11["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t11["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p11["Target"]:::bad
+  t11["<b>rh_of_target</b>"]:::thm
   p11 --> t11 --> rh
-  p12["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t12["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p12["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t12["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p12 --> t12 --> rh
-  p13["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t13["<b>RH_of_psiWeak</b>"]:::thm
+  p13["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t13["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p13 --> t13 --> rh
+  p14["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t14["<b>RH_of_psiWeak</b>"]:::thm
+  p14 --> t14 --> rh
   e0["<b>rh_of_ladder_tame</b><br/>RiemannHypothesis"]:::end_
   rh --> e0
   e1["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
@@ -59,7 +62,7 @@ flowchart LR
   rh --> e4
   e5["<b>depth_four</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::end_
   rh --> e5
-  more(["and 22 more ends under RH"]):::end_
+  more(["and 23 more ends under RH"]):::end_
   rh --> more
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -71,17 +74,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 7468.
+- **Theorems Lean has checked:** 7492.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
-- **Theorems that prove it from a hypothesis:** 14. Each hypothesis is a red box: prove one and the line closes.
+- **Theorems that prove it from a hypothesis:** 15. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 13.
-- **Theorems that assume it:** 70, arriving at 28 ends.
+- **Theorems that assume it:** 71, arriving at 29 ends.
 
 ## Statements about the count that settle `RiemannHypothesis`
 
 | theorem | the hypothesis it needs (open) | why (its docstring) |
 |---|---|---|
 | [`AttainedPi.attained_off_line_pi`](./lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | ρ₀ : Kadiri.NontrivialZeros; hmax : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re; C : ℝ; hrows : ∀ᶠ r : ℕ in Filter.atTop, \|(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)\| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r | The largest real part attained, and the count of primes of square-root size at the doublings: then the Riemann hypothesis holds. Let `ρ₀` have the largest real part among the zeros of ζ. If the count of primes at `2^r` stays within `C·r²·√2^r` of `Li` from some row on, the Riemann hypothesis holds. |
+| [`BasinChain.rh_of_noRightZeros`](./lean_stage3/BasinChain.md#BasinChain-rh_of_noRightZeros) | hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x); hQh : Q.eval (1/2) ≠ 0; hQ0 : Q.eval 0 = 1; hNR : StmtNoRightZeros Q T₀; hLow : StmtVHorizLower Q a₂ b₂ T₀'; ha₂ : 0 ≤ a₂; hbase : StmtNoFiniteDefect | RH from no right zeros, with the lower side of `J` and the base as named hypotheses. |
 | [`FilterAccum.rh_of_finite_accumulation`](./lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) | hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k; hfin : ∀ σ : ℝ, 1/2 &lt; σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε : ℝ, 0 &lt; ε → {z : ℂ \| ∃ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite) ∧ (∀ ρ : Kadiri.NontrivialZeros, σ &lt; (ρ : ℂ).re → (2:ℂ) ^ (ρ : ℂ) ∉ P) | Finitely many accumulation points on every line right of `1/2`, and the ladder of `ψ` of square-root size: then the Riemann hypothesis holds. Let `\|ψ(2^k) − 2^k\| ≤ C·k²·√2^k` for every `k ≥ 1`. Suppose that for every `σ &gt; 1/2` the modes `2^ρ` of the zeros with real part at least `σ` accumulate only … |
 | [`FilterAttained.attained_psi`](./lean_stage3/FilterAttained.md#FilterAttained-attained_psi) | hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k; ρ₀ : Kadiri.NontrivialZeros; hmax : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re | The largest real part attained, and the ladder of `ψ` of square-root size: then the Riemann hypothesis holds. Let `ρ₀` have the largest real part among the zeros of ζ. If `\|ψ(2^k) − 2^k\| ≤ C·k²·√2^k` for every `k ≥ 1`, the Riemann hypothesis holds. It is `filter_attained_false` with no filter: `q = … |
 | [`FiniteOffLine.finite_off_line`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | F : Finset NontrivialZeros; hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F; d : ℕ; C : ℝ; hcells : ∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d‖ ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r | Finitely many zeros off the line, and cells of square-root size on the one ladder: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, the Rie… |
@@ -148,6 +152,7 @@ The ends among the theorems that assume it. "Behind it" links the whole line.
 | [`WeilDetect.weilPositive_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-weilPositive_of_RH) | StmtWeilPositive L | 7 |
 | [`Stage3.norm_zeroPartialSum_le`](./lean_stage3/Assembly.md#Stage3-norm_zeroPartialSum_le) | ‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * \|riemannZeta.N ((2 : ℝ) ^ (K + 1))\| + weightedZeroHeightBucket) | 5 |
 | [`Slice4.zetaE_ne_zero_of_RH`](./lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | zetaE s ≠ 0 | 4 |
+| [`BasinChain.noRightZeros_one_of_rh`](./lean_stage3/BasinChainCount.md#BasinChain-noRightZeros_one_of_rh) | StmtNoRightZeros 1 T₀ | 3 |
 
 ## Named statements
 
@@ -155,6 +160,8 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 
 | statement | status | by | used as a hypothesis in |
 |---|---|---|---|
+| [`BasinChain.StmtNoFiniteDefect`](./lean_stage3/BasinChain.md#BasinChain-StmtNoFiniteDefect) | **OPEN** | — | 1 |
+| [`BasinChain.StmtVHorizLower`](./lean_stage3/BasinChainAvg.md#BasinChain-StmtVHorizLower) | **OPEN** | — | 4 |
 | [`ConreyCount.StmtVEdges`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVEdges) | **OPEN** | — | 1 |
 | [`ConreyCount.StmtVRight`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVRight) | **OPEN** | — | 2 |
 | [`Diagonal.StmtDiagMain`](./lean_stage3/Diagonal.md#Diagonal-StmtDiagMain) | **OPEN** | — | 1 |
@@ -175,6 +182,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`WeilPowerAssembly.StmtDetectGap`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-StmtDetectGap) | **OPEN** | — | 0 |
 | [`WeilPowerCount.StmtShortCount`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-StmtShortCount) | **OPEN** | — | 2 |
 | [`ApproxFE.StmtShift`](./lean_stage3/ApproxFE.md#ApproxFE-StmtShift) | from a hypothesis | [`ApproxShift.stmtShift_holds`](./lean_stage3/ApproxShift.md#ApproxShift-stmtShift_holds) ⊢ StmtShift α β t c | 1 |
+| [`BasinChain.StmtNoRightZeros`](./lean_stage3/BasinChainCount.md#BasinChain-StmtNoRightZeros) | from a hypothesis | [`BasinChain.noRightZeros_one_of_rh`](./lean_stage3/BasinChainCount.md#BasinChain-noRightZeros_one_of_rh) ⊢ StmtNoRightZeros 1 T₀ | 4 |
 | [`Chain.StmtA1`](./lean/Chain.md#Chain-StmtA1) | from a hypothesis | [`Chain.A1`](./lean/Chain.md#Chain-A1) ⊢ StmtA1 b ρ | 4 |
 | [`Chain.StmtA4`](./lean/Chain.md#Chain-StmtA4) | from a hypothesis | [`Chain.A4`](./lean/Chain.md#Chain-A4) ⊢ StmtA4 b ρ<br/>[`Chain.A4_of_A1`](./lean/Chain.md#Chain-A4_of_A1) ⊢ StmtA4 b ρ | 3 |
 | [`Chain.StmtB4`](./lean/Chain.md#Chain-StmtB4) | from a hypothesis | [`Chain.B4`](./lean/Chain.md#Chain-B4) ⊢ StmtB4 b N | 1 |
@@ -183,7 +191,7 @@ Every definition named `Stmt…`: a statement the repo set as a target. Open: no
 | [`Chain.StmtC2`](./lean/Chain.md#Chain-StmtC2) | from a hypothesis | [`Chain.C2`](./lean/Chain.md#Chain-C2) ⊢ StmtC2 b<br/>[`Chain.C2_of_C1`](./lean/Chain.md#Chain-C2_of_C1) ⊢ StmtC2 b | 2 |
 | [`Chain.StmtC3`](./lean/Chain.md#Chain-StmtC3) | from a hypothesis | [`Chain.C3`](./lean/Chain.md#Chain-C3) ⊢ StmtC3 b<br/>[`Chain.C3_of_A4_C2`](./lean/Chain.md#Chain-C3_of_A4_C2) ⊢ StmtC3 b | 0 |
 | [`Chain.StmtC3lower`](./lean/Chain.md#Chain-StmtC3lower) | from a hypothesis | [`Chain.C3lower`](./lean/Chain.md#Chain-C3lower) ⊢ StmtC3lower b<br/>[`Chain.C3lower_of_A4_C2`](./lean/Chain.md#Chain-C3lower_of_A4_C2) ⊢ StmtC3lower b | 0 |
-| [`ConreyCount.StmtVDisc`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc) | from a hypothesis | [`ConreyCount.StmtVDisc.mono`](./lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono) ⊢ StmtVDisc Q L T M'<br/>[`DigammaBound.disc_le`](./lean_stage3/DigammaBound.md#DigammaBound-disc_le) ⊢ ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) | 3 |
+| [`ConreyCount.StmtVDisc`](./lean_stage3/ConreyCountEdge.md#ConreyCount-StmtVDisc) | from a hypothesis | [`ConreyCount.StmtVDisc.mono`](./lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono) ⊢ StmtVDisc Q L T M'<br/>[`DigammaBound.disc_le`](./lean_stage3/DigammaBound.md#DigammaBound-disc_le) ⊢ ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) | 4 |
 | [`DiagLong.StmtDiagTail`](./lean_stage3/DiagLong.md#DiagLong-StmtDiagTail) | from a hypothesis | [`DiagLong.stmtDiagTail_of_le`](./lean_stage3/DiagLong.md#DiagLong-stmtDiagTail_of_le) ⊢ StmtDiagTail P θ R κ η<br/>[`DiagLong.tail_of_stmtDiagErr`](./lean_stage3/DiagLong.md#DiagLong-tail_of_stmtDiagErr) ⊢ StmtDiagTail P θ R κ η | 1 |
 | [`DiagMain.StmtMuSmooth`](./lean_stage3/DiagMain.md#DiagMain-StmtMuSmooth) | from a hypothesis | [`SdiagLead.stmtMuSmooth_holds`](./lean_stage3/SdiagLeadSmooth.md#SdiagLead-stmtMuSmooth_holds) ⊢ StmtMuSmooth P κ | 0 |
 | [`DiagMain.StmtSdiagLead`](./lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead) | from a hypothesis | [`SdiagLead.stmtSdiagLead_holds`](./lean_stage3/SdiagLead.md#SdiagLead-stmtSdiagLead_holds) ⊢ StmtSdiagLead P θ R κ<br/>[`SdiagLead.stmtSdiagLead_of_steps`](./lean_stage3/SdiagLeadCore.md#SdiagLead-stmtSdiagLead_of_steps) ⊢ StmtSdiagLead P θ R κ | 1 |

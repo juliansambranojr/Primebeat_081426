@@ -26,8 +26,9 @@ flowchart LR
   x2(["<b>TuringCert</b><br/>defect_zero_of_signs"]):::ext
   x3(["<b>TuringSlope</b><br/>defect_zero_of_signs'"]):::ext
   x4(["<b>ArgCount</b><br/>N_mono<br/>argS_le_gt_two"]):::ext
-  x5(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
-  x6(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
+  x5(["<b>BasinChainAvg</b><br/>increment_avg"]):::ext
+  x6(["<b>TuringAvg</b><br/>S_le_of_count"]):::ext
+  x7(["<b>LevinsonEdge</b><br/>zeta_norm_le"]):::ext
   n0 --> n4
   n1 --> n2
   n2 --> n3
@@ -38,13 +39,15 @@ flowchart LR
   n1 -.-> x2
   n1 -.-> x3
   n2 -.-> x5
+  n2 -.-> x6
   n3 -.-> x0
   n3 -.-> x5
+  n3 -.-> x6
   n7 -.-> x0
   x1 -.-> n1
   x4 -.-> n2
   x4 -.-> n4
-  x6 -.-> n5
+  x7 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -68,7 +71,7 @@ def · line 86
 
 - **Is:** `` S (t : ℝ) : ℝ := riemannZeta.N t - (Stage3.phaseTheta t / Real.pi + 1) ``
 - **Built from:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
-- **Used by 13:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-), [`TuringSlope.turing_S_le_sharp`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le_sharp)
+- **Used by 16:** [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg), [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt), [`BasinChain.increment_window`](../lean_stage3/BasinChainCount.md#BasinChain-increment_window), [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.S_le_pointwise`](../lean_stage3/TuringAvg.md#Turing-S_le_pointwise), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds), [`Turing.S_eq_argS`](#Turing-S_eq_argS), [`Turing.S₁`](#Turing-S-), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.intervalIntegrable_S`](#Turing-intervalIntegrable_S), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-), [`TuringSlope.turing_S_le_sharp`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le_sharp)
 
 <a name="Turing-S-"></a>
 ### `Turing.S₁`
@@ -79,7 +82,7 @@ def · line 89
 
 - **Is:** `` S₁ (T : ℝ) : ℝ := ∫ t in (0 : ℝ)..T, S t ``
 - **Built from:** [`Turing.S`](#Turing-S)
-- **Used by 10:** [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.StmtLittlewood`](#Turing-StmtLittlewood), [`Turing.StmtSplit`](#Turing-StmtSplit), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-)
+- **Used by 11:** [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg), [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count), [`Turing.turing_S_le`](../lean_stage3/TuringAvg.md#Turing-turing_S_le), [`Turing.defect_zero_of_signs`](../lean_stage3/TuringCert.md#Turing-defect_zero_of_signs), [`Turing.StmtLittlewood`](#Turing-StmtLittlewood), [`Turing.StmtSplit`](#Turing-StmtSplit), [`Turing.S₁_crude`](#Turing-S-_crude), [`Turing.S₁_sub`](#Turing-S-_sub), [`Turing.littlewood_of_pieces`](#Turing-littlewood_of_pieces), [`TuringSlope.defect_zero_of_signs'`](../lean_stage3/TuringSlope.md#TuringSlope-defect_zero_of_signs-), [`TuringSlope.turing_S_le'`](../lean_stage3/TuringSlope.md#TuringSlope-turing_S_le-)
 
 <a name="Turing-F"></a>
 ### `Turing.F`
@@ -221,8 +224,9 @@ IntervalIntegrable S volume a b
 
 **Definitions its proof touches:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta), [`Turing.S`](#Turing-S)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg) (BasinChainAvg) — `` ∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤ 4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) +… ``
   - [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count) (TuringAvg) — `` S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h ``
   - [`Turing.S₁_sub`](#Turing-S-_sub) — `` S₁ t₂ - S₁ t₁ = ∫ t in t₁..t₂, S t ``
 
@@ -249,8 +253,9 @@ S₁ t₂ - S₁ t₁ = ∫ t in t₁..t₂, S t
 
 **Definitions its proof touches:** [`Turing.S`](#Turing-S), [`Turing.S₁`](#Turing-S-)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`BasinChain.increment_avg`](../lean_stage3/BasinChainAvg.md#BasinChain-increment_avg) (BasinChainAvg) — `` ∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤ 4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) +… ``
   - [`Turing.S_le_of_count`](../lean_stage3/TuringAvg.md#Turing-S_le_of_count) (TuringAvg) — `` S t ≤ ((S₁ (t + h) - S₁ t) - (∫ u in t..t + h, c u) + K * h ^ 2 / (2 * Real.pi)) / h ``
   - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
   - [`Turing.S₁_crude`](#Turing-S-_crude) — `` |S₁ t₂ - S₁ t₁| ≤ (t₂ - t₁) * (15 * Real.log t₂ + 75) ``
