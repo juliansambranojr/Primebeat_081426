@@ -115,3 +115,64 @@ end HalfFold
 /-- info: 'HalfFold.abs_sieveMu_le_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfFold.abs_sieveMu_le_one
+
+namespace HalfFold
+
+open Finset SieveExact HalfSplit HalfTaper
+
+/-- The tapered small side of the fold at `√N`. -/
+noncomputable def taperedSmall (N : ℕ) : ℝ :=
+  (N : ℝ) * ∑ d ∈ Icc 1 (Nat.sqrt N), sieveMu N d / d * (1 - (d : ℝ) / (Nat.sqrt N : ℕ))
+
+/-- The mirrored side of the fold less the smooth counts. -/
+noncomputable def mirroredExcess (N : ℕ) : ℝ :=
+  ∑ m ∈ Icc 1 (N / Nat.sqrt N), cnt (sieveMu N) (N / m)
+    - (1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ))
+
+/-- **The fold leaves at most two square roots outside its two sides.** -/
+theorem wobble_fold_bound (N : ℕ) (hN : 1 ≤ N) :
+    |HalfSieve.wobble N + taperedSmall N + mirroredExcess N| ≤ 2 * Real.sqrt N := by
+  have hy : 0 < Nat.sqrt N := Nat.sqrt_pos.mpr (by omega)
+  have hyR : (0 : ℝ) < (Nat.sqrt N : ℕ) := by exact_mod_cast hy
+  have key : HalfSieve.wobble N + taperedSmall N + mirroredExcess N
+      = ∑ d ∈ Icc 1 (Nat.sqrt N), sieveMu N d * Int.fract ((N : ℝ) / (d : ℝ))
+        + (((N / Nat.sqrt N : ℕ) : ℝ) - (N : ℝ) / (Nat.sqrt N : ℕ)) * cnt (sieveMu N) (Nat.sqrt N) := by
+    rw [wobble_taper N hN]; unfold taperedSmall mirroredExcess; ring
+  rw [key]
+  have hsq : ((Nat.sqrt N : ℕ) : ℝ) ≤ Real.sqrt N := Real.nat_sqrt_le_real_sqrt
+  have h1 : |∑ d ∈ Icc 1 (Nat.sqrt N), sieveMu N d * Int.fract ((N : ℝ) / (d : ℝ))| ≤ Real.sqrt N := by
+    calc _ ≤ ∑ d ∈ Icc 1 (Nat.sqrt N), |sieveMu N d * Int.fract ((N : ℝ) / (d : ℝ))| :=
+          Finset.abs_sum_le_sum_abs _ _
+      _ ≤ ∑ d ∈ Icc 1 (Nat.sqrt N), (1 : ℝ) := by
+          refine Finset.sum_le_sum fun d _ => ?_
+          rw [abs_mul, abs_of_nonneg (Int.fract_nonneg ((N : ℝ) / (d : ℝ)))]
+          have := abs_sieveMu_le_one N d
+          have h2 := (Int.fract_lt_one ((N : ℝ) / (d : ℝ))).le
+          have h3 := Int.fract_nonneg ((N : ℝ) / (d : ℝ))
+          nlinarith [abs_nonneg (sieveMu N d)]
+      _ = (Nat.sqrt N : ℕ) := by simp
+      _ ≤ Real.sqrt N := hsq
+  have hfl : |((N / Nat.sqrt N : ℕ) : ℝ) - (N : ℝ) / (Nat.sqrt N : ℕ)| ≤ 1 := by
+    have hfl1 : ((N / Nat.sqrt N : ℕ) : ℝ) ≤ (N : ℝ) / (Nat.sqrt N : ℕ) := Nat.cast_div_le
+    have hfl2 : (N : ℝ) / (Nat.sqrt N : ℕ) < ((N / Nat.sqrt N : ℕ) : ℝ) + 1 := by
+      rw [div_lt_iff₀ hyR]
+      have := Nat.lt_succ_iff.mpr (le_refl (N / Nat.sqrt N))
+      have h := Nat.lt_mul_div_succ N hy
+      have : (N : ℝ) < ((Nat.sqrt N * (N / Nat.sqrt N + 1) : ℕ) : ℝ) := by exact_mod_cast h
+      push_cast at this; linarith
+    rw [abs_le]; constructor <;> linarith
+  have h2 : |(((N / Nat.sqrt N : ℕ) : ℝ) - (N : ℝ) / (Nat.sqrt N : ℕ)) * cnt (sieveMu N) (Nat.sqrt N)|
+      ≤ Real.sqrt N := by
+    rw [abs_mul]
+    calc _ ≤ 1 * ((Nat.sqrt N : ℕ) : ℝ) :=
+          mul_le_mul hfl (abs_cnt_le N _) (abs_nonneg _) zero_le_one
+      _ ≤ Real.sqrt N := by rw [one_mul]; exact hsq
+  calc _ ≤ _ := abs_add_le _ _
+    _ ≤ Real.sqrt N + Real.sqrt N := add_le_add h1 h2
+    _ = 2 * Real.sqrt N := by ring
+
+end HalfFold
+
+/-- info: 'HalfFold.wobble_fold_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfFold.wobble_fold_bound
