@@ -758,3 +758,36 @@ end HalfSplit
 /-- info: 'HalfSplit.harmonic_recursion' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.harmonic_recursion
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- The sieve's Möbius weight at `k`: the signs of the sets of sieve primes whose product is `k`
+(at most one such set; `prod_injOn_primes`). -/
+noncomputable def sieveMu (N k : ℕ) : ℝ :=
+  ∑ T ∈ (lowT N).filter (fun T => (∏ p ∈ T, p) = k), (-1 : ℝ) ^ T.card
+
+/-- **The harmonic by the size of the product.** Regrouped by the value `k` of the product,
+the harmonic is the sieve's Möbius weight at `k` times `cos(2π n y/k)`, over `k = 1 … N`: the
+form summation by parts reads through the sieve's signed count. -/
+theorem harmonic_by_value (N n : ℕ) (y : ℝ) :
+    harmonic N n y = ∑ k ∈ Icc 1 N, sieveMu N k * Real.cos (2 * π * n * (y / (k : ℝ))) := by
+  unfold harmonic sieveMu
+  have hmaps : ∀ T ∈ lowT N, (∏ p ∈ T, p) ∈ Icc 1 N := by
+    intro T hT
+    have hTp : ∀ q ∈ T, q.Prime := fun q hq =>
+      prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp hT).1 hq)
+    exact mem_Icc.mpr ⟨Nat.one_le_iff_ne_zero.mpr
+      (Finset.prod_ne_zero_iff.mpr fun q hq => (hTp q hq).ne_zero), (mem_filter.mp hT).2⟩
+  rw [← Finset.sum_fiberwise_of_maps_to hmaps]
+  refine Finset.sum_congr rfl fun k _ => ?_
+  rw [Finset.sum_mul]
+  refine Finset.sum_congr rfl fun T hT => ?_
+  rw [(mem_filter.mp hT).2]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.harmonic_by_value' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.harmonic_by_value
