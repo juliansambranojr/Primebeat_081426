@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0580-dh-defect-count",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v880 x86_64",
+    "virtual_env": null,
+    "git_head": "ce6576c8ffc809fae9dbb6a2f76513d1b8e6b00e",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "0f536a0574807b22d3c8217a9456388f39eb94aac404c9d7e49121d6b168f5d9",
+    "run_start": "2026-11-26T03:02:32Z",
+    "run_end": "2026-11-26T03:07:19Z",
+    "wall_s": 286.8357126740011
+  }
+}
