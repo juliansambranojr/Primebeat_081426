@@ -286,3 +286,36 @@ end HalfSplit
 /-- info: 'HalfSplit.half_is_bernoulli' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.half_is_bernoulli
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **The integrated rounding's harmonics.** One level up from the centered rounding, Bernoulli's
+second function of the rounding of `x` is a sum of cosines of `x` itself, with weights `1/n²`,
+absolutely convergent:
+
+    π² · B₂(fract x) = Σ_{n ≥ 1} cos(2π n x) / n². -/
+theorem bernoulli_two_rounding (x : ℝ) :
+    HasSum (fun n : ℕ => 1 / (n : ℝ) ^ 2 * Real.cos (2 * π * n * x))
+      (π ^ 2 * bernoulliFun 2 (Int.fract x)) := by
+  have hx : Int.fract x ∈ Set.Icc (0 : ℝ) 1 :=
+    ⟨Int.fract_nonneg x, (Int.fract_lt_one x).le⟩
+  have h := hasSum_one_div_nat_pow_mul_cos (k := 1) one_ne_zero hx
+  have hcos : ∀ n : ℕ, Real.cos (2 * π * n * Int.fract x) = Real.cos (2 * π * n * x) := by
+    intro n
+    have : 2 * π * n * x = 2 * π * n * Int.fract x + (n * ⌊x⌋ : ℤ) * (2 * π) := by
+      have := Int.fract_add_floor x
+      nth_rewrite 1 [← this]; push_cast; ring
+    rw [this, Real.cos_add_int_mul_two_pi]
+  simp only [hcos] at h
+  convert h using 1
+  simp only [bernoulliFun, Nat.factorial, Nat.succ_eq_add_one]
+  norm_num
+  left; ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.bernoulli_two_rounding' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.bernoulli_two_rounding
