@@ -33,7 +33,7 @@ which the basins settle needs a parameter that is a clock.
 ## The clock: de Bruijn–Newman
 
 `H_λ(z) = ∫₀^∞ e^{λu²} Φ(u) cos(zu) du`, `Φ` the classical kernel with
-`H_0(z) = Ξ(z)/8` (normalisation to be read from the source before use). The
+`H_0(z) = Ξ(z/2)/8` (Polymath 15; `debruijn.md` checks the factor 8 at `z = 0`). The
 zeros of `H_λ` are all real exactly when `λ ≥ Λ`. In the picture: `Λ` is the
 time at which every basin has settled, and RH is `Λ ≤ 0`, the basins settled
 already at time zero.
