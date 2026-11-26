@@ -22,4 +22,6 @@ sealed: false
 
 **What it says.** This is the first split of the wobble whose parts show no growth over the measured range. The open line becomes the mirrored side less the smooth counts: the sieve's signed count summed at the scales N/m, against the logarithmic integral, at the square root.
 
-What remains. The mirrored side past thirty million, and a proof that it stays at the square root.
+**Correction, past the range (`run/reach.py`).** The tapered small side over the square root is x times the Möbius sum to x less the Möbius count at x, x the square root of N. It is `reach.1000` 2.411869771791756 at x a thousand, `reach.100000` -0.7227617037541876 at a hundred thousand, `reach.1000000` -11.395314612185587 at a million and `reach.10000000` -21.760460572399893 at ten million, and over x from a thousand to ten million it runs from `reach.range_min` -41.209905727369154 to `reach.range_max` 48.12351231338252. The claim above that neither side grows holds only on the measured range of the fold, x below about five and a half thousand. Past it the tapered side grows, and the mirrored side with it; their mirror cancellation keeps the wobble small. The fold loses a factor too, on both sides at once.
+
+What remains. A bound on the two sides together, since apart each grows.

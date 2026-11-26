@@ -3,6 +3,8 @@
 # result files in one unit cannot collide.
 # source run/fold.json sha256 11058487abad983b9df41285c0ab75eea409a374c11474ccd1e0c6e0e7029c06
 # source run/lab_run.001.json sha256 39688b62ba87aa674783806f2b0902bfa84a4fa6f7cac3c3e82dc6c705b127ad
+# source run/lab_run.002.json sha256 1d5baa37bc0a2290117ca814163d878894cd181e1f8948edbfda0a394962c762
+# source run/reach.json sha256 862de7d0fefa2974d3ec01769d106d82d8ec7f17889b7fb00f04bd722b8a0a54
 fold.fold.10000.mirrored_less_smooth_over_sqrt	-2.2301107431530864
 fold.fold.10000.tapered_small_over_sqrt	2.1131533529083213
 fold.fold.10000.sum_over_sqrt	-0.11695739024476523
@@ -50,3 +52,30 @@ meta.lab_run.001.meta.runnable_sha256	"956ebb054337c88916491716bf07c244bf6aaecd8
 meta.lab_run.001.meta.run_start	"2026-11-26T07:35:40Z"
 meta.lab_run.001.meta.run_end	"2026-11-26T07:35:51Z"
 meta.lab_run.001.meta.wall_s	11.400300209999841
+lab_run.002.schema_version	"v1.0"
+lab_run.002.unit	"units/0589-taper-fold-sides"
+lab_run.002.runnable	"run/run.sh"
+lab_run.002.command	"/bin/sh -e run.sh"
+lab_run.002.argv[0]	"/bin/sh"
+lab_run.002.argv[1]	"-e"
+lab_run.002.argv[2]	"run.sh"
+lab_run.002.cwd	"run"
+lab_run.002.status	"completed"
+lab_run.002.exit_code	0
+lab_run.002.environment.lab_python	"v3.13.18"
+lab_run.002.environment.path_python3	"v3.13.18"
+lab_run.002.environment.shell	"/bin/sh"
+lab_run.002.environment.os	"Linux v6.18.44-fc-v880 x86_64"
+lab_run.002.environment.virtual_env	null
+lab_run.002.environment.git_head	"20b5f87d2bf4c141facc2255d2161cf2a4cfddbb"
+lab_run.002.environment.git_dirty	true
+meta.lab_run.002.meta.runnable_sha256	"ef3e1489c9f691b20046930cac745e059292376daced0ad6af183204ca57d038"
+meta.lab_run.002.meta.run_start	"2026-11-26T07:48:52Z"
+meta.lab_run.002.meta.run_end	"2026-11-26T07:49:08Z"
+meta.lab_run.002.meta.wall_s	15.926124094999977
+reach.1000	2.411869771791756
+reach.100000	-0.7227617037541876
+reach.1000000	-11.395314612185587
+reach.10000000	-21.760460572399893
+reach.range_min	-41.209905727369154
+reach.range_max	48.12351231338252
