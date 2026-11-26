@@ -382,3 +382,35 @@ end HalfSplit
 /-- info: 'HalfSplit.hasDerivAt_bernoulli_two_fract' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.hasDerivAt_bernoulli_two_fract
+
+namespace HalfSplit
+
+open Real
+
+/-- **The half from a step of B₂.** A step `h` in the integrated rounding is twice the step times
+the rounding measured from the half, plus the step squared:
+
+    B₂(y + h) − B₂(y) = 2h·B₁(y) + h². -/
+theorem bernoulli_two_step (y h : ℝ) :
+    bernoulliFun 2 (y + h) - bernoulliFun 2 y = 2 * h * bernoulliFun 1 y + h ^ 2 := by
+  rw [bernoulliFun_two, bernoulliFun_two, bernoulliFun_one]; ring
+
+/-- In the rounding: inside one unit cell, a step of the integrated rounding gives Julian's half. -/
+theorem bernoulli_two_step_fract {x h : ℝ} (hh : 0 ≤ h) (hcell : Int.fract x + h < 1) :
+    bernoulliFun 2 (Int.fract (x + h)) - bernoulliFun 2 (Int.fract x)
+      = 2 * h * bernoulliFun 1 (Int.fract x) + h ^ 2 := by
+  have : Int.fract (x + h) = Int.fract x + h := by
+    rw [Int.fract_eq_iff]
+    refine ⟨by linarith [Int.fract_nonneg x], hcell, ⌊x⌋, ?_⟩
+    rw [Int.fract]; ring
+  rw [this, bernoulli_two_step]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.bernoulli_two_step' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.bernoulli_two_step
+
+/-- info: 'HalfSplit.bernoulli_two_step_fract' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.bernoulli_two_step_fract
