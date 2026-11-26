@@ -56,3 +56,61 @@ end HalfSplit
 /-- info: 'HalfSplit.fract_tail' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.fract_tail
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- The sieve's products up to `N`. -/
+def lowT (N : ℕ) : Finset (Finset ℕ) := (smallPrimes N).powerset.filter (fun T => (∏ p ∈ T, p) ≤ N)
+
+/-- The sieve's products past `N`. -/
+def highT (N : ℕ) : Finset (Finset ℕ) := (smallPrimes N).powerset.filter (fun T => ¬ (∏ p ∈ T, p) ≤ N)
+
+/-- **The net rounding, split at `N`.** The roundings of the products up to `N`, plus the
+products past `N`, each contributing exactly `N/d`. -/
+theorem net_split (N : ℕ) :
+    netRounding N =
+      ∑ T ∈ lowT N, (-1 : ℚ) ^ T.card * Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ))
+      + ∑ T ∈ highT N, (-1 : ℚ) ^ T.card * ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) := by
+  unfold netRounding lowT highT
+  rw [← Finset.sum_filter_add_sum_filter_not _ (fun T => (∏ p ∈ T, p) ≤ N)]
+  congr 1
+  refine Finset.sum_congr rfl fun T hT => ?_
+  rw [fract_tail (not_le.mp (mem_filter.mp hT).2)]
+
+/-- **The tail meets the product.** The smooth part less the tail is the exact fractions of
+the products up to `N` alone. -/
+theorem smooth_less_tail (N : ℕ) :
+    smoothPart N - ∑ T ∈ highT N, (-1 : ℚ) ^ T.card * ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ))
+      = ∑ T ∈ lowT N, (-1 : ℚ) ^ T.card * ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) := by
+  unfold smoothPart lowT highT
+  rw [← Finset.sum_filter_add_sum_filter_not _ (fun T => (∏ p ∈ T, p) ≤ N)]
+  ring
+
+/-- **The survivors are the floors of the products up to `N`.** With the tail gone, the
+sieve's count is the signed floors `⌊N/d⌋` over the products `d ≤ N`. -/
+theorem survivors_low (N : ℕ) :
+    ((survivors N).card : ℚ) =
+      ∑ T ∈ lowT N, (-1 : ℚ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℚ) := by
+  rw [sieve_split, net_split]
+  have h := smooth_less_tail N
+  rw [show ∀ a b c : ℚ, a - (b + c) = (a - c) - b from fun a b c => by ring, h,
+    ← Finset.sum_sub_distrib]
+  refine Finset.sum_congr rfl fun T _ => ?_
+  rw [natDiv_eq_sub_fract]
+  ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.net_split' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.net_split
+
+/-- info: 'HalfSplit.smooth_less_tail' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.smooth_less_tail
+
+/-- info: 'HalfSplit.survivors_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.survivors_low
