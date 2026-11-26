@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T01:44:11Z
+# unit: 0577-basins-settle-heat-flow
+# sources searched: 114
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:85121
+  Okay, so think of it this way. If the basins couple, then as they couple, the energy doesn't move fr...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:85003
+  theorem rh_up_to : ∀ T ≤ (219313/500 : ℝ), Defect.defect T = 0 :=
+
+# 3 found, 0 missing
