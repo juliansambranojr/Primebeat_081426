@@ -107,3 +107,41 @@ end HalfPair
 /-- info: 'HalfPair.pair_coprime' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.pair_coprime
+
+namespace HalfPair
+
+open Finset
+
+/-- Squares up to `n`. -/
+theorem sum_sq_range (n : ℕ) : ∑ t ∈ range n, ((t : ℚ)) ^ 2 = (n : ℚ) * (n - 1) * (2 * n - 1) / 6 := by
+  induction n with
+  | zero => simp
+  | succ n ih => rw [Finset.sum_range_succ, ih]; push_cast; ring
+
+/-- **The shared part's own sawtooth.** One period of the half's sawtooth, squared, sums to
+`(g² + 2)/(12 g)`. This is the whole pairing identity once the coprime parts are taken out: a pair
+of the sieve's roundings sums, over a common period, to the sawtooth of the primes they share. -/
+theorem sum_saw_sq {g : ℕ} (hg : 0 < g) :
+    ∑ t ∈ range g, saw g t ^ 2 = ((g : ℚ) ^ 2 + 2) / (12 * g) := by
+  have hmod : ∀ t ∈ range g, t % g = t := fun t ht => Nat.mod_eq_of_lt (mem_range.mp ht)
+  have hg' : (g : ℚ) ≠ 0 := by exact_mod_cast hg.ne'
+  rw [Finset.sum_congr rfl fun t ht => by rw [saw, hmod t ht]]
+  have hexp : ∀ t : ℕ, ((t : ℚ) / g - 1 / 2) ^ 2 = (t : ℚ) ^ 2 / g ^ 2 - (t : ℚ) / g + 1 / 4 := by
+    intro t; field_simp; ring
+  simp only [hexp, Finset.sum_add_distrib, Finset.sum_sub_distrib, ← Finset.sum_div,
+    Finset.sum_const, card_range, nsmul_eq_mul, sum_sq_range]
+  have hs : (∑ i ∈ range g, (i : ℚ)) = (g : ℚ) * (g - 1) / 2 := by
+    have : ((∑ i ∈ range g, i : ℕ) : ℚ) * 2 = (g : ℚ) * ((g - 1 : ℕ) : ℚ) := by
+      exact_mod_cast Finset.sum_range_id_mul_two g
+    rw [Nat.cast_sub (by omega : 1 ≤ g)] at this
+    push_cast at this
+    linarith
+  rw [hs]
+  field_simp
+  ring
+
+end HalfPair
+
+/-- info: 'HalfPair.sum_saw_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.sum_saw_sq
