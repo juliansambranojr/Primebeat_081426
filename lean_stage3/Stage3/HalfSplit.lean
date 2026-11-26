@@ -621,3 +621,48 @@ end HalfSplit
 /-- info: 'HalfSplit.abs_hstep_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.abs_hstep_le
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **Near the square root the largest-prime condition is automatic.** For `p` with `N < p²`,
+a product `p · ∏ t ≤ N` cannot hold a prime above `p`: the step over the primes below `p` is the
+step over every other prime of the sieve. So these steps are the harmonics of the whole Möbius
+sum at the scale `N/p`. -/
+theorem hstep_top (N n : ℕ) (y : ℝ) {p : ℕ} (hp : p ∈ smallPrimes N) (hN : N < p * p) :
+    ∑ t ∈ ((smallPrimes N).filter (· < p)).powerset, hterm N n y (insert p t)
+      = ∑ t ∈ ((smallPrimes N).erase p).powerset, hterm N n y (insert p t) := by
+  have hsub : ((smallPrimes N).filter (· < p)).powerset ⊆ ((smallPrimes N).erase p).powerset := by
+    intro t ht
+    rw [mem_powerset] at ht ⊢
+    intro q hq
+    have := mem_filter.mp (ht hq)
+    exact mem_erase.mpr ⟨(ne_of_lt this.2), this.1⟩
+  refine Finset.sum_subset hsub fun t ht hn => ?_
+  rw [mem_powerset] at ht hn
+  obtain ⟨q, hqt, hq⟩ := Finset.not_subset.mp hn
+  have hqS := ht hqt
+  have hqp : p < q := by
+    have hne := (mem_erase.mp hqS).1
+    rcases lt_or_gt_of_ne hne with h | h
+    · exact absurd (mem_filter.mpr ⟨(mem_erase.mp hqS).2, h⟩) hq
+    · exact h
+  have hpt : p ∉ t := fun h => (mem_erase.mp (ht h)).1 rfl
+  unfold hterm
+  rw [if_neg]
+  rw [prod_insert hpt]
+  intro hle
+  have hpos : ∀ r ∈ t, 0 < r := fun r hr =>
+    (prime_of_mem_smallPrimes (mem_erase.mp (ht hr)).2).pos
+  have hqd : q ≤ ∏ r ∈ t, r := Nat.le_of_dvd (Finset.prod_pos hpos) (Finset.dvd_prod_of_mem _ hqt)
+  have : p * p < p * ∏ r ∈ t, r := by
+    have hp0 := (prime_of_mem_smallPrimes hp).pos
+    exact Nat.mul_lt_mul_of_pos_left (lt_of_lt_of_le hqp hqd) hp0
+  omega
+
+end HalfSplit
+
+/-- info: 'HalfSplit.hstep_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.hstep_top
