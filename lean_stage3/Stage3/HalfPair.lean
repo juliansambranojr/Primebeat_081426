@@ -145,3 +145,37 @@ end HalfPair
 /-- info: 'HalfPair.sum_saw_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.sum_saw_sq
+
+namespace HalfPair
+
+open Finset
+
+/-- The residue of `g·q + t` modulo `g·a'`, for `t < g`. -/
+theorem mod_block {g a' q t : ℕ} (ht : t < g) (ha : 0 < a') :
+    (g * q + t) % (g * a') = g * (q % a') + t := by
+  have hq := Nat.div_add_mod q a'
+  have hlt : g * (q % a') + t < g * a' := by
+    have : q % a' + 1 ≤ a' := Nat.mod_lt q ha
+    nlinarith
+  have heq : g * q + t = (g * (q % a') + t) + (g * a') * (q / a') := by
+    conv_lhs => rw [← hq]
+    ring
+  rw [heq, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt hlt]
+
+/-- **The block step.** Inside a block of the shared part `g`, the sawtooth of `g·a'` is the
+sawtooth of `a'` shifted by `t/(g·a')`. -/
+theorem saw_block {g a' q t : ℕ} (hg : 0 < g) (ht : t < g) (ha : 0 < a') :
+    saw (g * a') (g * q + t) = saw a' q + (t : ℚ) / (g * a') := by
+  unfold saw
+  rw [mod_block ht ha]
+  have hg' : (g : ℚ) ≠ 0 := by exact_mod_cast hg.ne'
+  have ha' : (a' : ℚ) ≠ 0 := by exact_mod_cast ha.ne'
+  push_cast
+  field_simp
+  ring
+
+end HalfPair
+
+/-- info: 'HalfPair.saw_block' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.saw_block
