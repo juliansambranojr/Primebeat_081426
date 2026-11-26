@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-26T04:34:19Z
+# unit: 0585-flattening-audit
+# sources searched: 119
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:91527
+  You don't get to stop cause you kept me up so fix all your mistakes and then check if you are flatte...
+
+# 2 found, 0 missing
