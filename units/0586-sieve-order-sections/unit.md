@@ -10,7 +10,7 @@ context: Jerby's paper on collision and repulsion tracks the zeros of the sectio
 sealed: false
 ---
 
-**Question.** Does adding the terms of the section in the sieve's order, grouped by largest prime factor, keep the pair of zeros near zeta's 725th and 726th on the line longer than the natural order?
+**Question.** Does adding the terms of the section in the sieve's order, grouped by largest prime factor, keep the pair of zeros near zeta's seven hundred and twenty-fifth and twenty-sixth on the line longer than the natural order?
 
 **What ran.** `run/order.py`, by `run/run.sh`, through `lab run`. On the line each term is real, the cosine form of Jerby's paper on high-order sections. The terms one to `results.M` 546, Spira's length, are added one at a time in two orders; after each the sign changes of the partial sum are counted on a window holding exactly the two zeros. A count of two has the pair on the line; below two, the pair has collided and left it. EXPLORATORY: no prereg, no verdict.
 
