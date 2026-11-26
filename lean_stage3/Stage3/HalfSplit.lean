@@ -500,3 +500,32 @@ end HalfSplit
 /-- info: 'HalfSplit.half_as_harmonics' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.half_as_harmonics
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- The `n`-th harmonic of the sieve at the point `y`: the signed cosines over the products up
+to `N`. -/
+noncomputable def harmonic (N n : ℕ) (y : ℝ) : ℝ :=
+  ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ)))
+
+/-- **Each harmonic is at most `N` in size.** From sizes alone. Measured (scratch, exploratory,
+2026-11-26): at `y = N`, `n ≤ 8`, the harmonic stays below `0.44·√N` for `N = 10³ … 10⁶`
+while the products number `0.15·N`: the cancellation the bound must capture. -/
+theorem abs_harmonic_le (N n : ℕ) (y : ℝ) : |harmonic N n y| ≤ N := by
+  unfold harmonic
+  calc _ ≤ ∑ T ∈ lowT N, |(-1 : ℝ) ^ T.card *
+          Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ)))| := Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ T ∈ lowT N, (1 : ℝ) := by
+        refine Finset.sum_le_sum fun T _ => ?_
+        rw [abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]
+        exact Real.abs_cos_le_one _
+    _ = (lowT N).card := by simp
+    _ ≤ N := by exact_mod_cast card_lowT_le N
+
+end HalfSplit
+
+/-- info: 'HalfSplit.abs_harmonic_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.abs_harmonic_le
