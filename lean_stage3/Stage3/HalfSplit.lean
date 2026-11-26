@@ -355,3 +355,30 @@ end HalfSplit
 /-- info: 'HalfSplit.sieve_bernoulli_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.sieve_bernoulli_two
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **Down from B₂ to Julian's half.** Between two integers, the integrated rounding
+`B₂(fract y)` has slope `2·B₁(fract y)`: twice the rounding measured from the half. So the
+harmonics of `sieve_bernoulli_two`, differentiated, are the harmonics of the centered roundings. -/
+theorem hasDerivAt_bernoulli_two_fract {k : ℤ} {x : ℝ} (hx : x ∈ Set.Ioo (k : ℝ) (k + 1)) :
+    HasDerivAt (fun y => bernoulliFun 2 (Int.fract y)) (2 * bernoulliFun 1 (Int.fract x)) x := by
+  have hfr : ∀ y ∈ Set.Ioo (k : ℝ) (k + 1), Int.fract y = y - k := by
+    intro y hy
+    rw [Int.fract, Int.floor_eq_iff.mpr ⟨hy.1.le, hy.2⟩]
+  have hev : (fun y => bernoulliFun 2 (Int.fract y)) =ᶠ[nhds x] (fun y => bernoulliFun 2 (y - k)) :=
+    Filter.eventuallyEq_of_mem (Ioo_mem_nhds hx.1 hx.2) fun y hy => by simp only [hfr y hy]
+  have hd : HasDerivAt (fun y => bernoulliFun 2 (y - k)) (2 * bernoulliFun 1 (x - k)) x := by
+    have := (hasDerivAt_bernoulliFun 2 (x - k)).comp x ((hasDerivAt_id x).sub_const (k : ℝ))
+    simp only [mul_one, Nat.cast_ofNat] at this
+    exact this
+  rw [hfr x hx]
+  exact hd.congr_of_eventuallyEq hev
+
+end HalfSplit
+
+/-- info: 'HalfSplit.hasDerivAt_bernoulli_two_fract' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.hasDerivAt_bernoulli_two_fract
