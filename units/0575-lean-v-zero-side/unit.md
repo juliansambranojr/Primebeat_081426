@@ -10,7 +10,7 @@ context: the adversary review of unit 0576 found that unit 0572's script builds 
 sealed: false
 ---
 
-**Question.** Where does the right zero found by the earlier measurement near five thousand sit, for 0572's function and for the Lean V?
+**Question.** Where does the right zero found by the earlier measurement near five thousand sit, for that measurement's function and for the Lean V?
 
 **What ran.** `run/zeroside.py`, by `run/run.sh`, through `lab run`, with `run/vlib.py` holding both functions. It is the adversary's `loc.py` from unit 0576, writing `run/results.json`. The mollifier's logarithm is `results.L` 8.517193191416238. A grid search right of the line, then Newton's method. The first run failed because `python3 -I` blocked the import of `vlib.py` from the run folder; its record is `run/lab_run.001.json`. EXPLORATORY: no prereg, no verdict.
 
