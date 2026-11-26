@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-26T07:36:22Z
+# unit: 0589-taper-fold-sides
+# sources searched: 526
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:105097
+  B = sum(int(M[N // m]) for m in range(1, N // y + 1))
+
+# 2 found, 0 missing

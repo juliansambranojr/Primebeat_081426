@@ -1,0 +1,48 @@
+{
+ "fold": {
+  "10000": {
+   "mirrored_less_smooth_over_sqrt": -2.2301107431530864,
+   "tapered_small_over_sqrt": 2.1131533529083213,
+   "sum_over_sqrt": -0.11695739024476523,
+   "max_signed_count_over_sqrt": 1.27
+  },
+  "100000": {
+   "mirrored_less_smooth_over_sqrt": -1.9090133903913147,
+   "tapered_small_over_sqrt": 1.8099934013803531,
+   "sum_over_sqrt": -0.09901998901096158,
+   "max_signed_count_over_sqrt": 2.9187822803354138
+  },
+  "1000000": {
+   "mirrored_less_smooth_over_sqrt": -2.526939501472036,
+   "tapered_small_over_sqrt": 2.411869771791567,
+   "sum_over_sqrt": -0.11506972968046876,
+   "max_signed_count_over_sqrt": 6.366
+  },
+  "10000000": {
+   "mirrored_less_smooth_over_sqrt": -1.1448958898986188,
+   "tapered_small_over_sqrt": 1.0455720109171998,
+   "sum_over_sqrt": -0.09932387898141905,
+   "max_signed_count_over_sqrt": 14.955992193766349
+  },
+  "30000000": {
+   "mirrored_less_smooth_over_sqrt": -2.262480126678833,
+   "tapered_small_over_sqrt": 2.20474150380488,
+   "sum_over_sqrt": -0.057738622873952906,
+   "max_signed_count_over_sqrt": 22.50829335230313
+  }
+ },
+ "small_side": {
+  "100000000": {
+   "tapered_over_sqrt": 2.173002325175406,
+   "sharp_over_sqrt": -20.826997674824753
+  },
+  "1000000000": {
+   "tapered_over_sqrt": 2.3819493901401536,
+   "sharp_over_sqrt": 60.383373806591685
+  },
+  "10000000000": {
+   "tapered_over_sqrt": -0.7227617037123006,
+   "sharp_over_sqrt": -48.72276170376992
+  }
+ }
+}
