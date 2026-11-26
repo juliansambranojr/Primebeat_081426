@@ -254,6 +254,7 @@ import Stage3.SignData
 import Stage3.LittlewoodSharp
 import Stage3.StirlingSeries
 import Stage3.TuringSlope
+import Stage3.BasinChain
 
 namespace Stage3
 
