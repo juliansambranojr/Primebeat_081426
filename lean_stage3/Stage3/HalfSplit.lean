@@ -260,3 +260,29 @@ end HalfSplit
 /-- info: 'HalfSplit.centered_low_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.centered_low_le
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- **The centered rounding is Bernoulli's first function.** Measured from Julian's half, the
+rounding of `x` is `B₁(fract x)`, and the half itself is `−B₁(0) = −ζ(0)`. This puts the
+sieve's roundings on Mathlib's Bernoulli functions, whose Fourier series
+(`hasSum_one_div_pow_mul_fourier_mul_bernoulliFun`) carry the harmonics. -/
+theorem centered_eq_bernoulli (q : ℚ) :
+    ((Int.fract q : ℚ) : ℝ) - 1 / 2 = bernoulliFun 1 (((Int.fract q : ℚ) : ℝ)) := by
+  rw [bernoulliFun_one]
+
+/-- The half is Bernoulli's first number, negated: `B₁(0) = −1/2`. -/
+theorem half_is_bernoulli : bernoulliFun 1 0 = -(1 / 2) := by
+  rw [bernoulliFun_one]; ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.centered_eq_bernoulli' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.centered_eq_bernoulli
+
+/-- info: 'HalfSplit.half_is_bernoulli' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.half_is_bernoulli
