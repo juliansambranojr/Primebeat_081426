@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T03:25:24Z
+# unit: 0581-mirrors-and-sky
+# sources searched: 115
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:88634
+  See, that's what I was talking about. I was saying that 0 is the sky. And imagine a mirror on the fl...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:88657
+  theorem nyquist_no_go (b γ : ℝ) (hb : 1 < b) (hγ : nyquist b < γ) :
+
+# 3 found, 0 missing
