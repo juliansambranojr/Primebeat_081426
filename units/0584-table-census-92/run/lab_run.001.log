@@ -1,0 +1,24 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T04:30:59Z
+{'rows': 92, 'cells': 4278, 'zeros': [[2, 1], [4, 1], [8, 3], [20, 6]], 'cache_rows_compared': 63, 'cache_agrees': True, 'depth6_negative_rows': [8, 10, 12, 15, 17], 'depth6_zero_rows': [20], 'depth6_positive_from': 21}
+FKS2cor22 9.2211L^1.5e^-.8476sqrtL               d= 0 last failing r<=3000: 243  margin@r=63: 0.03374
+FKS2cor22 9.2211L^1.5e^-.8476sqrtL               d= 3 last failing r<=3000: 471  margin@r=63: 0.001147
+FKS2cor22 9.2211L^1.5e^-.8476sqrtL               d= 6 last failing r<=3000: 750  margin@r=63: 3.908e-05
+FKS2cor22 9.2211L^1.5e^-.8476sqrtL               d= 9 last failing r<=3000: 1078  margin@r=63: 1.334e-06
+FKS2cor22 9.2211L^1.5e^-.8476sqrtL               d=12 last failing r<=3000: 1455  margin@r=63: 4.562e-08
+Trudgian16 (memory) .2795L^.25e^-sqrt(L/6.455)   d= 0 last failing r<=3000: None  margin@r=63: 6.228
+Trudgian16 (memory) .2795L^.25e^-sqrt(L/6.455)   d= 3 last failing r<=3000: 176  margin@r=63: 0.2126
+Trudgian16 (memory) .2795L^.25e^-sqrt(L/6.455)   d= 6 last failing r<=3000: 588  margin@r=63: 0.00727
+Trudgian16 (memory) .2795L^.25e^-sqrt(L/6.455)   d= 9 last failing r<=3000: 1214  margin@r=63: 0.0002491
+Trudgian16 (memory) .2795L^.25e^-sqrt(L/6.455)   d=12 last failing r<=3000: 2052  margin@r=63: 8.546e-06
+FKS2 table6 row1                                 d= 0 last failing r<=3000: 34  margin@r=63: 2.719e+04
+FKS2 table6 row1                                 d= 3 last failing r<=3000: 37  margin@r=63: 926.7
+FKS2 table6 row1                                 d= 6 last failing r<=3000: 40  margin@r=63: 31.64
+FKS2 table6 row1                                 d= 9 last failing r<=3000: 59  margin@r=63: 1.082
+FKS2 table6 row1                                 d=12 last failing r<=3000: 314  margin@r=63: 0.03707
+RH Schoenfeld L^2/(8pi sqrt x)                   d= 0 last failing r<=3000: None  margin@r=63: 1.188e+07
+RH Schoenfeld L^2/(8pi sqrt x)                   d= 3 last failing r<=3000: 20  margin@r=63: 2.903e+05
+RH Schoenfeld L^2/(8pi sqrt x)                   d= 6 last failing r<=3000: 33  margin@r=63: 7111
+RH Schoenfeld L^2/(8pi sqrt x)                   d= 9 last failing r<=3000: 46  margin@r=63: 174.6
+RH Schoenfeld L^2/(8pi sqrt x)                   d=12 last failing r<=3000: 58  margin@r=63: 4.298
+# exit 0 after 60.202s, ended 2026-11-26T04:31:59Z
