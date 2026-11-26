@@ -224,3 +224,38 @@ end HalfPair
 /-- info: 'HalfPair.pair_identity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.pair_identity
+
+namespace HalfPair
+
+open Finset
+
+/-- **The pairing identity in `a` and `b`.** Over one period `lcm(a, b)`, two of the half's
+sawtooths sum to `(g² + 2)/(12 g)`, `g = gcd(a, b)`. -/
+theorem pair_gcd {a b : ℕ} (ha : 0 < a) (hb : 0 < b) :
+    ∑ k ∈ range (Nat.lcm a b), saw a k * saw b k
+      = (((Nat.gcd a b : ℕ) : ℚ) ^ 2 + 2) / (12 * (Nat.gcd a b : ℕ)) := by
+  obtain ⟨G, hG⟩ : ∃ G, G = Nat.gcd a b := ⟨_, rfl⟩
+  have hg : 0 < G := hG ▸ Nat.gcd_pos_of_pos_left b ha
+  obtain ⟨A, hA⟩ : ∃ A, A = a / G := ⟨_, rfl⟩
+  obtain ⟨B, hB⟩ : ∃ B, B = b / G := ⟨_, rfl⟩
+  have hea : a = G * A := by rw [hA, hG]; exact (Nat.mul_div_cancel' (Nat.gcd_dvd_left a b)).symm
+  have heb : b = G * B := by rw [hB, hG]; exact (Nat.mul_div_cancel' (Nat.gcd_dvd_right a b)).symm
+  have ha' : 0 < A := Nat.pos_of_mul_pos_left (hea ▸ ha)
+  have hb' : 0 < B := Nat.pos_of_mul_pos_left (heb ▸ hb)
+  have hcop : Nat.Coprime A B := by
+    rw [hA, hB, hG]; exact Nat.coprime_div_gcd_div_gcd (hG ▸ hg)
+  have hl : Nat.lcm a b = G * (A * B) := by
+    have h1 : G * Nat.lcm a b = a * b := by rw [hG]; exact Nat.gcd_mul_lcm a b
+    have h2 : a * b = G * (G * (A * B)) := by
+      calc a * b = (G * A) * (G * B) := by rw [← hea, ← heb]
+        _ = G * (G * (A * B)) := by ring
+    exact Nat.eq_of_mul_eq_mul_left hg (h1.trans h2)
+  have h := pair_identity hg ha' hb' hcop
+  rw [← hea, ← heb, ← hl, hG] at h
+  exact h
+
+end HalfPair
+
+/-- info: 'HalfPair.pair_gcd' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.pair_gcd
