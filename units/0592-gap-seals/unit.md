@@ -22,4 +22,6 @@ sealed: false
 
 **What it says.** The deals in a row are signed by primes up to the row's square root and none above it: Julian's seals and the sieve's half (`SieveExact`, the primes up to the square root fix the row) are one object. Twins are the gaps the scaffold closes alone; every wider gap calls on primes further up, to the cut.
 
-What remains. Whether the shape of the deals inside a row bears on where the table's cells balance.
+**Follow-up, the tug between twins and lone primes (`run/tug.py`).** Every cell split into the part its twin primes give and the part its lone primes give. At the deep balance the twins give `tug.deep_20_6_twins` -1036 and the lone primes `tug.deep_20_6_lone` 1036: neither is quiet, the two cancel. Over all `tug.cells` 341 cells to row twenty-seven the two parts pull opposite ways in a share `tug.twins_opposite_share` 0.7126099706744868 of the cells, and the cell is a median `tug.median_cell_over_parts` 0.4 of the two parts' sizes added. With random primes in the twins' place, the same count per row, the share is `tug.control_opposite_share` 0.7463976945244957. The opposition is the differencing's own, cancelling large neighbouring rows, and not special to the doorway primes: the twins carry no special share of the table's balances.
+
+What remains. Whether anything in the deals, beyond the differencing, marks where the cells balance.

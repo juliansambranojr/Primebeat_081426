@@ -2,7 +2,9 @@
 # run/ and regenerate. Every key carries its source file's stem, so two
 # result files in one unit cannot collide.
 # source run/lab_run.001.json sha256 dfdb85098fa12fc2bbf9a780a7144d396e458792201d7c146519d98c9feda56a
+# source run/lab_run.002.json sha256 f5993a1c59bf39b2640ff969b10b3bbf8660bb9ef86ea0850250a8b8d471866b
 # source run/seal.json sha256 7d369ab2cf36adb0964b0054eaa5f2cf2e4408417abe7291fe12d2204f2aa925
+# source run/tug.json sha256 f5254c38805f55bd7e5880edf5928603f9f7f0df45c77470e6b3d67a2bb269e5
 lab_run.001.schema_version	"v1.0"
 lab_run.001.unit	"units/0592-gap-seals"
 lab_run.001.runnable	"run/run.sh"
@@ -24,6 +26,27 @@ meta.lab_run.001.meta.runnable_sha256	"21d5d25cbdd4485418e4a315702b6e7e06753138d
 meta.lab_run.001.meta.run_start	"2026-11-26T08:22:29Z"
 meta.lab_run.001.meta.run_end	"2026-11-26T08:23:01Z"
 meta.lab_run.001.meta.wall_s	32.646534505998716
+lab_run.002.schema_version	"v1.0"
+lab_run.002.unit	"units/0592-gap-seals"
+lab_run.002.runnable	"run/run.sh"
+lab_run.002.command	"/bin/sh -e run.sh"
+lab_run.002.argv[0]	"/bin/sh"
+lab_run.002.argv[1]	"-e"
+lab_run.002.argv[2]	"run.sh"
+lab_run.002.cwd	"run"
+lab_run.002.status	"completed"
+lab_run.002.exit_code	0
+lab_run.002.environment.lab_python	"v3.13.18"
+lab_run.002.environment.path_python3	"v3.13.18"
+lab_run.002.environment.shell	"/bin/sh"
+lab_run.002.environment.os	"Linux v6.18.44-fc-v880 x86_64"
+lab_run.002.environment.virtual_env	null
+lab_run.002.environment.git_head	"f498f319aecbfd92391493d2d9ca32179eded05e"
+lab_run.002.environment.git_dirty	true
+meta.lab_run.002.meta.runnable_sha256	"f97bb79a53c9c73c58314aa687c8ee2b46c477f15eb545bda3a3f39437fbda04"
+meta.lab_run.002.meta.run_start	"2026-11-26T08:27:08Z"
+meta.lab_run.002.meta.run_end	"2026-11-26T08:27:47Z"
+meta.lab_run.002.meta.wall_s	39.474602925998624
 seal.r8.gaps	22
 seal.r8.twin_share	0.3181818181818182
 seal.r8.mean_hardest_over_sqrt	0.36079545454545453
@@ -104,3 +127,9 @@ seal.r27.gaps	3645743
 seal.r27.twin_share	0.07179661320065622
 seal.r27.mean_hardest_over_sqrt	0.13654911029624878
 seal.r27.max_hardest_over_sqrt	0.9994615990428507
+tug.cells	341
+tug.twins_opposite_share	0.7126099706744868
+tug.control_opposite_share	0.7463976945244957
+tug.median_cell_over_parts	0.4
+tug.deep_20_6_twins	-1036
+tug.deep_20_6_lone	1036
