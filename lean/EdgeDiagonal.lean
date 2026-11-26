@@ -83,3 +83,35 @@ end EdgeDiagonal
 /-- info: 'EdgeDiagonal.fwdDiff_iter_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms EdgeDiagonal.fwdDiff_iter_sum
+
+namespace EdgeDiagonal
+
+/-- **The edge factor's size.** For `z = r·e^(iθ)`, `|z − 1|² = r² − 2r·cos θ + 1`. With
+`r = 2^β`, `θ = γ·log 2` this is the factor a zero `ρ = β + iγ` carries per depth. -/
+theorem normSq_sub_one (r θ : ℝ) :
+    Complex.normSq ((r : ℂ) * Complex.exp (θ * Complex.I) - 1) = r ^ 2 - 2 * r * Real.cos θ + 1 := by
+  rw [Complex.normSq_apply]
+  simp only [Complex.sub_re, Complex.sub_im, Complex.mul_re, Complex.mul_im,
+    Complex.ofReal_re, Complex.ofReal_im, Complex.exp_ofReal_mul_I_re,
+    Complex.exp_ofReal_mul_I_im, Complex.one_re, Complex.one_im]
+  nlinarith [Real.sin_sq_add_cos_sq θ]
+
+/-- **Between `(r − 1)²` and `(r + 1)²`, the top reached exactly at `cos θ = −1`.** -/
+theorem normSq_sub_one_le (r θ : ℝ) (hr : 0 < r) :
+    (r - 1) ^ 2 ≤ Complex.normSq ((r : ℂ) * Complex.exp (θ * Complex.I) - 1) ∧
+    Complex.normSq ((r : ℂ) * Complex.exp (θ * Complex.I) - 1) ≤ (r + 1) ^ 2 ∧
+    (Complex.normSq ((r : ℂ) * Complex.exp (θ * Complex.I) - 1) = (r + 1) ^ 2 ↔ Real.cos θ = -1) := by
+  rw [normSq_sub_one]
+  have h1 := Real.cos_le_one θ
+  have h2 := Real.neg_one_le_cos θ
+  refine ⟨by nlinarith, by nlinarith, ⟨fun h => ?_, fun h => by rw [h]; ring⟩⟩
+  have : r * (Real.cos θ + 1) = 0 := by nlinarith
+  rcases mul_eq_zero.mp this with h0 | h0
+  · linarith
+  · linarith
+
+end EdgeDiagonal
+
+/-- info: 'EdgeDiagonal.normSq_sub_one_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EdgeDiagonal.normSq_sub_one_le
