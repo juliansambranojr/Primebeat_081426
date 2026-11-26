@@ -119,3 +119,25 @@ end PrimeStepTop
 /-- info: 'PrimeStepTop.net_by_steps_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms PrimeStepTop.net_by_steps_top
+
+namespace PrimeStepTop
+
+open Finset
+
+/-- **The primes in `[p, M]` are a difference of prime counts.** For `1 ≤ p`, the primes from `p`
+to `M` and the primes up to `p − 1` together are the primes up to `M`. -/
+theorem card_primes_Icc {p M : ℕ} (hp : 1 ≤ p) (hpM : p ≤ M + 1) :
+    ((Icc p M).filter Nat.Prime).card + Nat.primeCounting (p - 1) = Nat.primeCounting M := by
+  rw [← Nat.primesLE_card_eq_primeCounting, ← Nat.primesLE_card_eq_primeCounting,
+    Nat.primesLE_eq_filter_Icc_zero, Nat.primesLE_eq_filter_Icc_zero, ← card_union_of_disjoint]
+  · congr 1
+    ext m; simp only [mem_union, mem_filter, mem_Icc]
+    by_cases hmp : m.Prime <;> simp only [hmp, and_true, and_false, or_false] <;> omega
+  · rw [disjoint_left]; intro m hm hm'
+    simp only [mem_filter, mem_Icc] at hm hm'; omega
+
+end PrimeStepTop
+
+/-- info: 'PrimeStepTop.card_primes_Icc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PrimeStepTop.card_primes_Icc
