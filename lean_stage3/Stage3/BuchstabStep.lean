@@ -64,3 +64,45 @@ end BuchstabStep
 /-- info: 'BuchstabStep.phi_insert' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms BuchstabStep.phi_insert
+
+namespace BuchstabStep
+
+open Finset
+
+/-- **Buchstab's identity, unrolled.** For a finite set `S` of primes, every number from `1` to
+`M` either survives the sieve by `S` or has a smallest prime factor `p ∈ S`; those with smallest
+factor `p` are `p` times the survivors at `M / p` of the sieve by the primes of `S` below `p`:
+
+    Φ(M, S) + Σ_{p ∈ S} Φ(M / p, {q ∈ S, q < p}) = M. -/
+theorem phi_unroll (S : Finset ℕ) (hS : ∀ q ∈ S, q.Prime) (M : ℕ) :
+    Φ M S + ∑ p ∈ S, Φ (M / p) (S.filter (· < p)) = M := by
+  induction S using Finset.induction_on_max generalizing M with
+  | empty => simp [Φ]
+  | insert a s ha ih =>
+    have has : a ∉ s := fun h => lt_irrefl a (ha a h)
+    have hs : ∀ q ∈ s, q.Prime := fun q hq => hS q (mem_insert_of_mem hq)
+    have hfa : (insert a s).filter (· < a) = s := by
+      ext x; simp only [mem_filter, mem_insert]
+      constructor
+      · rintro ⟨hx | hx, hlt⟩
+        · exact absurd hx (ne_of_lt hlt)
+        · exact hx
+      · intro hx; exact ⟨Or.inr hx, ha x hx⟩
+    have hfx : ∀ x ∈ s, (insert a s).filter (· < x) = s.filter (· < x) := by
+      intro x hx
+      ext y; simp only [mem_filter, mem_insert]
+      constructor
+      · rintro ⟨hy | hy, hlt⟩
+        · subst hy; exact absurd (lt_trans hlt (ha x hx)) (lt_irrefl _)
+        · exact ⟨hy, hlt⟩
+      · rintro ⟨hy, hlt⟩; exact ⟨Or.inr hy, hlt⟩
+    have hstep := phi_insert hs (hS a (mem_insert_self a s)) has M
+    rw [sum_insert has, hfa, sum_congr rfl fun x hx => by rw [hfx x hx]]
+    have := ih hs M
+    omega
+
+end BuchstabStep
+
+/-- info: 'BuchstabStep.phi_unroll' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms BuchstabStep.phi_unroll
