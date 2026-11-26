@@ -179,3 +179,48 @@ end HalfPair
 /-- info: 'HalfPair.saw_block' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.saw_block
+
+namespace HalfPair
+
+open Finset
+
+/-- `m` periods of the half's sawtooth sum to `−m/2`. -/
+theorem sum_saw_periods {a : ℕ} (ha : 0 < a) (m : ℕ) :
+    ∑ q ∈ range (a * m), saw a q = (m : ℚ) * (-(1 / 2)) := by
+  rw [sum_blocks]
+  have h : ∀ q r, r < a → saw a (a * q + r) = saw a r := by
+    intro q r hr
+    rw [← saw_mod a (a * q + r), Nat.mul_add_mod, Nat.mod_eq_of_lt hr]
+  rw [Finset.sum_congr rfl fun q _ => Finset.sum_congr rfl fun r hr => h q r (mem_range.mp hr)]
+  simp only [sum_saw_period ha, Finset.sum_const, card_range, nsmul_eq_mul]
+
+/-- **The pairing identity.** For `a = g·a'`, `b = g·b'` with `a', b'` coprime, two of the half's
+sawtooths over one common period `g·a'·b'` sum to `(g² + 2)/(12 g)`, the shared part's own
+sawtooth squared: averaged, `(gcd² + 2)/(12ab)`. -/
+theorem pair_identity {g a' b' : ℕ} (hg : 0 < g) (ha : 0 < a') (hb : 0 < b')
+    (hab : Nat.Coprime a' b') :
+    ∑ k ∈ range (g * (a' * b')), saw (g * a') k * saw (g * b') k = ((g : ℚ) ^ 2 + 2) / (12 * g) := by
+  rw [sum_blocks, Finset.sum_comm, ← sum_saw_sq hg]
+  refine Finset.sum_congr rfl fun t ht => ?_
+  have ht' := mem_range.mp ht
+  rw [Finset.sum_congr rfl fun q _ => by rw [saw_block hg ht' ha, saw_block hg ht' hb]]
+  have hg' : (g : ℚ) ≠ 0 := by exact_mod_cast hg.ne'
+  have ha' : (a' : ℚ) ≠ 0 := by exact_mod_cast ha.ne'
+  have hb' : (b' : ℚ) ≠ 0 := by exact_mod_cast hb.ne'
+  have e : ∀ q, (saw a' q + (t : ℚ) / (g * a')) * (saw b' q + (t : ℚ) / (g * b'))
+      = saw a' q * saw b' q + (t : ℚ) / (g * b') * saw a' q + (t : ℚ) / (g * a') * saw b' q
+        + (t : ℚ) ^ 2 / (g ^ 2 * a' * b') := by
+    intro q; field_simp; ring
+  simp only [e, Finset.sum_add_distrib, ← Finset.mul_sum, Finset.sum_const, card_range, nsmul_eq_mul]
+  rw [pair_coprime ha hb hab, sum_saw_periods ha b', mul_comm a' b', sum_saw_periods hb a']
+  have hst : saw g t = (t : ℚ) / g - 1 / 2 := by unfold saw; rw [Nat.mod_eq_of_lt ht']
+  rw [hst]
+  push_cast
+  field_simp
+  ring
+
+end HalfPair
+
+/-- info: 'HalfPair.pair_identity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.pair_identity
