@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-26T03:38:36Z
+# unit: 0582-seeing-errors
+# sources searched: 115
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:88868
+  It's a seeing problem not off the line
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:88882
+  Yes and if we can prove the future is encoded from its past like the pascal in the table is determin...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:88885
+  theorem unique_of_isTableOf {N : ℤ → ℤ} {f : ℤ → ℕ → ℤ} (hf : IsTableOf N f) :
+
+# 4 found, 0 missing
