@@ -174,3 +174,52 @@ end HalfSplit
 /-- info: 'HalfSplit.wobble_centered_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.wobble_centered_low
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- A set of primes is read off its product: a prime is in it exactly when it divides it. -/
+theorem mem_iff_dvd_prod {T : Finset ℕ} (hT : ∀ q ∈ T, q.Prime) {p : ℕ} (hp : p.Prime) :
+    p ∈ T ↔ p ∣ ∏ q ∈ T, q := by
+  constructor
+  · intro h; exact Finset.dvd_prod_of_mem _ h
+  · intro h
+    obtain ⟨q, hq, hpq⟩ := (Prime.dvd_finsetProd_iff hp.prime _).mp h
+    rwa [(Nat.prime_dvd_prime_iff_eq hp (hT q hq)).mp hpq]
+
+/-- **The products up to `N` are at most `N` in number.** Distinct sets of primes have distinct
+products, and each lies in `[1, N]`. -/
+theorem card_lowT_le (N : ℕ) : (lowT N).card ≤ N := by
+  have hinj : Set.InjOn (fun T : Finset ℕ => ∏ p ∈ T, p) (lowT N) := by
+    intro T hT T' hT' h
+    have hTp : ∀ q ∈ T, q.Prime := fun q hq =>
+      prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp hT).1 hq)
+    have hT'p : ∀ q ∈ T', q.Prime := fun q hq =>
+      prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp hT').1 hq)
+    ext p
+    constructor
+    · intro hp
+      have hpp := hTp p hp
+      rw [mem_iff_dvd_prod hT'p hpp]
+      have := (mem_iff_dvd_prod hTp hpp).mp hp
+      simpa [h] using this
+    · intro hp
+      have hpp := hT'p p hp
+      rw [mem_iff_dvd_prod hTp hpp]
+      have := (mem_iff_dvd_prod hT'p hpp).mp hp
+      simpa [h] using this
+  have hmaps : ∀ T ∈ lowT N, (∏ p ∈ T, p) ∈ Icc 1 N := by
+    intro T hT
+    have hTp : ∀ q ∈ T, q.Prime := fun q hq =>
+      prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp hT).1 hq)
+    refine mem_Icc.mpr ⟨?_, (mem_filter.mp hT).2⟩
+    exact Nat.one_le_iff_ne_zero.mpr (Finset.prod_ne_zero_iff.mpr fun q hq => (hTp q hq).ne_zero)
+  have := Finset.card_le_card_of_injOn _ hmaps hinj
+  simpa using this
+
+end HalfSplit
+
+/-- info: 'HalfSplit.card_lowT_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.card_lowT_le
