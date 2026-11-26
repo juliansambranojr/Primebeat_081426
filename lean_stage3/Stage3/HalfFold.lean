@@ -176,3 +176,42 @@ end HalfFold
 /-- info: 'HalfFold.wobble_fold_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfFold.wobble_fold_bound
+
+namespace HalfFold
+
+/-- **The open line in the fold's form.** If the tapered small side and the mirrored side less the
+smooth counts both stay within `C √N log N` from some `N₀` on, the wobble does: `WobbleSqrt`, and
+with it the Riemann hypothesis (`HalfSieve.spiralLink_iff_wobble`, `OneChain.one_chain`). -/
+theorem wobbleSqrt_of_fold {C₁ C₂ : ℝ} {N₀ : ℕ}
+    (h₁ : ∀ N ≥ N₀, |taperedSmall N| ≤ C₁ * Real.sqrt N * Real.log N)
+    (h₂ : ∀ N ≥ N₀, |mirroredExcess N| ≤ C₂ * Real.sqrt N * Real.log N) :
+    HalfSieve.WobbleSqrt := by
+  refine ⟨C₁ + C₂ + 2, max N₀ 3, fun N hN => ?_⟩
+  have hN0 : N₀ ≤ N := le_trans (le_max_left _ _) hN
+  have hN3 : 3 ≤ N := le_trans (le_max_right _ _) hN
+  have hlog : 1 ≤ Real.log N := by
+    rw [Real.le_log_iff_exp_le (by positivity)]
+    have : Real.exp 1 < 3 := lt_trans Real.exp_one_lt_d9 (by norm_num)
+    have h3 : (3 : ℝ) ≤ N := by exact_mod_cast hN3
+    linarith
+  have hsq : 0 ≤ Real.sqrt N := Real.sqrt_nonneg _
+  have hb := wobble_fold_bound N (by omega)
+  have hw : HalfSieve.wobble N
+      = (HalfSieve.wobble N + taperedSmall N + mirroredExcess N) - taperedSmall N - mirroredExcess N := by
+    ring
+  rw [hw]
+  calc |(HalfSieve.wobble N + taperedSmall N + mirroredExcess N) - taperedSmall N - mirroredExcess N|
+      ≤ |HalfSieve.wobble N + taperedSmall N + mirroredExcess N| + |taperedSmall N| + |mirroredExcess N| := by
+        have := abs_sub (HalfSieve.wobble N + taperedSmall N + mirroredExcess N - taperedSmall N)
+          (mirroredExcess N)
+        have := abs_sub (HalfSieve.wobble N + taperedSmall N + mirroredExcess N) (taperedSmall N)
+        linarith
+    _ ≤ 2 * Real.sqrt N + C₁ * Real.sqrt N * Real.log N + C₂ * Real.sqrt N * Real.log N := by
+        linarith [h₁ N hN0, h₂ N hN0]
+    _ ≤ (C₁ + C₂ + 2) * Real.sqrt N * Real.log N := by nlinarith
+
+end HalfFold
+
+/-- info: 'HalfFold.wobbleSqrt_of_fold' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfFold.wobbleSqrt_of_fold
