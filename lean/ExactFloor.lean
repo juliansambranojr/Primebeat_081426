@@ -95,3 +95,62 @@ end ExactFloor
 /-- info: 'ExactFloor.stencil_exp_mul_floor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms ExactFloor.stencil_exp_mul_floor
+
+namespace ExactFloor
+
+open Finset Nonvanishing
+
+/-! ## The differences of `1/(m − a)`
+
+The smooth row is `2^m·h(m)` with `h(m) = ∫₀¹ 2^(−u)/(m − u) du`; its differences
+are those of `1/(m − u)` under the integral, and those are exact: a falling
+product in the denominator. -/
+
+/-- The falling product `∏_{j ≤ i} (m − a − j)`. -/
+noncomputable def fall (a : ℝ) (i : ℕ) (m : ℤ) : ℝ := ∏ j ∈ range (i + 1), ((m : ℝ) - a - j)
+
+theorem fall_succ_left (a : ℝ) (i : ℕ) (m : ℤ) :
+    fall a (i + 1) m = ((m : ℝ) - a) * ∏ j ∈ range (i + 1), ((m : ℝ) - a - (j + 1)) := by
+  unfold fall; rw [prod_range_succ']; push_cast; ring
+
+theorem fall_succ_right (a : ℝ) (i : ℕ) (m : ℤ) :
+    fall a (i + 1) m = fall a i m * ((m : ℝ) - a - (i + 1)) := by
+  unfold fall; rw [prod_range_succ]; push_cast; ring
+
+theorem fall_pred (a : ℝ) (i : ℕ) (m : ℤ) :
+    fall a i (m - 1) = ∏ j ∈ range (i + 1), ((m : ℝ) - a - (j + 1)) := by
+  unfold fall; refine prod_congr rfl fun j _ => ?_; push_cast; ring
+
+/-- **The differences of `1/(m − a)`, exactly.** -/
+theorem iter_recip (a : ℝ) (i : ℕ) (m : ℤ) (h : ∀ j ≤ i, (m : ℝ) - a - j ≠ 0) :
+    (bdiffZ^[i]) (fun x : ℤ => 1 / ((x : ℝ) - a)) m = (-1) ^ i * i.factorial / fall a i m := by
+  induction i generalizing m with
+  | zero => simp [fall]
+  | succ n ih =>
+    rw [Function.iterate_succ_apply']
+    show (bdiffZ^[n]) _ m - (bdiffZ^[n]) _ (m - 1) = _
+    have h1 := ih m (fun j hj => h j (by omega))
+    have h2 := ih (m - 1) (fun j hj => by
+      have := h (j + 1) (by omega); push_cast at this ⊢; intro hc; apply this; linarith)
+    rw [h1, h2, fall_pred, fall_succ_right]
+    set Q := ∏ j ∈ range n, ((m : ℝ) - a - (j + 1)) with hQ
+    have hPm : fall a n m = ((m : ℝ) - a) * Q := by
+      cases n with
+      | zero => simp [fall, hQ]
+      | succ k => rw [fall_succ_left]
+    have hPm1 : ∏ j ∈ range (n + 1), ((m : ℝ) - a - (j + 1)) = Q * ((m : ℝ) - a - (n + 1)) := by
+      rw [prod_range_succ]
+    have h0 : (m : ℝ) - a ≠ 0 := by simpa using h 0 (by omega)
+    have hl : (m : ℝ) - a - (n + 1) ≠ 0 := by have := h (n + 1) le_rfl; push_cast at this; exact this
+    have hQ0 : Q ≠ 0 := by
+      rw [hQ, prod_ne_zero_iff]; intro j hj
+      have := h (j + 1) (by have := mem_range.mp hj; omega); push_cast at this; exact this
+    rw [hPm, hPm1, Nat.factorial_succ]; push_cast
+    field_simp
+    ring
+
+end ExactFloor
+
+/-- info: 'ExactFloor.iter_recip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ExactFloor.iter_recip
