@@ -20,4 +20,6 @@ sealed: false
 
 **What it says.** At every multiple of six with two primes beside it the doorway is balanced: one twin goes each way. Only the lone primes tip it, and the tip stays at the square root over the range. That side is the L-function of the character modulo three, not zeta; its bound is a statement about that function's zeros, of the same kind as the open line.
 
-What remains. Whether the balance of the twins and the size of the lone primes' tip are tied, and a route from that side back to the wobble.
+**Follow-up, the tie (`run/tie.py`).** Is the tip tied to the twin count's own error, the twins counted less twice the twin constant times the logarithmic integral of the inverse square logarithm? Raw, over eight hundred points from ten thousand to a hundred million, the two over the square root correlate at `tie.raw_corr` -0.4968590418979876. With the prime squares' bias and the slow drift of each taken out the correlation is `tie.clean_corr` -0.06838764829088097, against `tie.control_corr` 0.021990722680077932 for the two series misaligned. The raw tie was shared drift: the twins balance the doorway by where they sit, and the size of the lone primes' tip is not set by the twins' count.
+
+What remains. A route from the doorway's side, the L-function of the character modulo three, back to the wobble.
