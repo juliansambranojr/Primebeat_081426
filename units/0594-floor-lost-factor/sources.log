@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-26T21:37:02Z
+# unit: 0594-floor-lost-factor
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:109670
+  (1) depths 12 and up in the middle band (d up to about r/3): the gate (Interpolant.tableFrom_ne_zero...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:110363
+  def exact(r, d): return sum((-1)**k * math.comb(d, k) * s(r-k) for k in range(d+1))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:110364
+  def mlow(r, d): return mpf(0.5) * mpf(2)**(r-d-1) * L2**d / r
+
+# 4 found, 0 missing
