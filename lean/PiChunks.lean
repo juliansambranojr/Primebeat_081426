@@ -1,11 +1,8 @@
 /-
 PiChunks — rows 15 and 16 of the π list, counted in blocks of 4096 so each kernel check
-recurses only 4096 deep (`count_eq_chunks`).
+recurses only 4096 deep, one file per block (`PiBlock*`), since the kernel's memory for a block stays held for the rest of its file.
 -/
-import Mathlib
-import DepthSix
 import PiSieve
-import PiRows
 
 namespace PiChunks
 open PiSieve
@@ -46,26 +43,8 @@ theorem primeCounting_eq_total (N : ℕ) (ls : List ℕ) (h : ls.sum = N + 1) :
     Nat.primeCounting N = total 0 ls := by
   rw [Nat.primeCounting, Nat.primeCounting', ← h, ← zero_add ls.sum, count_total]; simp
 
-theorem pi15 : Nat.primeCounting (2 ^ 15) = 3512 := by
-  rw [primeCounting_eq_total _ (List.replicate 8 4096 ++ [1]) (by decide)]
-  decide +kernel
-
-theorem pi16 : Nat.primeCounting (2 ^ 16) = 6542 := by
-  rw [primeCounting_eq_total _ (List.replicate 16 4096 ++ [1]) (by decide)]
-  decide +kernel
-
-/-- **`StmtPiData` on rows 0 … 16, proved.** -/
-theorem piData_le16 : ∀ n : Nat, n ≤ 16 →
-    (DepthSix.piTwoPow.getD n 0 : Int) = (Nat.primeCounting (2 ^ n) : Int) := by
-  intro n hn
-  rcases Nat.lt_or_ge n 15 with h | h
-  · exact PiRows.piData_le14 n (by omega)
-  · interval_cases n
-    · rw [pi15]; decide
-    · rw [pi16]; decide
-
 end PiChunks
 
-/-- info: 'PiChunks.piData_le16' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'PiChunks.count_total' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
-#print axioms PiChunks.piData_le16
+#print axioms PiChunks.count_total

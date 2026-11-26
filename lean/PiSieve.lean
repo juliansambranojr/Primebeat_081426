@@ -5,7 +5,9 @@ evaluated by the kernel. No `native_decide`.
 `noDiv n d fuel`: no divisor of `n` in `[d, √n]`, by structural recursion on the fuel.
 `isPrimeB_iff`: `isPrimeB n = true ↔ n.Prime`. `cnt_eq`: `cnt n = Nat.count Nat.Prime n`.
 -/
-import Mathlib
+import Mathlib.NumberTheory.PrimeCounting
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
 
 namespace PiSieve
 
