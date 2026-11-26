@@ -2,10 +2,12 @@
 # run/ and regenerate. Every key carries its source file's stem, so two
 # result files in one unit cannot collide.
 # source run/below.json sha256 3203a4d440989dc5a9edec6f51247c5144b95f7dd411dbfb81c15bcb46f4ecb8
+# source run/buchstab.json sha256 a28833a32e09342d483fb64b9910aac8de3ed14e9960194c5109ac3a4e2214c0
 # source run/fold.json sha256 76aac549e295b0638c7a66216cdb6f2d40d732f6ffd17a3fe68c64730fcb245f
 # source run/lab_run.001.json sha256 84fac966faecab2f10c9ef23f17246090a151d90b65512fa5cfa5c1cf4adef3f
 # source run/lab_run.002.json sha256 625fe4003a9ff4cd9ca91edf80bfee2c24b5aa6c8504aeba05e9ac936fe229c7
 # source run/lab_run.003.json sha256 588f7142ef417d97a2f7926a26c1d25c2e8cc4ae5f9429b4de0c6cddb4da7c86
+# source run/lab_run.004.json sha256 893cfb982a08f3ee1433008fcf1e1be04e2510de4b21a444f3fb5d2c13e3f518
 below.r16.above_over_sqrt	0.40302097962271405
 below.r16.below_over_sqrt	-0.06023338646229437
 below.r16.smooth_over_sqrt	0.20421852645273272
@@ -31,6 +33,31 @@ below.r24.below_over_sqrt	-2.2444024156832887
 below.r24.smooth_over_sqrt	12.79605121326953
 below.r24.wobble_over_sqrt	0.08246527485839117
 below.r24.identity_error	3.8119196688057855e-10
+buchstab.r16.sum_over_sqrt	18.309693447176794
+buchstab.r16.sizes_over_sqrt	31.23916022210449
+buchstab.r16.ratio	0.586113497193854
+buchstab.r16.above_sum_over_sqrt	-2.7275071331095786
+buchstab.r16.below_sum_over_sqrt	21.037200580286374
+buchstab.r18.sum_over_sqrt	37.47912948728862
+buchstab.r18.sizes_over_sqrt	61.754555978517374
+buchstab.r18.ratio	0.6069046873290859
+buchstab.r18.above_sum_over_sqrt	-4.504367976427655
+buchstab.r18.below_sum_over_sqrt	41.983497463716276
+buchstab.r20.sum_over_sqrt	76.77061847621977
+buchstab.r20.sizes_over_sqrt	121.765071078394
+buchstab.r20.ratio	0.6304814492063475
+buchstab.r20.above_sum_over_sqrt	-6.844509362918015
+buchstab.r20.below_sum_over_sqrt	83.61512783913778
+buchstab.r22.sum_over_sqrt	155.89677532670436
+buchstab.r22.sizes_over_sqrt	241.07744626672513
+buchstab.r22.ratio	0.646666777589066
+buchstab.r22.above_sum_over_sqrt	-10.70169218866985
+buchstab.r22.below_sum_over_sqrt	166.5984675153742
+buchstab.r24.sum_over_sqrt	315.07723723313376
+buchstab.r24.sizes_over_sqrt	478.12805057391483
+buchstab.r24.ratio	0.6589808668513275
+buchstab.r24.above_sum_over_sqrt	-17.60541369551212
+buchstab.r24.below_sum_over_sqrt	332.6826509286459
 fold.rows.r20.primes	146
 fold.rows.r20.paired_sum_over_sqrt	0.7099110698625986
 fold.rows.r20.paired_sizes_over_sqrt	0.7369788341878463
@@ -150,3 +177,24 @@ meta.lab_run.003.meta.runnable_sha256	"6ad170747f8cfa485027895da1a7c61b3366f2dcc
 meta.lab_run.003.meta.run_start	"2026-11-26T05:23:19Z"
 meta.lab_run.003.meta.run_end	"2026-11-26T05:23:27Z"
 meta.lab_run.003.meta.wall_s	8.539592094
+lab_run.004.schema_version	"v1.0"
+lab_run.004.unit	"units/0587-mirror-fold-steps"
+lab_run.004.runnable	"run/run.sh"
+lab_run.004.command	"/bin/sh -e run.sh"
+lab_run.004.argv[0]	"/bin/sh"
+lab_run.004.argv[1]	"-e"
+lab_run.004.argv[2]	"run.sh"
+lab_run.004.cwd	"run"
+lab_run.004.status	"completed"
+lab_run.004.exit_code	0
+lab_run.004.environment.lab_python	"v3.13.18"
+lab_run.004.environment.path_python3	"v3.13.18"
+lab_run.004.environment.shell	"/bin/sh"
+lab_run.004.environment.os	"Linux v6.18.44-fc-v880 x86_64"
+lab_run.004.environment.virtual_env	null
+lab_run.004.environment.git_head	"82dd3eaade9ef624845483c789cb2b4031d95225"
+lab_run.004.environment.git_dirty	true
+meta.lab_run.004.meta.runnable_sha256	"980b78a641ab17d5491b766e58868d7ee260932a2966c50dae3067c99702eacc"
+meta.lab_run.004.meta.run_start	"2026-11-26T05:24:35Z"
+meta.lab_run.004.meta.run_end	"2026-11-26T05:24:43Z"
+meta.lab_run.004.meta.wall_s	8.826389023000047
