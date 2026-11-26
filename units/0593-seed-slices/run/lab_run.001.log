@@ -1,0 +1,6 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T20:47:14Z
+{'c20_6': {'zeros_part_t0': np.float64(-403.8434988132986), 'change_t-0.02': np.float64(-22.084268237847084), 'change_t0.02': np.float64(26.315369872433678), 'change_t0.2': np.float64(374.39042247216435)}, 'c19_6': {'zeros_part_t0': np.float64(112.365233406927), 'change_t-0.02': np.float64(14.118952571161728), 'change_t0.02': np.float64(-15.464294699451898), 'change_t0.2': np.float64(-207.04356607834828)}, 'c21_6': {'zeros_part_t0': np.float64(751.8247362587489), 'change_t-0.02': np.float64(54.61817132428473), 'change_t0.02': np.float64(-62.49646230091548), 'change_t0.2': np.float64(-700.823110195491)}}
+{'base2_cell_20_6': 0, 'crossings_b_1_9_to_2_1': 116, 'base4_zero_cells': 0}
+{'share_row20': 0.37341788533712955, 'share_row22': 0.374558203169536, 'c20_6': {'primes': 0, 'full_block': -773}, 'c19_6': {'primes': 343, 'full_block': 571}, 'c21_6': {'primes': 1713, 'full_block': 1704}}
+# exit 0 after 20.638s, ended 2026-11-26T20:47:34Z
