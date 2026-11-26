@@ -111,3 +111,27 @@ end ToInfinity
 /-- info: 'ToInfinity.only_four_zeros' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms ToInfinity.only_four_zeros
+
+namespace ToInfinity
+
+/-- **The price at depth 6, row 93,** in numbers: the gate needs relative error below more than
+`2.7·10⁻⁷`. -/
+theorem price_6_93 : (2.7e-7 : ℝ) < Real.log 2 ^ 6 / (2 * 93 * 3 ^ (6 + 1)) := by
+  have h := Real.log_two_gt_d9
+  rw [lt_div_iff₀ (by norm_num)]
+  have h6 : (0.6931471803 : ℝ) ^ 6 ≤ Real.log 2 ^ 6 := pow_le_pow_left₀ (by norm_num) h.le 6
+  nlinarith [h6]
+
+/-- **The price at depth 11, row 93,** the strictest of the depths `only_four_zeros` covers at its
+first row: relative error below more than `1.7·10⁻¹⁰`. -/
+theorem price_11_93 : (1.7e-10 : ℝ) < Real.log 2 ^ 11 / (2 * 93 * 3 ^ (11 + 1)) := by
+  have h := Real.log_two_gt_d9
+  rw [lt_div_iff₀ (by norm_num)]
+  have h11 : (0.6931471803 : ℝ) ^ 11 ≤ Real.log 2 ^ 11 := pow_le_pow_left₀ (by norm_num) h.le 11
+  nlinarith [h11]
+
+end ToInfinity
+
+/-- info: 'ToInfinity.price_11_93' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ToInfinity.price_11_93
