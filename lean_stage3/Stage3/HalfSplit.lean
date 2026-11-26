@@ -114,3 +114,28 @@ end HalfSplit
 /-- info: 'HalfSplit.survivors_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.survivors_low
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- **The wobble through the products up to `N` alone.** The sieve's wobble is the smooth
+counts `1 + Li N − Li √N` less the signed floors `⌊N/d⌋` of the products `d ≤ N`. Every
+product past `N` has dropped out. -/
+theorem wobble_low (N : ℕ) :
+    HalfSieve.wobble N = 1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)
+      - ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℝ) := by
+  have hs := sieve_split N
+  rw [survivors_low, smoothPart_eq_prod] at hs
+  have hnet : netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))
+      - ∑ T ∈ lowT N, (-1 : ℚ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℚ) := by linarith
+  unfold HalfSieve.wobble SieveResidual.smoothNet
+  rw [hnet]
+  push_cast
+  ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.wobble_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.wobble_low
