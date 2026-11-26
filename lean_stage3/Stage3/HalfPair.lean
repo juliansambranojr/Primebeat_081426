@@ -321,3 +321,35 @@ end HalfPair
 /-- info: 'HalfPair.square_form' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.square_form
+
+namespace HalfPair
+
+open Finset
+
+/-- **A sawtooth paired with itself.** Over `L` (a multiple of `a`), `Σ saw_a(k)² = (L/a)·(a² + 2)/(12a)`. -/
+theorem pair_self {a : ℕ} (ha : 0 < a) (m : ℕ) :
+    ∑ k ∈ range (a * m), saw a k * saw a k = (m : ℚ) * (((a : ℚ) ^ 2 + 2) / (12 * a)) := by
+  have h := pair_period ha ha m
+  simp only [Nat.lcm_self, Nat.gcd_self] at h
+  exact h
+
+/-- **The form, split into its diagonal and its pairs.** The square sum is the diagonal, each
+sawtooth with itself, plus every pair of distinct periods weighted by what they share. Measured
+(scratch, 2026-11-26): the whole form stays near `0.005·X` for `X = 10³ … 10⁵`; the pairs
+are where the sieve's signs cancel. -/
+theorem square_form_split (D : Finset ℕ) (hD : ∀ d ∈ D, 0 < d) (c : ℕ → ℚ) {L : ℕ}
+    (hL : ∀ d ∈ D, d ∣ L) :
+    ∑ k ∈ range L, (∑ d ∈ D, c d * saw d k) ^ 2
+      = ∑ a ∈ D, c a ^ 2 * (((L / a : ℕ) : ℚ) * (((a : ℚ) ^ 2 + 2) / (12 * a)))
+        + ∑ a ∈ D, ∑ b ∈ D.erase a, c a * c b * (((L / Nat.lcm a b : ℕ) : ℚ) *
+            ((((Nat.gcd a b : ℕ) : ℚ) ^ 2 + 2) / (12 * (Nat.gcd a b : ℕ)))) := by
+  rw [square_form D hD c hL, ← Finset.sum_add_distrib]
+  refine Finset.sum_congr rfl fun a ha => ?_
+  rw [← Finset.add_sum_erase D _ ha]
+  simp only [Nat.lcm_self, Nat.gcd_self, sq]
+
+end HalfPair
+
+/-- info: 'HalfPair.square_form_split' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.square_form_split
