@@ -255,6 +255,7 @@ import Stage3.LittlewoodSharp
 import Stage3.StirlingSeries
 import Stage3.TuringSlope
 import Stage3.BasinChain
+import Stage3.PNTWeld
 
 namespace Stage3
 
@@ -263,4 +264,3 @@ namespace Stage3
 #check @Backlund.zetaCounting_crude_majorant
 
 end Stage3
-import Stage3.PNTWeld
