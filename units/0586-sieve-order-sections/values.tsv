@@ -2,6 +2,8 @@
 # run/ and regenerate. Every key carries its source file's stem, so two
 # result files in one unit cannot collide.
 # source run/lab_run.001.json sha256 76016d4cf8f482b5b5fea9f1e05798e1d34ba2741d9f9ffecaa357e2e3603fb5
+# source run/lab_run.002.json sha256 07cc8ed38b88c62ede6fd9a790670d9f93795e481a61ad8bdad87441e0c6ff4b
+# source run/pairs.json sha256 300b77bb28f095273299b7db8efc9998f64f0853cdb5a46e5f23431880975be0
 # source run/results.json sha256 2a7f197816a1c60c32f8664c70e0da111872fe8903a79b82ad72be592f8020f6
 lab_run.001.schema_version	"v1.0"
 lab_run.001.unit	"units/0586-sieve-order-sections"
@@ -24,6 +26,63 @@ meta.lab_run.001.meta.runnable_sha256	"389c9fbd86b476aa1851f46cb457072de2544e76f
 meta.lab_run.001.meta.run_start	"2026-11-26T04:56:30Z"
 meta.lab_run.001.meta.run_end	"2026-11-26T04:56:32Z"
 meta.lab_run.001.meta.wall_s	1.425225171999955
+lab_run.002.schema_version	"v1.0"
+lab_run.002.unit	"units/0586-sieve-order-sections"
+lab_run.002.runnable	"run/run.sh"
+lab_run.002.command	"/bin/sh -e run.sh"
+lab_run.002.argv[0]	"/bin/sh"
+lab_run.002.argv[1]	"-e"
+lab_run.002.argv[2]	"run.sh"
+lab_run.002.cwd	"run"
+lab_run.002.status	"completed"
+lab_run.002.exit_code	0
+lab_run.002.environment.lab_python	"v3.13.18"
+lab_run.002.environment.path_python3	"v3.13.18"
+lab_run.002.environment.shell	"/bin/sh"
+lab_run.002.environment.os	"Linux v6.18.44-fc-v880 x86_64"
+lab_run.002.environment.virtual_env	null
+lab_run.002.environment.git_head	"a3dc18c89baac95e9aa76ff8bbc1a92eef5b2251"
+lab_run.002.environment.git_dirty	true
+meta.lab_run.002.meta.runnable_sha256	"09e2ef346af9da7a8cad288164b8ef68ad50eb708cf8b52d33f3b3440ba82e5c"
+meta.lab_run.002.meta.run_start	"2026-11-26T05:01:28Z"
+meta.lab_run.002.meta.run_end	"2026-11-26T05:01:34Z"
+meta.lab_run.002.meta.wall_s	6.213043846999426
+pairs.pair91.k	91
+pairs.pair91.heights[0]	220.714918839314
+pairs.pair91.heights[1]	221.43070555469333
+pairs.pair91.M	110
+pairs.pair91.natural_stages_off_line	25
+pairs.pair91.sieve_stages_off_line	9
+pairs.pair135.k	135
+pairs.pair135.heights[0]	294.9653696192655
+pairs.pair135.heights[1]	295.57325487895827
+pairs.pair135.M	147
+pairs.pair135.natural_stages_off_line	41
+pairs.pair135.sieve_stages_off_line	11
+pairs.pair159.k	159
+pairs.pair159.heights[0]	333.64537852486984
+pairs.pair159.heights[1]	334.2113548332444
+pairs.pair159.M	167
+pairs.pair159.natural_stages_off_line	46
+pairs.pair159.sieve_stages_off_line	0
+pairs.pair186.k	186
+pairs.pair186.heights[0]	375.82591276673935
+pairs.pair186.heights[1]	376.32409223066804
+pairs.pair186.M	188
+pairs.pair186.natural_stages_off_line	54
+pairs.pair186.sieve_stages_off_line	9
+pairs.pair212.k	212
+pairs.pair212.heights[0]	415.01880975515513
+pairs.pair212.heights[1]	415.4552149962946
+pairs.pair212.M	207
+pairs.pair212.natural_stages_off_line	60
+pairs.pair212.sieve_stages_off_line	10
+pairs.pair725.k	725
+pairs.pair725.heights[0]	1093.4408732723687
+pairs.pair725.heights[1]	1094.284457523754
+pairs.pair725.M	546
+pairs.pair725.natural_stages_off_line	97
+pairs.pair725.sieve_stages_off_line	12
 results.zeros.724	1091.7284729669368
 results.zeros.725	1093.4408732723687
 results.zeros.726	1094.284457523754

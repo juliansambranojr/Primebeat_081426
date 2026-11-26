@@ -18,4 +18,6 @@ sealed: false
 
 **What it says.** One pair, one window. The sieve order shortens the pair's time off the line and moves it later; it does not remove the collision. Jerby's reversal order removes it for this pair in his figure. Whether a prime order has been tried before is not checked yet.
 
-What remains. More pairs; the literature check; a Lean step.
+**More pairs.** `run/pairs.py` runs both orders on the five closest pairs below the point run's height from unit 0578 and on the pair above. Stages off the line, natural against sieve: `pairs.pair91.natural_stages_off_line` 25 against `pairs.pair91.sieve_stages_off_line` 9 near height `pairs.pair91.heights[0]` 220.714918839314; `pairs.pair135.natural_stages_off_line` 41 against `pairs.pair135.sieve_stages_off_line` 11; `pairs.pair159.natural_stages_off_line` 46 against `pairs.pair159.sieve_stages_off_line` 0; `pairs.pair186.natural_stages_off_line` 54 against `pairs.pair186.sieve_stages_off_line` 9; `pairs.pair212.natural_stages_off_line` 60 against `pairs.pair212.sieve_stages_off_line` 10. On every pair the sieve order spends fewer stages off the line, and on one it never leaves. A literature search found no earlier rearrangement of the sections by prime order; that is one search.
+
+What remains. Why the sieve order holds the pairs; whether it ever loses one. `lean_stage3/Stage3/SieveOrder.lean` proves only that the full section is the same in both orders.
