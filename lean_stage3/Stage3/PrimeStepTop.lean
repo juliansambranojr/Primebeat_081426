@@ -55,3 +55,39 @@ end PrimeStepTop
 /-- info: 'PrimeStepTop.rough_eq_one_add_primes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms PrimeStepTop.rough_eq_one_add_primes
+
+namespace PrimeStepTop
+
+open Finset
+
+open Classical in
+/-- **A top prime's count in the net rounding.** For `p ∈ smallPrimes N` with `N / p < p²`, the
+count in `PrimeStep.net_by_steps` (the numbers up to `⌊N/p⌋` that no smaller prime up to `√N`
+divides) is `1` plus the primes from `p` to `⌊N/p⌋`. -/
+theorem step_count_top {N p : ℕ} (hp : p ∈ SieveExact.smallPrimes N) (hM : N / p < p * p) :
+    ((Icc 1 (N / p)).filter
+        (fun m => ∀ q ∈ (SieveExact.smallPrimes N).filter (· < p), ¬ q ∣ m)).card
+      = 1 + ((Icc p (N / p)).filter Nat.Prime).card := by
+  have hpp : p.Prime := SieveExact.prime_of_mem_smallPrimes hp
+  have hpsq : p ≤ Nat.sqrt N := by
+    have := (mem_filter.mp hp).1; rw [mem_range] at this; omega
+  have hpN : p * p ≤ N := by
+    have := Nat.sqrt_le N
+    exact le_trans (Nat.mul_le_mul hpsq hpsq) this
+  have h1 : 1 ≤ N / p := by
+    rw [Nat.le_div_iff_mul_le hpp.pos]; nlinarith [hpp.one_lt]
+  rw [← rough_eq_one_add_primes hpp hM h1]
+  congr 1
+  ext m
+  simp only [mem_filter, mem_Icc, SieveExact.smallPrimes, mem_range]
+  constructor
+  · rintro ⟨hm, h⟩
+    exact ⟨hm, fun q hq hqp => h q ⟨⟨by omega, hq⟩, hqp⟩⟩
+  · rintro ⟨hm, h⟩
+    exact ⟨hm, fun q ⟨⟨_, hq⟩, hqp⟩ => h q hq hqp⟩
+
+end PrimeStepTop
+
+/-- info: 'PrimeStepTop.step_count_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PrimeStepTop.step_count_top
