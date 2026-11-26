@@ -55,3 +55,32 @@ end TwinDoor
 /-- info: 'TwinDoor.twins_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms TwinDoor.twins_sum_zero
+
+namespace TwinDoor
+
+/-- The row line `2^r` is never a multiple of 3, so never a doorway `6k`. -/
+theorem pow_two_mod_three (r : ℕ) : 2 ^ r % 3 = 1 ∨ 2 ^ r % 3 = 2 := by
+  induction r with
+  | zero => left; rfl
+  | succ n ih => rw [pow_succ]; omega
+
+/-- **No twin pair straddles a row line past the first.** If `2^r − 1` and `2^r + 1` are both
+prime, then `r = 2`: the pair `(3, 5)`, `TwinLattice`'s one exception. Of three consecutive numbers
+one is a multiple of 3, the middle `2^r` never is, so one twin must be 3 itself. -/
+theorem straddle_only_two {r : ℕ} (h1 : (2 ^ r - 1).Prime) (h2 : (2 ^ r + 1).Prime) : r = 2 := by
+  have hpos : 1 ≤ 2 ^ r := Nat.one_le_two_pow
+  rcases pow_two_mod_three r with h | h
+  · have hd : 3 ∣ 2 ^ r - 1 := by omega
+    have h3 := (Nat.prime_dvd_prime_iff_eq Nat.prime_three h1).mp hd
+    have h4 : 2 ^ r = 2 ^ 2 := by omega
+    exact Nat.pow_right_injective (le_refl 2) h4
+  · have hd : 3 ∣ 2 ^ r + 1 := by omega
+    have h3 := (Nat.prime_dvd_prime_iff_eq Nat.prime_three h2).mp hd
+    have h4 : 2 ^ r - 1 = 1 := by omega
+    rw [h4] at h1; exact absurd h1 Nat.not_prime_one
+
+end TwinDoor
+
+/-- info: 'TwinDoor.straddle_only_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms TwinDoor.straddle_only_two
