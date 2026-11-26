@@ -5,14 +5,14 @@
 # the sizes, all over sqrt N; and the unpaired sums of E(N/p) and of E(p) alone.
 import json, math
 import numpy as np, mpmath as mp
-TOP = 2 ** 26
+TOP = 2 ** 28
 s = np.ones(TOP + 1, bool); s[:2] = False
 for q in range(2, int(TOP ** .5) + 1):
     if s[q]: s[q * q::q] = False
-pi = np.cumsum(s).astype(np.int64)
+pi = np.cumsum(s, dtype=np.int32)
 def E(x): return float(pi[x]) - float(mp.li(x) - mp.li(2))
 out = {}
-for r in range(20, 27, 2):
+for r in range(20, 29):
     N = 2 ** r; sq = math.isqrt(N); c = round(N ** (1 / 3))
     ps = [p for p in range(c + 1, sq + 1) if s[p]]
     Ep = {p: E(p) for p in ps}; En = {p: E(N // p) for p in ps}
@@ -25,3 +25,12 @@ for r in range(20, 27, 2):
     row["paired_ratio"] = row["paired_sum_over_sqrt"] / row["paired_sizes_over_sqrt"]
     out[f"r{r}"] = row; print(r, row, flush=True)
 json.dump(out, open("fold.json", "w"), indent=1)
+# growth of the paired total over sqrt N, row to row, as a power of N, and against log N
+rs = sorted(int(k[1:]) for k in out)
+import math as _m
+x = [r * _m.log(2) for r in rs]; y = [_m.log(out[f"r{r}"]["paired_sum_over_sqrt"]) for r in rs]
+n = len(x); mx = sum(x) / n; my = sum(y) / n
+slope = sum((a - mx) * (b - my) for a, b in zip(x, y)) / sum((a - mx) ** 2 for a in x)
+growth = {"exponent_over_sqrt": slope,
+          "over_sqrt_log_at_top": out[f"r{rs[-1]}"]["paired_sum_over_sqrt"] / (rs[-1] * _m.log(2))}
+json.dump({"rows": out, "growth": growth}, open("fold.json", "w"), indent=1); print(growth)
