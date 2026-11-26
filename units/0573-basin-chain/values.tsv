@@ -1,0 +1,23 @@
+key	value	source
+module_lines	1471	wc -l lean_stage3/Stage3/BasinChain*.lean (newlines summed)
+theorems_proved	24	grep -c ^theorem lean_stage3/Stage3/BasinChain*.lean (summed)
+defs	5	grep -c '^def\|^noncomputable def' lean_stage3/Stage3/BasinChain*.lean (summed)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/BasinChain*.lean
+pins	8	rh_of_noRightZeros, defect_eventually_const, noRightZeros_one_of_rh, count_exact, right_edge_le_arcsin, split_V, increment_avg, c0_lt_two
+errors_first	4	the worker's report: a goal closed early by field_simp, a shadowed binder, a bad membership line, a rewrite with no pattern
+builds	7	the worker's report, builds over the four files
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	9029	lake build (full Stage3), Build completed successfully
+jobs_module	8892	run/build.log, lake build Stage3.BasinChain
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s15	the basin floor and the chain from no right zeros
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	4	lean_stage3/Stage3/BasinChainCount.lean, BasinChainSplit.lean, BasinChainAvg.lean, BasinChain.lean
+c0	1.4546	lean_stage3/checks/basinchain/sizes.out section 1, crude r; c0_lt_two proves c0 < 2
+margin	0.545	lean_stage3/checks/basinchain/sizes.out section 3, 2 - c0
+loglog_floor	166	lean_stage3/checks/basinchain/sizes.out section 4, log log T0 >= 165.991
+open_leaves	2	StmtVHorizLower, StmtNoFiniteDefect in lean_stage3/Stage3/BasinChain.lean
+trap_first	149	lean_stage3/TRAPS.md
+trap_last	150	lean_stage3/TRAPS.md

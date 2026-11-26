@@ -159,6 +159,8 @@ build, 2026-09-08.
 | 146 | `rw [intervalIntegral.integral_comp_div]` finds no pattern | the integrand is the beta-redex `(fun y => …) (x / c)` under the binder (near rows 53 and 113) | `have hcv := integral_comp_div (f := …) hc; beta_reduce at hcv`, then `rw [hcv]` (unit 0571) |
 | 147 | `positivity` fails on `u/2 ≠ 0` or `0 < u/(2π)` with `u > 0` only as a hypothesis | `positivity` does not use hypotheses, even ones in context | `div_pos (by linarith [hu.1]) (by positivity)`, `ne_of_gt (by linarith)` (unit 0571) |
 | 148 | `unfold S` is ambiguous under `open Turing` | a root-level `S` from the imports clashes with `Turing.S` (row 48's family) | `unfold Turing.S` (unit 0571) |
+| 149 | a hypothesis `hx` is silently lost after `filter_upwards … with x hx hxI` | the binder `hx` shadows an outer `hx : x₁ ≤ x₂` (row 119's family, at a `filter_upwards` binder) | name the binder fresh, `with y hy hyI` (unit 0573) |
+| 150 | `rw [le_sub_iff_add_le]` finds no pattern in `g a ≤ F/h - X + c` | the top operation of the right side is `+`, `(F/h - X) + c` | state `g a + X - c ≤ F/h` as a `have` and close with `linarith` (unit 0573) |
 
 ## Bench and gate traps
 
