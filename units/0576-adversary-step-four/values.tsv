@@ -1,0 +1,4 @@
+key	value	source
+zeros_right_short	2	units/0562-basin-floor/values.tsv results.theta_0.25_zeros_right
+zeros_right_long	2	units/0562-basin-floor/values.tsv results.theta_1.0_zeros_right
+lean_scan_total	0	run/scan_lev_lean.out, DONE lev lean 5000.0 40 total 0

@@ -1055,3 +1055,24 @@ floor of each basin, the correlation of neighbouring basins' deviations (a
 negative one is weight moved from one basin to the next), and the zeros of
 `Vψ` right of `σ₀` in each basin by the winding of `Vψ` around the rectangle
 `[σ₀, 3]` over the basin.
+
+### S15, step 4 withdrawn after an adversary review (2026-11-26, Julian: "Yes")
+
+Unit 0576 records the review; unit 0575 records the correction to unit 0572.
+
+- **No right zeros of V is the Riemann hypothesis restated.** For `Q = 1`,
+  `W_one` gives `V = ζ`. For Levinson's `Q`, `W = Λ/2 + Λ′/L`, and under RH
+  `f − i·c·f′` with `f` real-rooted and `c > 0` has every zero on one side,
+  here left of the line, at every height and every `L`. With
+  `rh_of_noRightZeros` the two are equivalent: a Speiser-type theorem for `W`.
+- **The mollifier does not enter V.** The zeros of `Vψ` are those of `V` and of
+  `ψ`. The restatement "V with a growing mollifier" is withdrawn.
+- **The floor points the wrong way.** Zeros raise `∫ log|Vψ(σ₀+it)|`, so only
+  an upper bound limits them, and a larger mean lowers `κ`. Reflecting a zero in
+  the line `σ₀` leaves `|f|` on that line unchanged, so no functional of `|f|`
+  there sees its side. Sub-steps 4(b)–(d) are withdrawn.
+- **What stands.** The point run, the lower side of J, the averaging, evenness
+  and `rh_iff_defect_zero`, as logic; the fixed-range count with edge bounds
+  re-proved uniformly in `L`. All rest on the withdrawn step.
+- **Open.** The core of a route has to be a statement outside this family:
+  one whose size sees a single zero, or one that is not a mean square.

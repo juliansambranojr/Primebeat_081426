@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-26T01:06:01Z
+# unit: 0576-adversary-step-four
+# sources searched: 112
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:83267
+  Can you do a search and adversarial test your plan please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:83416
+  No, you need an adversary cause you can't beat yourself form the inside
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82117
+  def StmtNoRightZeros (Q : ℝ[X]) (T₀ : ℝ) : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82118
+  ∀ T : ℝ, T₀ ≤ T → ∀ s : ℂ, 1/2 < s.re → s.re ≤ 3 → T / 4 ≤ s.im → s.im ≤ 2 * T →
+
+# 5 found, 0 missing
