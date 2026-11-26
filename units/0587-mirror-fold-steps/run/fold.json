@@ -1,0 +1,34 @@
+{
+ "r20": {
+  "primes": 146,
+  "paired_sum_over_sqrt": 0.7099110698625986,
+  "paired_sizes_over_sqrt": 0.7369788341878463,
+  "top_scale_sum_over_sqrt": 1.5569162496220188,
+  "low_scale_sum_over_sqrt": 0.8470051797594201,
+  "paired_ratio": 0.9632719922613836
+ },
+ "r22": {
+  "primes": 272,
+  "paired_sum_over_sqrt": 0.9293567643353753,
+  "paired_sizes_over_sqrt": 0.9456969106648598,
+  "top_scale_sum_over_sqrt": 1.9177881630792837,
+  "low_scale_sum_over_sqrt": 0.9884313987439084,
+  "paired_ratio": 0.982721582205448
+ },
+ "r24": {
+  "primes": 510,
+  "paired_sum_over_sqrt": 1.112625208016636,
+  "paired_sizes_over_sqrt": 1.1245138969865307,
+  "top_scale_sum_over_sqrt": 2.3110192731375445,
+  "low_scale_sum_over_sqrt": 1.1983940651209086,
+  "paired_ratio": 0.9894277082731
+ },
+ "r26": {
+  "primes": 949,
+  "paired_sum_over_sqrt": 1.3755240284131198,
+  "paired_sizes_over_sqrt": 1.391920867322539,
+  "top_scale_sum_over_sqrt": 2.800779248215381,
+  "low_scale_sum_over_sqrt": 1.4252552198022612,
+  "paired_ratio": 0.9882199920308978
+ }
+}
