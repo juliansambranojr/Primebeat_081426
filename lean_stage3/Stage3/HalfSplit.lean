@@ -626,10 +626,11 @@ namespace HalfSplit
 
 open Finset SieveExact Real
 
-/-- **Near the square root the largest-prime condition is automatic.** For `p` with `N < p²`,
-a product `p · ∏ t ≤ N` cannot hold a prime above `p`: the step over the primes below `p` is the
-step over every other prime of the sieve. So these steps are the harmonics of the whole Möbius
-sum at the scale `N/p`. -/
+/-- For `p` with `N < p²`, a product `p · ∏ t ≤ N` cannot hold a prime above `p`.
+
+**VACUOUS, recorded 2026-11-26.** Every `p ∈ smallPrimes N` has `p ≤ √N`, so `p * p ≤ N`, and the
+hypothesis `N < p * p` never holds. The theorem is true and says nothing; nothing builds on it.
+`hstep_scale_lt` below is the step's form that does apply. -/
 theorem hstep_top (N n : ℕ) (y : ℝ) {p : ℕ} (hp : p ∈ smallPrimes N) (hN : N < p * p) :
     ∑ t ∈ ((smallPrimes N).filter (· < p)).powerset, hterm N n y (insert p t)
       = ∑ t ∈ ((smallPrimes N).erase p).powerset, hterm N n y (insert p t) := by
@@ -699,3 +700,35 @@ end HalfSplit
 /-- info: 'HalfSplit.hstep_scale' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.hstep_scale
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **A prime's harmonic step, one scale down.** The step of `p` over the smaller primes of the
+sieve is minus the signed cosines of `(y/p)/∏ t` over the sets `t` of primes below `p` whose
+product is at most `N/p`: the harmonic at the scale `N/p`, sieved by the primes below `p`. -/
+theorem hstep_scale_lt (N n : ℕ) (y : ℝ) {p : ℕ} (hp : p ∈ smallPrimes N) :
+    ∑ t ∈ ((smallPrimes N).filter (· < p)).powerset, hterm N n y (insert p t)
+      = -∑ t ∈ ((smallPrimes N).filter (· < p)).powerset.filter (fun t => (∏ q ∈ t, q) ≤ N / p),
+          (-1 : ℝ) ^ t.card * Real.cos (2 * π * n * ((y / p) / ((∏ q ∈ t, q : ℕ) : ℝ))) := by
+  have hpp := prime_of_mem_smallPrimes hp
+  rw [Finset.sum_filter, ← Finset.sum_neg_distrib]
+  refine Finset.sum_congr rfl fun t ht => ?_
+  have hpt : p ∉ t := fun h => lt_irrefl p (mem_filter.mp (mem_powerset.mp ht h)).2
+  unfold hterm
+  rw [prod_insert hpt, card_insert_of_notMem hpt]
+  have hiff : p * ∏ q ∈ t, q ≤ N ↔ (∏ q ∈ t, q) ≤ N / p := by
+    rw [Nat.le_div_iff_mul_le hpp.pos, mul_comm]
+  by_cases h : (∏ q ∈ t, q) ≤ N / p
+  · rw [if_pos (hiff.mpr h), if_pos h]
+    have : y / ((p * ∏ q ∈ t, q : ℕ) : ℝ) = (y / p) / ((∏ q ∈ t, q : ℕ) : ℝ) := by
+      push_cast; rw [div_div]
+    rw [this, pow_succ]; ring
+  · rw [if_neg (fun h' => h (hiff.mp h')), if_neg h, neg_zero]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.hstep_scale_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.hstep_scale_lt
