@@ -666,3 +666,36 @@ end HalfSplit
 /-- info: 'HalfSplit.hstep_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.hstep_top
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **A prime's harmonic step is the harmonic at the scale `N/p`, negated.** Over the sets `t`
+of the sieve's other primes, the step of `p` is minus the signed cosines of `(y/p)/∏ t` over the
+products `∏ t ≤ N/p`: the same sum one scale down. -/
+theorem hstep_scale (N n : ℕ) (y : ℝ) {p : ℕ} (hp : p ∈ smallPrimes N) :
+    ∑ t ∈ ((smallPrimes N).erase p).powerset, hterm N n y (insert p t)
+      = -∑ t ∈ ((smallPrimes N).erase p).powerset.filter (fun t => (∏ q ∈ t, q) ≤ N / p),
+          (-1 : ℝ) ^ t.card * Real.cos (2 * π * n * ((y / p) / ((∏ q ∈ t, q : ℕ) : ℝ))) := by
+  have hpp := prime_of_mem_smallPrimes hp
+  rw [Finset.sum_filter, ← Finset.sum_neg_distrib]
+  refine Finset.sum_congr rfl fun t ht => ?_
+  have hpt : p ∉ t := fun h => (mem_erase.mp (mem_powerset.mp ht h)).1 rfl
+  unfold hterm
+  rw [prod_insert hpt, card_insert_of_notMem hpt]
+  have hiff : p * ∏ q ∈ t, q ≤ N ↔ (∏ q ∈ t, q) ≤ N / p := by
+    rw [Nat.le_div_iff_mul_le hpp.pos, mul_comm]
+  by_cases h : (∏ q ∈ t, q) ≤ N / p
+  · rw [if_pos (hiff.mpr h), if_pos h]
+    have hp0 : (p : ℝ) ≠ 0 := by exact_mod_cast hpp.ne_zero
+    have : y / ((p * ∏ q ∈ t, q : ℕ) : ℝ) = (y / p) / ((∏ q ∈ t, q : ℕ) : ℝ) := by
+      push_cast; rw [div_div]
+    rw [this, pow_succ]; ring
+  · rw [if_neg (fun h' => h (hiff.mp h')), if_neg h, neg_zero]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.hstep_scale' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.hstep_scale
