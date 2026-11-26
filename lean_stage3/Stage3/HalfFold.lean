@@ -47,3 +47,39 @@ end HalfFold
 /-- info: 'HalfFold.wobble_fold' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfFold.wobble_fold
+
+namespace HalfFold
+
+open Finset SieveExact HalfSplit HalfTaper
+
+/-- The small side's floors are its exact fractions less its roundings. -/
+theorem small_side_split (N y : ℕ) :
+    ∑ d ∈ Icc 1 y, sieveMu N d * ((N / d : ℕ) : ℝ)
+      = (N : ℝ) * ∑ d ∈ Icc 1 y, sieveMu N d / d
+        - ∑ d ∈ Icc 1 y, sieveMu N d * Int.fract ((N : ℝ) / (d : ℝ)) := by
+  rw [Finset.mul_sum, ← Finset.sum_sub_distrib]
+  refine Finset.sum_congr rfl fun d _ => ?_
+  have h := congrArg (fun q : ℚ => (q : ℝ)) (natDiv_eq_sub_fract N d)
+  push_cast at h
+  rw [h]; ring
+
+/-- **The wobble through the tapered fold.** With `y = √N`: the wobble is the smooth counts, less
+the tapered small side, less the mirrored side, plus the small side's roundings, plus the fold line
+corrected by the taper, `(⌊N/y⌋ − N/y) · M_S(y)`. Unit 0589: the tapered small side and the
+mirrored side less the smooth counts each stay near two square roots, `10⁴` to `3·10⁷`. -/
+theorem wobble_taper (N : ℕ) (hN : 1 ≤ N) :
+    HalfSieve.wobble N = 1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)
+      - (N : ℝ) * ∑ d ∈ Icc 1 (Nat.sqrt N), sieveMu N d / d * (1 - (d : ℝ) / (Nat.sqrt N : ℕ))
+      - ∑ m ∈ Icc 1 (N / Nat.sqrt N), cnt (sieveMu N) (N / m)
+      + ∑ d ∈ Icc 1 (Nat.sqrt N), sieveMu N d * Int.fract ((N : ℝ) / (d : ℝ))
+      + (((N / Nat.sqrt N : ℕ) : ℝ) - (N : ℝ) / (Nat.sqrt N : ℕ)) * cnt (sieveMu N) (Nat.sqrt N) := by
+  have hy : 0 < Nat.sqrt N := Nat.sqrt_pos.mpr (by omega)
+  rw [wobble_fold N hN, small_side_split, taper_eq (sieveMu N) N (Nat.sqrt N) hy]
+  unfold cnt
+  ring
+
+end HalfFold
+
+/-- info: 'HalfFold.wobble_taper' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfFold.wobble_taper

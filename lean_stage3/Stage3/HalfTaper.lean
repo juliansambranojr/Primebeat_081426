@@ -16,13 +16,13 @@ open Finset
 /-- **The taper takes out exactly the signed count at the cut.** For any weights `c`,
 
     N · Σ_{d ≤ y} c(d)/d · (1 − d/y) = N · Σ_{d ≤ y} c(d)/d − (N/y) · Σ_{d ≤ y} c(d). -/
-theorem taper_eq (c : ℕ → ℚ) (N y : ℕ) (hy : 0 < y) :
-    (N : ℚ) * ∑ d ∈ Icc 1 y, c d / d * (1 - (d : ℚ) / y)
-      = (N : ℚ) * ∑ d ∈ Icc 1 y, c d / d - ((N : ℚ) / y) * ∑ d ∈ Icc 1 y, c d := by
-  have hy' : (y : ℚ) ≠ 0 := by exact_mod_cast hy.ne'
+theorem taper_eq {K : Type*} [Field K] [CharZero K] (c : ℕ → K) (N y : ℕ) (hy : 0 < y) :
+    (N : K) * ∑ d ∈ Icc 1 y, c d / d * (1 - (d : K) / y)
+      = (N : K) * ∑ d ∈ Icc 1 y, c d / d - ((N : K) / y) * ∑ d ∈ Icc 1 y, c d := by
+  have hy' : (y : K) ≠ 0 := by exact_mod_cast hy.ne'
   rw [Finset.mul_sum, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun d hd => ?_
-  have hd0 : (d : ℚ) ≠ 0 := by
+  have hd0 : (d : K) ≠ 0 := by
     have := (mem_Icc.mp hd).1; exact_mod_cast (by omega : d ≠ 0)
   field_simp
 
