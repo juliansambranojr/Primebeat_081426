@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-26T04:29:21Z
+# unit: 0583-sediment-settling
+# sources searched: 119
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:85121
+  Okay, so think of it this way. If the basins couple, then as they couple, the energy doesn't move fr...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:91452
+  return mp.pi ** (-s / 2) * mp.gamma(s / 2) * mp.fsum(n ** (-s) for n in ns)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:91453
+  return lambda s: half(s) + half(1 - s)
+
+# 4 found, 0 missing
