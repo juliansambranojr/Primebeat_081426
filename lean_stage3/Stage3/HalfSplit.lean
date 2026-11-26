@@ -139,3 +139,38 @@ end HalfSplit
 /-- info: 'HalfSplit.wobble_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.wobble_low
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- **The low part measured from the half.** Each floor `⌊N/d⌋` is `N/d` less its rounding, and
+the rounding is measured from Julian's half: the wobble is the smooth counts, less the exact
+fractions of the products up to `N`, plus their centered roundings, plus half their signs. -/
+theorem wobble_centered_low (N : ℕ) :
+    HalfSieve.wobble N = 1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)
+      - ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))
+      + ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+          (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)
+      + (1 / 2) * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card := by
+  rw [wobble_low]
+  have key : ∀ T ∈ lowT N, (-1 : ℝ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℝ)
+      = (-1 : ℝ) ^ T.card * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))
+        - (-1 : ℝ) ^ T.card * (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)
+        - (1 / 2) * (-1 : ℝ) ^ T.card := by
+    intro T _
+    have h := natDiv_eq_sub_fract N (∏ p ∈ T, p)
+    have h' : ((N / ∏ p ∈ T, p : ℕ) : ℝ) = (N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)
+        - ((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) := by
+      have := congrArg (fun q : ℚ => (q : ℝ)) h
+      push_cast at this ⊢
+      exact this
+    rw [h']; ring
+  rw [Finset.sum_congr rfl key, Finset.sum_sub_distrib, Finset.sum_sub_distrib, ← Finset.mul_sum]
+  ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.wobble_centered_low' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.wobble_centered_low
