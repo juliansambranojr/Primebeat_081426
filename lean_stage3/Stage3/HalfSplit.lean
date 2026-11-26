@@ -737,7 +737,11 @@ namespace HalfSplit
 
 open Finset SieveExact Real
 
-/-- **Buchstab's recursion for the harmonics.** For `N ≥ 1`, the sieve's `n`-th harmonic at `y`
+/-- DESIGN NOTE, 2026-11-26 (measured, exploratory): each prime's piece is `≈ 0.3 √(N/p)`, but
+the pieces' sizes add to `Σ √(N/p)`, `12.7 √N` at `10⁶`, a loss growing like `N^{1/4}/log N`;
+an induction through sizes on this recursion loses that factor.
+
+**Buchstab's recursion for the harmonics.** For `N ≥ 1`, the sieve's `n`-th harmonic at `y`
 is `cos(2π n y)` less, for each prime `p ≤ √N`, the harmonic at `y/p` over the products up to
 `N/p` of the primes below `p`. The counts' recursion (`BuchstabStep.phi_unroll`), carried to the
 harmonics. -/
@@ -799,7 +803,11 @@ open Finset SieveExact Real
 /-- The sieve's signed count up to `m`: the Möbius weights of the products `1 … m`. -/
 noncomputable def sieveMertens (N m : ℕ) : ℝ := ∑ i ∈ range m, sieveMu N (i + 1)
 
-/-- **The harmonic through the sieve's signed count.** By summation by parts, the harmonic is
+/-- DESIGN NOTE, 2026-11-26 (measured, exploratory): the signed count grows like `N^0.84`
+(`max |M_S| = 6.37 √N` at `10⁶`), so `|M_S| × variation` loses a growing factor; the harmonic
+is a cancellation between the two, not their product.
+
+**The harmonic through the sieve's signed count.** By summation by parts, the harmonic is
 the signed count at `N` times the last cosine, less the signed counts `M_S(i+1)` against the
 steps of the cosine from `y/(i+1)` to `y/(i+2)`. -/
 theorem harmonic_by_parts (N n : ℕ) (y : ℝ) :
@@ -883,7 +891,13 @@ noncomputable def centered (N : ℕ) : ℝ :=
 theorem wobble_balance (N : ℕ) : HalfSieve.wobble N = balance N + centered N := by
   rw [wobble_mertens]; unfold balance centered; ring
 
-/-- **So `WobbleSqrt` follows from the two parts at square-root size.** -/
+/-- **So `WobbleSqrt` follows from the two parts at square-root size.**
+
+DESIGN NOTE, 2026-11-26 (measured, scratch, exploratory): each part grows faster than
+`√N · log N` — the balance `−0.06 → −0.93 √N` and the centered roundings `+0.16 → +1.03 √N`
+from `N = 10⁵` to `10⁷` — while their sum, the wobble, stays near `0.1 √N`. So the two
+hypotheses look false for large `N`; bounding the parts separately loses a growing factor.
+The theorem is true and is kept; it is not a route. -/
 theorem wobbleSqrt_of_parts {C₁ C₂ : ℝ} {N₀ : ℕ}
     (h₁ : ∀ N ≥ N₀, |balance N| ≤ C₁ * Real.sqrt N * Real.log N)
     (h₂ : ∀ N ≥ N₀, |centered N| ≤ C₂ * Real.sqrt N * Real.log N) :
