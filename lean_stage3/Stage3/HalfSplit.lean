@@ -791,3 +791,37 @@ end HalfSplit
 /-- info: 'HalfSplit.harmonic_by_value' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.harmonic_by_value
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- The sieve's signed count up to `m`: the Möbius weights of the products `1 … m`. -/
+noncomputable def sieveMertens (N m : ℕ) : ℝ := ∑ i ∈ range m, sieveMu N (i + 1)
+
+/-- **The harmonic through the sieve's signed count.** By summation by parts, the harmonic is
+the signed count at `N` times the last cosine, less the signed counts `M_S(i+1)` against the
+steps of the cosine from `y/(i+1)` to `y/(i+2)`. -/
+theorem harmonic_by_parts (N n : ℕ) (y : ℝ) :
+    harmonic N n y = Real.cos (2 * π * n * (y / (N : ℝ))) * sieveMertens N N
+      - ∑ i ∈ range (N - 1),
+          (Real.cos (2 * π * n * (y / ((i + 2 : ℕ) : ℝ)))
+            - Real.cos (2 * π * n * (y / ((i + 1 : ℕ) : ℝ)))) * sieveMertens N (i + 1) := by
+  rw [harmonic_by_value]
+  have hshift : ∑ k ∈ Icc 1 N, sieveMu N k * Real.cos (2 * π * n * (y / (k : ℝ)))
+      = ∑ i ∈ range N, Real.cos (2 * π * n * (y / ((i + 1 : ℕ) : ℝ))) • sieveMu N (i + 1) := by
+    have hI : Icc 1 N = Ico 1 (N + 1) := by ext x; simp only [mem_Icc, mem_Ico]; omega
+    rw [hI, Finset.sum_Ico_eq_sum_range, Nat.add_sub_cancel]
+    refine Finset.sum_congr rfl fun i _ => ?_
+    rw [smul_eq_mul, add_comm 1 i]; ring
+  rw [hshift, Finset.sum_range_by_parts]
+  rcases Nat.eq_zero_or_pos N with h | h
+  · subst h; simp [sieveMertens]
+  · simp only [smul_eq_mul, sieveMertens]
+    rw [Nat.sub_add_cancel h]
+
+end HalfSplit
+
+/-- info: 'HalfSplit.harmonic_by_parts' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.harmonic_by_parts
