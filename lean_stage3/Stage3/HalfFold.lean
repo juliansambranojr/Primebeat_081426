@@ -83,3 +83,35 @@ end HalfFold
 /-- info: 'HalfFold.wobble_taper' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfFold.wobble_taper
+
+namespace HalfFold
+
+open Finset SieveExact HalfSplit HalfTaper
+
+/-- **The sieve's Möbius weight is at most one in size.** At most one set of sieve primes has a
+given product (`prod_injOn_primes`). -/
+theorem abs_sieveMu_le_one (N k : ℕ) : |sieveMu N k| ≤ 1 := by
+  unfold sieveMu
+  set F := (lowT N).filter (fun T => (∏ p ∈ T, p) = k)
+  have hcard : F.card ≤ 1 := by
+    rw [Finset.card_le_one]
+    intro T hT T' hT'
+    have hF : ∀ U ∈ F, ∀ q ∈ U, q.Prime := fun U hU q hq =>
+      prime_of_mem_smallPrimes (mem_powerset.mp (mem_filter.mp (mem_filter.mp hU).1).1 hq)
+    exact prod_injOn_primes F hF hT hT' ((mem_filter.mp hT).2.trans (mem_filter.mp hT').2.symm)
+  calc |∑ T ∈ F, (-1 : ℝ) ^ T.card| ≤ ∑ T ∈ F, |(-1 : ℝ) ^ T.card| := Finset.abs_sum_le_sum_abs _ _
+    _ = F.card := by simp
+    _ ≤ 1 := by exact_mod_cast hcard
+
+/-- The signed count up to `t` is at most `t`. -/
+theorem abs_cnt_le (N t : ℕ) : |cnt (sieveMu N) t| ≤ t := by
+  unfold cnt
+  calc _ ≤ ∑ d ∈ Icc 1 t, |sieveMu N d| := Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ d ∈ Icc 1 t, (1 : ℝ) := Finset.sum_le_sum fun d _ => abs_sieveMu_le_one N d
+    _ = t := by simp
+
+end HalfFold
+
+/-- info: 'HalfFold.abs_sieveMu_le_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfFold.abs_sieveMu_le_one
