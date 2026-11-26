@@ -319,3 +319,39 @@ end HalfSplit
 /-- info: 'HalfSplit.bernoulli_two_rounding' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.bernoulli_two_rounding
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **The sieve's integrated roundings as harmonics.** Over the products `d` up to `N`, the
+signed second Bernoulli functions of the roundings of `N/d` are one cosine series: the `n`-th
+harmonic is the signed sum of `cos(2π n N/d)` over the products, weighted `1/n²`. -/
+theorem sieve_bernoulli_two (N : ℕ) :
+    HasSum (fun n : ℕ => 1 / (n : ℝ) ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        Real.cos (2 * π * n * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))))
+      (π ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        bernoulliFun 2 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+  have h := hasSum_sum (s := lowT N) (fun T _ =>
+    (bernoulli_two_rounding ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))).mul_left ((-1 : ℝ) ^ T.card))
+  have e1 : (fun n : ℕ => 1 / (n : ℝ) ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        Real.cos (2 * π * n * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))) =
+      fun n : ℕ => ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * (1 / (n : ℝ) ^ 2 *
+        Real.cos (2 * π * n * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+    funext n
+    rw [Finset.mul_sum]
+    exact Finset.sum_congr rfl fun T _ => by ring
+  have e2 : π ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        bernoulliFun 2 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))) =
+      ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * (π ^ 2 *
+        bernoulliFun 2 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+    rw [Finset.mul_sum]
+    exact Finset.sum_congr rfl fun T _ => by ring
+  rw [e1, e2]
+  exact h
+
+end HalfSplit
+
+/-- info: 'HalfSplit.sieve_bernoulli_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.sieve_bernoulli_two
