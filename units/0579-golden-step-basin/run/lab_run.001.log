@@ -1,0 +1,11 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T02:33:55Z
+planted_sigma_0.03 {'falls_out': 1.0, 'does_not_fall_out': 0.0, 'ambiguous': 0.0}
+planted_sigma_0.05 {'falls_out': 0.9725, 'does_not_fall_out': 0.0075, 'ambiguous': 0.02}
+planted_sigma_0.1 {'falls_out': 0.6275, 'does_not_fall_out': 0.12, 'ambiguous': 0.2525}
+planted_sigma_0.15 {'falls_out': 0.125, 'does_not_fall_out': 0.2075, 'ambiguous': 0.6675}
+planted_sigma_0.2 {'falls_out': 0.0, 'does_not_fall_out': 0.325, 'ambiguous': 0.675}
+null_uniform {'falls_out': 0.0, 'does_not_fall_out': 0.9425, 'ambiguous': 0.0575}
+null_walk {'falls_out': 0.0, 'does_not_fall_out': 0.985, 'ambiguous': 0.015}
+mechanical output: does_not_fall_out  S = 0.2026431718061674  p = 0.47733522664773353
+# exit 0 after 70.759s, ended 2026-11-26T02:35:06Z

@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-26T02:33:42Z
+# unit: 0579-golden-step-basin
+# sources searched: 114
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:86062
+  You don't have to connect it to zeta because zeta is imaginary. Start with a zeta zero and run that ...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:86471
+  if not ok: return "compromised"
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:86472
+  if S >= 0.5 and pval < 0.001: return "falls_out"
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:86473
+  if pval >= 0.05: return "does_not_fall_out"
+
+# 5 found, 0 missing
