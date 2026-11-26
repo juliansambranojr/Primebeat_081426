@@ -223,3 +223,40 @@ end HalfSplit
 /-- info: 'HalfSplit.card_lowT_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.card_lowT_le
+
+namespace HalfSplit
+
+open Finset SieveExact
+
+/-- **Each centered rounding is at most a half.** So their signed sum over the products up to
+`N` is at most `N / 2`. This is the bound from sizes alone; it is `√N` short of `WobbleSqrt`,
+a factor that grows with `N`, so it cannot close the line by itself. -/
+theorem centered_low_le (N : ℕ) :
+    |∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)| ≤ (N : ℝ) / 2 := by
+  have hterm : ∀ T ∈ lowT N, |(-1 : ℝ) ^ T.card *
+      (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)| ≤ 1 / 2 := by
+    intro T _
+    rw [abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul, abs_le]
+    have h0 := Int.fract_nonneg ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ))
+    have h1 := Int.fract_lt_one ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ))
+    have h0' : (0 : ℝ) ≤ ((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) := by
+      exact_mod_cast h0
+    have h1' : ((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) < 1 := by
+      exact_mod_cast h1
+    constructor <;> linarith
+  calc _ ≤ ∑ T ∈ lowT N, |(-1 : ℝ) ^ T.card *
+          (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)| :=
+        Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ T ∈ lowT N, (1 / 2 : ℝ) := Finset.sum_le_sum hterm
+    _ = (lowT N).card / 2 := by rw [Finset.sum_const, nsmul_eq_mul]; ring
+    _ ≤ (N : ℝ) / 2 := by
+        have := card_lowT_le N
+        have : ((lowT N).card : ℝ) ≤ N := by exact_mod_cast this
+        linarith
+
+end HalfSplit
+
+/-- info: 'HalfSplit.centered_low_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.centered_low_le
