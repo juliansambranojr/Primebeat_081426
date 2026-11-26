@@ -861,3 +861,46 @@ end HalfSplit
 /-- info: 'HalfSplit.wobble_mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.wobble_mertens
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- The balance of the wobble: the smooth counts, less the exact fractions of the products up to
+`N`, plus half the sieve's signed count. Measured (scratch, exploratory, 2026-11-26): its parts
+grow (`+2.77√N` and `−3.18√N` at `N = 10⁶`), the balance is `−0.41√N`. -/
+noncomputable def balance (N : ℕ) : ℝ :=
+  1 + Stage3.Li (N : ℝ) - Stage3.Li ((Nat.sqrt N : ℕ) : ℝ)
+    - ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ))
+    + (1 / 2) * sieveMertens N N
+
+/-- The centered roundings over the products up to `N`. -/
+noncomputable def centered (N : ℕ) : ℝ :=
+  ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+    (((Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) : ℚ) : ℝ) - 1 / 2)
+
+/-- **The wobble is the balance plus the centered roundings.** -/
+theorem wobble_balance (N : ℕ) : HalfSieve.wobble N = balance N + centered N := by
+  rw [wobble_mertens]; unfold balance centered; ring
+
+/-- **So `WobbleSqrt` follows from the two parts at square-root size.** -/
+theorem wobbleSqrt_of_parts {C₁ C₂ : ℝ} {N₀ : ℕ}
+    (h₁ : ∀ N ≥ N₀, |balance N| ≤ C₁ * Real.sqrt N * Real.log N)
+    (h₂ : ∀ N ≥ N₀, |centered N| ≤ C₂ * Real.sqrt N * Real.log N) :
+    HalfSieve.WobbleSqrt := by
+  unfold HalfSieve.WobbleSqrt
+  refine ⟨C₁ + C₂, N₀, fun N hN => ?_⟩
+  rw [wobble_balance]
+  calc |balance N + centered N| ≤ |balance N| + |centered N| := abs_add_le _ _
+    _ ≤ C₁ * Real.sqrt N * Real.log N + C₂ * Real.sqrt N * Real.log N := add_le_add (h₁ N hN) (h₂ N hN)
+    _ = (C₁ + C₂) * Real.sqrt N * Real.log N := by ring
+
+end HalfSplit
+
+/-- info: 'HalfSplit.wobble_balance' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.wobble_balance
+
+/-- info: 'HalfSplit.wobbleSqrt_of_parts' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.wobbleSqrt_of_parts
