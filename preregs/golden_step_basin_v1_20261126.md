@@ -132,4 +132,4 @@ equals the sidecar.
 - secondary, mirror step `1/φ²`: `S` = 0.1894273127753304, `p` = 0.6835731642683573
 - mechanical output of the decision rule: `does_not_fall_out`
 - output: `results/O98_golden_step_basin.json`
-- `verdict`: (Julian's to write)
+- `verdict`: `does_not_fall_out` (Julian's word, 2026-11-26: "That's fine", to the recommendation of the label as the rule gave it)
