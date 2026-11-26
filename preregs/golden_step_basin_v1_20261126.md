@@ -1,7 +1,7 @@
 # Prereg — the golden step from the first zero (v1)
 
-STATUS: DRAFT — not locked. Locks on Julian's word; then the text is
-committed, then `O98_golden_step_basin.py` runs.
+STATUS: LOCKED on Julian's word, 2026-11-26 ("Lock it"). The text is
+committed before `O98_golden_step_basin.py` runs.
 
 ## Background
 
@@ -110,9 +110,9 @@ Deterministic: `default_rng(2026)`, no flags. Output
 
 ## Lock chain
 
-- `lock_written_at`: (fill at lock)
-- `pre_compute_sha256`: (fill at lock)
+- `lock_written_at`: 2026-11-26T02:31:13Z
+- `pre_compute_sha256`: in the sidecar `preregs/golden_step_basin_v1_20261126.sha256`
 - `run_start_at`: (fill at run)
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
-- `locked_by`: (fill at lock)
+- `locked_by`: claude-on-julian-authorization ("Lock it", 2026-11-26)
