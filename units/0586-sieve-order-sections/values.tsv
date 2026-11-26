@@ -2,10 +2,12 @@
 # run/ and regenerate. Every key carries its source file's stem, so two
 # result files in one unit cannot collide.
 # source run/allpairs.json sha256 38f1ffcaa2f3b1f742a6313ef6167c659de5f50fa5c27d76902f8dd0190d79cd
+# source run/higher.json sha256 70779cfd4f5870bb00f1a4599954a4a3d65daeea0f187a732017ac6a9a97d85b
 # source run/lab_run.001.json sha256 76016d4cf8f482b5b5fea9f1e05798e1d34ba2741d9f9ffecaa357e2e3603fb5
 # source run/lab_run.002.json sha256 07cc8ed38b88c62ede6fd9a790670d9f93795e481a61ad8bdad87441e0c6ff4b
 # source run/lab_run.003.json sha256 617f85474aa6f9e048bb24bdb2c165185b4d6dc8a07198e3753c7d1410353c37
 # source run/lab_run.004.json sha256 32f5a6ca810b36e6b62916962dc0ac82286c1ad3805ff2404134945be25064e4
+# source run/lab_run.005.json sha256 9b3a500d6cf820d11ba5547f117b45d2d1d3f9a42d11de60c02e640277154362
 # source run/orders.json sha256 ee6de710c169db075e1e85f78ee1081a4c65a585c30d4f06a6f4936242759637
 # source run/pairs.json sha256 300b77bb28f095273299b7db8efc9998f64f0853cdb5a46e5f23431880975be0
 # source run/results.json sha256 2a7f197816a1c60c32f8664c70e0da111872fe8903a79b82ad72be592f8020f6
@@ -18,6 +20,13 @@ allpairs.sieve_pairs_leave	140
 allpairs.sieve_stages_off	1510
 allpairs.leave_both	139
 allpairs.leave_sieve_only	1
+higher.pairs	419
+higher.natural_pairs_leave	376
+higher.natural_stages_off	43516
+higher.sieve_pairs_leave	203
+higher.sieve_stages_off	7547
+higher.fold_pairs_leave	193
+higher.fold_stages_off	7286
 lab_run.001.schema_version	"v1.0"
 lab_run.001.unit	"units/0586-sieve-order-sections"
 lab_run.001.runnable	"run/run.sh"
@@ -102,6 +111,27 @@ meta.lab_run.004.meta.runnable_sha256	"e87e7df87804a0a231e02e693e54b680411d74a1d
 meta.lab_run.004.meta.run_start	"2026-11-26T05:04:50Z"
 meta.lab_run.004.meta.run_end	"2026-11-26T05:07:02Z"
 meta.lab_run.004.meta.wall_s	132.40323178199924
+lab_run.005.schema_version	"v1.0"
+lab_run.005.unit	"units/0586-sieve-order-sections"
+lab_run.005.runnable	"run/run.sh"
+lab_run.005.command	"/bin/sh -e run.sh"
+lab_run.005.argv[0]	"/bin/sh"
+lab_run.005.argv[1]	"-e"
+lab_run.005.argv[2]	"run.sh"
+lab_run.005.cwd	"run"
+lab_run.005.status	"completed"
+lab_run.005.exit_code	0
+lab_run.005.environment.lab_python	"v3.13.18"
+lab_run.005.environment.path_python3	"v3.13.18"
+lab_run.005.environment.shell	"/bin/sh"
+lab_run.005.environment.os	"Linux v6.18.44-fc-v880 x86_64"
+lab_run.005.environment.virtual_env	null
+lab_run.005.environment.git_head	"d3b8e998d471c1dc85514903e6f6a4d5efe1915b"
+lab_run.005.environment.git_dirty	true
+meta.lab_run.005.meta.runnable_sha256	"56f3c1cb178f5f94039e7a9628b30d2924b5db7bf1d04a056aa1d7f676acd6c8"
+meta.lab_run.005.meta.run_start	"2026-11-26T05:26:32Z"
+meta.lab_run.005.meta.run_end	"2026-11-26T05:30:55Z"
+meta.lab_run.005.meta.wall_s	262.89992235000045
 orders.pairs	311
 orders.least_prime_pairs_leave	214
 orders.least_prime_stages_off	6166

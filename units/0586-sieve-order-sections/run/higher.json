@@ -1,0 +1,9 @@
+{
+ "pairs": 419,
+ "natural_pairs_leave": 376,
+ "natural_stages_off": 43516,
+ "sieve_pairs_leave": 203,
+ "sieve_stages_off": 7547,
+ "fold_pairs_leave": 193,
+ "fold_stages_off": 7286
+}
