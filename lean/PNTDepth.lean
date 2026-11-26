@@ -83,3 +83,38 @@ end PNTDepth
 /-- info: 'PNTDepth.eventually_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms PNTDepth.eventually_ne_zero
+
+namespace PNTDepth
+
+/-- The prime number theorem at the doublings, written out: `|π(2^m) − liRow m| ≤ ε·2^m/m` past
+some row, with `liRow m = 2/log 2 + ∫₁^m 2^t/t dt`. Welded by statement identity to
+`lean_stage3/Stage3/PNTWeld.lean`, where `stmtPNTx` proves it from PNT+ (`utilities/check_weld.py`). -/
+def StmtPNTx : Prop :=
+  ∀ ε : ℝ, 0 < ε → ∃ M : ℤ, ∀ m : ℤ, M ≤ m →
+    |((Nat.primeCounting (2 ^ m.toNat) : ℕ) : ℝ)
+        - (2 / Real.log 2 + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t)|
+      ≤ ε * (2 : ℝ) ^ (m : ℝ) / m
+
+theorem stmtPNT_of_x (h : StmtPNTx) : StmtPNT := by
+  intro ε hε
+  obtain ⟨M, hM⟩ := h ε hε
+  refine ⟨max M 1, fun m hm => ?_⟩
+  have hm1 : (1 : ℤ) ≤ m := le_trans (le_max_right _ _) hm
+  have hx : (1 / 2 : ℝ) ≤ (m : ℝ) := by
+    have : (1 : ℝ) ≤ m := by exact_mod_cast hm1
+    linarith
+  have := hM m (le_trans (le_max_left _ _) hm)
+  rw [Interpolant.liRow_eq hx]
+  exact this
+
+/-- **Each depth has finitely many zeros, given `StmtPNTx`.** The input is the statement that
+stage 3 proves from PNT+ with no `sorry` and no RH. -/
+theorem eventually_ne_zero_x (h : StmtPNTx) (d : ℕ) :
+    ∃ R : ℤ, ∀ r : ℤ, R ≤ r → Construction.tableFrom ToInfinity.trueRow r d ≠ 0 :=
+  eventually_ne_zero (stmtPNT_of_x h) d
+
+end PNTDepth
+
+/-- info: 'PNTDepth.eventually_ne_zero_x' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PNTDepth.eventually_ne_zero_x
