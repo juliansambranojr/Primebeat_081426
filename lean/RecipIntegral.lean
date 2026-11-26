@@ -98,3 +98,74 @@ end ExactFloor
 /-- info: 'ExactFloor.H_term_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms ExactFloor.H_term_le
+
+namespace ExactFloor
+open Finset Nonvanishing Set
+
+theorem geom_tail_le {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (d : ℕ) :
+    ∑ i ∈ range d, q ^ (i + 1) ≤ q / (1 - q) := by
+  have hg := geom_sum_mul q d
+  have hpow : 0 ≤ q ^ d := pow_nonneg hq0 d
+  have h1q : 0 < 1 - q := by linarith
+  have hs : (∑ i ∈ range d, q ^ i) * (1 - q) ≤ 1 := by nlinarith
+  have hs' : ∑ i ∈ range d, q ^ i ≤ 1 / (1 - q) := by rw [le_div_iff₀ h1q]; linarith
+  calc ∑ i ∈ range d, q ^ (i + 1) = q * ∑ i ∈ range d, q ^ i := by
+        rw [mul_sum]; exact sum_congr rfl fun i _ => by ring
+    _ ≤ q * (1 / (1 - q)) := mul_le_mul_of_nonneg_left hs' hq0
+    _ = q / (1 - q) := by ring
+
+theorem H_nonneg {w : ℝ → ℝ} (hw0 : ∀ u ∈ Icc (0 : ℝ) 1, 0 ≤ w u) {m : ℤ} (hm : (1 : ℝ) < m) :
+    0 ≤ H w m := by
+  unfold H
+  refine intervalIntegral.integral_nonneg zero_le_one fun u hu => ?_
+  have : 0 < (m : ℝ) - u := by linarith [hu.2]
+  exact mul_nonneg (hw0 u hu) (by positivity)
+
+/-- **The floor on the stencil of `2^m · H(m)`.** With `q = d/(r − 1 − d) < 1`, the stencil
+sits within `2^(r−d)·H(r)·q/(1−q)` of its main term `2^(r−d)·H(r)`. -/
+theorem stencil_H_floor {w : ℝ → ℝ} (hw : ContinuousOn w (uIcc 0 1))
+    (hw0 : ∀ u ∈ Icc (0 : ℝ) 1, 0 ≤ w u) (d : ℕ) (r : ℤ) (hr : (d : ℝ) + 1 < r)
+    (hq1 : (d : ℝ) / ((r : ℝ) - 1 - d) < 1) :
+    |stencilR d (fun m => (2 : ℝ) ^ m * H w m) r - (2 : ℝ) ^ (r - d) * H w r|
+      ≤ (2 : ℝ) ^ (r - d) * (H w r * ((d : ℝ) / ((r : ℝ) - 1 - d) / (1 - (d : ℝ) / ((r : ℝ) - 1 - d)))) := by
+  set q := (d : ℝ) / ((r : ℝ) - 1 - d) with hqdef
+  have hq0 : 0 ≤ q := div_nonneg (Nat.cast_nonneg d) (by linarith)
+  have hH := H_nonneg hw0 (m := r) (by linarith [(Nat.cast_nonneg d : (0:ℝ) ≤ d)])
+  refine (stencil_exp_mul_floor (H w) d r).trans ?_
+  have hp : (0 : ℝ) < (2 : ℝ) ^ (r - d) := zpow_pos (by norm_num) _
+  gcongr
+  calc ∑ i ∈ range d, (d.choose (i + 1) : ℝ) * |(bdiffZ^[i + 1]) (H w) r|
+      ≤ ∑ i ∈ range d, q ^ (i + 1) * H w r :=
+        sum_le_sum fun i hi => H_term_le hw hw0 (by have := mem_range.mp hi; omega) r hr
+    _ = H w r * ∑ i ∈ range d, q ^ (i + 1) := by rw [mul_sum]; exact sum_congr rfl fun _ _ => by ring
+    _ ≤ H w r * (q / (1 - q)) := mul_le_mul_of_nonneg_left (geom_tail_le hq0 hq1 d) hH
+
+/-- **The stencil is positive in the band.** With `q < 1/2`, i.e. `3d + 1 < r`, and `H(r) > 0`. -/
+theorem stencil_H_pos {w : ℝ → ℝ} (hw : ContinuousOn w (uIcc 0 1))
+    (hw0 : ∀ u ∈ Icc (0 : ℝ) 1, 0 ≤ w u) (d : ℕ) (r : ℤ) (hband : 3 * (d : ℝ) + 1 < r)
+    (hHpos : 0 < H w r) :
+    0 < stencilR d (fun m => (2 : ℝ) ^ m * H w m) r := by
+  have hd0 : (0 : ℝ) ≤ d := Nat.cast_nonneg d
+  have hr : (d : ℝ) + 1 < r := by linarith
+  have hden : 0 < (r : ℝ) - 1 - d := by linarith
+  set q := (d : ℝ) / ((r : ℝ) - 1 - d) with hqdef
+  have hqh : q < 1 / 2 := by rw [hqdef, div_lt_iff₀ hden]; linarith
+  have hq0 : 0 ≤ q := div_nonneg hd0 hden.le
+  have hF := stencil_H_floor hw hw0 d r hr (by linarith)
+  rw [← hqdef] at hF
+  have hp : (0 : ℝ) < (2 : ℝ) ^ (r - d) := zpow_pos (by norm_num) _
+  have h1q : 0 < 1 - q := by linarith
+  have hfrac : q / (1 - q) < 1 := by rw [div_lt_one h1q]; linarith
+  have hlt : H w r * (q / (1 - q)) < H w r := by nlinarith
+  have := (abs_le.mp hF).1
+  nlinarith
+
+end ExactFloor
+
+/-- info: 'ExactFloor.stencil_H_floor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ExactFloor.stencil_H_floor
+
+/-- info: 'ExactFloor.stencil_H_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ExactFloor.stencil_H_pos
