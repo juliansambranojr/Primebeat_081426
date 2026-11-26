@@ -259,3 +259,29 @@ end HalfPair
 /-- info: 'HalfPair.pair_gcd' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfPair.pair_gcd
+
+namespace HalfPair
+
+open Finset
+
+/-- The sawtooth repeats over any multiple of its period. -/
+theorem saw_shift {a L : ℕ} (h : a ∣ L) (q r : ℕ) : saw a (L * q + r) = saw a r := by
+  unfold saw
+  obtain ⟨c, rfl⟩ := h
+  rw [show a * c * q + r = r + a * (c * q) by ring, Nat.add_mul_mod_self_left]
+
+/-- **The pairing over any common period.** For `L = lcm(a,b)·m`, the pair sums to `m` times the
+pairing identity. -/
+theorem pair_period {a b : ℕ} (ha : 0 < a) (hb : 0 < b) (m : ℕ) :
+    ∑ k ∈ range (Nat.lcm a b * m), saw a k * saw b k
+      = (m : ℚ) * ((((Nat.gcd a b : ℕ) : ℚ) ^ 2 + 2) / (12 * (Nat.gcd a b : ℕ))) := by
+  rw [sum_blocks]
+  have h : ∀ q r, saw a (Nat.lcm a b * q + r) * saw b (Nat.lcm a b * q + r) = saw a r * saw b r :=
+    fun q r => by rw [saw_shift (Nat.dvd_lcm_left a b), saw_shift (Nat.dvd_lcm_right a b)]
+  simp only [h, Finset.sum_const, card_range, nsmul_eq_mul, pair_gcd ha hb]
+
+end HalfPair
+
+/-- info: 'HalfPair.pair_period' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfPair.pair_period
