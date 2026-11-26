@@ -732,3 +732,29 @@ end HalfSplit
 /-- info: 'HalfSplit.hstep_scale_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.hstep_scale_lt
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- **Buchstab's recursion for the harmonics.** For `N ≥ 1`, the sieve's `n`-th harmonic at `y`
+is `cos(2π n y)` less, for each prime `p ≤ √N`, the harmonic at `y/p` over the products up to
+`N/p` of the primes below `p`. The counts' recursion (`BuchstabStep.phi_unroll`), carried to the
+harmonics. -/
+theorem harmonic_recursion {N : ℕ} (hN : 1 ≤ N) (n : ℕ) (y : ℝ) :
+    harmonic N n y = Real.cos (2 * π * n * y) -
+      ∑ p ∈ smallPrimes N,
+        ∑ t ∈ ((smallPrimes N).filter (· < p)).powerset.filter (fun t => (∏ q ∈ t, q) ≤ N / p),
+          (-1 : ℝ) ^ t.card * Real.cos (2 * π * n * ((y / p) / ((∏ q ∈ t, q : ℕ) : ℝ))) := by
+  rw [harmonic_by_max, Finset.sum_congr rfl fun p hp => hstep_scale_lt N n y hp,
+    Finset.sum_neg_distrib, ← sub_eq_add_neg]
+  congr 1
+  unfold hterm
+  rw [if_pos (by simpa using hN)]
+  simp
+
+end HalfSplit
+
+/-- info: 'HalfSplit.harmonic_recursion' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.harmonic_recursion
