@@ -454,3 +454,49 @@ end HalfSplit
 /-- info: 'HalfSplit.sieve_step' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.sieve_step
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- `sieve_bernoulli_two` at any real point `y`, over the products of any finite family. -/
+theorem family_bernoulli_two (F : Finset (Finset ℕ)) (y : ℝ) :
+    HasSum (fun n : ℕ => 1 / (n : ℝ) ^ 2 * ∑ T ∈ F, (-1 : ℝ) ^ T.card *
+        Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ))))
+      (π ^ 2 * ∑ T ∈ F, (-1 : ℝ) ^ T.card *
+        bernoulliFun 2 (Int.fract (y / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+  have h := hasSum_sum (s := F) (fun T _ =>
+    (bernoulli_two_rounding (y / ((∏ p ∈ T, p : ℕ) : ℝ))).mul_left ((-1 : ℝ) ^ T.card))
+  have e1 : (fun n : ℕ => 1 / (n : ℝ) ^ 2 * ∑ T ∈ F, (-1 : ℝ) ^ T.card *
+        Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ)))) =
+      fun n : ℕ => ∑ T ∈ F, (-1 : ℝ) ^ T.card * (1 / (n : ℝ) ^ 2 *
+        Real.cos (2 * π * n * (y / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+    funext n; rw [Finset.mul_sum]; exact Finset.sum_congr rfl fun T _ => by ring
+  have e2 : π ^ 2 * ∑ T ∈ F, (-1 : ℝ) ^ T.card *
+        bernoulliFun 2 (Int.fract (y / ((∏ p ∈ T, p : ℕ) : ℝ))) =
+      ∑ T ∈ F, (-1 : ℝ) ^ T.card * (π ^ 2 *
+        bernoulliFun 2 (Int.fract (y / ((∏ p ∈ T, p : ℕ) : ℝ)))) := by
+    rw [Finset.mul_sum]; exact Finset.sum_congr rfl fun T _ => by ring
+  rw [e1, e2]; exact h
+
+/-- **Julian's half as harmonics.** For `t ∈ [0, 1)`, the sieve's centered roundings over the
+products up to `N`, weighted `2t/d`, plus `t²/d²`, are `1/π²` times the series whose `n`-th term
+is `1/n²` times the signed change of `cos(2π n y/d)` from `y = N` to `y = N + t`. -/
+theorem half_as_harmonics (N : ℕ) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1) :
+    HasSum (fun n : ℕ => 1 / (n : ℝ) ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        (Real.cos (2 * π * n * (((N : ℝ) + t) / ((∏ p ∈ T, p : ℕ) : ℝ)))
+          - Real.cos (2 * π * n * ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))))
+      (π ^ 2 * ∑ T ∈ lowT N, (-1 : ℝ) ^ T.card *
+        (2 * (t / ((∏ p ∈ T, p : ℕ) : ℝ)) *
+            bernoulliFun 1 (Int.fract ((N : ℝ) / ((∏ p ∈ T, p : ℕ) : ℝ)))
+          + (t / ((∏ p ∈ T, p : ℕ) : ℝ)) ^ 2)) := by
+  have h := (family_bernoulli_two (lowT N) ((N : ℝ) + t)).sub (family_bernoulli_two (lowT N) N)
+  rw [← sieve_step N ht0 ht1]
+  simp only [mul_sub, Finset.sum_sub_distrib] at h ⊢
+  exact h
+
+end HalfSplit
+
+/-- info: 'HalfSplit.half_as_harmonics' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.half_as_harmonics
