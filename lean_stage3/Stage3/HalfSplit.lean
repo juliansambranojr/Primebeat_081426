@@ -557,3 +557,67 @@ end HalfSplit
 /-- info: 'HalfSplit.harmonic_by_max' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms HalfSplit.harmonic_by_max
+
+namespace HalfSplit
+
+open Finset SieveExact Real
+
+/-- Distinct sets of primes have distinct products. -/
+theorem prod_injOn_primes (F : Finset (Finset ℕ)) (hF : ∀ T ∈ F, ∀ q ∈ T, q.Prime) :
+    Set.InjOn (fun T : Finset ℕ => ∏ p ∈ T, p) F := by
+  intro T hT T' hT' h
+  ext p
+  constructor
+  · intro hp
+    have hpp := hF T hT p hp
+    rw [mem_iff_dvd_prod (hF T' hT') hpp]
+    have := (mem_iff_dvd_prod (hF T hT) hpp).mp hp
+    simpa [h] using this
+  · intro hp
+    have hpp := hF T' hT' p hp
+    rw [mem_iff_dvd_prod (hF T hT) hpp]
+    have := (mem_iff_dvd_prod (hF T' hT') hpp).mp hp
+    simpa [h] using this
+
+/-- **Each prime's harmonic step is at most `N/p`.** The products whose largest prime is `p` are
+`p` times a product of smaller primes, at most `N/p` of them. -/
+theorem abs_hstep_le (N n : ℕ) (y : ℝ) {p : ℕ} (hp : p ∈ smallPrimes N) :
+    |∑ t ∈ ((smallPrimes N).filter (· < p)).powerset, hterm N n y (insert p t)| ≤ (N / p : ℕ) := by
+  set F := ((smallPrimes N).filter (· < p)).powerset with hF
+  have hpp : p.Prime := prime_of_mem_smallPrimes hp
+  have hprimes : ∀ t ∈ F, ∀ q ∈ t, q.Prime := fun t ht q hq =>
+    prime_of_mem_smallPrimes (mem_filter.mp (mem_powerset.mp ht hq)).1
+  have hnot : ∀ t ∈ F, p ∉ t := fun t ht h => lt_irrefl p (mem_filter.mp (mem_powerset.mp ht h)).2
+  have hsupp : ∀ t ∈ F, t ∉ F.filter (fun t => p * ∏ q ∈ t, q ≤ N) → hterm N n y (insert p t) = 0 := by
+    intro t ht hn
+    unfold hterm
+    rw [prod_insert (hnot t ht), if_neg]
+    intro hle; exact hn (mem_filter.mpr ⟨ht, hle⟩)
+  rw [← Finset.sum_subset (filter_subset _ F) (fun t ht hn => hsupp t ht hn)]
+  calc _ ≤ ∑ t ∈ F.filter (fun t => p * ∏ q ∈ t, q ≤ N), |hterm N n y (insert p t)| :=
+        Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ t ∈ F.filter (fun t => p * ∏ q ∈ t, q ≤ N), (1 : ℝ) := by
+        refine Finset.sum_le_sum fun t _ => ?_
+        unfold hterm
+        split_ifs
+        · rw [abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]; exact Real.abs_cos_le_one _
+        · simp
+    _ = (F.filter (fun t => p * ∏ q ∈ t, q ≤ N)).card := by simp
+    _ ≤ (N / p : ℕ) := by
+        have hmaps : ∀ t ∈ F.filter (fun t => p * ∏ q ∈ t, q ≤ N), (∏ q ∈ t, q) ∈ Icc 1 (N / p) := by
+          intro t ht
+          obtain ⟨ht1, ht2⟩ := mem_filter.mp ht
+          refine mem_Icc.mpr ⟨Nat.one_le_iff_ne_zero.mpr
+            (Finset.prod_ne_zero_iff.mpr fun q hq => (hprimes t ht1 q hq).ne_zero), ?_⟩
+          rw [Nat.le_div_iff_mul_le hpp.pos, mul_comm]; exact ht2
+        have hinj := prod_injOn_primes (F.filter (fun t => p * ∏ q ∈ t, q ≤ N))
+          (fun t ht => hprimes t (mem_filter.mp ht).1)
+        have := Finset.card_le_card_of_injOn _ hmaps hinj
+        simp only [Nat.card_Icc, add_tsub_cancel_right] at this
+        exact_mod_cast this
+
+end HalfSplit
+
+/-- info: 'HalfSplit.abs_hstep_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms HalfSplit.abs_hstep_le
