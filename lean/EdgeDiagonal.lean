@@ -58,3 +58,28 @@ end EdgeDiagonal
 /-- info: 'EdgeDiagonal.fwdDiff_iter_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms EdgeDiagonal.fwdDiff_iter_two
+
+namespace EdgeDiagonal
+
+/-- **A finite exponential sum along the edge.** A row `Σ c_i · z_i^m` reaches the edge cell
+at depth `d` as `Σ c_i · (z_i − 1)^d · z_i^m`: each term keeps its own factor. With the main
+term `z = 2` and zeros `z = 2^ρ`, this is the explicit formula's shape read on an edge diagonal. -/
+theorem fwdDiff_iter_sum {K ι : Type*} [Field K] (s : Finset ι) (c z : ι → K)
+    (hz : ∀ i ∈ s, z i ≠ 0) (d : ℕ) :
+    (fwdDiff 1)^[d] (fun m : ℤ => ∑ i ∈ s, c i * z i ^ m)
+      = fun m => ∑ i ∈ s, c i * (z i - 1) ^ d * z i ^ m := by
+  induction d with
+  | zero => funext m; simp
+  | succ n ih =>
+    rw [Function.iterate_succ_apply', ih]
+    funext m
+    simp only [fwdDiff, ← Finset.sum_sub_distrib]
+    refine Finset.sum_congr rfl fun i hi => ?_
+    rw [zpow_add_one₀ (hz i hi), pow_succ]
+    ring
+
+end EdgeDiagonal
+
+/-- info: 'EdgeDiagonal.fwdDiff_iter_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EdgeDiagonal.fwdDiff_iter_sum
