@@ -1,0 +1,22 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T06:48:58Z
+{'to100': {'cells': 764, 'open': 633, 'open_share': 0.829}, 'to150': {'cells': 6989, 'open': 5683, 'open_share': 0.813}, 'to200': {'cells': 15714, 'open': 12588, 'open_share': 0.801}, 'to400': {'cells': 75614, 'open': 58450, 'open_share': 0.773}, 'line_at_d100': {'old': 430, 'steep': 409}}
+{
+ "pins": {
+  "only_four_zeros_rh_line": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_line37": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}
+# exit 0 after 0.260s, ended 2026-11-27T06:48:58Z
