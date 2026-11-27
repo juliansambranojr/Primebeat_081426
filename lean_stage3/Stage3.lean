@@ -256,6 +256,7 @@ import Stage3.StirlingSeries
 import Stage3.TuringSlope
 import Stage3.BasinChain
 import Stage3.PNTWeld
+import Stage3.GateAll
 
 namespace Stage3
 
