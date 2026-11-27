@@ -1,0 +1,38 @@
+{
+ "pins": {
+  "weak_lt_floor": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_le14": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_le15": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "weakWindow40_of_RH": {
+   "file": "lean_stage3/Stage3/RouteTight.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "weakWindow127_of_RH": {
+   "file": "lean_stage3/Stage3/RouteSharp.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "schoenfeldWeak_of_psiWeak_sharp": {
+   "file": "lean_stage3/Stage3/PsiToPiSharp.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 19,
+ "welds_broken": 0,
+ "missing": []
+}

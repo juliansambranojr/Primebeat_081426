@@ -1,0 +1,18 @@
+{
+ "route_old_transfer": 126.97,
+ "route_sharp_transfer": 39.68,
+ "stated": {
+  "old": 127,
+  "sharp": 40
+ },
+ "need_half": {
+  "d13": 455.79,
+  "d14": 129.88,
+  "d15": 36.91
+ },
+ "need_log": {
+  "d14": 187.37,
+  "d15": 53.25,
+  "d16": 15.09
+ }
+}
