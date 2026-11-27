@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T06:38:58Z
+# unit: 0606-depth-line
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:127796
+  base16 = 52 * 0.4805 * 1.70711 * (4 * 16 + 30) ** 2 * 3.41422 ** 16 / 2 ** (2 * 16 + 15)
+
+# 2 found, 0 missing

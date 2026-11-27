@@ -1,0 +1,28 @@
+{
+ "pins": {
+  "only_four_zeros_rh_le16": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_line": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "weakWindow13_of_RH": {
+   "file": "lean_stage3/Stage3/RouteTight.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "schoenfeldWeak_of_psiWeak_two": {
+   "file": "lean_stage3/Stage3/PsiToPiSharp.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}
