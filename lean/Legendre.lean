@@ -4,6 +4,7 @@ Legendre's recursion `φ(x, p :: ps) = φ(x, ps) − φ(x/p, ps)`. Step one of a
 faster than trial division.
 -/
 import Mathlib
+import PiSieve
 
 namespace Legendre
 open Finset
@@ -67,7 +68,7 @@ open Finset
 /-- Legendre's φ, computed by the recursion. -/
 def phi : ℕ → List ℕ → ℕ
   | x, [] => x
-  | x, p :: ps => phi x ps - phi (x / p) ps
+  | x, p :: ps => if x ≤ 1 then x else phi x ps - phi (x / p) ps
 
 theorem phi_eq_card (ps : List ℕ) (hps : ∀ q ∈ ps, q.Prime) (hnd : ps.Nodup) :
     ∀ x, phi x ps = (rough x ps).card := by
@@ -79,20 +80,37 @@ theorem phi_eq_card (ps : List ℕ) (hps : ∀ q ∈ ps, q.Prime) (hnd : ps.Nodu
     have hps' : ∀ q ∈ ps, q.Prime := fun q hq => hps q (List.mem_cons_of_mem _ hq)
     have hnd' := (List.nodup_cons.mp hnd)
     have h := card_rough_cons (x := x) hp hps' hnd'.1
-    simp only [phi, ih hps' hnd'.2]
-    omega
+    simp only [phi]
+    split_ifs with hx
+    · -- below 2 every number is rough: 0 or the number 1
+      interval_cases x
+      · simp [rough]
+      · have : rough 1 (p :: ps) = {1} := by
+          ext n; simp only [rough, mem_filter, mem_Icc, mem_singleton]
+          constructor
+          · rintro ⟨⟨h1, h2⟩, _⟩; omega
+          · rintro rfl
+            refine ⟨⟨le_rfl, le_rfl⟩, fun q hq hd => ?_⟩
+            have hq' : q.Prime := by
+              rcases List.mem_cons.mp hq with rfl | hq
+              · exact hp
+              · exact hps' q hq
+            exact hq'.one_lt.ne' (Nat.dvd_one.mp hd)
+        rw [this]; rfl
+    · rw [ih hps' hnd'.2, ih hps' hnd'.2]
+      omega
 
 /-- The primes up to `s`, as a list. -/
-def primesTo (s : ℕ) : List ℕ := (List.range (s + 1)).filter Nat.Prime
-
-theorem primesTo_prime (s : ℕ) : ∀ q ∈ primesTo s, q.Prime := by
-  intro q hq; simp [primesTo] at hq; exact hq.2
-
-theorem primesTo_nodup (s : ℕ) : (primesTo s).Nodup :=
-  (List.nodup_range).filter _
+def primesTo (s : ℕ) : List ℕ := ((List.range (s + 1)).filter PiSieve.isPrimeB2).reverse
 
 theorem mem_primesTo {s q : ℕ} : q ∈ primesTo s ↔ q ≤ s ∧ q.Prime := by
-  simp [primesTo, Nat.lt_succ_iff]
+  simp [primesTo, Nat.lt_succ_iff, PiSieve.isPrimeB2_iff]
+
+theorem primesTo_prime (s : ℕ) : ∀ q ∈ primesTo s, q.Prime :=
+  fun q hq => (mem_primesTo.mp hq).2
+
+theorem primesTo_nodup (s : ℕ) : (primesTo s).Nodup :=
+  List.nodup_reverse.mpr ((List.nodup_range).filter _)
 
 /-- **The rough numbers past `√x` are 1 and the primes.** With `x < (s+1)^2`, a number in
 `[1, x]` with no prime factor `≤ s` is `1` or a prime above `s`. -/
@@ -121,8 +139,66 @@ theorem rough_primesTo {x s : ℕ} (hx : x < (s + 1) * (s + 1)) :
     · have := (Nat.prime_dvd_prime_iff_eq hqp hnp).mp hqn
       omega
 
+/-- The primes in `(s, x]` count `π x − π s`. -/
+theorem card_primes_Icc {s x : ℕ} (hs : s ≤ x) :
+    ((Icc (s + 1) x).filter Nat.Prime).card + Nat.primeCounting s = Nat.primeCounting x := by
+  simp only [Nat.primeCounting, Nat.primeCounting', Nat.count_eq_card_filter_range]
+  have hu : range (x + 1) = range (s + 1) ∪ Icc (s + 1) x := by
+    ext n; simp only [mem_range, mem_union, mem_Icc]; omega
+  have hd : Disjoint (range (s + 1)) (Icc (s + 1) x) := by
+    rw [disjoint_left]; intro n h1 h2; simp only [mem_range, mem_Icc] at h1 h2; omega
+  rw [hu, filter_union, card_union_of_disjoint (disjoint_filter_filter hd)]
+  ring
+
+/-- **Legendre's formula.** For `x < (s+1)²` and `s ≤ x`, `π x = φ(x, primes ≤ s) + π s − 1`. -/
+theorem primeCounting_eq_phi {x s : ℕ} (hx : x < (s + 1) * (s + 1)) (hs : s ≤ x) (hx1 : 1 ≤ x) :
+    Nat.primeCounting x + 1 = phi x (primesTo s) + Nat.primeCounting s := by
+  rw [phi_eq_card _ (primesTo_prime s) (primesTo_nodup s), rough_primesTo hx]
+  have hsub : insert 1 ((Icc (s + 1) x).filter Nat.Prime) ⊆ Icc 1 x := by
+    intro n hn
+    simp only [mem_insert, mem_filter, mem_Icc] at hn ⊢
+    omega
+  rw [inter_eq_left.mpr hsub, card_insert_of_notMem (by simp [Nat.not_prime_one])]
+  have := card_primes_Icc hs
+  omega
+
 end Legendre
+
+/-- info: 'Legendre.primeCounting_eq_phi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Legendre.primeCounting_eq_phi
 
 /-- info: 'Legendre.rough_primesTo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Legendre.rough_primesTo
+
+namespace Legendre
+open Finset
+
+/-- The terms Legendre's recursion peels off: `Σ φ(x/p, primes below p)` along the list. -/
+def peel (x : ℕ) : List ℕ → ℕ
+  | [] => 0
+  | p :: ps => phi (x / p) ps + peel x ps
+
+/-- **The recursion unrolled.** For `x ≥ 2`, `φ(x, ps) + Σ_p φ(x/p, tail) = x`: each term can be
+checked on its own, so no single kernel check holds the whole tree. -/
+theorem phi_add_peel (ps : List ℕ) (hps : ∀ q ∈ ps, q.Prime) (hnd : ps.Nodup) {x : ℕ} (hx : 2 ≤ x) :
+    phi x ps + peel x ps = x := by
+  induction ps with
+  | nil => simp [phi, peel]
+  | cons p ps ih =>
+    have hp := hps p (List.mem_cons_self ..)
+    have hps' : ∀ q ∈ ps, q.Prime := fun q hq => hps q (List.mem_cons_of_mem _ hq)
+    have hnd' := List.nodup_cons.mp hnd
+    have h := card_rough_cons (x := x) hp hps' hnd'.1
+    have e1 := phi_eq_card ps hps' hnd'.2 x
+    have e2 := phi_eq_card ps hps' hnd'.2 (x / p)
+    have := ih hps' hnd'.2
+    simp only [phi, peel, show ¬ x ≤ 1 by omega, if_false]
+    omega
+
+end Legendre
+
+/-- info: 'Legendre.phi_add_peel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Legendre.phi_add_peel
