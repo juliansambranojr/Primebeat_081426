@@ -132,3 +132,62 @@ end MeisselLehmer
 /-- info: 'MeisselLehmer.primeCounting_add_P2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms MeisselLehmer.primeCounting_add_P2
+
+namespace MeisselLehmer
+open Finset
+
+theorem minFac_mul_primes {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≤ q) :
+    (p * q).minFac = p := by
+  have hne : p * q ≠ 1 := by
+    intro h; have := hp.two_le; have := hq.two_le; nlinarith
+  have hmp := Nat.minFac_prime hne
+  have hle : (p * q).minFac ≤ p := Nat.minFac_le_of_dvd hp.two_le (dvd_mul_right p q)
+  rcases (Nat.Prime.dvd_mul hmp).mp (Nat.minFac_dvd (p * q)) with h | h
+  · exact (Nat.prime_dvd_prime_iff_eq hmp hp).mp h
+  · have := (Nat.prime_dvd_prime_iff_eq hmp hq).mp h; omega
+
+open Classical in
+/-- The primes `p` above `s` with `p² ≤ x`. -/
+noncomputable def lowP (x s : ℕ) : Finset ℕ := (Icc (s + 1) x).filter fun p => p.Prime ∧ p * p ≤ x
+
+open Classical in
+/-- **`P₂` as a sum.** The products of two primes above `s` counted by their smaller factor `p`:
+`P₂(x, s) = Σ_p #{q prime : p ≤ q ≤ x/p}`. -/
+theorem card_twoRough (x s : ℕ) :
+    (twoRough x s).card = ∑ p ∈ lowP x s, ((Icc p (x / p)).filter Nat.Prime).card := by
+  have hset : twoRough x s = (lowP x s).biUnion
+      (fun p => ((Icc p (x / p)).filter Nat.Prime).image (fun q => p * q)) := by
+    ext n
+    simp only [twoRough, lowP, mem_filter, mem_Icc, mem_biUnion, mem_image]
+    constructor
+    · rintro ⟨⟨h1, hnx⟩, p, q, hsp, hpq, hp, hq, rfl⟩
+      have hpp : p * p ≤ x := le_trans (Nat.mul_le_mul_left p hpq) hnx
+      refine ⟨p, ⟨⟨by omega, le_trans (Nat.le_mul_self p) hpp⟩, hp, hpp⟩, q, ⟨⟨hpq, ?_⟩, hq⟩, rfl⟩
+      exact (Nat.le_div_iff_mul_le hp.pos).mpr (by rw [mul_comm]; exact hnx)
+    · rintro ⟨p, ⟨⟨hsp, _⟩, hp, _⟩, q, ⟨⟨hpq, hqx⟩, hq⟩, rfl⟩
+      refine ⟨⟨Nat.mul_pos hp.pos hq.pos, ?_⟩, p, q, by omega, hpq, hp, hq, rfl⟩
+      have := (Nat.le_div_iff_mul_le hp.pos).mp hqx
+      rw [mul_comm]; exact this
+  rw [hset, card_biUnion]
+  · refine sum_congr rfl fun p hp => ?_
+    have hp0 : 0 < p := by
+      simp only [lowP, mem_filter, mem_Icc] at hp; omega
+    exact card_image_of_injOn fun a _ b _ h => Nat.eq_of_mul_eq_mul_left hp0 h
+  · intro p hp p' hp' hne
+    rw [Function.onFun, disjoint_left]
+    intro n hn hn'
+    simp only [mem_image, mem_filter, mem_Icc] at hn hn'
+    obtain ⟨q, ⟨⟨hpq, _⟩, hq⟩, rfl⟩ := hn
+    obtain ⟨q', ⟨⟨hpq', _⟩, hq'⟩, he⟩ := hn'
+    have hp := mem_filter.mp (Finset.mem_coe.mp hp)
+    have hp' := mem_filter.mp (Finset.mem_coe.mp hp')
+    have h1 := minFac_mul_primes hp.2.1 hq hpq
+    have h2 := minFac_mul_primes hp'.2.1 hq' hpq'
+    rw [he] at h2
+    exact hne (h1.symm.trans h2)
+
+end MeisselLehmer
+
+/-- info: 'MeisselLehmer.card_twoRough' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms MeisselLehmer.card_twoRough
