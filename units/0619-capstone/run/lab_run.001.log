@@ -1,0 +1,37 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T18:45:18Z
+{'to100': {'cells_past_92': 764, 'open': 633, 'covered': 131}, 'to160': {'cells_past_92': 8534, 'open': 6918, 'covered': 1616}, 'to200': {'cells_past_92': 15714, 'open': 12588, 'covered': 3126}, 'to400': {'cells_past_92': 75614, 'open': 58450, 'covered': 17164}, 'cells_to_92': 4186}
+{
+ "pins": {
+  "only_four_zeros_le23": {
+   "file": "lean/Census23.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_outside_corner": {
+   "file": "lean/Capstone.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_outside_corner24": {
+   "file": "lean/Capstone.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_line37": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "weakWindow13_of_RH": {
+   "file": "lean_stage3/Stage3/RouteTight.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}
+# exit 0 after 0.262s, ended 2026-11-27T18:45:18Z

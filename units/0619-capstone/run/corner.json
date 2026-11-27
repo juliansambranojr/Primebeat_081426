@@ -1,0 +1,23 @@
+{
+ "to100": {
+  "cells_past_92": 764,
+  "open": 633,
+  "covered": 131
+ },
+ "to160": {
+  "cells_past_92": 8534,
+  "open": 6918,
+  "covered": 1616
+ },
+ "to200": {
+  "cells_past_92": 15714,
+  "open": 12588,
+  "covered": 3126
+ },
+ "to400": {
+  "cells_past_92": 75614,
+  "open": 58450,
+  "covered": 17164
+ },
+ "cells_to_92": 4186
+}
