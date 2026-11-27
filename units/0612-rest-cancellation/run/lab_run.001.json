@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0612-rest-cancellation",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v880 x86_64",
+    "virtual_env": null,
+    "git_head": "61926650865add3db135664b86a8e3bcf87b097d",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "aab77bdfa58404b6cb86b21f99aaa92df957661f71e099a0d124a72ec3ae6c50",
+    "run_start": "2026-11-27T08:51:22Z",
+    "run_end": "2026-11-27T08:51:33Z",
+    "wall_s": 10.809195465000812
+  }
+}
