@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T04:11:36Z
+# unit: 0596-edge-diagonal
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117437
+  def lw(gam,d): return d*0.5*math.log(3-2*math.sqrt(2)*math.cos(gam*L2))-math.log(math.hypot(.5,gam))
+
+# 2 found, 0 missing
