@@ -443,3 +443,106 @@ end Stirling2
 /-- info: 'Stirling2.digammaLog2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stirling2.digammaLog2
+
+namespace Stirling2
+open Stage3
+
+theorem band_int {a b C : ℝ} (ha : 1 ≤ a) (hab : a ≤ b)
+    (h : ∀ t, a ≤ t → |phasePoint t - Real.log (t / 2)| ≤ C * (t ^ (-2 : ℤ))) :
+    |∫ t in a..b, (phasePoint t - Real.log (t / 2))| ≤ C * (a⁻¹ - b⁻¹) := by
+  have h0 : (0 : ℝ) ∉ Set.uIcc a b := by
+    rw [Set.uIcc_of_le hab]; rintro ⟨h1, _⟩; linarith
+  have hlog : IntervalIntegrable (fun t => Real.log (t / 2)) MeasureTheory.volume a b := by
+    apply ContinuousOn.intervalIntegrable
+    intro t ht
+    rw [Set.uIcc_of_le hab] at ht
+    have ht0 : (0 : ℝ) < t := by linarith [ht.1]
+    exact ((Real.continuousAt_log (by positivity)).comp
+      (by fun_prop : ContinuousAt (fun u : ℝ => u / 2) t)).continuousWithinAt
+  have hgi : IntervalIntegrable (fun t : ℝ => C * t ^ (-2 : ℤ)) MeasureTheory.volume a b := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.mul continuousOn_const
+    intro t ht
+    have : t ≠ 0 := fun h' => h0 (h' ▸ ht)
+    exact (continuousAt_zpow₀ t (-2) (Or.inl this)).continuousWithinAt
+  have hb := intervalIntegral.norm_integral_le_of_norm_le (μ := MeasureTheory.volume)
+    (f := fun t => phasePoint t - Real.log (t / 2)) (g := fun t => C * t ^ (-2 : ℤ)) hab
+    (by filter_upwards with t ht; rw [Real.norm_eq_abs]; exact h t (le_of_lt ht.1)) hgi
+  rw [Real.norm_eq_abs] at hb
+  refine hb.trans (le_of_eq ?_)
+  rw [intervalIntegral.integral_const_mul, integral_zpow (Or.inr ⟨by norm_num, h0⟩)]
+  have ha0 : a ≠ 0 := by positivity
+  have hb0 : b ≠ 0 := by linarith
+  norm_num
+  left; ring
+
+/-- **The phase's band integral is bounded by a constant.** For `T ≥ 2`,
+`|∫₁ᵀ (Re ψ − log(t/2))| ≤ 147`. -/
+theorem band_le_147 {T : ℝ} (hT : 2 ≤ T) :
+    |∫ t in (1 : ℝ)..T, (phasePoint t - Real.log (t / 2))| ≤ 147 := by
+  have hl4 : Real.log 4 < 1.3863 := by
+    have : Real.log 4 = 2 * Real.log 2 := by
+      rw [show (4:ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
+    rw [this]; have := Real.log_two_lt_d9; linarith
+  have hband97 : ∀ t : ℝ, 1 ≤ t → |phasePoint t - Real.log (t / 2)| ≤ 97 * (t ^ (-1 : ℤ)) := by
+    intro t ht
+    have := stmtDigammaLog_holds.1 t ht
+    rw [zpow_neg_one, ← div_eq_mul_inv]; exact this
+  -- ∫₁ˢ with s ≤ 4 under 97/t: at most 97·log s ≤ 97·log 4
+  have hfirst : ∀ s, 1 ≤ s → s ≤ 4 →
+      |∫ t in (1 : ℝ)..s, (phasePoint t - Real.log (t / 2))| ≤ 97 * Real.log 4 := by
+    intro s hs1 hs4
+    have h0 : (0 : ℝ) ∉ Set.uIcc 1 s := by
+      rw [Set.uIcc_of_le hs1]; rintro ⟨h1, _⟩; linarith
+    have hgi : IntervalIntegrable (fun t : ℝ => 97 * t⁻¹) MeasureTheory.volume 1 s := by
+      apply ContinuousOn.intervalIntegrable
+      apply ContinuousOn.mul continuousOn_const
+      intro t ht
+      have : t ≠ 0 := fun h' => h0 (h' ▸ ht)
+      exact (continuousAt_inv₀ this).continuousWithinAt
+    have hb := intervalIntegral.norm_integral_le_of_norm_le (μ := MeasureTheory.volume)
+      (f := fun t => phasePoint t - Real.log (t / 2)) (g := fun t => 97 * t⁻¹) hs1
+      (by
+        filter_upwards with t ht
+        rw [Real.norm_eq_abs]
+        have := hband97 t (le_of_lt ht.1)
+        rwa [zpow_neg_one] at this) hgi
+    rw [Real.norm_eq_abs, intervalIntegral.integral_const_mul, integral_inv h0] at hb
+    simp only [div_one] at hb
+    have : Real.log s ≤ Real.log 4 := Real.log_le_log (by linarith) hs4
+    nlinarith
+  by_cases h4 : T ≤ 4
+  · have := hfirst T (by linarith) h4; nlinarith
+  · push_neg at h4
+    have hi1 : IntervalIntegrable (fun t => phasePoint t - Real.log (t / 2)) MeasureTheory.volume 1 4 := by
+      refine (intervalIntegrable_phasePoint 1 4).sub ?_
+      apply ContinuousOn.intervalIntegrable
+      intro t ht; rw [Set.uIcc_of_le (by norm_num)] at ht
+      have ht0 : (0 : ℝ) < t := by linarith [ht.1]
+      exact ((Real.continuousAt_log (by positivity)).comp
+        (by fun_prop : ContinuousAt (fun u : ℝ => u / 2) t)).continuousWithinAt
+    have hi2 : IntervalIntegrable (fun t => phasePoint t - Real.log (t / 2)) MeasureTheory.volume 4 T := by
+      refine (intervalIntegrable_phasePoint 4 T).sub ?_
+      apply ContinuousOn.intervalIntegrable
+      intro t ht; rw [Set.uIcc_of_le h4.le] at ht
+      have ht0 : (0 : ℝ) < t := by linarith [ht.1]
+      exact ((Real.continuousAt_log (by positivity)).comp
+        (by fun_prop : ContinuousAt (fun u : ℝ => u / 2) t)).continuousWithinAt
+    rw [← intervalIntegral.integral_add_adjacent_intervals hi1 hi2]
+    have hA := hfirst 4 (by norm_num) le_rfl
+    have hB := band_int (a := 4) (b := T) (C := 49) (by norm_num) h4.le (fun t ht => by
+      have := digammaLog2 ht
+      rwa [zpow_neg, zpow_ofNat, ← div_eq_mul_inv])
+    have hT0 : (0 : ℝ) < T := by linarith
+    have hinv : (4 : ℝ)⁻¹ - T⁻¹ ≤ 1 / 4 := by
+      have : 0 < T⁻¹ := inv_pos.mpr hT0; norm_num; linarith
+    calc _ ≤ |∫ t in (1 : ℝ)..4, (phasePoint t - Real.log (t / 2))|
+          + |∫ t in (4 : ℝ)..T, (phasePoint t - Real.log (t / 2))| := abs_add_le _ _
+      _ ≤ 97 * Real.log 4 + 49 * ((4 : ℝ)⁻¹ - T⁻¹) := add_le_add hA hB
+      _ ≤ 147 := by nlinarith
+
+end Stirling2
+
+/-- info: 'Stirling2.band_le_147' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stirling2.band_le_147
