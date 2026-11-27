@@ -74,3 +74,61 @@ end MeisselLehmer
 /-- info: 'MeisselLehmer.rough_cube' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms MeisselLehmer.rough_cube
+
+namespace MeisselLehmer
+open Finset Legendre
+
+theorem not_mem_twoRough_of_prime {x s n : ℕ} (hn : n.Prime) : n ∉ twoRough x s := by
+  classical
+  simp only [twoRough, mem_filter, not_and, not_exists]
+  intro _ p q _ _ hp hq he
+  rw [he] at hn
+  exact (Nat.not_prime_mul hp.one_lt.ne' hq.one_lt.ne') hn
+
+theorem one_not_mem_twoRough {x s : ℕ} : 1 ∉ twoRough x s := by
+  classical
+  simp only [twoRough, mem_filter, not_and, not_exists]
+  intro _ p q _ _ hp hq he
+  have := Nat.eq_one_of_mul_eq_one_right he.symm
+  exact hp.one_lt.ne' this
+
+/-- **Meissel–Lehmer's identity.** For `x < (s+1)³`, `s ≤ x`, `1 ≤ x`:
+`π x + 1 + P₂(x, s) = φ(x, primes ≤ s) + π s`, with `P₂` the products of two primes above `s`. -/
+theorem primeCounting_add_P2 {x s : ℕ} (hx : x < (s + 1) * (s + 1) * (s + 1)) (hs : s ≤ x)
+    (hx1 : 1 ≤ x) :
+    Nat.primeCounting x + 1 + (twoRough x s).card = phi x (primesTo s) + Nat.primeCounting s := by
+  classical
+  rw [phi_eq_card _ (primesTo_prime s) (primesTo_nodup s)]
+  set A := insert 1 ((Icc (s + 1) x).filter Nat.Prime) with hA
+  have hsplit : rough x (primesTo s) = A ∪ twoRough x s := by
+    ext n
+    rw [rough_cube hx n, mem_union, hA, mem_insert, mem_filter, mem_Icc, mem_Icc]
+    constructor
+    · rintro ⟨⟨h1, hnx⟩, h | ⟨hs', hp⟩ | h⟩
+      · left; left; exact h
+      · left; right; exact ⟨⟨by omega, hnx⟩, hp⟩
+      · right; exact h
+    · rintro ((h | ⟨⟨h1, hnx⟩, hp⟩) | h)
+      · subst h; exact ⟨⟨le_rfl, hx1⟩, Or.inl rfl⟩
+      · exact ⟨⟨by omega, hnx⟩, Or.inr (Or.inl ⟨by omega, hp⟩)⟩
+      · have hm : n ∈ Icc 1 x := by
+          unfold twoRough at h; exact (mem_filter.mp h).1
+        rw [mem_Icc] at hm
+        exact ⟨hm, Or.inr (Or.inr h)⟩
+  have hdisj : Disjoint A (twoRough x s) := by
+    rw [disjoint_left]
+    intro n hn
+    rw [hA, mem_insert, mem_filter] at hn
+    rcases hn with rfl | ⟨_, hp⟩
+    · exact one_not_mem_twoRough
+    · exact not_mem_twoRough_of_prime hp
+  rw [hsplit, card_union_of_disjoint hdisj, hA,
+    card_insert_of_notMem (by simp [Nat.not_prime_one])]
+  have := card_primes_Icc hs
+  omega
+
+end MeisselLehmer
+
+/-- info: 'MeisselLehmer.primeCounting_add_P2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms MeisselLehmer.primeCounting_add_P2
