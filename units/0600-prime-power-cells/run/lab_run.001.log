@@ -1,0 +1,4 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T04:39:36Z
+{'depths': 34, 'cells': 1850, 'settled': 1463, 'congruence_holds': 1850}
+# exit 0 after 0.266s, ended 2026-11-27T04:39:37Z
