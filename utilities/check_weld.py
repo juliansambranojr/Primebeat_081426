@@ -25,6 +25,11 @@ import pathlib, re, sys
 _HERE = pathlib.Path(__file__).resolve().parent.parent
 
 WELDS = [
+    # Mathlib's RiemannHypothesis: stage 3's Mathlib against the Mathlib pin of
+    # leanprover-community/riemann-hypothesis, which proves it (src/Main.lean)
+    ("RiemannHypothesis",
+     _HERE / "lean_stage3" / ".lake" / "packages" / "mathlib" / "Mathlib" / "NumberTheory" / "LSeries" / "RiemannZeta.lean",
+     _HERE / "utilities" / "weld_sources" / "RiemannHypothesis_mathlib_31ce06e.lean"),
     # the prime number theorem at the doublings: proved in stage 3 from PNT+, consumed by the bench
     ("StmtPNTx",
      _HERE / "lean" / "PNTDepth.lean",
