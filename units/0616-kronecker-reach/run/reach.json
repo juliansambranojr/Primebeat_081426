@@ -1,0 +1,46 @@
+{
+ "K2000": {
+  "d10": {
+   "leader": 14.135,
+   "rest_rms_over_leader": 0.9463
+  },
+  "d100": {
+   "leader": 40.919,
+   "rest_rms_over_leader": 1.4266
+  },
+  "d1000": {
+   "leader": 49.774,
+   "rest_rms_over_leader": 1.0416
+  },
+  "d10000": {
+   "leader": 276.452,
+   "rest_rms_over_leader": 1.0181
+  },
+  "d100000": {
+   "leader": 1473.02,
+   "rest_rms_over_leader": 1.92
+  }
+ },
+ "K100000": {
+  "d10": {
+   "leader": 14.135,
+   "rest_rms_over_leader": 0.9583
+  },
+  "d100": {
+   "leader": 40.919,
+   "rest_rms_over_leader": 1.445
+  },
+  "d1000": {
+   "leader": 49.774,
+   "rest_rms_over_leader": 1.064
+  },
+  "d10000": {
+   "leader": 276.452,
+   "rest_rms_over_leader": 1.1723
+  },
+  "d100000": {
+   "leader": 1473.02,
+   "rest_rms_over_leader": 2.3116
+  }
+ }
+}

@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T09:08:35Z
+# unit: 0616-kronecker-reach
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:132592
+  check how far Kronecker–Weyl reaches here
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:132653
+  row[f"d{d}"] = {"leader": round(float(g[i]), 3), "rest_rms_over_leader": round(float(np.sqrt(w.sum()...
+
+# 3 found, 0 missing
