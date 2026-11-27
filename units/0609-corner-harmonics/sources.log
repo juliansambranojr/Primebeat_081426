@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T08:38:08Z
+# unit: 0609-corner-harmonics
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:130656
+  Right, which if the primes  show the zeroes, and the beat starts with the first few primes my posits...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:130773
+  f = np.sqrt(3 - 2 * math.sqrt(2) * np.cos(g * L2))          # depth factor per zero
+
+# 3 found, 0 missing
