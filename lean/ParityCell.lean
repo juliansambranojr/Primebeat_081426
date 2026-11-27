@@ -54,3 +54,44 @@ end ParityCell
 /-- info: 'ParityCell.ne_zero_of_parity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms ParityCell.ne_zero_of_parity
+
+namespace ParityCell
+open Finset
+
+/-- **Any prime, any prime-power depth.** `tableFrom N r (p^k) ≡ N r + (−1)^(p^k)·N (r − p^k)` mod `p`:
+the middle binomials `C(p^k, i)` are divisible by `p`. -/
+theorem prime_dvd_cell_prime_pow {p : ℕ} (hp : p.Prime) (N : ℤ → ℤ) (r : ℤ) (k : ℕ) :
+    (p : ℤ) ∣ Construction.tableFrom N r (p ^ k)
+      - (N r + (-1 : ℤ) ^ (p ^ k) * N (r - (p ^ k : ℕ))) := by
+  rw [Zeros.tableFrom_eq_stencil, Zeros.stencil]
+  obtain ⟨m, hm⟩ : ∃ m, p ^ k = m + 1 := ⟨p ^ k - 1, by have := Nat.one_le_pow k p hp.pos; omega⟩
+  rw [hm, sum_range_succ, sum_range_succ']
+  simp only [pow_zero, Nat.choose_zero_right, Nat.cast_one, one_mul, Nat.choose_self,
+    mul_one, CharP.cast_eq_zero, sub_zero, Nat.cast_zero]
+  have hmid : (p : ℤ) ∣ ∑ i ∈ range m, (-1 : ℤ) ^ (i + 1) * ((m + 1).choose (i + 1) : ℤ) * N (r - ((i + 1 : ℕ) : ℤ)) := by
+    refine dvd_sum fun i hi => ?_
+    have hi' := mem_range.mp hi
+    have h2 : p ∣ (p ^ k).choose (i + 1) := Nat.Prime.dvd_choose_pow hp (by omega) (by omega)
+    rw [hm] at h2
+    exact Dvd.dvd.mul_right (Dvd.dvd.mul_left (by exact_mod_cast h2) _) _
+  have e : (∑ i ∈ range m, (-1 : ℤ) ^ (i + 1) * ((m + 1).choose (i + 1) : ℤ) * N (r - ((i + 1 : ℕ) : ℤ))
+      + N r + (-1 : ℤ) ^ (m + 1) * N (r - ((m + 1 : ℕ) : ℤ))) - (N r + (-1 : ℤ) ^ (m + 1) * N (r - ((m + 1 : ℕ) : ℤ)))
+      = ∑ i ∈ range m, (-1 : ℤ) ^ (i + 1) * ((m + 1).choose (i + 1) : ℤ) * N (r - ((i + 1 : ℕ) : ℤ)) := by ring
+  push_cast at e ⊢
+  rw [e]
+  exact hmid
+
+/-- **A prime-power depth cell is nonzero when its two end rows disagree mod `p`.** -/
+theorem ne_zero_of_prime_pow {p : ℕ} (hp : p.Prime) (N : ℤ → ℤ) (r : ℤ) (k : ℕ)
+    (h : ¬ (p : ℤ) ∣ N r + (-1 : ℤ) ^ (p ^ k) * N (r - (p ^ k : ℕ))) :
+    Construction.tableFrom N r (p ^ k) ≠ 0 := by
+  intro h0
+  have := prime_dvd_cell_prime_pow hp N r k
+  rw [h0, zero_sub, dvd_neg] at this
+  exact h this
+
+end ParityCell
+
+/-- info: 'ParityCell.ne_zero_of_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ParityCell.ne_zero_of_prime_pow
