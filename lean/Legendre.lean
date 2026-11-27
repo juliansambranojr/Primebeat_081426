@@ -180,6 +180,8 @@ def peel (x : ℕ) : List ℕ → ℕ
   | [] => 0
   | p :: ps => phi (x / p) ps + peel x ps
 
+theorem peel_cons (x p : ℕ) (L : List ℕ) : peel x (p :: L) = phi (x / p) L + peel x L := rfl
+
 /-- **The recursion unrolled.** For `x ≥ 2`, `φ(x, ps) + Σ_p φ(x/p, tail) = x`: each term can be
 checked on its own, so no single kernel check holds the whole tree. -/
 theorem phi_add_peel (ps : List ℕ) (hps : ∀ q ∈ ps, q.Prime) (hnd : ps.Nodup) {x : ℕ} (hx : 2 ≤ x) :
