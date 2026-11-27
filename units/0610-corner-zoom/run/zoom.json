@@ -1,0 +1,104 @@
+{
+ "width": {
+  "slope_loglog": -0.428,
+  "predicted_slope": -0.5,
+  "rms_at": {
+   "d10": 0.5712,
+   "d20": 0.4331,
+   "d40": 0.3115,
+   "d80": 0.2342
+  },
+  "depths": 88
+ },
+ "record": {
+  "depths": 88,
+  "agree": 86,
+  "agree_share": 0.977,
+  "predicted_leaders": [
+   [
+    4,
+    14.135
+   ],
+   [
+    67,
+    40.919
+   ]
+  ],
+  "actual_leaders": [
+   [
+    4,
+    14.135
+   ],
+   [
+    36,
+    49.774
+   ],
+   [
+    37,
+    14.135
+   ],
+   [
+    68,
+    40.919
+   ]
+  ]
+ },
+ "record_wide": {
+  "zeros": 100000,
+  "leader": {
+   "d10": {
+    "gamma": 14.135,
+    "harmonic": 3.1186
+   },
+   "d30": {
+    "gamma": 14.135,
+    "harmonic": 3.1186
+   },
+   "d100": {
+    "gamma": 40.919,
+    "harmonic": 9.0281
+   },
+   "d300": {
+    "gamma": 40.919,
+    "harmonic": 9.0281
+   },
+   "d1000": {
+    "gamma": 49.774,
+    "harmonic": 10.9819
+   },
+   "d3000": {
+    "gamma": 49.774,
+    "harmonic": 10.9819
+   },
+   "d10000": {
+    "gamma": 276.452,
+    "harmonic": 60.9952
+   }
+  }
+ },
+ "base3": {
+  "cells": 232,
+  "rho_vs_factor3": 0.977,
+  "rho_vs_factor2": -0.021,
+  "top5_gamma": [
+   14.135,
+   77.145,
+   37.586,
+   43.327,
+   94.651
+  ],
+  "top5_harmonic3": [
+   4.943,
+   26.977,
+   13.144,
+   15.151,
+   33.099
+  ],
+  "factor3_max": 2.7321,
+  "sign_smooth": 122,
+  "sign_all": 226,
+  "sign_near3": 226,
+  "sign_far3": 122,
+  "sign_near2": 202
+ }
+}

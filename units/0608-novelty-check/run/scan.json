@@ -1,0 +1,48 @@
+{
+ "mathlib": {
+  "files": 8795,
+  "meissel_lehmer_formula": 0,
+  "meissel_lehmer_formula_sorry_free": 0,
+  "legendre_phi_formula": 0,
+  "legendre_phi_formula_sorry_free": 0,
+  "rvm_bound": 0,
+  "rvm_bound_sorry_free": 0
+ },
+ "pnt_plus": {
+  "files": 236,
+  "meissel_lehmer_formula": 0,
+  "meissel_lehmer_formula_sorry_free": 0,
+  "legendre_phi_formula": 0,
+  "legendre_phi_formula_sorry_free": 0,
+  "rvm_bound": 7,
+  "rvm_bound_sorry_free": 3
+ },
+ "zeta23": {
+  "files": 1812,
+  "meissel_lehmer_formula": 0,
+  "meissel_lehmer_formula_sorry_free": 0,
+  "legendre_phi_formula": 0,
+  "legendre_phi_formula_sorry_free": 0,
+  "rvm_bound": 91,
+  "rvm_bound_sorry_free": 91
+ },
+ "pnt_backlund": {
+  "b1": 0.137,
+  "b2": 0.443,
+  "b3": 6.1,
+  "proof_is_sorry": true
+ },
+ "published": {
+  "backlund": [
+   0.137,
+   0.443,
+   5.225
+  ],
+  "trudgian": [
+   0.112,
+   0.278,
+   3.385
+  ]
+ },
+ "ours_rvM_sharp_b1": 15
+}

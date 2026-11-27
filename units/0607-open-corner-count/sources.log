@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T06:49:03Z
+# unit: 0607-open-corner-count
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:128894
+  def covered(r, d): return d <= 16 or r >= 4 * d + 30 or (d >= 30 and r >= 3.7 * d + 39)
+
+# 2 found, 0 missing

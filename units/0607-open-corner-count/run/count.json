@@ -1,0 +1,26 @@
+{
+ "to100": {
+  "cells": 764,
+  "open": 633,
+  "open_share": 0.829
+ },
+ "to150": {
+  "cells": 6989,
+  "open": 5683,
+  "open_share": 0.813
+ },
+ "to200": {
+  "cells": 15714,
+  "open": 12588,
+  "open_share": 0.801
+ },
+ "to400": {
+  "cells": 75614,
+  "open": 58450,
+  "open_share": 0.773
+ },
+ "line_at_d100": {
+  "old": 430,
+  "steep": 409
+ }
+}

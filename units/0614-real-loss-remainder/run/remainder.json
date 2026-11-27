@@ -1,0 +1,33 @@
+{
+ "cells": 2962,
+ "real_losses": 708,
+ "phase_losses": 711,
+ "real_share_d10_19": 0.082,
+ "real_share_d20_35": 0.182,
+ "real_share_d36_66": 0.375,
+ "real_share_d67_91": 0.092,
+ "rest_share_in_real": {
+  "runner_up": 0.398,
+  "other_near": 0.595,
+  "far": -0.0,
+  "tail": 0.025
+ },
+ "rest_share_elsewhere": {
+  "runner_up": 0.616,
+  "other_near": 0.356,
+  "far": 0.0,
+  "tail": -0.025
+ },
+ "runner_up_env_over_leader_env": {
+  "real": 0.748,
+  "elsewhere": 0.616
+ },
+ "rest_over_rms": {
+  "real": 1.522,
+  "elsewhere": 0.456
+ },
+ "leader_env_over_rms": {
+  "real": 1.183,
+  "elsewhere": 1.268
+ }
+}

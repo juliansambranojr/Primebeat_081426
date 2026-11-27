@@ -1,0 +1,33 @@
+{
+ "cells": 2962,
+ "zero_cells": 1,
+ "smallest_certifying_prime": {
+  "2": 1472,
+  "3": 987,
+  "5": 418,
+  "7": 77,
+  "11": 7,
+  "13": 0
+ },
+ "uncertified_by_primes_to_47": 1,
+ "mod2_certified": 1472,
+ "support_median_smallest_p": 9.0,
+ "rows_median": 39.0,
+ "support_over_rows_median": 0.3,
+ "mod2_support_le_8": 908,
+ "imbalance": {
+  "median": 6.598e-09,
+  "max": 0.02582,
+  "min": 0.0,
+  "share_below_1e-6": 0.782
+ },
+ "overlap": {
+  "trouble_cells": 1419,
+  "mod2_share_trouble": 0.494,
+  "mod2_share_other": 0.5,
+  "minp_gt3_share_trouble": 0.166,
+  "minp_gt3_share_other": 0.173,
+  "imbalance_median_trouble": 1.203e-08,
+  "imbalance_median_other": 5.963e-09
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "r16": {
+  "s": 40,
+  "holds": true,
+  "phi_nodes": 1997,
+  "legendre_nodes": 50785,
+  "max_x_over_p": 1598
+ },
+ "r20": {
+  "s": 101,
+  "holds": true,
+  "phi_nodes": 52363,
+  "legendre_nodes": 1542733,
+  "max_x_over_p": 10180
+ },
+ "r22": {
+  "s": 161,
+  "holds": true,
+  "phi_nodes": 238951,
+  "legendre_nodes": 8724473,
+  "max_x_over_p": 25731
+ },
+ "r26": {
+  "s": 406,
+  "holds": true,
+  "phi_nodes": 5467213,
+  "legendre_nodes": null,
+  "max_x_over_p": 164080
+ }
+}

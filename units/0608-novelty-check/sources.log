@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T08:15:02Z
+# unit: 0608-novelty-check
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:129480
+  Anything we have done been new mathematics yet
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:129685
+  pats = {"meissel_lehmer_formula": r"Meissel[-_ ]?Lehmer(?![- ]?Mertens)|meissel_lehmer",
+
+# 3 found, 0 missing

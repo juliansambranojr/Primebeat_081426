@@ -256,6 +256,12 @@ import Stage3.StirlingSeries
 import Stage3.TuringSlope
 import Stage3.BasinChain
 import Stage3.PNTWeld
+import Stage3.GateAll
+import Stage3.Stirling2
+import Stage3.RvMSharp
+import Stage3.RouteSharp
+import Stage3.PsiToPiSharp
+import Stage3.RouteTight
 
 namespace Stage3
 

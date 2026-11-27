@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T04:39:55Z
+# unit: 0600-prime-power-cells
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117784
+  Hold the rows for now, log and then attack the zero
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:118818
+  h=sum(1 for r in cells if (A(r)+s*A(r-d))%p!=0)
+
+# 3 found, 0 missing

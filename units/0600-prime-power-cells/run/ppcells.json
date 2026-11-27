@@ -1,0 +1,144 @@
+{
+ "depths": 34,
+ "cells": 1850,
+ "settled": 1463,
+ "congruence_holds": 1850,
+ "by_depth": {
+  "2": {
+   "cells": 90,
+   "settled": 34
+  },
+  "3": {
+   "cells": 89,
+   "settled": 64
+  },
+  "4": {
+   "cells": 88,
+   "settled": 44
+  },
+  "5": {
+   "cells": 87,
+   "settled": 70
+  },
+  "7": {
+   "cells": 85,
+   "settled": 77
+  },
+  "8": {
+   "cells": 84,
+   "settled": 46
+  },
+  "9": {
+   "cells": 83,
+   "settled": 48
+  },
+  "11": {
+   "cells": 81,
+   "settled": 77
+  },
+  "13": {
+   "cells": 79,
+   "settled": 74
+  },
+  "16": {
+   "cells": 76,
+   "settled": 43
+  },
+  "17": {
+   "cells": 75,
+   "settled": 67
+  },
+  "19": {
+   "cells": 73,
+   "settled": 67
+  },
+  "23": {
+   "cells": 69,
+   "settled": 64
+  },
+  "25": {
+   "cells": 67,
+   "settled": 54
+  },
+  "27": {
+   "cells": 65,
+   "settled": 46
+  },
+  "29": {
+   "cells": 63,
+   "settled": 62
+  },
+  "31": {
+   "cells": 61,
+   "settled": 59
+  },
+  "32": {
+   "cells": 60,
+   "settled": 27
+  },
+  "37": {
+   "cells": 55,
+   "settled": 51
+  },
+  "41": {
+   "cells": 51,
+   "settled": 51
+  },
+  "43": {
+   "cells": 49,
+   "settled": 47
+  },
+  "47": {
+   "cells": 45,
+   "settled": 45
+  },
+  "49": {
+   "cells": 43,
+   "settled": 36
+  },
+  "53": {
+   "cells": 39,
+   "settled": 38
+  },
+  "59": {
+   "cells": 33,
+   "settled": 32
+  },
+  "61": {
+   "cells": 31,
+   "settled": 30
+  },
+  "64": {
+   "cells": 28,
+   "settled": 14
+  },
+  "67": {
+   "cells": 25,
+   "settled": 25
+  },
+  "71": {
+   "cells": 21,
+   "settled": 20
+  },
+  "73": {
+   "cells": 19,
+   "settled": 19
+  },
+  "79": {
+   "cells": 13,
+   "settled": 13
+  },
+  "81": {
+   "cells": 11,
+   "settled": 7
+  },
+  "83": {
+   "cells": 9,
+   "settled": 9
+  },
+  "89": {
+   "cells": 3,
+   "settled": 3
+  }
+ }
+}

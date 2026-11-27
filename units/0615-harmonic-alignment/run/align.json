@@ -1,0 +1,43 @@
+{
+ "cells": 2962,
+ "real_losses": 708,
+ "coherence_median": {
+  "real": 0.145,
+  "elsewhere": 0.073
+ },
+ "lead_second_cos_median": {
+  "real": -0.154,
+  "elsewhere": 0.091
+ },
+ "lead_second_aligned_share": {
+  "real": 0.442,
+  "elsewhere": 0.531
+ },
+ "drift_depth50": {
+  "14.135_vs_40.919": {
+   "measured_per_row": 0.2859,
+   "predicted_per_row": 0.2843,
+   "beat_period_rows": 22.1,
+   "residual_sd": 0.0047
+  },
+  "40.919_vs_49.774": {
+   "measured_per_row": 0.1461,
+   "predicted_per_row": 0.1453,
+   "beat_period_rows": 43.2,
+   "residual_sd": 0.0024
+  },
+  "14.135_vs_49.774": {
+   "measured_per_row": 0.4321,
+   "predicted_per_row": 0.4296,
+   "beat_period_rows": 14.6,
+   "residual_sd": 0.0071
+  }
+ },
+ "delta_first_harmonic_zeros": {
+  "14.135": 0.3727,
+  "40.919": 0.0884,
+  "49.774": -0.0569,
+  "59.347": 0.2955,
+  "77.145": 0.0657
+ }
+}

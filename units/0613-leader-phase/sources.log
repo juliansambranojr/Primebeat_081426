@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T08:54:25Z
+# unit: 0613-leader-phase
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131954
+  measure the leader's phase at the losing cells
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131988
+  Cl = Z.real; env = np.abs(Z); cphi = np.abs(Cl) / env
+
+# 3 found, 0 missing

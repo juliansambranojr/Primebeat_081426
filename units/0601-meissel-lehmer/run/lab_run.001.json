@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0601-meissel-lehmer",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v880 x86_64",
+    "virtual_env": null,
+    "git_head": "9cdf6b526d5f1585b332114d2283ba2bd2c19482",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "15f27f123f0932f42719df2aae36d79e6d4c208947a1df9248992f46a9695f87",
+    "run_start": "2026-11-27T04:53:48Z",
+    "run_end": "2026-11-27T04:54:30Z",
+    "wall_s": 42.4545902960017
+  }
+}

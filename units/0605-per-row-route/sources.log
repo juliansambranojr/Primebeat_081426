@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T06:28:47Z
+# unit: 0605-per-row-route
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:127035
+  return c_(r, d) * 2 ** (r / 2) / (2 * L2 ** 2 * r ** 2 * s ** (d + 1) * 2 ** d)
+
+# 2 found, 0 missing

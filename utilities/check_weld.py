@@ -25,6 +25,11 @@ import pathlib, re, sys
 _HERE = pathlib.Path(__file__).resolve().parent.parent
 
 WELDS = [
+    # Mathlib's RiemannHypothesis: stage 3's Mathlib against the Mathlib pin of
+    # leanprover-community/riemann-hypothesis, which proves it (src/Main.lean)
+    ("RiemannHypothesis",
+     _HERE / "lean_stage3" / ".lake" / "packages" / "mathlib" / "Mathlib" / "NumberTheory" / "LSeries" / "RiemannZeta.lean",
+     _HERE / "utilities" / "weld_sources" / "RiemannHypothesis_mathlib_31ce06e.lean"),
     # the prime number theorem at the doublings: proved in stage 3 from PNT+, consumed by the bench
     ("StmtPNTx",
      _HERE / "lean" / "PNTDepth.lean",
@@ -62,6 +67,10 @@ WELDS = [
     ("StmtRelErrWindow",
      _HERE / "lean" / "RelativeGate.lean",
      _HERE / "lean_stage3" / "Stage3" / "JointDialGate.lean"),
+    # the per-row weak window, read by the bench's depth-14 gate
+    ("StmtWeakWindow",
+     _HERE / "lean" / "WeakDepths.lean",
+     _HERE / "lean_stage3" / "Stage3" / "Statement.lean"),
 ]
 
 
@@ -76,6 +85,46 @@ STATEMENT_WELDS = [
      "subs": [("JointDialGate.StmtRelErrWindow", "RelativeGate.StmtRelErrWindow"),
               ("(fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))", "f")]},
 ]
+
+
+# A stage-3 theorem `(hRH : RiemannHypothesis) {r : ℤ} {n : ℕ} (hn : H) : C` against a bench
+# definition `∀ (r : ℤ) (n : ℕ), H → C`: the bench names the route's conclusion as a Prop and the
+# census theorems take it as an input. Compared with whitespace collapsed, after the substitutions.
+_RT_SUBS = [("JointDialGate.StmtRelErrWindow", "RelativeGate.StmtRelErrWindow")]
+ROUTE_WELDS = [
+    ("window_414_of_RH", _HERE / "lean_stage3" / "Stage3" / "GateAll.lean",
+     "StmtRoute414", _HERE / "lean" / "RHDepths.lean", _RT_SUBS),
+    ("window_263_of_RH", _HERE / "lean_stage3" / "Stage3" / "GateAll.lean",
+     "StmtRoute263", _HERE / "lean" / "RHDepths.lean", _RT_SUBS),
+    ("window_91_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteSharp.lean",
+     "StmtRoute91", _HERE / "lean" / "RHDepths.lean", _RT_SUBS),
+    ("weakWindow127_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteSharp.lean",
+     "StmtRoute127", _HERE / "lean" / "WeakDepths.lean",
+     [("Stage3.StmtWeakWindow", "StmtWeakWindow")]),
+    ("weakWindow40_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteTight.lean",
+     "StmtRoute40", _HERE / "lean" / "WeakDepths.lean",
+     [("Stage3.StmtWeakWindow", "StmtWeakWindow")]),
+    ("weakWindow13_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteTight.lean",
+     "StmtRoute13", _HERE / "lean" / "WeakDepths.lean",
+     [("Stage3.StmtWeakWindow", "StmtWeakWindow")]),
+]
+
+
+def route_from_theorem(path, theorem):
+    text = path.read_text()
+    key = f"theorem {theorem} (hRH : RiemannHypothesis) {{r : ℤ}} {{n : ℕ}}"
+    if text.count(key) != 1:
+        sys.exit(f"WELD ERROR: {path} has {text.count(key)} of `{key}`")
+    i = text.index(key) + len(key)
+    j = text.index("(hn : ", i) + len("(hn : ")
+    k = text.index(") :\n", j)
+    m = text.index(" := by", k)
+    return f"∀ (r : ℤ) (n : ℕ), {text[j:k]} → {text[k + len(') :'):m]}"
+
+
+def route_from_def(path, name):
+    block = extract_def(path, name)
+    return block[block.index(":=") + 2:]
 
 
 def _collapse(t):
@@ -142,6 +191,20 @@ def main():
         else:
             broken += 1
             print(f"WELD BROKEN  {w['name']}")
+            print(f"--- {w['a']}\n{_collapse(a)}\n--- {w['b']}\n{_collapse(b)}")
+    for thm, fa, name, fb, subs in ROUTE_WELDS:
+        a, b = route_from_theorem(fa, thm), route_from_def(fb, name)
+        for old, new in subs:
+            if old not in a:
+                sys.exit(f"WELD ERROR: substitution source not found in {fa}: {old}")
+            a = a.replace(old, new)
+        if _collapse(a) == _collapse(b):
+            print(f"WELD OK      {thm} -> {name}  ({fa.name} == {fb.name})")
+            for old, new in subs:
+                print(f"             with  {old}  :=  {new}")
+        else:
+            broken += 1
+            print(f"WELD BROKEN  {thm} -> {name}")
             print(f"--- {w['a']}\n{_collapse(a)}\n--- {w['b']}\n{_collapse(b)}")
     print(f"\n{broken} broken weld(s)")
     sys.exit(1 if broken else 0)

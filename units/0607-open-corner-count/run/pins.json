@@ -1,0 +1,18 @@
+{
+ "pins": {
+  "only_four_zeros_rh_line": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_line37": {
+   "file": "lean/WeakDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}

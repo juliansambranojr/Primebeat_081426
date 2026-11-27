@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T08:56:50Z
+# unit: 0614-real-loss-remainder
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:132120
+  measure the remainder in the real losses
+
+# 2 found, 0 missing

@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T04:54:49Z
+# unit: 0601-meissel-lehmer
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:119637
+  Run row 22, write up and login units
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:119662
+  lhs=pi(X)+1+sum(pi(X//p)-pi(p-1) for p in low)
+
+# 3 found, 0 missing

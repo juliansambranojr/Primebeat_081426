@@ -1,0 +1,28 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T08:54:00Z
+{
+ "cells": 2962,
+ "losing": 1419,
+ "winning": 1543,
+ "abscos_median_losing": 0.484,
+ "abscos_median_winning": 0.899,
+ "abscos_median_uniform_phase": 0.707,
+ "lose_share_by_abscos": {
+  "0.0_0.2": 0.935,
+  "0.2_0.4": 0.795,
+  "0.4_0.6": 0.67,
+  "0.6_0.8": 0.478,
+  "0.8_1.0": 0.223
+ },
+ "cells_by_abscos": {
+  "0.0_0.2": 339,
+  "0.2_0.4": 351,
+  "0.4_0.6": 406,
+  "0.6_0.8": 529,
+  "0.8_1.0": 1337
+ },
+ "envelope_beats_rest": 0.761,
+ "losing_cells_envelope_beats_rest": 0.501,
+ "envelope_over_rest_median": 1.92
+}
+# exit 0 after 0.412s, ended 2026-11-27T08:54:01Z

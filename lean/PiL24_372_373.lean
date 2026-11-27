@@ -1,0 +1,9 @@
+import PiW24
+
+namespace Legendre
+
+set_option maxHeartbeats 0 in
+theorem g24_372_373 : ∀ i ∈ Finset.Ico 373 374, F24 i = W24 i := by
+  decide +kernel
+
+end Legendre

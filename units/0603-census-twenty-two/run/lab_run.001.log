@@ -1,0 +1,27 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T06:27:05Z
+[[2, 1], [4, 1], [8, 3], [20, 6]] 155611 295947
+{
+ "pins": {
+  "only_four_zeros_le22": {
+   "file": "lean/Census22.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData_le22": {
+   "file": "lean/PiRow22.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_le21": {
+   "file": "lean/Census21.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 19,
+ "welds_broken": 0,
+ "missing": []
+}
+# exit 0 after 0.946s, ended 2026-11-27T06:27:06Z

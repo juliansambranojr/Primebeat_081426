@@ -1,0 +1,53 @@
+{
+ "pins": {
+  "only_four_zeros_rh_le10": {
+   "file": "lean/RHDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_le11": {
+   "file": "lean/RHDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_rh_le12": {
+   "file": "lean/RHDepths.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "window_91_of_RH": {
+   "file": "lean_stage3/Stage3/RouteSharp.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "digamma_second": {
+   "file": "lean_stage3/Stage3/Stirling2.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "backlundPhase_const": {
+   "file": "lean_stage3/Stage3/Stirling2.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "rvM_sharp": {
+   "file": "lean_stage3/Stage3/RvMSharp.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "window_414_of_RH": {
+   "file": "lean_stage3/Stage3/GateAll.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "window_263_of_RH": {
+   "file": "lean_stage3/Stage3/GateAll.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 19,
+ "welds_broken": 0,
+ "missing": []
+}
