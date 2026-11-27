@@ -1,0 +1,7 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T04:23:43Z
+K 10 sign agreement 2502 of 2962 median rel err 0.7585041456209002
+K 100 sign agreement 2820 of 2962 median rel err 0.24496402054184838
+K 1000 sign agreement 2910 of 2962 median rel err 0.08687952944314065
+K 2000 sign agreement 2921 of 2962 median rel err 0.07711278401075182
+# exit 0 after 18.226s, ended 2026-11-27T04:24:01Z
