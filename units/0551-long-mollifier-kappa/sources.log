@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-25T17:59:47Z
+# unit: 0551-long-mollifier-kappa
+# sources searched: 495
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75066
+  P=Pn.polyval(U,pc); dP=Pn.polyval(U,Pn.polyder(pc))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75067
+  Q=Pn.polyval(V,qc); dQ=Pn.polyval(V,Pn.polyder(qc))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75069
+  return 1+(1/th)*np.sum(W*np.exp(2*R*V)*d**2)
+
+# 4 found, 0 missing

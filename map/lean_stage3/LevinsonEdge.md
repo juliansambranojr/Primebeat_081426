@@ -7,7 +7,7 @@ LevinsonEdge — block S11 of `lean_stage3/design/stencil.md`, step 1d (ii). 202
 13 theorems, 2 definitions, 517 lines. 
 
 **Imports:** [`LevinsonSize`](../lean_stage3/LevinsonSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ApproxShift`](../lean_stage3/ApproxShift.md), [`ConreyCountEdge`](../lean_stage3/ConreyCountEdge.md), [`LevinsonCount`](../lean_stage3/LevinsonCount.md), [`LevinsonMollEdge`](../lean_stage3/LevinsonMollEdge.md), [`TuringS`](../lean_stage3/TuringS.md)
 
 ## The picture
 
@@ -27,13 +27,16 @@ flowchart LR
   n11["<b>edge_le_of_bound</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (…"]:::shp
   n12["<b>horizontal_edge_le</b><br/>|(∫ x in (1/2:ℝ)..3, logDeriv (fun s =＞ riemannZeta s + c * deri…"]:::thm
   x0(["<b>ApproxShift</b><br/>zeta_norm_le_abs"]):::ext
-  x1(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect<br/>levinson_count"]):::ext
-  x2(["<b>LevinsonMollEdge</b><br/>f_analyticAt<br/>real_zero_count_gen"]):::ext
-  x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
-  x4(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
-  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
-  x7(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
+  x1(["<b>DigammaBound</b><br/>disc_le"]):::ext
+  x2(["<b>TuringS</b><br/>log_zeta_le"]):::ext
+  x3(["<b>LevinsonCount</b><br/>G_analyticOnNhd_rect<br/>levinson_count"]):::ext
+  x4(["<b>LevinsonMollEdge</b><br/>f_analyticAt<br/>real_zero_count_gen"]):::ext
+  x5(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
+  x6(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x7(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
+  x8(["<b>ConreyCountEdge</b><br/>edge_le_of_bound_upper"]):::ext
+  x9(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x10(["<b>LevinsonSize</b><br/>norm_G_sub_one_le"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -50,20 +53,23 @@ flowchart LR
   n8 --> n10
   n9 --> n10
   n0 -.-> x0
-  n12 -.-> x1
+  n0 -.-> x1
+  n0 -.-> x2
+  n10 -.-> x8
   n12 -.-> x3
   n12 -.-> x5
-  n4 -.-> x1
-  n4 -.-> x2
+  n12 -.-> x7
   n4 -.-> x3
   n4 -.-> x4
   n4 -.-> x5
-  n6 -.-> x2
-  n7 -.-> x2
-  n8 -.-> x2
-  n9 -.-> x2
-  x6 -.-> n11
-  x7 -.-> n12
+  n4 -.-> x6
+  n4 -.-> x7
+  n6 -.-> x4
+  n7 -.-> x4
+  n8 -.-> x4
+  n9 -.-> x4
+  x10 -.-> n12
+  x9 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -119,10 +125,12 @@ line 60 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
   - [`ApproxShift.zeta_norm_le_abs`](../lean_stage3/ApproxShift.md#ApproxShift-zeta_norm_le_abs) (ApproxShift) — `` ‖riemannZeta w‖ ≤ 2 + 4 * ‖w‖ ``
+  - [`DigammaBound.disc_le`](../lean_stage3/DigammaBound.md#DigammaBound-disc_le) (DigammaBound) — `` ConreyCount.StmtVDisc Q (Real.log T) t (5 * KQ Q * B * t) ``
   - [`LevinsonEdge.zeta_disc_le`](#LevinsonEdge-zeta_disc_le) — `` ‖riemannZeta u‖ ≤ 4 * T + 25 ``
+  - [`Turing.log_zeta_le`](../lean_stage3/TuringS.md#Turing-log_zeta_le) (TuringS) — `` Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤ Real.log 9 + Real.log t ``
 
 <a name="LevinsonEdge-disc_facts"></a>
 ### `LevinsonEdge.disc_facts`
@@ -420,8 +428,9 @@ line 245 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonEdge.model`](#LevinsonEdge-model), [`LevinsonEdge.symm`](#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ConreyCount.edge_le_of_bound_upper`](../lean_stage3/ConreyCountEdge.md#ConreyCount-edge_le_of_bound_upper) (ConreyCountEdge) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
   - [`LevinsonEdge.edge_le_of_bound`](#LevinsonEdge-edge_le_of_bound) — `` |(∫ x in (1/2:ℝ)..3, logDeriv G (↑x + ↑T * I)).im| ≤ Real.pi * (21 * Real.log (3 * M) + 1) ``
 
 <a name="LevinsonEdge-edge_le_of_bound"></a>

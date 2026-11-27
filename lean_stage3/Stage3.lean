@@ -235,6 +235,27 @@ import Stage3.LevinsonWindowNear
 import Stage3.Unsmooth
 import Stage3.FloorConst
 import Stage3.FloorStep
+import Stage3.FloorSum
+import Stage3.Defect
+import Stage3.FloorLong
+import Stage3.OperatorQ
+import Stage3.ConreyCount
+import Stage3.DigammaBound
+import Stage3.MeanQ
+import Stage3.GrRatio
+import Stage3.FloorConstQ
+import Stage3.FloorQ
+import Stage3.Turing
+import Stage3.TuringLWHoriz
+import Stage3.TuringLWSplit
+import Stage3.TuringLW
+import Stage3.DiagLong
+import Stage3.SignData
+import Stage3.LittlewoodSharp
+import Stage3.StirlingSeries
+import Stage3.TuringSlope
+import Stage3.BasinChain
+import Stage3.PNTWeld
 
 namespace Stage3
 

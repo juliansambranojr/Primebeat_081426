@@ -1,0 +1,6 @@
+# opq/linecheck.py, run 2026-11-25T21:32Z, python3 -I linecheck.py
+linear 1-x gamma=14.134725 Re(GR*V) at zeta zero: -9.4947178e-36  Re W at zero: -5.4093099e-36  |GR*zeta'|: 1.38244e-5
+cubic c=2 gamma=14.134725 Re(GR*V) at zeta zero: 1.1715196e-7  Re W at zero: -8.1139649e-36  |GR*zeta'|: 1.38244e-5
+linear 1-x gamma=32.935062 Re(GR*V) at zeta zero: 1.0306455e-41  Re W at zero: 5.3368472e-42  |GR*zeta'|: 7.53787e-12
+cubic c=2 gamma=32.935062 Re(GR*V) at zeta zero: 1.9017397e-13  Re W at zero: 8.0052709e-42  |GR*zeta'|: 7.53787e-12
+# exit 0

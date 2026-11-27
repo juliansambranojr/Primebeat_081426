@@ -1,0 +1,19 @@
+key	value	source
+module_lines	234	wc -l lean_stage3/Stage3/FloorLong.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/FloorLong.lean
+defs	0	grep -c ^def lean_stage3/Stage3/FloorLong.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FloorLong.lean
+pins	4	logmax_long, floor_of_long, floor_lt_half, levinson_floor_of_long
+errors_first	3	the worker's first builds: a rewrite on an unfolded ball, an argument order, a rewrite at two hypotheses
+builds	5	the worker's report, first builds of the four files and one rebuild
+traps_added	3	lean_stage3/TRAPS.md rows 91-93
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8956	lake build (full Stage3), Build completed successfully
+jobs_module	8861	run/build.log, lake build Stage3.FloorLong
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	4	lean_stage3/Stage3/FloorLong.lean, FloorLongErr.lean, FloorLongMean.lean, FloorLongStep.lean
+trap_first	91	lean_stage3/TRAPS.md
+trap_last	93	lean_stage3/TRAPS.md

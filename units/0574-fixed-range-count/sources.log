@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T00:18:03Z
+# unit: 0574-fixed-range-count
+# sources searched: 111
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82125
+  def StmtNoFiniteDefect : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82126
+  ∀ T₂ : ℝ, (∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect T₂) → Defect.defect T₂ = 0
+
+# 3 found, 0 missing

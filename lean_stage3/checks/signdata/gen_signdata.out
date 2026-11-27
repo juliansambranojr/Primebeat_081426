@@ -1,0 +1,12 @@
+log chain to 19; log pi = 1.1447298858394543 +- 2.50e-10; gamma n in [64, 128, 256, 512]
+t =   14.000  N =   8  n =   64  Z(t) = -0.105626  Re X = -7.912077e+03  r = 1.047e+03  margin |Re X|/r =     7.56  zeta radius 1.11e-02  steps 92
+t =   14.500  N =   6  n =   64  Z(t) =  0.297351  Re X =  3.238319e+04  r = 4.189e+03  margin |Re X|/r =     7.73  zeta radius 3.48e-02  steps 86
+t =   18.000  N =   5  n =  128  Z(t) =  2.336800  Re X =  5.496290e+06  r = 3.682e+05  margin |Re X|/r =    14.93  zeta radius 1.54e-01  steps 147
+t =   23.000  N =   7  n =  128  Z(t) = -1.454625  Re X = -1.496815e+08  r = 1.519e+07  margin |Re X|/r =     9.86  zeta radius 1.25e-01  steps 153
+t =   27.500  N =   7  n =  256  Z(t) =  2.816918  Re X =  1.444228e+10  r = 1.498e+09  margin |Re X|/r =     9.64  zeta radius 2.54e-01  steps 281
+t =   31.500  N =  11  n =  256  Z(t) = -0.900520  Re X = -9.778236e+10  r = 1.173e+10  margin |Re X|/r =     8.34  zeta radius 8.94e-02  steps 293
+t =   35.500  N =   9  n =  256  Z(t) =  2.933518  Re X =  6.679421e+12  r = 6.873e+11  margin |Re X|/r =     9.72  zeta radius 2.91e-01  steps 287
+t =   39.000  N =  11  n =  512  Z(t) = -1.786951  Re X = -9.881878e+13  r = 1.194e+13  margin |Re X|/r =     8.27  zeta radius 2.09e-01  steps 549
+t =   42.000  N =  14  n =  512  Z(t) =  1.102468  Re X =  6.184569e+14  r = 8.814e+13  margin |Re X|/r =     7.02  zeta radius 1.21e-01  steps 558
+t =   45.500  N =  11  n =  512  Z(t) = -3.645561  Re X = -3.013940e+16  r = 3.605e+15  margin |Re X|/r =     8.36  zeta radius 3.87e-01  steps 549
+t =   49.000  N =  19  n =  512  Z(t) =  0.696844  Re X =  8.471473e+16  r = 1.138e+16  margin |Re X|/r =     7.44  zeta radius 7.68e-02  steps 573

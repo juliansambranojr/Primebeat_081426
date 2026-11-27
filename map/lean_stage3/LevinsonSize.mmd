@@ -11,17 +11,21 @@ flowchart LR
   n9["<b>gamma_part_count_le ■</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   n10["<b>gamma_part_count_le_gt_two</b><br/>|(∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re - Real.pi * (ri…"]:::thm
   x0(["<b>LevinsonMollEdge</b><br/>norm_G_sub_one_le_X"]):::ext
-  x1(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
-  x2(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
-  x3(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
-  x6(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x7(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
-  x8(["<b>LevinsonLine</b><br/>line_facts"]):::ext
-  x9(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
-  x10(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
-  x11(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x1(["<b>BasinChainCount</b><br/>V_near_one<br/>count_exact<br/>right_edge_le_arcsin"]):::ext
+  x2(["<b>DigammaBoundSize</b><br/>re_zeta_three_ge"]):::ext
+  x3(["<b>LevinsonEdge</b><br/>horizontal_edge_le"]):::ext
+  x4(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
+  x5(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x6(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x7(["<b>ConreyCountEdge</b><br/>right_edge_le_of_re_pos"]):::ext
+  x8(["<b>LevinsonTurn</b><br/>continuous_line<br/>lift_turn_eq_integral"]):::ext
+  x9(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x10(["<b>ArgIdentity</b><br/>intervalIntegral_re<br/>logDeriv_gammaR<br/>logDeriv_gammaR_comp_continuous"]):::ext
+  x11(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x12(["<b>Stirling</b><br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x13(["<b>LevinsonAvoid</b><br/>factor_pos"]):::ext
+  x14(["<b>ArgCount</b><br/>argS_le_gt_two<br/>sCrude_holds"]):::ext
+  x15(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -32,26 +36,32 @@ flowchart LR
   n8 --> n9
   n0 -.-> x0
   n1 -.-> x1
-  n10 -.-> x2
+  n1 -.-> x2
+  n1 -.-> x3
+  n10 -.-> x15
   n10 -.-> x4
   n10 -.-> x6
-  n2 -.-> x2
-  n2 -.-> x3
+  n10 -.-> x9
   n2 -.-> x4
-  n5 -.-> x2
+  n2 -.-> x5
+  n2 -.-> x6
+  n3 -.-> x1
+  n3 -.-> x7
   n5 -.-> x4
   n5 -.-> x6
-  n6 -.-> x10
-  x11 -.-> n10
-  x11 -.-> n9
-  x5 -.-> n5
-  x5 -.-> n7
-  x7 -.-> n6
-  x7 -.-> n7
-  x8 -.-> n6
+  n5 -.-> x9
+  n6 -.-> x13
+  n7 -.-> x1
+  x10 -.-> n6
+  x10 -.-> n7
+  x11 -.-> n6
+  x11 -.-> n7
+  x12 -.-> n6
+  x12 -.-> n7
+  x14 -.-> n10
+  x14 -.-> n9
+  x8 -.-> n5
   x8 -.-> n7
-  x9 -.-> n6
-  x9 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

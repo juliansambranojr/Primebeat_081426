@@ -1,0 +1,24 @@
+{
+ "zeros": {
+  "724": 1091.7284729669368,
+  "725": 1093.4408732723687,
+  "726": 1094.284457523754,
+  "727": 1095.4330847586614
+ },
+ "window": [
+  1092.5846731196527,
+  1094.8587711412079
+ ],
+ "M": 546,
+ "grid": 4001,
+ "natural_final_count": 2,
+ "natural_prefixes_below_two": 97,
+ "natural_first_below_two": 6,
+ "natural_last_below_two": 166,
+ "natural_min_count": 0,
+ "sieve_final_count": 2,
+ "sieve_prefixes_below_two": 12,
+ "sieve_first_below_two": 204,
+ "sieve_last_below_two": 332,
+ "sieve_min_count": 0
+}

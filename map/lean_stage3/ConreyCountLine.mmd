@@ -1,0 +1,46 @@
+flowchart LR
+  n0["<b>analyticAt_W</b><br/>AnalyticAt ℂ (OperatorQ.W Q L) s"]:::cnt
+  n1["<b>analyticAt_Gammaℝ' ■</b><br/>AnalyticAt ℂ Gammaℝ s"]:::cnt
+  n2["<b>analyticAt_V</b><br/>AnalyticAt ℂ (V Q L) s"]:::cnt
+  n3["<b>Gammaℝ_ne_of_im ■</b><br/>Gammaℝ w ≠ 0"]:::cnt
+  n4["<b>W_eq_gammaR_mul_V</b><br/>OperatorQ.W Q L s = Gammaℝ s * V Q L s"]:::cnt
+  n5["<b>analyticAt_W_line</b><br/>AnalyticAt ℂ (OperatorQ.W Q L) (1/2 + t * I)"]:::shp
+  n6["<b>continuous_lineW ■</b><br/>Continuous (lineW Q L)"]:::shp
+  n7["<b>lineCount_ge_argW ■</b><br/>(k : ℤ) ≤ lineCount T"]:::thm
+  n8["<b>logDeriv_W_eq</b><br/>logDeriv (OperatorQ.W Q L) s = logDeriv (fun z =＞ Gammaℝ z * V Q…"]:::shp
+  n9["<b>lineW_turn_eq ■</b><br/>φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫…"]:::shp
+  x0(["<b>ConreyCountEdge</b><br/>analyticAt_V_upper"]):::ext
+  x1(["<b>FloorQGamma</b><br/>analyticAt_V_im"]):::ext
+  x2(["<b>MeanQV</b><br/>continuous_V_line"]):::ext
+  x3(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x4(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x5(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x6(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>distinct_line_zeros_le_lineCount"]):::ext
+  x7(["<b>OperatorQ</b><br/>zeta_line_zero_iff_W"]):::ext
+  x8(["<b>LevinsonTurn</b><br/>line_turn_eq_integral<br/>turn_split"]):::ext
+  n0 --> n2
+  n0 --> n5
+  n2 --> n9
+  n4 --> n8
+  n4 --> n9
+  n5 --> n6
+  n5 --> n9
+  n8 --> n9
+  n2 -.-> x0
+  n2 -.-> x1
+  n2 -.-> x2
+  n4 -.-> x3
+  n4 -.-> x4
+  x5 -.-> n5
+  x5 -.-> n9
+  x6 -.-> n7
+  x7 -.-> n7
+  x8 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

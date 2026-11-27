@@ -1,0 +1,17 @@
+key	value	source
+module_lines	756	wc -l lean_stage3/Stage3/DiagLong.lean
+theorems_proved	22	grep -c ^theorem lean_stage3/Stage3/DiagLong.lean
+defs	8	grep -c ^def lean_stage3/Stage3/DiagLong.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/DiagLong.lean
+pins	6	diag_split, short_part, stmtDiagTail_of_le, stmtDiagErr_of_tail, tail_of_stmtDiagErr, stmtDiagErr_holds
+errors_first	1	the worker's first build: a heartbeat limit on a composition of continuous maps
+builds	4	the worker's report
+traps_added	1	lean_stage3/TRAPS.md row 132
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8993	lake build (full Stage3), Build completed successfully
+jobs_module	8837	run/build.log, lake build Stage3.DiagLong
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+trap_row	132	lean_stage3/TRAPS.md

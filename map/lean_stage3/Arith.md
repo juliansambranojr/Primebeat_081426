@@ -32,8 +32,9 @@ flowchart LR
   x1(["<b>ArithTail</b><br/>9 theorems"]):::ext
   x2(["<b>SdiagLeadCop</b><br/>chiAF_apply"]):::ext
   x3(["<b>SdiagLeadAd</b><br/>Tl_nonneg"]):::ext
-  x4(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
-  x5(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
+  x4(["<b>FloorLongErr</b><br/>longErr_of_lt_half<br/>mainO_long"]):::ext
+  x5(["<b>SdiagLead</b><br/>stmtDiagMainO_holds"]):::ext
+  x6(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
   n0 --> n1
   n1 --> n13
   n10 --> n12
@@ -47,7 +48,9 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n10
-  n14 -.-> x5
+  n13 -.-> x4
+  n14 -.-> x4
+  n14 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n12
@@ -64,7 +67,7 @@ flowchart LR
   x2 -.-> n7
   x2 -.-> n8
   x3 -.-> n12
-  x4 -.-> n14
+  x5 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -486,9 +489,10 @@ StmtArith
 
 **Definitions its proof touches:** [`SdiagLead.StmtArith`](../lean_stage3/SdiagLead.md#SdiagLead-StmtArith)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Arith.stmtDiagMainO_holds'`](#Arith-stmtDiagMainO_holds-) — `` StmtDiagMainO P θ R κ ``
+  - [`FloorLong.mainO_long`](../lean_stage3/FloorLongErr.md#FloorLong-mainO_long) (FloorLongErr) — `` StmtDiagMainO P θ R κ ``
 
 <a name="Arith-stmtDiagMainO_holds-"></a>
 ### `Arith.stmtDiagMainO_holds'`
@@ -521,7 +525,8 @@ StmtDiagMainO P θ R κ
 
 **Definitions its proof touches:** [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.longErr_of_lt_half`](../lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) (FloorLongErr) — `` StmtLongErr P θ R ``
   - [`Lemma3.lemma3_resO_holds`](../lean_stage3/Lemma3.md#Lemma3-lemma3_resO_holds) (Lemma3) — `` StmtLemma3resO P θ R κ ``
 

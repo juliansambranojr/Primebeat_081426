@@ -9,10 +9,12 @@ flowchart LR
   n7["<b>vertical_leg_le</b><br/>|(∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I…"]:::thm
   n8["<b>horizontal_leg_le</b><br/>|(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex…"]:::thm
   n9["<b>zetaArgContour_le</b><br/>|Stage3.zetaArgContour T| ≤ (Z.card : ℝ) + 3 / 2"]:::thm
-  x0(["<b>LevinsonEdge</b><br/>edge_le_of_bound"]):::ext
-  x1(["<b>LevinsonMollEdge</b><br/>edge_le_gen"]):::ext
-  x2(["<b>ArgIdentity</b><br/>logDeriv_zeta_continuousAt"]):::ext
-  x3(["<b>ArgCount</b><br/>argS_le_of_good"]):::ext
+  x0(["<b>ConreyCountEdge</b><br/>edge_le_of_bound_upper"]):::ext
+  x1(["<b>FloorQEdge</b><br/>edge_le_upper"]):::ext
+  x2(["<b>LevinsonEdge</b><br/>edge_le_of_bound"]):::ext
+  x3(["<b>LevinsonMollEdge</b><br/>edge_le_gen"]):::ext
+  x4(["<b>ArgIdentity</b><br/>logDeriv_zeta_continuousAt"]):::ext
+  x5(["<b>ArgCount</b><br/>argS_le_of_good"]):::ext
   n0 --> n3
   n1 --> n3
   n1 --> n7
@@ -27,9 +29,11 @@ flowchart LR
   n8 --> n9
   n6 -.-> x0
   n6 -.-> x1
-  n9 -.-> x3
-  x2 -.-> n7
-  x2 -.-> n8
+  n6 -.-> x2
+  n6 -.-> x3
+  n9 -.-> x5
+  x4 -.-> n7
+  x4 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

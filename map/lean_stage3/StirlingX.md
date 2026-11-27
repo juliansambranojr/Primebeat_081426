@@ -32,9 +32,10 @@ flowchart LR
   n16["<b>lemma3_resO_of_mainO'</b><br/>StmtLemma3resO P θ R κ"]:::thm
   x0(["<b>ApproxFE</b><br/>XY_eq_young"]):::ext
   x1(["<b>StirlingLog</b><br/>exp_logG<br/>logG_shift"]):::ext
-  x2(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
-  x3(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
-  x4(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
+  x2(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
+  x3(["<b>TwistedMoment</b><br/>5 theorems"]):::ext
+  x4(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
+  x5(["<b>Lemma3</b><br/>lemma3_resO_holds"]):::ext
   n0 --> n11
   n0 --> n6
   n0 --> n7
@@ -56,14 +57,16 @@ flowchart LR
   n7 --> n11
   n8 --> n12
   n9 --> n10
-  n16 -.-> x4
+  n12 -.-> x2
+  n15 -.-> x2
+  n16 -.-> x5
   x0 -.-> n6
   x1 -.-> n11
   x1 -.-> n6
-  x2 -.-> n14
-  x2 -.-> n15
+  x3 -.-> n14
   x3 -.-> n15
-  x3 -.-> n16
+  x4 -.-> n15
+  x4 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -474,8 +477,9 @@ StmtXStirlingRel
 
 **Definitions its proof touches:** [`ApproxFE.XY`](../lean_stage3/ApproxFE.md#ApproxFE-XY), [`Stirling.logG`](../lean_stage3/StirlingLog.md#Stirling-logG), [`Stirling.StmtXStirlingRel`](#Stirling-StmtXStirlingRel), [`Stirling.wm`](#Stirling-wm), [`Stirling.wp`](#Stirling-wp)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.longErr_of_lt_half`](../lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) (FloorLongErr) — `` StmtLongErr P θ R ``
   - [`Stirling.lemma3_resO_of_mainO'`](#Stirling-lemma3_resO_of_mainO-) — `` StmtLemma3resO P θ R κ ``
 
 <a name="Stirling-norm_main_le"></a>
@@ -585,8 +589,9 @@ StmtXAll P θ R κ
 
 **Definitions its proof touches:** [`ApproxFE.XY`](../lean_stage3/ApproxFE.md#ApproxFE-XY), [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`Stirling.StmtXStirlingRel`](#Stirling-StmtXStirlingRel), [`TwistedMoment.I1`](../lean_stage3/TwistedMoment.md#TwistedMoment-I1), [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.S1`](../lean_stage3/TwistedMoment.md#TwistedMoment-S1), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.msq`](../lean_stage3/TwistedMoment.md#TwistedMoment-msq), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.longErr_of_lt_half`](../lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) (FloorLongErr) — `` StmtLongErr P θ R ``
   - [`Stirling.lemma3_resO_of_mainO'`](#Stirling-lemma3_resO_of_mainO-) — `` StmtLemma3resO P θ R κ ``
 
 <a name="Stirling-lemma3_resO_of_mainO-"></a>

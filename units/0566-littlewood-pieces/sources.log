@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-25T21:33:52Z
+# unit: 0566-littlewood-pieces
+# sources searched: 505
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79881
+  Turing.StmtLittlewood ((3 / 2 + 102) / Real.pi)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79882
+  ((2 + (3 / 2) * Real.log 9 + 500) / Real.pi) 2 :=
+
+# 3 found, 0 missing

@@ -5,18 +5,23 @@ flowchart LR
   n3["<b>asnd ■</b><br/>AnalyticAt ℂ (fun p : ℂ × ℂ =＞ p.2) q"]:::cnt
   n4["<b>cYform_analytic</b><br/>AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0}"]:::shp
   n5["<b>cY_partials</b><br/>DifferentiableAt ℂ (fun x =＞ cY P M T x y) x ∧ DifferentiableAt …"]:::shp
-  x0(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
-  x1(["<b>FloorConstDeriv</b><br/>cY_eq_HF"]):::ext
-  x2(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
-  x3(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x0(["<b>MeanQBound</b><br/>cY_sup_bound"]):::ext
+  x1(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x2(["<b>FloorConstDeriv</b><br/>cY_eq_HF"]):::ext
+  x3(["<b>MeanQInt</b><br/>cY_slices"]):::ext
+  x4(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
+  x5(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
   n0 --> n1
   n1 --> n5
   n4 --> n5
   n0 -.-> x0
-  n1 -.-> x1
-  n5 -.-> x0
-  n5 -.-> x3
-  x2 -.-> n5
+  n0 -.-> x1
+  n1 -.-> x2
+  n1 -.-> x3
+  n4 -.-> x3
+  n5 -.-> x1
+  n5 -.-> x5
+  x4 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

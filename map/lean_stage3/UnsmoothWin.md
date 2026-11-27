@@ -27,8 +27,10 @@ flowchart LR
   n11["<b>integral_le_of_one</b><br/>∫ t in a..b, f t ≤ ∫ t, W.w t * f t"]:::cnt
   x0(["<b>OffDiagClose</b><br/>5 theorems"]):::ext
   x1(["<b>Unsmooth</b><br/>unsmooth_near"]):::ext
+  x2(["<b>MeanQV</b><br/>intg_w"]):::ext
   n10 --> n11
   n5 --> n6
+  n10 -.-> x2
   n11 -.-> x1
   n4 -.-> x1
   n5 -.-> x1
@@ -395,8 +397,9 @@ HasCompactSupport W.w
 
 **Definitions its proof touches:** [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MeanQ.intg_w`](../lean_stage3/MeanQV.md#MeanQ-intg_w) (MeanQV) — `` Integrable (fun t => W.w t * f t) ``
   - [`Unsmooth.integral_le_of_one`](#Unsmooth-integral_le_of_one) — `` ∫ t in a..b, f t ≤ ∫ t, W.w t * f t ``
 
 <a name="Unsmooth-integral_le_of_one"></a>

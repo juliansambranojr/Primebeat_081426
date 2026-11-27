@@ -1,0 +1,23 @@
+key	value	source
+module_lines	164	wc -l lean_stage3/Stage3/SignData.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/SignData.lean
+defs	1	grep -c ^def lean_stage3/Stage3/SignData.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SignData.lean
+pins	4	first_zero_signs, run_signs, nine_zeros_on_line, defect_zero_of_closing
+errors_first	9	the worker's first builds: a power rewrite, an unknown namespace, unused positivity hypotheses, a beta-redex, a cpow rewrite, a negated division, a cast unfolding, a field_simp closing early, an implicit centre
+builds	14	the worker's report, builds over the files
+traps_added	6	lean_stage3/TRAPS.md rows 133-138
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	9009	lake build (full Stage3), Build completed successfully
+jobs_module	8893	run/build.log, lake build Stage3.SignData
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	16	ls lean_stage3/Stage3/SignData*.lean
+points	11	SignData: the heights certified
+zeros_below_49	9	nine_zeros_on_line
+closing_height	14063	lean_stage3/checks/signdata/closing_height.out, ideal data; computed, not proved
+points_needed	15026	closing_height.out, sign points below the closing height; computed
+trap_first	133	lean_stage3/TRAPS.md
+trap_last	138	lean_stage3/TRAPS.md

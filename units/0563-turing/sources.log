@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-25T21:09:29Z
+# unit: 0563-turing
+# sources searched: 503
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4bf94974984675ab.jsonl:2825
+  theorem defect_mono {T T' : ℝ} (h : T ≤ T') : defect T ≤ defect T' :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4bf94974984675ab.jsonl:2877
+  theorem count_le_N_sub {m : ℕ} {s : Fin (m + 1) → ℝ} {T₁ u : ℝ} (hT₁ : 0 ≤ T₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4bf94974984675ab.jsonl:2878
+  (hs : StmtSignData m s) (hsT : T₁ < s 0) (hu : T₁ < u) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4bf94974984675ab.jsonl:2879
+  (∑ j : Fin m, if s j.succ < u then (1 : ℝ) else 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a4bf94974984675ab.jsonl:2880
+  ≤ riemannZeta.N u - (allCount T₁ : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78914
+  theorem defect_zero_of_signs {k m : ℕ} {t : Fin (k + 1) → ℝ} {s : Fin (m + 1) → ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78916
+  (hbelow : StmtSignData k t) (htT : t (Fin.last k) ≤ T₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78917
+  (habove : StmtSignData m s) (hsT : T₁ < s 0) (hsh : s (Fin.last m) ≤ T₁ + h)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78918
+  (hL : StmtLittlewood a b t₀) (ha : 0 ≤ a) (ht₀ : t₀ ≤ T₁) (h1 : 1 ≤ T₁) (hh : 0 < h)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78919
+  (hnum : Stage3.phaseTheta T₁ / Real.pi + 1 + turingErr a b h T₁ s < k + 2) :
+
+# 11 found, 0 missing

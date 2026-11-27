@@ -25,6 +25,10 @@ import pathlib, re, sys
 _HERE = pathlib.Path(__file__).resolve().parent.parent
 
 WELDS = [
+    # the prime number theorem at the doublings: proved in stage 3 from PNT+, consumed by the bench
+    ("StmtPNTx",
+     _HERE / "lean" / "PNTDepth.lean",
+     _HERE / "lean_stage3" / "Stage3" / "PNTWeld.lean"),
     ("StmtSchoenfeldWindow",
      _HERE / "lean" / "Nonvanishing.lean",
      _HERE / "lean_stage3" / "Stage3" / "Statement.lean"),

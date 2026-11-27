@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T20:48:20Z
+# unit: 0593-seed-slices
+# sources searched: 526
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:108299
+  Ok, so my posit is that in every b-advice table that same cell is the flow moving toward the zero th...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:108449
+  bs = np.linspace(1.9, 2.1, 4001); v = np.array([cell(b, 2**20, 6) for b in bs])
+
+# 3 found, 0 missing

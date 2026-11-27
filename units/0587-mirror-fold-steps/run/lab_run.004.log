@@ -1,0 +1,23 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T05:24:35Z
+20 {'primes': 146, 'paired_sum_over_sqrt': 0.7099110698625986, 'paired_sizes_over_sqrt': 0.7369788341878463, 'top_scale_sum_over_sqrt': 1.5569162496220188, 'low_scale_sum_over_sqrt': 0.8470051797594201, 'paired_ratio': 0.9632719922613836}
+21 {'primes': 198, 'paired_sum_over_sqrt': 0.8118362466383011, 'paired_sizes_over_sqrt': 0.8433840576073468, 'top_scale_sum_over_sqrt': 1.7234092935463656, 'low_scale_sum_over_sqrt': 0.9115730469080644, 'paired_ratio': 0.962593778380699}
+22 {'primes': 272, 'paired_sum_over_sqrt': 0.9293567643353753, 'paired_sizes_over_sqrt': 0.9456969106648598, 'top_scale_sum_over_sqrt': 1.9177881630792837, 'low_scale_sum_over_sqrt': 0.9884313987439084, 'paired_ratio': 0.982721582205448}
+23 {'primes': 372, 'paired_sum_over_sqrt': 1.01851950916038, 'paired_sizes_over_sqrt': 1.0225312007866234, 'top_scale_sum_over_sqrt': 2.1068851070451133, 'low_scale_sum_over_sqrt': 1.088365597884733, 'paired_ratio': 0.9960767049228842}
+24 {'primes': 510, 'paired_sum_over_sqrt': 1.112625208016636, 'paired_sizes_over_sqrt': 1.1245138969865307, 'top_scale_sum_over_sqrt': 2.3110192731375445, 'low_scale_sum_over_sqrt': 1.1983940651209086, 'paired_ratio': 0.9894277082731}
+25 {'primes': 694, 'paired_sum_over_sqrt': 1.2325117275347734, 'paired_sizes_over_sqrt': 1.27423771518864, 'top_scale_sum_over_sqrt': 2.547402927982809, 'low_scale_sum_over_sqrt': 1.3148912004480358, 'paired_ratio': 0.9672541574021066}
+26 {'primes': 949, 'paired_sum_over_sqrt': 1.3755240284131198, 'paired_sizes_over_sqrt': 1.391920867322539, 'top_scale_sum_over_sqrt': 2.800779248215381, 'low_scale_sum_over_sqrt': 1.4252552198022612, 'paired_ratio': 0.9882199920308978}
+27 {'primes': 1296, 'paired_sum_over_sqrt': 1.5566148519283267, 'paired_sizes_over_sqrt': 1.5745860749093126, 'top_scale_sum_over_sqrt': 3.092731557821565, 'low_scale_sum_over_sqrt': 1.5361167058932383, 'paired_ratio': 0.9885867001700616}
+28 {'primes': 1783, 'paired_sum_over_sqrt': 1.7323690021345726, 'paired_sizes_over_sqrt': 1.7856217853656606, 'top_scale_sum_over_sqrt': 3.429695018201256, 'low_scale_sum_over_sqrt': 1.6973260160666837, 'paired_ratio': 0.9701768965480095}
+{'exponent_over_sqrt': 0.15620133113087478, 'over_sqrt_log_at_top': 0.08926000601318965}
+16 {'above_over_sqrt': 0.40302097962271405, 'below_over_sqrt': -0.06023338646229437, 'smooth_over_sqrt': 0.20421852645273272, 'wobble_over_sqrt': 0.13856906670768696, 'identity_error': np.float64(5.4996007747831754e-12)}
+18 {'above_over_sqrt': 1.140742443511773, 'below_over_sqrt': -0.17610397766169594, 'smooth_over_sqrt': 0.8426228413838499, 'wobble_over_sqrt': 0.12201562446622716, 'identity_error': np.float64(2.2936319510336034e-11)}
+20 {'above_over_sqrt': 3.1002076366196647, 'below_over_sqrt': -0.45342166514000093, 'smooth_over_sqrt': 2.545760955098936, 'wobble_over_sqrt': 0.1010250163807278, 'identity_error': np.float64(1.5504042494285386e-10)}
+22 {'above_over_sqrt': 7.140087785890477, 'below_over_sqrt': -1.0630106989555637, 'smooth_over_sqrt': 6.001528367308548, 'wobble_over_sqrt': 0.07554871962636511, 'identity_error': np.float64(2.7557689463719726e-10)}
+24 {'above_over_sqrt': 15.122918903811211, 'below_over_sqrt': -2.2444024156832887, 'smooth_over_sqrt': 12.79605121326953, 'wobble_over_sqrt': 0.08246527485839117, 'identity_error': np.float64(3.8119196688057855e-10)}
+16 {'sum_over_sqrt': 18.309693447176794, 'sizes_over_sqrt': 31.23916022210449, 'ratio': 0.586113497193854, 'above_sum_over_sqrt': -2.7275071331095786, 'below_sum_over_sqrt': 21.037200580286374}
+18 {'sum_over_sqrt': 37.47912948728862, 'sizes_over_sqrt': 61.754555978517374, 'ratio': 0.6069046873290859, 'above_sum_over_sqrt': -4.504367976427655, 'below_sum_over_sqrt': 41.983497463716276}
+20 {'sum_over_sqrt': 76.77061847621977, 'sizes_over_sqrt': 121.765071078394, 'ratio': 0.6304814492063475, 'above_sum_over_sqrt': -6.844509362918015, 'below_sum_over_sqrt': 83.61512783913778}
+22 {'sum_over_sqrt': 155.89677532670436, 'sizes_over_sqrt': 241.07744626672513, 'ratio': 0.646666777589066, 'above_sum_over_sqrt': -10.70169218866985, 'below_sum_over_sqrt': 166.5984675153742}
+24 {'sum_over_sqrt': 315.07723723313376, 'sizes_over_sqrt': 478.12805057391483, 'ratio': 0.6589808668513275, 'above_sum_over_sqrt': -17.60541369551212, 'below_sum_over_sqrt': 332.6826509286459}
+# exit 0 after 8.826s, ended 2026-11-26T05:24:43Z

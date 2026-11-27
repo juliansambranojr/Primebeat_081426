@@ -663,7 +663,7 @@ one named input, in the same way H is for the ladder.
 
 Read this session: Young, "A short proof of Levinson's theorem" (arXiv
 1002.4403), and Feng, "Zeros of the Riemann zeta function on the critical line"
-(arXiv 1003.0059). The text is in the session scratchpad.
+(arXiv 1003.0059, public). The texts were read from arXiv; they are not in the repo.
 
 **Corrections to S11.**
 - `L = log T` (Young §1), not `log(T/2π)`.
@@ -725,7 +725,7 @@ crossing of the imaginary axis by `F` is then a zero of `ζ` on the line, by
 ## S12 The mean value, the floor — design (2026-11-25, Julian: "start the next step")
 
 On paper, here, unchecked by anyone else. The target is Young's Theorem 1, his
-(1.2) and (1.3) (arXiv 1002.4403, text in the session scratchpad): the
+(1.2) and (1.3) (arXiv 1002.4403, public): the
 mean square of `Vψ` on `σ₀ = 1/2 − R/L` is `c(P,Q,R,θ)·T + o(T)` for `θ < 1/2`.
 Together with `LevinsonMultiple.levinson_window'`, it gives the first
 proportion of zeros on the line in Lean.
@@ -756,3 +756,323 @@ equation fixes this. It writes ζ near the line as two sums of length about
 
 **Order.** 1, then 2, then 3 and 4. Piece 1 is unconditional and
 self-contained, so it goes first.
+
+## S13 Stage B, the proportion toward one — design (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else, except where a check is named.
+
+**Where the length enters stage A.** `FloorSum.levinson_floor` holds at
+`θ = 49/100`. The length exponent `θ < 1/2` enters the chain at three size
+statements only, each an error term:
+- `Diagonal.final_size_diag`: the shifted diagonal integral, `O(L⁵·T^(3/4+θ/2))`;
+- `OffDiagClose.final_size`: the off-diagonal after `r` integrations by parts;
+- `SwapX.size_X`: the Stirling remainder of the swapped term.
+The main term is general in `θ`: `FloorConst.Kfl A B C θ R`, `re_dop_tendsto`
+for any `θ > 0`, and `Arith`, `SdiagLead`, `Operator`, `Unsmooth`, `FloorStep`
+take `θ` as a parameter.
+
+**B1, Lean, buildable now.** `floor_of_long`: the floor for every `θ > 0`, with
+the three error statements as one named hypothesis `StmtLongErr P θ R`. Then
+stage B is exactly one named input, as S11 made the mean value one input for
+the floor. Its conclusion: `lineCount T ≥ (1 − log(Kfl …)/R − ε)·N T`.
+
+**B2, the main term for long mollifiers.** Computed here, not proved: with
+`P(x) = x` and Levinson's `Q`, the best `κ(θ)` over `R` is 0.3428 at `θ = 1/2`,
+0.3902 at `4/7`, 0.5195 at `1`, and then falls (0.3798 at `2`, below zero by
+`4`). So `P` has to change with `θ`. Feng (arXiv 1003.0059, read this
+session) cites Farmer's "θ = ∞ conjecture" and his proof that it implies
+100%. Farmer's paper was not read. Steps:
+- B2a: optimize `P` of degree `d` (and `Q` of degree `d'`, which needs the
+  operator with a general `Q`) for `θ = 1, 2, 4, 8` in Python, and record the
+  best `κ(θ)`.
+- B2b: derive, on paper, Farmer's limit `sup_{P,Q,R} κ(θ) → 1` from the closed
+  form, then state it in Lean as a statement about `Kfl` (with general `Q`).
+
+**B3, the core: the error terms for `θ ≥ 1/2`.** Conrey reaches `θ < 4/7`
+through Kloosterman sums (Deshouillers–Iwaniec); none of that is in the tree.
+The off-diagonal is the pairs `(h, k)` of mollifier terms coupled through
+`hm ≠ kn`: for each shift `r = hm − kn`, a shifted convolution sum of the
+coefficients `μ(h)P(…)` against the divisor-type sum over `(m, n)`. This is
+the coupling of the composites in Julian's picture: the mollifier's terms are
+the composites, and `StmtLongErr` asks that their couplings across every
+shift cancel to `o(T)`. The design question for B3 is which cancellation in
+`Σ_{hm−kn=r} μ(h)μ(k)·…` that is, and what size it must have at length `T^θ`.
+
+**What B gives C.** `lineCount T ≥ (1 − ε)·N T`: the defect
+`N T − lineCount T` is `o(N T)`.
+
+## S14 Stage C, from the defect to zero — design (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else.
+
+**What is already settled (S7 to S9).** The ladder route through S1–S6 takes
+H, the bound on `ψ` at the doublings. The wall (S7) closes under H only with a
+separation bound on the top zeros near the alias lattice and a bound on the
+creep. S8 records that every route reaches a face equivalent to RH, and that a
+proof needs one face derived from facts about ζ proved independently of RH.
+`rh_iff_line_count` is such a face: `RiemannHypothesis ↔ ∀ T, lineCount T = N T`.
+
+**The independent facts now in the tree.** `ZeroDensity` (few zeros right of
+any `σ > 1/2`), `Backlund` and `ArgCount.rvM_crude` (the count `N T`),
+`Littlewood.littlewood_rect`, the Levinson chain, and `FloorSum.levinson_floor`
+(the defect at most `(2/3 + ε)·N T`).
+
+**The defect.** `D(T) = N T − lineCount T` counts the zeros off the line, with
+multiplicity. B makes it `o(N T)`; C needs `D(T) = 0`. Every bound in the
+Levinson chain is an average over a window, and an average bounds `D` from
+above without excluding one zero: a single off-line quadruple changes `D` by 2
+and the means by `O(1/T)`. So C needs an input that sees one zero.
+
+**C1, Lean, buildable now.**
+- `defect_even`: `D(T)` is even, from the pairing `ρ ↔ 1 − ρ̄` of the off-line
+  zeros (functional equation and conjugation, already in the tree).
+- `defect_le`: `D(T) ≤ (2/3 + ε)·N T` from `levinson_floor`, and the form taking
+  B's input, `D(T) ≤ ε·N T`.
+
+**C2, the local face.** One off-line zero `ρ₁ = β₁ + iγ₁` must be excluded by
+something local at `γ₁`. In Julian's picture this is the basin: between two
+consecutive zeros of `Z` on the line, the horizon `θ(t)` turns by about `π`,
+and `S(T) = N T − θ(T)/π − 1` measures the excess. An off-line pair at height
+`γ₁` takes two from the zeros on the line near `γ₁`: there the turning of the
+horizon is not matched by sign changes of `Z`. The candidate statement is a
+local Levinson count: on a window `[γ₁ − H, γ₁ + H]` with `H` small against
+`T`, the zeros on the line at least the window's share of `N`, less an error
+below 2. Levinson's error terms are `O(log T)` per window (`levinson_window_diff`,
+`134 log T + 2918`), so the local count needs windows where that error is below
+the step of 2.
+
+**C3, the design question.** Which local quantity of the horizon and the
+basins, read on a window of length `H`, has an error below 2 at every height,
+so that an off-line pair cannot hide in it. The next round is that
+derivation on paper: the error of `levinson_window_diff` as a function of the
+window length `H` (its terms `(b − a)·tailDelta`, `X²·log T`, `134 log T`), and
+the length at which each term drops below the step.
+
+### S14, C3: the local count's error, by its terms (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else. Read from `LevinsonCount.lean`'s header
+and `LevinsonWindowNear.levinson_window_diff` this session.
+
+**The terms.** On a window `[a, b]`, Levinson's count is
+`lineCount b − lineCount a ≥ (N b − N a) − 2·countG − E`, with `countG` the zeros of
+`G = ζ + ζ′/L` right of the line and `E` the rest:
+- the horizontal edges, `|horiz T| ≤ 21π log T + 133π` at each end
+  (`LevinsonEdge.horizontal_edge_le`): the turning of `G` along a horizontal segment;
+- the gamma part against the count, `30 log b + 150`
+  (`LevinsonSize.gamma_part_count_le_gt_two`): the turning of the horizon against
+  `N`, the term `S(b) − S(a)`;
+- the window's own terms, `(b − a)·tailDelta`, `X²·log T`, constant over `R/L`.
+
+**Against the step of 2.** Two sizes fail, and neither shrinks with the window.
+- `E ≥ 134 log T` in the window form: the edge terms are bounds on argument
+  changes at single heights. They are of the size of `S(t)`, which is unbounded
+  (from memory, not checked this session: Selberg's lower bounds for `S(t)`).
+  The shorter windows of a sum over windows do not remove them; each window
+  pays them at its ends.
+- `2·countG` is the window's share of the zeros of `G` right of the line. Feng
+  (arXiv 1003.0059, read this session, his remark (a)) records that `G` has a
+  positive proportion of its zeros near the line. In a short window around
+  one height that share is of the order of the window's zeros, and it is the
+  floor's own loss.
+So the local Levinson count cannot see one zero. This is the size of what the
+steps add up to, and by the repo's rule the C2 design is wrong.
+
+**What the window frame says exactly.** With `Z` Hardy's function and the
+horizon `θ`, `N b − N a = (θ(b) − θ(a))/π + S(b) − S(a)` (up to the `O(1/t)` of the
+count's main term), and `lineCount b − lineCount a` is the number of zeros of
+`Z` in `(a, b]` with order. So the window's defect is, exactly,
+`(θ(b) − θ(a))/π + S(b) − S(a) − (zeros of Z in (a, b])`. A face with no error term
+is this identity in every window: the zeros of `Z` keep pace with the turning
+of the horizon plus `S`. That is Julian's picture stated as an equality: every
+basin holds its zero.
+
+**The design question now.** Which property of the basins forces that pace in
+every window. Candidates, each a statement about `Z` on one window:
+- a sign change of `Z` in each interval where the horizon turns by `π`
+  (Gram's law; it fails at some Gram intervals, from memory);
+- a bound on `S(b) − S(a)` together with a lower count of sign changes of `Z`
+  from the turning of the horizon alone.
+Each is a statement about individual windows, of the kind C needs. Which one
+to derive first is Julian's choice.
+
+### S14, C3 (a) and (b) tried (2026-11-25, Julian: "Try both please")
+
+Computed with mpmath, `siegelz` and `grampoint`, script in the session
+`units/0554-gram-rosser/run/gram.py`: the Gram points `g_n`, `θ(g_n) = nπ`, for
+`n = −1, …, 999`, up to height 1420. Not proved; the facts marked from memory
+were not checked this session.
+
+**(a) Gram's law.** `(−1)^n Z(g_n) > 0` fails at 42 of the 1001 points, the first
+at `n = 126`. So "a sign change of `Z` in each Gram interval" is false already at
+height about 280. Rosser's rule, the next local rule (a Gram block, the run
+between two good Gram points, of `k` intervals holds `k` sign changes), held on
+all 42 blocks here. From memory: Rosser's rule fails first near Gram index
+13,999,825, and every such rule fails somewhere; the share of bad Gram points
+grows slowly with the height. A fixed local rule on Gram intervals is not a
+face.
+
+**(b) S and the sign changes.** What holds in every window is integrated:
+`∫ S(t) dt` over `[t₁, t₂]` is `O(log t₂)` (Littlewood; explicit constants are
+Turing's and Trudgian's, from memory). Turing's method uses exactly that: on a
+range where the sign changes of `Z` found by computation reach `θ/π + 1` at a
+Gram point, the integral bound on `S` shows no zero was missed. So (b) is a
+certificate for each finite range, built from a computation of `Z` on that
+range. It gives the defect zero up to every height that has been computed, and
+says nothing beyond it.
+
+**What both say for C.** Every statement about individual windows found so far
+is either false at some height ((a), Rosser) or a computation of that window
+((b), Turing). C needs a reason, valid at every height, for `Z` to change sign
+in step with the horizon. In Julian's picture: a mechanism that fills every
+basin. The design question stays C3's, now with these two routes closed as
+general statements and (b) open as a finite verification in Lean (Turing's
+method on a range), which the tree does not have.
+
+### S13, B4: the operator with a general Q, after Conrey 1983 (2026-11-25, Julian: "Yes to all please")
+
+Read this session: Conrey, "Zeros of derivatives of Riemann's ξ-function on the
+critical line", J. Number Theory 16 (1983), 49–74, §4 (PDF from Julian; text in
+Julian's copy; not in the repo). His Bulletin announcement of
+two fifths (Bull. AMS 20 (1989)) was read too; it has no proofs.
+
+**What failed.** Levinson's line identity for `V = Q(−(1/L) d/ds) ζ` holds only for
+linear `Q` (`OperatorQ`'s docstring and the worker's numeric check: for a cubic
+`Q`, `Re(Gammaℝ·V)` is not zero at the zeros of ζ on the line).
+
+**Conrey's route.** For a real `φ` with `φ(0) = 1` and `φ(z) + φ(1 − z) = K ≠ 0`
+(equivalent to `φ′(x) = φ′(1 − x)`), the Riemann–Siegel integral gives
+`K·ξ(s) = Q(s) + Q(1 − s)`, `Q = H·V`, his (1) at `m = 0`. On the line the two
+terms are conjugate, so `ξ(1/2 + it) = 0` exactly where `arg Q ≡ π/2 (mod π)`, and
+`N₀ ≥ N − (1/π)·Δ arg V − O(log T)`, his (2). His `V` is
+`C(s) + χ(s) D(s) + (small)`, `C(s) = Σ c(n)(F(s) − log n)^m n^(−s)`, `F = H′/H`,
+`c(z) = φ(L⁻¹ log z)`: the coefficients carry `F(s) − log n`, the shift by
+`F ≈ ½ log(t/2π)` that `OperatorQ` found as `(g − L/2)/L`.
+
+**The tree's form.** `OperatorQ.W = Q(1/2 − (1/L) d/ds) Λ` already has
+`Re W = Q(1/2)·Λ` on the line. With `Λ(1 − s) = Λ(s)`, the odd derivatives change
+sign under `s ↦ 1 − s` and the even ones above order 0 have zero coefficient, so
+`W(s) + W(1 − s) = 2·Q(1/2)·Λ(s)`: Conrey's identity with `K = 2Q(1/2)`, with no
+Riemann–Siegel integral. `V = W/Gammaℝ = Q(−(D + g − L/2)/L) ζ`.
+
+**Steps.**
+1. `conrey_identity` and the count through `arg W` (`ConreyCount`, building).
+2. The edges for `V`: its size far right is a polynomial in `(g − L/2)/L`, near
+   a constant on `[T/4, 2T]`; on lower windows the shift is about `j/L`.
+3. The mean value of `ψV`: a sum over `k, l` of `(−1/L)^(k+l)` times twisted
+   moments of `ζ^(k)` and `ζ^(l)` with polynomial weights in `(g − L/2)/L`; the
+   operator of piece 3 with a general `Q` and a weight.
+4. The closed form, Young's (1.3) with general `Q`; Conrey's Corollary gives
+   `κ ≥ 0.3658` at `θ = 1/2`, the figure unit 0551 computed.
+
+### S13, B3: the error terms at lengths of one half and more (2026-11-25, Julian: "Yes to all please")
+
+On paper, here, unchecked by anyone else. Facts marked "from memory" were not
+checked against a source this session.
+
+**Where the tree stands.** `FloorQ.levinson_floorQ` proves `224/625` at
+`θ = 49/100`. `FloorLong.floor_of_long` and `GrRatio.mollMeanV_long'` carry the
+whole chain to any `θ > 0` from `FloorLong.StmtLongErr P θ R`: the diagonal's
+shifted line, the off-diagonal and the swapped term at length `T^θ`. Unit 0551
+computed the floor that input would give: 0.41 at `4/7`, 0.89 at `4`, 0.978 at
+`16`, with cubic `P` and `Q` re-optimized.
+
+**The three error terms at `θ ≥ 1/2`, by size.**
+- The swapped term (`SwapX.size_X`): its remainder meets `T^θ`, the mollifier's
+  length, against `t^(1/2)` from the shifted sums; it closes for `θ < 1/2` with
+  the tree's pointwise bounds. Past one half it needs the same cancellation as
+  the off-diagonal.
+- The diagonal's shifted line (`Diagonal.final_size_diag`): `O(L⁵·T^(3/4+θ/2))`,
+  below `T` exactly when `θ < 1/2`. Moving the line further left needs the
+  growth of ζ further left, a convexity-type loss; Young moves `u, v` as well and
+  gets `T^(1−ε)` (from his §6, read this session). This one is a matter of
+  bookkeeping, not of new arithmetic.
+- The off-diagonal (`OffDiagClose.final_size`): the sums over `hm ≠ kn` of the
+  mollifier coefficients times a smooth weight in `mn` and the height. Grouped
+  by the shift `r = hm − kn`, each group is a shifted convolution of the
+  divisor-type sum over `(m, n)` against `μ(h)μ(k)·P·P`. Integration by parts in
+  the height bounds each term trivially; that bound is what stops at one half.
+
+**What Conrey does past one half** (from his Bulletin announcement, read this
+session, and from memory for the details): the off-diagonal with `θ < 4/7` is
+written through Kloosterman sums, and the bounds of Deshouillers and Iwaniec
+for averages of Kloosterman sums, from the Kuznetsov trace formula, give the
+cancellation. None of this is in the tree or in Mathlib. As a Lean project it
+is the spectral theory of `SL₂(ℤ)` at the level of Maass forms, which is
+very large.
+
+**What every length needs.** Farmer's θ = ∞ conjecture (cited by Feng, read
+this session; Farmer's paper not read) is the statement that the twisted moment
+keeps its main term at every length. In the tree's terms it is
+`StmtLongErr P θ R` for every `θ`. Its content is the off-diagonal: that the
+couplings of the mollifier's terms across every shift `r` cancel to `o(T)` at any
+length. In Julian's picture, the composites coupled across every shift add to
+nothing beyond the diagonal.
+
+**Steps, in order of size.**
+1. The diagonal's shifted line at any `θ`: move `u, v` as Young does. Bookkeeping
+   on the tree's `Diagonal` files.
+2. The off-diagonal grouped by the shift `r`, with the shifted convolution sums
+   named: `StmtShiftedConv θ`, the bound that `StmtLongErr` needs, stated in
+   the form a spectral or arithmetic argument would prove it.
+3. The design question for Julian: which property of the Möbius coefficients
+   across shifts gives that cancellation, and at what length. Up to `4/7` the
+   literature answers it with Kloosterman sums; beyond, nothing is known.
+
+## S15 The basin floor — design (2026-11-25, Julian: "Yes")
+
+Julian, 2026-11-25: "The coupling raises the floor of every basin pushing the
+recombination of composites from each basin to the next each prime rises and
+falls back to the line as a force back onto the each basin." On paper, here,
+unchecked by anyone else.
+
+**The objects.**
+- A basin: an interval between consecutive sign changes of `Z`, or a Gram
+  interval, where the horizon `θ(t)` turns by `π`.
+- The floor of a basin: the mean of `|Vψ|²` on `σ₀ = 1/2 − R/L` over that
+  interval. Levinson's `κ` is `1 − (1/R)·log` of the floor averaged over all
+  basins (`FloorQ.levinson_floorQ`).
+- The recombination of composites: the off-diagonal pairs `hm − kn = r`, each
+  carrying `(hm/kn)^(it)`, with period about `2πkn/r` in `t`. Inside a basin they
+  move weight; over a long window they average to zero. `StmtLongErr` is that
+  net zero at length `T^θ`: a transport between basins with no net effect.
+- Each prime: in the explicit formula, the wave `log p·p^(−1/2)·cos(t log p)` in
+  the turning of the argument, bounded and returning, a restoring force.
+
+**The statement it points to.** The floor raised in every basin means `Vψ`
+stays away from zero near the line in every basin: no zeros of `Vψ` right of
+`σ₀`. Levinson's count is `N₀ ≥ N − 2·N_V − O(log T)`, and its edge terms
+telescope between neighbouring windows, so they appear only at the ends of the
+whole range. With no zeros of `Vψ` right of the line, the defect is `O(log T)` at
+most, at every height.
+
+**Against what is known.** For a fixed mollifier, `Vψ` has zeros right of the
+line in a positive share of basins (Feng's remark (a), read this session), so
+the force must grow with the mollifier's length.
+
+**The measurement (unit 0562, exploratory).** Per Gram interval on `[T, T+H]`,
+`T = 5000`, `H = 40`, `V = ζ + ζ′/L`, `P(x) = x`, `R = 1.3`, `θ = 1/4, 1/2, 1`: the
+floor of each basin, the correlation of neighbouring basins' deviations (a
+negative one is weight moved from one basin to the next), and the zeros of
+`Vψ` right of `σ₀` in each basin by the winding of `Vψ` around the rectangle
+`[σ₀, 3]` over the basin.
+
+### S15, step 4 withdrawn after an adversary review (2026-11-26, Julian: "Yes")
+
+Unit 0576 records the review; unit 0575 records the correction to unit 0572.
+
+- **No right zeros of V is the Riemann hypothesis restated.** For `Q = 1`,
+  `W_one` gives `V = ζ`. For Levinson's `Q`, `W = Λ/2 + Λ′/L`, and under RH
+  `f − i·c·f′` with `f` real-rooted and `c > 0` has every zero on one side,
+  here left of the line, at every height and every `L`. With
+  `rh_of_noRightZeros` the two are equivalent: a Speiser-type theorem for `W`.
+- **The mollifier does not enter V.** The zeros of `Vψ` are those of `V` and of
+  `ψ`. The restatement "V with a growing mollifier" is withdrawn.
+- **The floor points the wrong way.** Zeros raise `∫ log|Vψ(σ₀+it)|`, so only
+  an upper bound limits them, and a larger mean lowers `κ`. Reflecting a zero in
+  the line `σ₀` leaves `|f|` on that line unchanged, so no functional of `|f|`
+  there sees its side. Sub-steps 4(b)–(d) are withdrawn.
+- **What stands.** The point run, the lower side of J, the averaging, evenness
+  and `rh_iff_defect_zero`, as logic; the fixed-range count with edge bounds
+  re-proved uniformly in `L`. All rest on the withdrawn step.
+- **Open.** The core of a route has to be a statement outside this family:
+  one whose size sees a single zero, or one that is not a mean square.

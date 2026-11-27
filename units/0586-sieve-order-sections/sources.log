@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T04:58:55Z
+# unit: 0586-sieve-order-sections
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:94181
+  natural = list(range(1, M + 1))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:94182
+  sieve = sorted(natural, key=lambda n: (lpf(n), n))
+
+# 3 found, 0 missing

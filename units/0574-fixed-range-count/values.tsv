@@ -1,0 +1,3 @@
+key	value	source
+loglog_floor	166	lean_stage3/checks/basinchain/sizes.out section 4, log log T0 >= 165.991
+closing_ideal	439	units/0571-turing-slope/values.tsv closing_ideal; computed, not proved

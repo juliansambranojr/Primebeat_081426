@@ -7,7 +7,7 @@
 4 theorems, 4 definitions, 197 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`OperatorCY`](../lean_stage3/OperatorCY.md), [`OperatorInt`](../lean_stage3/OperatorInt.md)
+**Imported by:** [`MeanQCauchy`](../lean_stage3/MeanQCauchy.md), [`OperatorCY`](../lean_stage3/OperatorCY.md), [`OperatorInt`](../lean_stage3/OperatorInt.md)
 
 ## The picture
 
@@ -47,7 +47,7 @@ def · line 31
 `∂α f (α, β)`.
 
 - **Is:** `` pa (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := deriv (fun x => f x β) α ``
-- **Used by 12:** [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.analytic_partials`](#Operator-analytic_partials), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.pab`](#Operator-pab), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
+- **Used by 13:** [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`MeanQ.DopQ_one_sub`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.cY_partials`](../lean_stage3/OperatorCY.md#Operator-cY_partials), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.analytic_partials`](#Operator-analytic_partials), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.pab`](#Operator-pab), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-pb"></a>
 ### `Operator.pb`
@@ -57,7 +57,7 @@ def · line 34
 `∂β f (α, β)`.
 
 - **Is:** `` pb (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := deriv (fun y => f α y) β ``
-- **Used by 6:** [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials)
+- **Used by 7:** [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`MeanQ.DopQ_one_sub`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials)
 
 <a name="Operator-pab"></a>
 ### `Operator.pab`
@@ -68,7 +68,7 @@ def · line 37
 
 - **Is:** `` pab (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := deriv (fun y => pa f α y) β ``
 - **Built from:** [`Operator.pa`](#Operator-pa)
-- **Used by 6:** [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials)
+- **Used by 7:** [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`MeanQ.DopQ_one_sub`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub), [`Operator.Dop`](#Operator-Dop), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.cauchy_bounds`](#Operator-cauchy_bounds), [`Operator.Imom_partials`](../lean_stage3/OperatorInt.md#Operator-Imom_partials)
 
 <a name="Operator-Dop"></a>
 ### `Operator.Dop`
@@ -79,7 +79,7 @@ Levinson's operator with `Q(x) = 1 − x`: `D f = (1 + (1/L)∂α)(1 + (1/L)∂�
 
 - **Is:** `` Dop (L : ℝ) (f : ℂ → ℂ → ℂ) (α β : ℂ) : ℂ := f α β + 1 / (L : ℂ) * (pa f α β + pb f α β) + 1 / (L : ℂ) ^ 2 * pab f α β ``
 - **Built from:** [`Operator.pa`](#Operator-pa), [`Operator.pab`](#Operator-pab), [`Operator.pb`](#Operator-pb)
-- **Used by 13:** [`FloorConst.floor_const`](../lean_stage3/FloorConst.md#FloorConst-floor_const), [`FloorConst.dop_cY_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto), [`FloorConst.re_dop_tendsto_X`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto_X), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
+- **Used by 17:** [`FloorConst.floor_const`](../lean_stage3/FloorConst.md#FloorConst-floor_const), [`FloorConst.dop_cY_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-dop_cY_eq), [`FloorConst.re_dop_tendsto`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto), [`FloorConst.re_dop_tendsto_X`](../lean_stage3/FloorConstLimit.md#FloorConst-re_dop_tendsto_X), [`FloorLong.floor_of_long`](../lean_stage3/FloorLong.md#FloorLong-floor_of_long), [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X), [`MeanQ.DopQ_one_sub`](../lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub), [`Operator.StmtMollMeanO`](../lean_stage3/Operator.md#Operator-StmtMollMeanO), [`Operator.stmtMollMeanO_holds`](../lean_stage3/Operator.md#Operator-stmtMollMeanO_holds), [`Operator.Dop_norm_le`](#Operator-Dop_norm_le), [`Operator.Dop_sub_mul`](#Operator-Dop_sub_mul), [`Operator.Dop_Imom`](../lean_stage3/OperatorInt.md#Operator-Dop_Imom), [`Unsmooth.unsmooth_near`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 ## Theorems
 

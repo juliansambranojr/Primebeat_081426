@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T08:23:29Z
+# unit: 0592-gap-seals
+# sources searched: 526
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:107227
+  Well if each prime carries the composites combinations between each prime as a deal, then why twin p...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:107306
+  hard = np.array([int(lpf[a + 1:b].max()) for a, b in zip(ps[:-1], ps[1:])])
+
+# 3 found, 0 missing

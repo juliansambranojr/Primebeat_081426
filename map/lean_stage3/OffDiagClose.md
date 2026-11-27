@@ -124,10 +124,12 @@ flowchart LR
   x1(["<b>TwistedMoment</b><br/>6 theorems"]):::ext
   x2(["<b>ApproxFE</b><br/>summable_succ_rpow"]):::ext
   x3(["<b>Operator</b><br/>Ires_o"]):::ext
-  x4(["<b>Diagonal</b><br/>diag_young"]):::ext
-  x5(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
-  x6(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
-  x7(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
+  x4(["<b>DiagLong</b><br/>short_part"]):::ext
+  x5(["<b>Diagonal</b><br/>diag_young"]):::ext
+  x6(["<b>StirlingX</b><br/>lemma3_resO_of_mainO'<br/>stmtXAll_of'"]):::ext
+  x7(["<b>SwapX</b><br/>lemma3_resO_of_mainO<br/>stmtXAll_of"]):::ext
+  x8(["<b>DiagonalO</b><br/>lemma3_resO_of_mainO_X"]):::ext
+  x9(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
   n0 --> n1
   n1 --> n6
   n10 --> n13
@@ -143,9 +145,11 @@ flowchart LR
   n12 -.-> x4
   n12 -.-> x5
   n12 -.-> x6
-  n13 -.-> x5
+  n12 -.-> x7
   n13 -.-> x6
   n13 -.-> x7
+  n13 -.-> x8
+  n13 -.-> x9
   n7 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
@@ -257,7 +261,7 @@ def · line 944
 
 - **Is:** `` StmtOffDiagAll (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ α β : ℂ, Regime κ T α β → ‖offSum W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β 1‖ ≤ C * errY W.toWeight ``
 - **Built from:** [`OffDiagClose.WeightAll`](#OffDiagClose-WeightAll), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
-- **Used by 3:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll)
+- **Used by 4:** [`DiagonalO.lemma3_resO_of_parts`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_parts), [`FloorLong.StmtLongErr`](../lean_stage3/FloorLongErr.md#FloorLong-StmtLongErr), [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds), [`SwapX.lemma3_resO_of_partsAll`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_partsAll)
 
 ## Theorems
 
@@ -1509,8 +1513,9 @@ line 960 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`DiagLong.short_part`](../lean_stage3/DiagLong.md#DiagLong-short_part) (DiagLong) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖Jsh W α β (Zc (Mof T θ) (cF (aY P T θ R) (sig0 T R) (T… ``
   - [`Diagonal.diag_young`](../lean_stage3/Diagonal.md#Diagonal-diag_young) (Diagonal) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (w… ``
   - [`OffDiagClose.stmtOffDiag_holds`](#OffDiagClose-stmtOffDiag_holds) — `` StmtOffDiagAll P θ R κ ``
   - [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-) (StirlingX) — `` StmtXAll P θ R κ ``
@@ -1548,9 +1553,10 @@ StmtOffDiagAll P θ R κ
 
 **Definitions its proof touches:** [`OffDiagClose.StmtOffDiagAll`](#OffDiagClose-StmtOffDiagAll), [`OffDiagClose.wsum`](#OffDiagClose-wsum), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`DiagonalO.lemma3_resO_of_mainO_X`](../lean_stage3/DiagonalO.md#DiagonalO-lemma3_resO_of_mainO_X) (DiagonalO) — `` StmtLemma3resO P θ R κ ``
+  - [`FloorLong.longErr_of_lt_half`](../lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) (FloorLongErr) — `` StmtLongErr P θ R ``
   - [`Stirling.lemma3_resO_of_mainO'`](../lean_stage3/StirlingX.md#Stirling-lemma3_resO_of_mainO-) (StirlingX) — `` StmtLemma3resO P θ R κ ``
   - [`Stirling.stmtXAll_of'`](../lean_stage3/StirlingX.md#Stirling-stmtXAll_of-) (StirlingX) — `` StmtXAll P θ R κ ``
   - [`SwapX.lemma3_resO_of_mainO`](../lean_stage3/SwapX.md#SwapX-lemma3_resO_of_mainO) (SwapX) — `` StmtLemma3resO P θ R κ ``

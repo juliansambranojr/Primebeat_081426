@@ -113,11 +113,13 @@ flowchart LR
   x0(["<b>TwistedMoment</b><br/>4 theorems"]):::ext
   x1(["<b>OffDiagClose</b><br/>N_le<br/>stmtOffDiag_holds"]):::ext
   x2(["<b>diagram 1</b><br/>16 theorems"]):::ext
+  x3(["<b>FloorLongErr</b><br/>lemma3_of_long"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
   n3 --> n5
   n4 --> n5
+  n4 -.-> x3
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n4
@@ -240,7 +242,7 @@ The X-term over `WeightAll` (the shape of `StmtOffDiagAll`): `I_X(α,β) = T^(�
 
 - **Is:** `` StmtXAll (P : Polynomial ℝ) (θ R κ : ℝ) : Prop := ∀ Cs : ℕ → ℝ, ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : WeightAll T (Real.log T), (∀ j, W.Cj j ≤ Cs j) → ∀ α β : ℂ, Regime κ T α β → ‖IX W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (T : ℂ) ^ (-(α + β)) * I1 W.toWeight (Mof T θ) (aY P T θ R) (sig0 T R) (-β) (-α) 1‖ ≤ C * errY W.toWeight ``
 - **Built from:** [`OffDiagClose.WeightAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-WeightAll), [`TwistedMoment.I1`](../lean_stage3/TwistedMoment.md#TwistedMoment-I1), [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
-- **Used by 2:** [`SwapX.lemma3_resO_of_partsAll`](#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](#SwapX-stmtXAll_of)
+- **Used by 3:** [`FloorLong.StmtLongErr`](../lean_stage3/FloorLongErr.md#FloorLong-StmtLongErr), [`SwapX.lemma3_resO_of_partsAll`](#SwapX-lemma3_resO_of_partsAll), [`SwapX.stmtXAll_of`](#SwapX-stmtXAll_of)
 
 ## Theorems
 
@@ -1346,8 +1348,9 @@ StmtLemma3resO P θ R κ
 
 **Definitions its proof touches:** [`OffDiagClose.StmtOffDiagAll`](../lean_stage3/OffDiagClose.md#OffDiagClose-StmtOffDiagAll), [`SwapX.StmtXAll`](#SwapX-StmtXAll), [`TwistedMoment.I1`](../lean_stage3/TwistedMoment.md#TwistedMoment-I1), [`TwistedMoment.IX`](../lean_stage3/TwistedMoment.md#TwistedMoment-IX), [`TwistedMoment.Imom`](../lean_stage3/TwistedMoment.md#TwistedMoment-Imom), [`TwistedMoment.Ires`](../lean_stage3/TwistedMoment.md#TwistedMoment-Ires), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.diagSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-diagSum), [`TwistedMoment.errY`](../lean_stage3/TwistedMoment.md#TwistedMoment-errY), [`TwistedMoment.offSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-offSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.lemma3_of_long`](../lean_stage3/FloorLongErr.md#FloorLong-lemma3_of_long) (FloorLongErr) — `` StmtLemma3resO P θ R κ ``
   - [`SwapX.lemma3_resO_of_mainO`](#SwapX-lemma3_resO_of_mainO) — `` StmtLemma3resO P θ R κ ``
 
 <a name="SwapX-lemma3_resO_of_mainO"></a>

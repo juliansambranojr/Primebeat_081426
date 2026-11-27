@@ -1,0 +1,131 @@
+# check_prose_source.py  2026-11-26T00:17:25Z
+# unit: 0573-basin-chain
+# sources searched: 111
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82134
+  theorem rh_of_noRightZeros {Q : ℝ[X]}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82130
+  (hQh : Q.eval (1/2) ≠ 0) (hQ0 : Q.eval 0 = 1) {T₀ a₂ b₂ T₀' : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82131
+  (hNR : StmtNoRightZeros Q T₀) (hLow : StmtVHorizLower Q a₂ b₂ T₀') (ha₂ : 0 ≤ a₂)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82128
+  theorem defect_eventually_const {Q : ℝ[X]}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82130
+  (hQh : Q.eval (1/2) ≠ 0) (hQ0 : Q.eval 0 = 1) {T₀ a₂ b₂ T₀' : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82131
+  (hNR : StmtNoRightZeros Q T₀) (hLow : StmtVHorizLower Q a₂ b₂ T₀') (ha₂ : 0 ≤ a₂) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4394
+  ∃ T₂ : ℝ, ∀ T : ℝ, T₂ ≤ T → Defect.defect T = Defect.defect T₂ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82648
+  theorem noRightZeros_one_of_rh (hRH : RiemannHypothesis) (T₀ : ℝ) (hT₀ : 0 < T₀) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2906
+  (hQh : Q.eval (1/2) ≠ 0) {L a b : ℝ} (ha : 4 ≤ a) (hab : a < b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77046
+  (hBot : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑a * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77047
+  (hTop : ∀ x ∈ Icc (1/2 : ℝ) 3, V Q L (↑x + ↑b * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:72972
+  (hζa : riemannZeta (1/2 + a * I) ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2910
+  (hRne : ∀ t ∈ Icc a b, V Q L (3 + t * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2911
+  ((Stage3.phaseTheta b - Stage3.phaseTheta a)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2912
+  + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2913
+  - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b * I)).im
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2914
+  + (∫ t in a..b, logDeriv (V Q L) (3 + ↑t * I)).re)) / Real.pi
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2915
+  - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - 1
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:2916
+  < (lineCount b : ℝ) - (lineCount a : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82650
+  theorem right_edge_le_arcsin {G : ℂ → ℂ} {a b r : ℝ} (hab : a ≤ b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3215
+  (hGa : ∀ t ∈ Set.Icc a b, AnalyticAt ℂ G (3 + t * I)) (hr : r < 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3216
+  (hnear : ∀ t ∈ Set.Icc a b, ‖G (3 + t * I) - 1‖ ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3217
+  |(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ 2 * Real.arcsin r :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82651
+  theorem split_V (Q : ℝ[X]) (L : ℝ) {t₁ t₂ : ℝ} (h1 : 1/2 < t₁) (h12 : t₁ ≤ t₂)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3757
+  (hne : V Q L (3 + t₁ * I) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3758
+  IntervalIntegrable (fun t => hEdge Q L t) volume t₁ t₂ ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:3759
+  ∫ t in t₁..t₂, hEdge Q L t = logJ Q L t₁ - logJ Q L t₂ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82647
+  theorem increment_avg {Q : ℝ[X]}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77034
+  (hQ : ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82130
+  (hQh : Q.eval (1/2) ≠ 0) (hQ0 : Q.eval 0 = 1) {T₀ a₂ b₂ T₀' : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82131
+  (hNR : StmtNoRightZeros Q T₀) (hLow : StmtVHorizLower Q a₂ b₂ T₀') (ha₂ : 0 ≤ a₂) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4034
+  ∃ A T₁ : ℝ, 0 < A ∧ 200 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4035
+  ((Defect.defect T : ℝ) - (Defect.defect (3 * T / 4) : ℝ)) ≤
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4036
+  4 * ((2 * ((3 / 2 + 113 / 4) / Real.pi) + (5 + 2 * a₂) / Real.pi) * Real.log (2 * T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4037
+  + (2 * ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4038
+  + (5 * Real.log (A + 1) + 2 * b₂) / Real.pi)) / T
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad4d3ec3d89fed705.jsonl:4039
+  + (1 + 2 * Real.arcsin (Real.pi ^ 2 / 6 - 1 + 1 / 100) / Real.pi) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82646
+  theorem c0_lt_two : 1 + 2 * Real.arcsin (Real.pi ^ 2 / 6 - 1 + 1 / 100) / Real.pi < 2 :=
+
+# 42 found, 0 missing

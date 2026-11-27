@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-25T23:11:11Z
+# unit: 0569-littlewood-sharp
+# sources searched: 510
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:80932
+  Yes to log and stirling
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81140
+  Turing.StmtLittlewood ((3 / 2 + 113 / 4) / Real.pi)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81141
+  ((2 + (3 / 2) * Real.log 9 + 128) / Real.pi) 2 :=
+
+# 4 found, 0 missing

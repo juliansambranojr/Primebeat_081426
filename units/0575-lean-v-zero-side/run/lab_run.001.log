@@ -1,0 +1,7 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T01:04:57Z
+Traceback (most recent call last):
+  File "/home/user/Primebeat_081426/units/0575-lean-v-zero-side/run/zeroside.py", line 6, in <module>
+    from vlib import *
+ModuleNotFoundError: No module named 'vlib'
+# exit 1 after 0.049s, ended 2026-11-26T01:04:57Z

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	344	wc -l lean_stage3/Stage3/TuringCert.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/TuringCert.lean
+defs	3	grep -c ^def lean_stage3/Stage3/TuringCert.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TuringCert.lean
+pins	3	defect_mono, count_le_N_sub, defect_zero_of_signs
+errors_first	0	the worker's first build of the certificate file: none
+builds	5	the worker's report, builds over the four files
+traps_added	2	lean_stage3/TRAPS.md rows 119-120
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8986	lake build (full Stage3), Build completed successfully
+jobs_module	8871	run/build.log, lake build Stage3.TuringCert
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	4	lean_stage3/Stage3/Turing.lean, TuringS.lean, TuringAvg.lean, TuringCert.lean
+trap_first	119	lean_stage3/TRAPS.md
+trap_last	120	lean_stage3/TRAPS.md

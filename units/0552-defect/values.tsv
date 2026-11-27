@@ -1,0 +1,19 @@
+key	value	source
+module_lines	369	wc -l lean_stage3/Stage3/Defect.lean
+theorems_proved	20	grep -c ^theorem lean_stage3/Stage3/Defect.lean
+defs	3	grep -c ^def lean_stage3/Stage3/Defect.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/Defect.lean
+pins	9	defect_nonneg, rh_iff_defect_zero, N_le_allCount, N_eq_allCount_right, offLine_pair, defect_even, defect_le_of_floor, defect_le, defectN_le
+errors_first	0	the worker's first build: none, one unused simp argument
+builds	2	the worker's report
+traps_added	3	lean_stage3/TRAPS.md rows 88-90
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8952	lake build (full Stage3), Build completed successfully
+jobs_module	8867	run/build.log, lake build Stage3.Defect
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+trap_first	88	lean_stage3/TRAPS.md
+trap_last	90	lean_stage3/TRAPS.md
+defect_frac	2/3	defect_le: defect T <= (2/3 + eps) allCount T

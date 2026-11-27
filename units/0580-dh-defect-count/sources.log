@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T03:08:09Z
+# unit: 0580-dh-defect-count
+# sources searched: 115
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:87336
+  Run the Turing defect count on Davenport–Heilbronn. It should fail there, and we'd see the verifier ...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:87490
+  return 5 ** (-s) * sum(A[j] * mp.zeta(s, mp.mpf(j) / 5) for j in (1, 2, 3, 4))
+
+# 3 found, 0 missing

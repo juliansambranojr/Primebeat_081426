@@ -1,0 +1,80 @@
+{
+ "rows": {
+  "r20": {
+   "primes": 146,
+   "paired_sum_over_sqrt": 0.7099110698625986,
+   "paired_sizes_over_sqrt": 0.7369788341878463,
+   "top_scale_sum_over_sqrt": 1.5569162496220188,
+   "low_scale_sum_over_sqrt": 0.8470051797594201,
+   "paired_ratio": 0.9632719922613836
+  },
+  "r21": {
+   "primes": 198,
+   "paired_sum_over_sqrt": 0.8118362466383011,
+   "paired_sizes_over_sqrt": 0.8433840576073468,
+   "top_scale_sum_over_sqrt": 1.7234092935463656,
+   "low_scale_sum_over_sqrt": 0.9115730469080644,
+   "paired_ratio": 0.962593778380699
+  },
+  "r22": {
+   "primes": 272,
+   "paired_sum_over_sqrt": 0.9293567643353753,
+   "paired_sizes_over_sqrt": 0.9456969106648598,
+   "top_scale_sum_over_sqrt": 1.9177881630792837,
+   "low_scale_sum_over_sqrt": 0.9884313987439084,
+   "paired_ratio": 0.982721582205448
+  },
+  "r23": {
+   "primes": 372,
+   "paired_sum_over_sqrt": 1.01851950916038,
+   "paired_sizes_over_sqrt": 1.0225312007866234,
+   "top_scale_sum_over_sqrt": 2.1068851070451133,
+   "low_scale_sum_over_sqrt": 1.088365597884733,
+   "paired_ratio": 0.9960767049228842
+  },
+  "r24": {
+   "primes": 510,
+   "paired_sum_over_sqrt": 1.112625208016636,
+   "paired_sizes_over_sqrt": 1.1245138969865307,
+   "top_scale_sum_over_sqrt": 2.3110192731375445,
+   "low_scale_sum_over_sqrt": 1.1983940651209086,
+   "paired_ratio": 0.9894277082731
+  },
+  "r25": {
+   "primes": 694,
+   "paired_sum_over_sqrt": 1.2325117275347734,
+   "paired_sizes_over_sqrt": 1.27423771518864,
+   "top_scale_sum_over_sqrt": 2.547402927982809,
+   "low_scale_sum_over_sqrt": 1.3148912004480358,
+   "paired_ratio": 0.9672541574021066
+  },
+  "r26": {
+   "primes": 949,
+   "paired_sum_over_sqrt": 1.3755240284131198,
+   "paired_sizes_over_sqrt": 1.391920867322539,
+   "top_scale_sum_over_sqrt": 2.800779248215381,
+   "low_scale_sum_over_sqrt": 1.4252552198022612,
+   "paired_ratio": 0.9882199920308978
+  },
+  "r27": {
+   "primes": 1296,
+   "paired_sum_over_sqrt": 1.5566148519283267,
+   "paired_sizes_over_sqrt": 1.5745860749093126,
+   "top_scale_sum_over_sqrt": 3.092731557821565,
+   "low_scale_sum_over_sqrt": 1.5361167058932383,
+   "paired_ratio": 0.9885867001700616
+  },
+  "r28": {
+   "primes": 1783,
+   "paired_sum_over_sqrt": 1.7323690021345726,
+   "paired_sizes_over_sqrt": 1.7856217853656606,
+   "top_scale_sum_over_sqrt": 3.429695018201256,
+   "low_scale_sum_over_sqrt": 1.6973260160666837,
+   "paired_ratio": 0.9701768965480095
+  }
+ },
+ "growth": {
+  "exponent_over_sqrt": 0.15620133113087478,
+  "over_sqrt_log_at_top": 0.08926000601318965
+ }
+}

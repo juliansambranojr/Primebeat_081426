@@ -22,6 +22,252 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-25 · block S15 of `design/stencil.md`, the chain to the goal from no right zeros: `Stage3/BasinChain*.lean`
+
+    DONE        `StmtNoRightZeros Q`: for every T ≥ T₀ the zeros of
+                `ConreyCount.V Q (log T)` with Re s > 1/2 and Im s in [T/4, 2T]
+                are none; the count with no losses (`conrey_count_sub` with the
+                countRight term zero); Littlewood for arg V on the line (as
+                `TuringLW` for ζ); Turing's averaging with the defect monotone
+                and even; and `rh_of_noRightZeros : StmtNoRightZeros Q →
+                RiemannHypothesis` (with `Defect.rh_iff_defect_zero` and a finite
+                base below T₀ if the chain needs one, named); one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (the measurement of V's
+                zeros right of 1/2, and steps 3–5 in Lean). Written before the
+                workers start.
+    DEPENDS     `ConreyCount*`, `DigammaBound*`, `TuringLW*`, `LittlewoodSharp*`,
+                `TuringAvg`, `TuringCert`, `TuringSlope`, `Defect`
+    OUT         step 2 itself (`StmtNoRightZeros`)
+
+### 2026-11-25 · block S15 of `design/stencil.md`, the right zeros of V, measured: `units/0572-*` (run)
+
+    DONE        on test stretches (T = 10³, 10⁴, 10⁵ or as cost allows), the zeros
+                of V_Q with Re s > 1/2 for Levinson's Q = 1 − x, Conrey's Q₀ and a
+                search over symmetric Q with Q(0) = 1; whether some Q has none;
+                exploratory, one unit
+    ASSUMED     as above
+    DEPENDS     `units/0562-basin-floor/run/basin.py`, `lean_stage3/checks/conrey_sz/`
+    OUT         the Lean chain
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's point run: `Stage3/TuringRun*.lean`
+
+    DONE        `TuringSlope.StmtClosingData' T₁ h` proved at one T₁ near 440: the
+                zeros below T₁ located numerically (mpmath), one certified sign
+                point between each consecutive pair, the points above T₁ inside the
+                window, the numeric inequality `hnum` with a certified enclosure
+                of θ(T₁); then `rh_up_to : ∀ T ≤ T₁, Defect.defect T = 0` and its
+                reading: every zero with 0 < Im ≤ T₁ has real part ½; all through
+                the StirlingSeries pipeline, generated from `lean_stage3/checks/`
+                (gen script and its output kept); one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0571, TRAPS 146–148,
+                the point run). Written before the worker starts.
+    DEPENDS     `TuringSlope`, `StirlingSeries*`, `SignData*`, `Defect`, `LineCount`
+    OUT         B3; C's core
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's slope term: `Stage3/TuringSlope.lean` and `Stage3/TuringSlope*.lean`
+
+    DONE        `Turing.theta_sub_le` sharpened through `StirlingSeries`: the
+                horizon's slope θ(u) − θ(t) ≤ (u − t)·(½ log(u/2π) + c/t) with c small
+                (target c ≤ 1); `turing_S_le` and `defect_zero_of_signs` restated with
+                it and with `LittlewoodSharp.littlewood_sharp`; the closing height
+                recomputed (target ≈ 432 ideal); a `StmtClosingData'` with the new
+                constants and `defect_zero_of_closing'`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0569, 0570, TRAPS
+                139–145, sharpen theta_sub_le, then the point run). Written
+                before the worker starts.
+    DEPENDS     `Turing*`, `TuringLW*`, `LittlewoodSharp*`, `StirlingSeries*`,
+                `SignData*`, `Stirling` (phaseTheta)
+    OUT         the point run up to the closing height (its own block next)
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing at scale: Stirling's series and sharper Littlewood constants: `Stage3/StirlingSeriesLim.lean`, `Stage3/StirlingSeries*.lean`, `Stage3/LittlewoodSharp.lean`, `Stage3/LittlewoodSharp*.lean`
+
+    DONE        (a) Stirling's series for log Γ(z) with an explicit remainder
+                (Re z > 0, |z| large: log Γ = (z−½)log z − z + ½ log 2π +
+                Σ_{k<K} B_{2k}/(2k(2k−1)z^{2k−1}) + R_K, |R_K| ≤ explicit), and a
+                ball enclosure of the gamma phase at height t in O(K) balls,
+                replacing `SignDataGamma.tail_le`; (b) Littlewood's constants
+                sharpened (the per-zero 7/2, the log 2 losses, the radii) with
+                the closing height recomputed; one unit each
+    ASSUMED     Julian, 2026-11-25: "Yes to log and stirling". Written before the
+                workers start.
+    DEPENDS     `SignData*`, `StirlingLog`, `Stirling`, `TuringLW*`, `ZetaEM`
+    OUT         the PNT for μ with a rate; B3; C's core
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's sign data: `Stage3/SignData.lean` and `Stage3/SignData*.lean`
+
+    DONE        a certified evaluation of Λ(1/2 + it) at given rational t in Lean:
+                Euler–Maclaurin (`ZetaEM.zeta_eq_em`, explicit remainder) with
+                rigorous rational enclosures of log n, cos, sin, exp and the gamma
+                factor; the sign of Re Λ(1/2 + it) at chosen points proved; a first
+                certificate `StmtSignData` instance across the first zero (t ≈ 14.13)
+                and, if feasible, the points `defect_zero_of_signs` needs for a small
+                height; or the pipeline at one point with a cost estimate; one unit
+    ASSUMED     Julian, 2026-11-25: "Start the sign data and the diagonal please".
+                Written before the workers start.
+    DEPENDS     `ZetaEM`, `Turing*`, `TuringLW`, `HardyZ`, Mathlib's Taylor bounds
+                for exp, cos, sin, log
+    OUT         B3; C's core
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B3 step 1, the diagonal at any length: `Stage3/DiagLong.lean`
+
+    DONE        `FloorLong.StmtDiagErr P θ R κ` for the largest range of θ the
+                diagonal's own route reaches (target: every θ > 0, as in Young §6 by
+                moving u, v and s), with the shifted integrals' sizes checked before
+                proving; or the largest honest range, with the obstruction named;
+                one unit
+    ASSUMED     as above
+    DEPENDS     `Diagonal`, `FloorLongErr`, `ZetaGrowth`, `SdiagLead*`, `Arith`
+    OUT         the off-diagonal and the swapped term at θ ≥ 1/2
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, Littlewood's three pieces: `Stage3/TuringLW.lean` and `Stage3/TuringLW*.lean`
+
+    DONE        `Turing.StmtSplit` (the imaginary part of the integrated argument
+                principle), `Turing.StmtOsc c₀` (∫ of the real part of ∫ ζ′/ζ on
+                Re = 2 bounded), `Turing.StmtHorizLower a₂ b₂` (∫_{1/2}^{2}
+                log|ζ(x + it)| dx ≥ −(a₂ log t + b₂), Poisson–Jensen); then
+                `Turing.StmtLittlewood` with explicit constants by
+                `littlewood_of_pieces`; one unit
+    ASSUMED     Julian, 2026-11-25: "The three little wood pieces in lean please".
+                Written before the workers start.
+    DEPENDS     `Turing*`, `Littlewood`, `JensenCount`, `ArgCount`, `LevinsonEdge`,
+                `LevinsonSize`, `ZetaGrowth`, PNT+ log-derivative bounds
+    OUT         the sign data (rigorous evaluation of Z)
+
+### 2026-11-25 · block S14 of `design/stencil.md`, Turing's method, its analytic half: `Stage3/TuringCert.lean` and `Stage3/Turing*.lean`
+
+    DONE        Littlewood's bound on ∫ S: S₁(T) = ∫_0^T S(t) dt with
+                |S₁(t₂) − S₁(t₁)| ≤ a·log t₂ + b, explicit a, b, from
+                `Littlewood.littlewood_rect` and the tree's ζ bounds; Turing's
+                lemma in the form "if the sign changes of Z found on [g_m, g_n]
+                reach n − m and S₁ is bounded, no zero is missed"; the numerical
+                certificate (signs of Z at given points) as a named Prop; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0561, TRAPS 115–118,
+                Turing's method and a B3 design round). Written before the
+                worker starts.
+    DEPENDS     `Littlewood`, `HardyZ`, `LineCount`, `Defect`, `ArgCount`,
+                `LevinsonSize`, `ZetaGrowth`, `Stirling`
+    OUT         the rigorous evaluation of Z (a design question); B3; C's core
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 5, the assembly for a general Q: `Stage3/FloorQ*.lean`
+
+    DONE        `floor_stepQ`: on [T/2, T], lineCount T − lineCount (T/2) ≥
+                (1 − log(max 1 (Re DopQ(cY) + ε))/R)(N T − N(T/2)) − ε T log T,
+                from `conrey_count_window'` and `window_V_lt_half'` (a copy of
+                `FloorStep` with V for G: continuity in σ, X, Littlewood on Vψ);
+                then `levinson_floorQ`: at P₀, Q₀, θ = 49/100, R = 3/2,
+                lineCount T ≥ (224/625 − ε)·N T for large T, from
+                `FloorConstQ.floor_constQ` and `FloorSumTele`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes please" (log 0560, TRAPS 109–114, start
+                the assembly). Written before the worker starts.
+    DEPENDS     `ConreyCount`, `DigammaBound`, `MeanQ`, `GrRatio`, `FloorConstQ`,
+                `FloorStep*`, `FloorSum*`, `Littlewood`, `LevinsonRight`
+    OUT         B3; C
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4, the gamma ratio: `Stage3/GrRatio*.lean`
+
+    DONE        `MeanQRed.StmtGrRatio n` for every n, by the device of
+                `DigammaBoundIdentity` (V_eq_sum_H: the shift out of V exactly) and
+                Cauchy's estimate on small circles with `DigammaBoundSize.gamma_ratio`;
+                then `window_V_lt_half` and `mollMeanV_long` without `hG`; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0558, TRAPS 102–107,
+                start StmtGrRatio and the general-Q closed form). Written before
+                the workers start.
+    DEPENDS     `MeanQRed`, `MeanQ`, `DigammaBound*`, `StirlingLog`
+    OUT         the closed form; the assembly
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 4, the closed form for a general Q: `Stage3/FloorConstQ*.lean`
+
+    DONE        Re DopQ(cY)(T) → c(P, Q, R, θ) of Young's (1.3) for general P and
+                symmetric Q, the identity generalizing `FloorConstLimit.dop_cY_eq`;
+                at one rational cubic Q, cubic or linear P, θ < 1/2 and R, a proved
+                bound log c < R·(1 − κ₀) with κ₀ > 1/3 (target near 0.36); one unit
+    ASSUMED     as above
+    DEPENDS     `FloorConst*`, `MeanQCauchy` (`DopQ`), `OperatorCY`, `TwistedMoment`
+    OUT         StmtGrRatio; the assembly
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 3, the mean value with a general Q: `Stage3/MeanQ*.lean`
+
+    DONE        the mollified mean of V = W/Gammaℝ (V = Q(1/2 − (D + g)/L) ζ) at
+                σ₀ = 1/2 − R/L: ∫ w |Vψ|² = DopQ(cY)·ŵ(0) + o(T) from the Lemma-3
+                level (`FloorLong`'s form, any θ), with DopQ the operator for Q
+                and the g-shift paid as O(T/L); then unsmoothing and the window
+                hypothesis of `conrey_count_window`; or the largest honest piece;
+                one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all" (log 0556, TRAPS 94–97, start
+                the digamma bound and the general-Q mean value). Written before
+                the workers start.
+    DEPENDS     `ConreyCount`, `OperatorQ`, `Operator*`, `FloorLongMean`, `Lemma3`
+    OUT         `StmtVEdges` (the digamma worker); the closed form
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 2, the digamma bound and V's edges: `Stage3/DigammaBound*.lean`
+
+    DONE        ψ(z) − log z and ψ′(z) bounded off Re z = 1/4 (Re z ≥ 1/8, |Im z|
+                large: |ψ(z) − log z| ≤ C/|z|, |ψ^(k)(z)| ≤ C_k/|z|^k), from
+                `StirlingLog` or PNT+'s digamma; then `ConreyCount.StmtVEdges Q T A`
+                for T ≥ T₀(Q); then `conrey_count_window` unconditional; one unit
+    ASSUMED     as above
+    DEPENDS     `StirlingLog`, `StirlingX`, `ConreyCountEdge`, PNT+ digamma
+    OUT         the mean value; the closed form
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4 step 1, Conrey's identity and count: `Stage3/ConreyCount*.lean`
+
+    DONE        `conrey_identity`: W(s) + W(1 − s) = 2·Q(1/2)·Λ(s) for W of
+                `OperatorQ` (Conrey 1983 §4 (1) at m = 0, here from the parity of
+                Λ's derivatives); then Levinson's count with V = W/Gammaℝ in place
+                of G: lineCount b − lineCount a ≥ (N b − N a) − 2·(zeros of V right
+                of the line) − O(log b), generalizing `LevinsonArg`,
+                `LevinsonCount`, `LevinsonMultiple`, `LevinsonWindowNear`; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (write B4 round, log the
+                Gram/Turing round and B4's line identity, start step 1).
+                Written before the worker starts.
+    DEPENDS     `OperatorQ`, `HardyZ`, `LevinsonArg`, `LevinsonTurn`,
+                `LevinsonSize`, `LevinsonEdge`, `LevinsonCount`, `LevinsonMultiple`,
+                `LevinsonWindowNear`, `Littlewood`
+    OUT         the mean value of ψV (B4 step 3), the closed form; B3; C
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B4, the operator with a general Q: `Stage3/OperatorQ*.lean`
+
+    DONE        V = Q(−(1/L) d/ds) ζ for a real polynomial Q with Q(0) = 1 and
+                Q′(x) = Q′(1 − x): the operator Q(−∂α/L)Q(−∂β/L) on the twisted
+                moment, the mollified mean of Vψ, unsmoothing, Levinson's count
+                and window for V (the count needs the line identity
+                Re(Gammaℝ·V) on the line), the closed form of the main term for
+                general Q (Young (1.3)), and `floor_of_long_Q`; or the largest
+                honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes to all please" (log 0553, TRAPS 91–93,
+                start the general-Q operator and C3). Written before the worker
+                starts.
+    DEPENDS     `Operator*`, `Unsmooth*`, `FloorLong*`, `FloorConst*`,
+                `LevinsonLine`, `LevinsonArg`, `LevinsonWindowNear`
+    OUT         B3; C3 (on paper, here)
+
+### 2026-11-25 · block S14 of `design/stencil.md`, C1, the defect: `Stage3/Defect.lean`
+
+    DONE        `defect T = N T − lineCount T`; `defect_nonneg`; `defect_even` (the
+                off-line zeros pair by ρ ↔ 1 − ρ̄); `defect_le`: from
+                `levinson_floor`, defect T ≤ (2/3 + ε)·N T eventually; or the
+                largest honest piece, the rest named; one unit
+    ASSUMED     Julian, 2026-11-25: "Yes please" (start B1 and C1 side by side,
+                B2 in Python). Written before the workers start.
+    DEPENDS     `LineCount`, `FloorSum`, `ArgCount`, the zero set's symmetry in
+                the tree (grep `one_sub`, `conj` in the zero files)
+    OUT         B1; C2, C3
+
+### 2026-11-25 · block S13 of `design/stencil.md`, B1, the floor for every length: `Stage3/FloorLong*.lean`
+
+    DONE        `StmtLongErr P θ R`: the three error statements of the chain
+                (`final_size_diag`, `final_size`, `size_X` in their consumed form)
+                as one Prop for any θ > 0; `floor_of_long`: from it, for every
+                ε > 0, eventually lineCount T ≥ (1 − log Kfl(A,B,C,θ,R)/R − ε)·N T
+                (Kfl ≥ 1 or with max 1); and `longErr_of_lt_half`: it holds for
+                θ < 1/2; or the largest honest piece; one unit
+    ASSUMED     as above
+    DEPENDS     the whole S12 chain (`Diagonal`, `OffDiagClose`, `SwapX`,
+                `StirlingX`, `Arith`, `Lemma3`, `Operator`, `Unsmooth`,
+                `FloorConst*`, `FloorStep*`, `FloorSum*`)
+    OUT         B2 (Python), B3; C
+
 ### 2026-11-25 · block S12 of `design/stencil.md`, piece 5c, the sum: `Stage3/FloorSum*.lean`
 
     DONE        at P(x) = x, θ = 49/100, R = 13/10: for every ε > 0, from some T on,

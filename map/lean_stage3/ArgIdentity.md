@@ -140,6 +140,7 @@ flowchart LR
   x4(["<b>ArgCrude</b><br/>argCrude_of_pieces<br/>rvM_of_stirling_and_pieces"]):::ext
   x5(["<b>JensenCount</b><br/>localCount_holds"]):::ext
   x6(["<b>ArgLegs</b><br/>horizontal_leg_le<br/>vertical_leg_le"]):::ext
+  x7(["<b>TuringLWSplit</b><br/>stmtSplit_holds"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n12
@@ -170,6 +171,7 @@ flowchart LR
   n2 -.-> x0
   n21 -.-> x6
   n22 -.-> x3
+  n22 -.-> x7
   n4 -.-> x0
   x1 -.-> n22
   x1 -.-> n3
@@ -222,7 +224,7 @@ def · line 1445
 
 - **Is:** `` argS (T : ℝ) : ℝ := riemannZeta.N T - (phaseTheta T / Real.pi + 1) ``
 - **Built from:** [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
-- **Used by 15:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds), [`ArgCount.sCrude_holds_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds_of_good_two), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](#Stage3-backlundArg_of_sFromLocal), [`Stage3.rvM_of_sFromLocal`](#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](#Stage3-stmtArgIdentity_holds), [`LevinsonSize.gamma_part_count_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le), [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two), [`LevinsonSize.gamma_part_eq_count`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq_count), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le)
+- **Used by 16:** [`ArgCount.argS_le_gt_two`](../lean_stage3/ArgCount.md#ArgCount-argS_le_gt_two), [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`ArgCount.argS_two_le`](../lean_stage3/ArgCount.md#ArgCount-argS_two_le), [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude), [`ArgCount.rvM_crude_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude_of_good_two), [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds), [`ArgCount.sCrude_holds_of_good_two`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds_of_good_two), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`Stage3.backlundArg_of_sFromLocal`](#Stage3-backlundArg_of_sFromLocal), [`Stage3.rvM_of_sFromLocal`](#Stage3-rvM_of_sFromLocal), [`Stage3.stmtArgIdentity_holds`](#Stage3-stmtArgIdentity_holds), [`LevinsonSize.gamma_part_count_le`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le), [`LevinsonSize.gamma_part_count_le_gt_two`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_count_le_gt_two), [`LevinsonSize.gamma_part_eq_count`](../lean_stage3/LevinsonSize.md#LevinsonSize-gamma_part_eq_count), [`LevinsonWindow.N_step_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-N_step_le), [`Turing.S_eq_argS`](../lean_stage3/TuringS.md#Turing-S_eq_argS)
 
 <a name="Stage3-zetaArgContour"></a>
 ### `Stage3.zetaArgContour`
@@ -232,7 +234,7 @@ def · line 1503
 The `ζ`-part of the folded functional, normalised: the classical `S(T)` as an argument variation.
 
 - **Is:** `` zetaArgContour (T : ℝ) : ℝ := (1 / Real.pi) * ((∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex.I)).im) ``
-- **Used by 3:** [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`ArgLegs.zetaArgContour_le`](../lean_stage3/ArgLegs.md#ArgLegs-zetaArgContour_le)
+- **Used by 4:** [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good), [`Stage3.argS_eq_zetaArgContour`](#Stage3-argS_eq_zetaArgContour), [`ArgLegs.zetaArgContour_le`](../lean_stage3/ArgLegs.md#ArgLegs-zetaArgContour_le), [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds)
 
 ## Theorems
 
@@ -1765,7 +1767,8 @@ argS T = zetaArgContour T
 
 **Definitions its proof touches:** [`Stage3.elemLD`](#Stage3-elemLD), [`Stage3.xi`](#Stage3-xi), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ArgCount.argS_le_of_good`](../lean_stage3/ArgCount.md#ArgCount-argS_le_of_good) (ArgCount) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 

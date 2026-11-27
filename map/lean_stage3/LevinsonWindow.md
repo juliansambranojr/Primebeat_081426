@@ -23,17 +23,20 @@ flowchart LR
   n7["<b>tailDelta_nonneg</b><br/>0 ≤ LevinsonMollEdge.tailDelta M B X"]:::cnt
   n8["<b>windowE_nonneg</b><br/>0 ≤ windowE M B X T a b"]:::shp
   n9["<b>levinson_window ■</b><br/>(riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ…"]:::thm
-  x0(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
-  x1(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
-  x2(["<b>LevinsonRight</b><br/>divisor_nonneg_real<br/>levinson_right"]):::ext
-  x3(["<b>Littlewood</b><br/>divisor_eq<br/>mem_support_divisor<br/>order_ne_top"]):::ext
-  x4(["<b>ArgCount</b><br/>N_mono<br/>phaseTheta_sub_le<br/>sCrude_holds"]):::ext
-  x5(["<b>LevinsonLine</b><br/>zeta_line_zero_iff"]):::ext
-  x6(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
-  x7(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x8(["<b>LevinsonEdge</b><br/>G_analyticAt"]):::ext
-  x9(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
-  x10(["<b>LevinsonSize</b><br/>re_G_pos"]):::ext
+  x0(["<b>BasinChainCount</b><br/>count_exact"]):::ext
+  x1(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x2(["<b>FloorQWindow</b><br/>conrey_window_diff"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>levinson_count'<br/>levinson_window'"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>levinson_count_sub<br/>levinson_window_diff"]):::ext
+  x5(["<b>LevinsonRight</b><br/>divisor_nonneg_real<br/>levinson_right"]):::ext
+  x6(["<b>Littlewood</b><br/>divisor_eq<br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x7(["<b>ArgCount</b><br/>N_mono<br/>phaseTheta_sub_le<br/>sCrude_holds"]):::ext
+  x8(["<b>LevinsonLine</b><br/>zeta_line_zero_iff"]):::ext
+  x9(["<b>LevinsonAvoid</b><br/>4 theorems"]):::ext
+  x10(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x11(["<b>LevinsonEdge</b><br/>G_analyticAt"]):::ext
+  x12(["<b>LevinsonMollEdge</b><br/>6 theorems"]):::ext
+  x13(["<b>LevinsonSize</b><br/>re_G_pos"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n9
@@ -46,30 +49,37 @@ flowchart LR
   n8 --> n9
   n0 -.-> x0
   n0 -.-> x1
-  n1 -.-> x0
-  n1 -.-> x1
-  n2 -.-> x0
-  n2 -.-> x1
-  n3 -.-> x0
-  n3 -.-> x1
-  n4 -.-> x0
-  n4 -.-> x1
-  n6 -.-> x0
-  n6 -.-> x1
-  n7 -.-> x0
-  n7 -.-> x1
-  n8 -.-> x0
-  n8 -.-> x1
+  n0 -.-> x2
+  n0 -.-> x3
+  n0 -.-> x4
+  n1 -.-> x3
+  n1 -.-> x4
+  n2 -.-> x2
+  n2 -.-> x3
+  n2 -.-> x4
+  n3 -.-> x2
+  n3 -.-> x3
+  n3 -.-> x4
+  n4 -.-> x2
+  n4 -.-> x3
+  n4 -.-> x4
+  n6 -.-> x2
+  n6 -.-> x3
+  n6 -.-> x4
+  n7 -.-> x3
+  n7 -.-> x4
+  n8 -.-> x3
+  n8 -.-> x4
   x10 -.-> n9
-  x2 -.-> n2
-  x2 -.-> n9
-  x3 -.-> n2
-  x4 -.-> n4
-  x4 -.-> n9
-  x5 -.-> n5
-  x6 -.-> n9
+  x11 -.-> n9
+  x12 -.-> n9
+  x13 -.-> n9
+  x5 -.-> n2
+  x5 -.-> n9
+  x6 -.-> n2
+  x7 -.-> n4
   x7 -.-> n9
-  x8 -.-> n9
+  x8 -.-> n5
   x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -92,7 +102,7 @@ def · line 73
 
 - **Is:** `` windowE (M : ℕ) (B X T a b : ℝ) : ℝ := (b - a) * (2 * LevinsonMollEdge.tailDelta M B X) + X * Real.pi + 2 * (X * (Real.pi * ((8 * X - 1) * (Real.log T + Real.log M + Real.log B + 8) + 1))) ``
 - **Built from:** [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta)
-- **Used by 6:** [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window), [`LevinsonWindow.windowE_nonneg`](#LevinsonWindow-windowE_nonneg), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near)
+- **Used by 7:** [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window), [`LevinsonWindow.windowE_nonneg`](#LevinsonWindow-windowE_nonneg), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near)
 
 ## Theorems
 
@@ -119,8 +129,11 @@ line 79 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (5 that use it)
+**Feeds** (8 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
@@ -186,8 +199,9 @@ countRight f z w' σ ≤ countRight f z w σ
 
 **Definitions its proof touches:** [`Littlewood.countRight`](../lean_stage3/Littlewood.md#Littlewood-countRight)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
@@ -215,8 +229,9 @@ lineCount T ≤ lineCount T'
 
 **Definitions its proof touches:** [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
@@ -249,8 +264,9 @@ riemannZeta.N u - riemannZeta.N t ≤ 31 * Real.log u + 1250
 
 **Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
@@ -307,8 +323,9 @@ line 191 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff) (FloorQWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowEQ δR Mf X a b) - (Ec + 62 * Real.log T + 250… ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](#LevinsonWindow-levinson_window) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``

@@ -7,25 +7,29 @@
 2 theorems, 0 definitions, 268 lines. 
 
 **Imports:** [`FloorStepCont`](../lean_stage3/FloorStepCont.md), [`FloorStepSize`](../lean_stage3/FloorStepSize.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorLongStep`](../lean_stage3/FloorLongStep.md), [`FloorQStep`](../lean_stage3/FloorQStep.md), [`FloorSum`](../lean_stage3/FloorSum.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
   n0["<b>combine</b><br/>ND - lK / R * ND - ε * T * L ≤ LC"]:::shp
-  n1["<b>floor_step ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - …"]:::thm
-  x0(["<b>FloorStepCont</b><br/>hK_shift"]):::ext
-  x1(["<b>FloorStepSize</b><br/>9 theorems"]):::ext
-  x2(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
-  x3(["<b>Unsmooth</b><br/>unsmooth_near_levinson"]):::ext
-  x4(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  n1["<b>floor_step</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - …"]:::thm
+  x0(["<b>FloorLongStep</b><br/>floor_step_long"]):::ext
+  x1(["<b>FloorStepCont</b><br/>hK_shift"]):::ext
+  x2(["<b>FloorStepSize</b><br/>9 theorems"]):::ext
+  x3(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x4(["<b>Unsmooth</b><br/>unsmooth_near_levinson"]):::ext
+  x5(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x6(["<b>FloorSum</b><br/>step_X"]):::ext
   n0 --> n1
-  x0 -.-> n1
+  n0 -.-> x0
+  n1 -.-> x6
   x1 -.-> n1
   x2 -.-> n1
   x3 -.-> n1
   x4 -.-> n1
+  x5 -.-> n1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -75,8 +79,9 @@ ND - lK / R * ND - ε * T * L ≤ LC
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long) (FloorLongStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
   - [`FloorStep.floor_step`](#FloorStep-floor_step) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((Operator.Dop (Real.log T) (cY P (Mof T θ) T… ``
 
 <a name="FloorStep-floor_step"></a>
@@ -122,5 +127,7 @@ line 127 · arrows read from text
 
 **Definitions its proof touches:** [`FloorStep.Fint`](../lean_stage3/FloorStepCont.md#FloorStep-Fint), [`FloorStep.betaC`](../lean_stage3/FloorStepSize.md#FloorStep-betaC), [`LevinsonMollEdge.tailDelta`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-tailDelta), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LineCount.lineCount`](../lean_stage3/LineCount.md#LineCount-lineCount), [`Operator.Dop`](../lean_stage3/OperatorCauchy.md#Operator-Dop), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`FloorSum.step_X`](../lean_stage3/FloorSum.md#FloorSum-step_X) (FloorSum) — `` ∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (1 / 3 - 2 * ε₁) * (riemannZeta.N T - riemannZeta.N (T / 2)) - ε₁ * T * Real.log T ≤ (LineCount.lineCount T : ℝ) … ``
 

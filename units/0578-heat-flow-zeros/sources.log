@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-26T02:19:18Z
+# unit: 0578-heat-flow-zeros
+# sources searched: 114
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:85551
+  #   H_lam(x) = int_0^inf e^{lam u^2} Phi(u) cos(x u) du,
+
+# 2 found, 0 missing

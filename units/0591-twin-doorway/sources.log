@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-26T08:12:47Z
+# unit: 0591-twin-doorway
+# sources searched: 526
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:82795
+  Source: session transcript, 2026-11-26
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:106773
+  each 6k flanked by twins as a doorway between the 2·3 lattice and the number line - yes cause you as...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:106897
+  Dt = int(np.sum(minus & m & twin)) - int(np.sum(plus & m & twin))
+
+# 3 found, 0 missing

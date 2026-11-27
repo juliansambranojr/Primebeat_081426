@@ -45,15 +45,16 @@ flowchart LR
   n27["<b>w_ne_one</b><br/>1 + α + β + 2 * ((σ : ℂ) + y * I) ≠ 1"]:::shp
   n28["<b>zeta_line_cont</b><br/>Continuous fun y : ℝ =＞ riemannZeta (1 + α + β + 2 * ((σ : ℂ) + …"]:::thm
   n29["<b>line_integrable</b><br/>Integrable fun y : ℝ =＞ KY α β t (c + y * I) * Z (c + y * I)"]:::shp
-  x0(["<b>diagram 3</b><br/>4 theorems"]):::ext
-  x1(["<b>diagram 2</b><br/>17 theorems"]):::ext
-  x2(["<b>SdiagLeadCop</b><br/>Ad_eq"]):::ext
-  x3(["<b>SdiagLeadDsum</b><br/>Wd_eq"]):::ext
-  x4(["<b>SdiagLeadSwap</b><br/>fw_mul<br/>term_eq"]):::ext
-  x5(["<b>ApproxFE</b><br/>6 theorems"]):::ext
-  x6(["<b>ApproxBounds</b><br/>integrand_bound"]):::ext
-  x7(["<b>ApproxShift</b><br/>GY_analyticAt"]):::ext
-  x8(["<b>SdiagLeadAd</b><br/>Wd_bound<br/>norm_ncpow_le"]):::ext
+  x0(["<b>DiagLong</b><br/>10 theorems"]):::ext
+  x1(["<b>diagram 3</b><br/>4 theorems"]):::ext
+  x2(["<b>diagram 2</b><br/>17 theorems"]):::ext
+  x3(["<b>SdiagLeadCop</b><br/>Ad_eq"]):::ext
+  x4(["<b>SdiagLeadDsum</b><br/>Wd_eq"]):::ext
+  x5(["<b>SdiagLeadSwap</b><br/>fw_mul<br/>term_eq"]):::ext
+  x6(["<b>ApproxFE</b><br/>6 theorems"]):::ext
+  x7(["<b>ApproxBounds</b><br/>integrand_bound"]):::ext
+  x8(["<b>ApproxShift</b><br/>GY_analyticAt"]):::ext
+  x9(["<b>SdiagLeadAd</b><br/>Wd_bound<br/>norm_ncpow_le"]):::ext
   n0 --> n1
   n0 --> n18
   n0 --> n19
@@ -80,40 +81,49 @@ flowchart LR
   n9 --> n13
   n0 -.-> x0
   n0 -.-> x1
-  n1 -.-> x1
-  n10 -.-> x1
-  n11 -.-> x1
-  n14 -.-> x1
-  n15 -.-> x1
-  n16 -.-> x1
-  n16 -.-> x8
-  n18 -.-> x1
-  n2 -.-> x2
+  n0 -.-> x2
+  n1 -.-> x2
+  n10 -.-> x0
+  n10 -.-> x2
+  n11 -.-> x0
+  n11 -.-> x2
+  n12 -.-> x0
+  n14 -.-> x0
+  n14 -.-> x2
+  n15 -.-> x2
+  n16 -.-> x2
+  n16 -.-> x9
+  n18 -.-> x2
+  n19 -.-> x0
   n2 -.-> x3
   n2 -.-> x4
-  n20 -.-> x1
-  n21 -.-> x0
+  n2 -.-> x5
+  n20 -.-> x2
   n21 -.-> x1
-  n22 -.-> x1
-  n23 -.-> x1
-  n24 -.-> x1
-  n25 -.-> x1
-  n26 -.-> x1
-  n27 -.-> x1
-  n28 -.-> x1
-  n29 -.-> x1
-  n4 -.-> x1
-  n5 -.-> x1
-  n6 -.-> x1
-  n7 -.-> x1
-  n8 -.-> x1
-  x5 -.-> n12
-  x5 -.-> n24
-  x5 -.-> n29
-  x5 -.-> n5
-  x5 -.-> n6
-  x6 -.-> n11
-  x7 -.-> n12
+  n21 -.-> x2
+  n22 -.-> x0
+  n22 -.-> x2
+  n23 -.-> x2
+  n24 -.-> x2
+  n25 -.-> x2
+  n26 -.-> x2
+  n27 -.-> x2
+  n28 -.-> x0
+  n28 -.-> x2
+  n29 -.-> x2
+  n4 -.-> x2
+  n5 -.-> x2
+  n6 -.-> x2
+  n7 -.-> x0
+  n7 -.-> x2
+  n8 -.-> x2
+  x6 -.-> n12
+  x6 -.-> n24
+  x6 -.-> n29
+  x6 -.-> n5
+  x6 -.-> n6
+  x7 -.-> n11
+  x8 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -165,8 +175,9 @@ flowchart LR
   x4(["<b>ContourShift</b><br/>analyticAt_dslope<br/>residue_rectangle_of_local<br/>sq_mul_zeta_analyticAt_one"]):::ext
   x5(["<b>ApproxFE</b><br/>gY_zero<br/>uA_re<br/>vB_re"]):::ext
   x6(["<b>ApproxShift</b><br/>local_simple"]):::ext
-  x7(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
-  x8(["<b>FloorStepSize</b><br/>betaC_bound"]):::ext
+  x7(["<b>DiagLong</b><br/>4 theorems"]):::ext
+  x8(["<b>diagram 3</b><br/>SB_young<br/>diag_young"]):::ext
+  x9(["<b>FloorStepSize</b><br/>betaC_bound"]):::ext
   n0 --> n10
   n1 --> n5
   n1 --> n6
@@ -203,11 +214,16 @@ flowchart LR
   n7 --> n11
   n8 --> n9
   n9 --> n10
+  n24 -.-> x7
+  n25 -.-> x7
   n26 -.-> x7
-  n27 -.-> x7
+  n26 -.-> x8
+  n27 -.-> x8
   n28 -.-> x7
   n28 -.-> x8
+  n28 -.-> x9
   n29 -.-> x7
+  n29 -.-> x8
   x0 -.-> n1
   x0 -.-> n10
   x0 -.-> n11
@@ -263,11 +279,13 @@ flowchart LR
   n7["<b>final_size_diag</b><br/>∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T …"]:::shp
   n8["<b>diag_young</b><br/>∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T…"]:::thm
   n9["<b>stmtDiag_of_main ■</b><br/>StmtDiag P θ R κ"]:::thm
-  x0(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
-  x1(["<b>diagram 2</b><br/>4 theorems"]):::ext
-  x2(["<b>OffDiagClose</b><br/>N_le"]):::ext
-  x3(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
-  x4(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
+  x0(["<b>DiagLong</b><br/>SBF_young<br/>final_size_long<br/>gcd_sum1"]):::ext
+  x1(["<b>diagram 1</b><br/>SB_nonneg<br/>gcd_facts"]):::ext
+  x2(["<b>diagram 2</b><br/>4 theorems"]):::ext
+  x3(["<b>OffDiagClose</b><br/>N_le"]):::ext
+  x4(["<b>DiagonalO</b><br/>stmtDiagO_of_mainO"]):::ext
+  x5(["<b>FloorLongErr</b><br/>longErr_of_lt_half"]):::ext
+  x6(["<b>TwistedMoment</b><br/>norm_integral_le_Icc"]):::ext
   n0 --> n5
   n1 --> n2
   n1 --> n4
@@ -278,15 +296,19 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n8 --> n9
-  n8 -.-> x3
-  x0 -.-> n3
-  x0 -.-> n4
-  x0 -.-> n5
-  x0 -.-> n8
+  n1 -.-> x0
+  n3 -.-> x0
+  n6 -.-> x0
+  n8 -.-> x4
+  n8 -.-> x5
+  x1 -.-> n3
+  x1 -.-> n4
   x1 -.-> n5
   x1 -.-> n8
+  x2 -.-> n5
   x2 -.-> n8
-  x4 -.-> n9
+  x3 -.-> n8
+  x6 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -307,7 +329,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 83
 
 - **Is:** `` Chk (a : ℕ → ℂ) (σ₀ : ℝ) (h k : ℕ) : ℂ := a h * (starRingEnd ℂ) (a k) * ((h : ℂ) ^ (-(σ₀ : ℂ)) * (k : ℂ) ^ (-(σ₀ : ℂ))) noncomputable ``
-- **Used by 9:** [`Diagonal.Chk_norm`](#Diagonal-Chk_norm), [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.Zhk_le`](#Diagonal-Zhk_le), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
+- **Used by 11:** [`DiagLong.cF`](../lean_stage3/DiagLong.md#DiagLong-cF), [`DiagLong.cG`](../lean_stage3/DiagLong.md#DiagLong-cG), [`Diagonal.Chk_norm`](#Diagonal-Chk_norm), [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.Zhk_le`](#Diagonal-Zhk_le), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
 
 <a name="Diagonal-Rhk"></a>
 ### `Diagonal.Rhk`
@@ -315,7 +337,7 @@ def · line 83
 def · line 88
 
 - **Is:** `` Rhk (α β : ℂ) (h k : ℕ) (s : ℂ) : ℂ := ((k / Nat.gcd h k : ℕ) : ℂ) ^ (-(1 / 2 + α + s)) * ((h / Nat.gcd h k : ℕ) : ℂ) ^ (-(1 / 2 + β + s)) noncomputable ``
-- **Used by 9:** [`Diagonal.Rhk_differentiable`](#Diagonal-Rhk_differentiable), [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm), [`Diagonal.Rhk_norm_le`](#Diagonal-Rhk_norm_le), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
+- **Used by 11:** [`DiagLong.Sc`](../lean_stage3/DiagLong.md#DiagLong-Sc), [`DiagLong.Sc_differentiable`](../lean_stage3/DiagLong.md#DiagLong-Sc_differentiable), [`Diagonal.Rhk_differentiable`](#Diagonal-Rhk_differentiable), [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm), [`Diagonal.Rhk_norm_le`](#Diagonal-Rhk_norm_le), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Zhk`](#Diagonal-Zhk), [`Diagonal.inner_hk`](#Diagonal-inner_hk), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap), [`SdiagLead.term_eq`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-term_eq)
 
 <a name="Diagonal-Sdiag"></a>
 ### `Diagonal.Sdiag`
@@ -324,7 +346,7 @@ def · line 95
 
 - **Is:** `` Sdiag (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, Chk a σ₀ h k * Rhk α β h k s noncomputable ``
 - **Built from:** [`Diagonal.Chk`](#Diagonal-Chk), [`Diagonal.Rhk`](#Diagonal-Rhk)
-- **Used by 16:** [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`SdiagLead.S_eq`](../lean_stage3/SdiagLeadCore.md#SdiagLead-S_eq), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap)
+- **Used by 20:** [`DiagLong.Sdiag_split`](../lean_stage3/DiagLong.md#DiagLong-Sdiag_split), [`DiagLong.diag_split`](../lean_stage3/DiagLong.md#DiagLong-diag_split), [`DiagMain.StmtSdiagLead`](../lean_stage3/DiagMain.md#DiagMain-StmtSdiagLead), [`DiagMain.stmtDiagMainO_of_lead`](../lean_stage3/DiagMain.md#DiagMain-stmtDiagMainO_of_lead), [`DiagMainStmt.StmtDiagMainO`](../lean_stage3/DiagMainStmt.md#DiagMainStmt-StmtDiagMainO), [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable), [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le), [`Diagonal.StmtDiagMain`](#Diagonal-StmtDiagMain), [`Diagonal.Zd`](#Diagonal-Zd), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.diag_young`](#Diagonal-diag_young), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound), [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main), [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO), [`FloorLong.StmtDiagErr`](../lean_stage3/FloorLongErr.md#FloorLong-StmtDiagErr), [`FloorLong.diagO_of_err`](../lean_stage3/FloorLongErr.md#FloorLong-diagO_of_err), [`SdiagLead.S_eq`](../lean_stage3/SdiagLeadCore.md#SdiagLead-S_eq), [`SdiagLead.Sdiag_swap`](../lean_stage3/SdiagLeadSwap.md#SdiagLead-Sdiag_swap)
 
 <a name="Diagonal-Zd"></a>
 ### `Diagonal.Zd`
@@ -333,7 +355,7 @@ def · line 100
 
 - **Is:** `` Zd (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β s : ℂ) : ℂ := riemannZeta (1 + α + β + 2 * s) * Sdiag M a σ₀ α β s noncomputable ``
 - **Built from:** [`Diagonal.Sdiag`](#Diagonal-Sdiag)
-- **Used by 6:** [`Diagonal.Zd_cont`](#Diagonal-Zd_cont), [`Diagonal.Zd_le`](#Diagonal-Zd_le), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound)
+- **Used by 8:** [`DiagLong.Zd_split`](../lean_stage3/DiagLong.md#DiagLong-Zd_split), [`DiagLong.diag_split`](../lean_stage3/DiagLong.md#DiagLong-diag_split), [`Diagonal.Zd_cont`](#Diagonal-Zd_cont), [`Diagonal.Zd_le`](#Diagonal-Zd_le), [`Diagonal.diag_mellin`](#Diagonal-diag_mellin), [`Diagonal.diag_per_t`](#Diagonal-diag_per_t), [`Diagonal.diag_shift`](#Diagonal-diag_shift), [`Diagonal.shifted_bound`](#Diagonal-shifted_bound)
 
 <a name="Diagonal-Zhk"></a>
 ### `Diagonal.Zhk`
@@ -427,8 +449,11 @@ line 121 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (8 that use it)
+**Feeds** (11 that use it)
 
+  - [`DiagLong.SBF_young`](../lean_stage3/DiagLong.md#DiagLong-SBF_young) (DiagLong) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ X : ℝ), 1 < T → 0 ≤ θ → 0 < X → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SBc (Mof T θ) (cF (aY P T θ R) (s… ``
+  - [`DiagLong.Zc_cG_zero`](../lean_stage3/DiagLong.md#DiagLong-Zc_cG_zero) (DiagLong) — `` Zc (Mof T θ) (cG a σ₀ X) α β = fun _ => 0 ``
+  - [`DiagLong.gcd_sum1`](../lean_stage3/DiagLong.md#DiagLong-gcd_sum1) (DiagLong) — `` ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ((Nat.gcd h k : ℕ) : ℝ)⁻¹ * (((h / Nat.gcd h k : ℕ) : ℝ)⁻¹ * ((k / Nat.gcd h k : ℕ) : ℝ)⁻¹) ≤ (1 + Real.lo… ``
   - [`Diagonal.Rhk_differentiable`](#Diagonal-Rhk_differentiable) — `` Differentiable ℂ (Rhk α β h k) ``
   - [`Diagonal.Rhk_norm`](#Diagonal-Rhk_norm) — `` ‖Rhk α β h k (σ + y * I)‖ = ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + σ)) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + σ)) ``
   - [`Diagonal.Rhk_norm_le`](#Diagonal-Rhk_norm_le) — `` ‖Rhk α β h k (σ + y * I)‖ ≤ ((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + α.re + σ')) * ((h / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 2 + β.re + σ')) ``
@@ -642,8 +667,9 @@ line 303 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (10 that use it)
+**Feeds** (11 that use it)
 
+  - [`DiagLong.diag_split`](../lean_stage3/DiagLong.md#DiagLong-diag_split) (DiagLong) — `` diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + (Jsh W α β (Zc M (cF a σ₀ X) α β) + Jsh W α β (Zc M (cG a σ₀… ``
   - [`Diagonal.Hf_local`](#Diagonal-Hf_local) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in 𝓝[≠] (0 : ℂ), Hf α β t Z s = h s + riemannZeta (1 + α + β) * Z 0 / (s - 0) ``
   - [`Diagonal.KY_joint_cont`](#Diagonal-KY_joint_cont) — `` Continuous fun p : ℝ × ℝ => KY α β p.1 (σ + p.2 * I) ``
   - [`Diagonal.diag_mellin`](#Diagonal-diag_mellin) — `` diagSum W M a σ₀ α β c = VerticalIntegral' (fun s => GY α β s / s * Wg W α β s * riemannZeta (1 + α + β + 2 * s) * Sdiag M a σ₀ α β s) c ``
@@ -728,8 +754,10 @@ Real.exp (-(1 / 2) * y ^ 2) * Real.exp (2 * |y|) ≤ Real.exp 4 * Real.exp (-(1 
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
+  - [`DiagLong.J_bound`](../lean_stage3/DiagLong.md#DiagLong-J_bound) (DiagLong) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ (Z : ℂ → ℂ) (KZ : ℝ), (∀ y : ℝ, ‖Z (((-(1 / 4) : ℝ… ``
+  - [`DiagLong.line_int`](../lean_stage3/DiagLong.md#DiagLong-line_int) (DiagLong) — `` Integrable fun y : ℝ => KY α β t (((-(1 / 4) : ℝ) : ℂ) + y * I) * Z (((-(1 / 4) : ℝ) : ℂ) + y * I) ``
   - [`Diagonal.joint_integrable`](#Diagonal-joint_integrable) — `` Integrable (fun p : ℝ × ℝ => (W.w p.1 : ℂ) * (KY α β p.1 (σ + p.2 * I) * Z (σ + p.2 * I))) (volume.prod volume) ``
   - [`Diagonal.orig_bound`](#Diagonal-orig_bound) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ t : ℝ, 1 ≤ t → ∀ (Z : ℂ → ℂ) (KZ : ℝ), ∀ σ y : ℝ, -(1 / 4) ≤ σ → σ ≤ 1 → 1 / 4 ≤ ‖(σ : ℂ) … ``
   - [`Diagonal.shifted_bound`](#Diagonal-shifted_bound) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * V… ``
@@ -760,8 +788,10 @@ line 326 · arrows read from text
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY)
 
-**Feeds** (2 that use it)
+**Feeds** (4 that use it)
 
+  - [`DiagLong.J_bound`](../lean_stage3/DiagLong.md#DiagLong-J_bound) (DiagLong) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ (Z : ℂ → ℂ) (KZ : ℝ), (∀ y : ℝ, ‖Z (((-(1 / 4) : ℝ… ``
+  - [`DiagLong.line_int`](../lean_stage3/DiagLong.md#DiagLong-line_int) (DiagLong) — `` Integrable fun y : ℝ => KY α β t (((-(1 / 4) : ℝ) : ℂ) + y * I) * Z (((-(1 / 4) : ℝ) : ℂ) + y * I) ``
   - [`Diagonal.joint_integrable`](#Diagonal-joint_integrable) — `` Integrable (fun p : ℝ × ℝ => (W.w p.1 : ℂ) * (KY α β p.1 (σ + p.2 * I) * Z (σ + p.2 * I))) (volume.prod volume) ``
   - [`Diagonal.shifted_bound`](#Diagonal-shifted_bound) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * V… ``
 
@@ -796,8 +826,9 @@ Continuous fun p : ℝ × ℝ => KY α β p.1 (σ + p.2 * I)
 
 **Definitions its proof touches:** [`ApproxFE.GY`](../lean_stage3/ApproxFE.md#ApproxFE-GY), [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`ApproxFE.gY`](../lean_stage3/ApproxFE.md#ApproxFE-gY), [`ApproxFE.uA`](../lean_stage3/ApproxFE.md#ApproxFE-uA), [`ApproxFE.vB`](../lean_stage3/ApproxFE.md#ApproxFE-vB)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.line_int`](../lean_stage3/DiagLong.md#DiagLong-line_int) (DiagLong) — `` Integrable fun y : ℝ => KY α β t (((-(1 / 4) : ℝ) : ℂ) + y * I) * Z (((-(1 / 4) : ℝ) : ℂ) + y * I) ``
   - [`Diagonal.joint_integrable`](#Diagonal-joint_integrable) — `` Integrable (fun p : ℝ × ℝ => (W.w p.1 : ℂ) * (KY α β p.1 (σ + p.2 * I) * Z (σ + p.2 * I))) (volume.prod volume) ``
 
 <a name="Diagonal-joint_integrable"></a>
@@ -872,8 +903,9 @@ Integrable fun t => (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Z
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.J_add`](../lean_stage3/DiagLong.md#DiagLong-J_add) (DiagLong) — `` Jsh W α β (fun s => Z1 s + Z2 s) = Jsh W α β Z1 + Jsh W α β Z2 ``
   - [`Diagonal.diag_per_t`](#Diagonal-diag_per_t) — `` diagSum W M a σ₀ α β c = ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * Zd M a σ₀ α β s) c ``
   - [`Diagonal.diag_shift`](#Diagonal-diag_shift) — `` diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * … ``
 
@@ -1027,8 +1059,9 @@ line 496 · arrows read from text
 
 **Definitions its proof touches:** [`Diagonal.Rhk`](#Diagonal-Rhk)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.Sc_norm_le`](../lean_stage3/DiagLong.md#DiagLong-Sc_norm_le) (DiagLong) — `` ‖Sc M c α β (σ + y * I)‖ ≤ SBc M c α β σ' ``
   - [`Diagonal.Sdiag_norm_le`](#Diagonal-Sdiag_norm_le) — `` ‖Sdiag M a σ₀ α β (σ + y * I)‖ ≤ SB M a σ₀ α β σ' ``
 
 <a name="Diagonal-Sdiag_norm_le"></a>
@@ -1121,8 +1154,9 @@ Differentiable ℂ (Rhk α β h k)
 
 **Definitions its proof touches:** [`Diagonal.Rhk`](#Diagonal-Rhk)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.Sc_differentiable`](../lean_stage3/DiagLong.md#DiagLong-Sc_differentiable) (DiagLong) — `` Differentiable ℂ (Sc M c α β) ``
   - [`Diagonal.Sdiag_differentiable`](#Diagonal-Sdiag_differentiable) — `` Differentiable ℂ (Sdiag M a σ₀ α β) ``
   - [`Diagonal.Zhk_cont`](#Diagonal-Zhk_cont) — `` Continuous fun y : ℝ => Zhk a σ₀ α β h k (σ + y * I) ``
 
@@ -1288,8 +1322,9 @@ Continuous fun y : ℝ => riemannZeta (1 + α + β + 2 * ((σ : ℂ) + y * I))
 
   - [`Diagonal.w_ne_one`](#Diagonal-w_ne_one) — `` 1 + α + β + 2 * ((σ : ℂ) + y * I) ≠ 1 ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.Zc_cont`](../lean_stage3/DiagLong.md#DiagLong-Zc_cont) (DiagLong) — `` Continuous fun y : ℝ => Zc M c α β (σ + y * I) ``
   - [`Diagonal.Zd_cont`](#Diagonal-Zd_cont) — `` Continuous fun y : ℝ => Zd M a σ₀ α β (σ + y * I) ``
   - [`Diagonal.Zhk_cont`](#Diagonal-Zhk_cont) — `` Continuous fun y : ℝ => Zhk a σ₀ α β h k (σ + y * I) ``
 
@@ -2116,8 +2151,9 @@ line 1209 · arrows read from text
   - [`Diagonal.re_w`](#Diagonal-re_w) — `` (1 + α + β + 2 * ((σ : ℂ) + y * I)).re = 1 + α.re + β.re + 2 * σ ``
   - [`Diagonal.zeta_bd`](#Diagonal-zeta_bd) — `` ∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ w : ℂ, -(1 / 2) ≤ w.re → w.re ≤ 4 → 3 / 10 ≤ ‖w - 1‖ → ‖riemannZeta w‖ ≤ Cz * Real.exp |w.im| ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.Zc_left`](../lean_stage3/DiagLong.md#DiagLong-Zc_left) (DiagLong) — `` ∃ Cz : ℝ, 0 ≤ Cz ∧ ∀ (M : ℕ) (c : ℕ → ℕ → ℂ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ y : ℝ, ‖Zc M c α β (((-(1 / 4) : ℝ) : ℂ) + y * I)‖ ≤ Cz * SBc … ``
   - [`Diagonal.diag_shift`](#Diagonal-diag_shift) — `` diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + ∫ t, (W.w t : ℂ) * VerticalIntegral' (fun s => KY α β t s * … ``
   - [`Diagonal.shifted_bound`](#Diagonal-shifted_bound) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * V… ``
 
@@ -2141,8 +2177,9 @@ line 1235 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.J_bound`](../lean_stage3/DiagLong.md#DiagLong-J_bound) (DiagLong) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ α β : ℂ, ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ∀ (Z : ℂ → ℂ) (KZ : ℝ), (∀ y : ℝ, ‖Z (((-(1 / 4) : ℝ… ``
   - [`Diagonal.shifted_bound`](#Diagonal-shifted_bound) — `` ∃ K0 : ℝ, 0 ≤ K0 ∧ ∀ (T L : ℝ) (W : Weight T L), 4 ≤ T → ∀ (M : ℕ) (a : ℕ → ℂ) (σ₀ : ℝ) (α β : ℂ), ‖α‖ ≤ 1 / 10 → ‖β‖ ≤ 1 / 10 → ‖∫ t, (W.w t : ℂ) * V… ``
 
 <a name="Diagonal-diag_shift"></a>
@@ -2185,8 +2222,9 @@ diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdi
 
 **Definitions its proof touches:** [`ApproxFE.KY`](../lean_stage3/ApproxFE.md#ApproxFE-KY), [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`Diagonal.Zd`](#Diagonal-Zd), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.diagSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-diagSum), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.diag_split`](../lean_stage3/DiagLong.md#DiagLong-diag_split) (DiagLong) — `` diagSum W M a σ₀ α β 1 = (what0 W : ℂ) * (riemannZeta (1 + α + β) * Sdiag M a σ₀ α β 0) + (Jsh W α β (Zc M (cF a σ₀ X) α β) + Jsh W α β (Zc M (cG a σ₀… ``
   - [`Diagonal.diag_young`](#Diagonal-diag_young) — `` ∃ C T₀ : ℝ, 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ W : Weight T (Real.log T), ∀ α β : ℂ, Regime κ T α β → ‖diagSum W (Mof T θ) (aY P T θ R) (sig0 T R) α β 1 - (w… ``
 
 <a name="Diagonal-shifted_bound"></a>
@@ -2243,8 +2281,9 @@ line 1369 · arrows read from text
 
 **Definitions its proof touches:** [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.SBF_young`](../lean_stage3/DiagLong.md#DiagLong-SBF_young) (DiagLong) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ X : ℝ), 1 < T → 0 ≤ θ → 0 < X → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SBc (Mof T θ) (cF (aY P T θ R) (s… ``
   - [`Diagonal.SB_young`](#Diagonal-SB_young) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 < T → θ < 1 / 2 → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SB (Mof T θ) (aY P T θ R) (sig0 T R) α … ``
   - [`FloorStep.betaC_bound`](../lean_stage3/FloorStepSize.md#FloorStep-betaC_bound) (FloorStepSize) — `` ∃ B : ℝ, 1 ≤ B ∧ ∀ (T θ R : ℝ), sig0 T R ≤ 1 / 2 → ∀ h : ℕ, ‖betaC P T θ R h‖ ≤ B ``
 
@@ -2274,8 +2313,9 @@ line 1413 · arrows read from text
 
 **Definitions its proof touches:** [`Diagonal.Chk`](#Diagonal-Chk)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.SBF_young`](../lean_stage3/DiagLong.md#DiagLong-SBF_young) (DiagLong) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ X : ℝ), 1 < T → 0 ≤ θ → 0 < X → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SBc (Mof T θ) (cF (aY P T θ R) (s… ``
   - [`Diagonal.SB_young`](#Diagonal-SB_young) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ : ℝ), 1 < T → θ < 1 / 2 → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SB (Mof T θ) (aY P T θ R) (sig0 T R) α … ``
 
 <a name="Diagonal-pow_shift_le"></a>
@@ -2327,8 +2367,9 @@ line 1453 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DiagLong.gcd_sum1`](../lean_stage3/DiagLong.md#DiagLong-gcd_sum1) (DiagLong) — `` ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, ((Nat.gcd h k : ℕ) : ℝ)⁻¹ * (((h / Nat.gcd h k : ℕ) : ℝ)⁻¹ * ((k / Nat.gcd h k : ℕ) : ℝ)⁻¹) ≤ (1 + Real.lo… ``
   - [`Diagonal.gcd_sum`](#Diagonal-gcd_sum) — `` ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h … ``
   - [`Diagonal.sum34_le`](#Diagonal-sum34_le) — `` ∑ j ∈ Finset.Icc 1 M, (j : ℝ) ^ (-(3 / 4) : ℝ) ≤ (M : ℝ) ^ (1 / 4 : ℝ) * (1 + Real.log M) ``
 
@@ -2381,8 +2422,9 @@ line 1478 · arrows read from text
 
   - [`Diagonal.gcd_facts`](#Diagonal-gcd_facts) — `` 0 < Nat.gcd h k ∧ h = Nat.gcd h k * (h / Nat.gcd h k) ∧ k = Nat.gcd h k * (k / Nat.gcd h k) ∧ 1 ≤ h / Nat.gcd h k ∧ 1 ≤ k / Nat.gcd h k ∧ h / Nat.gcd … ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.SBF_young`](../lean_stage3/DiagLong.md#DiagLong-SBF_young) (DiagLong) — `` ∃ B : ℝ, 0 ≤ B ∧ ∀ (T θ R κ X : ℝ), 1 < T → 0 ≤ θ → 0 < X → ∀ α β : ℂ, ‖α‖ ≤ κ / Real.log T → ‖β‖ ≤ κ / Real.log T → SBc (Mof T θ) (cF (aY P T θ R) (s… ``
   - [`Diagonal.gcd_sum`](#Diagonal-gcd_sum) — `` ∑ h ∈ Finset.Icc 1 M, ∑ k ∈ Finset.Icc 1 M, (h : ℝ) ^ (-(1 / 2) : ℝ) * (k : ℝ) ^ (-(1 / 2) : ℝ) * (((k / Nat.gcd h k : ℕ) : ℝ) ^ (-(1 / 4) : ℝ) * ((h … ``
 
 <a name="Diagonal-gcd_sum"></a>
@@ -2471,8 +2513,9 @@ Real.log T ^ p ≤ (((p : ℝ) + 1) / ε) ^ p * T ^ ε
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DiagLong.final_size_long`](../lean_stage3/DiagLong.md#DiagLong-final_size_long) (DiagLong) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * ((T ^ … ``
   - [`Diagonal.final_size_diag`](#Diagonal-final_size_diag) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, Real.exp 1 ≤ T → ∀ M : ℕ, (M : ℝ) ≤ T ^ θ → (1 + κ ^ 2 * Real.log T ^ 2) * T * (T / (8 * Real.pi)) ^ (-(1 / 4) : ℝ) * ((M : … ``
 
 <a name="Diagonal-final_size_diag"></a>
@@ -2536,10 +2579,11 @@ line 1737 · arrows read from text
 
 **Definitions its proof touches:** [`Diagonal.SB`](#Diagonal-SB), [`Diagonal.Sdiag`](#Diagonal-Sdiag), [`TwistedMoment.Mof`](../lean_stage3/TwistedMoment.md#TwistedMoment-Mof), [`TwistedMoment.Regime`](../lean_stage3/TwistedMoment.md#TwistedMoment-Regime), [`TwistedMoment.Weight`](../lean_stage3/TwistedMoment.md#TwistedMoment-Weight), [`TwistedMoment.aY`](../lean_stage3/TwistedMoment.md#TwistedMoment-aY), [`TwistedMoment.diagSum`](../lean_stage3/TwistedMoment.md#TwistedMoment-diagSum), [`TwistedMoment.sig0`](../lean_stage3/TwistedMoment.md#TwistedMoment-sig0), [`TwistedMoment.what0`](../lean_stage3/TwistedMoment.md#TwistedMoment-what0)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Diagonal.stmtDiag_of_main`](#Diagonal-stmtDiag_of_main) — `` StmtDiag P θ R κ ``
   - [`DiagonalO.stmtDiagO_of_mainO`](../lean_stage3/DiagonalO.md#DiagonalO-stmtDiagO_of_mainO) (DiagonalO) — `` StmtDiagO P θ R κ ``
+  - [`FloorLong.longErr_of_lt_half`](../lean_stage3/FloorLongErr.md#FloorLong-longErr_of_lt_half) (FloorLongErr) — `` StmtLongErr P θ R ``
 
 <a name="Diagonal-stmtDiag_of_main"></a>
 ### `Diagonal.stmtDiag_of_main`

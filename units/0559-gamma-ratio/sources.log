@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-25T19:59:03Z
+# unit: 0559-gamma-ratio
+# sources searched: 501
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:1531
+  theorem gamma_ratio8 : ∃ B : ℝ, 0 < B ∧ ∀ T : ℝ, 16 ≤ T → ∀ z w : ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:1532
+  1 / 8 ≤ z.re → z.re ≤ 7 → 1 / 8 ≤ w.re → w.re ≤ 7 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:781
+  T / 8 ≤ z.im → z.im ≤ 3 * T → T / 8 ≤ w.im → w.im ≤ 3 * T → |z.im - w.im| ≤ 1 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:782
+  ‖Gammaℝ z‖ / ‖Gammaℝ w‖ * Real.exp (-(Real.log T / 2) * (z.re - w.re)) ≤ B :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77897
+  theorem grR_sub {L : ℝ} (hL : L ≠ 0) (i : ℕ) {w : ℂ} (hw0 : 0 < w.re) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77898
+  (((-1 / L) ^ i : ℝ) : ℂ) * MeanQ.grR i w - (((-1 / 2 : ℝ) ^ i : ℝ) : ℂ) =
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:77899
+  ∑ j ∈ Finset.range i, (i.choose (j + 1) : ℂ) * (((-1 / 2 : ℝ) ^ (i - (j + 1)) : ℝ) : ℂ) *
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:1666
+  ((((-1 / L) ^ (j + 1) : ℝ) : ℂ) * iteratedDeriv (j + 1) (hw L w) w) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-adf162053f44fac9a.jsonl:1686
+  theorem stmtGrRatio_holds (n : ℕ) : MeanQ.StmtGrRatio n :=
+
+# 10 found, 0 missing

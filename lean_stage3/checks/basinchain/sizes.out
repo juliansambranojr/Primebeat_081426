@@ -1,0 +1,30 @@
+== 1. the constant c0 (no T in it) ==
+  crude r = pi^2/6 - 1 + 1/100       r = 0.654934 |R|/pi <= 0.454607 c0 = 1.45461
+  sharp r = zeta(3) - 1 + 1/100      r = 0.212057 |R|/pi <= 0.136032 c0 = 1.13603
+  r -> 1 (only Re V > 0)             r = 1.0      |R|/pi <= 1.0      c0 = 2.0
+  the crude right edge |R| <= pi (right_edge_le_of_re_pos) gives c0 = 2: no margin.
+
+== 2. the right edge measured, V = zeta (Q = 1), max |arg zeta(3 + it)| ==
+  t in [1000, 2000], step 1/4: max |arg| = 0.172256, 2 max/pi = 0.109661  (bound 2 arcsin r/pi = 0.454607)
+
+== 3. the averaged error E(T, h) ==
+  littlewood_sharp a = 9.46972, b = 42.4294; margin 2 - c0 = 0.545393
+  stand-ins: log A_Q = 170.0, a2 = 47.083, b2 = 8217.5
+  T = 1e4   h = T/4: c0 + E = 3.8894162    h = C log T needs C >= 1211.77 (h/T = 1.12)
+  T = 1e6   h = T/4: c0 + E = 1.4798857    h = C log T needs C >= 838.714 (h/T = 0.0116)
+  T = 1e8   h = T/4: c0 + E = 1.4548693    h = C log T needs C >= 652.186 (h/T = 0.00012)
+  T = 1e12  h = T/4: c0 + E = 1.4546073    h = C log T needs C >= 465.659 (h/T = 1.29e-8)
+  T = 1e20  h = T/4: c0 + E = 1.4546072    h = C log T needs C >= 316.436 (h/T = 1.46e-16)
+  T = 1e40  h = T/4: c0 + E = 1.4546072    h = C log T needs C >= 204.52 (h/T = 1.88e-36)
+  E = O(log T / h): every h with h/log T -> infinity and h <= T/4 closes it; no factor is lost.
+
+== 4. where the closing height sits ==
+  DigammaBound.stmtVEdges_holds: T >= 200 + exp(8 + 400 K_Q B), B = exp(2|C| + 160) (gamma_ratio).
+  log log T0(Q) >= log(400 B) >= 165.991: the window count holds only at
+  heights T0 with log log T0 > 166, and the base D(T*) = 0 is asked there.
+
+== 5. the base ==
+  The count is a difference count: V = V Q (log T) is controlled only on [T/4, 2T]
+  (ConreyCount header), so the averaging bounds D(B) - D(A + h) and never D(B).
+  Result: D(T) = D(3T/4) for T >= T*, so D is constant from T* on.  D(T*) = 0 is a
+  separate input (a finite computation at height T*); monotonicity then gives D = 0 below.

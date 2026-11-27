@@ -17,20 +17,24 @@ flowchart LR
   n15["<b>zetaLocalCount_eq</b><br/>zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analy…"]:::thm
   n16["<b>localCount_holds</b><br/>StmtLocalCount zetaLocalCount 15 73"]:::thm
   x0(["<b>LineBound</b><br/>logDerivZeta_crude<br/>logDerivZeta_compact"]):::ext
-  x1(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta"]):::ext
-  x2(["<b>ReZetaCount</b><br/>F_bound"]):::ext
-  x3(["<b>Abscissa</b><br/>logDerivZeta_crude_theta"]):::ext
-  x4(["<b>ContourShift</b><br/>goodT_exists"]):::ext
-  x5(["<b>EdgeBound</b><br/>ball_order_sum_le<br/>gz_partial_fraction"]):::ext
-  x6(["<b>EdgeNum</b><br/>ball_order_sum_le_num<br/>gz_partial_fraction_num"]):::ext
-  x7(["<b>Glue</b><br/>band_order_sum_le"]):::ext
-  x8(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
-  x9(["<b>WeilBands</b><br/>band_count"]):::ext
-  x10(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
-  x11(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
-  x12(["<b>LowCount</b><br/>low_ball_count"]):::ext
-  x13(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
-  x14(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
+  x1(["<b>LittlewoodSharpHoriz</b><br/>log_zeta_ge"]):::ext
+  x2(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta"]):::ext
+  x3(["<b>TuringLWHoriz</b><br/>log_zeta_ge"]):::ext
+  x4(["<b>ReZetaCount</b><br/>F_bound"]):::ext
+  x5(["<b>Abscissa</b><br/>logDerivZeta_crude_theta"]):::ext
+  x6(["<b>ContourShift</b><br/>goodT_exists"]):::ext
+  x7(["<b>EdgeBound</b><br/>ball_order_sum_le<br/>gz_partial_fraction"]):::ext
+  x8(["<b>EdgeNum</b><br/>ball_order_sum_le_num<br/>gz_partial_fraction_num"]):::ext
+  x9(["<b>Glue</b><br/>band_order_sum_le"]):::ext
+  x10(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
+  x11(["<b>WeilBands</b><br/>band_count"]):::ext
+  x12(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
+  x13(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
+  x14(["<b>LittlewoodSharpPoint</b><br/>4 theorems"]):::ext
+  x15(["<b>TuringLWHorizPoint</b><br/>4 theorems"]):::ext
+  x16(["<b>LowCount</b><br/>low_ball_count"]):::ext
+  x17(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x18(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n14
@@ -57,41 +61,53 @@ flowchart LR
   n9 --> n14
   n0 -.-> x0
   n0 -.-> x1
-  n1 -.-> x2
+  n0 -.-> x2
+  n0 -.-> x3
+  n1 -.-> x4
   n10 -.-> x0
-  n10 -.-> x3
+  n10 -.-> x14
+  n10 -.-> x15
+  n10 -.-> x5
   n11 -.-> x0
-  n11 -.-> x3
-  n12 -.-> x12
-  n12 -.-> x13
-  n12 -.-> x5
-  n12 -.-> x6
+  n11 -.-> x14
+  n11 -.-> x15
+  n11 -.-> x5
+  n12 -.-> x16
+  n12 -.-> x17
+  n12 -.-> x7
+  n12 -.-> x8
   n14 -.-> x10
   n14 -.-> x11
-  n14 -.-> x4
-  n14 -.-> x5
+  n14 -.-> x12
+  n14 -.-> x13
   n14 -.-> x6
   n14 -.-> x7
   n14 -.-> x8
   n14 -.-> x9
-  n16 -.-> x14
+  n16 -.-> x18
   n2 -.-> x0
   n2 -.-> x1
+  n2 -.-> x2
   n2 -.-> x3
+  n2 -.-> x5
   n4 -.-> x0
-  n4 -.-> x3
+  n4 -.-> x5
   n6 -.-> x10
   n6 -.-> x11
-  n6 -.-> x4
-  n6 -.-> x5
+  n6 -.-> x12
+  n6 -.-> x13
   n6 -.-> x6
   n6 -.-> x7
   n6 -.-> x8
   n6 -.-> x9
   n8 -.-> x0
-  n8 -.-> x3
+  n8 -.-> x14
+  n8 -.-> x15
+  n8 -.-> x5
   n9 -.-> x0
-  n9 -.-> x3
+  n9 -.-> x14
+  n9 -.-> x15
+  n9 -.-> x5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

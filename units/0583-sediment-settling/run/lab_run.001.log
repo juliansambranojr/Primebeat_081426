@@ -1,0 +1,15 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T04:24:44Z
+1 right zeros 0 first strip with one at t = None
+2 right zeros 1 first strip with one at t = 1.0
+3 right zeros 6 first strip with one at t = 1.0
+4 right zeros 7 first strip with one at t = 6.0
+5 right zeros 9 first strip with one at t = 1.0
+6 right zeros 12 first strip with one at t = 1.0
+7 right zeros 14 first strip with one at t = 1.0
+8 right zeros 15 first strip with one at t = 1.0
+9 right zeros 17 first strip with one at t = 1.0
+10 right zeros 18 first strip with one at t = 6.0
+11 right zeros 18 first strip with one at t = 6.0
+12 right zeros 19 first strip with one at t = 6.0
+# exit 0 after 76.671s, ended 2026-11-26T04:26:00Z

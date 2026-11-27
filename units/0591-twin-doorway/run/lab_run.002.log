@@ -1,0 +1,5 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T08:16:13Z
+{'10000': {'difference': 5, 'difference_over_sqrt': 0.05, 'twins_difference': 0, 'twin_share': 0.33251833740831294}, '100000': {'difference': 22, 'difference_over_sqrt': 0.06957010852370434, 'twins_difference': 0, 'twin_share': 0.25505735140771635}, '1000000': {'difference': 34, 'difference_over_sqrt': 0.034, 'twins_difference': 0, 'twin_share': 0.20811251528740318}, '10000000': {'difference': 189, 'difference_over_sqrt': 0.059767047777182364, 'twins_difference': 0, 'twin_share': 0.17749335291471116}, '100000000': {'difference': 419, 'difference_over_sqrt': 0.0419, 'twins_difference': 0, 'twin_share': 0.15284720711945407}}
+{'raw_corr': -0.4968590418979876, 'clean_corr': -0.06838764829088097, 'control_corr': 0.021990722680077932}
+# exit 0 after 4.090s, ended 2026-11-26T08:16:18Z

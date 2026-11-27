@@ -1,0 +1,16 @@
+key	value	source
+module_lines	306	wc -l lean_stage3/Stage3/OperatorQ.lean
+theorems_proved	14	grep -c ^theorem lean_stage3/Stage3/OperatorQ.lean
+defs	3	grep -c ^def lean_stage3/Stage3/OperatorQ.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/OperatorQ.lean
+pins	9	im_I_pow_iteratedDeriv, re_iteratedDeriv_odd, re_sum_line, coeff_comp_neg_X, taylor_coeff_even_eq_zero, re_W_line, zeta_line_zero_iff_W, cubic_sym, cubic_re_W_line
+errors_first	5	the worker's first build: a symmetric equality, a single rewrite of eval_X, a simp that made no progress twice, a noncomputable definition
+builds	4	the worker's report
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8957	lake build (full Stage3), Build completed successfully
+jobs_module	3174	run/build.log, lake build Stage3.OperatorQ
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s13	Stage B, the proportion toward one
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

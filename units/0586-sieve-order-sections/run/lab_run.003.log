@@ -1,0 +1,12 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-26T05:02:46Z
+natural final 2 prefixes with the pair off the line 97 first 6
+sieve final 2 prefixes with the pair off the line 12 first 204
+91 {'k': 91, 'heights': [220.714918839314, 221.43070555469333], 'M': 110, 'natural_stages_off_line': 25, 'sieve_stages_off_line': 9}
+135 {'k': 135, 'heights': [294.9653696192655, 295.57325487895827], 'M': 147, 'natural_stages_off_line': 41, 'sieve_stages_off_line': 11}
+159 {'k': 159, 'heights': [333.64537852486984, 334.2113548332444], 'M': 167, 'natural_stages_off_line': 46, 'sieve_stages_off_line': 0}
+186 {'k': 186, 'heights': [375.82591276673935, 376.32409223066804], 'M': 188, 'natural_stages_off_line': 54, 'sieve_stages_off_line': 9}
+212 {'k': 212, 'heights': [415.01880975515513, 415.4552149962946], 'M': 207, 'natural_stages_off_line': 60, 'sieve_stages_off_line': 10}
+725 {'k': 725, 'heights': [1093.4408732723687, 1094.284457523754], 'M': 546, 'natural_stages_off_line': 97, 'sieve_stages_off_line': 12}
+{'k_first': 30, 'k_last': 340, 'pairs': 311, 'natural_pairs_leave': 265, 'natural_stages_off': 8511, 'sieve_pairs_leave': 140, 'sieve_stages_off': 1510, 'leave_both': 139, 'leave_sieve_only': 1}
+# exit 0 after 69.233s, ended 2026-11-26T05:03:55Z

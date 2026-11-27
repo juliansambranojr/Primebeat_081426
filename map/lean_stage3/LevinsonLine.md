@@ -7,7 +7,7 @@ LevinsonLine — block S11 of `lean_stage3/design/stencil.md`, step 1a. 2026-11-
 6 theorems, 0 definitions, 161 lines. 
 
 **Imports:** [`HardyZ`](../lean_stage3/HardyZ.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonArg`](../lean_stage3/LevinsonArg.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonArg`](../lean_stage3/LevinsonArg.md), [`OperatorQ`](../lean_stage3/OperatorQ.md)
 
 ## The picture
 
@@ -20,13 +20,18 @@ flowchart LR
   n4["<b>re_gammaR_G_line</b><br/>(Gammaℝ (1/2 + t * I) * (riemannZeta (1/2 + t * I) + c * deriv r…"]:::thm
   n5["<b>zeta_line_zero_iff</b><br/>riemannZeta (1/2 + t * I) = 0 ↔ (Gammaℝ (1/2 + t * I) * (riemann…"]:::thm
   x0(["<b>HardyZ</b><br/>re_line<br/>xi_line_real"]):::ext
-  x1(["<b>LevinsonArg</b><br/>continuous_lineF<br/>lineCount_ge_arg"]):::ext
-  x2(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
-  x3(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
-  x4(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>lineF_turn_eq<br/>turn_split"]):::ext
-  x6(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x7(["<b>LevinsonWindow</b><br/>G_line_ne"]):::ext
+  x1(["<b>BasinChainCount</b><br/>V_line_ne<br/>count_exact"]):::ext
+  x2(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x3(["<b>ConreyCountLine</b><br/>analyticAt_W_line<br/>lineW_turn_eq"]):::ext
+  x4(["<b>ConreyCountOrder</b><br/>line_identity<br/>zeta_order_ge_line"]):::ext
+  x5(["<b>LevinsonArg</b><br/>continuous_lineF<br/>lineCount_ge_arg"]):::ext
+  x6(["<b>LevinsonCount</b><br/>levinson_count"]):::ext
+  x7(["<b>LevinsonMultiple</b><br/>levinson_count'"]):::ext
+  x8(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>re_logDeriv_gammaR_line"]):::ext
+  x9(["<b>LevinsonTurn</b><br/>lineF_turn_eq<br/>turn_split"]):::ext
+  x10(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x11(["<b>OperatorQ</b><br/>line_mem<br/>zeta_line_zero_iff_W"]):::ext
+  x12(["<b>LevinsonWindow</b><br/>G_line_ne"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -34,14 +39,19 @@ flowchart LR
   n3 --> n4
   n4 --> n5
   n0 -.-> x1
+  n0 -.-> x10
+  n0 -.-> x11
   n0 -.-> x2
   n0 -.-> x3
   n0 -.-> x4
   n0 -.-> x5
   n0 -.-> x6
-  n5 -.-> x1
-  n5 -.-> x3
-  n5 -.-> x6
+  n0 -.-> x7
+  n0 -.-> x8
+  n0 -.-> x9
+  n5 -.-> x10
+  n5 -.-> x12
+  n5 -.-> x5
   n5 -.-> x7
   x0 -.-> n0
   x0 -.-> n1
@@ -84,8 +94,15 @@ line 30 · arrows read from text
 
   - [`HardyZ.re_line`](../lean_stage3/HardyZ.md#HardyZ-re_line) (HardyZ) — `` ((1 / 2 : ℂ) + t * I).re = 1 / 2 ``
 
-**Feeds** (11 that use it)
+**Feeds** (20 that use it)
 
+  - [`BasinChain.V_line_ne`](../lean_stage3/BasinChainCount.md#BasinChain-V_line_ne) (BasinChainCount) — `` V Q L ((1/2 : ℂ) + t * I) ≠ 0 ``
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
+  - [`ConreyCount.analyticAt_W_line`](../lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W_line) (ConreyCountLine) — `` AnalyticAt ℂ (OperatorQ.W Q L) (1/2 + t * I) ``
+  - [`ConreyCount.lineW_turn_eq`](../lean_stage3/ConreyCountLine.md#ConreyCount-lineW_turn_eq) (ConreyCountLine) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (V Q L) (1/2 + t * I)).re ``
+  - [`ConreyCount.line_identity`](../lean_stage3/ConreyCountOrder.md#ConreyCount-line_identity) (ConreyCountOrder) — `` ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta (1/2 + t * I) = (((∏ ρ ∈ D, (t - ρ.im) ^ n ρ) * (I ^ (∑ ρ ∈ D, n ρ) * (Gammaℝ (1/2 + t * I) * H (1… ``
+  - [`ConreyCount.zeta_order_ge_line`](../lean_stage3/ConreyCountOrder.md#ConreyCount-zeta_order_ge_line) (ConreyCountOrder) — `` (n ρ : ℤ) ≤ riemannZeta.order ρ ∧ ((I ^ (∑ ρ' ∈ D, n ρ') * (Gammaℝ ρ * H ρ)).re = 0 → (n ρ : ℤ) + 1 ≤ riemannZeta.order ρ) ``
   - [`LevinsonArg.continuous_lineF`](../lean_stage3/LevinsonArg.md#LevinsonArg-continuous_lineF) (LevinsonArg) — `` Continuous (lineF c) ``
   - [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count) (LevinsonCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonLine.deriv_xi_line_im`](#LevinsonLine-deriv_xi_line_im) — `` (deriv completedRiemannZeta (1/2 + t * I)).re = 0 ``
@@ -97,6 +114,8 @@ line 30 · arrows read from text
   - [`LevinsonTurn.lineF_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-lineF_turn_eq) (LevinsonTurn) — `` φ b - φ a = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv (fun s => riemannZeta s + c * deriv riemannZeta s) (1/2 + t * I))… ``
   - [`LevinsonTurn.turn_split`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-turn_split) (LevinsonTurn) — `` (∫ t in a..b, logDeriv (fun s => Gammaℝ s * G s) (1/2 + t * I)).re = (∫ t in a..b, logDeriv Gammaℝ (1/2 + t * I)).re + (∫ t in a..b, logDeriv G (1/2 +… ``
   - [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub) (LevinsonWindowNear) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
+  - [`OperatorQ.line_mem`](../lean_stage3/OperatorQ.md#OperatorQ-line_mem) (OperatorQ) — `` ((1/2 : ℂ) + t * I) ∈ domXi ``
+  - [`OperatorQ.zeta_line_zero_iff_W`](../lean_stage3/OperatorQ.md#OperatorQ-zeta_line_zero_iff_W) (OperatorQ) — `` riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)).re = 0 ``
 
 <a name="LevinsonLine-deriv_xi_line_im"></a>
 ### `LevinsonLine.deriv_xi_line_im`

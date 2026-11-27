@@ -1,0 +1,42 @@
+flowchart LR
+  n0["<b>zx_arg</b><br/>2 * zx x + (2 + Complex.I * (t : ℂ)) = (x : ℂ) + (t : ℂ) * Compl…"]:::shp
+  n1["<b>norm_zx</b><br/>‖zx x‖ ≤ 3 / 4"]:::shp
+  n2["<b>log_sub_le</b><br/>Real.log (x - beta ρ) - Real.log 2 ≤ Real.log ‖zx x - ρ‖"]:::shp
+  n3["<b>log_zeta_ge</b><br/>gLow ht x ≤ Real.log ‖riemannZeta ((x : ℂ) + (t : ℂ) * Complex.I…"]:::thm
+  n4["<b>intervalIntegrable_sum'</b><br/>IntervalIntegrable (fun x =＞ ∑ i ∈ s, f i x) volume a b"]:::cnt
+  n5["<b>intervalIntegrable_gLow</b><br/>IntervalIntegrable (gLow ht) volume (1 / 2) 2"]:::thm
+  n6["<b>log3_le</b><br/>Real.log 3 ≤ 2"]:::shp
+  n7["<b>integral_g_ge</b><br/>-(102 * Real.log t + 500) ≤ ∫ x in (1 / 2 : ℝ)..2, gLow ht x"]:::thm
+  n8["<b>horizLower_holds</b><br/>Turing.StmtHorizLower 102 500"]:::thm
+  x0(["<b>LittlewoodSharpHoriz</b><br/>intervalIntegrable_sumTerm<br/>log_zeta_ge"]):::ext
+  x1(["<b>JensenCount</b><br/>zeta_centre_lower<br/>zeta_centre_ne_zero"]):::ext
+  x2(["<b>TuringLWHorizPoint</b><br/>5 theorems"]):::ext
+  x3(["<b>TuringLWHorizLog</b><br/>integral_log_sub_ge<br/>intervalIntegrable_log_sub"]):::ext
+  x4(["<b>TuringLW</b><br/>littlewood_holds"]):::ext
+  n0 --> n3
+  n1 --> n3
+  n2 --> n3
+  n3 --> n8
+  n4 --> n5
+  n4 --> n7
+  n5 --> n8
+  n6 --> n7
+  n7 --> n8
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n4 -.-> x0
+  n8 -.-> x4
+  x1 -.-> n3
+  x2 -.-> n3
+  x2 -.-> n7
+  x3 -.-> n5
+  x3 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -484,19 +484,26 @@ def collect():
             else:
                 d["zdirect"] = any(ZTOK.search(t) for t in d["tokens"])
                 d["adirect"] = any(ATOK.search(t) for t in d["tokens"])
+    # A declaration is on a side when it reaches, through `uses`, one marked
+    # directly. Computed as a reverse breadth-first search from the marked ones:
+    # the recursive walk overflowed Python's stack on the generated point modules
+    # (Stage3/TuringRun*, chains of thousands of uses).
+    users = defaultdict(list)
+    for u in D:
+        for v in D[u]["uses"]:
+            if v in D:
+                users[v].append(u)
     for key, out in (("zdirect", "zeta"), ("adirect", "analysis")):
-        memo = {}
-
-        def side(u, seen=()):
-            if u in memo:
-                return memo[u]
-            if u not in D or u in seen:
-                return False
-            z = D[u][key] or any(side(v, seen + (u,)) for v in D[u]["uses"])
-            memo[u] = z
-            return z
+        reach = {u for u in D if D[u][key]}
+        queue = list(reach)
+        while queue:
+            v = queue.pop()
+            for u in users[v]:
+                if u not in reach:
+                    reach.add(u)
+                    queue.append(u)
         for u in D:
-            D[u][out] = side(u)
+            D[u][out] = u in reach
     for d in D.values():
         d["layer"] = "zeta" if d["zeta"] else ("shape" if d["analysis"] else "count")
     for d in D.values():

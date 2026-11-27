@@ -1,0 +1,4 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T04:09:37Z
+{'pi_2_20': 82025, 'pi_2_19': 43390, 'pi_2_16': 6542, 'zeros': [[2, 1], [4, 1], [8, 3], [20, 6]], 'n_zeros': 4, 'cell_20_5': 623, 'cell_19_5': 623, 'cells_checked': 190}
+# exit 0 after 0.319s, ended 2026-11-27T04:09:37Z

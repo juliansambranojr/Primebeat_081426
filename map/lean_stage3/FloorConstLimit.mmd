@@ -12,9 +12,12 @@ flowchart LR
   n10["<b>Br_X</b><br/>Br Polynomial.X = 1 / 2"]:::cnt
   n11["<b>Cr_X</b><br/>Cr Polynomial.X = 1 / 3"]:::cnt
   n12["<b>re_dop_tendsto_X</b><br/>Tendsto (fun T =＞ (Dop (Real.log T) (cY Polynomial.X (Mof T θ) T…"]:::shp
-  x0(["<b>FloorConstDeriv</b><br/>4 theorems"]):::ext
-  x1(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
-  x2(["<b>FloorConst</b><br/>floor_const"]):::ext
+  x0(["<b>FloorConstQLimit</b><br/>dopQ_cY_eq<br/>re_dopQ_tendsto"]):::ext
+  x1(["<b>FloorConstDeriv</b><br/>4 theorems"]):::ext
+  x2(["<b>FloorLongMean</b><br/>dop_bdd_long"]):::ext
+  x3(["<b>DiagMain</b><br/>logM_ge<br/>logM_le"]):::ext
+  x4(["<b>FloorLong</b><br/>floor_of_long<br/>levinson_floor_of_long"]):::ext
+  x5(["<b>FloorConst</b><br/>floor_const"]):::ext
   n0 --> n4
   n1 --> n4
   n10 --> n12
@@ -27,10 +30,21 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n12
-  n12 -.-> x2
-  x0 -.-> n4
-  x1 -.-> n6
-  x1 -.-> n8
+  n0 -.-> x0
+  n1 -.-> x0
+  n10 -.-> x4
+  n11 -.-> x4
+  n12 -.-> x5
+  n2 -.-> x0
+  n4 -.-> x2
+  n6 -.-> x0
+  n6 -.-> x2
+  n7 -.-> x2
+  n8 -.-> x4
+  n9 -.-> x4
+  x1 -.-> n4
+  x3 -.-> n6
+  x3 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

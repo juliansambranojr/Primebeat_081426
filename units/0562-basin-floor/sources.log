@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-25T21:17:07Z
+# unit: 0562-basin-floor
+# sources searched: 505
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78711
+  t = a + (b - a) * (j + 0.5) / SAMP
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78729
+  vals.append(float(abs(Vleft[t] * psi(mp.mpc(s0, t))) ** 2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78730
+  floors.append(sum(vals) / SAMP)
+
+# 4 found, 0 missing

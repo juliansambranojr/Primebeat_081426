@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-25T23:27:07Z
+# unit: 0571-turing-slope
+# sources searched: 511
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81592
+  theorem theta_sub_le_sharp {t u : ℝ} (ht : 5 ≤ t) (htu : t ≤ u) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78895
+  Stage3.phaseTheta u - Stage3.phaseTheta t
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0a85db6e06686d69.jsonl:640
+  ≤ (u - t) * (Real.log (u / (2 * Real.pi)) / 2 + 1 / t) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81595
+  theorem theta_sub_le_sharp80 {t u : ℝ} (ht : 80 ≤ t) (htu : t ≤ u) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:78895
+  Stage3.phaseTheta u - Stage3.phaseTheta t
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0a85db6e06686d69.jsonl:650
+  ≤ (u - t) * (Real.log (u / (2 * Real.pi)) / 2 + (4 / 5) / t) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81602
+  theorem turing_S_le_sharp {t h : ℝ} (ht : 80 ≤ t) (hh : 0 < h) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81603
+  S t ≤ ((3 / 2 + 113 / 4) / Real.pi * Real.log (t + h)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:81604
+  + (2 + (3 / 2) * Real.log 9 + 128) / Real.pi) / h
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0a85db6e06686d69.jsonl:661
+  + h * (Real.log ((t + h) / (2 * Real.pi)) / 2 + (4 / 5) / t) / (2 * Real.pi) :=
+
+# 11 found, 0 missing

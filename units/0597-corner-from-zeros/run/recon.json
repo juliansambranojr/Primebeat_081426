@@ -1,0 +1,27 @@
+{
+ "K10": {
+  "sign_agree": 2502,
+  "cells": 2962,
+  "median_rel_err": 0.7585041456209002
+ },
+ "K100": {
+  "sign_agree": 2820,
+  "cells": 2962,
+  "median_rel_err": 0.24496402054184838
+ },
+ "K1000": {
+  "sign_agree": 2910,
+  "cells": 2962,
+  "median_rel_err": 0.08687952944314065
+ },
+ "K2000": {
+  "sign_agree": 2921,
+  "cells": 2962,
+  "median_rel_err": 0.07711278401075182
+ },
+ "K0": {
+  "sign_agree": 2071,
+  "cells": 2962,
+  "median_rel_err": null
+ }
+}

@@ -1,0 +1,66 @@
+flowchart LR
+  n0["<b>W_one</b><br/>OperatorQ.W 1 L = completedRiemannZeta"]:::cnt
+  n1["<b>noRightZeros_one_of_rh ■</b><br/>StmtNoRightZeros 1 T₀"]:::thm
+  n2["<b>count_exact</b><br/>((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ).…"]:::thm
+  n3["<b>abs_arg_le_arcsin</b><br/>|Complex.arg w| ≤ Real.arcsin r"]:::shp
+  n4["<b>right_edge_le_arcsin</b><br/>|(∫ t in a..b, logDeriv G (3 + t * I)).re| ≤ 2 * Real.arcsin r"]:::shp
+  n5["<b>V_near_one</b><br/>‖V Q (Real.log T) (3 + t * I) - 1‖ ≤ Real.pi ^ 2 / 6 - 1 + 1 / 1…"]:::thm
+  n6["<b>r0_lt_one</b><br/>Real.pi ^ 2 / 6 - 1 + 1 / 100 ＜ 1"]:::shp
+  n7["<b>V_line_ne</b><br/>V Q L ((1/2 : ℂ) + t * I) ≠ 0"]:::thm
+  n8["<b>zeta_line_ne_of_good</b><br/>riemannZeta ((1/2 : ℂ) + t * I) ≠ 0"]:::thm
+  n9["<b>increment_lt</b><br/>(Defect.defect b : ℝ) - (Defect.defect a : ℝ) ＜ (Turing.S b + hE…"]:::thm
+  n10["<b>increment_window</b><br/>∃ T₁ : ℝ, 200 ≤ T₁ ∧ ∀ {T a b : ℝ}, T₁ ≤ T → T / 4 ≤ a → a ＜ b →…"]:::thm
+  x0(["<b>HardyZ</b><br/>re_line"]):::ext
+  x1(["<b>LevinsonArg</b><br/>crossings_of_arg<br/>exists_arg_lift"]):::ext
+  x2(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x3(["<b>LevinsonSize</b><br/>gamma_part_eq<br/>hasDerivAt_three_comp<br/>norm_G_sub_one_le"]):::ext
+  x4(["<b>LevinsonTurn</b><br/>4 theorems"]):::ext
+  x5(["<b>LevinsonWindow</b><br/>border_cases"]):::ext
+  x6(["<b>LevinsonWindowNear</b><br/>sum_order_le_lineCount_sub"]):::ext
+  x7(["<b>Littlewood</b><br/>mem_support_divisor<br/>order_ne_top"]):::ext
+  x8(["<b>OperatorQ</b><br/>re_W_line<br/>zeta_line_zero_iff_W"]):::ext
+  x9(["<b>DigammaBound</b><br/>re_im_close"]):::ext
+  x10(["<b>DigammaBoundIdentity</b><br/>differentiableAt_H"]):::ext
+  x11(["<b>DigammaBoundSize</b><br/>5 theorems"]):::ext
+  x12(["<b>BasinChainAvg</b><br/>c0_lt_two<br/>increment_avg"]):::ext
+  x13(["<b>Defect</b><br/>N_eq_allCount_of_no_zero_at"]):::ext
+  n0 --> n1
+  n2 --> n9
+  n3 --> n4
+  n4 --> n9
+  n5 --> n10
+  n6 --> n10
+  n7 --> n9
+  n8 --> n9
+  n9 --> n10
+  n10 -.-> x12
+  n6 -.-> x12
+  x0 -.-> n2
+  x0 -.-> n8
+  x1 -.-> n2
+  x10 -.-> n5
+  x11 -.-> n10
+  x11 -.-> n5
+  x13 -.-> n9
+  x2 -.-> n2
+  x2 -.-> n7
+  x3 -.-> n2
+  x3 -.-> n4
+  x3 -.-> n5
+  x4 -.-> n2
+  x4 -.-> n4
+  x5 -.-> n2
+  x6 -.-> n2
+  x7 -.-> n2
+  x7 -.-> n9
+  x8 -.-> n2
+  x8 -.-> n7
+  x9 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -34,7 +34,7 @@ on one line; this file does not use it.
 | `resY_small` | target 2: `‖resY α β t‖ ≤ C N e^(−t²/2)` | proved |
 | (4.2) for `g` with `1 + O(t^(−1)(1+|s|²))`; (4.3) for `j ≥ 1` | the asymptotic forms, the `t`-derivatives | OPEN, not stated |
 
-The direction in (4.3). The scratchpad text reads `(1 + |t/x|)^(−A)`. The integral fixes
+The direction in (4.3). Young's arXiv text reads `(1 + |t/x|)^(−A)`. The integral fixes
 `(1 + x/t)^(−A)`: `g(s,t) ≈ (t/2π)^s`, so the line `Re s = A` gives `(t/x)^A`, small for large
 `x/t`, and the shift left past `s = 0` gives the residue `1`, so `V ≈ 1` for small `x/t`. Young's
 own use in Lemma 5's proof, `(1 + |x/T|)^(−A)`, has this direction.

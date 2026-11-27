@@ -7,7 +7,7 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 28 theorems, 2 definitions, 628 lines. 
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonAvoid`](../lean_stage3/LevinsonAvoid.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md), [`LevinsonTurn`](../lean_stage3/LevinsonTurn.md), [`TuringLWSplit`](../lean_stage3/TuringLWSplit.md)
 
 ## The picture
 
@@ -42,11 +42,15 @@ flowchart LR
   n26["<b>littlewood_rect</b><br/>2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toF…"]:::shp
   n27["<b>littlewood_rect_zero_free ■</b><br/>(∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.i…"]:::shp
   x0(["<b>LevinsonRight</b><br/>4 theorems"]):::ext
-  x1(["<b>LevinsonMultiple</b><br/>countRight_eq_of_mul<br/>integral_logDeriv_mul<br/>levinson_count'"]):::ext
-  x2(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
-  x3(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
-  x4(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
+  x1(["<b>BasinChainCount</b><br/>count_exact<br/>increment_lt"]):::ext
+  x2(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x3(["<b>LevinsonMultiple</b><br/>countRight_eq_of_mul<br/>integral_logDeriv_mul<br/>levinson_count'"]):::ext
+  x4(["<b>LevinsonWindow</b><br/>countRight_right_le"]):::ext
+  x5(["<b>LevinsonWindowNear</b><br/>levinson_count_sub"]):::ext
+  x6(["<b>BasinChainSplit</b><br/>split_logDeriv"]):::ext
+  x7(["<b>LevinsonAvoid</b><br/>zeros_finite"]):::ext
+  x8(["<b>TuringLWSplit</b><br/>integral_im_logDeriv_vertical<br/>stmtSplit_holds"]):::ext
+  x9(["<b>LevinsonTurn</b><br/>G_turn_eq<br/>continuousOn_logDeriv_line<br/>countRight_left_eq"]):::ext
   n0 --> n2
   n0 --> n27
   n1 --> n26
@@ -88,12 +92,21 @@ flowchart LR
   n8 --> n9
   n9 --> n11
   n1 -.-> x0
-  n17 -.-> x1
-  n17 -.-> x5
+  n15 -.-> x6
+  n15 -.-> x8
+  n16 -.-> x8
+  n17 -.-> x3
+  n17 -.-> x9
+  n18 -.-> x6
+  n18 -.-> x8
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
+  n2 -.-> x4
+  n2 -.-> x5
+  n20 -.-> x6
+  n20 -.-> x8
   n24 -.-> x0
   n26 -.-> x0
   n3 -.-> x0
@@ -101,11 +114,15 @@ flowchart LR
   n3 -.-> x2
   n3 -.-> x3
   n3 -.-> x4
+  n3 -.-> x5
+  n3 -.-> x6
+  n3 -.-> x7
+  n3 -.-> x8
   n4 -.-> x0
-  n4 -.-> x2
+  n4 -.-> x4
   n5 -.-> x0
-  n5 -.-> x5
-  n7 -.-> x5
+  n5 -.-> x9
+  n7 -.-> x9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -126,7 +143,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 137
 
 - **Is:** `` countRight (f : ℂ → ℂ) (z w : ℂ) (σ : ℝ) : ℝ := ∑ p ∈ (divisor_support_rectangle_finite f z w).toFinset, if σ < p.re then ((MeromorphicOn.divisor f (Rectangle z w) p : ℤ) : ℝ) else 0 ``
-- **Used by 18:** [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq), [`LevinsonRight.countRight_mul_ge`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_mul_ge), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
+- **Used by 25:** [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact), [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt), [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub), [`ConreyCount.conrey_count_window`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_window), [`DigammaBound.conrey_count_window'`](../lean_stage3/DigammaBound.md#DigammaBound-conrey_count_window-), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ), [`FloorQ.conrey_window_diff`](../lean_stage3/FloorQWindow.md#FloorQ-conrey_window_diff), [`LevinsonCount.levinson_count`](../lean_stage3/LevinsonCount.md#LevinsonCount-levinson_count), [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul), [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq), [`LevinsonRight.countRight_mul_ge`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_mul_ge), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`LevinsonTurn.G_turn_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-G_turn_eq), [`LevinsonTurn.countRight_left_eq`](../lean_stage3/LevinsonTurn.md#LevinsonTurn-countRight_left_eq), [`LevinsonWindow.countRight_right_le`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-countRight_right_le), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_count_sub`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_count_sub), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`Littlewood.integral_countRight`](#Littlewood-integral_countRight), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count), [`Littlewood.two_pi_count_eq`](#Littlewood-two_pi_count_eq)
 
 <a name="Littlewood-edgeH"></a>
 ### `Littlewood.edgeH`
@@ -134,7 +151,7 @@ def · line 137
 def · line 445
 
 - **Is:** `` edgeH (f : ℂ → ℂ) (b y σ : ℝ) : ℝ := (∫ x in σ..b, logDeriv f (↑x + ↑y * I)).im ``
-- **Used by 6:** [`LevinsonMollEdge.edge_le_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-edge_le_gen), [`LevinsonMollEdge.horizontal_terms_le`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-horizontal_terms_le), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free)
+- **Used by 8:** [`FloorQ.edge_le_upper`](../lean_stage3/FloorQEdge.md#FloorQ-edge_le_upper), [`FloorQ.horizontal_terms_gen`](../lean_stage3/FloorQEdge.md#FloorQ-horizontal_terms_gen), [`LevinsonMollEdge.edge_le_gen`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-edge_le_gen), [`LevinsonMollEdge.horizontal_terms_le`](../lean_stage3/LevinsonMollEdge.md#LevinsonMollEdge-horizontal_terms_le), [`LevinsonRight.levinson_right`](../lean_stage3/LevinsonRight.md#LevinsonRight-levinson_right), [`LevinsonRight.zeros_right_le`](../lean_stage3/LevinsonRight.md#LevinsonRight-zeros_right_le), [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect), [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free)
 
 ## Theorems
 
@@ -211,8 +228,11 @@ line 64 · arrows read from text
 
   - [`Littlewood.corner_mem`](#Littlewood-corner_mem) — `` z ∈ Rectangle z w ``
 
-**Feeds** (10 that use it)
+**Feeds** (13 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
+  - [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt) (BasinChainCount) — `` (Defect.defect b : ℝ) - (Defect.defect a : ℝ) < (Turing.S b + hEdge Q L b / Real.pi) - (Turing.S a + hEdge Q L a / Real.pi) + 1 + 2 * Real.arcsin r / … ``
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul) (LevinsonMultiple) — `` Littlewood.countRight G z w σ = Littlewood.countRight H z w σ ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
   - [`LevinsonRight.countRight_left_eq`](../lean_stage3/LevinsonRight.md#LevinsonRight-countRight_left_eq) (LevinsonRight) — `` countRight f z' w σ = countRight f z w σ ``
@@ -246,8 +266,12 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (11 that use it)
+**Feeds** (16 that use it)
 
+  - [`BasinChain.count_exact`](../lean_stage3/BasinChainCount.md#BasinChain-count_exact) (BasinChainCount) — `` ((Stage3.phaseTheta b - Stage3.phaseTheta a) + ((∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑a * I)).im - (∫ x in (1/2:ℝ)..3, logDeriv (V Q L) (↑x + ↑b… ``
+  - [`BasinChain.increment_lt`](../lean_stage3/BasinChainCount.md#BasinChain-increment_lt) (BasinChainCount) — `` (Defect.defect b : ℝ) - (Defect.defect a : ℝ) < (Turing.S b + hEdge Q L b / Real.pi) - (Turing.S a + hEdge Q L a / Real.pi) + 1 + 2 * Real.arcsin r / … ``
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
+  - [`ConreyCount.conrey_count_sub`](../lean_stage3/ConreyCount.md#ConreyCount-conrey_count_sub) (ConreyCount) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (V Q L) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * I) (1/2) - (30 * Real.log b + 42 * Real.log… ``
   - [`LevinsonAvoid.zeros_finite`](../lean_stage3/LevinsonAvoid.md#LevinsonAvoid-zeros_finite) (LevinsonAvoid) — `` {q | q ∈ Rectangle z w ∧ f q = 0}.Finite ``
   - [`LevinsonMultiple.countRight_eq_of_mul`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-countRight_eq_of_mul) (LevinsonMultiple) — `` Littlewood.countRight G z w σ = Littlewood.countRight H z w σ ``
   - [`LevinsonMultiple.levinson_count'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_count-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - 2 * Littlewood.countRight (fun s => riemannZeta s + c * deriv riemannZeta s) ((1/2 : ℂ) + a * I) ((3 : ℂ) + b * … ``
@@ -259,6 +283,7 @@ p ∈ (MeromorphicOn.divisor f U).support ↔ p ∈ U ∧ f p = 0
   - [`Littlewood.littlewood_rect_zero_free`](#Littlewood-littlewood_rect_zero_free) — `` (∫ t in z.im..w.im, Real.log ‖f (↑z.re + ↑t * I)‖) - (∫ t in z.im..w.im, Real.log ‖f (↑w.re + ↑t * I)‖) + (w.re - z.re) * (∫ t in z.im..w.im, logDeriv… ``
   - [`Littlewood.rectIntegral_eq_count`](#Littlewood-rectIntegral_eq_count) — `` RectangleIntegral (logDeriv f) (↑σ + ↑z.im * I) w = 2 * Real.pi * I * (countRight f z w σ : ℂ) ``
   - [`Littlewood.support_interior`](#Littlewood-support_interior) — `` z.re < p.re ∧ p.re < w.re ∧ z.im < p.im ∧ p.im < w.im ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-divisor_eq"></a>
 ### `Littlewood.divisor_eq`
@@ -602,9 +627,11 @@ IntegrableOn (fun q : ℝ × ℝ => logDeriv f (↑q.1 + ↑q.2 * I)) ([[z.re, w
 
   - [`Littlewood.integrableOn_logDeriv`](#Littlewood-integrableOn_logDeriv) — `` IntegrableOn (logDeriv f) (Rectangle z w) volume ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-hasDerivAt_log_norm"></a>
 ### `Littlewood.hasDerivAt_log_norm`
@@ -626,9 +653,10 @@ HasDerivAt (fun y => Real.log ‖g y‖) (g' / g x).re x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
 
 <a name="Littlewood-continuousAt_logDeriv"></a>
 ### `Littlewood.continuousAt_logDeriv`
@@ -681,10 +709,13 @@ ContinuousOn (fun x => logDeriv f (γ x)) S
 
   - [`Littlewood.continuousAt_logDeriv`](#Littlewood-continuousAt_logDeriv) — `` ContinuousAt (logDeriv f) s ``
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-continuousOn_log_norm_comp"></a>
 ### `Littlewood.continuousOn_log_norm_comp`
@@ -732,10 +763,13 @@ line 402 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
+  - [`BasinChain.split_logDeriv`](../lean_stage3/BasinChainSplit.md#BasinChain-split_logDeriv) (BasinChainSplit) — `` IntervalIntegrable (fun t : ℝ => (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I)).im) volume t₁ t₂ ∧ ∫ t in t₁..t₂, (∫ x in x₁..x₂, logDeriv f (↑x + ↑t * I))… ``
   - [`Littlewood.integral_re_logDeriv_horizontal`](#Littlewood-integral_re_logDeriv_horizontal) — `` ∫ x in z.re..w.re, (logDeriv f (↑x + ↑t * I)).re = Real.log ‖f (↑w.re + ↑t * I)‖ - Real.log ‖f (↑z.re + ↑t * I)‖ ``
   - [`Littlewood.littlewood_rect`](#Littlewood-littlewood_rect) — `` 2 * Real.pi * ∑ ρ ∈ (divisor_support_rectangle_finite f z w).toFinset, ((MeromorphicOn.divisor f (Rectangle z w) ρ : ℤ) : ℝ) * (ρ.re - z.re) = (∫ t in… ``
+  - [`TuringLW.integral_im_logDeriv_vertical`](../lean_stage3/TuringLWSplit.md#TuringLW-integral_im_logDeriv_vertical) (TuringLWSplit) — `` ∫ t in z.im..w.im, (logDeriv f (↑x + ↑t * I)).im = Real.log ‖f (↑x + ↑z.im * I)‖ - Real.log ‖f (↑x + ↑w.im * I)‖ ``
+  - [`TuringLW.stmtSplit_holds`](../lean_stage3/TuringLWSplit.md#TuringLW-stmtSplit_holds) (TuringLWSplit) — `` Turing.StmtSplit ``
 
 <a name="Littlewood-integral_re_logDeriv_horizontal"></a>
 ### `Littlewood.integral_re_logDeriv_horizontal`

@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0578-heat-flow-zeros",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v880 x86_64",
+    "virtual_env": null,
+    "git_head": "c7bcc9a22bb5466a526a2604724b3b8b9d53090f",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "9e85ab698bb6e7148c6fa5dd1f71348f23ff4e6a59dafa0b4ef13c6dee01da71",
+    "run_start": "2026-11-26T01:46:21Z",
+    "run_end": "2026-11-26T02:00:27Z",
+    "wall_s": 846.4065895620006
+  }
+}

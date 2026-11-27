@@ -7,7 +7,7 @@ LevinsonMollEdge — block S11 of `lean_stage3/design/stencil.md`, the mollifier
 21 theorems, 2 definitions, 907 lines. 
 
 **Imports:** [`LevinsonEdge`](../lean_stage3/LevinsonEdge.md), [`LevinsonRight`](../lean_stage3/LevinsonRight.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FloorQEdge`](../lean_stage3/FloorQEdge.md), [`FloorQGamma`](../lean_stage3/FloorQGamma.md), [`LevinsonWindow`](../lean_stage3/LevinsonWindow.md), [`Unsmooth`](../lean_stage3/Unsmooth.md)
 
 ## The picture
 
@@ -34,13 +34,16 @@ flowchart LR
   n18["<b>real_zero_count_gen</b><br/>∃ Z : Finset ℝ, (∀ x : ℝ, |x| ≤ r → (g x).re = 0 → x ∈ Z) ∧ (Z.c…"]:::shp
   n19["<b>edge_le_gen</b><br/>|edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1…"]:::shp
   n20["<b>horizontal_terms_le</b><br/>|∫ σ in σ₀..X, edgeH (fun s =＞ (riemannZeta s + c * deriv rieman…"]:::thm
-  x0(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
-  x1(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
-  x2(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
-  x3(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
-  x4(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
-  x5(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
-  x6(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
+  x0(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
+  x1(["<b>LevinsonMultiple</b><br/>levinson_window'"]):::ext
+  x2(["<b>LevinsonWindow</b><br/>levinson_window"]):::ext
+  x3(["<b>LevinsonWindowNear</b><br/>levinson_window_diff"]):::ext
+  x4(["<b>LevinsonSize</b><br/>deriv_zeta_eq_LSeries"]):::ext
+  x5(["<b>FloorQEdge</b><br/>arg_term_le_on<br/>edge_le_upper<br/>right_terms_gen"]):::ext
+  x6(["<b>LevinsonEdge</b><br/>5 theorems"]):::ext
+  x7(["<b>LevinsonTurn</b><br/>lift_turn_eq_integral"]):::ext
+  x8(["<b>FloorQGamma</b><br/>V_disc_le"]):::ext
+  x9(["<b>ArgLegs</b><br/>segment_im_integral_le"]):::ext
   n0 --> n20
   n1 --> n4
   n10 --> n11
@@ -68,29 +71,37 @@ flowchart LR
   n8 --> n11
   n8 --> n20
   n9 --> n12
-  n12 -.-> x0
+  n0 -.-> x0
+  n1 -.-> x0
   n12 -.-> x1
   n12 -.-> x2
+  n12 -.-> x3
+  n13 -.-> x8
+  n18 -.-> x5
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
-  n20 -.-> x0
+  n2 -.-> x3
   n20 -.-> x1
   n20 -.-> x2
-  n4 -.-> x0
+  n20 -.-> x3
+  n3 -.-> x0
   n4 -.-> x1
   n4 -.-> x2
-  n5 -.-> x0
+  n4 -.-> x3
   n5 -.-> x1
   n5 -.-> x2
-  n8 -.-> x0
+  n5 -.-> x3
+  n6 -.-> x5
+  n7 -.-> x5
   n8 -.-> x1
   n8 -.-> x2
-  x3 -.-> n3
-  x4 -.-> n18
-  x4 -.-> n8
-  x5 -.-> n10
-  x6 -.-> n19
+  n8 -.-> x3
+  x4 -.-> n3
+  x6 -.-> n18
+  x6 -.-> n8
+  x7 -.-> n10
+  x9 -.-> n19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -111,7 +122,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 def · line 80
 
 - **Is:** `` molli (M : ℕ) (β : ℕ → ℂ) (s : ℂ) : ℂ := ∑ h ∈ Finset.Icc 1 M, β h * (h : ℂ) ^ (-s) noncomputable ``
-- **Used by 18:** [`FloorStep.Fint`](../lean_stage3/FloorStepCont.md#FloorStep-Fint), [`FloorStep.continuousOn_Fint`](../lean_stage3/FloorStepCont.md#FloorStep-continuousOn_Fint), [`FloorStep.continuous_molli`](../lean_stage3/FloorStepCont.md#FloorStep-continuous_molli), [`FloorStep.molli_betaC`](../lean_stage3/FloorStepSize.md#FloorStep-molli_betaC), [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson)
+- **Used by 22:** [`FloorLong.unsmooth_near_levinson_long`](../lean_stage3/FloorLongMean.md#FloorLong-unsmooth_near_levinson_long), [`FloorQ.FintV`](../lean_stage3/FloorQCont.md#FloorQ-FintV), [`FloorQ.continuousOn_FintV`](../lean_stage3/FloorQCont.md#FloorQ-continuousOn_FintV), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ), [`FloorStep.Fint`](../lean_stage3/FloorStepCont.md#FloorStep-Fint), [`FloorStep.continuousOn_Fint`](../lean_stage3/FloorStepCont.md#FloorStep-continuousOn_Fint), [`FloorStep.continuous_molli`](../lean_stage3/FloorStepCont.md#FloorStep-continuous_molli), [`FloorStep.molli_betaC`](../lean_stage3/FloorStepSize.md#FloorStep-molli_betaC), [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le), [`LevinsonMollEdge.molli_differentiable`](#LevinsonMollEdge-molli_differentiable), [`LevinsonMollEdge.molli_norm_le`](#LevinsonMollEdge-molli_norm_le), [`LevinsonMollEdge.molli_sub_one_le`](#LevinsonMollEdge-molli_sub_one_le), [`LevinsonMollEdge.right_arg_term_le`](#LevinsonMollEdge-right_arg_term_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff), [`LevinsonWindowNear.levinson_window_near`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_near), [`Unsmooth.unsmooth_near_levinson`](../lean_stage3/Unsmooth.md#Unsmooth-unsmooth_near_levinson)
 
 <a name="LevinsonMollEdge-tailDelta"></a>
 ### `LevinsonMollEdge.tailDelta`
@@ -119,7 +130,7 @@ def · line 80
 def · line 85
 
 - **Is:** `` tailDelta (M : ℕ) (B X : ℝ) : ℝ := 8 / (2 : ℝ) ^ X * (1 + M * B / (2 : ℝ) ^ X) + M * B / (2 : ℝ) ^ X ``
-- **Used by 12:** [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorStep.tail_le`](../lean_stage3/FloorStepSize.md#FloorStep-tail_le), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMollEdge.tailDelta_le_half`](#LevinsonMollEdge-tailDelta_le_half), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.tailDelta_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-tailDelta_nonneg), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LevinsonWindow.windowE_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE_nonneg), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff)
+- **Used by 14:** [`FloorLong.floor_step_long`](../lean_stage3/FloorLongStep.md#FloorLong-floor_step_long), [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ), [`FloorStep.floor_step`](../lean_stage3/FloorStep.md#FloorStep-floor_step), [`FloorStep.tail_le`](../lean_stage3/FloorStepSize.md#FloorStep-tail_le), [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le), [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le), [`LevinsonMollEdge.right_terms_le`](#LevinsonMollEdge-right_terms_le), [`LevinsonMollEdge.tailDelta_le_half`](#LevinsonMollEdge-tailDelta_le_half), [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-), [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window), [`LevinsonWindow.tailDelta_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-tailDelta_nonneg), [`LevinsonWindow.windowE`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE), [`LevinsonWindow.windowE_nonneg`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-windowE_nonneg), [`LevinsonWindowNear.levinson_window_diff`](../lean_stage3/LevinsonWindowNear.md#LevinsonWindowNear-levinson_window_diff)
 
 ## Theorems
 
@@ -147,8 +158,9 @@ line 89 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonMollEdge.horizontal_terms_le`](#LevinsonMollEdge-horizontal_terms_le) — `` |∫ σ in σ₀..X, edgeH (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) X T σ| ≤ (X - σ₀) * (Real.pi * ((8 * X - 1) * (Real.log T + Re… ``
 
 <a name="LevinsonMollEdge-molli_sub_one_le"></a>
@@ -178,8 +190,9 @@ line 108 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le) — `` ‖(riemannZeta s + c * deriv riemannZeta s) * molli M β s - 1‖ ≤ tailDelta M B X ``
 
 <a name="LevinsonMollEdge-molli_differentiable"></a>
@@ -206,8 +219,9 @@ Differentiable ℂ (molli M β)
 
 **Definitions its proof touches:** [`LevinsonMollEdge.molli`](#LevinsonMollEdge-molli)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonMollEdge.f_analyticAt`](#LevinsonMollEdge-f_analyticAt) — `` AnalyticAt ℂ (fun s => (riemannZeta s + c * deriv riemannZeta s) * molli M β s) w ``
   - [`LevinsonMultiple.levinson_window'`](../lean_stage3/LevinsonMultiple.md#LevinsonMultiple-levinson_window-) (LevinsonMultiple) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
   - [`LevinsonWindow.levinson_window`](../lean_stage3/LevinsonWindow.md#LevinsonWindow-levinson_window) (LevinsonWindow) — `` (riemannZeta.N b - riemannZeta.N a) - (1 / (Real.pi * (1 / 2 - σ₀))) * ((b - a) / 2 * Real.log K + windowE M B X T a b) - (134 * Real.log T + 2918) ≤ … ``
@@ -239,8 +253,9 @@ line 148 · arrows read from text
 
   - [`LevinsonSize.deriv_zeta_eq_LSeries`](../lean_stage3/LevinsonSize.md#LevinsonSize-deriv_zeta_eq_LSeries) (LevinsonSize) — `` deriv riemannZeta s = -LSeries (LSeries.logMul 1) s ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.floor_stepQ`](../lean_stage3/FloorQStep.md#FloorQ-floor_stepQ) (FloorQStep) — `` ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (riemannZeta.N T - riemannZeta.N (T / 2)) - Real.log (max 1 ((MeanQ.DopQ Q (Real.log T) (cY P (Mof T θ) T… ``
   - [`LevinsonMollEdge.f_sub_one_le`](#LevinsonMollEdge-f_sub_one_le) — `` ‖(riemannZeta s + c * deriv riemannZeta s) * molli M β s - 1‖ ≤ tailDelta M B X ``
 
 <a name="LevinsonMollEdge-f_sub_one_le"></a>
@@ -340,8 +355,9 @@ line 267 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.right_terms_gen`](../lean_stage3/FloorQEdge.md#FloorQ-right_terms_gen) (FloorQEdge) — `` -(∫ t in a..b, Real.log ‖f (↑X + ↑t * I)‖) + (X - σ₀) * (∫ t in a..b, logDeriv f (↑X + ↑t * I)).re ≤ (b - a) * (2 * δ) + (X - σ₀) * Real.pi ``
   - [`LevinsonMollEdge.right_log_term_le`](#LevinsonMollEdge-right_log_term_le) — `` -(∫ t in a..b, Real.log ‖(riemannZeta (↑X + ↑t * I) + c * deriv riemannZeta (↑X + ↑t * I)) * molli M β (↑X + ↑t * I)‖) ≤ (b - a) * (2 * tailDelta M B … ``
 
 <a name="LevinsonMollEdge-hasDerivAt_line_comp"></a>
@@ -365,8 +381,9 @@ HasDerivAt (fun y : ℝ => f (↑X + ↑y * I)) (deriv f (↑X + ↑t * I) * I) 
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.arg_term_le_on`](../lean_stage3/FloorQEdge.md#FloorQ-arg_term_le_on) (FloorQEdge) — `` |(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi ``
   - [`LevinsonMollEdge.arg_term_le_of_pos`](#LevinsonMollEdge-arg_term_le_of_pos) — `` |(∫ t in a..b, logDeriv f (↑X + ↑t * I)).re| ≤ Real.pi ``
 
 <a name="LevinsonMollEdge-f_analyticAt"></a>
@@ -575,8 +592,9 @@ line 427 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.V_disc_le`](../lean_stage3/FloorQGamma.md#FloorQ-V_disc_le) (FloorQGamma) — `` ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 64 ≤ T → 16 ≤ Real.log T → ∀ w : ℂ, 1 / 8 ≤ w.re → w.re ≤ T / 128 → T / 4 + 1 ≤ w.im → w.im ≤ 2 * T - 1 → ‖ConreyCount.V Q (… ``
   - [`LevinsonMollEdge.zeta_disc_X`](#LevinsonMollEdge-zeta_disc_X) — `` ‖riemannZeta u‖ ≤ 33 * T ``
 
 <a name="LevinsonMollEdge-disc_facts_X"></a>
@@ -735,8 +753,9 @@ line 552 · arrows read from text
 
 **Definitions its proof touches:** [`LevinsonEdge.model`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-model), [`LevinsonEdge.symm`](../lean_stage3/LevinsonEdge.md#LevinsonEdge-symm)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorQ.edge_le_upper`](../lean_stage3/FloorQEdge.md#FloorQ-edge_le_upper) (FloorQEdge) — `` |edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1) ``
   - [`LevinsonMollEdge.edge_le_gen`](#LevinsonMollEdge-edge_le_gen) — `` |edgeH F X T σ| ≤ Real.pi * ((8 * X - 1) * Real.log (2 * Mf) + 1) ``
 
 <a name="LevinsonMollEdge-edge_le_gen"></a>

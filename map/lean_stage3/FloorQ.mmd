@@ -1,0 +1,26 @@
+flowchart LR
+  n0["<b>logmaxQ_le</b><br/>Real.log (max 1 x) / (3 / 2) ≤ (1 - 224 / 625) + 2 * ε₁"]:::shp
+  n1["<b>stepQ</b><br/>∃ T₁ : ℝ, 1 ≤ T₁ ∧ ∀ T : ℝ, T₁ ≤ T → (224 / 625 - 2 * ε₁) * (rie…"]:::thm
+  n2["<b>levinson_floorQ ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → (224 / 625 - ε) * r…"]:::thm
+  x0(["<b>FloorConstQ</b><br/>5 theorems"]):::ext
+  x1(["<b>ArgCount</b><br/>N_mono<br/>N_nonneg"]):::ext
+  x2(["<b>FloorQStep</b><br/>floor_stepQ"]):::ext
+  x3(["<b>FloorSumTele</b><br/>tele_floor"]):::ext
+  x4(["<b>LevinsonWindowNear</b><br/>lineCount_nonneg"]):::ext
+  n0 --> n1
+  n1 --> n2
+  x0 -.-> n0
+  x0 -.-> n1
+  x1 -.-> n1
+  x1 -.-> n2
+  x2 -.-> n1
+  x3 -.-> n2
+  x4 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

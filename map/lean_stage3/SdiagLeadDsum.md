@@ -32,7 +32,8 @@ flowchart LR
   x1(["<b>SdiagLeadSwap</b><br/>natcpow_ne"]):::ext
   x2(["<b>SdiagLeadAd</b><br/>4 theorems"]):::ext
   x3(["<b>SdiagLeadSmooth</b><br/>hasDerivAt_logdiv"]):::ext
-  x4(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  x4(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x5(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
   n0 --> n3
   n1 --> n3
   n10 --> n14
@@ -50,6 +51,7 @@ flowchart LR
   n9 --> n10
   n9 --> n14
   n14 -.-> x4
+  n14 -.-> x5
   x0 -.-> n0
   x1 -.-> n0
   x1 -.-> n3
@@ -561,7 +563,8 @@ StmtDsum P A
 
 **Definitions its proof touches:** [`DiagMain.IY`](../lean_stage3/DiagMain.md#DiagMain-IY), [`SdiagLead.Ahat`](../lean_stage3/SdiagLeadCore.md#SdiagLead-Ahat), [`SdiagLead.StmtDsum`](../lean_stage3/SdiagLeadCore.md#SdiagLead-StmtDsum), [`SdiagLead.Wd`](../lean_stage3/SdiagLeadCore.md#SdiagLead-Wd), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig), [`SdiagLead.Fg`](#SdiagLead-Fg), [`SdiagLead.StmtDivLog`](#SdiagLead-StmtDivLog), [`SdiagLead.StmtGmuLog`](#SdiagLead-StmtGmuLog), [`SdiagLead.gmu`](#SdiagLead-gmu), [`SdiagLead.mainS`](../lean_stage3/SdiagLeadSmooth.md#SdiagLead-mainS)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.mainO_long`](../lean_stage3/FloorLongErr.md#FloorLong-mainO_long) (FloorLongErr) — `` StmtDiagMainO P θ R κ ``
   - [`SdiagLead.stmtSdiagLead_holds`](../lean_stage3/SdiagLead.md#SdiagLead-stmtSdiagLead_holds) (SdiagLead) — `` StmtSdiagLead P θ R κ ``
 

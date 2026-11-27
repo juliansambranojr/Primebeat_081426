@@ -1,0 +1,52 @@
+flowchart LR
+  n0["<b>isOpen_domXi</b><br/>IsOpen domXi"]:::cnt
+  n1["<b>analyticOnNhd_xi ■</b><br/>AnalyticOnNhd ℂ completedRiemannZeta domXi"]:::cnt
+  n2["<b>line_mem</b><br/>((1/2 : ℂ) + t * I) ∈ domXi"]:::shp
+  n3["<b>differentiableAt_iteratedDeriv</b><br/>DifferentiableAt ℂ (iteratedDeriv k completedRiemannZeta) ((1/2 …"]:::shp
+  n4["<b>im_I_mul_deriv</b><br/>(I * deriv F ((1/2 : ℂ) + t * I)).im = 0"]:::shp
+  n5["<b>im_I_pow_iteratedDeriv</b><br/>(I ^ k * iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I…"]:::thm
+  n6["<b>re_iteratedDeriv_odd</b><br/>(iteratedDeriv k completedRiemannZeta ((1/2 : ℂ) + t * I)).re = …"]:::thm
+  n7["<b>re_sum_line</b><br/>(∑ k ∈ Finset.range (n + 1), (a k : ℂ) * iteratedDeriv k complet…"]:::thm
+  n8["<b>coeff_comp_neg_X</b><br/>(p.comp (-X)).coeff n = (-1) ^ n * p.coeff n"]:::cnt
+  n9["<b>taylor_coeff_even_eq_zero</b><br/>(taylor (1/2 : ℝ) Q).coeff k = 0"]:::cnt
+  n10["<b>re_W_line</b><br/>(W Q L ((1/2 : ℂ) + t * I)).re = Q.eval (1/2) * (completedRieman…"]:::thm
+  n11["<b>zeta_line_zero_iff_W</b><br/>riemannZeta ((1/2 : ℂ) + t * I) = 0 ↔ (W Q L ((1/2 : ℂ) + t * I)…"]:::thm
+  n12["<b>cubic_sym ■</b><br/>Qcubic.eval 0 = 1 ∧ (∀ x : ℝ, Qcubic.derivative.eval x = Qcubic.…"]:::cnt
+  n13["<b>cubic_re_W_line ■</b><br/>(W Qcubic L ((1/2 : ℂ) + t * I)).re = 3/4 * (completedRiemannZet…"]:::thm
+  x0(["<b>LevinsonLine</b><br/>line_facts"]):::ext
+  x1(["<b>HardyZ</b><br/>xi_line_real"]):::ext
+  x2(["<b>ConreyCountIdentity</b><br/>conrey_identity"]):::ext
+  x3(["<b>BasinChainCount</b><br/>V_line_ne<br/>count_exact"]):::ext
+  x4(["<b>ConreyCount</b><br/>conrey_count_sub"]):::ext
+  x5(["<b>ConreyCountOrder</b><br/>line_identity"]):::ext
+  x6(["<b>ConreyCountLine</b><br/>lineCount_ge_argW"]):::ext
+  n0 --> n1
+  n10 --> n11
+  n10 --> n13
+  n2 --> n3
+  n3 --> n5
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n10
+  n8 --> n9
+  n9 --> n10
+  n10 -.-> x3
+  n10 -.-> x4
+  n10 -.-> x5
+  n11 -.-> x3
+  n11 -.-> x4
+  n11 -.-> x6
+  n9 -.-> x2
+  x0 -.-> n11
+  x0 -.-> n2
+  x1 -.-> n11
+  x1 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

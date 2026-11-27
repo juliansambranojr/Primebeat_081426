@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-25T21:56:18Z
+# unit: 0564-basin-floor-conrey
+# sources searched: 507
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79388
+  Yes run both measurements please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79398
+  return mp.fsum(Q0[k] * (-1.0 / L) ** k * mp.zeta(s, derivative=k) for k in range(4))
+
+# 3 found, 0 missing

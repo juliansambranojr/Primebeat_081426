@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>391 theorems counting,<br/>in 69 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>507 theorems counting,<br/>in 104 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>1461 theorems shape,<br/>in 176 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>5463 theorems shape,<br/>in 240 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>899 theorems reads ζ,<br/>in 151 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>1146 theorems reads ζ,<br/>in 213 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 495 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1712 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 920 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 611 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 5714 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 1167 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 391 | 1461 | 899 |
+| `lean_stage3/` | 507 | 5463 | 1146 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -419,6 +419,19 @@ BandJoin — block J5 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ban
 - [`BandJoin.bandR_zero`](./lean_stage3/BandJoin.md#BandJoin-bandR_zero) — `` bandR 0 = 1 `` Share `0`, the deep zero, is on the outer circle.
 - [`BandJoin.bandR_middle_iff`](./lean_stage3/BandJoin.md#BandJoin-bandR_middle_iff) — `` bandR x = bandR (1 / 2) ↔ x = 1 / 2 `` The middle circle is reached exactly at one half.
 
+### [`BasinChainAvg`](./lean_stage3/BasinChainAvg.md) — 2
+
+BasinChainAvg — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 3 and 4: the sizes of `J` and Turing's averaging of the increment. 2026-11-25.
+
+- [`BasinChain.avg_double`](./lean_stage3/BasinChainAvg.md#BasinChain-avg_double) — `` X ≤ ((∫ b in B..B + h, f b) - ∫ a in A..A + h, g a) / h + c `` The double average. If `X ≤ f b − g a + c` for `a ∈ [A, A + h]`, `b ∈ [B, B + h]` off a countable set, then `X ≤ (∫ f − ∫ g)/h + c`.
+- [`BasinChain.good_of_notMem`](./lean_stage3/BasinChainAvg.md#BasinChain-good_of_notMem) — `` ∀ ρ : NontrivialZeros, (ρ : ℂ).im ≠ a `` A good height: off the heights of the zeros up to `2T`, no zero sits at it.
+
+### [`BasinChainCount`](./lean_stage3/BasinChainCount.md) — 1
+
+BasinChainCount — block S15 of `lean_stage3/design/stencil.md`, the chain from no right zeros, steps 1 and 2: the hypothesis and the count with no losses. 2026-11-25.
+
+- [`BasinChain.W_one`](./lean_stage3/BasinChainCount.md#BasinChain-W_one) — `` OperatorQ.W 1 L = completedRiemannZeta `` For `Q = 1`, `W = Λ`.
+
 ### [`ClosedLoopChain`](./lean_stage3/ClosedLoopChain.md) — 13
 
 ClosedLoopChain — block J3 of `lean_stage3/design/closedloop.md`. 2026-11-23. The rest of Julian's closed loop (`lean_primebeat/PrimeBeat/primebeat_closed_loop.lean`, Parts I, III, IV, V, VI) restated word for word in Stage 3 and joined, link by link, to the table and its mirror. Unit 0476 joined Parts VII, VIII, XI.
@@ -463,12 +476,45 @@ Compression — block R11 of `lean_stage3/design/runs.md`. 2026-11-23. The prime
 - [`Compression.nonSmooth_eq_biUnion`](./lean_stage3/Compression.md#Compression-nonSmooth_eq_biUnion) — `` (Icc 1 N).filter (fun n => ¬ ∀ p : ℕ, p.Prime → p ∣ n → p ≤ Nat.sqrt N) = (newPrimes N).biUnion (fun p => (Icc 1 N).filter (fun n => p ∣ n)) `` The numbers that are not combinations of the primes so far are the multiples of the new primes.
 - [`Compression.compression`](./lean_stage3/Compression.md#Compression-compression) — `` N = smooth N + ∑ p ∈ newPrimes N, N / p `` The compression. The numbers up to `N` are the combinations of the primes up to `√N`, and for each new prime its multiples up to `N`, with nothing counted twice.
 
+### [`ConreyCount`](./lean_stage3/ConreyCount.md) — 1
+
+ConreyCount — block S13 of `lean_stage3/design/stencil.md`, B4 step 1: Conrey's identity and Levinson's count for a general `Q`. 2026-11-25.
+
+- [`ConreyCount.StmtVDisc.mono`](./lean_stage3/ConreyCount.md#ConreyCount-StmtVDisc-mono) — `` StmtVDisc Q L T M' `` A disc bound with a larger constant.
+
+### [`ConreyCountIdentity`](./lean_stage3/ConreyCountIdentity.md) — 4
+
+ConreyCountIdentity — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, Conrey's identity. 2026-11-25.
+
+- [`ConreyCount.iteratedDeriv_xi_one_sub`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-iteratedDeriv_xi_one_sub) — `` iteratedDeriv k completedRiemannZeta (1 - s) = (-1 : ℂ) ^ k * iteratedDeriv k completedRiemannZeta s `` The parity of the derivatives of `Λ`. `Λ^{(k)}(1 − s) = (−1)^k Λ^{(k)}(s)` for every `s ∈ ℂ`.
+- [`ConreyCount.conrey_identity`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity) — `` OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = 2 * ((Q.eval (1/2 : ℝ) : ℝ) : ℂ) * completedRiemannZeta s `` Conrey's identity at `m = 0`. For `Q′(x) = Q′(1 − x)`: `W(s) + W(1 − s) = 2·Q(1/2)·Λ(s)` for every `s`.
+- [`ConreyCount.sym_of_add_const`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-sym_of_add_const) — `` ∀ x : ℝ, Q.derivative.eval x = Q.derivative.eval (1 - x) `` Conrey's hypothesis `Q(x) + Q(1 − x) = K` gives the symmetry of `Q′`.
+- [`ConreyCount.conrey_identity_K`](./lean_stage3/ConreyCountIdentity.md#ConreyCount-conrey_identity_K) — `` OperatorQ.W Q L s + OperatorQ.W Q L (1 - s) = (K : ℂ) * completedRiemannZeta s `` Conrey's identity in his form. For `Q(x) + Q(1 − x) = K`: `W(s) + W(1 − s) = K·Λ(s)` for every `s` (and `K = 2·Q(1/2)`).
+
+### [`ConreyCountLine`](./lean_stage3/ConreyCountLine.md) — 5
+
+ConreyCountLine — block S13 of `lean_stage3/design/stencil.md`, B4 step 1, the line function. 2026-11-25.
+
+- [`ConreyCount.analyticAt_W`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_W) — `` AnalyticAt ℂ (OperatorQ.W Q L) s `` `W` is analytic off `{0, 1}`.
+- [`ConreyCount.analyticAt_Gammaℝ'`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_Gamma--) — `` AnalyticAt ℂ Gammaℝ s `` `Gammaℝ` is analytic where it does not vanish.
+- [`ConreyCount.analyticAt_V`](./lean_stage3/ConreyCountLine.md#ConreyCount-analyticAt_V) — `` AnalyticAt ℂ (V Q L) s `` `V` is analytic where `W` is and `Gammaℝ ≠ 0`.
+- [`ConreyCount.Gammaℝ_ne_of_im`](./lean_stage3/ConreyCountLine.md#ConreyCount-Gamma-_ne_of_im) — `` Gammaℝ w ≠ 0 `` `Gammaℝ` has no zero off the real axis.
+- [`ConreyCount.W_eq_gammaR_mul_V`](./lean_stage3/ConreyCountLine.md#ConreyCount-W_eq_gammaR_mul_V) — `` OperatorQ.W Q L s = Gammaℝ s * V Q L s `` `W = Gammaℝ · V` where `Gammaℝ ≠ 0`.
+
 ### [`CountEuler`](./lean_stage3/CountEuler.md) — 2
 
 CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its section "After the independent check". 2026-11-23.
 
 - [`CountEuler.binom_shift`](./lean_stage3/CountEuler.md#CountEuler-binom_shift) — `` ∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * ζ ^ (j + 1) = ζ * (ζ - c) ^ m `` The binomial identity of the transform. For any `ζ`, `c` and `m`, `Σ_{j≤m} C(m,j)·(−c)^(m−j)·ζ^(j+1) = ζ·(ζ − c)^m`.
 - [`CountEuler.lor_nonneg`](./lean_stage3/CountEuler.md#CountEuler-lor_nonneg) — `` 0 ≤ lor w s `` The Cauchy weight is nonnegative.
+
+### [`DiagLong`](./lean_stage3/DiagLong.md) — 3
+
+# DiagLong — block S13 of `lean_stage3/design/stencil.md`, B3 step 1, the diagonal at any length. 2026-11-25.
+
+- [`DiagLong.Sdiag_split`](./lean_stage3/DiagLong.md#DiagLong-Sdiag_split) — `` Sdiag M a σ₀ α β s = Sc M (cF a σ₀ X) α β s + Sc M (cG a σ₀ X) α β s ``
+- [`DiagLong.Sc_differentiable`](./lean_stage3/DiagLong.md#DiagLong-Sc_differentiable) — `` Differentiable ℂ (Sc M c α β) ``
+- [`DiagLong.SBc_nonneg`](./lean_stage3/DiagLong.md#DiagLong-SBc_nonneg) — `` 0 ≤ SBc M c α β σ ``
 
 ### [`DiagMain`](./lean_stage3/DiagMain.md) — 1
 
@@ -514,6 +560,21 @@ CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its sectio
 # DiagonalO — block S12 of `lean_stage3/design/stencil.md`, the diagonal and Lemma 3 with the main term carried as o(1). 2026-11-25.
 
 - [`DiagonalO.T_le_errO`](./lean_stage3/DiagonalO.md#DiagonalO-T_le_errO) — `` T ≤ errO W `` `T ≤ errO W` for `T ≥ 0`.
+
+### [`DigammaBoundIdentity`](./lean_stage3/DigammaBoundIdentity.md) — 3
+
+DigammaBoundIdentity — block S13 of `lean_stage3/design/stencil.md`, B4 step 2, the shift identity for `V`. 2026-11-25.
+
+- [`DigammaBound.poly_shift`](./lean_stage3/DigammaBoundIdentity.md#DigammaBound-poly_shift) — `` (∑ k ∈ Finset.range (Q.natDegree + 1), C ((taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k) * (X + C (L / 2)) ^ k) = ∑ j ∈ Finset.range (Q.natDegree + 1), … `` The shift of the polynomial. With `b_k` the Taylor coefficients of `Q` at `1/2`: `Σ_k b_k (−1/L)^k (X + L/2)^k = Σ_j Q_j (−1/L)^j X^j`.
+- [`DigammaBound.poly_shift_coeff`](./lean_stage3/DigammaBoundIdentity.md#DigammaBound-poly_shift_coeff) — `` ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 : ℝ) Q).coeff k * (-1 / L) ^ k * ((X + C (L / 2)) ^ k).coeff i = Q.coeff i * (-1 / L) ^ i `` The coefficients of the shifted polynomial.
+- [`DigammaBound.iteratedDeriv_E`](./lean_stage3/DigammaBoundIdentity.md#DigammaBound-iteratedDeriv_E) — `` iteratedDeriv m (fun z => cexp (a * (z - w))) w = a ^ m `` The iterated derivatives of `e^{a(z − w)}` at `w`.
+
+### [`DigammaBoundSize`](./lean_stage3/DigammaBoundSize.md) — 2
+
+DigammaBoundSize — block S13 of `lean_stage3/design/stencil.md`, B4 step 2, the sizes of `H_w` and of `V`. 2026-11-25.
+
+- [`DigammaBound.mul_le_of_abs`](./lean_stage3/DigammaBoundSize.md#DigammaBound-mul_le_of_abs) — `` a * b ≤ A * B `` A product of two bounded reals.
+- [`DigammaBound.KQ_nonneg`](./lean_stage3/DigammaBoundSize.md#DigammaBound-KQ_nonneg) — `` 0 ≤ KQ Q ``
 
 ### [`Doubling`](./lean_stage3/Doubling.md) — 2
 
@@ -571,6 +632,56 @@ FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The fi
 - [`FloorConst.Br_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Br_X) — `` Br Polynomial.X = 1 / 2 ``
 - [`FloorConst.Cr_X`](./lean_stage3/FloorConstLimit.md#FloorConst-Cr_X) — `` Cr Polynomial.X = 1 / 3 ``
 
+### [`FloorConstQ`](./lean_stage3/FloorConstQ.md) — 13
+
+# FloorConstQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the limit and its value at a cubic Q. 2026-11-25.
+
+- [`FloorConstQ.P0_zero`](./lean_stage3/FloorConstQ.md#FloorConstQ-P0_zero) — `` P0.eval 0 = 0 ``
+- [`FloorConstQ.P0_one`](./lean_stage3/FloorConstQ.md#FloorConstQ-P0_one) — `` P0.eval 1 = 1 ``
+- [`FloorConstQ.Q0_zero`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_zero) — `` Q0.eval 0 = 1 ``
+- [`FloorConstQ.Q0_deriv_symm`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_deriv_symm) — `` Q0.derivative.eval x = Q0.derivative.eval (1 - x) ``
+- [`FloorConstQ.integral_poly`](./lean_stage3/FloorConstQ.md#FloorConstQ-integral_poly) — `` ∫ u in (0 : ℝ)..1, S.eval u = F.eval 1 - F.eval 0 ``
+- [`FloorConstQ.Ar_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Ar_P0) — `` FloorConst.Ar P0 = 152147 / 150000 ``
+- [`FloorConstQ.Br_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Br_P0) — `` FloorConst.Br P0 = 1 / 2 ``
+- [`FloorConstQ.Cr_P0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Cr_P0) — `` FloorConst.Cr P0 = 89707 / 300000 ``
+- [`FloorConstQ.Q0_natDegree`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_natDegree) — `` Q0.natDegree = 3 ``
+- [`FloorConstQ.Q0_c0`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c0) — `` Q0.coeff 0 = 1 ``
+- [`FloorConstQ.Q0_c1`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c1) — `` Q0.coeff 1 = -27 / 50 ``
+- [`FloorConstQ.Q0_c2`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c2) — `` Q0.coeff 2 = -36 / 25 ``
+- [`FloorConstQ.Q0_c3`](./lean_stage3/FloorConstQ.md#FloorConstQ-Q0_c3) — `` Q0.coeff 3 = 24 / 25 ``
+
+### [`FloorConstQDeriv`](./lean_stage3/FloorConstQDeriv.md) — 13
+
+# FloorConstQDeriv — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the iterated partials. 2026-11-25.
+
+- [`FloorConstQ.iteratedDeriv_comp_mul`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_comp_mul) — `` iteratedDeriv n (fun x => f (c * x)) = fun x => c ^ n * iteratedDeriv n f (c * x) `` Scaling, with no smoothness hypothesis.
+- [`FloorConstQ.iteratedDeriv_iteratedDeriv'`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_iteratedDeriv-) — `` iteratedDeriv l (iteratedDeriv k f) = iteratedDeriv (l + k) f ``
+- [`FloorConstQ.iteratedDeriv_id_mul`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_id_mul) — `` iteratedDeriv n (fun z => z * ψ z) x = x * iteratedDeriv n ψ x + n * iteratedDeriv (n - 1) ψ x `` Leibniz for `x·ψ(x)`.
+- [`FloorConstQ.inner_sum`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-inner_sum) — `` iteratedDeriv k (fun x => g1 (x + y) + x * y * g2 (x + y)) x0 = iteratedDeriv k g1 (x0 + y) + y * (x0 * iteratedDeriv k g2 (x0 + y) + k * iteratedDeri… ``
+- [`FloorConstQ.analyticAt_iteratedDeriv`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-analyticAt_iteratedDeriv) — `` AnalyticAt ℂ (iteratedDeriv k g) u ``
+- [`FloorConstQ.outer_lin`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-outer_lin) — `` iteratedDeriv j (fun y => x0 * iteratedDeriv k g2 (x0 + y) + (k : ℂ) * iteratedDeriv (k - 1) g2 (x0 + y)) y0 = x0 * iteratedDeriv (j + k) g2 (x0 + y0)… ``
+- [`FloorConstQ.pkl_sum`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_sum) — `` MeanQ.pkl (fun x y => g1 (x + y) + x * y * g2 (x + y)) k l x0 y0 = iteratedDeriv (l + k) g1 (x0 + y0) + (y0 * (x0 * iteratedDeriv (l + k) g2 (x0 + y0)… `` The partials of `g₁(x+y) + x y g₂(x+y)`, `g₁, g₂` analytic at `x₀ + y₀`.
+- [`FloorConstQ.pkl_scale`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-pkl_scale) — `` MeanQ.pkl f k l α0 β0 = c ^ k * c ^ l * MeanQ.pkl g k l (c * α0) (c * β0) `` Scaling of `pkl`: if `f(x,y) = g(cx, cy)` near `(α₀, β₀)`, the partials scale by `c^(k+l)`.
+- [`FloorConstQ.phi_analyticAt`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-phi_analyticAt) — `` AnalyticAt ℂ phi u ``
+- [`FloorConstQ.iteratedDeriv_exp_neg`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_exp_neg) — `` iteratedDeriv n (fun z => cexp (-z)) u = (-1) ^ n * cexp (-u) ``
+- [`FloorConstQ.iteratedDeriv_one_sub_exp`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_one_sub_exp) — `` iteratedDeriv n (fun z => 1 - cexp (-z)) u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u) `` `(1 − e^(−u))^(n) = [n = 0] − (−1)^n e^(−u)`.
+- [`FloorConstQ.iteratedDeriv_one_add_exp`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-iteratedDeriv_one_add_exp) — `` iteratedDeriv n (fun z => 1 + cexp (-z)) u = (if n = 0 then 1 else 0) + (-1) ^ n * cexp (-u) `` `(1 + e^(−u))^(n) = [n = 0] + (−1)^n e^(−u)`.
+- [`FloorConstQ.phi_rec`](./lean_stage3/FloorConstQDeriv.md#FloorConstQ-phi_rec) — `` u * iteratedDeriv n phi u + n * iteratedDeriv (n - 1) phi u = (if n = 0 then 1 else 0) - (-1) ^ n * cexp (-u) `` The recursion: `u φ^(n)(u) + n φ^(n−1)(u) = [n = 0] − (−1)^n e^(−u)`, `u ≠ 0`.
+
+### [`FloorConstQLimit`](./lean_stage3/FloorConstQLimit.md) — 3
+
+# FloorConstQLimit — block S13 of `lean_stage3/design/stencil.md`, B4 step 4, the closed form for a general Q: the identity and the limit. 2026-11-25.
+
+- [`FloorConstQ.g1_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g1_analyticAt) — `` AnalyticAt ℂ (g1 A B θ) u ``
+- [`FloorConstQ.g2_analyticAt`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-g2_analyticAt) — `` AnalyticAt ℂ (g2 C θ) u ``
+- [`FloorConstQ.neg_inv_pow_mul`](./lean_stage3/FloorConstQLimit.md#FloorConstQ-neg_inv_pow_mul) — `` (-1 / L) ^ k * L ^ k = (-1) ^ k ``
+
+### [`FloorQWindow`](./lean_stage3/FloorQWindow.md) — 1
+
+# FloorQWindow — block S13 of `lean_stage3/design/stencil.md`, B4 step 5, the assembly: the window for a general `Q`. 2026-11-25.
+
+- [`FloorQ.rect_upper`](./lean_stage3/FloorQWindow.md#FloorQ-rect_upper) — `` AnalyticOnNhd ℂ f (Rectangle z w) `` Analytic on `Im > 0`, a function is analytic near any rectangle above the real axis.
+
 ### [`FloorStepCont`](./lean_stage3/FloorStepCont.md) — 1
 
 # FloorStepCont — block S12 of `lean_stage3/design/stencil.md`, piece 5b, one height: continuity in `σ`. 2026-11-25.
@@ -583,6 +694,21 @@ FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The fi
 
 - [`FloorStep.tail_le`](./lean_stage3/FloorStepSize.md#FloorStep-tail_le) — `` LevinsonMollEdge.tailDelta M B X ≤ τ `` `tailDelta ≤ τ` once `2^X = A T` with `64 (B + 1) ≤ A τ`, `M ≤ T`.
 - [`FloorStep.XMB_le`](./lean_stage3/FloorStepSize.md#FloorStep-XMB_le) — `` 32 * M * B ≤ (2 : ℝ) ^ X `` `32 M B ≤ 2^X` under the same choice.
+
+### [`FloorSumTele`](./lean_stage3/FloorSumTele.md) — 2
+
+# FloorSumTele — block S12 of `lean_stage3/design/stencil.md`, piece 5c, the sum: the telescoping over halvings. 2026-11-25.
+
+- [`FloorSum.half_pow_succ`](./lean_stage3/FloorSumTele.md#FloorSum-half_pow_succ) — `` T / 2 / 2 ^ n = T / 2 ^ (n + 1) ``
+- [`FloorSum.exists_halving`](./lean_stage3/FloorSumTele.md#FloorSum-exists_halving) — `` ∃ n : ℕ, T₁ ≤ T / 2 ^ n ∧ T / 2 ^ (n + 1) < T₁ `` The bottom of the halvings.
+
+### [`GrRatio`](./lean_stage3/GrRatio.md) — 3
+
+GrRatio — block S13 of `lean_stage3/design/stencil.md`, B4, the gamma ratio. 2026-11-25.
+
+- [`GrRatio.analyticAt_hw`](./lean_stage3/GrRatio.md#GrRatio-analyticAt_hw) — `` AnalyticAt ℂ (hw L w) z ``
+- [`GrRatio.grR_eq`](./lean_stage3/GrRatio.md#GrRatio-grR_eq) — `` MeanQ.grR i w = ∑ j ∈ Finset.range (i + 1), (i.choose j : ℂ) * iteratedDeriv j (hw L w) w * (((L / 2 : ℝ) : ℂ)) ^ (i - j) `` Leibniz: `grR i w = Σ_j C(i,j) h_w^{(j)}(w) (L/2)^{i−j}`.
+- [`GrRatio.pow_shift`](./lean_stage3/GrRatio.md#GrRatio-pow_shift) — `` (-1 / L) ^ i * (L / 2) ^ (i - j) = (-1 / 2 : ℝ) ^ (i - j) * (-1 / L) ^ j `` The scalar identity `(−1/L)^{j+k} (L/2)^k = (−1/2)^k (−1/L)^j`.
 
 ### [`HalfSieve`](./lean_stage3/HalfSieve.md) — 3
 
@@ -698,6 +824,60 @@ Littlewood — block S10 of `lean_stage3/design/stencil.md`, step 4a. 2026-11-24
 - [`Littlewood.left_mem_border`](./lean_stage3/Littlewood.md#Littlewood-left_mem_border) — `` (↑z.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
 - [`Littlewood.right_mem_border`](./lean_stage3/Littlewood.md#Littlewood-right_mem_border) — `` (↑w.re + ↑t * I : ℂ) ∈ RectangleBorder z w ``
 
+### [`LittlewoodSharpLog`](./lean_stage3/LittlewoodSharpLog.md) — 2
+
+LittlewoodSharpLog — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 1, the one-variable integrals and the numerals. 2026-11-25.
+
+- [`LittlewoodSharp.continuousOn_bcw`](./lean_stage3/LittlewoodSharpLog.md#LittlewoodSharp-continuousOn_bcw) — `` ContinuousOn bcw (Set.uIcc (1 / 2) 2) ``
+- [`LittlewoodSharp.intervalIntegrable_bcw`](./lean_stage3/LittlewoodSharpLog.md#LittlewoodSharp-intervalIntegrable_bcw) — `` IntervalIntegrable bcw volume (1 / 2) 2 ``
+
+### [`LittlewoodSharpPoint`](./lean_stage3/LittlewoodSharpPoint.md) — 1
+
+LittlewoodSharpPoint — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: sharper Littlewood constants, part 2, the pointwise lower bound for `log|ζ|` with optimized radii. 2026-11-25.
+
+- [`LittlewoodSharp.h2532`](./lean_stage3/LittlewoodSharpPoint.md#LittlewoodSharp-h2532) — `` (25 : ℝ) / 32 < 1 ``
+
+### [`MeanQ`](./lean_stage3/MeanQ.md) — 1
+
+MeanQ — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q. 2026-11-25.
+
+- [`MeanQ.norm_Vpsi_sq`](./lean_stage3/MeanQ.md#MeanQ-norm_Vpsi_sq) — `` ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I) * psi M a ((σ₀ : ℂ) + t * I)‖ ^ 2 = ‖ConreyCount.V Q L' ((σ₀ : ℂ) + t * I)‖ ^ 2 * msq M a σ₀ t `` `|V ψ|² = |V|² |ψ|²`.
+
+### [`MeanQBound`](./lean_stage3/MeanQBound.md) — 1
+
+MeanQBound — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the sizes the V-version and unsmoothing use. 2026-11-25.
+
+- [`MeanQ.Kq_X_pow`](./lean_stage3/MeanQBound.md#MeanQ-Kq_X_pow) — `` Kq (X ^ j) r = j.factorial / r ^ j ``
+
+### [`MeanQCauchy`](./lean_stage3/MeanQCauchy.md) — 8
+
+MeanQCauchy — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the operator `Q(−∂α/L) Q(−∂β/L)` and Cauchy's estimate for it. 2026-11-25.
+
+- [`MeanQ.Kq_nonneg`](./lean_stage3/MeanQCauchy.md#MeanQ-Kq_nonneg) — `` 0 ≤ Kq Q r ``
+- [`MeanQ.iteratedDeriv_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-iteratedDeriv_sub_mul) — `` iteratedDeriv k (fun z => A z - B z * c) x = iteratedDeriv k A x - iteratedDeriv k B x * c `` `∂α^k (A − B·c) = ∂α^k A − ∂α^k B · c` at a point where both are analytic.
+- [`MeanQ.pkl_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-pkl_sub_mul) — `` pkl (fun x y => A x y - B x y * c) k l α₀ β₀ = pkl A k l α₀ β₀ - pkl B k l α₀ β₀ * c `` `pkl` is linear under analyticity of the slices and of the `α`-derivatives in `β`.
+- [`MeanQ.DopQ_sub_mul`](./lean_stage3/MeanQCauchy.md#MeanQ-DopQ_sub_mul) — `` DopQ Q L (fun x y => A x y - B x y * c) α₀ β₀ = DopQ Q L A α₀ β₀ - DopQ Q L B α₀ β₀ * c `` `DopQ` is linear: `DopQ (A − B·c) = DopQ A − DopQ B · c`.
+- [`MeanQ.iterPartial_succ`](./lean_stage3/MeanQCauchy.md#MeanQ-iterPartial_succ) — `` iterPartial F (k + 1) p = deriv (fun x => iterPartial F k (x, p.2)) p.1 ``
+- [`MeanQ.analytic_iterPartial`](./lean_stage3/MeanQCauchy.md#MeanQ-analytic_iterPartial) — `` AnalyticOnNhd ℂ (iterPartial F k) U `` `∂α^k F` is analytic where `F` is, on an open `U ⊆ ℂ × ℂ`.
+- [`MeanQ.slices_of_analytic`](./lean_stage3/MeanQCauchy.md#MeanQ-slices_of_analytic) — `` (∀ᶠ y in 𝓝 β₀, AnalyticAt ℂ (fun x => F (x, y)) α₀) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => F (x, y)) α₀) β₀ `` The slices of a two-variable analytic function: for `(α₀, β₀) ∈ U` open, the `α`-slices are analytic at `α₀` for `β` near `β₀`, and every `∂α^k` is analytic in `β` at `β₀`.
+- [`MeanQ.DopQ_one_sub`](./lean_stage3/MeanQCauchy.md#MeanQ-DopQ_one_sub) — `` DopQ (1 - X) L f α β = Operator.Dop L f α β `` `DopQ` at `Q = 1 − X` is `Dop`.
+
+### [`MeanQRed`](./lean_stage3/MeanQRed.md) — 3
+
+MeanQRed — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the reduction `V = Q(−D/L) ζ + E`. 2026-11-25.
+
+- [`MeanQ.coeff_taylor`](./lean_stage3/MeanQRed.md#MeanQ-coeff_taylor) — `` (taylor r p).coeff j = ∑ k ∈ Finset.range (p.natDegree + 1), p.coeff k * (k.choose j : ℝ) * r ^ (k - j) `` The coefficients of a Taylor shift: `(taylor r p).coeff j = Σ_k p_k C(k,j) r^{k−j}`.
+- [`MeanQ.coeff_eq_shift`](./lean_stage3/MeanQRed.md#MeanQ-coeff_eq_shift) — `` Q.coeff j = ∑ k ∈ Finset.range (Q.natDegree + 1), (taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) * (-1/2 : ℝ) ^ (k - j) `` The shift back to `0`: `Q.coeff j = Σ_k b_k C(k,j) (−1/2)^{k−j}`, `b = taylor (1/2) Q`.
+- [`MeanQ.Acoef_sub`](./lean_stage3/MeanQRed.md#MeanQ-Acoef_sub) — `` Acoef Q L j s - (Q.coeff j : ℂ) = ∑ k ∈ Finset.range (Q.natDegree + 1), (((taylor (1/2 : ℝ) Q).coeff k * (k.choose j : ℝ) : ℝ) : ℂ) * ((((-1 / L) ^ (k… `` The coefficient error: `A_j − q_j = Σ_k b_k C(k,j) ((−1/L)^i grR i − (−1/2)^i)`, `i = k − j`.
+
+### [`MeanQV`](./lean_stage3/MeanQV.md) — 3
+
+MeanQV — block S13 of `lean_stage3/design/stencil.md`, B4 step 3, the mean value with a general Q: the mean of `|Vψ|²` for Conrey's `V = W/Gammaℝ`. 2026-11-25.
+
+- [`MeanQ.sq_add_le`](./lean_stage3/MeanQV.md#MeanQ-sq_add_le) — `` ‖a + e‖ ^ 2 ≤ (1 + δ) * ‖a‖ ^ 2 + (1 + 1 / δ) * ‖e‖ ^ 2 `` `‖a + e‖² ≤ (1 + δ)‖a‖² + (1 + 1/δ)‖e‖²`, `δ > 0`.
+- [`MeanQ.intg_w`](./lean_stage3/MeanQV.md#MeanQ-intg_w) — `` Integrable (fun t => W.w t * f t) `` Integrability of `w·f` for continuous `f`.
+- [`MeanQ.compare_means`](./lean_stage3/MeanQV.md#MeanQ-compare_means) — `` (∫ t, W.w t * fV t) ≤ (1 + δ) * (∫ t, W.w t * fQ t) + c * ∑ j ∈ Finset.range n, ∫ t, W.w t * fJ j t ∧ (∫ t, W.w t * fQ t) ≤ (1 + δ) * (∫ t, W.w t * fV… `` The two integrated comparisons, from a pointwise `E` bound on the support of `w`.
+
 ### [`Mollified`](./lean_stage3/Mollified.md) — 5
 
 Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The product of the finite sum `P_N(s) = Σ_{n ≤ N} n^{-s}` with the short Möbius sum `M_X(s) = Σ_{d < X} μ(d)·d^{-s}` is a finite Dirichlet sum `Σ_n c_n·n^{-s}` with `c_n = Σ_{d | n, d < X, n/d ≤ N} μ(d)`. For `1 < n < X`, `n ≤ N` the coefficient vanishes and `c_1 = 1`. Each `|c_n|` is at most the number of divisors of `n` below `X`. The square of that count is at most the number of triples `(g, a, b)` below `X` with `g·a·b | n` (send a pair of div…
@@ -750,6 +930,16 @@ NoHoles — block R13 of `lean_stage3/design/runs.md`. 2026-11-24. The staircase
 - [`Operator.hasDerivAt_setInt`](./lean_stage3/OperatorInt.md#Operator-hasDerivAt_setInt) — `` HasDerivAt (fun x => ∫ t in Set.Icc a b, f (x + c t) * k t) (∫ t in Set.Icc a b, deriv f (x₀ + c t) * k t) x₀ `` Differentiation under a compact integral.
 - [`Operator.Jfg_set`](./lean_stage3/OperatorInt.md#Operator-Jfg_set) — `` Jfg f g W M a σ₀ α β = ∫ t in Set.Icc (T / 4) (2 * T), (W.w t : ℂ) * (f (uA α t) * g (vB β t)) * (msq M a σ₀ t : ℂ) ``
 - [`Operator.norm_le_of_ball`](./lean_stage3/OperatorInt.md#Operator-norm_le_of_ball) — `` ‖x‖ ≤ ‖x₀‖ + δ ``
+
+### [`OperatorQ`](./lean_stage3/OperatorQ.md) — 5
+
+OperatorQ — block S13 of `lean_stage3/design/stencil.md`, B4, the operator with a general Q. 2026-11-25.
+
+- [`OperatorQ.isOpen_domXi`](./lean_stage3/OperatorQ.md#OperatorQ-isOpen_domXi) — `` IsOpen domXi ``
+- [`OperatorQ.analyticOnNhd_xi`](./lean_stage3/OperatorQ.md#OperatorQ-analyticOnNhd_xi) — `` AnalyticOnNhd ℂ completedRiemannZeta domXi ``
+- [`OperatorQ.coeff_comp_neg_X`](./lean_stage3/OperatorQ.md#OperatorQ-coeff_comp_neg_X) — `` (p.comp (-X)).coeff n = (-1) ^ n * p.coeff n `` The coefficients of `p.comp (−X)` are those of `p` times `(−1)^n`.
+- [`OperatorQ.taylor_coeff_even_eq_zero`](./lean_stage3/OperatorQ.md#OperatorQ-taylor_coeff_even_eq_zero) — `` (taylor (1/2 : ℝ) Q).coeff k = 0 `` Target 4. `Q'(x) = Q'(1 − x)` makes the even Taylor coefficients of `Q` at `1/2` vanish past the zeroth.
+- [`OperatorQ.cubic_sym`](./lean_stage3/OperatorQ.md#OperatorQ-cubic_sym) — `` Qcubic.eval 0 = 1 ∧ (∀ x : ℝ, Qcubic.derivative.eval x = Qcubic.derivative.eval (1 - x)) ∧ Qcubic.eval (1/2) = 3/4 `` Target 7. The hypotheses hold for a nonlinear `Q`: `Qcubic` has `Q(0) = 1`, `Q'(x) = Q'(1 − x)` and `Q(1/2) = 3/4`.
 
 ### [`PerfectFit`](./lean_stage3/PerfectFit.md) — 1
 
@@ -914,6 +1104,36 @@ SieveResidual — block R3 of `lean_stage3/design/runs.md`. 2026-11-23. The roun
 - [`SieveResidual.cast_netRounding`](./lean_stage3/SieveResidual.md#SieveResidual-cast_netRounding) — `` ((netRounding N : ℚ) : ℝ) = (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - (1 + (Nat.primeCounting N : ℝ) - (Nat.primeCounting (Nat.sqrt N) : ℝ)) `` The net rounding, as a real number, is the product less the count the sieve produces.
 - [`SieveResidual.sqrt_two_pow`](./lean_stage3/SieveResidual.md#SieveResidual-sqrt_two_pow) — `` Nat.sqrt (2 ^ (2 * m)) = 2 ^ m `` The square root of an even power of two is the power of half the exponent.
 
+### [`SignDataBall`](./lean_stage3/SignDataBall.md) — 8
+
+SignDataBall — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: ball arithmetic. 2026-11-25.
+
+- [`SignData.cx_re`](./lean_stage3/SignDataBall.md#SignData-cx_re) — `` (cx a b).re = a ``
+- [`SignData.cx_im`](./lean_stage3/SignDataBall.md#SignData-cx_im) — `` (cx a b).im = b ``
+- [`SignData.ball_exact`](./lean_stage3/SignDataBall.md#SignData-ball_exact) — `` ‖cx a b - cx a b‖ ≤ 0 ``
+- [`SignData.ball_mono`](./lean_stage3/SignDataBall.md#SignData-ball_mono) — `` ‖z - cx a b‖ ≤ R `` Enlarging a ball.
+- [`SignData.real_round`](./lean_stage3/SignDataBall.md#SignData-real_round) — `` |x - c| ≤ R ``
+- [`SignData.real_mul_ball`](./lean_stage3/SignDataBall.md#SignData-real_mul_ball) — `` |u * x - u * a| ≤ |u| * e ``
+- [`SignData.neg_mul_ball`](./lean_stage3/SignDataBall.md#SignData-neg_mul_ball) — `` |-(t * x) - -(t * a)| ≤ |t| * e ``
+- [`SignData.phase_ball`](./lean_stage3/SignDataBall.md#SignData-phase_ball) — `` |(t / 2) * (x - y) - (t / 2) * (a - b)| ≤ |t / 2| * (e₁ + e₂) ``
+
+### [`SignDataGamma`](./lean_stage3/SignDataGamma.md) — 3
+
+SignDataGamma — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: the phase of `Gammaℝ` on the line, to within `π/2`. 2026-11-25.
+
+- [`SignData.zz_re`](./lean_stage3/SignDataGamma.md#SignData-zz_re) — `` (zz t).re = 1 / 4 ``
+- [`SignData.prod_shift`](./lean_stage3/SignDataGamma.md#SignData-prod_shift) — `` ∏ j ∈ Finset.range (n + 1), (z + j) = (n.factorial : ℂ) * (z * ∏ j ∈ Finset.range n, (1 + z / ((j : ℂ) + 1))) `` `∏_{j<n+1}(z+j) = n!·(z·∏_{j<n}(1 + z/(j+1)))`.
+- [`SignData.lineS_div_two`](./lean_stage3/SignDataGamma.md#SignData-lineS_div_two) — `` lineS t / 2 = zz t ``
+
+### [`SignDataZeta`](./lean_stage3/SignDataZeta.md) — 4
+
+SignDataZeta — block S14 of `lean_stage3/design/stencil.md`, Turing's sign data: ζ on the line by Euler–Maclaurin of order 4. 2026-11-25.
+
+- [`SignData.lineS_re`](./lean_stage3/SignDataZeta.md#SignData-lineS_re) — `` (lineS t).re = 1 / 2 ``
+- [`SignData.bernoulliFun_four`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_four) — `` bernoulliFun 4 x = x ^ 4 - 2 * x ^ 3 + x ^ 2 - 1 / 30 ``
+- [`SignData.bernoulliFun_three_zero`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_three_zero) — `` bernoulliFun 3 0 = 0 ``
+- [`SignData.bernoulliFun_four_zero`](./lean_stage3/SignDataZeta.md#SignData-bernoulliFun_four_zero) — `` bernoulliFun 4 0 = -1 / 30 ``
+
 ### [`StepsBelow`](./lean_stage3/StepsBelow.md) — 11
 
 StepsBelow — block R9 of `lean_stage3/design/runs.md`, the turned steps. 2026-11-23.
@@ -943,6 +1163,41 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 
 - [`Stirling.sum_inv_sq_le`](./lean_stage3/StirlingLog.md#Stirling-sum_inv_sq_le) — `` ∑ m ∈ Finset.range N, 1 / ((m : ℝ) + Y) ^ 2 ≤ 3 / Y - 3 / ((N : ℝ) + Y) `` `Σ_{m<N} 1/(m+Y)² ≤ 3/Y − 3/(N+Y)` for `Y ≥ 1/2`.
 
+### [`StirlingSeriesEM`](./lean_stage3/StirlingSeriesEM.md) — 3
+
+StirlingSeriesEM — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: one step of Stirling's series by Euler–Maclaurin on `[0, 1]`. 2026-11-25.
+
+- [`StirlingSeries.bern_cast_zero`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-bern_cast_zero) — `` ((bernoulliFun n 0 : ℝ) : ℂ) = ((bernoulli n : ℚ) : ℂ) ``
+- [`StirlingSeries.hasDerivAt_inv_pow`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-hasDerivAt_inv_pow) — `` HasDerivAt (fun y : ℝ => ((w + (y : ℂ)) ^ (p + 1))⁻¹) (-((p : ℂ) + 1) * ((w + (x : ℂ)) ^ (p + 2))⁻¹) x `` The derivative of `(w + x)^{−(p+1)}` in the real variable `x`.
+- [`StirlingSeries.bernoulli_odd_zero`](./lean_stage3/StirlingSeriesEM.md#StirlingSeries-bernoulli_odd_zero) — `` ((bernoulli (2 * K + 1) : ℚ) : ℂ) = 0 ``
+
+### [`StirlingSeriesK5`](./lean_stage3/StirlingSeriesK5.md) — 7
+
+StirlingSeriesK5 — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: the phase of `Γ(1/4 + it/2)` from Stirling's series with the four terms `B₂ … B₈` (`S₅`). 2026-11-25.
+
+- [`StirlingSeries.bernoulli'_five`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_five) — `` bernoulli' 5 = 0 ``
+- [`StirlingSeries.bernoulli'_seven`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_seven) — `` bernoulli' 7 = 0 ``
+- [`StirlingSeries.bernoulli'_six`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_six) — `` bernoulli' 6 = 1 / 42 ``
+- [`StirlingSeries.bernoulli'_eight`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-bernoulli-_eight) — `` bernoulli' 8 = -1 / 30 ``
+- [`StirlingSeries.stirC_three`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirC_three) — `` stirC 3 = 1 / 1260 ``
+- [`StirlingSeries.stirC_four`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirC_four) — `` stirC 4 = -1 / 1680 ``
+- [`StirlingSeries.stirSum5_eq`](./lean_stage3/StirlingSeriesK5.md#StirlingSeries-stirSum5_eq) — `` stirSum 5 w = 1 / 12 * w⁻¹ - 1 / 360 * (w ^ 3)⁻¹ + 1 / 1260 * (w ^ 5)⁻¹ - 1 / 1680 * (w ^ 7)⁻¹ ``
+
+### [`StirlingSeriesLim`](./lean_stage3/StirlingSeriesLim.md) — 1
+
+StirlingSeriesLim — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: Stirling's series for `log Γ` with an explicit remainder. 2026-11-25.
+
+- [`StirlingSeries.re_add_nat_pos`](./lean_stage3/StirlingSeriesLim.md#StirlingSeries-re_add_nat_pos) — `` 0 < (z + (n : ℂ)).re ``
+
+### [`StirlingSeriesPhase`](./lean_stage3/StirlingSeriesPhase.md) — 4
+
+StirlingSeriesPhase — block S14 of `lean_stage3/design/stencil.md`, Turing at scale: the phase of `Gammaℝ` on the line from Stirling's series, in a fixed number of balls. 2026-11-25.
+
+- [`StirlingSeries.zz_im`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-zz_im) — `` (zz t).im = t / 2 ``
+- [`StirlingSeries.stirC_one`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirC_one) — `` stirC 1 = 1 / 12 ``
+- [`StirlingSeries.stirC_two`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirC_two) — `` stirC 2 = -1 / 360 ``
+- [`StirlingSeries.stirSum3_eq`](./lean_stage3/StirlingSeriesPhase.md#StirlingSeries-stirSum3_eq) — `` stirSum 3 w = 1 / 12 * w⁻¹ - 1 / 360 * (w ^ 3)⁻¹ ``
+
 ### [`StirlingX`](./lean_stage3/StirlingX.md) — 4
 
 # StirlingX — block S12 of `lean_stage3/design/stencil.md`, Stirling with the phase for `X_{α,β,t}`. 2026-11-25.
@@ -964,6 +1219,42 @@ StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first si
 - [`SwapX.lin_comb`](./lean_stage3/SwapX.md#SwapX-lin_comb) — `` Integrable F ∧ ∫ t, F t = k * ((2 * (∫ t, fu t) - ∫ t, f t) + I * (2 * (∫ t, fv t) - ∫ t, f t)) `` Linearity: `∫ k((2f_u − f) + i(2f_v − f)) = k((2∫f_u − ∫f) + i(2∫f_v − ∫f))`.
 - [`SwapX.le_twC`](./lean_stage3/SwapX.md#SwapX-le_twC) — `` C j ≤ twC C j ``
 - [`SwapX.split_eq`](./lean_stage3/SwapX.md#SwapX-split_eq) — `` (∫ t, f2 t) - Tp * (∫ t, f t) = (∫ t, E t) + Tp * ∫ t, F t `` The split `I_X − T^z I₁ = ∫ w (X − T^z g) S₁ |ψ|² + T^z ∫ w (g − 1) S₁ |ψ|²`.
+
+### [`TuringAvg`](./lean_stage3/TuringAvg.md) — 1
+
+TuringAvg — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 2: Turing's lemma, the averaging of `S` over a length `h`. 2026-11-25.
+
+- [`Turing.avg_le`](./lean_stage3/TuringAvg.md#Turing-avg_le) — `` f t ≤ ((∫ u in t..t + h, f u) + ∫ u in t..t + h, e u) / h `` Averaging. A pointwise comparison on `[t, t + h]` averages to a bound at `t`.
+
+### [`TuringCert`](./lean_stage3/TuringCert.md) — 1
+
+TuringCert — block S14 of `lean_stage3/design/stencil.md`, Turing's method, step 3: the certificate, signs of `Z` at finitely many points ⊢ the defect is `0` up to a height. 2026-11-25.
+
+- [`Turing.integral_step`](./lean_stage3/TuringCert.md#Turing-integral_step) — `` (∫ u in a..b, if s < u then (1 : ℝ) else 0) = b - s `` The step function `[s < u]` integrates to `b − s` over `[a, b] ∋ s`.
+
+### [`TuringLWHoriz`](./lean_stage3/TuringLWHoriz.md) — 1
+
+TuringLWHoriz — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's three pieces: the lower side `Turing.StmtHorizLower a₂ b₂`, proved with `a₂ = 102`, `b₂ = 500`. 2026-11-25.
+
+- [`TuringLW.intervalIntegrable_sum'`](./lean_stage3/TuringLWHoriz.md#TuringLW-intervalIntegrable_sum-) — `` IntervalIntegrable (fun x => ∑ i ∈ s, f i x) volume a b `` A finite sum of interval-integrable real functions, in lambda form.
+
+### [`TuringLWHorizPoint`](./lean_stage3/TuringLWHorizPoint.md) — 1
+
+TuringLWHorizPoint — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the lower side `StmtHorizLower`, part 2, the pointwise lower bound for `log|ζ|` near the segment. 2026-11-25.
+
+- [`TuringLW.h78`](./lean_stage3/TuringLWHorizPoint.md#TuringLW-h78) — `` (7 : ℝ) / 8 < 1 ``
+
+### [`TuringLWSplit`](./lean_stage3/TuringLWSplit.md) — 1
+
+TuringLWSplit — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the split identity (`Turing.StmtSplit`) and the oscillating right edge (`Turing.StmtOsc`, from `Stage3/TuringLWSplitOsc.lean`). 2026-11-25.
+
+- [`TuringLW.far_mem`](./lean_stage3/TuringLWSplit.md#TuringLW-far_mem) — `` w ∈ Rectangle z w ``
+
+### [`TuringLWSplitOsc`](./lean_stage3/TuringLWSplitOsc.md) — 1
+
+TuringLWSplitOsc — block S14 of `lean_stage3/design/stencil.md`, Turing's method, Littlewood's pieces: the right edge oscillates (`Turing.StmtOsc`). 2026-11-25.
+
+- [`TuringLW.vm_nonneg`](./lean_stage3/TuringLWSplitOsc.md#TuringLW-vm_nonneg) — `` 0 ≤ vm n ``
 
 ### [`TwistedMoment`](./lean_stage3/TwistedMoment.md) — 29
 

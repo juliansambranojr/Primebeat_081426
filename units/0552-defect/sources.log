@@ -1,0 +1,71 @@
+# check_prose_source.py  2026-11-25T18:03:52Z
+# unit: 0552-defect
+# sources searched: 495
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:1809
+  theorem defect_nonneg (T : ℝ) : 0 ≤ defect T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:1814
+  theorem rh_iff_defect_zero : RiemannHypothesis ↔ ∀ T : ℝ, defect T = 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:1855
+  theorem N_le_allCount (T : ℝ) : riemannZeta.N T ≤ (allCount T : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75409
+  theorem N_eq_allCount_right {T T' : ℝ} (hTT' : T < T')
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75410
+  (hno : ∀ z : ℂ, riemannZeta z = 0 → 0 < z.im → T < z.im → T' < z.im) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:1907
+  riemannZeta.N T' = (allCount T : ℝ) ∧ lineCount T' = lineCount T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75418
+  theorem offLine_pair {T : ℝ} {ρ : NontrivialZeros}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75419
+  (hρ : ρ ∈ (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75421
+  (zerosUpTo T).filter (fun ρ : NontrivialZeros => ¬ (ρ : ℂ).re = 1 / 2) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75423
+  ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75416
+  riemannZeta.order ((SpiralLink.mirrorZ ρ : NontrivialZeros) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:2005
+  theorem defect_even (T : ℝ) : Even (defect T) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75431
+  theorem defect_le_of_floor {c : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75432
+  (h : ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75433
+  (c - ε) * riemannZeta.N T ≤ (lineCount T : ℝ)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:70323
+  ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:2015
+  (defect T : ℝ) ≤ (1 - c + ε) * (allCount T : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75436
+  theorem defect_le : ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:2029
+  (defect T : ℝ) ≤ (2 / 3 + ε) * (allCount T : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:75438
+  theorem defectN_le : ∀ ε : ℝ, 0 < ε → ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a95386cad56d2678d.jsonl:2039
+  defectN T ≤ (2 / 3 + ε) * riemannZeta.N T :=
+
+# 22 found, 0 missing

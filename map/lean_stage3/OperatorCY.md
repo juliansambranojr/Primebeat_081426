@@ -7,7 +7,7 @@
 6 theorems, 5 definitions, 128 lines. 
 
 **Imports:** [`OperatorCauchy`](../lean_stage3/OperatorCauchy.md), [`TwistedMoment`](../lean_stage3/TwistedMoment.md)  
-**Imported by:** [`FloorConstDeriv`](../lean_stage3/FloorConstDeriv.md), [`Operator`](../lean_stage3/Operator.md)
+**Imported by:** [`FloorConstDeriv`](../lean_stage3/FloorConstDeriv.md), [`MeanQInt`](../lean_stage3/MeanQInt.md), [`Operator`](../lean_stage3/Operator.md)
 
 ## The picture
 
@@ -19,18 +19,23 @@ flowchart LR
   n3["<b>asnd ■</b><br/>AnalyticAt ℂ (fun p : ℂ × ℂ =＞ p.2) q"]:::cnt
   n4["<b>cYform_analytic</b><br/>AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0}"]:::shp
   n5["<b>cY_partials</b><br/>DifferentiableAt ℂ (fun x =＞ cY P M T x y) x ∧ DifferentiableAt …"]:::shp
-  x0(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
-  x1(["<b>FloorConstDeriv</b><br/>cY_eq_HF"]):::ext
-  x2(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
-  x3(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
+  x0(["<b>MeanQBound</b><br/>cY_sup_bound"]):::ext
+  x1(["<b>UnsmoothCY</b><br/>dop_cY_bdd"]):::ext
+  x2(["<b>FloorConstDeriv</b><br/>cY_eq_HF"]):::ext
+  x3(["<b>MeanQInt</b><br/>cY_slices"]):::ext
+  x4(["<b>OperatorCauchy</b><br/>analytic_partials"]):::ext
+  x5(["<b>Operator</b><br/>stmtMollMeanO_holds"]):::ext
   n0 --> n1
   n1 --> n5
   n4 --> n5
   n0 -.-> x0
-  n1 -.-> x1
-  n5 -.-> x0
-  n5 -.-> x3
-  x2 -.-> n5
+  n0 -.-> x1
+  n1 -.-> x2
+  n1 -.-> x3
+  n4 -.-> x3
+  n5 -.-> x1
+  n5 -.-> x5
+  x4 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -53,7 +58,7 @@ def · line 29
 `A = ∫₀¹ P′(u)² du`.
 
 - **Is:** `` Aq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.derivative.eval u : ℝ) : ℂ) * ((P.derivative.eval u : ℝ) : ℂ) ``
-- **Used by 9:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Aq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Aq_eq), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
+- **Used by 12:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Aq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Aq_eq), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF), [`FloorConstQ.dopQ_cY_eq`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-dopQ_cY_eq), [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-Bq"></a>
 ### `Operator.Bq`
@@ -63,7 +68,7 @@ def · line 33
 `B = ∫₀¹ P′(u) P(u) du`.
 
 - **Is:** `` Bq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.derivative.eval u : ℝ) : ℂ) * ((P.eval u : ℝ) : ℂ) ``
-- **Used by 9:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Bq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Bq_eq), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
+- **Used by 12:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Bq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Bq_eq), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF), [`FloorConstQ.dopQ_cY_eq`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-dopQ_cY_eq), [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-Cq"></a>
 ### `Operator.Cq`
@@ -73,7 +78,7 @@ def · line 37
 `C = ∫₀¹ P(u)² du`.
 
 - **Is:** `` Cq (P : Polynomial ℝ) : ℂ := ∫ u in (0 : ℝ)..1, ((P.eval u : ℝ) : ℂ) * ((P.eval u : ℝ) : ℂ) ``
-- **Used by 9:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Cq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Cq_eq), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
+- **Used by 12:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`FloorConst.pa_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pa_cY), [`FloorConst.pab_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pab_cY), [`FloorConst.pb_cY`](../lean_stage3/FloorConstDeriv.md#FloorConst-pb_cY), [`FloorConst.Cq_eq`](../lean_stage3/FloorConstLimit.md#FloorConst-Cq_eq), [`FloorConstQ.cY_eq_FF`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-cY_eq_FF), [`FloorConstQ.dopQ_cY_eq`](../lean_stage3/FloorConstQLimit.md#FloorConstQ-dopQ_cY_eq), [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound), [`Operator.c1Y_eq`](#Operator-c1Y_eq), [`Operator.c1form`](#Operator-c1form), [`Unsmooth.c1form_norm_le`](../lean_stage3/UnsmoothCY.md#Unsmooth-c1form_norm_le), [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd)
 
 <a name="Operator-c1form"></a>
 ### `Operator.c1form`
@@ -95,7 +100,7 @@ The closed form of `c(α,β)` on `ℂ × ℂ`, with `T^(−α−β) = exp(log T 
 
 - **Is:** `` cYform (P : Polynomial ℝ) (M : ℕ) (T : ℝ) (q : ℂ × ℂ) : ℂ := c1form P M q.1 q.2 + cexp (Complex.log (T : ℂ) * (-(q.1 + q.2))) * c1form P M (-q.2) (-q.1) ``
 - **Built from:** [`Operator.c1form`](#Operator-c1form)
-- **Used by 4:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`Operator.cY_eq`](#Operator-cY_eq), [`Operator.cY_partials`](#Operator-cY_partials), [`Operator.cYform_analytic`](#Operator-cYform_analytic)
+- **Used by 5:** [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF), [`MeanQ.cY_slices`](../lean_stage3/MeanQInt.md#MeanQ-cY_slices), [`Operator.cY_eq`](#Operator-cY_eq), [`Operator.cY_partials`](#Operator-cY_partials), [`Operator.cYform_analytic`](#Operator-cYform_analytic)
 
 ## Theorems
 
@@ -124,8 +129,9 @@ c1Y P M α β = c1form P M α β
 
 **Definitions its proof touches:** [`Operator.Aq`](#Operator-Aq), [`Operator.Bq`](#Operator-Bq), [`Operator.Cq`](#Operator-Cq), [`Operator.c1form`](#Operator-c1form), [`TwistedMoment.c1Y`](../lean_stage3/TwistedMoment.md#TwistedMoment-c1Y)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`MeanQ.cY_sup_bound`](../lean_stage3/MeanQBound.md#MeanQ-cY_sup_bound) (MeanQBound) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ∀ x ∈ closedBall (((-(R / Real.log T) : ℝ) : ℂ)) (R / 2 / Real.log T), ∀ y ∈ closedBall (((-(R / Real.log… ``
   - [`Operator.cY_eq`](#Operator-cY_eq) — `` cY P M T α β = cYform P M T (α, β) ``
   - [`Unsmooth.dop_cY_bdd`](../lean_stage3/UnsmoothCY.md#Unsmooth-dop_cY_bdd) (UnsmoothCY) — `` ∃ K : ℝ, 0 ≤ K ∧ ∃ T₀ : ℝ, ∀ T : ℝ, T₀ ≤ T → ‖Dop (Real.log T) (cY P (Mof T θ) T) ((-(R / Real.log T) : ℝ) : ℂ) ((-(R / Real.log T) : ℝ) : ℂ)‖ ≤ K ``
 
@@ -157,9 +163,10 @@ cY P M T α β = cYform P M T (α, β)
 
 **Definitions its proof touches:** [`Operator.cYform`](#Operator-cYform), [`TwistedMoment.cY`](../lean_stage3/TwistedMoment.md#TwistedMoment-cY)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`FloorConst.cY_eq_HF`](../lean_stage3/FloorConstDeriv.md#FloorConst-cY_eq_HF) (FloorConstDeriv) — `` cY P M T x y = HF (Aq P) (Bq P) (Cq P) ((Real.log M : ℝ) : ℂ) (Complex.log (T : ℂ)) x y ``
+  - [`MeanQ.cY_slices`](../lean_stage3/MeanQInt.md#MeanQ-cY_slices) (MeanQInt) — `` (∀ᶠ y' in 𝓝 y, AnalyticAt ℂ (fun x => cY P M T x y') x) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => cY P M T x y) x) y ``
   - [`Operator.cY_partials`](#Operator-cY_partials) — `` DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y => cY P M T x y) y ∧ DifferentiableAt ℂ (fun y => pa (cY P M T) x y) y ``
 
 <a name="Operator-afst"></a>
@@ -221,8 +228,9 @@ AnalyticOnNhd ℂ (cYform P M T) {q : ℂ × ℂ | q.1 + q.2 ≠ 0}
 
 **Definitions its proof touches:** [`Operator.c1form`](#Operator-c1form), [`Operator.cYform`](#Operator-cYform)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MeanQ.cY_slices`](../lean_stage3/MeanQInt.md#MeanQ-cY_slices) (MeanQInt) — `` (∀ᶠ y' in 𝓝 y, AnalyticAt ℂ (fun x => cY P M T x y') x) ∧ ∀ k, AnalyticAt ℂ (fun y => iteratedDeriv k (fun x => cY P M T x y) x) y ``
   - [`Operator.cY_partials`](#Operator-cY_partials) — `` DifferentiableAt ℂ (fun x => cY P M T x y) x ∧ DifferentiableAt ℂ (fun y => cY P M T x y) y ∧ DifferentiableAt ℂ (fun y => pa (cY P M T) x y) y ``
 
 <a name="Operator-cY_partials"></a>

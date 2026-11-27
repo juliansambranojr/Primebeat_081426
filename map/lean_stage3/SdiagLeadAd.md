@@ -49,7 +49,8 @@ flowchart LR
   x3(["<b>Diagonal</b><br/>norm_cpow_nat"]):::ext
   x4(["<b>SdiagLeadDsum</b><br/>stmtDsum_of_arith<br/>weight_err"]):::ext
   x5(["<b>SdiagLeadSmooth</b><br/>muSmoothR<br/>muSmooth_crude"]):::ext
-  x6(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
+  x6(["<b>FloorLongErr</b><br/>mainO_long"]):::ext
+  x7(["<b>SdiagLead</b><br/>stmtSdiagLead_holds"]):::ext
   n0 --> n1
   n0 --> n2
   n0 --> n21
@@ -100,6 +101,7 @@ flowchart LR
   n13 -.-> x4
   n18 -.-> x4
   n29 -.-> x6
+  n29 -.-> x7
   n3 -.-> x1
   n5 -.-> x2
   n9 -.-> x4
@@ -1168,7 +1170,8 @@ StmtAdApprox P A
 
 **Definitions its proof touches:** [`SdiagLead.StmtMeanSig3`](#SdiagLead-StmtMeanSig3), [`SdiagLead.StmtSdmLe`](#SdiagLead-StmtSdmLe), [`SdiagLead.StmtTailAvg`](#SdiagLead-StmtTailAvg), [`SdiagLead.StmtTailFixed`](#SdiagLead-StmtTailFixed), [`SdiagLead.Tl`](#SdiagLead-Tl), [`SdiagLead.StmtAdApprox`](../lean_stage3/SdiagLeadCore.md#SdiagLead-StmtAdApprox), [`SdiagLead.sig`](../lean_stage3/SdiagLeadCore.md#SdiagLead-sig)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FloorLong.mainO_long`](../lean_stage3/FloorLongErr.md#FloorLong-mainO_long) (FloorLongErr) — `` StmtDiagMainO P θ R κ ``
   - [`SdiagLead.stmtSdiagLead_holds`](../lean_stage3/SdiagLead.md#SdiagLead-stmtSdiagLead_holds) (SdiagLead) — `` StmtSdiagLead P θ R κ ``
 

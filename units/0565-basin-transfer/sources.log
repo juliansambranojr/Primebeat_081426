@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-25T21:31:02Z
+# unit: 0565-basin-transfer
+# sources searched: 505
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:66087
+  Source: session transcript, 2026-11-25
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79388
+  Yes run both measurements please
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:79405
+  res[k + f"_corr_lag{lag}"] = sum(dev[i] * dev[i + lag] for i in range(len(dev) - lag)) / ((len(dev) ...
+
+# 3 found, 0 missing

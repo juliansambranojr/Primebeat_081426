@@ -1,0 +1,23 @@
+key	value	source
+module_lines	352	wc -l lean_stage3/Stage3/TuringSlope.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/TuringSlope.lean
+defs	3	grep -c ^def lean_stage3/Stage3/TuringSlope.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TuringSlope.lean
+pins	3	theta_sub_le_sharp, theta_sub_le_sharp80, turing_S_le_sharp
+errors_first	6	the worker's first builds: a beta-redex under an integral substitution, a missing sign fact, three positivity failures, an ambiguous name
+builds	4	the worker's report, builds over the two files
+traps_added	3	lean_stage3/TRAPS.md rows 146-148
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	9025	lake build (full Stage3), Build completed successfully
+jobs_module	8881	run/build.log, lake build Stage3.TuringSlope
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s14	Stage C, from the defect to zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+files	2	lean_stage3/Stage3/TuringSlope.lean, TuringSlopePoint.lean
+closing_ideal	439	lean_stage3/checks/turingslope/closing_height_slope.out, ideal data; computed, not proved
+closing_ideal_before	1462	lean_stage3/checks/littlewoodsharp/closing_height_sharp.out; computed
+points_below	228	closing_height_slope.out, sign points below; computed
+points_above	54	closing_height_slope.out, sign points above; computed
+trap_first	146	lean_stage3/TRAPS.md
+trap_last	148	lean_stage3/TRAPS.md
