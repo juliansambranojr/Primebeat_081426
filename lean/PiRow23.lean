@@ -81,6 +81,7 @@ open Legendre
 theorem pi_2896 : Nat.primeCounting 2896 = 418 := by
   rw [PiSieve.primeCounting_eq_cnt2]; decide +kernel
 
+set_option maxRecDepth 20000 in
 theorem F23_eq_W23 : ∀ i, i < 418 → F23 i = W23 i := by
   intro i hi
   if h0 : i < 6 then exact g23_0 i (Finset.mem_Ico.mpr ⟨by omega, h0⟩)

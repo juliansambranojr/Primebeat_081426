@@ -10,6 +10,7 @@ this one with the two inputs proved and the open corner empty of zeros.
 -/
 import Mathlib
 import WeakDepths
+import Census23
 
 namespace Capstone
 
@@ -35,8 +36,20 @@ theorem only_four_zeros_outside_corner (hpi : PiNarrow.StmtPiData23) (hW : WeakD
   by_contra hc
   exact hout ⟨by omega, by omega, by linarith, hc⟩
 
+/-- **Every zero outside the open corner, on the π list narrowed to rows 24 … 92.** Rows 0 … 23 are
+`PiChunks.piData_le23`, proved by the kernel. -/
+theorem only_four_zeros_outside_corner24 (hpi : Census23.StmtPiData24) (hW : WeakDepths.StmtRoute13)
+    {r : ℤ} {d : ℕ} (hd : 1 ≤ d) (hlo : (d : ℤ) < r) (hout : ¬ OpenCorner r d)
+    (hz : Construction.tableFrom ToInfinity.trueRow r d = 0) :
+    (r, d) = (2, 1) ∨ (r, d) = (4, 1) ∨ (r, d) = (8, 3) ∨ (r, d) = (20, 6) :=
+  only_four_zeros_outside_corner (Census23.piData23_of_24 hpi) hW hd hlo hout hz
+
 end Capstone
 
 /-- info: 'Capstone.only_four_zeros_outside_corner' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Capstone.only_four_zeros_outside_corner
+
+/-- info: 'Capstone.only_four_zeros_outside_corner24' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Capstone.only_four_zeros_outside_corner24
