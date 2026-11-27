@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T09:03:48Z
+# unit: 0615-harmonic-alignment
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:132363
+  measure the near-harmonic family's alignment
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:132381
+  delta = ((g * L2) % (2 * math.pi)) - math.pi           # offset from the nearest odd multiple of pi
+
+# 3 found, 0 missing
