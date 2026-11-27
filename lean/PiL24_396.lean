@@ -1,9 +1,22 @@
-import PiW24
+import PiL24_396_396
+import PiL24_396_397
+import PiL24_396_398
+import PiL24_396_399
+import PiL24_396_400
+import PiL24_396_401
 
 namespace Legendre
 
-set_option maxHeartbeats 0 in
+/-- Indices 396 … 401, one kernel evaluation per file (a block of them exceeds one process's memory). -/
 theorem g24_396 : ∀ i ∈ Finset.Ico 396 402, F24 i = W24 i := by
-  decide +kernel
+  intro i hi
+  have h := Finset.mem_Ico.mp hi
+  if h0 : i < 397 then exact g24_396_396 i (Finset.mem_Ico.mpr ⟨by omega, h0⟩)
+  else if h1 : i < 398 then exact g24_396_397 i (Finset.mem_Ico.mpr ⟨by omega, h1⟩)
+  else if h2 : i < 399 then exact g24_396_398 i (Finset.mem_Ico.mpr ⟨by omega, h2⟩)
+  else if h3 : i < 400 then exact g24_396_399 i (Finset.mem_Ico.mpr ⟨by omega, h3⟩)
+  else if h4 : i < 401 then exact g24_396_400 i (Finset.mem_Ico.mpr ⟨by omega, h4⟩)
+  else if h5 : i < 402 then exact g24_396_401 i (Finset.mem_Ico.mpr ⟨by omega, h5⟩)
+  else omega
 
 end Legendre
