@@ -223,3 +223,56 @@ end Stirling2
 /-- info: 'Stirling2.tendsto_telescope' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stirling2.tendsto_telescope
+
+namespace Stirling2
+open Stage3
+
+/-- **The per-term split.** For `t ≥ 4` the telescope's `n`-th term, less half the step
+`Re(1/w − 1/(w+1))`, is the trapezoid error at `u = 1/w`, `w = n + z`: at most `2/‖w‖³`. -/
+theorem term_split_le {t : ℝ} (ht : 4 ≤ t) (n : ℕ) :
+    |((((n : ℂ) + zq t)⁻¹).re
+        - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖(n : ℂ) + zq t‖))
+      - (1 / 2) * ((((n : ℂ) + zq t)⁻¹).re - ((((n + 1 : ℕ) : ℂ) + zq t)⁻¹).re)|
+      ≤ 2 * (‖(n : ℂ) + zq t‖⁻¹) ^ 3 := by
+  set w : ℂ := (n : ℂ) + zq t with hw
+  have hw0 : w ≠ 0 := add_zq_ne_zero t n
+  have hwpos : (0 : ℝ) < ‖w‖ := norm_pos_iff.mpr hw0
+  have hnormsq : ‖w‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := normSq_add_zq t n
+  have hw2 : (2 : ℝ) ≤ ‖w‖ := by
+    nlinarith [sq_nonneg ((n : ℝ) + 1 / 4), Nat.cast_nonneg (α := ℝ) n]
+  set u : ℂ := w⁻¹ with hu
+  have hun : ‖u‖ = ‖w‖⁻¹ := by rw [hu, norm_inv]
+  have hu2 : ‖u‖ ≤ 1 / 2 := by
+    rw [hun]; rw [inv_le_comm₀ hwpos (by norm_num)]; linarith
+  have hw1 : ((n + 1 : ℕ) : ℂ) + zq t = w * (1 + u) := by
+    rw [hu, mul_add, mul_one, mul_inv_cancel₀ hw0, hw]; push_cast; ring
+  have h1u : (1 : ℂ) + u ≠ 0 := by
+    intro h; rw [h, mul_zero] at hw1; exact add_zq_ne_zero t (n + 1) hw1
+  -- the log step is Re log(1+u)
+  have hlog : Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖w‖ = (Complex.log (1 + u)).re := by
+    rw [hw1, norm_mul, Real.log_mul (ne_of_gt hwpos) (by rwa [norm_ne_zero_iff]), Complex.log_re]
+    ring
+  -- 1/(w+1) is u/(1+u)
+  have hinv : (((n + 1 : ℕ) : ℂ) + zq t)⁻¹ = u / (1 + u) := by
+    rw [hw1, mul_inv, hu]; field_simp
+  rw [hlog, hinv]
+  have hexpr : u.re - (Complex.log (1 + u)).re - 1 / 2 * (u.re - (u / (1 + u)).re)
+      = (u / 2 * (1 + 1 / (1 + u)) - Complex.log (1 + u)).re := by
+    have e : u / 2 * (1 + 1 / (1 + u)) = u - (1 / 2 : ℂ) * (u - u / (1 + u)) := by
+      field_simp; ring
+    rw [e]
+    have hh : ((1 / 2 : ℂ) * (u - u / (1 + u))).re = 1 / 2 * (u - u / (1 + u)).re := by
+      simp [Complex.mul_re]
+    simp only [Complex.sub_re] at hh ⊢
+    rw [hh]; ring
+  rw [hexpr]
+  calc |(u / 2 * (1 + 1 / (1 + u)) - Complex.log (1 + u)).re|
+      ≤ ‖u / 2 * (1 + 1 / (1 + u)) - Complex.log (1 + u)‖ := Complex.abs_re_le_norm _
+    _ ≤ 2 * ‖u‖ ^ 3 := trapezoid_log_le hu2
+    _ = 2 * (‖w‖⁻¹) ^ 3 := by rw [hun]
+
+end Stirling2
+
+/-- info: 'Stirling2.term_split_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stirling2.term_split_le
