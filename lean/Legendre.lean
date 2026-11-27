@@ -60,3 +60,69 @@ end Legendre
 /-- info: 'Legendre.card_rough_cons' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Legendre.card_rough_cons
+
+namespace Legendre
+open Finset
+
+/-- Legendre's φ, computed by the recursion. -/
+def phi : ℕ → List ℕ → ℕ
+  | x, [] => x
+  | x, p :: ps => phi x ps - phi (x / p) ps
+
+theorem phi_eq_card (ps : List ℕ) (hps : ∀ q ∈ ps, q.Prime) (hnd : ps.Nodup) :
+    ∀ x, phi x ps = (rough x ps).card := by
+  induction ps with
+  | nil => intro x; simp [phi, card_rough_nil]
+  | cons p ps ih =>
+    intro x
+    have hp := hps p (List.mem_cons_self ..)
+    have hps' : ∀ q ∈ ps, q.Prime := fun q hq => hps q (List.mem_cons_of_mem _ hq)
+    have hnd' := (List.nodup_cons.mp hnd)
+    have h := card_rough_cons (x := x) hp hps' hnd'.1
+    simp only [phi, ih hps' hnd'.2]
+    omega
+
+/-- The primes up to `s`, as a list. -/
+def primesTo (s : ℕ) : List ℕ := (List.range (s + 1)).filter Nat.Prime
+
+theorem primesTo_prime (s : ℕ) : ∀ q ∈ primesTo s, q.Prime := by
+  intro q hq; simp [primesTo] at hq; exact hq.2
+
+theorem primesTo_nodup (s : ℕ) : (primesTo s).Nodup :=
+  (List.nodup_range).filter _
+
+theorem mem_primesTo {s q : ℕ} : q ∈ primesTo s ↔ q ≤ s ∧ q.Prime := by
+  simp [primesTo, Nat.lt_succ_iff]
+
+/-- **The rough numbers past `√x` are 1 and the primes.** With `x < (s+1)^2`, a number in
+`[1, x]` with no prime factor `≤ s` is `1` or a prime above `s`. -/
+theorem rough_primesTo {x s : ℕ} (hx : x < (s + 1) * (s + 1)) :
+    rough x (primesTo s) = insert 1 ((Icc (s + 1) x).filter Nat.Prime) ∩ Icc 1 x := by
+  ext n
+  simp only [rough, mem_filter, mem_Icc, mem_inter, mem_insert, mem_primesTo]
+  constructor
+  · rintro ⟨⟨h1, hnx⟩, hq⟩
+    refine ⟨?_, h1, hnx⟩
+    rcases Nat.lt_or_ge n 2 with hn | hn
+    · left; omega
+    · right
+      have hmin := Nat.minFac_prime (show n ≠ 1 by omega)
+      have hms : s < n.minFac := by
+        by_contra hc; push_neg at hc
+        exact hq _ ⟨hc, hmin⟩ (Nat.minFac_dvd n)
+      refine ⟨⟨by linarith [Nat.minFac_le (show 0 < n by omega)], hnx⟩, ?_⟩
+      by_contra hnp
+      have := Nat.minFac_sq_le_self (show 0 < n by omega) hnp
+      nlinarith
+  · rintro ⟨h, h1, hnx⟩
+    refine ⟨⟨h1, hnx⟩, fun q ⟨hqs, hqp⟩ hqn => ?_⟩
+    rcases h with rfl | ⟨⟨hs, _⟩, hnp⟩
+    · exact hqp.one_lt.ne' (Nat.dvd_one.mp hqn)
+    · have := (Nat.prime_dvd_prime_iff_eq hqp hnp).mp hqn
+      omega
+
+end Legendre
+
+/-- info: 'Legendre.rough_primesTo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Legendre.rough_primesTo
