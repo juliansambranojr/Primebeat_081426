@@ -377,3 +377,69 @@ end Stirling2
 /-- info: 'Stirling2.digamma_second' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stirling2.digamma_second
+
+namespace Stirling2
+open Stage3
+
+theorem log_norm_zq_le2 {t : ℝ} (ht : 1 ≤ t) :
+    |Real.log ‖zq t‖ - Real.log (t / 2)| ≤ 1 / (8 * t ^ 2) := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  have hsq : ‖zq t‖ ^ 2 = (1 / 4) ^ 2 + (t / 2) ^ 2 := by
+    have := normSq_add_zq t 0; simpa using this
+  have hpos : (0 : ℝ) < ‖zq t‖ := by
+    have h0 := add_zq_ne_zero t 0
+    simp only [Nat.cast_zero, zero_add] at h0
+    exact norm_pos_iff.mpr h0
+  have hx : 0 ≤ 1 / (4 * t ^ 2) := by positivity
+  have hratio : (‖zq t‖ / (t / 2)) ^ 2 = 1 + 1 / (4 * t ^ 2) := by
+    rw [div_pow, hsq]; field_simp; ring
+  have hlog : Real.log ‖zq t‖ - Real.log (t / 2) = (1 / 2) * Real.log (1 + 1 / (4 * t ^ 2)) := by
+    rw [← hratio, Real.log_pow, ← Real.log_div (ne_of_gt hpos) (by positivity)]
+    push_cast; ring
+  rw [hlog]
+  have h1 : 0 ≤ Real.log (1 + 1 / (4 * t ^ 2)) := Real.log_nonneg (by linarith)
+  have h2 : Real.log (1 + 1 / (4 * t ^ 2)) ≤ 1 / (4 * t ^ 2) := by
+    have := Real.log_le_sub_one_of_pos (show (0:ℝ) < 1 + 1 / (4 * t ^ 2) by positivity); linarith
+  rw [abs_of_nonneg (by positivity)]
+  have : (1 : ℝ) / 2 * (1 / (4 * t ^ 2)) = 1 / (8 * t ^ 2) := by field_simp; ring
+  nlinarith
+
+theorem re_inv_zq_le {t : ℝ} (ht : 1 ≤ t) : |((zq t)⁻¹).re| ≤ 1 / t ^ 2 := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  have hsq : Complex.normSq (zq t) = (1 / 4) ^ 2 + (t / 2) ^ 2 := by
+    have := normSq_add_zq t 0
+    rw [Complex.normSq_eq_norm_sq]; simpa using this
+  have hre : (zq t).re = 1 / 4 := by
+    simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  rw [Complex.inv_re, hre, hsq, abs_of_nonneg (by positivity), div_le_div_iff₀ (by positivity) (by positivity)]
+  nlinarith
+
+/-- **The digamma comparison of order `1/t²`.** For `t ≥ 4`, `|Re ψ(z) − log(t/2)| ≤ 49/t²`. -/
+theorem digammaLog2 {t : ℝ} (ht : 4 ≤ t) : |phasePoint t - Real.log (t / 2)| ≤ 49 / t ^ 2 := by
+  have ht1 : (1 : ℝ) ≤ t := by linarith
+  have h1 := digamma_second ht
+  have h2 := log_norm_zq_le2 ht1
+  have h3 := re_inv_zq_le ht1
+  have ht0 : (0 : ℝ) < t := by linarith
+  have e1 : (1 : ℝ) / (8 * t ^ 2) = (1 / 8) * (1 / t ^ 2) := by field_simp
+  have e2 : (48 : ℝ) / t ^ 2 = 48 * (1 / t ^ 2) := by ring
+  have e3 : (49 : ℝ) / t ^ 2 = 49 * (1 / t ^ 2) := by ring
+  have hu : 0 ≤ 1 / t ^ 2 := by positivity
+  have htri : |phasePoint t - Real.log (t / 2)|
+      ≤ |phasePoint t - Real.log ‖zq t‖ + (1 / 2) * ((zq t)⁻¹).re|
+        + |(1 / 2) * ((zq t)⁻¹).re| + |Real.log ‖zq t‖ - Real.log (t / 2)| := by
+    have := abs_add_three (phasePoint t - Real.log ‖zq t‖ + (1 / 2) * ((zq t)⁻¹).re)
+      (-((1 / 2) * ((zq t)⁻¹).re)) (Real.log ‖zq t‖ - Real.log (t / 2))
+    rw [abs_neg] at this
+    calc _ = |(phasePoint t - Real.log ‖zq t‖ + (1 / 2) * ((zq t)⁻¹).re)
+          + (-((1 / 2) * ((zq t)⁻¹).re)) + (Real.log ‖zq t‖ - Real.log (t / 2))| := by ring_nf
+      _ ≤ _ := this
+  have h4 : |(1 / 2) * ((zq t)⁻¹).re| ≤ (1 / 2) * (1 / t ^ 2) := by
+    rw [abs_mul, abs_of_pos (by norm_num : (0:ℝ) < 1 / 2)]; linarith
+  linarith
+
+end Stirling2
+
+/-- info: 'Stirling2.digammaLog2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stirling2.digammaLog2
