@@ -204,3 +204,21 @@ end Legendre
 /-- info: 'Legendre.phi_add_peel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Legendre.phi_add_peel
+
+namespace Legendre
+open Finset
+
+/-- `peel` as an indexed sum, so each term is named by its index and no statement carries the list. -/
+theorem peel_eq_sum (x : ℕ) : ∀ L : List ℕ,
+    peel x L = ∑ i ∈ range L.length, phi (x / L.getD i 0) (L.drop (i + 1))
+  | [] => by simp [peel]
+  | p :: L => by
+    rw [peel_cons, peel_eq_sum x L, List.length_cons, sum_range_succ']
+    simp only [List.getD_cons_succ, List.drop_succ_cons, List.getD_cons_zero, List.drop_zero]
+    rw [add_comm]
+
+end Legendre
+
+/-- info: 'Legendre.peel_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Legendre.peel_eq_sum
