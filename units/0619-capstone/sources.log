@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-27T18:46:08Z
+# unit: 0619-capstone
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:133316
+  def open_(r, d): return d >= 17 and r >= 93 and r < 4 * d + 30 and not (d >= 30 and 3.7 * d + 39 <= ...
+
+# 2 found, 0 missing

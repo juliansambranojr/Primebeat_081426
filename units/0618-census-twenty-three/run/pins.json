@@ -1,0 +1,23 @@
+{
+ "pins": {
+  "only_four_zeros_le23": {
+   "file": "lean/Census23.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData23_of_24": {
+   "file": "lean/Census23.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData_le23": {
+   "file": "lean/PiRow23.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}
