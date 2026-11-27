@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T04:26:49Z
+# unit: 0598-offline-gain
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117784
+  Hold the rows for now, log and then attack the zero
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117963
+  out[f"b{int(b*100)}"]={"depth_gain":(2**b+1)/(2**0.5+1),"row_gain":2**(b-0.5),
+
+# 3 found, 0 missing
