@@ -546,3 +546,124 @@ end Stirling2
 /-- info: 'Stirling2.band_le_147' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stirling2.band_le_147
+
+namespace Stirling2
+open Stage3
+
+/-- **The Stirling half of Backlund with no `log T`.** `StmtBacklundPhase phaseTheta 0 26`: the
+continuous phase tracks the Riemann–von Mangoldt main term within `26`, uniformly in `T ≥ 2`. The
+proof is `Stage3.backlundPhase_of_digammaLog` with the band piece bounded by `band_le_147`. -/
+theorem backlundPhase_const : StmtBacklundPhase phaseTheta 0 26 := by
+  have hlow : ∀ t ∈ Set.Icc (0 : ℝ) 1, |phasePoint t| ≤ 8 := phasePoint_compact_le
+  set C : ℝ := 8 with hCdef
+  intro T hT
+  have hT0 : (0 : ℝ) < T := by linarith
+  have hT1 : (1 : ℝ) ≤ T := by linarith
+  have hπ : (3 : ℝ) < Real.pi := Real.pi_gt_three
+  have hlog2hi : Real.log 2 < 0.6931471808 := Real.log_two_lt_d9
+  have hlog2lo : (0.6931471803 : ℝ) < Real.log 2 := Real.log_two_gt_d9
+  have hlogT : (0 : ℝ) < Real.log T := Real.log_pos (by linarith)
+  -- split the phase integral at 1
+  have hsplit : (∫ t in (0 : ℝ)..T, phasePoint t)
+      = (∫ t in (0 : ℝ)..1, phasePoint t)
+        + ∫ t in (1 : ℝ)..T, phasePoint t :=
+    (intervalIntegral.integral_add_adjacent_intervals
+      (intervalIntegrable_phasePoint 0 1)
+      (intervalIntegrable_phasePoint 1 T)).symm
+  have hint_log : IntervalIntegrable (fun t => Real.log (t / 2))
+      MeasureTheory.volume 1 T := by
+    apply ContinuousOn.intervalIntegrable
+    intro t ht
+    rw [Set.uIcc_of_le hT1] at ht
+    have ht0 : (0 : ℝ) < t := by linarith [ht.1]
+    exact ((Real.continuousAt_log (by positivity)).comp
+      (by fun_prop : ContinuousAt (fun u : ℝ => u / 2) t)).continuousWithinAt
+  have hdiff_int : IntervalIntegrable
+      (fun t => phasePoint t - Real.log (t / 2)) MeasureTheory.volume 1 T :=
+    (intervalIntegrable_phasePoint 1 T).sub hint_log
+  have hdecomp : (∫ t in (1 : ℝ)..T, phasePoint t)
+      = (∫ t in (1 : ℝ)..T, Real.log (t / 2))
+        + ∫ t in (1 : ℝ)..T, (phasePoint t - Real.log (t / 2)) := by
+    rw [← intervalIntegral.integral_add hint_log hdiff_int]
+    apply intervalIntegral.integral_congr
+    intro t _
+    ring
+  -- the compact piece
+  have hE1 : |∫ t in (0 : ℝ)..1, phasePoint t| ≤ C := by
+    have hb := intervalIntegral.norm_integral_le_of_norm_le
+      (μ := MeasureTheory.volume) (f := phasePoint) (g := fun _ => C)
+      (by norm_num : (0 : ℝ) ≤ 1) ?_ intervalIntegrable_const
+    · rw [Real.norm_eq_abs] at hb
+      simpa using hb
+    · filter_upwards with t ht
+      rw [Real.norm_eq_abs]
+      exact hlow t ⟨le_of_lt ht.1, ht.2⟩
+  -- the band piece: a constant
+  have hE2 : |∫ t in (1 : ℝ)..T, (phasePoint t - Real.log (t / 2))| ≤ 147 := band_le_147 hT
+  -- assemble
+  unfold phaseTheta
+  rw [hsplit, hdecomp, integral_log_half hT1]
+  unfold Kadiri.zetaCountingMainTerm
+  set E₁ : ℝ := ∫ t in (0 : ℝ)..1, phasePoint t with hE₁def
+  set E₂ : ℝ := ∫ t in (1 : ℝ)..T, (phasePoint t - Real.log (t / 2)) with hE₂def
+  have hkey : Real.log (T / (2 * Real.pi))
+      = Real.log (T / 2) - Real.log Real.pi := by
+    rw [Real.log_div (by linarith) (by positivity),
+      Real.log_div (by linarith) (by norm_num),
+      Real.log_mul (by norm_num) (by positivity)]
+    ring
+  have hexpand : 1 / 2 * (E₁ + (T * Real.log (T / 2) - T + 1 + Real.log 2 + E₂))
+        - T / 2 * Real.log Real.pi
+      = Real.pi * (T / (2 * Real.pi) * Real.log (T / (2 * Real.pi))
+          - T / (2 * Real.pi))
+        + (E₁ + E₂) / 2 + (1 + Real.log 2) / 2 := by
+    rw [hkey]
+    field_simp
+    ring
+  rw [hexpand]
+  have hπ0 : Real.pi ≠ 0 := by positivity
+  have hred : (Real.pi * (T / (2 * Real.pi) * Real.log (T / (2 * Real.pi))
+        - T / (2 * Real.pi)) + (E₁ + E₂) / 2 + (1 + Real.log 2) / 2) / Real.pi
+        + 1
+        - (T / (2 * Real.pi) * Real.log (T / (2 * Real.pi))
+          - T / (2 * Real.pi) + 7 / 8)
+      = (E₁ + E₂) / (2 * Real.pi) + (1 + Real.log 2) / (2 * Real.pi) + 1 / 8 := by
+    field_simp
+    ring
+  rw [hred]
+  -- the numeric close
+  have h2π : (0 : ℝ) < 2 * Real.pi := by positivity
+  have hA : (0 : ℝ) ≤ (1 + Real.log 2) / (2 * Real.pi) := by positivity
+  have hfin1 : |(E₁ + E₂) / (2 * Real.pi) + (1 + Real.log 2) / (2 * Real.pi) + 1 / 8|
+      ≤ |(E₁ + E₂) / (2 * Real.pi)| + (1 + Real.log 2) / (2 * Real.pi) + 1 / 8 := by
+    calc |(E₁ + E₂) / (2 * Real.pi) + (1 + Real.log 2) / (2 * Real.pi) + 1 / 8|
+        ≤ |(E₁ + E₂) / (2 * Real.pi) + (1 + Real.log 2) / (2 * Real.pi)|
+            + |(1 : ℝ) / 8| := abs_add_le _ _
+      _ ≤ |(E₁ + E₂) / (2 * Real.pi)| + |(1 + Real.log 2) / (2 * Real.pi)|
+            + |(1 : ℝ) / 8| := by
+          have h := abs_add_le ((E₁ + E₂) / (2 * Real.pi))
+            ((1 + Real.log 2) / (2 * Real.pi))
+          linarith [h]
+      _ = |(E₁ + E₂) / (2 * Real.pi)| + (1 + Real.log 2) / (2 * Real.pi)
+            + 1 / 8 := by
+          rw [abs_of_nonneg hA, abs_of_nonneg (by norm_num : (0 : ℝ) ≤ (1 : ℝ) / 8)]
+  refine le_trans hfin1 ?_
+  have hsum : |E₁ + E₂| ≤ C + 147 :=
+    le_trans (abs_add_le E₁ E₂) (add_le_add hE1 hE2)
+  have habs1 : |(E₁ + E₂) / (2 * Real.pi)| ≤ (C + 147) / (2 * Real.pi) := by
+    rw [abs_div, abs_of_pos h2π]
+    gcongr
+  have t1 : (C + 147) / (2 * Real.pi) ≤ 25 := by
+    have := Real.pi_gt_d2; rw [div_le_iff₀ h2π, hCdef]; nlinarith
+  have t2 : (1 + Real.log 2) / (2 * Real.pi) ≤ 1 / 2 := by
+    rw [div_le_iff₀ h2π]
+    nlinarith
+  have : (0 : ℝ) * Real.log T + 26 = 26 := by ring
+  rw [this]
+  linarith [habs1, t1, t2]
+
+end Stirling2
+
+/-- info: 'Stirling2.backlundPhase_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stirling2.backlundPhase_const
