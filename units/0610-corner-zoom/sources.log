@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T08:46:36Z
+# unit: 0610-corner-zoom
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131012
+  Ok any ideas, cause what I'm noticing is that the deep corner is just a larger spread of primes so i...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131108
+  pred[d] = int(np.argmax(d * np.log(f2) - np.log(g)))
+
+# 3 found, 0 missing
