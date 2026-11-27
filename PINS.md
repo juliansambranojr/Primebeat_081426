@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-27 · cloud corner exploration, branch `claude/corner-cloud`: units 0640 (lead 1) and 0641 (lead 2)
+
+    DONE        two exploratory units, each saying what was measured and where the lead
+                stands: 0640 lower bounds for the leader + near-harmonic sums along
+                OpenCorner diagonals whose leaders change (100000 zeros); 0641 pi(2^m)
+                mod small primes against the harmonic structure, the precision a residue
+                needs, and the exact parity identity through sum 2^omega(n); branch pushed
+    ASSUMED     "more zeros" = the 100000 Odlyzko zeros already in imported/twin_count/
+                zeros1.txt (his host is blocked by this machine's network policy); a
+                "diagonal" = a ray r = a d or an edge r = d + q inside Capstone.OpenCorner;
+                past row 92 the cell is the explicit-formula model, no truth to compare
+    DEPENDS     Julian's yes before each unit is logged; no Lean builds here
+    OUT         Lean (the Mac builds the rows); verdicts, NOTEPAD transitions, outcome
+                markings (Julian's); a PR (not asked)
+
 ### 2026-11-25 · block S15 of `design/stencil.md`, the chain to the goal from no right zeros: `Stage3/BasinChain*.lean`
 
     DONE        `StmtNoRightZeros Q`: for every T ≥ T₀ the zeros of
