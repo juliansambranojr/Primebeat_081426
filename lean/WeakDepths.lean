@@ -408,6 +408,137 @@ theorem only_four_zeros_rh_le15 (hpi : PiNarrow.StmtPiData23) (hW : StmtRoute40)
     rw [hF]; simp only
     rw [RHDepths.floor_two_rpow (by omega), RHDepths.floor_two_rpow (by omega)]
 
+/-- The route's per-row window at the floor `2^38` on two floors, for every `r`, `n` with
+`r − n ≥ 76`: the conclusion of `RouteSharp.weakWindow13_of_RH`. -/
+def StmtRoute13 : Prop :=
+  ∀ (r : ℤ) (n : ℕ), (76 : ℝ) ≤ (r : ℝ) - n →
+    StmtWeakWindow 13 1
+        (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))
+        (fun m : ℤ => 2 / Real.log 2
+          + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t) r n
+
+/-- **Depths up to sixteen, from row 93: the constant-13 ceiling under the exact floor.** -/
+theorem weak13_lt_floor {r : ℤ} {d : ℕ} (hd : d ≤ 16) (hr : (93 : ℝ) ≤ r) :
+    EhighC 13 r (d + 1) < floorX r d := by
+  have hLu := Real.log_two_lt_d9
+  have hL0 : (0 : ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  have hdR : (d : ℝ) ≤ 16 := by exact_mod_cast hd
+  have hd0 : (0 : ℝ) ≤ d := Nat.cast_nonneg d
+  have hr0 : (0 : ℝ) < r := by linarith
+  have hr1 : (1 : ℝ) < r := by linarith
+  have hH := H_w2_ge2 hr1
+  unfold floorX EhighC; simp only
+  have hden : 0 < (r : ℝ) - 1 - d := by linarith
+  set q := (d : ℝ) / ((r : ℝ) - 1 - d) with hq
+  have hq0 : 0 ≤ q := div_nonneg hd0 hden.le
+  have hq1 : q ≤ 16 / 76 := by rw [hq, div_le_iff₀ hden]; nlinarith
+  set c := 1 - q / (1 - q) with hcdef
+  have hc : (0.7333 : ℝ) ≤ c := by
+    have h1q : 0 < 1 - q := by linarith
+    have : q / (1 - q) ≤ 0.2667 := by rw [div_le_iff₀ h1q]; nlinarith
+    rw [hcdef]; linarith
+  set P : ℝ := (2 : ℝ) ^ ((r : ℝ) / 2) with hPdef
+  have hP0 : 0 < P := Real.rpow_pos_of_pos (by norm_num) _
+  have hz : (2 : ℝ) ^ (r - (d : ℤ)) = P * P / 2 ^ d := by
+    rw [zpow_sub₀ (by norm_num), zpow_natCast, ← Real.rpow_intCast, hPdef,
+      ← Real.rpow_add (by norm_num)]
+    congr 2; ring
+  set E : ℝ := (2:ℝ) ^ (((r:ℝ) - 93) / 2) with hE
+  have hE0 : 0 < E := Real.rpow_pos_of_pos (by norm_num) _
+  have hsq : (r : ℝ) ^ 2 ≤ 8649 * E := RHDepths.sq_le_two_rpow93 hr
+  have hPE : P = E * ((2:ℝ) ^ (46:ℕ) * (2 : ℝ) ^ ((1 : ℝ) / 2)) := by
+    rw [hPdef, hE, ← Real.rpow_natCast, ← Real.rpow_add (by norm_num),
+      ← Real.rpow_add (by norm_num)]
+    congr 1; push_cast; ring
+  have hK : (2:ℝ) ^ (46:ℕ) * 1.41421 ≤ (2:ℝ) ^ (46:ℕ) * (2 : ℝ) ^ ((1 : ℝ) / 2) :=
+    mul_le_mul_of_nonneg_left sqrt_two_ge (by positivity)
+  set s : ℝ := 1 + (2 : ℝ) ^ (-(1 : ℝ) / 2) with hs
+  have hs1 : 1 ≤ s := by
+    have := Real.rpow_pos_of_pos (show (0:ℝ) < 2 by norm_num) (-(1 : ℝ) / 2); rw [hs]; linarith
+  have hs2 : s ≤ 1.70711 := by
+    have hh : (2 : ℝ) ^ (-(1 : ℝ) / 2) * (2 : ℝ) ^ ((1 : ℝ) / 2) = 1 := by
+      rw [← Real.rpow_add (by norm_num)]; norm_num
+    have hpos := Real.rpow_pos_of_pos (show (0:ℝ) < 2 by norm_num) (-(1 : ℝ) / 2)
+    have := sqrt_two_ge
+    rw [hs]; nlinarith
+  have hsd : s ^ (d + 1) * (2:ℝ) ^ d ≤ (1.70711:ℝ) ^ 17 * (2:ℝ) ^ (16:ℕ) := by
+    have h1 : s ^ (d + 1) ≤ s ^ 17 := pow_le_pow_right₀ hs1 (by omega)
+    have h2 : s ^ 17 ≤ (1.70711:ℝ) ^ 17 := pow_le_pow_left₀ (by linarith) hs2 17
+    have h3 : (2:ℝ) ^ d ≤ (2:ℝ) ^ (16:ℕ) := pow_le_pow_right₀ (by norm_num) hd
+    exact mul_le_mul (h1.trans h2) h3 (by positivity) (by positivity)
+  have hcore : 26 * Real.log 2 ^ 2 * (r:ℝ) ^ 2 * (s ^ (d + 1) * (2:ℝ) ^ d) < c * P := by
+    have hl2 : Real.log 2 ^ 2 ≤ 0.6932 ^ 2 := pow_le_pow_left₀ hL0.le (by linarith) 2
+    have h0 : (0:ℝ) ≤ s ^ (d + 1) * (2:ℝ) ^ d := by positivity
+    have hr2 : (0:ℝ) ≤ (r:ℝ) ^ 2 := by positivity
+    have hA : 26 * Real.log 2 ^ 2 * (r:ℝ) ^ 2 * (s ^ (d + 1) * (2:ℝ) ^ d)
+        ≤ 26 * 0.6932 ^ 2 * (8649 * E) * ((1.70711:ℝ) ^ 17 * (2:ℝ) ^ (16:ℕ)) := by
+      calc 26 * Real.log 2 ^ 2 * (r:ℝ) ^ 2 * (s ^ (d + 1) * (2:ℝ) ^ d)
+          ≤ 26 * 0.6932 ^ 2 * (r:ℝ) ^ 2 * (s ^ (d + 1) * (2:ℝ) ^ d) := by
+            have : 26 * Real.log 2 ^ 2 ≤ 26 * 0.6932 ^ 2 := by linarith
+            have := mul_le_mul_of_nonneg_right this hr2
+            exact mul_le_mul_of_nonneg_right this h0
+        _ ≤ 26 * 0.6932 ^ 2 * (8649 * E) * (s ^ (d + 1) * (2:ℝ) ^ d) := by gcongr
+        _ ≤ _ := mul_le_mul_of_nonneg_left hsd (by positivity)
+    have hB : 26 * 0.6932 ^ 2 * (8649 * E) * ((1.70711:ℝ) ^ 17 * (2:ℝ) ^ (16:ℕ))
+        < 0.7333 * (E * ((2:ℝ) ^ (46:ℕ) * 1.41421)) := by
+      norm_num; nlinarith
+    have hC : 0.7333 * (E * ((2:ℝ) ^ (46:ℕ) * 1.41421)) ≤ c * P := by
+      rw [hPE]
+      apply mul_le_mul hc (mul_le_mul_of_nonneg_left hK hE0.le) (by positivity) (by linarith)
+    linarith
+  rw [hz]
+  have hRHS : P * P / 2 ^ d * (1 / (2 * Real.log 2 * (r:ℝ))) * c ≤ P * P / 2 ^ d * H w2 r * c := by
+    have : 0 ≤ P * P / 2 ^ d := by positivity
+    have := mul_le_mul_of_nonneg_left hH this
+    exact mul_le_mul_of_nonneg_right this (by linarith)
+  refine lt_of_lt_of_le ?_ hRHS
+  have hgoal : 13 * (Real.log 2 * r) * P * s ^ (d + 1) * (2 ^ d * (2 * Real.log 2 * (r:ℝ)))
+      < P * P / 2 ^ d * (1 / (2 * Real.log 2 * (r:ℝ))) * c * (2 ^ d * (2 * Real.log 2 * (r:ℝ))) := by
+    have e1 : 13 * (Real.log 2 * r) * P * s ^ (d + 1) * (2 ^ d * (2 * Real.log 2 * (r:ℝ)))
+        = P * (26 * Real.log 2 ^ 2 * (r:ℝ) ^ 2 * (s ^ (d + 1) * (2:ℝ) ^ d)) := by ring
+    have e2 : P * P / 2 ^ d * (1 / (2 * Real.log 2 * (r:ℝ))) * c
+        * (2 ^ d * (2 * Real.log 2 * (r:ℝ))) = P * (c * P) := by
+      field_simp
+    rw [e1, e2]
+    exact mul_lt_mul_of_pos_left hcore hP0
+  exact lt_of_mul_lt_mul_right hgoal (by positivity)
+
+/-- **Depths 1 … 16, every row.** With the π list on rows 23 … 92 and the sharp per-row route
+(`StmtRoute13`, which `RouteSharp.weakWindow13_of_RH` proves from RH), every zero of the true
+table at depths 1 … 15 is one of the four. -/
+theorem only_four_zeros_rh_le16 (hpi : PiNarrow.StmtPiData23) (hW : StmtRoute13)
+    {r : ℤ} {d : ℕ} (hd : 1 ≤ d) (hd16 : d ≤ 16) (hlo : (d : ℤ) < r)
+    (hz : Construction.tableFrom ToInfinity.trueRow r d = 0) :
+    (r, d) = (2, 1) ∨ (r, d) = (4, 1) ∨ (r, d) = (8, 3) ∨ (r, d) = (20, 6) := by
+  by_cases h92 : r ≤ 92
+  · exact ToInfinity.census_zero hd hlo h92
+      (by rw [ToInfinity.cell_eq_true (PiNarrow.piData_of_23 hpi) r d hlo h92]; exact hz)
+  · exfalso
+    have hr93 : (93 : ℤ) ≤ r := by omega
+    have hrR : (93 : ℝ) ≤ r := by exact_mod_cast hr93
+    have hdR : (d : ℝ) ≤ 16 := by exact_mod_cast hd16
+    set F : ℤ → ℝ := fun m => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ) with hF
+    have hwin := hW r (d + 1) (by push_cast; linarith)
+    have hS : StmtWeakWindow 13 1 F (fun k : ℤ => Interpolant.liRow k) r (d + 1) := by
+      intro k hk
+      have hkn : (k : ℝ) ≤ d + 1 := by
+        have := Nat.lt_succ_iff.mp (Finset.mem_range.mp hk); exact_mod_cast this
+      have hm : (1 : ℝ) / 2 ≤ ((r - k : ℤ) : ℝ) := by push_cast; linarith
+      have h := hwin k hk
+      simp only at h ⊢
+      rw [Interpolant.liRow_eq hm]
+      exact h
+    have hband : 3 * (d : ℝ) + 1 < r := by linarith
+    refine tableFrom_ne_zero_weak (f := F) (by norm_num) ?_ hS hband
+      (weak13_lt_floor hd16 hrR) hz
+    intro k hk
+    have := Finset.mem_range.mp hk
+    have h1 : (1 : ℤ) ≤ r - k := by omega
+    rw [ToInfinity.trueRow_eq_bdiff h1]
+    unfold Nonvanishing.bdiffZ
+    rw [hF]; simp only
+    rw [RHDepths.floor_two_rpow (by omega), RHDepths.floor_two_rpow (by omega)]
+
 end WeakDepths
 
 /-- info: 'WeakDepths.weak_lt_floor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -421,3 +552,7 @@ end WeakDepths
 /-- info: 'WeakDepths.only_four_zeros_rh_le15' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms WeakDepths.only_four_zeros_rh_le15
+
+/-- info: 'WeakDepths.only_four_zeros_rh_le16' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms WeakDepths.only_four_zeros_rh_le16

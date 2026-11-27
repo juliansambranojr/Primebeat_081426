@@ -104,6 +104,9 @@ ROUTE_WELDS = [
     ("weakWindow40_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteTight.lean",
      "StmtRoute40", _HERE / "lean" / "WeakDepths.lean",
      [("Stage3.StmtWeakWindow", "StmtWeakWindow")]),
+    ("weakWindow13_of_RH", _HERE / "lean_stage3" / "Stage3" / "RouteTight.lean",
+     "StmtRoute13", _HERE / "lean" / "WeakDepths.lean",
+     [("Stage3.StmtWeakWindow", "StmtWeakWindow")]),
 ]
 
 
