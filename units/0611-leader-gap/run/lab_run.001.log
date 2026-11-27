@@ -1,0 +1,182 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-27T08:48:18Z
+{
+ "pred_2000": {
+  "d10": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.903,
+   "dominance": 0.07582
+  },
+  "d20": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.7431,
+   "dominance": 0.09019
+  },
+  "d36": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.4873,
+   "dominance": 0.09149
+  },
+  "d50": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.2634,
+   "dominance": 0.08429
+  },
+  "d67": {
+   "lead": 40.919,
+   "second": 14.135,
+   "gap": 0.0085,
+   "dominance": 0.07316
+  },
+  "d80": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.1516,
+   "dominance": 0.07972
+  },
+  "d100": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.1405,
+   "dominance": 0.08876
+  },
+  "d300": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.0296,
+   "dominance": 0.13676
+  },
+  "d1000": {
+   "lead": 49.774,
+   "second": 40.919,
+   "gap": 0.3584,
+   "dominance": 0.19995
+  },
+  "d3000": {
+   "lead": 49.774,
+   "second": 276.452,
+   "gap": 0.6189,
+   "dominance": 0.19788
+  },
+  "d10000": {
+   "lead": 276.452,
+   "second": 775.048,
+   "gap": 0.8694,
+   "dominance": 0.21052
+  }
+ },
+ "pred_100000": {
+  "d10": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.903,
+   "dominance": 0.03139
+  },
+  "d20": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.7431,
+   "dominance": 0.03715
+  },
+  "d36": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.4873,
+   "dominance": 0.03775
+  },
+  "d50": {
+   "lead": 14.135,
+   "second": 40.919,
+   "gap": 0.2634,
+   "dominance": 0.03493
+  },
+  "d67": {
+   "lead": 40.919,
+   "second": 14.135,
+   "gap": 0.0085,
+   "dominance": 0.03045
+  },
+  "d80": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.1516,
+   "dominance": 0.03298
+  },
+  "d100": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.1405,
+   "dominance": 0.03639
+  },
+  "d300": {
+   "lead": 40.919,
+   "second": 49.774,
+   "gap": 0.0296,
+   "dominance": 0.05362
+  },
+  "d1000": {
+   "lead": 49.774,
+   "second": 40.919,
+   "gap": 0.3584,
+   "dominance": 0.07447
+  },
+  "d3000": {
+   "lead": 49.774,
+   "second": 276.452,
+   "gap": 0.6189,
+   "dominance": 0.0631
+  },
+  "d10000": {
+   "lead": 276.452,
+   "second": 775.048,
+   "gap": 0.8694,
+   "dominance": 0.05588
+  }
+ },
+ "switches_to_2000": {
+  "count": 2,
+  "depths": [
+   67,
+   354
+  ],
+  "leaders": [
+   14.135,
+   40.919,
+   49.774
+  ],
+  "median_gap": 0.3819,
+  "min_gap": 0.00024
+ },
+ "actual": {
+  "d10_19": {
+   "cells": 354,
+   "lead_wins": 0.653,
+   "median_ratio": 1.461
+  },
+  "d20_35": {
+   "cells": 946,
+   "lead_wins": 0.552,
+   "median_ratio": 1.071
+  },
+  "d36_66": {
+   "cells": 1271,
+   "lead_wins": 0.386,
+   "median_ratio": 0.774
+  },
+  "d67_91": {
+   "cells": 325,
+   "lead_wins": 0.794,
+   "median_ratio": 2.197
+  }
+ },
+ "actual_all": {
+  "cells": 2962,
+  "lead_wins": 0.521,
+  "median_ratio": 1.059
+ }
+}
+# exit 0 after 16.956s, ended 2026-11-27T08:48:35Z

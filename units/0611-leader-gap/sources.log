@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-27T08:49:07Z
+# unit: 0611-leader-gap
+# sources searched: 121
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:117374
+  Source: session transcript, 2026-11-27
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131364
+  Measure the gap between leaders
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:131387
+  res[f"d{d}"] = {"lead": round(float(gall[lead]), 3), "second": round(float(gall[sec]), 3),
+
+# 3 found, 0 missing
