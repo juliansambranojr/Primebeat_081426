@@ -191,3 +191,33 @@ end MeisselLehmer
 /-- info: 'MeisselLehmer.card_twoRough' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms MeisselLehmer.card_twoRough
+
+namespace MeisselLehmer
+open Finset Legendre
+
+theorem inner_count {x p : ℕ} (hp : 1 ≤ p) (hpx : p * p ≤ x) :
+    ((Icc p (x / p)).filter Nat.Prime).card + Nat.primeCounting (p - 1) = Nat.primeCounting (x / p) := by
+  have hle : p - 1 ≤ x / p := by
+    have : p ≤ x / p := (Nat.le_div_iff_mul_le (by omega)).mpr hpx
+    omega
+  have h := card_primes_Icc hle
+  rwa [show p - 1 + 1 = p by omega] at h
+
+open Classical in
+/-- **Meissel–Lehmer, computable.** For `x < (s+1)³`, `s ≤ x`, `1 ≤ x`:
+`π x + 1 + Σ_{p ∈ lowP} (π(x/p) − π(p−1)) = φ(x, primes ≤ s) + π s`. -/
+theorem meissel_lehmer {x s : ℕ} (hx : x < (s + 1) * (s + 1) * (s + 1)) (hs : s ≤ x) (hx1 : 1 ≤ x) :
+    Nat.primeCounting x + 1 + ∑ p ∈ lowP x s, (Nat.primeCounting (x / p) - Nat.primeCounting (p - 1))
+      = phi x (primesTo s) + Nat.primeCounting s := by
+  rw [← primeCounting_add_P2 hx hs hx1, card_twoRough]
+  congr 1
+  refine sum_congr rfl fun p hp => ?_
+  simp only [lowP, mem_filter, mem_Icc] at hp
+  have := inner_count (x := x) (p := p) (by omega) hp.2.2
+  omega
+
+end MeisselLehmer
+
+/-- info: 'MeisselLehmer.meissel_lehmer' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms MeisselLehmer.meissel_lehmer
