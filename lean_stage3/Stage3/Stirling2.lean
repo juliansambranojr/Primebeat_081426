@@ -276,3 +276,104 @@ end Stirling2
 /-- info: 'Stirling2.term_split_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stirling2.term_split_le
+
+namespace Stirling2
+open Stage3
+
+/-- **The digamma comparison to second order.** For `t ≥ 4`, with `z = 1/4 + it/2`,
+`|Re ψ(z) − log‖z‖ + ½·Re(1/z)| ≤ 48/t²`. -/
+theorem digamma_second {t : ℝ} (ht : 4 ≤ t) :
+    |phasePoint t - Real.log ‖zq t‖ + (1 / 2) * ((zq t)⁻¹).re| ≤ 48 / t ^ 2 := by
+  have ht1 : (1 : ℝ) ≤ t := by linarith
+  have ht0 : (0 : ℝ) < t := by linarith
+  set a : ℕ → ℝ := fun n => (((n : ℂ) + zq t)⁻¹).re
+      - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖(n : ℂ) + zq t‖) with ha
+  set b : ℕ → ℝ := fun n => (((n : ℂ) + zq t)⁻¹).re with hb
+  set q : ℕ → ℝ := fun n => (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹ with hq
+  -- the limits
+  have hA := tendsto_telescope ht1
+  have hbN : Filter.Tendsto b Filter.atTop (nhds 0) := by
+    have hle : ∀ n : ℕ, |b n| ≤ ((n : ℝ) + 1 / 4)⁻¹ := by
+      intro n
+      have hre : ((n : ℂ) + zq t).re = (n : ℝ) + 1 / 4 := by
+        simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+      have hpos : (0 : ℝ) < (n : ℝ) + 1 / 4 := by positivity
+      have h1 : (n : ℝ) + 1 / 4 ≤ ‖(n : ℂ) + zq t‖ := by
+        calc (n : ℝ) + 1 / 4 = ((n : ℂ) + zq t).re := hre.symm
+          _ ≤ ‖(n : ℂ) + zq t‖ := Complex.re_le_norm _
+      calc |b n| ≤ ‖((n : ℂ) + zq t)⁻¹‖ := Complex.abs_re_le_norm _
+        _ = ‖(n : ℂ) + zq t‖⁻¹ := norm_inv _
+        _ ≤ ((n : ℝ) + 1 / 4)⁻¹ := inv_anti₀ hpos h1
+    have h0 : Filter.Tendsto (fun n : ℕ => ((n : ℝ) + 1 / 4)⁻¹) Filter.atTop (nhds 0) :=
+      (Filter.tendsto_atTop_add_const_right _ _ tendsto_natCast_atTop_atTop).inv_tendsto_atTop
+    exact squeeze_zero_norm (fun n => by rw [Real.norm_eq_abs]; exact hle n) h0
+  -- S N = Σ (a − c) = Σ a − ½ (b 0 − b N)
+  set S : ℕ → ℝ := fun N => ∑ n ∈ Finset.range N, (a n - (1 / 2) * (b n - b (n + 1))) with hS
+  have hSeq : ∀ N, S N = (∑ n ∈ Finset.range N, a n) - (1 / 2) * (b 0 - b N) := by
+    intro N
+    simp only [hS]
+    rw [Finset.sum_sub_distrib, ← Finset.mul_sum, Finset.sum_range_sub']
+  have hSlim : Filter.Tendsto S Filter.atTop
+      (nhds ((Real.log ‖zq t‖ - (Complex.digamma (zq t)).re) - (1 / 2) * (b 0 - 0))) := by
+    have := hA.sub (((tendsto_const_nhds (x := b 0)).sub hbN).const_mul (1 / 2))
+    exact this.congr fun N => (hSeq N).symm
+  -- the bound on S
+  have hq_summ : Summable q := by
+    have hg16 : Summable (fun n : ℕ => 16 / ((n : ℝ) + 1) ^ 2) := by
+      have h := Complex.summable_one_div_natCast_add_one_sq
+      simpa [div_eq_mul_inv] using h.mul_left (16 : ℝ)
+    apply Summable.of_nonneg_of_le (fun n => by simp only [hq]; positivity) _ hg16
+    intro n
+    simp only [hq]
+    have hn0 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+    have hqq : ((n : ℝ) + 1) ^ 2 / 16 ≤ ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := by
+      nlinarith [sq_nonneg ((t : ℝ) / 2)]
+    calc (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹
+        ≤ (((n : ℝ) + 1) ^ 2 / 16)⁻¹ := inv_anti₀ (by positivity) hqq
+      _ = 16 / ((n : ℝ) + 1) ^ 2 := by rw [inv_div]
+  have hterm : ∀ n : ℕ, |a n - (1 / 2) * (b n - b (n + 1))| ≤ (4 / t) * q n := by
+    intro n
+    have h := term_split_le ht n
+    have hnormsq : ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := normSq_add_zq t n
+    have hpos : (0 : ℝ) < ‖(n : ℂ) + zq t‖ := norm_pos_iff.mpr (add_zq_ne_zero t n)
+    have ht2 : t / 2 ≤ ‖(n : ℂ) + zq t‖ := by
+      nlinarith [sq_nonneg ((n : ℝ) + 1 / 4), Nat.cast_nonneg (α := ℝ) n]
+    have hcube : 2 * (‖(n : ℂ) + zq t‖⁻¹) ^ 3 ≤ (4 / t) * q n := by
+      simp only [hq]
+      rw [← hnormsq]
+      have hinv : ‖(n : ℂ) + zq t‖⁻¹ ≤ 2 / t := by
+        rw [inv_le_comm₀ hpos (by positivity)]
+        rw [inv_div]; linarith
+      have hq0 : 0 ≤ (‖(n : ℂ) + zq t‖ ^ 2)⁻¹ := by positivity
+      calc 2 * (‖(n : ℂ) + zq t‖⁻¹) ^ 3 = 2 * ‖(n : ℂ) + zq t‖⁻¹ * (‖(n : ℂ) + zq t‖ ^ 2)⁻¹ := by
+            rw [inv_pow]; field_simp
+        _ ≤ 2 * (2 / t) * (‖(n : ℂ) + zq t‖ ^ 2)⁻¹ := by gcongr
+        _ = (4 / t) * (‖(n : ℂ) + zq t‖ ^ 2)⁻¹ := by ring
+    have hb1 : b (n + 1) = ((((n + 1 : ℕ) : ℂ) + zq t)⁻¹).re := rfl
+    simp only [ha, hb] at h ⊢
+    exact h.trans hcube
+  have hSbd : ∀ N, |S N| ≤ 48 / t ^ 2 := by
+    intro N
+    have h1 : |S N| ≤ ∑ n ∈ Finset.range N, (4 / t) * q n :=
+      (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun n _ => hterm n)
+    have h2 : (∑ n ∈ Finset.range N, q n) ≤ 12 / t :=
+      (Summable.sum_le_tsum _ (fun n _ => by simp only [hq]; positivity) hq_summ).trans
+        (inv_quadratic_tsum_le ht1)
+    rw [← Finset.mul_sum] at h1
+    calc |S N| ≤ (4 / t) * ∑ n ∈ Finset.range N, q n := h1
+      _ ≤ (4 / t) * (12 / t) := by gcongr
+      _ = 48 / t ^ 2 := by ring
+  have hfinal := le_of_tendsto hSlim.abs (Filter.Eventually.of_forall hSbd)
+  have hb0 : b 0 = ((zq t)⁻¹).re := by simp [hb]
+  rw [hb0] at hfinal
+  rw [phasePoint_eq]
+  have e : (Complex.digamma (zq t)).re - Real.log ‖zq t‖ + 1 / 2 * ((zq t)⁻¹).re
+      = -((Real.log ‖zq t‖ - (Complex.digamma (zq t)).re) - 1 / 2 * (((zq t)⁻¹).re - 0)) := by ring
+  rw [e, abs_neg]
+  exact hfinal
+
+end Stirling2
+
+/-- info: 'Stirling2.digamma_second' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stirling2.digamma_second
