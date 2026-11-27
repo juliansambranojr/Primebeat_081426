@@ -12,7 +12,7 @@ This surprised the previous session too, and Julian had to correct it. The proof
   `~/leanprover-community/riemann-hypothesis`; clone it locally if it is not already there).
 - **The theorem:** `src/Main.lean`:
   `theorem riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line New.grh`
-  — Mathlib's own `RiemannHypothesis`, nothing restated. The file's first line: "The proof is Levent Alpöge's,
+  — the statement is Mathlib's own `RiemannHypothesis`. The file's first line: "The proof is Levent Alpöge's,
   with Claude." The README: a community effort to maintain a Lean formalization of the 2026 proofs of RH and of
   GRH for Dirichlet L-functions; branches `alpoge` and `original` keep the earlier versions; `main` is based on
   the readable edition at `lsernau/grh-lean`.
