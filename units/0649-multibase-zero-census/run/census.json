@@ -1,0 +1,165 @@
+{
+ "checks": {
+  "pi_1e6": 78498,
+  "pi_2pow20_matches_list": true,
+  "pi_3pow20_matches_cache": true
+ },
+ "bases": {
+  "2": {
+   "rows": 92,
+   "zeros": 4,
+   "zero_cells": [
+    [
+     2,
+     1
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     8,
+     3
+    ],
+    [
+     20,
+     6
+    ]
+   ],
+   "windows": [
+    [
+     1,
+     4
+    ],
+    [
+     4,
+     16
+    ],
+    [
+     16,
+     256
+    ],
+    [
+     8192,
+     1048576
+    ]
+   ],
+   "first_rows": [
+    1,
+    1,
+    2,
+    2
+   ]
+  },
+  "3": {
+   "rows": 41,
+   "zeros": 1,
+   "zero_cells": [
+    [
+     2,
+     1
+    ]
+   ],
+   "windows": [
+    [
+     1,
+     9
+    ]
+   ],
+   "first_rows": [
+    2,
+    2,
+    5,
+    13
+   ]
+  },
+  "4": {
+   "rows": 46,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    2,
+    4,
+    12,
+    36
+   ]
+  },
+  "5": {
+   "rows": 18,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    3,
+    6,
+    21,
+    84
+   ]
+  },
+  "6": {
+   "rows": 16,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    3,
+    8,
+    36,
+    163
+   ]
+  },
+  "7": {
+   "rows": 15,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    4,
+    11,
+    53,
+    289
+   ]
+  },
+  "8": {
+   "rows": 30,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    4,
+    14,
+    79,
+    467
+   ]
+  },
+  "9": {
+   "rows": 13,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    4,
+    18,
+    107,
+    718
+   ]
+  },
+  "10": {
+   "rows": 13,
+   "zeros": 0,
+   "zero_cells": [],
+   "windows": [],
+   "first_rows": [
+    4,
+    21,
+    143,
+    1061
+   ]
+  }
+ },
+ "base4_as_base2_sum": {
+  "cells": 1080,
+  "hold": 1080
+ }
+}

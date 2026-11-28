@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T09:33:01Z
+# unit: 0649-multibase-zero-census
+# sources searched: 411
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7869
+  Look, if base 2 has 4 zeros, do you think base 3 will have four zeros? No, cause it's sampling is tr...
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:8075
+  Z = sorted(c for c, v in T.items() if c[1] >= 1 and v == 0)
+
+# 3 found, 0 missing
