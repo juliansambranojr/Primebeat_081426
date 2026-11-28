@@ -73,6 +73,13 @@ about that size. So `consistent_with_chance` here would say the excess lies insi
 which is the question; it would not say there is no excess. `excess_real` can fire only if the true zeros' spread
 is much narrower than the synthetic sets' or the observed count lies far above it. Julian locks it knowing this.
 
+**Designs tried to narrow the spread** (Julian, 2026-11-28: "Try your idea"; synthetic GUE heights only, 20 sets,
+200 draws each, `analysis/2026-11-28/o102_designs/`): the median sd over mean of the null and the rule's rate of
+`excess_real` with the count raised a third were 0.435 and 0.05 for this design; 0.379 and 0.1 pooling the three
+thresholds and all fourteen diagonals; 0.429 and 0.05 keeping the first 10 zeros' phases fixed; 0.416 and 0.1
+keeping the first 50 fixed. None narrows the spread enough to see an excess of a third: one table's near-zero
+count spreads by about four tenths of itself whichever way it is pooled or conditioned.
+
 ## Pre-specified secondary analyses
 
 The same comparison at `t = 0.02` and `t = 0.1`, and edge by edge and ray by ray at `t = 0.05`. Reported, no

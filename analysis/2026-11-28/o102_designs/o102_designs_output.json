@@ -1,0 +1,56 @@
+{
+ "D0 edges t=0.05": {
+  "sd_over_mean_median": 0.435,
+  "as_is": {
+   "excess_real": 0.0,
+   "consistent_with_chance": 0.9,
+   "ambiguous": 0.1
+  },
+  "raised_a_third": {
+   "excess_real": 0.05,
+   "consistent_with_chance": 0.8,
+   "ambiguous": 0.15
+  }
+ },
+ "D1 pooled thresholds, all diagonals": {
+  "sd_over_mean_median": 0.379,
+  "as_is": {
+   "excess_real": 0.05,
+   "consistent_with_chance": 0.9,
+   "ambiguous": 0.05
+  },
+  "raised_a_third": {
+   "excess_real": 0.1,
+   "consistent_with_chance": 0.8,
+   "ambiguous": 0.1
+  }
+ },
+ "D2 first 10 zeros fixed": {
+  "sd_over_mean_median": 0.429,
+  "as_is": {
+   "excess_real": 0.05,
+   "consistent_with_chance": 0.9,
+   "ambiguous": 0.05
+  },
+  "raised_a_third": {
+   "excess_real": 0.05,
+   "consistent_with_chance": 0.8,
+   "ambiguous": 0.15
+  }
+ },
+ "D3 first 50 zeros fixed": {
+  "sd_over_mean_median": 0.416,
+  "as_is": {
+   "excess_real": 0.05,
+   "consistent_with_chance": 0.85,
+   "ambiguous": 0.1
+  },
+  "raised_a_third": {
+   "excess_real": 0.1,
+   "consistent_with_chance": 0.75,
+   "ambiguous": 0.15
+  }
+ }
+}
+
+[exited with code 0]
