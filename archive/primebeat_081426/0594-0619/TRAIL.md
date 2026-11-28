@@ -1,11 +1,11 @@
 # Decision trail, units 0594–0619
 
-Range closed at tag `archive/0594-0619` (commit 13f04b5, the merge of PR #25). Branch it was written on:
+Range closed at tag `archive/primebeat_081426/0594-0619` (commit 13f04b5, the merge of PR #25). Branch it was written on:
 `claude/serene-knuth-jcsdkx`, cloud session `session_01QgKxrKkcM2vFjFqGZMWrfY`, 2026-11-26 to 2026-11-27.
 
 **How to use this file.** It gives the route: which question each unit answered, what was tried, what was
 decided, and which question that opened. It holds no results of its own. Every fact an answer needs is taken from
-the unit named, read at the tag (`git show archive/0594-0619:units/<id>/unit.md`); every number in a unit sits
+the unit named, read at the tag (`git show archive/primebeat_081426/0594-0619:units/<id>/unit.md`); every number in a unit sits
 beside its `values.tsv` key. An instance started from this file answers by filling in from the units.
 
 **The goal the range served.** Julian's loop: one theorem in his tree saying every cell of the true dyadic prime
