@@ -52,3 +52,28 @@ certificates (parity, more π rows) with the infinite remainder left as a measur
 structural idea of yours for the near-harmonic family that the measurements have not tried?
 
 Answer: (Julian, 2026-11-27, relayed by the Mac session) "a for now, i have no idea yet". Finite-row certificates (parity, more π rows), with the infinite remainder left as a measure statement.
+
+## 5. Log the edge follow-up and the C parity code?
+
+Edge follow-up (answer to 1): twelve edges to depth 600 and two rays, 100000 zeros. Small cells on
+the edges run about 1.3 times the independent-phase rate, the same factor at a fiftieth, a
+twentieth and a tenth of the root-square size; the fifty largest terms (96.5% of the square) at
+their own amplitudes do not explain it; the small cells come in runs of about three consecutive
+cells, and counted by runs each edge is within about one standard deviation of chance; the factor
+fades by the edge at depth plus 64. C parity (answer to 2): exact on every row 2–56 and the even
+rows 58–66 against the π list (128-bit past row 63); two minutes at row 66 on four cores, doubling
+every two rows. Log them as units 0642 (edges) and 0643 (C parity)?
+
+Answer:
+
+## 6. Row 93's parity: how to get there
+
+The C version, extrapolated, needs about sixteen days on this machine's four cores for row 93
+alone, each row after 1.4 times more; a cloud session may be reclaimed before that ends. A faster
+route exists on paper: the points floor(sqrt(x/v)) close up under floor(·/k), so a Mertens-style
+recursion shares its values, and with a fast divisor sum the cost is about x^(3/7), roughly 10^12
+steps at row 93 (hours), against 10^15 now. It is several days of careful work with a real risk of
+subtle bugs, checked against rows 2–92 before trusting it past 92. Which: (a) build the faster
+route; (b) start the sixteen-day run with checkpoints anyway; (c) stop at row 66 for now?
+
+Answer:
