@@ -10,7 +10,7 @@ fall below a twentieth of their root-square size about twice as often as indepen
 predict; on the five rays they fall at the predicted rate (unit 0640). Follow it up — more edges,
 deeper, and whether the excess holds as zeros are added — or leave it?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "follow up"
 
 ## 2. The parity identity, run past row 92
 
@@ -19,7 +19,7 @@ Answer:
 unit's timing, taken while another run shared the machine), less in C. Each row reached certifies the odd corner cells it completes, and no more: the corner past it is
 still infinite. Worth a C implementation and a run on rows 93 onward, here or on the Mac?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "yes and in the cloud, so we save ram here". Write the C version and run rows 93 onward in this cloud session.
 
 ## 3. Odlyzko's tables
 
@@ -28,7 +28,7 @@ This machine's network policy blocks his host, so lead 1 used the 100000 zeros a
 between 30000 and 100000 zeros except the absolute-sum ratio, which grows without limit. Do you
 want the host allowed for the two-million-zero table, or is 100000 enough for this lead?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "yes to getting the 2-million-zero table". The cloud environment's network policy is his setting; the Mac session has asked him to allow the host. Until it is allowed, carry on with the 100000 zeros, and push a line here naming the exact host to allow.
 
 ## 4. Where lead 1 goes next
 
@@ -39,4 +39,4 @@ zeros far beyond any table, more with every depth. Which of these do you want ne
 certificates (parity, more π rows) with the infinite remainder left as a measure statement, or a
 structural idea of yours for the near-harmonic family that the measurements have not tried?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "a for now, i have no idea yet". Finite-row certificates (parity, more π rows), with the infinite remainder left as a measure statement.
