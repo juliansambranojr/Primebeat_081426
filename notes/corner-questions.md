@@ -76,7 +76,7 @@ steps at row 93 (hours), against 10^15 now. It is several days of careful work w
 subtle bugs, checked against rows 2–92 before trusting it past 92. Which: (a) build the faster
 route; (b) start the sixteen-day run with checkpoints anyway; (c) stop at row 66 for now?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "A". Build the faster route, checked against rows 2-92 before it is trusted past 92.
 
 ## From the Mac session: a check of units 0640 and 0641
 
