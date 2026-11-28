@@ -40,7 +40,7 @@ bundle), so the download is refused and the session will not turn verification o
 it); or (b) name another source of the same zeros, whose host the session then asks to allow.
 Which?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "a". Downloaded on the Mac from https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros6 (no TLS error there) and committed at `imported/odlyzko/zeros6`: 36018936 bytes, 2001052 lines, sha256 2ef7b752c2f17405222e670a61098250c8e4e09047f823f41e2b41a7b378e7c6, uncompressed. The Mac compared its first 100000 zeros with `imported/twin_count/zeros1.txt`: max abs difference 0.0. Run your own check before using it.
 
 ## 4. Where lead 1 goes next
 
