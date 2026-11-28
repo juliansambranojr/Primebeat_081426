@@ -133,3 +133,16 @@ Deterministic: `default_rng(20261128)`, no flags. Output `results/O100_two_adic_
 Appended after the run. This append changes the file's hash; the no-drift
 check is that `post_compute_sha256` below, taken before this section existed,
 equals the sidecar.
+
+- `run_start_at`: 2026-11-28T08:21:13Z
+- `run_end_at`: 2026-11-28T08:21:14Z
+- `post_compute_sha256`: 6c42447fc4efc034eb9162394a147ed9cd9a032d18ec370d35f6ecdfaaa049c2
+- sidecar `two_adic_power_depths_v1_20261128.sha256`: 6c42447fc4efc034eb9162394a147ed9cd9a032d18ec370d35f6ecdfaaa049c2 — match
+- integrity: `src_sha_ok` true, `rows_present` true, `rows_ge_21_bits` true, cells 304 / 632 / 38, `mod_route_matches_exact` true, `null_mean_primary_in_range` true; `integrity_ok` true
+- primary (depths 1, 2, 4, 8, 16): `T` = 0.9342105263157895, `p` = 0.7922207779222078 (null mean 0.999014802631579, sd 0.0807779007487345)
+- placebo: `T` = 1.0126582278481013, `p` = 0.39346065393460655
+- secondary, depths 32 and 64 pooled (the depths that produced the hypothesis; no verdict): `T` = 1.605263157894737, `p` = 0.0122987701229877
+- per depth, mean `v2`: 1: 0.8333, 2: 1.1385, 4: 1.0952, 8: 0.8136, 16: 0.7451, 32: 1.4857, 64: 3.0
+- mechanical output of the decision rule: `no_excess`
+- output: `results/O100_two_adic_depths.json`
+- `verdict`: (Julian's to write)

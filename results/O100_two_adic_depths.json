@@ -1,0 +1,87 @@
+{
+ "schema_version": "1",
+ "script": "O100_two_adic_depths.py",
+ "generated_utc": "2026-11-28T08:21:14Z",
+ "params": {
+  "B": 20,
+  "cap": 20,
+  "null_draws": 10000,
+  "seed": 20261128,
+  "rows_max": 92,
+  "lowest_row": 26,
+  "primary": [
+   1,
+   2,
+   4,
+   8,
+   16
+  ],
+  "placebo": [
+   3,
+   5,
+   6,
+   7,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "secondary": [
+   32,
+   64
+  ],
+  "src": "b007053.txt"
+ },
+ "integrity": {
+  "src_sha256": "6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b",
+  "src_sha_ok": true,
+  "rows_present": true,
+  "rows_ge_21_bits": true,
+  "cells": {
+   "primary": 304,
+   "placebo": 632,
+   "secondary": 38
+  },
+  "mod_route_matches_exact": true,
+  "null_mean_primary_in_range": true
+ },
+ "integrity_ok": true,
+ "summary": {
+  "T": {
+   "primary": 0.9342105263157895,
+   "placebo": 1.0126582278481013,
+   "secondary": 1.605263157894737
+  },
+  "null_mean": {
+   "primary": 0.999014802631579,
+   "placebo": 0.9994189873417723,
+   "secondary": 1.0060947368421054
+  },
+  "null_sd": {
+   "primary": 0.0807779007487345,
+   "placebo": 0.05604613004765252,
+   "secondary": 0.23146941404835586
+  },
+  "p": {
+   "primary": 0.7922207779222078,
+   "placebo": 0.39346065393460655,
+   "secondary": 0.0122987701229877
+  },
+  "per_depth_mean_v2": {
+   "1": 0.8333333333333334,
+   "2": 1.1384615384615384,
+   "4": 1.0952380952380953,
+   "8": 0.8135593220338984,
+   "16": 0.7450980392156863,
+   "32": 1.4857142857142858,
+   "64": 3.0
+  },
+  "decision_rule_output": "no_excess"
+ },
+ "meta": {
+  "wall_s": 0.8
+ }
+}
