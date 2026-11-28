@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T00:45:36Z
+# unit: 0641-corner-residues
+# sources searched: 406
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:669
+  Source: session transcript, 2026-11-27
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:11
+  An exact identity tying π(2^m) mod small primes to the harmonic structure (unit 0617 found Lucas con...
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:2136
+  so log the units, commit and push, along with your questions in notes/corner-questions.md
+
+# 3 found, 0 missing
