@@ -1,8 +1,9 @@
 # Prereg — is unit 0642's edge excess real? A frozen-phase null (v1)
 
-STATUS: DRAFT, written 2026-11-28 by the cloud session on Julian's answer to corner question 8 ("A and b",
-relayed by the Mac session; (a) for question 8). Not locked: no sidecar exists. Julian locks it; the text is
-committed before `O102_edge_excess_frozen_phase.py` runs.
+STATUS: LOCKED on Julian's word, 2026-11-28 ("Ok can we do the other two tests while we wait?", to the options
+"run O102 as it stands" and "add a correction to unit 0642"). Drafted on his answer to corner question 8 ("A and
+b", relayed by the Mac session; (a) for question 8). The text is committed before
+`O102_edge_excess_frozen_phase.py` runs.
 
 ## Background
 
@@ -36,7 +37,7 @@ Predicted direction under H1: above.
 | cell value | each zero's complex explicit-formula term in each cell, as in 0642's engine; the cell is the real part of their sum |
 | null | 1000 draws; in each, every zero's term in every cell is multiplied by `e^{iθ_k}`, one `θ_k` per zero, independent and uniform on `[0, 2π)`; `numpy.default_rng(20261131)`; terms held in complex64 |
 | statistic | count over the twelve edges of cells below `t = 0.05` of their root-square size (the size is unchanged by the phases) |
-| script | `O102_edge_excess_frozen_phase.py`, no flags, sha256 (fill at lock) |
+| script | `O102_edge_excess_frozen_phase.py`, no flags, sha256 `533b82a75c523ab53dae176d6399d414d8c17234ef82847c1e5e40dd9a22a7e9` (imports `O101_edge_correlation.py`, sha256 `2562599814819bb253bf88a76fb6f1138ac481ef204b80ea3896a5ed44d75a42`, for the cells and the engine) |
 
 ## Null and p-value
 
@@ -103,12 +104,12 @@ Deterministic, no flags, seed as locked. Output `results/O102_edge_excess_frozen
 
 ## Lock chain
 
-- `lock_written_at`: (fill at lock)
+- `lock_written_at`: 2026-11-28T18:01:47Z
 - `pre_compute_sha256`: in the sidecar `preregs/edge_excess_frozen_phase_v1_20261128.sha256` (written at lock)
 - `run_start_at`: (fill at run)
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
-- `locked_by`: (Julian's word, when given)
+- `locked_by`: claude-on-julian-authorization ("Ok can we do the other two tests while we wait?", 2026-11-28)
 
 ## Run record
 
