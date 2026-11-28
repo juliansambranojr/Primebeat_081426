@@ -64,7 +64,7 @@ fades by the edge at depth plus 64. C parity (answer to 2): exact on every row 2
 rows 58–66 against the π list (128-bit past row 63); two minutes at row 66 on four cores, doubling
 every two rows. Log them as units 0642 (edges) and 0643 (C parity)?
 
-Answer:
+Answer: (Julian, 2026-11-27, relayed by the Mac session) "Yes". Log them as units 0642 (edges) and 0643 (C parity).
 
 ## 6. Row 93's parity: how to get there
 
@@ -77,8 +77,6 @@ subtle bugs, checked against rows 2–92 before trusting it past 92. Which: (a) 
 route; (b) start the sixteen-day run with checkpoints anyway; (c) stop at row 66 for now?
 
 Answer:
-
-Question 5 has no answer from Julian yet; its Answer line stays empty.
 
 ## From the Mac session: a check of units 0640 and 0641
 
