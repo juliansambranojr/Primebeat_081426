@@ -4,10 +4,12 @@ uniformly at random. The null distribution is built exactly as O100_two_adic_dep
 default_rng(20261128)). Each replicate is one more random table (default_rng(1128) stream) with a planted effect:
 each cell of the planted arm independently gains one trailing zero with probability q. The decision rule of the
 prereg is then applied to the replicate's primary and placebo statistics.
-Output results/O100_two_adic_power.json."""
-import json, time
+Output results/O100_two_adic_power.json, by guarded_write (switched after the run, 2026-11-28; see the prereg's run record)."""
+import json, time, sys, os
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import O100_two_adic_depths as O
+from utilities.resultsguard import guarded_write
 t0 = time.time()
 arms = {"primary": O.PRIMARY, "placebo": O.PLACEBO}
 C = {k: O.cells_for(v) for k, v in arms.items()}; Wt = {k: O.weights(v) for k, v in C.items()}
@@ -42,4 +44,4 @@ out = {"schema_version": "1", "script": "O100_two_adic_power.py", "generated_utc
        "summary": {"cells": {k: len(v) for k, v in C.items()}, "null_mean": {k: float(nullT[k].mean()) for k in arms},
                    "null_sd": {k: float(nullT[k].std()) for k in arms}, "rule_rates": rows},
        "meta": {"wall_s": round(time.time() - t0, 1)}}
-json.dump(out, open("results/O100_two_adic_power.json", "w"), indent=1); print(json.dumps(out["summary"], indent=1))
+guarded_write(out, "results/O100_two_adic_power.json", indent=1); print(json.dumps(out["summary"], indent=1))

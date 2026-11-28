@@ -11,9 +11,11 @@ low 20 bits keeps its size). Primary depths {1, 2, 4, 8, 16}; placebo depths {3,
 secondary depths {32, 64}, reported, no verdict.
 Statistic: T = mean over the cells of min(v2, 20). Null: 10000 tables from rows with low 20 bits replaced by
 uniform random bits, numpy.default_rng(20261128). p = (1 + #{T_null >= T}) / (1 + 10000), one-sided.
-No flags. Output results/O100_two_adic_depths.json."""
-import json, hashlib, time
+No flags. Output results/O100_two_adic_depths.json, by guarded_write (switched after the run, 2026-11-28; see the prereg's run record)."""
+import json, hashlib, time, sys, os
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from utilities.resultsguard import guarded_write
 B = 20; MOD = 1 << B; CAP = 20; NNULL = 10000; SEED = 20261128; RMAX = 92; LOWROW = 26
 PRIMARY = (1, 2, 4, 8, 16); PLACEBO = tuple(d for d in range(3, 16) if d not in (4, 8)); SECONDARY = (32, 64)
 SRC = 'b007053.txt'; SRC_SHA = '6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b'
@@ -98,7 +100,7 @@ def main():
                                              for d in PRIMARY + SECONDARY},
                        "decision_rule_output": label},
            "meta": {"wall_s": round(time.time() - t0, 1)}}
-    json.dump(out, open("results/O100_two_adic_depths.json", "w"), indent=1)
+    guarded_write(out, "results/O100_two_adic_depths.json", indent=1)
     print(json.dumps(out["summary"], indent=1))
 
 if __name__ == "__main__":

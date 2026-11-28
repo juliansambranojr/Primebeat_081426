@@ -130,7 +130,7 @@ redesigns, either lockable:
     over many GUE sets against many Poisson sets (a property of the correlation, not of one table).
 Which, or both?
 
-Answer:
+Answer: (Julian, 2026-11-28, relayed by the Mac session) "A and b", read in order: (a). Test whether 0642's excess is real: true heights and amplitudes, one random phase per zero shared by all its cells, many draws.
 
 ## 9. The guard refusal on the Mac: the O100 scripts
 
@@ -141,4 +141,4 @@ is pinned by sha256 in the locked, run prereg `preregs/two_adic_power_depths_v1_
 you want them handled: (a) leave both as run and record them as known exceptions; (b) switch both to
 `guarded_write` and note in the prereg that the script changed after the run, with no rerun; (c) something else?
 
-Answer:
+Answer: (Julian, 2026-11-28, relayed by the Mac session) "A and b", read in order: (b). Both O100 scripts switched to `guarded_write`, no rerun; the prereg records the change and both hashes.

@@ -146,3 +146,13 @@ equals the sidecar.
 - mechanical output of the decision rule: `no_excess`
 - output: `results/O100_two_adic_depths.json`
 - `verdict`: `no_excess` (Julian's word, 2026-11-28: "Write the verdict as no_excess")
+
+### After the run: the scripts moved to `guarded_write` (no rerun)
+
+On Julian's word (2026-11-28, relayed by the Mac session; corner question 9, answer (b)), both O100 scripts were
+switched after the run from a direct `json.dump` to `utilities.resultsguard.guarded_write`, so the repo's results
+guard passes. Nothing was rerun; `results/O100_two_adic_depths.json` and `results/O100_two_adic_power.json` are the
+files the locked run and the power study produced. The change is to the write call, two imports and the docstring.
+
+- `O100_two_adic_depths.py`: sha256 at the lock and the run `41c2db70d63462bac40d7da30e9953351120d9d6311fb9f06f9ffa894db8a43f`; after the switch `245728331369816b011d48c423979863d3ed336fb66dc9b281f90f8c6bb0847d`. The code that ran is the blob in commit `f2d464f8`.
+- `O100_two_adic_power.py`: sha256 before `4371656a0ca2726d9ce757a2400026028caab8012edfae3a74f6b1a2402edee9`; after `84152448a1b42c1a70b40c831ada10369f72193855a14836290b7a8491bd8eb7`.
