@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T03:00:51Z
+# unit: 0624-corner-cloud-check
+# sources searched: 1185
+
+FOUND  session/239bcfc4-3f58-4a42-9d69-883380858005.jsonl:2735
+  Source: session transcript, 2026-11-27
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:9394
+  "Read corner-cloud's units 0640 and 0641. I'd tell you what they actually show, so you can check its...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:10899
+  differ = sorted(k for k in set(old) | set(new) if old.get(k) != new.get(k))
+
+# 3 found, 0 missing

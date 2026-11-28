@@ -1,0 +1,11 @@
+# check_prose_source.py  2026-11-28T02:49:20Z
+# unit: 0623-census-twenty-five
+# sources searched: 1185
+
+FOUND  session/239bcfc4-3f58-4a42-9d69-883380858005.jsonl:2735
+  Source: session transcript, 2026-11-27
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:10622
+  ok = {m: int(s) for m, s in re.findall(r"^(\S+) ok (\d+)s$", t, re.M)}
+
+# 2 found, 0 missing

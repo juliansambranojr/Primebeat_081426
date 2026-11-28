@@ -1,0 +1,33 @@
+{
+ "pins": {
+  "only_four_zeros_outside_corner26": {
+   "file": "lean/Capstone.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_le24": {
+   "file": "lean/Census24.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData24_of_25": {
+   "file": "lean/Census24.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_le25": {
+   "file": "lean/Census25.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData25_of_26": {
+   "file": "lean/Census25.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}

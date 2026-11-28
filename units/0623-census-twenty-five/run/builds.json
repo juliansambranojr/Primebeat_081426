@@ -1,0 +1,39 @@
+{
+ "modules_listed": {
+  "24": 552,
+  "25": 889
+ },
+ "build_a": {
+  "ok": 551,
+  "failed": [
+   [
+    "PiRow24",
+    124
+   ]
+  ],
+  "exit": 1
+ },
+ "build_b": {
+  "ok": 725,
+  "failed": [],
+  "exit": null,
+  "PiRow24_seconds": 1249,
+  "Census24_seconds": 43
+ },
+ "build_c": {
+  "ok": 890,
+  "failed": [],
+  "exit": 0,
+  "seconds": 10481,
+  "PiRow25_seconds": 23,
+  "Census25_seconds": 7
+ },
+ "row24_missing": [],
+ "row24_term_modules": 550,
+ "row25_missing": [],
+ "row25_term_modules": 887,
+ "census_ok": [
+  "Census24",
+  "Census25"
+ ]
+}

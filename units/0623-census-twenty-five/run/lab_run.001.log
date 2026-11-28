@@ -1,0 +1,76 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T02:48:09Z
+[[2, 1], [4, 1], [8, 3], [20, 6]] 1077871 2063689
+{
+ "modules_listed": {
+  "24": 552,
+  "25": 889
+ },
+ "build_a": {
+  "ok": 551,
+  "failed": [
+   [
+    "PiRow24",
+    124
+   ]
+  ],
+  "exit": 1
+ },
+ "build_b": {
+  "ok": 725,
+  "failed": [],
+  "exit": null,
+  "PiRow24_seconds": 1249,
+  "Census24_seconds": 43
+ },
+ "build_c": {
+  "ok": 890,
+  "failed": [],
+  "exit": 0,
+  "seconds": 10481,
+  "PiRow25_seconds": 23,
+  "Census25_seconds": 7
+ },
+ "row24_missing": [],
+ "row24_term_modules": 550,
+ "row25_missing": [],
+ "row25_term_modules": 887,
+ "census_ok": [
+  "Census24",
+  "Census25"
+ ]
+}
+{
+ "pins": {
+  "only_four_zeros_outside_corner26": {
+   "file": "lean/Capstone.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_le24": {
+   "file": "lean/Census24.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData24_of_25": {
+   "file": "lean/Census24.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "only_four_zeros_le25": {
+   "file": "lean/Census25.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  },
+  "piData25_of_26": {
+   "file": "lean/Census25.lean",
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "clean": true
+  }
+ },
+ "weld_exit": 0,
+ "welds_ok": 20,
+ "welds_broken": 0,
+ "missing": []
+}
+# exit 0 after 2.872s, ended 2026-11-28T02:48:12Z

@@ -1,0 +1,36 @@
+⚠ [8028/8209] Replayed ZerosStencil
+warning: ZerosStencil.lean:298:13: This simp argument is unused:
+  Nat.mem_primeFactors_iff_mem_primeFactorsList
+
+Hint: Omit it from the simp argument list.
+  simp only [N̵a̵t̵.̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵_̵i̵f̵f̵_̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵L̵i̵s̵t̵,̵
+  ̵ ̵ ̵ ̵ ̵← Nat.support_factorization, Finsupp.mem_support_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8302/8708] Replayed Legendre
+warning: Legendre.lean:107:18: This simp argument is unused:
+  Nat.lt_succ_iff
+
+Hint: Omit it from the simp argument list.
+  simp [primesTo, N̵a̵t̵.̵l̵t̵_̵s̵u̵c̵c̵_̵i̵f̵f̵,̵ ̵PiSieve.isPrimeB2_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Legendre.lean:110:6: unused variable `q`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8983/8997] Built ExactFloor (4.3s)
+✔ [8984/8997] Built RelativeLi (5.5s)
+✔ [8985/8997] Built RecipBound (3.6s)
+✔ [8986/8997] Built AllDepths (13s)
+✔ [8987/8997] Built RecipIntegral (5.8s)
+✔ [8988/8997] Built Interpolant (8.8s)
+✔ [8989/8997] Built SmoothRow (4.8s)
+✔ [8990/8997] Built ToInfinity (5.8s)
+✔ [8991/8997] Built ExactGate (3.8s)
+✔ [8992/8997] Built Census20 (3.1s)
+✔ [8993/8997] Built ExactBand (3.8s)
+✔ [8994/8997] Built ExactRH (3.5s)
+✔ [8995/8997] Built PiNarrow (3.4s)
+✔ [8996/8997] Built Census23 (3.1s)
+✔ [8997/8997] Built Census24 (3.2s)
+Build completed successfully (8997 jobs).

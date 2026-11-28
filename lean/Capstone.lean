@@ -11,6 +11,7 @@ this one with the two inputs proved and the open corner empty of zeros.
 import Mathlib
 import WeakDepths
 import Census23
+import Census25
 
 namespace Capstone
 
@@ -44,6 +45,14 @@ theorem only_four_zeros_outside_corner24 (hpi : Census23.StmtPiData24) (hW : Wea
     (r, d) = (2, 1) ∨ (r, d) = (4, 1) ∨ (r, d) = (8, 3) ∨ (r, d) = (20, 6) :=
   only_four_zeros_outside_corner (Census23.piData23_of_24 hpi) hW hd hlo hout hz
 
+/-- **Every zero outside the open corner, on the π list narrowed to rows 26 … 92.** Rows 0 … 25 are
+`PiChunks.piData_le25`, proved by the kernel (`Census25.piData25_of_26`, `Census24.piData24_of_25`). -/
+theorem only_four_zeros_outside_corner26 (hpi : Census25.StmtPiData26) (hW : WeakDepths.StmtRoute13)
+    {r : ℤ} {d : ℕ} (hd : 1 ≤ d) (hlo : (d : ℤ) < r) (hout : ¬ OpenCorner r d)
+    (hz : Construction.tableFrom ToInfinity.trueRow r d = 0) :
+    (r, d) = (2, 1) ∨ (r, d) = (4, 1) ∨ (r, d) = (8, 3) ∨ (r, d) = (20, 6) :=
+  only_four_zeros_outside_corner24 (Census24.piData24_of_25 (Census25.piData25_of_26 hpi)) hW hd hlo hout hz
+
 end Capstone
 
 /-- info: 'Capstone.only_four_zeros_outside_corner' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -53,3 +62,7 @@ end Capstone
 /-- info: 'Capstone.only_four_zeros_outside_corner24' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Capstone.only_four_zeros_outside_corner24
+
+/-- info: 'Capstone.only_four_zeros_outside_corner26' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Capstone.only_four_zeros_outside_corner26

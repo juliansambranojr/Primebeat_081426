@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-27 · the capstone on the π list narrowed to rows 26 … 92: `Capstone.only_four_zeros_outside_corner26`
+
+    DONE        `lean/Capstone.lean` holds `only_four_zeros_outside_corner26`, taking
+                `Census25.StmtPiData26` and `WeakDepths.StmtRoute13`; `lake build
+                Capstone` exits 0 and its `#guard_msgs` pins the three standard axioms
+    ASSUMED     Julian's "Yes" (2026-11-27) to adding the capstone theorem that uses
+                `piData25_of_26` means a new theorem beside the rows-24 one, the old
+                ones kept as they are.
+    DEPENDS     nothing; `Census25` is built
+    OUT         rows 26 to 92 themselves; committing and pushing; none was asked
+
 ### 2026-11-27 · rows 24 and 25 of the π list built in the kernel on the Mac: `utilities/pirows/build_rows.sh 24 25`
 
     DONE        `build_rows.sh 24 25` exits 0: the 552 modules of

@@ -1,0 +1,13 @@
+⚠ [8027/8029] Replayed Legendre
+warning: Legendre.lean:107:18: This simp argument is unused:
+  Nat.lt_succ_iff
+
+Hint: Omit it from the simp argument list.
+  simp [primesTo, N̵a̵t̵.̵l̵t̵_̵s̵u̵c̵c̵_̵i̵f̵f̵,̵ ̵PiSieve.isPrimeB2_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Legendre.lean:110:6: unused variable `q`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8029/8029] Built PiL25_276_278 (15s)
+Build completed successfully (8029 jobs).
