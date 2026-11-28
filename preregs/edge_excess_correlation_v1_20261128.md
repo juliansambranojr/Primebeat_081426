@@ -1,6 +1,6 @@
 # Prereg — does the zeros' known correlation explain the edge excess? (v1)
 
-STATUS: DRAFT, written 2026-11-28 by the cloud session on the box the Mac session relayed (Julian, 2026-11-28:
+STATUS: DRAFT (power study shows the rule vacuous; redesign pending), written 2026-11-28 by the cloud session on the box the Mac session relayed (Julian, 2026-11-28:
 "Add a box", "Track and corner cloud to run"). Not locked: no sidecar exists. Julian locks it; the text is
 committed before `O101_edge_correlation.py` runs.
 
@@ -70,7 +70,22 @@ reads no zero: 30 GUE and 30 Poisson sets on other seeds (7001, 7002), each with
 per cell, seed 7003). Each GUE set in turn is the truth against the other 29 and the 30 Poisson sets; so is each
 Poisson set; and each GUE set again with its count raised by a third, an excess the correlation does not carry.
 
-(table: fill from the power output before the lock)
+Output sha256 `a1779ae49b453fb8372929ba8fded3997dbf3dde97244398b1eeaed75a45a705`. Spacing check: GUE sets
+pooled mean 1.0, variance 0.1796; Poisson 1.0024, 1.0022.
+
+| synthetic truth | `explained` | `unexplained` | `ambiguous` |
+|---|---|---|---|
+| a GUE set | 0.0 | 0.1 | 0.9 |
+| a Poisson set | 0.0 | 0.033 | 0.967 |
+| a GUE set, count raised a third | 0.0 | 0.133 | 0.867 |
+
+**The rule as drafted is vacuous: it does not fire `explained` on a GUE truth, and fires `unexplained` on a planted
+excess only 0.133 of the time.** The cause is the spread from one set of heights to the next: the GUE sets' counts
+run from 94.7 to 506.3 (5th to 95th percentile, median 209.0), the Poisson sets' from 94.9 to 463.0, because a set's
+few lowest heights, its comb's leaders, fix most of the count. Even paired with its own benchmark 1, a set's ratio
+of count to benchmark has median 0.902 and sd 0.482 for GUE (5th–95th percentile 0.444–2.064) and median 0.844, sd
+0.551 for Poisson. Unit 0642's observed ratio, about 1.3, lies well inside both. **This draft is not to be locked;
+a redesign is pending Julian's choice** (see `notes/corner-questions.md`, question 8).
 
 ## Pre-specified secondary analyses
 

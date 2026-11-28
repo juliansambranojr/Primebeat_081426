@@ -111,3 +111,34 @@ here stops at two hours, so rows past about 88 would run detached. Which: (a) ev
 (b) rows to 80 plus 84, 88, 92, then 93; (c) hand the code to the Mac, which has more cores?
 
 Answer: (Julian, in chat, 2026-11-28; copied here by the session) "Send the c". Handed to the Mac: `notes/2026-11-28-fast-parity-handoff.md`. Rows 67–79 agree with the π list on the cloud; the Mac runs 81–92, then 93.
+
+## 8. The edge-excess correlation box (from the Mac session): the power study says redesign
+
+The box: does the zeros' known correlation (GUE repulsion) explain unit 0642's edge excess? Draft prereg
+`preregs/edge_excess_correlation_v1_20261128.md`, scripts `O101_edge_correlation.py` and
+`O101_edge_correlation_power.py` (both through `guarded_write`). The power study, on synthetic heights only, shows
+the drafted rule cannot fire: a single set of heights gives near-zero counts that swing by a factor of five from
+set to set (its few lowest heights decide most of them), so even a set's ratio to its own benchmark has sd about
+0.5, GUE and Poisson alike, and 0642's observed ratio of about 1.3 sits inside both spreads.
+
+That also bears on 0642 itself: its benchmark gave each cell independent phases, while in a real table one zero's
+phase is shared by every cell, so the count of one table spreads far more than that benchmark allows. Two
+redesigns, either lockable:
+(a) test whether 0642's excess is real at all: true heights and amplitudes, one random phase per zero shared by all
+    its cells, many draws; the observed count against that spread;
+(b) test the ensembles, which is what the correlation question can answer: the mean ratio of count to benchmark
+    over many GUE sets against many Poisson sets (a property of the correlation, not of one table).
+Which, or both?
+
+Answer:
+
+## 9. The guard refusal on the Mac: the O100 scripts
+
+The Mac's pre-commit refused the branch: `O100_two_adic_depths.py` and `O100_two_adic_power.py` write results
+without `utilities.resultsguard.guarded_write` (this cloud checkout has no pre-commit installed). The depths script
+is pinned by sha256 in the locked, run prereg `preregs/two_adic_power_depths_v1_20261128.md` (verdict
+`no_excess`), and its power output's sha256 is pinned there too, so editing either changes a locked record. How do
+you want them handled: (a) leave both as run and record them as known exceptions; (b) switch both to
+`guarded_write` and note in the prereg that the script changed after the run, with no rerun; (c) something else?
+
+Answer:
