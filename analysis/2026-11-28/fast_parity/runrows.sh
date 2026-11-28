@@ -1,7 +1,7 @@
 #!/bin/sh
 # usage: runrows.sh first last  -> appends "m S S4 par tA tB1 tB2 tR | list c L wall" lines to rows.log
 P=../../../units/0641-corner-residues/run/pi_2pow.txt   # run from this folder
-export OMP_NUM_THREADS=4
+export OMP_NUM_THREADS=${OMP_NUM_THREADS:-4}   # set it to the performance cores
 m=$1
 while [ $m -le $2 ]; do
   lc=$(python3 -c "print(round(0.29*$m))"); lL=$(python3 -c "print(round(0.415*$m))")
