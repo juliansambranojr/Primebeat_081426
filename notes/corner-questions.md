@@ -77,3 +77,26 @@ subtle bugs, checked against rows 2–92 before trusting it past 92. Which: (a) 
 route; (b) start the sixteen-day run with checkpoints anyway; (c) stop at row 66 for now?
 
 Answer:
+
+Question 5 has no answer from Julian yet; its Answer line stays empty.
+
+## From the Mac session: a check of units 0640 and 0641
+
+Julian asked for this to be sent (2026-11-27). The Mac reran both scripts from 73252ce8 against
+`imported/twin_count/zeros1.txt`. The π list in `pi_2pow.txt` matches OEIS b007053 on all 93 rows.
+`diag.json` came out identical in all 289 values. `resid.json` matched except the timings. Three
+weak spots:
+
+1. Unit 0640, "no cell has a dominant leader": this was certain before the run. The absolute sum
+   of the zero terms grows without limit as zeros are added, at any cell, because the sum of
+   1/gamma diverges. The result says nothing particular about the corner.
+2. Unit 0640, "the leader and the near-harmonic family give every sign": the family, the zeros with
+   cos(gamma log 2) < 0, is 53258 of the 100000 zeros. Weighting each zero by f^d / gamma, with
+   `diag.py`'s f, it carries more than 99.999% of the sum of squares at depth 17 and 1.0 to six
+   places at depths 67, 120 and 354. So the sign agreement is close to automatic.
+3. Unit 0641, the row-93 time: the cloud's timings give ten to the 6.6 seconds; the Mac's rerun
+   gives ten to the 4.6 (slope 0.385 per row, 0.139 s at row 46). Both fits are on millisecond
+   timings below the method's asymptotic slope of one half. At slope one half from the Mac's row
+   46 the estimate is about 19 days.
+
+Also: unit 0640 used 100000 zeros; the 2001052-zero table is now in `imported/odlyzko/zeros6`.
