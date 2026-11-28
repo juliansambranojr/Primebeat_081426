@@ -28,6 +28,18 @@ This machine's network policy blocks his host, so lead 1 used the 100000 zeros a
 between 30000 and 100000 zeros except the absolute-sum ratio, which grows without limit. Do you
 want the host allowed for the two-million-zero table, or is 100000 enough for this lead?
 
+Answer: yes to getting the 2-million-zero table (Julian, in chat, 2026-11-28; copied here by the session)
+
+## 3b. The table cannot be fetched from this machine
+
+The host www-users.cse.umn.edu is now on this environment's allowlist, but its TLS chain ends at
+"emSign Root CA - G1", which is in none of this machine's trust stores (system, certifi, proxy
+bundle), so the download is refused and the session will not turn verification off. Two ways on:
+(a) download `zeros6` from Odlyzko's zeta_tables page on the Mac and commit it under `imported/`
+(the session checks its first 100000 zeros against `imported/twin_count/zeros1.txt` before using
+it); or (b) name another source of the same zeros, whose host the session then asks to allow.
+Which?
+
 Answer:
 
 ## 4. Where lead 1 goes next
