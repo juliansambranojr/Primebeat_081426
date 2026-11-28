@@ -1,0 +1,5 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T01:29:53Z
+{"commit": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc", "theorems_printed": 5, "theorems_standard_only": 5, "definition_matches_weld_source": true, "welds_broken": 0}
+{"commit": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc", "build_exit": 0, "build_seconds": 706, "axioms_exit": 0, "built": 2535, "replayed": 0, "restored": 0, "fetched": 0, "downloaded": 0, "built_by_prefix": {"Cache": 36, "Batteries": 1, "cache": 1, "TauCeti": 1695, "Lib": 495, "New": 305, "Statements": 1, "Main": 1}, "built_project_modules": 802, "theorems_printed": 5, "theorems_standard_only": 5, "has_sorry_ax": false}
+# exit 0 after 35.045s, ended 2026-11-28T01:30:28Z

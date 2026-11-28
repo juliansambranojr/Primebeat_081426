@@ -1,0 +1,93 @@
+{
+ "axioms": {
+  "LFunction_eq_zero_re": {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "count": 3,
+   "standard_only": true
+  },
+  "LFunction_eq_zero_re_of_isPrimitive": {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "count": 3,
+   "standard_only": true
+  },
+  "LFunction_ne_zero_of_half_lt_re": {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "count": 3,
+   "standard_only": true
+  },
+  "riemannHypothesis": {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "count": 3,
+   "standard_only": true
+  },
+  "riemannZeta_eq_zero_re": {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "count": 3,
+   "standard_only": true
+  }
+ },
+ "axioms_exit": 0,
+ "cache": {
+  "downloaded": 802,
+  "failed_sha256": 0,
+  "of": 802
+ },
+ "cache_log_built_lines": 41,
+ "commit": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc",
+ "definition_matches_weld_source": true,
+ "has_sorry_ax": false,
+ "main_theorem": "theorem riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line New.grh",
+ "mathlib_rev": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+ "project_oleans": 803,
+ "source_build": {
+  "axioms_exit": 0,
+  "build_exit": 0,
+  "build_seconds": 706,
+  "built": 2535,
+  "built_by_prefix": {
+   "Batteries": 1,
+   "Cache": 36,
+   "Lib": 495,
+   "Main": 1,
+   "New": 305,
+   "Statements": 1,
+   "TauCeti": 1695,
+   "cache": 1
+  },
+  "built_project_modules": 802,
+  "commit": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc",
+  "downloaded": 0,
+  "fetched": 0,
+  "has_sorry_ax": false,
+  "replayed": 0,
+  "restored": 0,
+  "theorems_printed": 5,
+  "theorems_standard_only": 5
+ },
+ "src_lean_files": 802,
+ "theorems_printed": 5,
+ "theorems_standard_only": 5,
+ "toolchain": "leanprover/lean4:v4.37.0-rc1",
+ "weld_exit": 0,
+ "welds_broken": 0
+}

@@ -14,14 +14,14 @@ a bar out of `<total>`.
 - Mac: memory watch every 15 s, re-armed every 30 min; alerts under 8 GB free
 - Cloud corner-cloud: open-corner exploration on branch claude/corner-cloud, units 0640-0659
 - Mac: watcher on claude/corner-cloud, checks every 2 min for notes/corner-questions.md and pings this session
+- Cloud corner-cloud: zeros6 (2001052 zeros) and the 3b answer pushed (73252ce)
+- Cloud corner-cloud: Julian's answers pushed (8b7d047): follow up the edge excess; C parity run on rows 93+ in the cloud; 2-million-zero table; lead 1 does finite-row certificates
 - Cloud old instance: duplicate rows 24-25 build in its container; safe to stop
 
-## Done, not committed
+## Done, not pushed
 
-- Unit 0620: which of the repo's topics Mathlib, PNT+ and IEANTN already hold (lab check passes)
-- Unit 0621: how far the RH route reaches below row 93 when its floor is moved down (lab check passes)
-- PINS.md entry for the rows 24-25 build
-- Build logs in utilities/pirows/logs/
+- Build logs in utilities/pirows/logs/: not committed; row 25's are still being written
+- Unit 0622: the Lean proof of RH, its axioms seen on the Mac, from the prebuilt cache and from source (not committed; commit needs Julian's word)
 
 ## Next
 
@@ -36,6 +36,6 @@ a bar out of `<total>`.
 - The zero result for the whole table: rows 1-24 have no assumption; outside the open corner it needs RH and the π list on rows 25-92
 - Exact π for the deep cells of rows 26-92: the kernel cannot reach rows near 92; the RH route reaches 362 of 3886 cells, at unproved floors (unit 0621)
 - Any theorem in the open corner (depth >= 17, row >= 93, below both lines)
-- Our own sight of #print axioms riemannHypothesis (needs a local build on Lean v4.37.0-rc1)
+- A rebuild of Mathlib itself, or a second independent kernel, for the RH proof: the project built from source on the Mac (unit 0622), Mathlib came from its official cache
 - TuringRun600: stopped by Julian, unverified, uncommitted; the reason is not on file
 - Local main commit d7172ee: 4 mail files from 2026-10-12, not on GitHub; Julian decides

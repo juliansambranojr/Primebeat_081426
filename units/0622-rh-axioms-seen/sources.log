@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-28T01:33:41Z
+# unit: 0622-rh-axioms-seen
+# sources searched: 1185
+
+FOUND  session/239bcfc4-3f58-4a42-9d69-883380858005.jsonl:2735
+  Source: session transcript, 2026-11-27
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:8704
+  The Lean proof of RH on the Mac: its axioms, and whether its statement is the one the weld names.
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:8706
+  Usage: python3 -I rhaxioms.py <clone of leanprover-community/riemann-hypothesis> <Primebeat repo roo...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:8715
+  The clone's .olean files came from the repository's prebuilt cache. Printing axioms reads those file...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:9068
+  kernel did not re-check the proofs from source on this machine in this run. With a third argument, a...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:9069
+  clone built from source with only Mathlib's cache, it also reads that build's log, source_build.log.
+
+# 6 found, 0 missing

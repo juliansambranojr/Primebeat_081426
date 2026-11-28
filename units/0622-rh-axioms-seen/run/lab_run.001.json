@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0622-rh-axioms-seen",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.14.7",
+    "path_python3": "v3.14.7",
+    "shell": "/bin/sh",
+    "os": "Darwin v27.2.0 arm64",
+    "virtual_env": null,
+    "git_head": "2bd9193d5ccb519f057c70e755e2326642f598b2",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "2efdc2103bced3bc215bf0692e096d1dc1331a9ce97c2f7e893f4616403d0294",
+    "run_start": "2026-11-28T01:21:18Z",
+    "run_end": "2026-11-28T01:21:50Z",
+    "wall_s": 32.44381120899925
+  }
+}

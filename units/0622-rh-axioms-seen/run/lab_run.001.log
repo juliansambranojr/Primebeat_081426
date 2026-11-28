@@ -1,0 +1,4 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T01:21:18Z
+{"commit": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc", "theorems_printed": 5, "theorems_standard_only": 5, "definition_matches_weld_source": true, "welds_broken": 0}
+# exit 0 after 32.444s, ended 2026-11-28T01:21:50Z
