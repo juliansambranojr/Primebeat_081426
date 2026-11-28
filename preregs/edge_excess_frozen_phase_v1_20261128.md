@@ -115,3 +115,14 @@ Deterministic, no flags, seed as locked. Output `results/O102_edge_excess_frozen
 
 Appended after the run. This append changes the file's hash; the no-drift check is that `post_compute_sha256`
 below, taken before this section existed, equals the sidecar.
+
+- `run_start_at`: 2026-11-28T18:02:07Z
+- `run_end_at`: 2026-11-28T18:06:42Z
+- `post_compute_sha256`: 657c17acb055a008dea782b1a74788f9027b8dc3d523f6aeaf4a2f4da8fa9ec4
+- sidecar `edge_excess_frozen_phase_v1_20261128.sha256`: 657c17acb055a008dea782b1a74788f9027b8dc3d523f6aeaf4a2f4da8fa9ec4 — match
+- integrity: `zeros_sha_ok` true; observed count 313 equals the sum of unit 0642's `observed_K100000` counts, 313; the zero-phase draw through the complex64 terms gives 313; `integrity_ok` true
+- primary (twelve edges, `t = 0.05`): observed 313; null mean 239.87, sd 97.35, 5th–95th percentile 117–429; `p` = 0.1878121878121878
+- secondary: `t = 0.02` observed 123, null mean 94.85, `p` = 0.18681318681318682; `t = 0.1` observed 616, null mean 481.51, `p` = 0.19480519480519481; per diagonal at `t = 0.05` every `p` between 0.118 and 0.627
+- mechanical output of the decision rule: `consistent_with_chance`
+- output: `results/O102_edge_excess_frozen_phase.json`
+- `verdict`: (Julian's to write)
