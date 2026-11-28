@@ -1,0 +1,23 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T03:51:11Z
+{
+ "0.02": {
+  "observed": 119,
+  "gauss": 100.8,
+  "leader": 96.6,
+  "top50": 95.5
+ },
+ "0.05": {
+  "observed": 309,
+  "gauss": 252.0,
+  "leader": 241.4,
+  "top50": 239.2
+ },
+ "0.1": {
+  "observed": 629,
+  "gauss": 503.9,
+  "leader": 482.8,
+  "top50": 477.5
+ }
+}
+# exit 0 after 5054.874s, ended 2026-11-28T05:15:26Z

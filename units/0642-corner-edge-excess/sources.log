@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-28T05:16:24Z
+# unit: 0642-corner-edge-excess
+# sources searched: 406
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:669
+  Source: session transcript, 2026-11-27
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:2334
+  Follow it up — more edges,
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:2335
+  deeper, and whether the excess holds as zeros are added — or leave it?
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:3356
+  Log them as units 0642 (edges) and 0643 (C parity).
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:3115
+  X += s50[sl][:, None] * rng.standard_normal((nn, NMC))
+
+# 5 found, 0 missing
