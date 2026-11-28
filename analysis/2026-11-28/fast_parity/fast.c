@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
-#include "dsum.h"
+#include "dsum2.h"
 typedef int64_t i64;
 static u64 *P; static u64 NP;
 static void primes_upto(u64 n){ char *c=calloc(n+1,1); P=malloc(sizeof(u64)*(n/2+10)); NP=0;
@@ -55,6 +55,17 @@ static int64_t lucy_pi(u64 n){       /* pi(n), Lucy_Hedgehog, O(n^(3/4)) */
     for(u64 i=1;i<=lim;i++){ u64 d=i*p; int64_t v = (d<=r)? Shi[d] : Slo[n/d]; Shi[i]-= v-sp; }
     for(u64 i=r;i>=p2;i--){ Slo[i]-= Slo[i/p]-sp; } }
   int64_t res=Shi[1]; free(Slo); free(Shi); (void)nv; return res; }
+/* the same tau on [lo, hi], hi - lo < 2^18, cache-sized: tau in 32 bits, and the found part kept as a sum of
+   base-two logarithms; a leftover prime factor is above sqrt(hi), at least 10 bits when lo >= 2^20, while the
+   float sum is off by far less than a bit, so a gap above 5 bits marks it. Below 2^20, tau_seg2. */
+static void tau_seg3(u64 lo,u64 hi,uint32_t *t,float *lg){ u64 len=hi-lo+1;
+  for(u64 i=0;i<len;i++){ t[i]=1; lg[i]=0.f; }
+  for(u64 j=0;j<NP;j++){ u64 p=P[j]; if(p*p>hi) break; float lp=log2f((float)p); u64 st=((lo+p-1)/p)*p;
+    for(u64 q=st;q<=hi;q+=p){ t[q-lo]<<=1; lg[q-lo]+=lp; }
+    u64 pk=p*p; uint32_t k=2;
+    while(pk<=hi){ u64 s2=((lo+pk-1)/pk)*pk; for(u64 q=s2;q<=hi;q+=pk){ t[q-lo]+=t[q-lo]/k; lg[q-lo]+=lp; }
+      if(pk>hi/p) break; pk*=p; k++; } }
+  for(u64 i=0;i<len;i++) if(log2((double)(lo+i)) - (double)lg[i] > 5.0) t[i]<<=1; }
 int main(int argc,char**argv){
   int m=atoi(argv[1]); int lc=atoi(argv[2]); int lL=atoi(argv[3]);
   u128 x=(u128)1<<m; u64 R=isqrt_u128(x);
@@ -93,7 +104,7 @@ int main(int argc,char**argv){
   #pragma omp parallel reduction(+:B1)
   { int tid=omp_get_thread_num(); i64 *mid=midT+(size_t)tid*(W+1);
     int8_t *mu=malloc(SEG); u64 *pr=malloc(sizeof(u64)*SEG); i64 *Mb=malloc(sizeof(i64)*SEG);
-    const u64 TS=1<<20; u64 *tt=malloc(sizeof(u64)*TS), *rr=malloc(sizeof(u64)*TS);
+    const u64 TS=1<<18; u64 *tt=malloc(sizeof(u64)*TS), *rr=malloc(sizeof(u64)*TS); uint32_t *t3=malloc(4*TS); float *lg3=malloc(4*TS);
     #pragma omp for schedule(dynamic,1)
     for(u64 b=0;b<nb;b++){ u64 lo=1+b*SEG, hi=lo+SEG-1; if(hi>L) hi=L; u64 len=hi-lo+1;
       mu_seg(lo,hi,mu,pr); i64 run=bstart[b]; for(u64 i=0;i<len;i++){ run+=mu[i]; Mb[i]=run; }
@@ -107,12 +118,13 @@ int main(int argc,char**argv){
       u64 bLo=1, bHi=0;                                  /* tau buffer covers [bLo, bHi] */
       u64 e=hi;                                          /* walk e downward: v_e = x/e^2 upward */
       while(e>=elo){ u64 ve=(u64)(x/((u128)e*e));
-        while(v<ve){ if(v+1>bHi){ bLo=v+1; bHi=bLo+TS-1; if(bHi>vmax) bHi=vmax; tau_seg2(bLo,bHi,tt,rr); }
+        while(v<ve){ if(v+1>bHi){ bLo=v+1; bHi=bLo+TS-1; if(bHi>vmax) bHi=vmax;
+            if(bLo>=(1ULL<<20)){ tau_seg3(bLo,bHi,t3,lg3); for(u64 i=0;i<=bHi-bLo;i++) tt[i]=t3[i]; } else tau_seg2(bLo,bHi,tt,rr); }
           u64 to= ve<bHi? ve : bHi; for(u64 i=v+1;i<=to;i++) Dcur+=tt[i-bLo]; v=to; }
         int8_t me=mu[e-lo]; if(me) B1+= me>0? Dcur : -Dcur;
         if(e==elo) break; e--; }
       (void)vmax; }
-    free(mu); free(pr); free(Mb); free(tt); free(rr); }
+    free(mu); free(pr); free(Mb); free(tt); free(rr); free(t3); free(lg3); }
   double tB1=omp_get_wtime()-t0; t0=omp_get_wtime();
   /* ---- recursion for M(z_m), m = W .. 1 ---- */
   i64 *Mz=malloc(sizeof(i64)*(W+1));

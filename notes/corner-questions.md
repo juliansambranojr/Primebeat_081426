@@ -98,3 +98,16 @@ weak spots:
    46 the estimate is about 19 days.
 
 Also: unit 0640 used 100000 zeros; the 2001052-zero table is now in `imported/odlyzko/zeros6`.
+
+## 7. The fast route's check against rows 67–92: all of them, or a sample?
+
+The fast route is built (`analysis/2026-11-28/fast_parity/`, work in progress). Full S mod 2^64
+agrees with the plain code wherever both ran, and pi(2^m) mod 2 agrees with the pi list on rows 66,
+68, 70 and 72. It is 9 times faster than the plain code at row 66 and grows about 2^0.4 per row:
+79 seconds at row 72, so by extrapolation about 5.6 hours at row 92 and 8 hours at row 93 on this
+machine's four cores. Rows 67–80 are running now (under an hour). Checking every row 81–92 would add
+about 22 hours; a sample (84, 88, 92) about 8. A cloud session can be reclaimed and a single task
+here stops at two hours, so rows past about 88 would run detached. Which: (a) every row to 92, then 93;
+(b) rows to 80 plus 84, 88, 92, then 93; (c) hand the code to the Mac, which has more cores?
+
+Answer:
