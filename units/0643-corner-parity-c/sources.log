@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-28T03:20:10Z
+# unit: 0643-corner-parity-c
+# sources searched: 406
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:669
+  Source: session transcript, 2026-11-27
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:3478
+  yes and in the cloud, so we save ram here
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:3356
+  Log them as units 0642 (edges) and 0643 (C parity).
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:3032
+  u64 Smod=(A+B)&3; int Pi_par=(int)(((Smod+4-1)/2)&1);
+
+# 4 found, 0 missing

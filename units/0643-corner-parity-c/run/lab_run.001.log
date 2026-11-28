@@ -1,0 +1,16 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T03:07:46Z
+{
+ "rows_checked": [
+  2,
+  66
+ ],
+ "rows": 65,
+ "rows_agree": 65,
+ "S_odd_all": true,
+ "work_seconds_row66": 118.3,
+ "log2_work_slope_rows56_66": 0.561,
+ "row93_days_at_fitted_slope": 49.9,
+ "row93_days_at_half": 15.9
+}
+# exit 0 after 705.926s, ended 2026-11-28T03:19:32Z
