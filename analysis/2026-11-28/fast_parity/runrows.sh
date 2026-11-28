@@ -1,6 +1,6 @@
 #!/bin/sh
 # usage: runrows.sh first last  -> appends "m S S4 par tA tB1 tB2 tR | list c L wall" lines to rows.log
-P=/home/user/Primebeat_081426/units/0641-corner-residues/run/pi_2pow.txt
+P=../../../units/0641-corner-residues/run/pi_2pow.txt   # run from this folder
 export OMP_NUM_THREADS=4
 m=$1
 while [ $m -le $2 ]; do

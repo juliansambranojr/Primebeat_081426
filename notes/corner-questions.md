@@ -110,4 +110,4 @@ about 22 hours; a sample (84, 88, 92) about 8. A cloud session can be reclaimed 
 here stops at two hours, so rows past about 88 would run detached. Which: (a) every row to 92, then 93;
 (b) rows to 80 plus 84, 88, 92, then 93; (c) hand the code to the Mac, which has more cores?
 
-Answer:
+Answer: (Julian, in chat, 2026-11-28; copied here by the session) "Send the c". Handed to the Mac: `notes/2026-11-28-fast-parity-handoff.md`. Rows 67–79 agree with the π list on the cloud; the Mac runs 81–92, then 93.
