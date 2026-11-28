@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T09:04:42Z
+# unit: 0646-coin-turnover
+# sources searched: 411
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:5997
+  Why I'm sharing this because what if every depth is a coin flip and every regime is a starting face?...
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6673
+  o["parents_opposite"], _ = share(cells, lambda c: sg(T[(c[0], c[1] - 1)]) != sg(T[(c[0] - 1, c[1] - ...
+
+# 3 found, 0 missing
