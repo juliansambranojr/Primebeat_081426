@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0620-upstream-overlap",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.14.7",
+    "path_python3": "v3.14.7",
+    "shell": "/bin/sh",
+    "os": "Darwin v27.2.0 arm64",
+    "virtual_env": null,
+    "git_head": "13f04b551f4e3dbb00530427210f5ecdd7a49830",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "050b32db29bfdbbf6e85f6cd960256b56c3575af9b0d4704faa76825e960ee04",
+    "run_start": "2026-11-27T20:12:37Z",
+    "run_end": "2026-11-27T20:19:15Z",
+    "wall_s": 397.78254658399965
+  }
+}

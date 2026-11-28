@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-28T00:12:31Z
+# unit: 0621-rh-route-below-93
+# sources searched: 1182
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:5557
+  Source: session transcript, 2026-11-27, and `notes/2026-11-27-handoff-teleport-questions.md`
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:5042
+  **3. Does the RH route reach below row 93?** The handoff says the π list cannot be built to row 92 i...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:5399
+  How far the RH route reaches below row 93, if its floor is moved down.
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:5410
+  A cell (r, d) is reached when some floor 2^k with 4 <= k <= (r - d - 1) / 2 has routeU(k) <= need(d,...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:5411
+  Only floor 2^38 is a proved theorem (`RouteSharp.weakWindow13_of_RH`); every other floor is the form...
+
+# 5 found, 0 missing

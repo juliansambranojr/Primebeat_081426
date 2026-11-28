@@ -1,0 +1,131 @@
+{
+ "authored": {
+  "mathlib": 0,
+  "pnt": 0
+ },
+ "local": {
+  "conrey": {
+   "mathlib": 0,
+   "pnt": 0
+  },
+  "difference_table": {
+   "mathlib": 0,
+   "pnt": 0
+  },
+  "fwddiff": {
+   "mathlib": 3,
+   "pnt": 0
+  },
+  "hardyz": {
+   "mathlib": 0,
+   "pnt": 0
+  },
+  "levinson": {
+   "mathlib": 6,
+   "pnt": 0
+  },
+  "littlewood": {
+   "mathlib": 0,
+   "pnt": 1
+  },
+  "primecounting_pow2": {
+   "mathlib": 0,
+   "pnt": 1
+  },
+  "riemannhypothesis": {
+   "mathlib": 1,
+   "pnt": 1
+  },
+  "turing": {
+   "mathlib": 15,
+   "pnt": 0
+  }
+ },
+ "search": {
+  "backlund": {
+   "ieantn": 16,
+   "mathlib": 0,
+   "pnt": 5
+  },
+  "conrey": {
+   "ieantn": 0,
+   "mathlib": 0,
+   "pnt": 0
+  },
+  "difference_table": {
+   "ieantn": 0,
+   "mathlib": 0,
+   "pnt": 0
+  },
+  "digamma": {
+   "ieantn": 24,
+   "mathlib": 3,
+   "pnt": 6
+  },
+  "explicit_formula": {
+   "ieantn": 4,
+   "mathlib": 14,
+   "pnt": 3
+  },
+  "fwddiff": {
+   "ieantn": 0,
+   "mathlib": 1,
+   "pnt": 0
+  },
+  "hardyz": {
+   "ieantn": 4,
+   "mathlib": 1,
+   "pnt": 0
+  },
+  "landau": {
+   "ieantn": 2,
+   "mathlib": 1,
+   "pnt": 1
+  },
+  "legendre": {
+   "ieantn": 0,
+   "mathlib": 19,
+   "pnt": 1
+  },
+  "levinson": {
+   "ieantn": 0,
+   "mathlib": 5,
+   "pnt": 0
+  },
+  "littlewood": {
+   "ieantn": 0,
+   "mathlib": 0,
+   "pnt": 1
+  },
+  "primecounting_pow2": {
+   "ieantn": 0,
+   "mathlib": 0,
+   "pnt": 1
+  },
+  "riemannhypothesis": {
+   "ieantn": 2,
+   "mathlib": 0,
+   "pnt": 1
+  },
+  "schoenfeld": {
+   "ieantn": 0,
+   "mathlib": 0,
+   "pnt": 9
+  },
+  "stirling": {
+   "ieantn": 30,
+   "mathlib": 3,
+   "pnt": 7
+  },
+  "turing": {
+   "ieantn": 2,
+   "mathlib": 22,
+   "pnt": 0
+  },
+  "weil": {
+   "ieantn": 18,
+   "mathlib": 11,
+   "pnt": 1
+  }
+ }
+}

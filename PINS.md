@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-27 · rows 24 and 25 of the π list built in the kernel on the Mac: `utilities/pirows/build_rows.sh 24 25`
+
+    DONE        `build_rows.sh 24 25` exits 0: the 552 modules of
+                `mods24.txt`, the 889 of `mods25.txt`, `Census24` and `Census25`
+                each print "ok", and the logs sit in `utilities/pirows/logs/`
+    ASSUMED     Julian's "ok, lets continue" (2026-11-27) means the next step
+                the cloud session named for the Mac after the teleport: this build.
+    DEPENDS     nothing; the toolchain v4.28.0 and the Mathlib packages are
+                already in `lean/.lake`
+    OUT         rows 26 to 92, the unit for the build (offered to Julian once it
+                ends), committing; none was asked
+
 ### 2026-11-25 · block S15 of `design/stencil.md`, the chain to the goal from no right zeros: `Stage3/BasinChain*.lean`
 
     DONE        `StmtNoRightZeros Q`: for every T ≥ T₀ the zeros of

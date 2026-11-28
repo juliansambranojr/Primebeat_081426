@@ -1,0 +1,69 @@
+search	difference_table	mathlib	0	
+search	difference_table	pnt	0	
+search	difference_table	ieantn	0	
+local	difference_table	mathlib	0	
+local	difference_table	pnt	0	
+search	primecounting_pow2	mathlib	0	
+search	primecounting_pow2	pnt	1	PrimeNumberTheoremAnd/IEANTN/Erdos392.lean
+search	primecounting_pow2	ieantn	0	
+local	primecounting_pow2	mathlib	0	
+local	primecounting_pow2	pnt	1	IEANTN/Erdos392.lean
+search	legendre	mathlib	19	Mathlib/Tactic/NormNum/LegendreSymbol.lean, Mathlib/RingTheory/Polynomial/ShiftedLegendre.lean, Mathlib/NumberTheory/LegendreSymbol/Basic.lean, Mathlib/NumberTheory/LegendreSymbol/QuadraticReciprocity.lean, Mathlib/NumberTheory/LegendreSymbol/JacobiSymbol.lean, Mathlib/Data/Nat/Multiplicity.lean, Mathlib/Analysis/SpecialFunctions/Gamma/Digamma.lean, Mathlib/Data/Nat/Factorial/Basic.lean, Mathlib/Data/Nat/Choose/Factorization.lean, Mathlib/NumberTheory/Padics/PadicVal/Basic.lean
+search	legendre	pnt	1	PrimeNumberTheoremAnd/IEANTN/Erdos392.lean
+search	legendre	ieantn	0	
+search	landau	mathlib	1	Mathlib/Analysis/Asymptotics/Defs.lean
+search	landau	pnt	1	PrimeNumberTheoremAnd/IEANTN/TMEEMT.lean
+search	landau	ieantn	2	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/ZetaGrowth.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/ZetaGrowth.lean
+search	hardyz	mathlib	1	Mathlib/NumberTheory/LSeries/HardyZ.lean
+search	hardyz	pnt	0	
+search	hardyz	ieantn	4	Solutions/RosserSchoenfeld.v2/Proof/ZetaLean/HardyZ.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/ZetaLean/HardyZ.lean, Solutions/RosserSchoenfeld.v2/Proof/HardyFirstZero/Spine.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/HardyFirstZero/Spine.lean
+local	hardyz	mathlib	0	
+local	hardyz	pnt	0	
+search	levinson	mathlib	5	Mathlib/Data/Nat/Factorial/DoubleFactorial.lean, Mathlib/Topology/Sheaves/LocallySurjective.lean, Mathlib/RingTheory/Polynomial/Hermite/Gaussian.lean, Mathlib/Combinatorics/Young/SemistandardTableau.lean, Mathlib/Algebra/Homology/LocalCohomology.lean
+search	levinson	pnt	0	
+search	levinson	ieantn	0	
+local	levinson	mathlib	6	Topology/Sheaves/LocallySurjective.lean, RingTheory/Polynomial/Hermite/Gaussian.lean, Combinatorics/Young/SemistandardTableau.lean, Combinatorics/Young/YoungDiagram.lean, Data/Nat/Factorial/DoubleFactorial.lean, Algebra/Homology/LocalCohomology.lean
+local	levinson	pnt	0	
+search	turing	mathlib	22	Mathlib/Computability/TuringDegree.lean, Wanted/Computability/TuringMachine/Computable.lean, Mathlib/Computability/TuringMachine/Computable.lean, Mathlib/Computability/TuringMachine/Config.lean, Mathlib/Computability/TuringMachine/StackTuringMachine.lean, Mathlib/Computability/TuringMachine/ToPartrec.lean, Mathlib/Computability/TuringMachine/PostTuringMachine.lean, Mathlib/Computability/Encoding.lean, Mathlib/Computability/RecursiveIn.lean, Wanted.lean
+search	turing	pnt	0	
+search	turing	ieantn	2	Solutions/RosserSchoenfeld.v2/Proof/HardyTenZeros/TenZeros.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/HardyTenZeros/TenZeros.lean
+local	turing	mathlib	15	Computability/PostTuringMachine.lean, Computability/TMComputable.lean, Computability/TMConfig.lean, Computability/Tape.lean, Computability/TuringDegree.lean, Computability/TMToPartrec.lean, Computability/RecursiveIn.lean, Computability/Encoding.lean, Computability/TuringMachine/PostTuringMachine.lean, Computability/TuringMachine/ToPartrec.lean
+local	turing	pnt	0	
+search	stirling	mathlib	3	Mathlib/Combinatorics/Enumerative/Stirling.lean, MathlibTest/Tactic/FieldSimp.lean, Mathlib/Analysis/SpecialFunctions/Gamma/BohrMollerup.lean
+search	stirling	pnt	7	PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Gamma/GammaStirlingAux.lean, PrimeNumberTheoremAnd/Consequences.lean, PrimeNumberTheoremAnd/IEANTN/Erdos392.lean, PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Gamma/StripBounds.lean, PrimeNumberTheoremAnd/Mathlib/NumberTheory/LSeries/ZetaFiniteOrder.lean, PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/GammaBounds.lean, PrimeNumberTheoremAnd.lean
+search	stirling	ieantn	30	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Analytic/Stirling.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Analytic/Stirling.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/GammaFacts/StirlingVert.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/GammaFacts/StirlingVert.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/GammaFacts.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Hypotheses.lean, Solutions/RosserSchoenfeld.v2/Proof/RHHeight/GammaIncrement.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/GammaFacts.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Hypotheses.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/RHHeight/GammaIncrement.lean
+search	digamma	mathlib	3	Mathlib/Analysis/SpecialFunctions/Gamma/Digamma.lean, MathlibTest/FunProp.lean, Mathlib/NumberTheory/LSeries/RiemannZetaLogDeriv.lean
+search	digamma	pnt	6	PrimeNumberTheoremAnd/IEANTN/KadiriEq15GammaFactor.lean, PrimeNumberTheoremAnd/IEANTN/HadamardLogDerivative.lean, PrimeNumberTheoremAnd/IEANTN/KadiriEq15.lean, PrimeNumberTheoremAnd/IEANTN/KadiriEq13.lean, PrimeNumberTheoremAnd/IEANTN/Kadiri.lean, PrimeNumberTheoremAnd.lean
+search	digamma	ieantn	24	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/GammaFacts.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/GammaSide.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/GammaFacts/Mu.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/GammaFacts.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Analytic/Stirling.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/GammaSide.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/GammaFacts/Mu.lean, Solutions/RosserSchoenfeld.v2/Proof/RHHeight/GammaIncrement.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Analytic/Stirling.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/GammaFacts/Series.lean
+search	conrey	mathlib	0	
+search	conrey	pnt	0	
+search	conrey	ieantn	0	
+local	conrey	mathlib	0	
+local	conrey	pnt	0	
+search	littlewood	mathlib	0	
+search	littlewood	pnt	1	PrimeNumberTheoremAnd/IEANTN/ZetaAppendix.lean
+search	littlewood	ieantn	0	
+local	littlewood	mathlib	0	
+local	littlewood	pnt	1	IEANTN/ZetaAppendix.lean
+search	backlund	mathlib	0	
+search	backlund	pnt	5	PrimeNumberTheoremAnd/Backlund/ZeroCountCrude.lean, PrimeNumberTheoremAnd.lean, PrimeNumberTheoremAnd/IEANTN/TMEEMT.lean, PrimeNumberTheoremAnd/IEANTN/Kadiri.lean, PrimeNumberTheoremAnd/IEANTN/KadiriZeroCounting.lean
+search	backlund	ieantn	16	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/Backlund.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/Backlund.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/BacklundDefs.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/BacklundDefs.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/Defs.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/MainTerm.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/Defs.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/RvM/ReZeroCount.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/MainTerm.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/RvM/ReZeroCount.lean
+search	schoenfeld	mathlib	0	
+search	schoenfeld	pnt	9	PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldZeta.lean, PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean, PrimeNumberTheoremAnd/IEANTN/TMEEMT.lean, PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW.lean, PrimeNumberTheoremAnd/IEANTN/ZetaSummary.lean, PrimeNumberTheoremAnd/IEANTN/Dusart.lean, PrimeNumberTheoremAnd/IEANTN/FKS2.lean, PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_tables.lean, PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime_tables.lean
+search	schoenfeld	ieantn	0	
+search	explicit_formula	mathlib	14	Mathlib/FieldTheory/Finite/Trace.lean, Mathlib/Analysis/Real/Pi/Wallis.lean, Mathlib/Topology/Instances/AddCircle/Real.lean, Mathlib/GroupTheory/Exponent.lean, Mathlib/RingTheory/RootsOfUnity/CyclotomicUnits.lean, Mathlib/NumberTheory/LSeries/ZMod.lean, Mathlib/NumberTheory/LSeries/HurwitzZetaValues.lean, Mathlib/Algebra/ContinuedFractions/Euler.lean, Mathlib/Analysis/Calculus/ContDiff/Comp.lean, Mathlib/RingTheory/Polynomial/Chebyshev.lean
+search	explicit_formula	pnt	3	PrimeNumberTheoremAnd/IEANTN/Kadiri.lean, PrimeNumberTheoremAnd/IwaniecKowalskiCh1.lean, PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW.lean
+search	explicit_formula	ieantn	4	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Statement.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Hypotheses.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Statement.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Hypotheses.lean
+search	weil	mathlib	11	Mathlib/AlgebraicGeometry/AlgebraicCycle/Basic.lean, Mathlib/Algebra/LieRinehartAlgebra/Quotient.lean, Mathlib/NumberTheory/Height/EllipticCurve.lean, Mathlib/Analysis/BoxIntegral/DivergenceTheorem.lean, Mathlib/Topology/Perfect.lean, Mathlib/Topology/MetricSpace/CantorScheme.lean, Mathlib/Topology/Baire/BaireMeasurable.lean, Mathlib/Algebra/Group/Action/Equidecomp.lean, Mathlib/MeasureTheory/MeasurableSpace/EventuallyMeasurable.lean, Mathlib/Analysis/BoxIntegral/Partition/Filter.lean
+search	weil	pnt	1	PrimeNumberTheoremAnd/IEANTN/Kadiri.lean
+search	weil	ieantn	18	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Defs.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Hypotheses.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Defs.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Hypotheses.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Statement.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/ZetaReflect.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Statement.lean, Solutions/RosserSchoenfeld.v2/Proof/Zeta23/WeilEF/XiLogDeriv.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/ZetaReflect.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/WeilEF/XiLogDeriv.lean
+search	riemannhypothesis	mathlib	0	
+search	riemannhypothesis	pnt	1	PrimeNumberTheoremAnd/IEANTN/TMEEMT.lean
+search	riemannhypothesis	ieantn	2	Solutions/RosserSchoenfeld.v2/Proof/Zeta23/Statement.lean, Solutions/Schoenfeld1976Numerics.v1/Proof/Zeta23/Statement.lean
+local	riemannhypothesis	mathlib	1	NumberTheory/LSeries/RiemannZeta.lean
+local	riemannhypothesis	pnt	1	IEANTN/TMEEMT.lean
+search	fwddiff	mathlib	1	Mathlib/NumberTheory/Padics/MahlerBasis.lean
+search	fwddiff	pnt	0	
+search	fwddiff	ieantn	0	
+local	fwddiff	mathlib	3	NumberTheory/Padics/MahlerBasis.lean, NumberTheory/Padics/AddChar.lean, Algebra/Group/ForwardDiff.lean
+local	fwddiff	pnt	0	

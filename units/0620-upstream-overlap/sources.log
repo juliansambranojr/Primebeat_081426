@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-27T20:20:29Z
+# unit: 0620-upstream-overlap
+# sources searched: 1180
+
+FOUND  session/239bcfc4-3f58-4a42-9d69-883380858005.jsonl:2735
+  Source: session transcript, 2026-11-27
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:1618
+  Ok, so where are we at with evrything? Whats new in mathlib, PNT+ as a contribution, what's a contri...
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2275
+  I'm confused can you just tell me if any of our work is not in those repos?
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2379
+  Yes check and what limits are you taking about ?
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2713
+  Which of this repo's topics Mathlib, PNT+ and IEANTN already hold.
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2715
+  Usage: python3 -I overlap.py <repo root>
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2717
+  Three readings, written to overlap.json, with the file paths each search
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2720
+  1. GitHub code search, one query per topic per project, restricted to Lean
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2721
+  files. GitHub allows 10 code searches a minute, so one every 7 seconds.
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2722
+  2. The same words grepped in the local copies of Mathlib and PNT+ that
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2723
+  lean_stage3/ builds against (PNT+ pin 47fa486). Code search is known to miss
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2724
+  files, and this is the cross-check.
+
+FOUND  session/7d67eb5d-2c2b-4b56-ae67-7289608347b2.jsonl:2725
+  3. Pull requests and issues by juliansambranojr in Mathlib and PNT+.
+
+# 13 found, 0 missing

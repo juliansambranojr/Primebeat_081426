@@ -1,0 +1,5 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T00:11:06Z
+{"route_at_bottom_row": {"r26": 1080161.34, "r32": 151357.72, "r40": 14376.99, "r50": 865.24, "r60": 67.16, "r68": 18.76, "r76": 12.36}, "check_0606_routeU_2p38": 12.36, "check_0606_need_d16_r93": 15.09, "cells": {"rows_26_92": 3886, "reached": 362, "first_row_reached": 50}}
+{'r76': 11, 'r80': 12, 'r85': 13, 'r92': 15}
+# exit 0 after 0.061s, ended 2026-11-28T00:11:06Z
