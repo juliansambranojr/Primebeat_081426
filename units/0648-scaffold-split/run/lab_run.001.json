@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0648-scaffold-split",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v880 x86_64",
+    "virtual_env": null,
+    "git_head": "7ff6c78c51c7e6e9937dcec4c6ec7d5e38d90a85",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "8e20aa5eda417f6dc1436321bfe2efbc4dcd0ea229b8f4214598d2a3ab4801da",
+    "run_start": "2026-11-28T08:58:57Z",
+    "run_end": "2026-11-28T08:58:57Z",
+    "wall_s": 0.04170953599987115
+  }
+}

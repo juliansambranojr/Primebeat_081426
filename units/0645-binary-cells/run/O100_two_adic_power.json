@@ -1,0 +1,60 @@
+{
+ "schema_version": "1",
+ "script": "O100_two_adic_power.py",
+ "generated_utc": "2026-11-28T08:12:18Z",
+ "params": {
+  "replicates": 1000,
+  "null_draws": 10000,
+  "null_seed": 20261128,
+  "replicate_seed": 1128
+ },
+ "summary": {
+  "cells": {
+   "primary": 304,
+   "placebo": 632
+  },
+  "null_mean": {
+   "primary": 0.999014802631579,
+   "placebo": 0.9994189873417723
+  },
+  "null_sd": {
+   "primary": 0.0807779007487345,
+   "placebo": 0.05604613004765252
+  },
+  "rule_rates": {
+   "null": {
+    "excess": 0.014,
+    "no_excess": 0.898,
+    "ambiguous": 0.088
+   },
+   "primary q=0.1": {
+    "excess": 0.102,
+    "no_excess": 0.542,
+    "ambiguous": 0.356
+   },
+   "primary q=0.2": {
+    "excess": 0.456,
+    "no_excess": 0.118,
+    "ambiguous": 0.426
+   },
+   "primary q=0.3": {
+    "excess": 0.876,
+    "no_excess": 0.008,
+    "ambiguous": 0.116
+   },
+   "primary q=0.5": {
+    "excess": 0.991,
+    "no_excess": 0.0,
+    "ambiguous": 0.009
+   },
+   "both arms q=0.3": {
+    "excess": 0.002,
+    "no_excess": 0.006,
+    "ambiguous": 0.992
+   }
+  }
+ },
+ "meta": {
+  "wall_s": 1.3
+ }
+}

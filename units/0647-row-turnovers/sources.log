@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T09:00:30Z
+# unit: 0647-row-turnovers
+# sources searched: 411
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6246
+  The deep zero is a fulcrum and pole and the r3 is another pole
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6703
+  code += '.' if f is None else ('Z' if T[(r, f)] == 0 else ('E' if f <= r / 2 else 'L'))
+
+# 3 found, 0 missing

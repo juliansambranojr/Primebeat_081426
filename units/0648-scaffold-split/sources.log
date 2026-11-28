@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-28T09:00:33Z
+# unit: 0648-scaffold-split
+# sources searched: 411
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6388
+  Ok hear me out 2 and 3 aren't prime in this case they are .5  in the sense that they are the scaffol...
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6447
+  Both because the balance is part of the table and as you said the rest is from the primes  themselve...
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6760
+  def cop6(x): return x - x // 2 - x // 3 + x // 6
+
+# 4 found, 0 missing

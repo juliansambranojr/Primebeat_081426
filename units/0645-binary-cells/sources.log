@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-28T09:00:27Z
+# unit: 0645-binary-cells
+# sources searched: 411
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:4924
+  What if the structure is not in the parity of the cell numbers but the zeros and what's inside the c...
+
+FOUND  preregs/two_adic_power_depths_v1_20261128.md:3
+  Lock, write, commit and run
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:6609
+  def v2(n): return None if n == 0 else (n & -n).bit_length() - 1
+
+# 4 found, 0 missing

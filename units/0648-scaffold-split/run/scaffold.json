@@ -1,0 +1,120 @@
+{
+ "halves": {
+  "zeros_true": [
+   [
+    2,
+    1
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    8,
+    3
+   ],
+   [
+    20,
+    6
+   ]
+  ],
+  "zeros_half": [
+   [
+    2,
+    1
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    8,
+    3
+   ],
+   [
+    20,
+    6
+   ]
+  ],
+  "cells_changed": 182,
+  "changed_edges_row_minus_depth": [
+   1,
+   2
+  ],
+  "edge_signs_identical_to_depth_90": true,
+  "edge1_first_true": [
+   0,
+   1,
+   -2,
+   6,
+   -14,
+   31,
+   -62,
+   118
+  ],
+  "edge1_first_half": [
+   "0",
+   "3/2",
+   "-3",
+   "15/2",
+   "-16",
+   "67/2",
+   "-65",
+   "243/2"
+  ]
+ },
+ "lattice": {
+  "slots_rows_1_12": [
+   0,
+   0,
+   2,
+   2,
+   6,
+   10,
+   22,
+   42,
+   86,
+   170,
+   342,
+   682
+  ],
+  "formula_holds_rows_2_92": true,
+  "cell_formula_holds": true,
+  "balance_line_slot_cells_zero_d_1_45": true,
+  "zeros_split": {
+   "2_1": {
+    "true": 0,
+    "slots": 0,
+    "primes_ge5": 0
+   },
+   "4_1": {
+    "true": 0,
+    "slots": 0,
+    "primes_ge5": 0
+   },
+   "8_3": {
+    "true": 0,
+    "slots": 0,
+    "primes_ge5": 0
+   },
+   "20_6": {
+    "true": 0,
+    "slots": 2688,
+    "primes_ge5": 0
+   }
+  }
+ },
+ "balance_line": {
+  "depths": 44,
+  "ratio_d1_6": [
+   0.0,
+   0.286,
+   0.0,
+   0.571,
+   0.533,
+   0.9
+  ],
+  "ratio_median": 0.959,
+  "share_below_1": 0.59
+ }
+}

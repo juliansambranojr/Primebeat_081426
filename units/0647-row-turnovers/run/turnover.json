@@ -1,0 +1,123 @@
+{
+ "zeros": {
+  "2_1": {
+   "row_signs": "+0",
+   "parents": [
+    1,
+    1
+   ],
+   "below": null,
+   "above_prev_row": null,
+   "diag_below": 1,
+   "diag_parent": 1,
+   "corner_2r_lt_7d": true
+  },
+  "4_1": {
+   "row_signs": "+0--",
+   "parents": [
+    2,
+    2
+   ],
+   "below": -1,
+   "above_prev_row": 1,
+   "diag_below": 3,
+   "diag_parent": 3,
+   "corner_2r_lt_7d": false
+  },
+  "8_3": {
+   "row_signs": "+++0----",
+   "parents": [
+    4,
+    4
+   ],
+   "below": -5,
+   "above_prev_row": 5,
+   "diag_below": 6,
+   "diag_parent": 6,
+   "corner_2r_lt_7d": true
+  },
+  "20_6": {
+   "row_signs": "++++++0---++++++++++",
+   "parents": [
+    623,
+    623
+   ],
+   "below": -343,
+   "above_prev_row": 343,
+   "diag_below": 1713,
+   "diag_parent": 1713,
+   "corner_2r_lt_7d": true
+  }
+ },
+ "code_rows_2_92": "Z.Z.E.Z.E.E.LELE.EZLELELELE.E.EELELELELELEEEEEEE.E.E.E.E.E.EEEEEEEEE.E.E.EEEEEEEEEELELELELE",
+ "zero_turnovers": 4,
+ "bands": {
+  "2_7": {
+   "even": 3,
+   "odd": 0
+  },
+  "8_13": {
+   "even": 3,
+   "odd": 0
+  },
+  "14_19": {
+   "even": 0,
+   "odd": 3
+  },
+  "20_25": {
+   "even": 3,
+   "odd": 0
+  },
+  "26_31": {
+   "even": 3,
+   "odd": 0
+  },
+  "32_37": {
+   "even": 1,
+   "odd": 3
+  },
+  "38_43": {
+   "even": 0,
+   "odd": 3
+  },
+  "44_49": {
+   "even": 3,
+   "odd": 3
+  },
+  "50_55": {
+   "even": 0,
+   "odd": 3
+  },
+  "56_61": {
+   "even": 0,
+   "odd": 3
+  },
+  "62_67": {
+   "even": 3,
+   "odd": 3
+  },
+  "68_73": {
+   "even": 1,
+   "odd": 3
+  },
+  "74_79": {
+   "even": 2,
+   "odd": 3
+  },
+  "80_85": {
+   "even": 3,
+   "odd": 2
+  },
+  "86_91": {
+   "even": 3,
+   "odd": 0
+  }
+ },
+ "first_zero": {
+  "offset_per_row": 0.3727,
+  "turn_per_depth": -0.154,
+  "drift_along_path": 0.2957,
+  "half_beat_rows_offset_only": 8.4,
+  "half_beat_rows_along_path": 10.6
+ }
+}
