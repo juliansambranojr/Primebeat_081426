@@ -145,4 +145,4 @@ equals the sidecar.
 - per depth, mean `v2`: 1: 0.8333, 2: 1.1385, 4: 1.0952, 8: 0.8136, 16: 0.7451, 32: 1.4857, 64: 3.0
 - mechanical output of the decision rule: `no_excess`
 - output: `results/O100_two_adic_depths.json`
-- `verdict`: (Julian's to write)
+- `verdict`: `no_excess` (Julian's word, 2026-11-28: "Write the verdict as no_excess")
