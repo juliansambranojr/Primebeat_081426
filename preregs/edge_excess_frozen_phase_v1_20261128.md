@@ -57,7 +57,21 @@ Precedence: `compromised` > `excess_real` > `consistent_with_chance` > `ambiguou
 
 ## Power (computed before the lock, synthetic data only)
 
-(fill from `results/O102_edge_excess_frozen_phase_power.json` before the lock)
+`O102_edge_excess_frozen_phase_power.py`, output `results/O102_edge_excess_frozen_phase_power.json` (sha256
+`651a779e3af2f90a05737b54c5d6b4163b1fd3a04ca450db8fec490a5f98b35e`). It reads no zero: 20 GUE sets of 10000
+heights (O101's generator, seed 7101), each against 200 frozen-phase draws of its own terms (seed 7102).
+
+| synthetic truth | `excess_real` | `consistent_with_chance` | `ambiguous` |
+|---|---|---|---|
+| a GUE set, its own phases | 0.0 | 0.9 | 0.1 |
+| the same, count raised a third | 0.0 | 0.65 | 0.35 |
+| the same, count raised two thirds | 0.2 | 0.55 | 0.25 |
+
+One table's count under shared random phases spreads with sd 0.382 of its mean (median over the sets). The rule
+does not fire `excess_real` without cause, and it cannot see an excess of a third: 0642's observed excess is
+about that size. So `consistent_with_chance` here would say the excess lies inside what one table's phases give,
+which is the question; it would not say there is no excess. `excess_real` can fire only if the true zeros' spread
+is much narrower than the synthetic sets' or the observed count lies far above it. Julian locks it knowing this.
 
 ## Pre-specified secondary analyses
 
