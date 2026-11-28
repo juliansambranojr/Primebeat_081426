@@ -61,7 +61,22 @@ Precedence: `compromised` > `excess_real` > `consistent_with_chance` > `ambiguou
 
 ## Power (computed before the lock, synthetic data only)
 
-(fill from `results/O103_edge_excess_multibase_power.json` before the lock)
+`O103_edge_excess_multibase_power.py`, output `results/O103_edge_excess_multibase_power.json` (sha256
+`8090ea4351d5b8d76b01af9a153a859b743439555c5189ed75fb47c5a514358e`). It reads no zero: 10 GUE sets of 10000 heights
+(O101's generator, seed 7401), each through the same 24 bases, against 200 shared-phase draws (seeds 7402 + set).
+
+| synthetic truth | `excess_real` | `consistent_with_chance` | `ambiguous` |
+|---|---|---|---|
+| a GUE set, its own phases | 0.0 | 0.9 | 0.1 |
+| the same, pooled count raised a sixth | 0.3 | 0.2 | 0.5 |
+| the same, raised a third | 0.8 | 0.0 | 0.2 |
+| the same, raised a half | 1.0 | 0.0 | 0.0 |
+
+Pooled over the 24 bases the null spreads with sd 0.099 of its mean (median over the sets), against about 0.4 for
+one base; the bases' null counts are uncorrelated (median mean correlation 0.0013). The rule fires both ways: it
+does not cry `excess_real` on a plain set, catches an excess of a third in eight sets of ten and of a half in all,
+and returns `consistent_with_chance` on no set carrying an excess of a third. Unit 0642's excess, if it held in every
+base, is the size this test sees.
 
 ## Pre-specified secondary analyses
 

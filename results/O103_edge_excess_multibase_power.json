@@ -1,0 +1,44 @@
+{
+  "schema_version": "1",
+  "script": "O103_edge_excess_multibase_power.py",
+  "generated_utc": "2026-11-28T20:32:36Z",
+  "params": {
+    "sets": 10,
+    "heights": 10000,
+    "draws": 200,
+    "seeds": [
+      7401,
+      "7402+j"
+    ],
+    "bases": 24
+  },
+  "summary": {
+    "rule_rates": {
+      "as is": {
+        "excess_real": 0.0,
+        "consistent_with_chance": 0.9,
+        "ambiguous": 0.1
+      },
+      "raised a sixth": {
+        "excess_real": 0.3,
+        "consistent_with_chance": 0.2,
+        "ambiguous": 0.5
+      },
+      "raised a third": {
+        "excess_real": 0.8,
+        "consistent_with_chance": 0.0,
+        "ambiguous": 0.2
+      },
+      "raised a half": {
+        "excess_real": 1.0,
+        "consistent_with_chance": 0.0,
+        "ambiguous": 0.0
+      }
+    },
+    "pooled_sd_over_mean_median": 0.099,
+    "between_base_corr_median": 0.0013
+  },
+  "meta": {
+    "wall_s": 1621.4
+  }
+}
