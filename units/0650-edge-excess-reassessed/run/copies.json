@@ -1,0 +1,9 @@
+{
+ "copies_match": {
+  "O102_edge_excess_frozen_phase.json": true,
+  "O102_edge_excess_frozen_phase_power.json": true,
+  "O101_edge_correlation_power.json": true,
+  "O102_designs.json": true
+ },
+ "all_match": true
+}

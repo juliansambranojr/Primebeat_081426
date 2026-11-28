@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-28T18:08:35Z
+# unit: 0650-edge-excess-reassessed
+# sources searched: 420
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:7013
+  Source: session transcript, 2026-11-28
+
+FOUND  preregs/edge_excess_frozen_phase_v1_20261128.md:3
+  Ok can we do the other two tests while we wait?
+
+FOUND  session/f17eb52d-626c-583d-a8ca-a17150f22dc7.jsonl:9780
+  out = {k: h(k) == h(v) for k, v in pairs.items()}
+
+# 3 found, 0 missing

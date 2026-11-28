@@ -1,0 +1,4 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-11-28T18:08:00Z
+{'O102_edge_excess_frozen_phase.json': True, 'O102_edge_excess_frozen_phase_power.json': True, 'O101_edge_correlation_power.json': True, 'O102_designs.json': True}
+# exit 0 after 0.026s, ended 2026-11-28T18:08:00Z
