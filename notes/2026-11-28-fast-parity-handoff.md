@@ -22,8 +22,7 @@ Code: `analysis/2026-11-28/fast_parity/` (`fast.c`, `dsum2.h`; `runrows.sh` the 
 - Full S mod 2^64 against `plainS.c`: equal on every test, rows 16–58, many (c, L) splits chosen so
   the recursion, the middle queries and the τ stream all run.
 - π(2^m) mod 2 against the π list (`units/0641-corner-residues/run/pi_2pow.txt`): rows 2–47 spot
-  checks, and every row 66–79, all equal. Row 80 was running when this was written; the session will
-  append its line below.
+  checks, and every row 66–80, all equal.
 - The plain C code (unit 0643) is exact on rows 2–66 and is the reference below 67.
 
 ## Build on the Mac
@@ -63,7 +62,7 @@ lies in rows with known parity, and whose value is odd, is nonzero. That covers 
 cells row 93 completes; the corner past it stays open (corner question 4: finite-row certificates, the
 rest a measure statement).
 
-## Rows 67–79 (cloud, fast route, four cores)
+## Rows 67–80 (cloud, fast route, four cores)
 
     m   pi_parity  list   c     L     wall_s
     67  1          1      2^19  2^28  21.5
@@ -79,3 +78,6 @@ rest a measure statement).
     77  0          0      2^22  2^32  355.3
     78  0          0      2^23  2^32  482.3
     79  1          1      2^23  2^33  655.2
+    80  0          0      2^23  2^33  857.5
+
+Row 80's full line, for comparing a Mac build: `80 13820996409636048717 1 0 ...` (c=2^23, L=2^33).
