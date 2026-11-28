@@ -1,7 +1,7 @@
 # Prereg — trailing zero bits of the cells at power-of-two depths (v1)
 
-STATUS: DRAFT, written 2026-11-28 by the cloud session at Julian's word ("yes draft it"). Not locked:
-no sidecar exists. Julian locks it; the text is committed before `O100_two_adic_depths.py` runs.
+STATUS: LOCKED on Julian's word, 2026-11-28 ("Lock, write, commit and run"). Drafted the same day at
+his word ("yes draft it"). The text is committed before `O100_two_adic_depths.py` runs.
 
 ## Background
 
@@ -121,13 +121,15 @@ Deterministic: `default_rng(20261128)`, no flags. Output `results/O100_two_adic_
 
 ## Lock chain
 
-- `lock_written_at`: (fill at lock)
+- `lock_written_at`: 2026-11-28T08:20:46Z
 - `pre_compute_sha256`: in the sidecar `preregs/two_adic_power_depths_v1_20261128.sha256` (written at lock)
 - `run_start_at`: (fill at run)
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
-- `locked_by`: (Julian's word, when given)
+- `locked_by`: claude-on-julian-authorization ("Lock, write, commit and run", 2026-11-28)
 
 ## Run record
 
-Appended after the run.
+Appended after the run. This append changes the file's hash; the no-drift
+check is that `post_compute_sha256` below, taken before this section existed,
+equals the sidecar.
